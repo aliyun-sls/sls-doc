@@ -14,6 +14,17 @@ const sqlfunFiles = glob
     };
   });
 
+const sqldemoFiles = glob
+  .sync("./src/sqldemo/*.md")
+  .map((f) => path.parse(f).name)
+  .filter((f) => f !== "index")
+  .map((f) => {
+    return {
+      text: f,
+      link: `/sqldemo/${f}`,
+    };
+  });
+
 /**
  * @type {() => Promise<import('vitepress').UserConfig>}
  */
@@ -35,7 +46,7 @@ module.exports = (async () => {
       },
     },
     ignoreDeadLinks: true,
-    base: "/vuepress-vue-theme-blog/",
+    base: "/sls-doc/",
     srcDir: "src",
     lang: "en-US",
     title: "SLS",
@@ -93,6 +104,15 @@ module.exports = (async () => {
           ],
         },
         {
+          text: "案例",
+          activeMatch: `^/(sqldemo)/`,
+          items: [
+            {
+              items: [{ text: "SQL案例", link: "/sqldemo/" }],
+            },
+          ],
+        },
+        {
           text: "文档",
           activeMatch: `^/(sqlfun)/`,
           items: [
@@ -135,6 +155,22 @@ module.exports = (async () => {
             items: [
               { text: "函数概览", link: "/sqlfun/index" },
               ...sqlfunFiles,
+            ],
+          },
+        ],
+        "/sqldemo": [
+          {
+            text: "SQL案例",
+            items: [{ text: "案例概览", link: "/sqldemo/index" }],
+          },
+          {
+            text: "Nginx 分析和监控",
+            items: [
+              {
+                text: "今日PV",
+                link: "/sqldemo/1.nginx日志查看今日的PV和昨日的对比",
+              },
+              ...sqldemoFiles,
             ],
           },
         ],
