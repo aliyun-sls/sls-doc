@@ -59,10 +59,10 @@ module.exports = (async () => {
       logo: "/img/sls.svg",
 
       algolia: {
-        indexName: "vuejs-v3",
-        appId: "BH4D9OD16A",
-        apiKey: "bc6e8acb44ed4179c30d0a45d6140d3f",
-        placeholder: "Search on Vue theme",
+        // indexName: "vuejs-v3",
+        // appId: "BH4D9OD16A",
+        // apiKey: "bc6e8acb44ed4179c30d0a45d6140d3f",
+        placeholder: "在SLS文档中心查找",
         translations: {
           modal: {
             searchBox: {
@@ -84,7 +84,7 @@ module.exports = (async () => {
       socialLinks: [
         {
           icon: "github",
-          link: "https://github.com/wangtao0101/vuepress-vue-theme-blog",
+          link: "https://github.com/aliyun-sls",
         },
         // { icon: "twitter", link: "https://twitter.com/vuejs" },
         // { icon: "discord", link: "https://discord.com/invite/HBherRA" },
