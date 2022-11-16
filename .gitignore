@@ -1,0 +1,9 @@
+node_modules
+.DS_Store
+.idea/
+.cache/
+coverage
+dist
+temp
+build
+.history

@@ -1,0 +1,224 @@
+.vt-doc {
+  --vt-doc-code-font-size: 14px;
+  --vt-doc-code-line-height: 1.5;
+}
+
+/* inline code */
+.vt-doc :not(pre) > code {
+  background-color: var(--vt-c-bg-mute);
+  padding: 0.15em 0.5em;
+  border-radius: 4px;
+  color: var(--vt-c-text-code);
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.vt-doc a > code {
+  color: var(--vt-c-brand-dark);
+}
+
+.vt-doc :not(pre, h1, h2, h3, h4, h5, h6) > code {
+  font-size: var(--vt-doc-code-font-size);
+}
+
+@media (min-width: 768px) {
+  .vt-doc :not(pre) > code {
+    white-space: nowrap;
+  }
+}
+
+.vt-doc div[class*='language-'] {
+  position: relative;
+  margin: 28px -24px;
+  background-color: #292d3e;
+  overflow-x: auto;
+  transition: background-color 0.5s;
+}
+
+.dark .vt-doc div[class*='language-'] {
+  background-color: var(--vt-c-bg-soft);
+}
+
+@media (min-width: 640px) {
+  .vt-doc div[class*='language-'] {
+    margin: 28px 0;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 639px) {
+  .vt-doc li div[class*='language-'] {
+    border-radius: 8px 0 0 8px;
+  }
+}
+
+.vt-doc div[class*='language-'] + div[class*='language-'],
+.vt-doc div[class$='-api'] + div[class*='language-'],
+.vt-doc div[class*='language-'] + div[class$='-api'] > div[class*='language-']:first-child {
+  margin-top: -16px;
+}
+
+.vt-doc [class*='language-'] pre,
+.vt-doc [class*='language-'] code {
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+.vt-doc [class*='language-'] pre {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 14px 0;
+  background: transparent;
+  overflow-x: auto;
+}
+
+.vt-doc [class*='language-'] code {
+  display: block;
+  padding: 0 24px;
+  width: fit-content;
+  min-width: 100%;
+  line-height: var(--vt-doc-code-line-height);
+  font-size: var(--vt-doc-code-font-size);
+  color: #a6accd;
+  transition: color 0.5s;
+}
+
+.vt-doc [class*='language-'] code .highlighted {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: background-color 0.5s;
+  margin: 0 -24px;
+  padding: 0 24px;
+  width: calc(100% + 2 * 24px);
+  display: inline-block;
+}
+
+.dark .vt-doc [class*='language-'] code .highlighted {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.vt-doc div[class*='language-'].line-numbers-mode {
+  padding-left: 32px;
+}
+
+.vt-doc .line-numbers-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  border-right: 1px solid var(--vt-c-divider-light);
+  padding: 13px 0 11px;
+  width: 32px;
+  text-align: center;
+  font-family: var(--vt-font-family-mono);
+  line-height: var(--vt-doc-code-line-height);
+  font-size: var(--vt-doc-code-font-size);
+  color: var(--vt-c-text-3);
+  transition: border-color 0.5s, color 0.5s;
+}
+
+.vt-doc [class*='language-'] > span.lang {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  z-index: 2;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vt-c-text-dark-3);
+  transition: color 0.5s;
+}
+
+@media (max-width: 480px) {
+  .vt-doc [class*='language-'] > span.lang {
+    top: 1px;
+    right: 5px;
+    font-size: 11px;
+  }
+  .vt-doc [class*='language-'] pre {
+    padding: 18px 0 12px;
+  }
+}
+
+.vt-doc [class*='language-'] > button.copy {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  z-index: 3;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  width: 40px;
+  height: 40px;
+  background-color: #292d3e;
+  opacity: 0;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2'/%3E%3C/svg%3E");
+  background-position: 50%;
+  background-size: 20px;
+  background-repeat: no-repeat;
+  transition: opacity 0.4s;
+}
+
+.dark .vt-doc [class*='language-'] > button.copy {
+  background-color: var(--vt-c-bg-soft);
+}
+
+.vt-doc [class*='language-']:hover > button.copy,
+.vt-doc [class*='language-'] > button.copy:focus {
+  opacity: 1;
+}
+
+.vt-doc [class*='language-'] > button.copy:hover,
+.vt-doc [class*='language-'] > button.copy.copied,
+.vt-doc [class*='language-'] > button.copy:hover.copied,
+.vt-doc [class*='language-'] > button.copy.copied::before,
+.vt-doc [class*='language-'] > button.copy:hover.copied::before {
+  background-color: #343848;
+}
+
+.dark .vt-doc [class*='language-'] > button.copy:hover,
+.dark .vt-doc [class*='language-'] > button.copy.copied,
+.dark .vt-doc [class*='language-'] > button.copy:hover.copied,
+.dark .vt-doc [class*='language-'] > button.copy.copied::before,
+.dark .vt-doc [class*='language-'] > button.copy:hover.copied::before {
+  background-color: #2f2f2f;
+}
+
+.vt-doc [class*='language-'] > button.copy.copied,
+.vt-doc [class*='language-'] > button.copy:hover.copied {
+  border-radius: 0 4px 4px 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' height='20' width='20' stroke='rgba(128,128,128,1)' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2m-6 9 2 2 4-4'/%3E%3C/svg%3E");
+}
+
+.vt-doc [class*='language-'] > button.copy.copied::before,
+.vt-doc [class*='language-'] > button.copy:hover.copied::before {
+  position: relative;
+  left: -65px;
+  display: block;
+  border-radius: 4px 0 0 4px;
+  padding-top: 10px;
+  width: 64px;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vt-c-text-dark-2);
+  white-space: nowrap;
+  content: 'Copied';
+}
+
+.vt-doc [class*='language-']:hover > button.copy + span.lang,
+.vt-doc [class*='language-'] > button.copy:focus + span.lang {
+  opacity: 0;
+}

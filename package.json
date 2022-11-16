@@ -1,0 +1,60 @@
+{
+  "name": "@vue/theme",
+  "version": "1.2.2",
+  "description": "The design system for Vue.js.",
+  "main": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./config": "./src/vitepress/config/baseConfig.js"
+  },
+  "files": [
+    "src",
+    "types"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs/theme.git"
+  },
+  "keywords": [
+    "vue",
+    "design-system"
+  ],
+  "author": "Evan You",
+  "license": "MIT",
+  "homepage": "https://theme.vuejs.org",
+  "bugs": {
+    "url": "https://github.com/vuejs/theme/issues"
+  },
+  "scripts": {
+    "lint": "prettier --check --write --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
+    "lint:fail": "prettier --check --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
+    "type": "tsc --noEmit",
+    "test": "npm run lint && npm run type",
+    "dev": "vitepress",
+    "build": "vitepress build",
+    "serve": "npm run demo-build && vitepress serve demo"
+  },
+  "dependencies": {
+    "@docsearch/css": "^3.2.1",
+    "@docsearch/js": "^3.2.1",
+    "@vueuse/core": "^9.1.1",
+    "body-scroll-lock": "^3.1.5",
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "@mdit-vue/types": "^0.11.0",
+    "@types/body-scroll-lock": "^3.1.0",
+    "@types/estree": "^1.0.0",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.2",
+    "vitepress": "^1.0.0-alpha.13",
+    "vue": "^3.2.37"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
+  }
+}
