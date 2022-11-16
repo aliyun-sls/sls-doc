@@ -2,6 +2,8 @@
 import URI from 'urijs'
 import { computed } from 'vue'
 
+const location = window.location
+
 const params = computed(() => {
   const parsedQuery = URI(decodeURIComponent(location.search)).escapeQuerySpace(false).query(true)
   if (parsedQuery == null || parsedQuery.url == null) {
