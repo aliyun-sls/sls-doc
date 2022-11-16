@@ -1,35 +1,25 @@
-const getBase = require("./theme/src/vitepress/config/baseConfig");
-const path = require("path");
+const getBase = require('./theme/src/vitepress/config/baseConfig')
+const path = require('path')
+const sqldemoSider = require('./siderbars/sqldemo')
 
-const glob = require("glob");
+const glob = require('glob')
 
 const sqlfunFiles = glob
-  .sync("./src/sqlfun/*.md")
+  .sync('./src/sqlfun/*.md')
   .map((f) => path.parse(f).name)
-  .filter((f) => f !== "index")
+  .filter((f) => f !== 'index')
   .map((f) => {
     return {
       text: f,
       link: `/sqlfun/${f}`,
-    };
-  });
-
-const sqldemoFiles = glob
-  .sync("./src/sqldemo/*.md")
-  .map((f) => path.parse(f).name)
-  .filter((f) => f !== "index")
-  .map((f) => {
-    return {
-      text: f,
-      link: `/sqldemo/${f}`,
-    };
-  });
+    }
+  })
 
 /**
  * @type {() => Promise<import('vitepress').UserConfig>}
  */
 module.exports = (async () => {
-  const base = await getBase();
+  const base = await getBase()
 
   return {
     ...base,
@@ -41,36 +31,36 @@ module.exports = (async () => {
       },
       resolve: {
         alias: {
-          "@vue/theme": path.join(__dirname, "./theme/src"),
+          '@vue/theme': path.join(__dirname, './theme/src'),
         },
       },
     },
     ignoreDeadLinks: true,
-    base: "/sls-doc/",
-    srcDir: "src",
-    lang: "en-US",
-    title: "SLS",
-    description: "SLS 文档中心",
+    base: '/sls-doc/',
+    srcDir: 'src',
+    lang: 'en-US',
+    title: 'SLS',
+    description: 'SLS 文档中心',
 
     /**
      * @type {import('.theme/src/vitepress/config').Config}
      */
     themeConfig: {
-      logo: "/img/sls.svg",
+      logo: '/img/sls.svg',
 
       algolia: {
         // indexName: "vuejs-v3",
         // appId: "BH4D9OD16A",
         // apiKey: "bc6e8acb44ed4179c30d0a45d6140d3f",
-        placeholder: "在SLS文档中心查找",
+        placeholder: '在SLS文档中心查找',
         translations: {
           modal: {
             searchBox: {
-              cancelButtonText: "Abort",
-              resetButtonTitle: "Clear search term",
+              cancelButtonText: 'Abort',
+              resetButtonTitle: 'Clear search term',
             },
             footer: {
-              searchByText: "Search gracefully done by ",
+              searchByText: 'Search gracefully done by ',
             },
           },
         },
@@ -83,8 +73,8 @@ module.exports = (async () => {
 
       socialLinks: [
         {
-          icon: "github",
-          link: "https://github.com/aliyun-sls",
+          icon: 'github',
+          link: 'https://github.com/aliyun-sls',
         },
         // { icon: "twitter", link: "https://twitter.com/vuejs" },
         // { icon: "discord", link: "https://discord.com/invite/HBherRA" },
@@ -92,55 +82,55 @@ module.exports = (async () => {
 
       nav: [
         {
-          text: "开发",
+          text: '开发',
           activeMatch: `^/(dev)/`,
           items: [
             {
               items: [
-                { text: "环境准备", link: "/dev/env" },
-                { text: "文档样例", link: "/dev/" },
+                { text: '环境准备', link: '/dev/env' },
+                { text: '文档样例', link: '/dev/' },
               ],
             },
           ],
         },
         {
-          text: "案例",
+          text: '案例',
           activeMatch: `^/(sqldemo)/`,
           items: [
             {
-              items: [{ text: "SQL案例", link: "/sqldemo/" }],
+              items: [{ text: '查询分析案例', link: '/sqldemo/' }],
             },
           ],
         },
         {
-          text: "文档",
+          text: '文档',
           activeMatch: `^/(sqlfun)/`,
           items: [
             {
               items: [
-                { text: "SQL函数", link: "/sqlfun/" },
+                { text: 'SQL函数', link: '/sqlfun/' },
                 // { text: "SQL语法", link: "/xx/xx" },
               ],
             },
           ],
         },
         {
-          text: "链接",
+          text: '链接',
           items: [
             {
               items: [
                 {
-                  text: "日志服务控制台",
-                  link: "https://sls.console.aliyun.com/",
+                  text: '日志服务控制台',
+                  link: 'https://sls.console.aliyun.com/',
                 },
               ],
             },
             {
-              text: "其他链接",
+              text: '其他链接',
               items: [
                 {
-                  text: "日志服务文档",
-                  link: "https://help.aliyun.com/document_detail/48869.html",
+                  text: '日志服务文档',
+                  link: 'https://help.aliyun.com/document_detail/48869.html',
                 },
               ],
             },
@@ -149,38 +139,20 @@ module.exports = (async () => {
       ],
 
       sidebar: {
-        "/sqlfun": [
+        '/sqlfun': [
           {
-            text: "SQL函数",
-            items: [
-              { text: "函数概览", link: "/sqlfun/index" },
-              ...sqlfunFiles,
-            ],
+            text: 'SQL函数',
+            items: [{ text: '函数概览', link: '/sqlfun/index' }, ...sqlfunFiles],
           },
         ],
-        "/sqldemo": [
-          {
-            text: "SQL案例",
-            items: [{ text: "案例概览", link: "/sqldemo/index" }],
-          },
-          {
-            text: "Nginx 分析和监控",
-            items: [
-              {
-                text: "今日PV",
-                link: "/sqldemo/1.nginx日志查看今日的PV和昨日的对比",
-              },
-              ...sqldemoFiles,
-            ],
-          },
-        ],
+        '/sqldemo': sqldemoSider(),
       },
 
       // // For i18n translation messages
       i18n: {
-        search: "搜索",
+        search: '搜索',
         //   menu: 'Menu',
-        toc: "本页目录",
+        toc: '本页目录',
         //   returnToTop: 'Return to top',
         //   appearance: 'Appearance',
         //   previous: 'Previous',
@@ -212,5 +184,5 @@ module.exports = (async () => {
         //   ariaSidebarNav: 'Sidebar Navigation',
       },
     },
-  };
-})();
+  }
+})()
