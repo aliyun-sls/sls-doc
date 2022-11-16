@@ -1,0 +1,18 @@
+.vt-doc a[href*="\/playground/"]:before
+{
+  content: '\25b6';
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 10px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  color: var(--vt-c-green);
+  border: 2px solid var(--vt-c-green);
+  margin-right: 8px;
+  margin-left: 4px;
+  line-height: 15px;
+  padding-left: 4.5px;
+  font-size: 11px;
+}

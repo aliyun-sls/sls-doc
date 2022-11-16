@@ -12,6 +12,10 @@
 
   /* Screen Size */
   --vp-screen-max-width: 1376px;
+
+  --sls-topnav-height: 55px;
+  --sls-footer-height: 68px;
+  --sls-page-max-width: 1380px;
 }
 
 /**
