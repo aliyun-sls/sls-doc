@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import URI from 'urijs'
 import { computed } from 'vue'
+import { isDarkTheme } from './utils'
 
 const location = window.location
 
@@ -14,6 +15,7 @@ const params = computed(() => {
   Object.keys(parsedQuery).forEach((key) => {
     uri += key + '=' + parsedQuery[key] + '&'
   })
+  uri += 'theme=' + (isDarkTheme() ? 'dark' : 'default') + '&supportTheme=true&'
   return {
     uri,
   }
@@ -32,5 +34,9 @@ const params = computed(() => {
   outline: none;
   max-width: var(--sls-page-max-width);
   margin: auto;
+}
+
+.dark .frame {
+  background-color: var(--vt-c-bg);
 }
 </style>
