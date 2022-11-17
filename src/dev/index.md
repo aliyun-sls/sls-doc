@@ -1,21 +1,33 @@
 # Markdown 样例
 
 ## 自定义区块 （Custom Blocks）
-
 :::tip Requires intermediate knowledge
 The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaScript`. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required. And here is a [link](/).
 
 - List inside block
 - List inside block with [link](/) and `code`.
 :::
+```markdown
+:::tip Requires intermediate knowledge
+The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaScript`. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required. And here is a [link](/).
 
-The official guide assumes intermediate level knowledge of HTML, CSS, and JavaScript. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required.
+- List inside block
+- List inside block with [link](/) and `code`.
+:::
+```
 
 :::warning Warning
 The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaScript`. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required. And here is a [link](/).
 
 - List inside block with [link](/) and `code`.
 :::
+```markdown
+:::warning Warning
+The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaScript`. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required. And here is a [link](/).
+
+- List inside block with [link](/) and `code`.
+:::
+```
 
 :::danger Danger Zone
 The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaScript`. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required. And here is a [link](/).
@@ -23,10 +35,21 @@ The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaS
 1. List inside block with [link](/)
 2. List inside block with [link](/) and `code`.
 :::
+```markdown
+:::danger Danger Zone
+The official guide assumes intermediate level knowledge of `HTML, CSS, and JavaScript`. If you are totally new to frontend development, it might not be the best idea to jump right into a framework as your first step - grasp the basics then come back! Prior experience with other frameworks helps, but is not required. And here is a [link](/).
+
+1. List inside block with [link](/)
+2. List inside block with [link](/) and `code`.
+:::
+```
 
 ## 图片 （image）
 图片放在 `src/public/img` 目录，可以增加多个二级目录归类
 ![SLS](/img/sls.png)
+```markdown
+![SLS](/img/sls.png)
+```
 
 ## 顺序列表（Ordered List）
 
@@ -113,3 +136,14 @@ Quick ways to start playing with a Vue project
     <p class="next-steps-caption">Explore examples of core features and common UI tasks.</p>
   </a>
 </div>
+
+## 展开详细
+::: details 点击查看代码
+Check out the Examples
+:::
+
+```markdown
+::: details 点击查看代码
+Check out the Examples
+:::
+```
