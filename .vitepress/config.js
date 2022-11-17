@@ -1,6 +1,6 @@
 const getBase = require('./theme/src/vitepress/config/baseConfig')
 const path = require('path')
-const sqldemoSider = require('./siderbars/sqldemo')
+const getSqldemoSider = require('./siderbars/getSqldemoSider')
 const getNavs = require('./nav')
 
 const glob = require('glob')
@@ -90,7 +90,7 @@ module.exports = (async () => {
             items: [{ text: '函数概览', link: '/sqlfun/index' }, ...sqlfunFiles],
           },
         ],
-        '/sqldemo': sqldemoSider(),
+        '/sqldemo': getSqldemoSider(),
       },
 
       footer: {
