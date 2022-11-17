@@ -75,7 +75,7 @@ module.exports = (async () => {
       socialLinks: [
         {
           icon: 'github',
-          link: 'https://github.com/aliyun-sls',
+          link: 'https://github.com/aliyun-sls/sls-doc',
         },
         // { icon: "twitter", link: "https://twitter.com/vuejs" },
         // { icon: "discord", link: "https://discord.com/invite/HBherRA" },
