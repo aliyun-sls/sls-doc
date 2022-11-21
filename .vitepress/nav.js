@@ -31,6 +31,20 @@ function getNavs() {
       ],
     },
     {
+      text: '招聘',
+      activeMatch: `^/(jobs)/`,
+      items: [
+        {
+          items: [
+            {
+              text: '可视化研发工程师',
+              link: '/jobs/front',
+            },
+          ],
+        },
+      ],
+    },
+    {
       text: '链接',
       items: [
         {

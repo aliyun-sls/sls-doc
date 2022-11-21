@@ -39,7 +39,7 @@ module.exports = (async () => {
       },
     },
     ignoreDeadLinks: true,
-    base: '/sls-doc/',
+    base: '/doc/',
     srcDir: 'src',
     lang: 'en-US',
     title: 'SLS',
