@@ -35,4 +35,4 @@ FROM
 
 # 可视化配置
 
-![样例图片](/img/sqldemo/pvcompareconfig.png)
+![样例图片](/img/sqldemo/pvcomparechart.png)

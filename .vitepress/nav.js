@@ -10,6 +10,15 @@ function getNavs() {
       ],
     },
     {
+      text: '开源社区',
+      activeMatch: `^/(opensource)/`,
+      items: [
+        {
+          items: [{ text: 'iLogtail', link: '/opensource/ilogtail/' }],
+        },
+      ],
+    },
+    {
       text: '文档',
       activeMatch: `^/(sqlfun)/`,
       items: [

@@ -1,6 +1,8 @@
 const getBase = require('./theme/src/vitepress/config/baseConfig')
 const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
+const getOpensourceSider = require('./siderbars/getOpensourceSider')
+
 const getNavs = require('./nav')
 
 const glob = require('glob')
@@ -91,6 +93,7 @@ module.exports = (async () => {
           },
         ],
         '/sqldemo': getSqldemoSider(),
+        '/opensource/ilogtail': getOpensourceSider()
       },
 
       footer: {
