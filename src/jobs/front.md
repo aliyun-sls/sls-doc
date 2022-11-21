@@ -1,8 +1,7 @@
 # 阿里云智能日志-可视化研发
 
-工作地点：杭州
-职级：P5~P7
-招聘人数：3
+## JD介绍
+工作地点：杭州、上海
 
 工作介绍：
 负责阿里集团、阿里云日志处理基础设施，及面对PB级日志数据的实时分析平台。通过实时采集、索引、存储、压缩等技术实施处理来自千万设备的海量日志数据，并提供智能、自动化日志分析服务。
@@ -28,3 +27,11 @@
 7. 有移动端开发经验优先，包括不限于小程序、安卓、IOS等
 
 
+## 联系我们
+钉钉
+![钉钉](https://img.alicdn.com/tfs/TB1U_GwTkL0gK0jSZFAXXcA9pXa-934-934.png){:height="150" width="150"}
+微信公众号
+![钉钉](http://slsconsole.oss-cn-hangzhou.aliyuncs.com/vx.jpg){:height="150" width="150"}
+[知乎](https://www.zhihu.com/people/a-li-yun-ri-zhi-fu-wu)
+
+[b站](https://space.bilibili.com/630680534)
