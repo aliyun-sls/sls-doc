@@ -27,7 +27,7 @@
 7. 有移动端开发经验优先，包括不限于小程序、安卓、IOS等
 
 
-## 联系我们
+## 更多参考
 B站：https://space.bilibili.com/630680534
 
 云栖博客：https://yq.aliyun.com/teams/4/type_blog-cid_8
