@@ -68,20 +68,18 @@ function getNavs() {
     },
   ]
 
-  if (process.env.NODE_ENV !== 'production') {
-    base.push({
-      text: '如何贡献',
-      activeMatch: `^/(dev)/`,
-      items: [
-        {
-          items: [
-            { text: '环境准备', link: '/dev/env' },
-            { text: '文档样例', link: '/dev/' },
-          ],
-        },
-      ],
-    })
-  }
+  base.push({
+    text: '如何贡献',
+    activeMatch: `^/(dev)/`,
+    items: [
+      {
+        items: [
+          { text: '环境准备', link: '/dev/env' },
+          { text: '文档样例', link: '/dev/' },
+        ],
+      },
+    ],
+  })
 
   return base
 }
