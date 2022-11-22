@@ -70,7 +70,7 @@ function getNavs() {
 
   if (process.env.NODE_ENV !== 'production') {
     base.push({
-      text: '开发',
+      text: '如何贡献',
       activeMatch: `^/(dev)/`,
       items: [
         {

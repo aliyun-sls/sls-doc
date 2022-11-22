@@ -1,5 +1,9 @@
 # 如何开发
 
+## 安装 vscode
+
+[安装地址](https://code.visualstudio.com/)
+
 ## 安装 Nodejs
 
 [安装地址](https://nodejs.org/en/)
@@ -104,3 +108,22 @@ module.exports = getSidebar
 ```
 
 :::
+
+## 同步语雀文档
+
+- 第一步，安装 vscode 插件
+  [安装地址](https://marketplace.visualstudio.com/items?itemName=wangtao0101.markdown-sync-image)
+
+- 第二步，导出 Markdown
+  ![](../public/img/copy-markdown.gif)
+
+- 第三步，全选下载的 Markdown 内容，右键选择 Paste Markdown
+  ![](../public/img/export-markdown.gif)
+
+- 第四步，git commit 所有文件
+
+## 粘贴图片
+
+- 第一步，截图
+- 第二步，右键选择 Paste Image
+![picture 1](../public/img/save-image.gif)
