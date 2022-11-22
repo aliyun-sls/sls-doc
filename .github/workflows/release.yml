@@ -40,5 +40,4 @@ jobs:
           bucket: sls-docs
           endpoint: oss-cn-hangzhou.aliyuncs.com
           folder: .vitepress/dist
-          incremental: false
           skipSetting: true
