@@ -1,37 +1,28 @@
 {
-  "name": "@vue/theme",
-  "version": "1.2.2",
-  "description": "The design system for Vue.js.",
-  "main": "src/index.ts",
-  "exports": {
-    ".": "./src/index.ts",
-    "./config": "./src/vitepress/config/baseConfig.js"
-  },
-  "files": [
-    "src",
-    "types"
-  ],
+  "name": "@sls/doc",
+  "version": "1.0.0",
+  "description": "The doc for sls.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuejs/theme.git"
+    "url": "git+https://github.com:aliyun-sls/sls-doc.git"
   },
   "keywords": [
-    "vue",
-    "design-system"
+    "sls",
+    "doc"
   ],
-  "author": "Evan You",
-  "license": "MIT",
-  "homepage": "https://theme.vuejs.org",
+  "author": "wangtao0101",
+  "homepage": "https://sls.aliyun.com/doc/",
   "bugs": {
-    "url": "https://github.com/vuejs/theme/issues"
+    "url": "https://github.com/aliyun-sls/sls-doc/issues"
   },
   "scripts": {
     "lint": "prettier --check --write --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
+    "sitemap": "node .vitepress/genSiteMap",
     "lint:fail": "prettier --check --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
     "type": "tsc --noEmit",
     "test": "npm run lint && npm run type",
     "dev": "vitepress",
-    "build": "vitepress build",
+    "build": "vitepress build && npm run sitemap",
     "serve": "npm run demo-build && vitepress serve demo"
   },
   "dependencies": {
@@ -39,8 +30,10 @@
     "@docsearch/js": "^3.2.1",
     "@vueuse/core": "^9.1.1",
     "body-scroll-lock": "^3.1.5",
+    "fast-glob": "^3.2.12",
     "glob": "^8.0.3",
     "normalize.css": "^8.0.1",
+    "sitemap": "^7.1.1",
     "urijs": "^1.19.11"
   },
   "devDependencies": {

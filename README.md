@@ -6,3 +6,14 @@
 
 # 如何贡献
 [查看](https://github.com/aliyun-sls/sls-doc/blob/main/src/dev/env.md)开发环境
+
+## 更多参考
+B站：https://space.bilibili.com/630680534
+
+云栖博客：https://yq.aliyun.com/teams/4/type_blog-cid_8
+
+知乎：https://zhuanlan.zhihu.com/aliyunlog
+
+微信：智能日志分析 or AISecDevOps
+
+产品网站：https://www.aliyun.com/product/sls
