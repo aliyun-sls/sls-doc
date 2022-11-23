@@ -45,6 +45,12 @@ module.exports = (async () => {
     title: 'SLS',
     description: 'SLS 文档中心',
 
+    plugins: {
+      sitemap: {
+        hostname: 'https://sls.aliyun.com/',
+      },
+    },
+
     /**
      * @type {import('.theme/src/vitepress/config').Config}
      */
@@ -52,9 +58,9 @@ module.exports = (async () => {
       logo: '/img/sls.svg',
 
       algolia: {
-        // indexName: "vuejs-v3",
-        // appId: "BH4D9OD16A",
-        // apiKey: "bc6e8acb44ed4179c30d0a45d6140d3f",
+        indexName: 'sls-doc-test',
+        appId: 'H7AKHYSS2Y',
+        apiKey: '5562d4b6eb57fe8fd21a319d961a3bf2',
         placeholder: '在SLS文档中心查找',
         translations: {
           modal: {
@@ -93,7 +99,7 @@ module.exports = (async () => {
           },
         ],
         '/sqldemo': getSqldemoSider(),
-        '/opensource/ilogtail': getOpensourceSider()
+        '/opensource/ilogtail': getOpensourceSider(),
       },
 
       footer: {
@@ -101,7 +107,7 @@ module.exports = (async () => {
         //   text: 'MIT License',
         //   link: 'https://opensource.org/licenses/MIT'
         // },
-        copyright: `Copyright © 2021-${new Date().getFullYear()} Aliyun SLS`
+        copyright: `Copyright © 2021-${new Date().getFullYear()} Aliyun SLS`,
       },
 
       // // For i18n translation messages
