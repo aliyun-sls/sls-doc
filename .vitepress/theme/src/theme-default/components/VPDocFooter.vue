@@ -7,6 +7,7 @@ import { usePrevNext } from '../composables/prev-next.js'
 import VPIconEdit from './icons/VPIconEdit.vue'
 import VPLink from './VPLink.vue'
 import VPDocFooterLastUpdated from './VPDocFooterLastUpdated.vue'
+import SLSContributors from '../../components/SLSContributors.vue'
 
 const { theme, page, frontmatter } = useData()
 
@@ -54,6 +55,7 @@ const showFooter = computed(() => {
       </div>
     </div>
   </footer>
+  <SLSContributors />
 </template>
 
 <style scoped>
