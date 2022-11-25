@@ -51,7 +51,7 @@ module.exports = (async () => {
      * @type {import('.theme/src/vitepress/config').Config}
      */
     themeConfig: {
-      logo: '/img/sls.svg',
+      logo: '/img/sls.png',
       lastUpdatedText: '最近修改',
 
       algolia: {
