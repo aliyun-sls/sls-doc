@@ -10,9 +10,15 @@ interface CommitAuthor {
 }
 
 const { page } = useData()
-const { data, error, statusCode, isFetching, isFinished, canAbort } = useFetch(
-  `https://api.github.com/repos/aliyun-sls/sls-doc/commits?path=src/${page.value.relativePath}&per_page=100`
-).get()
+
+const url = computed(
+  () =>
+    `https://api.github.com/repos/aliyun-sls/sls-doc/commits?path=src/${page.value.relativePath}&per_page=100`
+)
+
+const { data, error, statusCode, isFetching, isFinished, canAbort } = useFetch(url, {
+  refetch: true,
+}).get()
 
 const authors = reactive({
   isFinished,
@@ -38,7 +44,7 @@ const authors = reactive({
 </script>
 
 <template>
-  <div class="vp-doc">
+  <div class="vp-doc" v-if="authors.isFinished">
     <h2>贡献者（{{ authors.data.length }}）</h2>
     <div class="authors">
       <a
