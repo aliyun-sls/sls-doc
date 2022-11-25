@@ -1,4 +1,3 @@
-const getBase = require('./theme/src/vitepress/config/baseConfig')
 const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
 const getOpensourceSider = require('./siderbars/getOpensourceSider')
@@ -22,13 +21,8 @@ const sqlfunFiles = glob
  * @type {() => Promise<import('vitepress').UserConfig>}
  */
 module.exports = (async () => {
-  const base = await getBase()
-
   return {
-    ...base,
-
     vite: {
-      ...base.vite,
       build: {
         minify: false,
       },
@@ -39,7 +33,7 @@ module.exports = (async () => {
       },
     },
     ignoreDeadLinks: true,
-    base: '/doc/',
+    base: '/doc',
     srcDir: 'src',
     lang: 'en-US',
     title: 'SLS',
@@ -51,11 +45,14 @@ module.exports = (async () => {
       },
     },
 
+    lastUpdated: true,
+
     /**
      * @type {import('.theme/src/vitepress/config').Config}
      */
     themeConfig: {
       logo: '/img/sls.svg',
+      lastUpdatedText: '最近修改',
 
       algolia: {
         indexName: 'sls-doc-test',
@@ -75,10 +72,10 @@ module.exports = (async () => {
         },
       },
 
-      // carbonAds: {
-      //   code: "CEBDT27Y",
-      //   placement: "vuejsorg",
-      // },
+      editLink: {
+        pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
+        text: '在GitHub修改本页',
+      },
 
       socialLinks: [
         {

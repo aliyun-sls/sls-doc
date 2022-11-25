@@ -1,2 +1,2 @@
-export * from './core'
-export * from './vitepress'
+import Theme from './theme-default'
+export { Theme }

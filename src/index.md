@@ -33,3 +33,15 @@
     <p class="next-steps-caption">支持数据实时消费，适用于Storm消费、Flume消费、Flink消费等场景；支持数据实时投递，适用于将数据投递至OSS、TSDB等云产品。</p>
   </a>
 </div>
+
+
+## 更多参考
+B站：https://space.bilibili.com/630680534
+
+云栖博客：https://yq.aliyun.com/teams/4/type_blog-cid_8
+
+知乎：https://zhuanlan.zhihu.com/aliyunlog
+
+微信：智能日志分析 or AISecDevOps
+
+产品网站：https://www.aliyun.com/product/sls
