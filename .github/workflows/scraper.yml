@@ -5,6 +5,7 @@ on:
     workflows: [sls-doc-release]
     types:
       - completed
+  workflow_dispatch
 
 jobs:
   scrape:
