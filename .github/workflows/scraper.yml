@@ -7,10 +7,10 @@ on:
       - completed
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to run'
-        type: environment
-        required: true
+      tags:
+        description: 'Test tags'
+        required: false
+        type: boolean
 
 jobs:
   scrape:
@@ -36,7 +36,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.7"
+          python-version: "3.6"
 
       - name: Install pipenv
         run: |
