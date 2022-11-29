@@ -44,7 +44,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pipenv --python /opt/hostedtoolcache/Python/3.8.14/x64 && pipenv install --dev
+          pipenv --python python3 && pipenv install --dev
 
       - name: Run scraper
         run: |
