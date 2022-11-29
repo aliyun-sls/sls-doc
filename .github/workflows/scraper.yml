@@ -13,7 +13,7 @@ jobs:
       - name: check out code 🛎
         uses: actions/checkout@v3
         with:
-          repository: https://github.com/aliyun-sls/sls-docsearch-scraper.git
+          repository: aliyun-sls/sls-docsearch-scraper
           ref: slsdoc
 
       - name: prepare scrape the dir 🧽
