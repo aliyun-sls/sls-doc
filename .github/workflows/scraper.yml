@@ -48,7 +48,7 @@ jobs:
 
       - name: Run scraper
         run: |
-          pipenv run ./docsearch run ./config.json
+          pipenv run scrape version --verbose && pipenv uninstall cryptography && pipenv install cryptography==36.0.2 && pipenv uninstall pyopenssl && pipenv install pyopenssl==22.0.0 && pipenv run ./docsearch run ./config.json
         env:
           APPLICATION_ID: id
           API_KEY: key
