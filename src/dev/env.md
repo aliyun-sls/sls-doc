@@ -115,10 +115,10 @@ module.exports = getSidebar
   [安装地址](https://marketplace.visualstudio.com/items?itemName=wangtao0101.markdown-sync-image)
 
 - 第二步，导出 Markdown
-  ![](../public/img/export-markdown.gif)
+  ![](/img/export-markdown.gif)
 
 - 第三步，全选下载的 Markdown 内容，右键选择 Paste Markdown
-  ![](../public/img/copy-markdown.gif)
+  ![](/img/copy-markdown.gif)
 
 - 第四步，git commit 所有文件
 
@@ -126,4 +126,4 @@ module.exports = getSidebar
 
 - 第一步，截图
 - 第二步，右键选择 Paste Image
-  ![picture 1](../public/img/save-image.gif)
+  ![picture 1](/img/save-image.gif)

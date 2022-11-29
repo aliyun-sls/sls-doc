@@ -1,3 +1,4 @@
 {
-  "markdown-sync-image.local.path": "/src/public/${path}/${mdname}"
+  "markdown-sync-image.local.path": "/src/public/img/${path}/${mdname}",
+  "markdown-sync-image.local.referencePath": "/img/${path}/${mdname}"
 }
