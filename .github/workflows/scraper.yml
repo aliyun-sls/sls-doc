@@ -1,8 +1,8 @@
-name: algolia-scraper
+name: sls-algolia-scraper
 
 on:
   workflow_run:
-    workflows: ['sls-doc-release']
+    workflows: [sls-doc-release]
     types:
       - completed
 
@@ -16,7 +16,7 @@ jobs:
           repository: https://github.com/aliyun-sls/sls-docsearch-scraper.git
           ref: slsdoc
 
-      - name: prepare scrape the site 🧽
+      - name: prepare scrape the dir 🧽
         run: |
           touch .env && mkdir ~/dirver
 
@@ -45,13 +45,14 @@ jobs:
         if: steps.cache-pipenv.outputs.cache-hit != 'true'
         run: |
           pipenv install --dev
+
       - name: Run scraper
         run: |
           pipenv run ./docsearch run ./config.json
         env:
           ALGOLIA_APPLICATION_ID: id
           ALGOLIA_WRITE_API_KEY: key
-          CHROMEDRIVER_PATH: ~/driver/chromedriver_mac64.zip
+          CHROMEDRIVER_PATH: ~/driver/chromedriver_linux64.zip
           API_ENDPOINT: opensearch-cn-hangzhou.aliyuncs.com
           API_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
           API_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
