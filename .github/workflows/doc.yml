@@ -49,8 +49,8 @@ jobs:
         run: |
           pipenv run ./docsearch run ./config.json
         env:
-          ALGOLIA_APPLICATION_ID: @
-          ALGOLIA_WRITE_API_KEY: @
+          ALGOLIA_APPLICATION_ID: id
+          ALGOLIA_WRITE_API_KEY: key
           CHROMEDRIVER_PATH: ~/driver/chromedriver_mac64.zip
           API_ENDPOINT: opensearch-cn-hangzhou.aliyuncs.com
           API_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
