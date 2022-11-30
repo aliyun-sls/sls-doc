@@ -125,6 +125,24 @@
     "@algolia/logger-common" "4.14.2"
     "@algolia/requester-common" "4.14.2"
 
+"@aliyun-sls/docsearch-js@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/@aliyun-sls/docsearch-js/-/docsearch-js-1.0.2.tgz#649add4b30a48bc9fafda53acf76032455c3e528"
+  integrity sha512-+B/+r2xW6JeiRLN8wLLPdzB3PSzW40rURv+4e+73JGPPFC8f9+17RXf1/bXAyS6AitMiqMCRwp0EKm7dc2TpAg==
+  dependencies:
+    "@aliyun-sls/docsearch-react" "^1.0.0"
+    preact "^10.0.0"
+
+"@aliyun-sls/docsearch-react@^1.0.0":
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/@aliyun-sls/docsearch-react/-/docsearch-react-1.0.2.tgz#7da8d86de949651b7ec2d8862321c56f0b7019a6"
+  integrity sha512-RUaNgS7JgXKX6FXiAAxZNFuR8rZ6W7D2HkwZ5Qid/kRXj/BrHA6lTy0CzpTnXr/zTMYL4AWYXNlRXKutzx8kow==
+  dependencies:
+    "@algolia/autocomplete-core" "1.7.2"
+    "@algolia/autocomplete-preset-algolia" "1.7.2"
+    "@docsearch/css" "3.3.0"
+    algoliasearch "^4.0.0"
+
 "@babel/parser@^7.16.4":
   version "7.20.3"
   resolved "https://registry.npmmirror.com/@babel/parser/-/parser-7.20.3.tgz#5358cf62e380cf69efcb87a7bb922ff88bfac6e2"
@@ -135,7 +153,7 @@
   resolved "https://registry.npmmirror.com/@docsearch/css/-/css-3.3.0.tgz#d698e48302d12240d7c2f7452ccb2d2239a8cd80"
   integrity sha512-rODCdDtGyudLj+Va8b6w6Y85KE85bXRsps/R4Yjwt5vueXKXZQKYw0aA9knxLBT6a/bI/GMrAcmCR75KYOM6hg==
 
-"@docsearch/js@^3.2.1", "@docsearch/js@^3.3.0":
+"@docsearch/js@^3.3.0":
   version "3.3.0"
   resolved "https://registry.npmmirror.com/@docsearch/js/-/js-3.3.0.tgz#c8f614b722cc8a6375e83f9c27557e9398d6a4d4"
   integrity sha512-oFXWRPNvPxAzBhnFJ9UCFIYZiQNc3Yrv6912nZHw/UIGxsyzKpNRZgHq8HDk1niYmOSoLKtVFcxkccpQmYGFyg==

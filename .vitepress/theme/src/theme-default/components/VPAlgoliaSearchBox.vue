@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { DefaultTheme } from 'vitepress/theme'
-import docsearch from '@docsearch/js'
+import docsearch from '@aliyun-sls/docsearch-js'
 import { onMounted } from 'vue'
 import { useRouter, useRoute, useData } from 'vitepress'
 
@@ -40,9 +40,7 @@ function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
 
     navigator: {
       navigate({ itemUrl }) {
-        const { pathname: hitPathname } = new URL(
-          window.location.origin + itemUrl
-        )
+        const { pathname: hitPathname } = new URL(window.location.origin + itemUrl)
 
         // router doesn't handle same-page navigation so we use the native
         // browser location API for anchor navigation
@@ -51,13 +49,13 @@ function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
         } else {
           router.go(itemUrl)
         }
-      }
+      },
     },
 
     transformItems(items) {
       return items.map((item) => {
         return Object.assign({}, item, {
-          url: getRelativePath(item.url)
+          url: getRelativePath(item.url),
         })
       })
     },
@@ -70,9 +68,10 @@ function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
         ref: undefined,
         constructor: undefined,
         key: undefined,
-        props: { href: hit.url, children }
+        props: { href: hit.url, children },
       }
-    }
+    },
+    openSearchUrl: 'https://sls-doc-search-sls-doc-search-otdlhfahpe.cn-hangzhou.fcapp.run',
   })
 
   docsearch$(options)
@@ -80,12 +79,7 @@ function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
 
 function getRelativePath(absoluteUrl: string) {
   const { pathname, hash } = new URL(absoluteUrl)
-  return (
-    pathname.replace(
-      /\.html$/,
-      site.value.cleanUrls === 'disabled' ? '.html' : ''
-    ) + hash
-  )
+  return pathname.replace(/\.html$/, site.value.cleanUrls === 'disabled' ? '.html' : '') + hash
 }
 </script>
 
