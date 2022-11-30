@@ -1,6 +1,12 @@
 function getNavs() {
   const base = [
     {
+      text: '技术分享', link: '/technical/' 
+    },
+    {
+      text: '产品动态', link: '/product/' 
+    },
+    {
       text: '案例',
       activeMatch: `^/(sqldemo)/`,
       items: [
