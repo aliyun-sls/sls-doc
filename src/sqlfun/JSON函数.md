@@ -19,14 +19,14 @@ JSON函数
 
 |                                         函数名称                                         |                    语法                    |                          说明                           |
 |--------------------------------------------------------------------------------------|------------------------------------------|-------------------------------------------------------|
-| [json_array_contains函数](#json_array_contains函数) | json_array_contains( *x* , *value* )     | 判断JSON数组中是否包含某个值。                                     |
-| [json_array_get函数](#json_array_get函数)      | json_array_get( *x* , *index* )          | 获取JSON数组中某个下标对应的元素。                                   |
-| [json_array_length函数](#json_array_length函数)   | json_array_length( *x* )                 | 计算JSON数组中元素的数量。                                       |
-| [json_extract函数](#json_extract函数)        | json_extract( *x* , json_path)           | 从JSON对象或JSON数组中提取一组JSON值（数组或对象）。                      |
-| [json_extract_scalar函数](#json_extract_scalar函数) | json_extract_scalar( *x* , *json_path* ) | 从JSON对象或JSON数组中提取一组标量值（字符串、整数或布尔值）。类似于json_extract函数。 |
-| [json_format函数](#json_format函数)         | json_format( *x* )                       | 把JSON类型转化成字符串类型。                                      |
-| [json_parse函数](#json_parse函数)          | json_parse( *x* )                        | 把字符串类型转化成JSON类型。                                      |
-| [json_size函数](#json_size函数)           | json_size( *x* , *json_path* )           | 计算JSON对象或数组中元素的数量。                                    |
+| [json_array_contains函数](#json-array-contains函数) | json_array_contains( *x* , *value* )     | 判断JSON数组中是否包含某个值。                                     |
+| [json_array_get函数](#json-array-get函数)      | json_array_get( *x* , *index* )          | 获取JSON数组中某个下标对应的元素。                                   |
+| [json_array_length函数](#json-array-length函数)   | json_array_length( *x* )                 | 计算JSON数组中元素的数量。                                       |
+| [json_extract函数](#json-extract函数)        | json_extract( *x* , json_path)           | 从JSON对象或JSON数组中提取一组JSON值（数组或对象）。                      |
+| [json_extract_scalar函数](#json-extract-scalar函数) | json_extract_scalar( *x* , *json_path* ) | 从JSON对象或JSON数组中提取一组标量值（字符串、整数或布尔值）。类似于json_extract函数。 |
+| [json_format函数](#json-format函数)         | json_format( *x* )                       | 把JSON类型转化成字符串类型。                                      |
+| [json_parse函数](#json-parse函数)          | json_parse( *x* )                        | 把字符串类型转化成JSON类型。                                      |
+| [json_size函数](#json-size函数)           | json_size( *x* , *json_path* )           | 计算JSON对象或数组中元素的数量。                                    |
 
 
 # 案例

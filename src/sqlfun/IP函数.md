@@ -8,14 +8,14 @@
 
 |  函数类型  |                                         函数名称                                         |                语法                |                     说明                     |
 |--------|--------------------------------------------------------------------------------------|----------------------------------|--------------------------------------------|
-| IP地址函数 | [ip_to_city函数](#ip_to_city函数)          | ip_to_city( *x* )                | 分析目标IP地址所属城市。 返回结果为城市的中文名称。                |
-| IP地址函数 | [ip_to_city函数](#ip_to_city函数)          | ip_to_city( *x* , 'en')          | 分析目标IP地址所属城市。 返回结果为城市的行政区划代码。              |
-| IP地址函数 | [ip_to_city_geo函数](#ip_to_city_geo函数)      | ip_to_city_geo( *x* )            | 分析目标IP地址所属城市的经纬度。此函数返回的是城市经纬度，每个城市只有一个经纬度。 |
-| IP地址函数 | [ip_to_country函数](#ip_to_country函数)       | ip_to_country( *x* )             | 分析目标IP地址所属国家或地区。 返回结果为国家或地区的中文名称。          |
-| IP地址函数 | [ip_to_country函数](#ip_to_country函数)       | ip_to_country( *x* , 'en')       | 分析目标IP地址所属国家或地区。 返回结果为国家或地区的代码。            |
-| IP地址函数 | [ip_to_country_code函数](#ip_to_country_code函数)  | ip_to_country_code( *x* )        | 分析目标IP地址所属国家或地区。 返回结果为国家或地区的代码。            |
-| IP地址函数 | [ip_to_domain函数](#ip_to_domain函数)        | ip_to_domain( *x* )              | 判断目标IP地址是内网地址还是外网地址。                       |
-| IP地址函数 | [ip_to_geo函数](#ip_to_geo函数)           | ip_to_geo( *x* )                 | 分析目标IP地址所在位置的经纬度。                          |
+| IP地址函数 | [ip_to_city函数](#ip-to-city函数)          | ip_to_city( *x* )                | 分析目标IP地址所属城市。 返回结果为城市的中文名称。                |
+| IP地址函数 | [ip_to_city函数](#ip-to-city函数)          | ip_to_city( *x* , 'en')          | 分析目标IP地址所属城市。 返回结果为城市的行政区划代码。              |
+| IP地址函数 | [ip_to_city_geo函数](#ip-to-city-geo函数)      | ip_to_city_geo( *x* )            | 分析目标IP地址所属城市的经纬度。此函数返回的是城市经纬度，每个城市只有一个经纬度。 |
+| IP地址函数 | [ip_to_country函数](#ip-to-country函数)       | ip_to_country( *x* )             | 分析目标IP地址所属国家或地区。 返回结果为国家或地区的中文名称。          |
+| IP地址函数 | [ip_to_country函数](#ip-to-country函数)       | ip_to_country( *x* , 'en')       | 分析目标IP地址所属国家或地区。 返回结果为国家或地区的代码。            |
+| IP地址函数 | [ip_to_country_code函数](#ip-to-country-code函数)  | ip_to_country_code( *x* )        | 分析目标IP地址所属国家或地区。 返回结果为国家或地区的代码。            |
+| IP地址函数 | [ip_to_domain函数](#ip-to-domain函数)        | ip_to_domain( *x* )              | 判断目标IP地址是内网地址还是外网地址。                       |
+| IP地址函数 | [ip_to_geo函数](#ip-to-geo函数)           | ip_to_geo( *x* )                 | 分析目标IP地址所在位置的经纬度。                          |
 | IP地址函数 | [ip_to_provider函数](#ip_to_provider函数)      | ip_to_provider( *x* )            | 分析目标IP地址所对应的网络运营商。                         |
 | IP地址函数 | [ip_to_province函数](#ip_to_province函数)      | ip_to_province( *x* )            | 分析目标IP地址所属省份州。 返回结果为省份州的中文名称。              |
 | IP地址函数 | [ip_to_province函数](#ip_to_province函数)      | ip_to_province( *x* , 'en')      | 分析目标IP地址所属省份州。 返回结果为省份州的行政区划代码。            |

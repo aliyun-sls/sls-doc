@@ -9,9 +9,9 @@ HyperLogLog函数为近似聚合函数，类似于approx_distinct函数。当计
 
 |                                     函数名称                                      |         语法         |                   说明                   |
 |-------------------------------------------------------------------------------|--------------------|----------------------------------------|
-| [approx_set函数](#approx_set函数)       | approx_set( *x* )  | 估算 *x* 中不重复值的个数，最大标准误差默认为0.01625。      |
+| [approx_set函数](#approx-set函数)       | approx_set( *x* )  | 估算 *x* 中不重复值的个数，最大标准误差默认为0.01625。      |
 | [cardinality函数](#cardinality函数)      | cardinality( *x* ) | 将HyperLogLog类型的内容转换为bigint类型。          |
-| [empty_approx_set函数](#empty_approx_set函数) | empty_approx_set() | 返回一个HyperLogLog类型的空值。最大标准误差默认为0.01625。 |
+| [empty_approx_set函数](#empty-approx-set函数) | empty_approx_set() | 返回一个HyperLogLog类型的空值。最大标准误差默认为0.01625。 |
 | [merge函数](#merge函数)            | merge( *x* )       | 聚合计算所有的HyperLogLog值。                   |
 
 

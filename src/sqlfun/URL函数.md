@@ -15,15 +15,15 @@
 
 |                                          函数名称                                          |                       语法                        |         说明          |
 |----------------------------------------------------------------------------------------|-------------------------------------------------|---------------------|
-| [url_encode函数](#url_encode函数)            | url_encode( *x* )                               | 对URL进行编码。           |
-| [url_decode函数](#url_decode函数)            | url_decode( *x* )                               | 对URL进行解码。           |
-| [url_extract_fragment函数](#url_extract_fragment函数)  | url_extract_fragment( *x* )                     | 从URL中提取Fragment信息。  |
-| [url_extract_host函数](#url_extract_host函数)      | url_extract_host( *x* )                         | 从URL中提取Host信息。      |
-| [url_extract_parameter函数](#url_extract_parameter函数) | url_extract_parameter( *x* , *parameter name* ) | 从URL的查询部分中提取指定参数的值。 |
-| [url_extract_path函数](#url_extract_path函数)      | url_extract_path( *x* )                         | 从URL中提取访问路径信息。      |
-| [url_extract_port函数](#url_extract_port函数)      | url_extract_port( *x* )                         | 从URL中提取端口信息。        |
-| [url_extract_protocol函数](#url_extract_protocol函数)  | url_extract_protocol( *x* )                     | 从URL中提取协议信息。        |
-| [url_extract_query函数](#url_extract_query函数)     | url_extract_query( *x* )                        | 从URL中提取查询部分的信息。     |
+| [url_encode函数](#url-encode函数)            | url_encode( *x* )                               | 对URL进行编码。           |
+| [url_decode函数](#url-decode函数)            | url_decode( *x* )                               | 对URL进行解码。           |
+| [url_extract_fragment函数](#url-extract-fragment函数)  | url_extract_fragment( *x* )                     | 从URL中提取Fragment信息。  |
+| [url_extract_host函数](#url-extract-host函数)      | url_extract_host( *x* )                         | 从URL中提取Host信息。      |
+| [url_extract_parameter函数](#url_extract-parameter函数) | url_extract_parameter( *x* , *parameter name* ) | 从URL的查询部分中提取指定参数的值。 |
+| [url_extract_path函数](#url-extract-path函数)      | url_extract_path( *x* )                         | 从URL中提取访问路径信息。      |
+| [url_extract_port函数](#url-extract-port函数)      | url_extract_port( *x* )                         | 从URL中提取端口信息。        |
+| [url_extract_protocol函数](#url-extract-protocol函数)  | url_extract_protocol( *x* )                     | 从URL中提取协议信息。        |
+| [url_extract_query函数](#url-extract-query函数)     | url_extract_query( *x* )                        | 从URL中提取查询部分的信息。     |
 
 
 # 案例

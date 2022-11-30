@@ -10,17 +10,17 @@
 |--------------------------------------------------------------------------------------|-----------------------------------------|----------------------------------------------------------------------------------|
 | [下标运算符](#下标运算符)          | \[ *x* \]                               | 获取Map中目标键的值。                                                                     |
 | [cardinality函数](#cardinality函数)  | cardinality( *x* )                      | 计算Map的大小。                                                                        |
-| [element_at函数](#element_at函数)   | element_at( *x* , *key* )               | 获取Map中目标键的值。                                                                     |
+| [element_at函数](#element-at函数)   | element_at( *x* , *key* )               | 获取Map中目标键的值。                                                                     |
 | [histogram函数](#histogram函数)    | histogram( *x* )                        | 对查询和分析结果进行分组，返回结果为JSON格式。                                                        |
-| [histogram_u函数](#histogram_u函数)  | histogram_u( *x* )                      | 对查询和分析结果进行分组，返回结果为多行多列格式。                                                        |
+| [histogram_u函数](#histogram-u函数)  | histogram_u( *x* )                      | 对查询和分析结果进行分组，返回结果为多行多列格式。                                                        |
 | [map函数](#map函数)          | map()                                   | 返回一个空Map。                                                                        |
 | [map函数](#map函数)          | map( *x* , *y* )                        | 将两个数组映射为一个Map。                                                                   |
-| [map_agg函数](#map_agg函数)      | map_agg( *x* , *y* )                    | 将 *x* 和 *y* 映射为一个Map。 *x* 为Map中的键， *y* 为Map中的键值。当 *y* 存在多个值时，随机提取一个值作为键值。        |
-| [map_concat函数](#map_concat函数)   | map_concat( *x* , *y* ...)              | 将多个Map合并为一个Map。                                                                  |
-| [map_filter函数](#map_filter函数)   | map_filter( *x* , *lambda_expression* ) | 结合Lambda表达式，用于过滤Map中的元素。                                                         |
-| [map_keys函数](#map_keys函数)     | map_keys( *x* )                         | 提取Map中所有的键，并以数组形式返回。                                                             |
-| [map_values函数](#map_values函数)   | map_values( *x* )                       | 提取Map中所有键的值，并以数组形式返回。                                                            |
-| [multimap_agg函数](#multimap_agg函数) | multimap_agg( *x* , *y* )               | 将 *x* 和 *y* 映射为一个Map。 *x* 为Map中的键， *y* 为Map中的键值，键值为数组格式。当 *y* 存在多个值时，提取所有的值作为键值。 |
+| [map_agg函数](#map-agg函数)      | map_agg( *x* , *y* )                    | 将 *x* 和 *y* 映射为一个Map。 *x* 为Map中的键， *y* 为Map中的键值。当 *y* 存在多个值时，随机提取一个值作为键值。        |
+| [map_concat函数](#map-concat函数)   | map_concat( *x* , *y* ...)              | 将多个Map合并为一个Map。                                                                  |
+| [map_filter函数](#map-filter函数)   | map_filter( *x* , *lambda_expression* ) | 结合Lambda表达式，用于过滤Map中的元素。                                                         |
+| [map_keys函数](#map-keys函数)     | map_keys( *x* )                         | 提取Map中所有的键，并以数组形式返回。                                                             |
+| [map_values函数](#map-values函数)   | map_values( *x* )                       | 提取Map中所有键的值，并以数组形式返回。                                                            |
+| [multimap_agg函数](#multimap-agg函数) | multimap_agg( *x* , *y* )               | 将 *x* 和 *y* 映射为一个Map。 *x* 为Map中的键， *y* 为Map中的键值，键值为数组格式。当 *y* 存在多个值时，提取所有的值作为键值。 |
 
 
 # 案例
