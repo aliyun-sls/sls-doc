@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="nav-disable" content="flex">
+<link rel="icon" href="https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico" type="image/x-icon" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="renderer" content="webkit" />
+<meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1" />
+<meta name="viewport"
+content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+<meta name="applicable-device" content="pc,mobile" />
+<meta name="nav-config" content="topbar=help,footer=default" />
+<meta name="data-spm" content="a2c4g" />
+<meta name="aplus-ajax" content="chksum" />
+<meta name="aplus-waiting" content="MAN" />
+<meta name="aplus-pvhash" content="1" />
+<!-- 基础资源 -->
+ <title>接入Kubernetes JVM监控数据_日志服务-阿里云帮助中心</title>
+ <link rel="canonical" href="https://help.aliyun.com/document_detail/463926.html" />
+
+<link rel="icon" href="https://img.alicdn.com/tfs/TB1_ZXuNcfpK1RjSZFOXXa6nFXa-32-32.ico" type="image/x-icon">
+<link href="https://g.alicdn.com/aliyun-help/help-portal-fe/0.5.43/css/index.css" rel="stylesheet" />
+</head>
+<body><script>
+with(document)with(body)with(insertBefore(createElement("script"),firstChild))setAttribute("exparams","category=&userid=&aplus&yunid=&&trid=0b01eb8116698766506398392efe78&asid=AQAAAACqS4hj2DS4UAAAAAA9c7rDEY2JbA==",id="tb-beacon-aplus",src=(location>"https"?"//g":"//g")+".alicdn.com/alilog/mlog/aplus_v2.js")
+</script>
+
+<script>
+var _performance_domStart = window.performance && window.performance.now();
+</script>
+<div data-role-topbar="help"></div>
+<div id="app">
+<div class="main-layout" id="docs-container">
+<div class="help-body-head">
+</div>
+<div class="stick-top-layout">
+<div class="help-layout">
+<nav class="aliyun-docs-toc" id="aliyun-docs-toc">
+</nav>
+<section class="aliyun-docs-view" id="aliyun-docs-view">
+<div class="product-detail">
+<section class="aliyun-docs-content">
+<header class="aliyun-docs-view-header">
+<div class="header-topbar">
+<div class="header-topbar-breadcrumb">
+ <a href="https://help.aliyun.com/">首页</a>
+ <span><a href="/product/28958.html">日志服务</a></span>
+ <span><a href="/document_detail/151620.html">日志应用</a></span>
+ <span><a href="/document_detail/354225.html">全栈监控</a></span>
+ <span><a href="/document_detail/354229.html">接入数据</a></span>
+ <span><a href="/document_detail/446962.html">接入Kubernetes监控数据</a></span>
+ <span>接入Kubernetes JVM监控数据</span>
+ </div>
+</div>
+<div class="header-title">
+<h1>接入Kubernetes JVM监控数据</h1>
+<div class="header-actionbar">
+</div>
+</div>
+</header>
+<div class="pc-markdown-container unionContainer" id="pc-markdown-container">
+<!-- 内容 -->
+<div class="markdown-body">
+ <div><div lang="zh-CN" class="icms-help-docs-content">
+
+      <main role="main">
+         <article role="article" aria-labelledby="title_2id_g7h_wj0">
+            
+            <div class="body taskbody" id="taskbody-4qq-rmw-tpm">
+               <p class="shortdesc">Kubernetes JVM监控基于灵活的Logtail Kubernetes能力，通过自动发现等手段，为Kubernetes中所有基于JVM运行的服务提供灵活且一站式的JVM指标采集方案。</p>
+               <div class="section prereq p" id="prereq-3t7-pp4-ku9">
+                  <div class="tasklabel">
+                     <h2 class="sectiontitle tasklabel" id="h2-url-1">前提条件</h2>
+                  </div>
+                  <ul class="ul" id="ul-44z-luy-kdh">
+                     <li class="li" id="li-sz4-0zd-ckr">已创建实例。具体操作，请参见<a href="/document_detail/356444.htm#task-2144286" title="">创建实例</a>。
+                     </li>
+                     <li class="li" id="li-cv0-d6e-tee">已安装监。具体操作，请参见<a href="/document_detail/356446.htm#section-ty7-fo0-383" title="">安装监控组件</a>。
+                        <div class="note note note-note" id="note-5mz-dp1-mjp">
+                           <div class="note-icon-wrapper"><i class="icon-note note"></i></div>
+                           <div class="note-content"><strong>说明</strong> 需要通过全栈监控Kubernetes组件安装特殊版Logtail镜像，Logtail镜像Tag需为v1.2.2.0-monitor-aliyun及以上版本。
+                           </div>
+                        </div>
+                     </li>
+                  </ul>
+               </div>
+               <section class="section" id="section-sr3-p6m-auy">
+                  <h2 class="title sectiontitle" id="title-su2-2w8-4j5">采集原理</h2>
+                  <p class="p" id="p-dxm-26y-858">Java Management Extensions（JMX）技术是Java SE平台的标准功能，主要用于监控和管理Java应用的运行状态、资源信息、JVM虚拟机运行情况等信息。JMX支持通过Remote
+                     RMI方式进行暴露，类似于一个Prometheus Exporter。与通过Javaagent集成数据相比，通过RMI接口读取指标更安全、集成成本更低。
+                  </p>
+                  <p class="p" id="p-zpw-5c4-h31">在Kubernetes中，JVM指标采集的部署模型与日志采集组件部署模型相同，都为Daemonset。依托于日志采集组件多维度Kubernetes资源选择能力，采集JVM监控数据时，也支持通过环境变量、Kubernetes
+                     Labels、Namespace、Pod名称、容器名称过滤数据。<span class="ph" cond-props="china" id="ph-v1z-gzm-l7e" props="CHINA">更多信息，请参见<a target="_blank" href="https://mp.weixin.qq.com/s/2UGhddN5QqVj56f6inbE_g">日志采集组件多维度Kubernetes资源选择能力</a>。</span>但不同的是由于RMI涉及Java进程之间的通信，Kubernetes资源选择可能命中大量非相关进程，Logtail增加了一个特殊的环境变量<span class="keyword parmname" id="parmname-fdt-304-wlq">ILOGTAIL_JMX_PORT</span>进行进一步精确限定目标选择范围。
+                  </p><img class="image break" id="image-qbb-xq3-6b5" src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9838768661/p520795.png" width="500" alt="JVM监控"></section>
+               <section class="section" id="section-blp-de6-j1n">
+                  <h2 class="title sectiontitle" id="title-g9v-nl1-r3d">准备工作</h2>
+                  <p class="p" id="p-y0p-vvo-x74">针对部署于Kubernetes中的Java应用，如果您要通过Logtail自动采集JVM监控数据，需要先完成如下3个操作。</p>
+                  <ol class="ol steps" id="steps-gg3-pdr-xal">
+                     <li class="li step stepexpand" id="step-w59-8uq-cxg"><span class="ph cmd" id="cmd-f0x-xs1-m3h">在环境变量中增加<span class="keyword parmname" id="parmname-rpk-4ao-g0q">POD_IP</span>声明。</span><div class="itemgroup info" id="info-jve-5ox-1pt">配置示例如下：<pre class="pre codeblock" id="codeblock-lly-6na-40q"><code>            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP</code></pre></div>
+                     </li>
+                     <li class="li step stepexpand" id="step-s19-6df-sqb"><span class="ph cmd" id="cmd-85j-sp7-3hz">设置JVM启动参数。</span><div class="itemgroup info" id="info-bbv-258-jqs">设置<span class="keyword parmname" id="parmname-yn1-vf4-cvt">com.sun.management.jmxremote</span>参数，用于开启JMX远程访问。
+                           <ul class="ul" id="ul-8xc-s04-ep6">
+                              <li class="li" id="li-t9l-1ji-aj6">设置<span class="keyword parmname" id="parmname-2h8-274-goa">com.sun.management.jmxremote.local.only</span>参数为false。
+                              </li>
+                              <li class="li" id="li-g9z-1vd-wg2">设置<span class="keyword parmname" id="parmname-gi5-uzu-7ya">com.sun.management.jmxremote.ssl</span>参数和<span class="keyword parmname" id="parmname-s1w-wms-2w2">com.sun.management.jmxremote.authenticate</span>参数为false，否则在接入配置中需设置<span class="ph uicontrol" id="uicontrol-64w-j6f-9f2">JMX密码</span>。
+                              </li>
+                              <li class="li" id="li-oo7-cvl-ljn">设置<span class="keyword parmname" id="parmname-eoj-hlq-dnq">com.sun.management.jmxremote.port</span>参数和<span class="keyword parmname" id="parmname-j7z-ly0-xu8">com.sun.management.jmxremote.rmi.port</span>参数为声明的RMI访问端口。
+                              </li>
+                              <li class="li" id="li-vxq-m05-yyw">设置<span class="keyword parmname" id="parmname-5oj-831-49g">java.rmi.server.hostname</span>参数为环境变量<span class="keyword parmname" id="parmname-ss6-gxy-3yj">POD_IP</span>的值。
+                              </li>
+                           </ul><pre class="pre codeblock" id="codeblock-2b1-n8z-nsv"><code>   -Dcom.sun.management.jmxremote
+    -Dcom.sun.management.jmxremote.authenticate=false
+    -Dcom.sun.management.jmxremote.ssl=false
+    -Dcom.sun.management.jmxremote.local.only=false
+    -Dcom.sun.management.jmxremote.port=9999
+    -Dcom.sun.management.jmxremote.rmi.port=9999
+    -Djava.rmi.server.hostname=$(POD_IP)</code></pre></div>
+                     </li>
+                     <li class="li step stepexpand" id="step-2jv-ok7-8s2"><span class="ph cmd" id="cmd-9cj-26h-mh2">在环境变量中增加<span class="keyword parmname" id="parmname-qqm-8wt-a6b">ILOGTAIL_JMX_PORT</span>声明，值为具体暴露的指标端口，即<span class="keyword parmname" id="parmname-8ps-tmh-6tc">com.sun.management.jmxremote.port</span>参数值。</span></li>
+                  </ol>
+                  <div class="p" id="p-mci-dpp-s2a">完成上述配置后，请进入目标Pod，使用jps命令查看具体的JVM启动参数，如下图所示。其中，<code class="ph codeph" id="codeph-6xv-bk3-t1j">JAVA_TOOL_OPTIONS=""</code>声明用于避免使用jps程序时附带环境变量<span class="keyword parmname" id="parmname-yvh-m38-l0a">JAVA_TOOL_OPTIONS</span>，产生端口冲突。<img class="image break" id="image-bgz-phr-syk" src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9838768661/p520767.png" alt="JVM监控"></div>
+               </section>
+               <section class="section" id="section-tax-ghg-97w">
+                  <h2 class="title sectiontitle" id="title-2lq-088-4tx">操作步骤</h2>
+                  <ol class="ol steps" id="steps-qd6-53n-vxe">
+                     <li class="li step stepexpand" id="step-2e6-pzo-ieh"><span class="ph cmd" id="cmd-1xm-zf9-b9g">登录<span class="ph" cond-props="china intl" id="ph-du9-yx4-t9v" props="CHINA INTL"><a target="_blank" href="https://sls.console.aliyun.com">日志服务控制台</a></span>。</span></li>
+                     <li class="li step stepexpand" id="step-1pt-f5f-i5p"><span class="ph cmd" id="cmd-vsf-pqu-hrj">在<span class="keyword wintitle" id="wintitle-5h1-jao-met">日志应用</span>区域，单击<span class="ph uicontrol" id="uicontrol-vph-zob-4ka">全栈监控</span>。</span></li>
+                     <li class="li step stepexpand" id="step-uct-wcv-tit"><span class="ph cmd" id="cmd-vwh-p8v-pqi">在<span class="keyword wintitle" id="wintitle-vlr-bv0-y77">全栈监控</span>页面，单击目标实例。</span></li>
+                     <li class="li step stepexpand" id="step-vik-y68-fpj"><span class="ph cmd" id="cmd-vmt-ej8-8ma">在<span class="keyword wintitle" id="wintitle-44q-urx-cec">数据接入</span>页面，选择Kubernetes JVM监控。</span><div class="itemgroup info" id="info-xwo-w1v-ueo">
+                           <p class="p" id="p-pgj-epl-fv5">首次创建目标监控项的接入配置时，打开创建开关，可进入配置页面。如果您已创建过接入配置，则单击<img class="image inline" id="image-wku-r4m-hkk" src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/3493997361/p359444.png" alt="创建">图标，可进入配置页面。
+                           </p>
+                        </div>
+                     </li>
+                     <li class="li step stepexpand" id="step-ygc-cfh-3s4"><span class="ph cmd" id="cmd-pdi-ahx-3yq">单击<span class="ph uicontrol" id="uicontrol-h26-sm5-6c3">使用现有机器组</span>。</span><div class="itemgroup info" id="info-xmx-5v3-dhs">安装监控组件后，日志服务自动创建名为<code class="ph codeph" id="codeph-k7a-9fj-qsb">{instanceID}-{clusterID}-k8s-nodes</code>的机器组，您可以直接使用该机器组。
+                        </div>
+                     </li>
+                     <li class="li step stepexpand" id="step-xtr-18t-7oa"><span class="ph cmd" id="cmd-kub-9tw-346">选中目标机器组（<code class="ph codeph" id="codeph-i35-469-ewo">{instanceID}-{clusterID}-k8s-nodes</code>），将该机器组从<span class="ph uicontrol" id="uicontrol-wzf-u47-4i8">源机器组</span>移动到<span class="ph uicontrol" id="uicontrol-kqb-y00-qg2">应用机器组</span>，单击<span class="ph uicontrol" id="uicontrol-bex-qm8-13k">下一步</span>。</span><div class="itemgroup info" id="info-xjl-sr9-qhu">
+                           <div class="note important note-important" id="note-ufw-h37-aef">
+                              <div class="note-icon-wrapper"><i class="icon-note important"></i></div>
+                              <div class="note-content"><strong>重要</strong> 如果机器组心跳为<span class="ph uicontrol" id="uicontrol-5lk-2ov-y8e">FAIL</span>，您可单击<span class="ph uicontrol" id="uicontrol-g1h-02m-3aj">自动重试</span>。如果还未解决，请参见<a href="/document_detail/48851.htm#concept-nfs-hs3-bfb" title="">Logtail机器组无心跳</a>进行排查。
+                              </div>
+                           </div>
+                        </div>
+                     </li>
+                     <li class="li step stepexpand" id="step-v82-e1z-1kw"><span class="ph cmd" id="cmd-fsy-wiy-9q2">在<span class="keyword wintitle" id="wintitle-qhs-emv-kf8">数据源设置</span>配置向导中，配置如下参数，然后单击<span class="ph uicontrol" id="uicontrol-v6m-tf1-pes">完成</span>。</span><div class="itemgroup info" id="info-n5u-kzr-5kr">
+                           <p class="p" id="p-7fr-srx-rd5">设置完成后，日志服务将自动生成Metricstore等资产。更多信息，请参见<a href="/document_detail/356443.htm#section-34h-gr6-4hf" title="">资产说明</a>。
+                           </p>
+                           <table class="table" id="table-wbw-4oo-7dw">
+                              <caption></caption>
+                              <colgroup>
+                                 <col style="width:33.33333333333333%">
+                                 <col style="width:66.66666666666666%">
+                              </colgroup>
+                              <thead class="thead" id="thead-8my-3j1-wh8">
+                                 <tr id="row-f9l-cb5-7ln">
+                                    <th class="entry" id="task-2269600-entry-cax-34i-nph">参数</th>
+                                    <th class="entry" id="task-2269600-entry-3ac-h83-92m">说明</th>
+                                 </tr>
+                              </thead>
+                              <tbody class="tbody" id="tbody-abk-xq8-owu">
+                                 <tr id="row-4f2-3wv-urw">
+                                    <td class="entry" id="entry-agy-eix-3h0" colspan="2"><span class="ph uicontrol" id="uicontrol-uj0-3wx-urt">一般配置</span></td>
+                                 </tr>
+                                 <tr id="row-c9x-gq0-ehn">
+                                    <td class="entry" id="entry-2vu-ohx-6gd"><span class="ph uicontrol" id="uicontrol-wa8-pqh-2us">配置名称</span></td>
+                                    <td class="entry" id="entry-m2n-i7f-9lx">自定义设置Logtail采集配置的名称。</td>
+                                 </tr>
+                                 <tr id="row-8lf-dvv-zbn">
+                                    <td class="entry" id="entry-z97-ms8-3re"><span class="ph uicontrol" id="uicontrol-zr3-hqx-due">集群</span></td>
+                                    <td class="entry" id="entry-87o-otg-axa">自定义设置Kubernetes集群的名称。
+                                       <p class="p" id="p-y8p-qex-inu">设置该参数后，日志服务会为通过该Logtail采集配置采集到的Kubernetes JVM监控数据添加<var class="keyword varname" id="varname-cj5-3ue-60x">cluster=集群名称</var>的标签。
+                                       </p>
+                                       <div class="note important note-important" id="note-hvi-x9a-xml">
+                                          <div class="note-icon-wrapper"><i class="icon-note important"></i></div>
+                                          <div class="note-content"><strong>重要</strong> 请确保该集群名称唯一，否则可能出现数据冲突。
+                                          </div>
+                                       </div>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-9fv-due-e2d">
+                                    <td class="entry" id="entry-n7a-buu-r2j"><span class="ph uicontrol" id="uicontrol-4nv-8ac-vfs">Jmx用户名</span></td>
+                                    <td class="entry" id="entry-ec1-saw-x07">JMX访问用户名。
+                                       <p class="p" id="p-xib-o6j-4kz">在Kubernetes场景中，建议不设置。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-fii-az6-3bs">
+                                    <td class="entry" id="entry-5m1-mk6-1rf"><span class="ph uicontrol" id="uicontrol-sit-qt7-6y5">JMX密码</span></td>
+                                    <td class="entry" id="entry-1n4-f45-9k8">JMX访问密码。
+                                       <p class="p" id="p-mk1-a7d-r20">在Kubernetes场景中，建议不设置。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-vt1-j0a-rxp">
+                                    <td class="entry" id="entry-17b-xcd-hxi"><span class="ph uicontrol" id="uicontrol-4eq-m3a-il0">全局标签</span></td>
+                                    <td class="entry" id="entry-yzs-lvi-5jf">为采集到的Kubernetes JVM监控数据添加自定义标签，该标签为键值对形式。
+                                       <p class="p" id="p-2rj-v3u-1s3">设置该参数后，日志服务会为通过该Logtail采集配置采集到的Kubernetes JVM监控数据添加标签。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-ax5-aza-n91">
+                                    <td class="entry" id="entry-15g-ya4-ypt" colspan="2"><span class="ph uicontrol" id="uicontrol-pb0-v0v-c7j">K8s选择器配置</span></td>
+                                 </tr>
+                                 <tr id="row-k80-kqt-rhb">
+                                    <td class="entry" id="entry-556-z3u-rkb"><span class="ph uicontrol" id="uicontrol-b6e-yyq-z70">Namespace</span></td>
+                                    <td class="entry" id="entry-bhe-ej0-dvq">输入匹配Namespace名称的正则表达式，用于指定待采集的命名空间。</td>
+                                 </tr>
+                                 <tr id="row-krd-v0c-p22">
+                                    <td class="entry" id="entry-aiy-58o-s35"><span class="ph uicontrol" id="uicontrol-qab-ie2-zag">Pod名称</span></td>
+                                    <td class="entry" id="entry-j0o-48x-e5i">输入匹配Pod名称的正则表达式，用于指定待采集的Pod。</td>
+                                 </tr>
+                                 <tr id="row-ys2-4he-2nn">
+                                    <td class="entry" id="entry-qci-3t7-p9s"><span class="ph uicontrol" id="uicontrol-924-bxl-uvy">容器名称</span></td>
+                                    <td class="entry" id="entry-zzl-b6b-yi3">输入匹配容器名称的正则表达式，用于指定待采集的容器。</td>
+                                 </tr>
+                                 <tr id="row-q3r-1sv-ted">
+                                    <td class="entry" id="entry-n8b-83w-5cc"><span class="ph uicontrol" id="uicontrol-nzz-jux-n4m">环境变量白名单</span></td>
+                                    <td class="entry" id="entry-txu-e8i-yrq">环境变量白名单，用于指定待采集的容器。默认为空，表示采集所有容器的标准输出。如果您要设置环境变量白名单，那么EnvKey必填，EnvValue可选填。
+                                       <ul class="ul" id="ul-hwj-8rh-154">
+                                          <li class="li" id="li-nxq-oqi-s1q">如果EnvValue为空，则容器环境变量中包含EnvKey的容器都匹配。</li>
+                                          <li class="li" id="li-bcn-6n5-vf9">如果EnvValue不为空，则容器环境变量中包含EnvKey=EnvValue的容器才匹配。
+                                             <p class="p" id="p-9hp-9se-vcx">EnvValue默认为字符串匹配，即只有EnvValue和环境变量的值完全相同才会匹配。如果该值以<code class="ph codeph" id="codeph-232-1ul-q3w">^</code>开头并且以<code class="ph codeph" id="codeph-671-rxq-130">$</code>结尾，则为正则匹配，例如：设置<span class="ph uicontrol" id="uicontrol-stc-b1y-u1k">EnvKey</span>为<kbd class="ph userinput" id="userinput-i6f-oob-o7d">NGINX_SERVICE_PORT</kbd>，设置<span class="ph uicontrol" id="uicontrol-qb3-an2-bz7">EnvValue</span>为<kbd class="ph userinput" id="userinput-cqf-wis-zar">^(80|6379)$</kbd>，表示可匹配服务端口为80、6379的容器。
+                                             </p>
+                                          </li>
+                                       </ul>
+                                       <p class="p" id="p-4x6-k1s-4bd">多个白名单之间为或关系，即只要容器的环境变量满足任一键值对即可被匹配。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-a08-vis-7ar">
+                                    <td class="entry" id="entry-8jz-3ww-2y1"><span class="ph uicontrol" id="uicontrol-0zc-5hh-esp">环境变量黑名单</span></td>
+                                    <td class="entry" id="entry-iv1-5i1-rvp">环境变量黑名单，用于排除不采集的容器。默认为空，表示不排除任何容器。如果您要设置环境变量黑名单，那么EnvKey必填，EnvValue可选填。
+                                       <ul class="ul" id="ul-los-ym4-kfc">
+                                          <li class="li" id="li-ywj-8tt-t0h">如果EnvValue为空，则容器环境变量中包含EnvKey的容器的日志都将被排除。 </li>
+                                          <li class="li" id="li-7ph-gl9-dl7">如果EnvValue不为空，则容器环境变量中包含EnvKey=EnvValue的容器才会被排除。
+                                             <p class="p" id="p-ma5-mll-y1i">EnvValue默认为字符串匹配，即只有EnvValue和环境变量的值完全相同才会匹配。如果该值以<code class="ph codeph" id="codeph-fd4-4oi-cdd">^</code>开头并且以<code class="ph codeph" id="codeph-ksq-3um-k3i">$</code>结尾，则为正则匹配，例如：设置<span class="ph uicontrol" id="uicontrol-bc8-yhu-nmv">EnvKey</span>为<kbd class="ph userinput" id="userinput-g3j-jos-mkg">NGINX_SERVICE_PORT</kbd>，设置<span class="ph uicontrol" id="uicontrol-x7l-rqp-4db">EnvValue</span>为<kbd class="ph userinput" id="userinput-wl3-9gx-kgi">^(80|6379)$</kbd>，表示可匹配服务端口为80、6379的容器。
+                                             </p>
+                                          </li>
+                                       </ul>
+                                       <p class="p" id="p-m7n-mb8-t0b">多个黑名单之间为或关系，即只要容器的环境变量满足任一键值对即可被排除。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-zkp-b4w-c0u">
+                                    <td class="entry" id="entry-1ny-tc1-9eg"><span class="ph uicontrol" id="uicontrol-o0k-21g-9su">K8s Label白名单</span></td>
+                                    <td class="entry" id="entry-igy-t8k-y80">通过Kubernetes Label白名单指定待采集的容器。如果您要设置Kubernetes Label白名单，那么LabelKey必填，LabelValue可选填。
+                                       <ul class="ul" id="ul-vn1-6fg-x17">
+                                          <li class="li" id="li-nnm-7xk-xx3">如果LabelValue为空，则Kubernetes Label中包含LabelKey的容器都匹配。</li>
+                                          <li class="li" id="li-7ht-7vi-eop">如果LabelValue不为空，则Kubernetes Label中包含LabelKey=LabelValue的容器才匹配。
+                                             <p class="p" id="p-dau-x0j-pa9">LabelValue默认为字符串匹配，即只有LabelValue和Kubernetes Label的值完全相同才会匹配。如果该值以<code class="ph codeph" id="codeph-tui-kp0-a24">^</code>开头并且以<code class="ph codeph" id="codeph-j59-0b8-cwa">$</code>结尾，则为正则匹配。例如设置<span class="ph uicontrol" id="uicontrol-s4x-fvy-qqt">LabelKey</span>为<kbd class="ph userinput" id="userinput-kli-xpr-1ew">app</kbd>，设置<span class="ph uicontrol" id="uicontrol-a22-52e-ya3">LabelValue</span>为<kbd class="ph userinput" id="userinput-98e-7qq-gfd">^(test1|test2)$</kbd>，表示匹配Kubernetes Label中包含app:test1、app:test2的容器。
+                                             </p>
+                                          </li>
+                                       </ul>
+                                       <p class="p" id="p-5kc-9it-jnt">多个白名单之间为或关系，即只要Kubernetes Label满足任一白名单即可被匹配。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-b2s-7jc-s0o">
+                                    <td class="entry" id="entry-0vx-u8r-7ot"><span class="ph uicontrol" id="uicontrol-n4f-365-uvz">K8s Label黑名单</span></td>
+                                    <td class="entry" id="entry-77g-4ka-to0">通过Kubernetes Label黑名单排除不采集的容器。如果您要设置Kubernetes Label黑名单，那么LabelKey必填，LabelValue可选填。
+                                       <ul class="ul" id="ul-wvu-p5o-n21">
+                                          <li class="li" id="li-nc9-624-zhn">如果LabelValue为空，则Kubernetes Label中包含LabelKey的容器都被排除。</li>
+                                          <li class="li" id="li-4om-4z5-w25">如果LabelValue不为空，则Kubernetes Label中包含LabelKey=LabelValue的容器才会被排除。
+                                             <p class="p" id="p-31z-shz-8et">LabelValue默认为字符串匹配，即只有LabelValue和Kubernetes Label的值完全相同才会匹配。如果该值以<code class="ph codeph" id="codeph-cd1-7jx-d3x">^</code>开头并且以<code class="ph codeph" id="codeph-ngb-8fr-5lz">$</code>结尾，则为正则匹配。例如设置<span class="ph uicontrol" id="uicontrol-9jn-jvg-8rf">LabelKey</span>为<kbd class="ph userinput" id="userinput-7id-c8l-tl5">app</kbd>，设置<span class="ph uicontrol" id="uicontrol-gfy-tdk-v3f">LabelValue</span>为<kbd class="ph userinput" id="userinput-72k-6pt-dfj">^(test1|test2)$</kbd>，表示匹配Kubernetes Label中包含app:test1、app:test2的容器。
+                                             </p>
+                                          </li>
+                                       </ul>
+                                       <p class="p" id="p-64j-p9s-bgb">多个黑名单之间为或关系，即只要Kubernetes Label满足任一黑名单对即可被排除。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-g9o-1bd-z9y">
+                                    <td class="entry" id="entry-4xn-6ac-jhe"><span class="ph uicontrol" id="uicontrol-j65-63z-2lq">容器Label白名单</span></td>
+                                    <td class="entry" id="entry-rw9-o9x-7ao">容器Label白名单，用于指定待采集的容器。默认为空，表示采集所有容器的标准输出。如果您要设置容器Label白名单，那么LabelKey必填，LabelValue可选填。
+                                       <ul class="ul" id="ul-fn4-d4a-st2">
+                                          <li class="li" id="li-jj5-2gl-968">如果LabelValue为空，则容器Label中包含LabelKey的容器都匹配。</li>
+                                          <li class="li" id="li-1di-dj6-e9c">如果LabelValue不为空，则容器Label中包含LabelKey=LabelValue的容器才匹配。
+                                             <p class="p" id="p-a38-itt-llv">LabelValue默认为字符串匹配，即只有LabelValue和容器Label的值完全相同才会匹配。如果该值以<code class="ph codeph" id="codeph-p31-fqc-n7a">^</code>开头并且以<code class="ph codeph" id="codeph-j4g-6cv-y9r">$</code>结尾，则为正则匹配。例如：配置<span class="ph uicontrol" id="uicontrol-vi1-9fp-nnp">LabelKey</span>为<kbd class="ph userinput" id="userinput-wbm-bcx-z2b">io.kubernetes.container.name</kbd>，配置<span class="ph uicontrol" id="uicontrol-tnx-sn7-vx5">LabelValue</span>为<kbd class="ph userinput" id="userinput-lig-mst-s22">^(nginx|cube)$</kbd>，表示可匹配名为nginx、cube的容器。
+                                             </p>
+                                          </li>
+                                       </ul>
+                                       <p class="p" id="p-mjv-y9v-p43">多个白名单之间为或关系，即只要容器Label满足任一白名单即可被匹配。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-f8k-o3b-mzj">
+                                    <td class="entry" id="entry-qvw-k3r-vep"><span class="ph uicontrol" id="uicontrol-7wm-153-cc2">容器Label黑名单</span></td>
+                                    <td class="entry" id="entry-vm3-8qa-lzf">容器Label黑名单，用于排除不采集的容器。默认为空，表示不排除任何容器。如果您要设置容器Label黑名单，那么LabelKey必填，LabelValue可选填。
+                                       <ul class="ul" id="ul-nh1-9ch-g8j">
+                                          <li class="li" id="li-30l-bqi-9cj">如果LabelValue为空，则容器Label中包含LabelKey的容器都将被排除。</li>
+                                          <li class="li" id="li-f47-wil-e8y">如果LabelValue不为空，则容器Label中包含LabelKey=LabelValue的容器才会被排除。
+                                             <p class="p" id="p-0na-dfs-9mw">LabelValue默认为字符串匹配，即只有LabelValue和容器Label的值完全相同才会匹配。如果该值以<code class="ph codeph" id="codeph-33o-pkk-fet">^</code>开头并且以<code class="ph codeph" id="codeph-fok-y2a-otq">$</code>结尾，则为正则匹配。例如：设置<span class="ph uicontrol" id="uicontrol-piu-mq1-ocu">LabelKey</span>为<kbd class="ph userinput" id="userinput-th9-alr-9wx">io.kubernetes.container.name</kbd>，设置<span class="ph uicontrol" id="uicontrol-w8w-k2o-x72">LabelValue</span>为<kbd class="ph userinput" id="userinput-p8t-d78-lu3">^(nginx|cube)$</kbd>，表示可匹配名为nginx、cube的容器。
+                                             </p>
+                                          </li>
+                                       </ul>
+                                       <p class="p" id="p-5kn-de6-0ew">多个黑名单之间为或关系，即只要容器Label满足任一黑名单对即可被排除。</p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-r87-587-wjq">
+                                    <td class="entry" id="entry-xh9-6rk-yag" colspan="2"><span class="ph uicontrol" id="uicontrol-o9d-rfy-b69">高级配置</span></td>
+                                 </tr>
+                                 <tr id="row-072-6xq-jg6">
+                                    <td class="entry" id="entry-dst-9e6-qf0"><span class="ph uicontrol" id="uicontrol-ayn-gn6-lgk">K8s Label附带采集</span></td>
+                                    <td class="entry" id="entry-t8b-kb3-iik">设置Kubernetes Label标签后，日志服务将在采集到的JVM监控数据中添加Kubernetes Label相关字段。
+                                       <p class="p" id="p-85m-5ex-z21">例如设置Label名称为<code class="ph codeph" id="codeph-3eg-ccn-9dz">app</code>，Label别名为<code class="ph codeph" id="codeph-3wr-w12-lj4">k8s_label_app</code>，当Kubernetes中包含名为<code class="ph codeph" id="codeph-hbe-nrz-6mc">app</code>的Label（例如<code class="ph codeph" id="codeph-ji4-5mn-6bl">app=serviceA</code>）时，日志服务将在JVM监控数据添加字段<code class="ph codeph" id="codeph-n7q-aid-rsp">k8s_label_app: serviceA</code>。
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-n3o-70s-f56">
+                                    <td class="entry" id="entry-pj0-zrn-7kz"><span class="ph uicontrol" id="uicontrol-0zn-vn7-s64">环境变量附带采集</span></td>
+                                    <td class="entry" id="entry-iko-m3q-5mq">设置环境变量标签后，日志服务将在采集到的JVM监控数据中添加环境变量相关字段。
+                                       <p class="p" id="p-ucx-h3z-hwy">例如设置环境变量名称为<code class="ph codeph" id="codeph-wce-84f-gyl">VERSION</code>，环境变量别名为<code class="ph codeph" id="codeph-38y-vu0-77p">env_version</code>，当容器中包含名为<code class="ph codeph" id="codeph-67j-616-ekb">VERSION</code>的环境变量（例如<code class="ph codeph" id="codeph-2bw-1u9-0cu">VERSION=v1.0.0</code>）时，日志服务将在JVM监控数据添加字段<code class="ph codeph" id="codeph-khy-ry9-vt9">env_version: v1.0.0</code>。
+                                       </p>
+                                    </td>
+                                 </tr>
+                                 <tr id="row-ghx-65r-ugy">
+                                    <td class="entry" id="entry-t68-1a9-xok"><span class="ph uicontrol" id="uicontrol-dhc-xwd-zzp">新版垃圾收集器JMX模式</span></td>
+                                    <td class="entry" id="entry-0sa-ssg-nf6">打开开关后，支持兼容G1等新版垃圾收集器。</td>
+                                 </tr>
+                                 <tr id="row-7xc-dsd-wxw">
+                                    <td class="entry" id="entry-e9b-uq8-v0t"><span class="ph uicontrol" id="uicontrol-dwt-s1r-lpr">默认JVM指标</span></td>
+                                    <td class="entry" id="entry-wvn-kaf-0xz">打开开关后，Logtail将采集预定义的核心JVM指标。</td>
+                                 </tr>
+                                 <tr id="row-fg8-spq-06v">
+                                    <td class="entry" id="entry-15n-9sk-fvr"><span class="ph uicontrol" id="uicontrol-h50-p14-6uu">JMX采集范围过滤器</span></td>
+                                    <td class="entry" id="entry-wpp-kv3-zpw">支持通过JMX Bean范围、JMX Bean正则、JMX Bean类型以及采集JMX属性范围进行采集过滤。</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </li>
+                  </ol>
+               </section>
+               <section class="section" id="section-oyg-kgx-a2p">
+                  <h2 class="title sectiontitle" id="title-0d7-rw9-ykl">接入案例</h2>
+                  <div class="p" id="p-gfi-rhn-xzc">例如在名为default的命名空间下启动SpringBoot Demo服务，然后通过环境变量<span class="keyword parmname" id="parmname-091-w1w-vs7">ILOGTAIL_JMX_PORT</span>声明暴露9999端口，在环境变量<span class="keyword parmname" id="parmname-zhy-j0g-b83">JAVA_TOOL_OPTIONS</span>中添加针对9999端口暴露JMX指标的JVM启动参数。
+                     <div class="note note note-note" id="note-ojm-i1q-o3p">
+                        <div class="note-icon-wrapper"><i class="icon-note note"></i></div>
+                        <div class="note-content"><strong>说明</strong> 使用环境变量<span class="keyword parmname" id="parmname-odm-5ls-1y2">JAVA_TOOL_OPTIONS</span>引用环境变量<span class="keyword parmname" id="parmname-zry-8xj-j08">POD_IP</span>时，需要先定义环境变量<span class="keyword parmname" id="parmname-hw8-osy-ihf">POD_IP</span>。
+                        </div>
+                     </div>
+                  </div><pre class="pre codeblock" id="codeblock-23z-6sz-8s4"><code>apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jvm-new-1
+  namespace: default
+spec:
+...
+  template:
+    metadata:
+      labels:
+        app: jvm1
+    spec:
+      containers:
+        - image: evanljp/full-stack:jvm-new-0.1
+          name: jvm
+          env:
+            - name: "ILOGTAIL_JMX_PORT"
+              value: "9999"
+            - name: "ILOGTAIL_JMX_TAGS"
+              value: "a=b,c=d"
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: JAVA_TOOL_OPTIONS
+              value: &gt;-
+                -Dcom.sun.management.jmxremote
+                -Dcom.sun.management.jmxremote.authenticate=false
+                -Dcom.sun.management.jmxremote.ssl=false
+                -Dcom.sun.management.jmxremote.local.only=false
+                -Dcom.sun.management.jmxremote.port=9999
+                -Dcom.sun.management.jmxremote.rmi.port=9999
+                -Djava.rmi.server.hostname=$(POD_IP)
+                -Dserver.port=8081
+          ...
+​</code></pre><p class="p" id="p-04u-bk4-tmj">基于上述声明，您只需在接入配置中完成如下配置，即可接入Kubernetes JVM监控数据到服务。</p><img class="image break" id="image-417-5de-tja" src="https://help-static-aliyun-doc.aliyuncs.com/assets/img/zh-CN/9838768661/p521096.png" width="720" alt="JVM监控"></section>
+               <section class="section postreq" id="postreq-vzf-5ij-gf4">
+                  <div class="tasklabel">
+                     <h2 class="sectiontitle tasklabel" id="h2-url-2">后续步骤</h2>
+                  </div>
+                  <p class="p" id="p-8k2-4gf-oh9">接入Kubernetes JVM监控数据后，全栈监控应用会自动生成专属仪表盘。您可以通过仪表盘分析监控数据。更多信息，请参见<a href="/document_detail/364237.htm#concept-2144783" title="">查看仪表盘</a>。
+                  </p>
+               </section>
+            </div>
+         </article>
+      </main>
+   
+
+
+</div></div>
+ </div>
+</div>
+</section>
+<div class="aliyun-docs-synopsis" id="aliyun-docs-synopsis">
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+<div class="aliyun-app-layout">
+<!-- seo -->
+<a href="https://www.aliyun.com/">阿里云首页</a>
+<a href="https://www.aliyun.com/product/sls" title="日志服务">日志服务</a>
+<a href="https://developer.aliyun.com/group/storage" title="相关技术圈">相关技术圈</a>
+</div>
+</div>
+<script>
+var _performance_domEnd = window.performance && window.performance.now();
+</script>
+<div data-role-footer="default"></div>
+<script src="https://cloud-assets.alicdn.com/website.js"></script>
+<script>
+if(_performance_domEnd <= 10000){
+// pcp上报
+window.ALIYUN_PERF && window.ALIYUN_PERF.report();
+window.ALIYUN_PERF && window.ALIYUN_PERF.getPCP().then(rst => {
+// pcp埋点
+var data = {
+product: 'help.aliyun.com', // 站点
+ua: navigator.userAgent, // ua
+device: 'pc', // 设备
+page: 'document', // 页面
+lang: 'zh', //站点语言
+cna: '', // 用户标识
+url: window.location.href,
+action: 'pcp',
+userParams1: rst || 0,
+};
+let queryStr = Object.keys(data).map(key => data[key] &&
+`${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`).join('&');
+fetch('https://help-new.cn-wulanchabu.log.aliyuncs.com/logstores/web-tracking/track?APIVersion=0.6.0&' +
+queryStr);
+});
+}
+// fastLogin标记
+window.FastLoginContext = {
+tenantName: 'help-aliyun-com-portal',
+};
+</script>
+<script async src="//g.alicdn.com/dawn/assets-loader/scripts/fast-login.js?tenantName=help-aliyun-com-portal">
+</script>
+<script src="https://gw.alipayobjects.com/os/lib/jquery/3.6.0/dist/jquery.min.js" crossorigin="anonymous"></script>
+<script src="https://gw.alipayobjects.com/os/lib/lodash/4.17.21/lodash.min.js" crossorigin="anonymous"></script>
+<script src="https://gw.alipayobjects.com/os/lib/moment/2.29.1/min/moment.min.js" crossorigin="anonymous"></script>
+<script src="/help/json/document_detail_4_pcp.json?docId=463926&website=cn&language=zh"></script>
+<script async src="https://g.alicdn.com/aliyun-help/help-portal-fe/0.5.43/js/vendor.js"></script>
+<script async src="https://g.alicdn.com/aliyun-help/help-portal-fe/0.5.43/js/index.js"></script>
+</body>
+</html>
