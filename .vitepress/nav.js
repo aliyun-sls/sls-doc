@@ -1,17 +1,22 @@
 function getNavs() {
   const base = [
     {
-      text: '技术分享', link: '/technical/' 
+      text: '技术分享',
+      link: '/technical/',
     },
     {
-      text: '产品动态', link: '/product/' 
+      text: '产品动态',
+      link: '/product/',
     },
     {
       text: '案例',
-      activeMatch: `^/(sqldemo)/`,
+      activeMatch: `^/(sqldemo|searchdemo)/`,
       items: [
         {
-          items: [{ text: '查询分析案例', link: '/sqldemo/' }],
+          items: [
+            { text: '分析案例', link: '/sqldemo/' },
+            { text: '查询案例', link: '/searchdemo/' },
+          ],
         },
       ],
     },

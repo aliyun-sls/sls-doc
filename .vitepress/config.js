@@ -1,5 +1,6 @@
 const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
+const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getOpensourceSider = require('./siderbars/getOpensourceSider')
 const getProductSider = require('./siderbars/getProductSider')
 const getTechnicalSider = require('./siderbars/getTechnicalSider')
@@ -98,6 +99,7 @@ module.exports = (async () => {
           },
         ],
         '/sqldemo': getSqldemoSider(),
+        '/searchdemo': getSearchdemoSider(),
         '/opensource/ilogtail': getOpensourceSider(),
         '/product': getProductSider(),
         '/technical': getTechnicalSider(),
