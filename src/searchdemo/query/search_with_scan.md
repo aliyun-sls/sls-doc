@@ -53,7 +53,7 @@ ProjectName: project_12345 | where ErrorCode like '%Exceed'
 
 ```
 
-* 任意（like）匹配
+* like 匹配
 ```sql
 ProjectName: project_12345 | where UserAgent like '%Chrome%Safari%'
 
@@ -61,6 +61,7 @@ ProjectName: project_12345 | where UserAgent like '%Chrome%Safari%'
 
 * 正则匹配
 ```sql
+# logstore_开头，以数字结尾
 ProjectName: project_12345 | where regexp_like(LogStore, 'logstore_\d+')
 ```
 
