@@ -1,5 +1,6 @@
 const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
+const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getOpensourceSider = require('./siderbars/getOpensourceSider')
 const getProductSider = require('./siderbars/getProductSider')
 const getTechnicalSider = require('./siderbars/getTechnicalSider')

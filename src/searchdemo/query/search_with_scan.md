@@ -2,12 +2,11 @@
 * 原始字段：**标识 `[R]`**，适用于 Scan 搜索。
 * 索引字段：**标识 `[I]`**，适用于索引搜索，前置可大大加速 Scan 搜索。
 ```
-[I] __source__: 10.128.79.234
+[I] __source__: 100.128.79.234
 [I] __topic__: nginx
 [I] __tag__:__hostname__: izl78aa539zgl03xxge184
 [R] __tag__:__path__: /data/app/access.LOG
 [R] APIVersion: 0.6.0
-[I] AliUid: 12345
 [R] ErrorCode: WriteQuotaExceed
 [R] ErrorMsg: Project write quota exceed: qps: 474
 [R] ExOutFlow: 0
@@ -87,13 +86,11 @@ Method:GetLogStoreLogs | where cast(Latency as bigint) < 500
 * 查找 4xx 状态码日志
 ```sql
 __topic__: nginx | where Status >= '400' and Status <= '499'
-
 ```
 
 * 查找写入方法返回 4xx 状态码的日志
 ```sql
 __topic__: nginx and __tag__:__path__: "/data/app/access.LOG" | where Status >= '400' and Status <= '499' and (Method = "PostLogStoreLogs" or Method = "WebTracking")
-
 ```
 # 字段是否存在
 
