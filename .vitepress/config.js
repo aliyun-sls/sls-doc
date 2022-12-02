@@ -98,6 +98,7 @@ module.exports = (async () => {
           },
         ],
         '/sqldemo': getSqldemoSider(),
+        '/searchdemo': getSearchdemoSider(),
         '/opensource/ilogtail': getOpensourceSider(),
         '/product': getProductSider(),
         '/technical': getTechnicalSider(),

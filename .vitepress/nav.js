@@ -11,7 +11,16 @@ function getNavs() {
       activeMatch: `^/(sqldemo)/`,
       items: [
         {
-          items: [{ text: '查询分析案例', link: '/sqldemo/' }],
+          items: [{ text: '分析案例', link: '/sqldemo/' }],
+        },
+      ],
+    },
+    {
+      text: '案例',
+      activeMatch: `^/(searchdemo)/`,
+      items: [
+        {
+          items: [{ text: '查询案例', link: '/searchdemo/' }],
         },
       ],
     },
