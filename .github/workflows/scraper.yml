@@ -1,0 +1,60 @@
+name: sls-algolia-scraper
+
+on:
+  workflow_run:
+    workflows: [sls-doc-release]
+    types:
+      - completed
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test tags'
+        required: false
+        type: boolean
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out code 🛎
+        uses: actions/checkout@v3
+        with:
+          repository: aliyun-sls/sls-docsearch-scraper
+          ref: slsdoc
+
+      - name: prepare scrape the dir 🧽
+        run: |
+          touch .env && mkdir ~/dirver
+
+      - name: Download the driver
+        uses: suisei-cn/actions-download-file@v1.3.0
+        id: downloadfile  # Remember to give an ID if you need the output filename
+        with:
+          url: "https://chromedriver.storage.googleapis.com/108.0.5359.22/chromedriver_linux64.zip"
+          target: ~/driver
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+
+      - name: Install pipenv
+        run: |
+          python -m pip install --upgrade pipenv wheel && pip uninstall cryptography && pip install cryptography==36.0.2 && pip uninstall pyopenssl && pip install pyopenssl==22.0.0
+
+      - name: Install dependencies
+        run: |
+          pipenv --python python3 && pipenv install --dev
+
+      - name: Run scraper
+        run: |
+          pipenv run scrapy version --verbose && pipenv uninstall cryptography && pipenv install cryptography==36.0.2 && pipenv uninstall pyopenssl && pipenv install pyopenssl==22.0.0 && pipenv run ./docsearch run ./config.json
+        env:
+          APPLICATION_ID: id
+          API_KEY: key
+          CHROMEDRIVER_PATH: ~/driver/chromedriver_linux64.zip
+          API_ENDPOINT: opensearch-cn-hangzhou.aliyuncs.com
+          API_KEY_ID: ${{ secrets.OSS_ACCESS_KEY_ID }}
+          API_KEY_SECRET: ${{ secrets.OSS_ACCESS_KEY_SECRET }}
+          API_APP_NAME: sls_doc
+          API_APP_TABLE_NAME: slsdoc

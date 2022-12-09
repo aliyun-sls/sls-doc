@@ -1,0 +1,56 @@
+{
+  "name": "@sls/doc",
+  "version": "1.0.0",
+  "description": "The doc for sls.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:aliyun-sls/sls-doc.git"
+  },
+  "keywords": [
+    "sls",
+    "doc"
+  ],
+  "author": "wangtao0101",
+  "homepage": "https://sls.aliyun.com/doc/",
+  "bugs": {
+    "url": "https://github.com/aliyun-sls/sls-doc/issues"
+  },
+  "scripts": {
+    "lint": "prettier --check --write --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
+    "sitemap": "node .vitepress/genSiteMap",
+    "lint:fail": "prettier --check --parser typescript \"{__tests__,docs,src,types}/**/*.ts\"",
+    "type": "tsc --noEmit",
+    "test": "npm run lint && npm run type",
+    "dev": "vitepress",
+    "build": "vitepress build && npm run sitemap",
+    "serve": "npm run demo-build && vitepress serve demo"
+  },
+  "dependencies": {
+    "@aliyun-sls/docsearch-js": "1.0.2",
+    "@docsearch/css": "^3.2.1",
+    "@vueuse/core": "^9.1.1",
+    "body-scroll-lock": "^3.1.5",
+    "fast-glob": "^3.2.12",
+    "glob": "^8.0.3",
+    "normalize.css": "^8.0.1",
+    "sitemap": "^7.1.1",
+    "urijs": "^1.19.11"
+  },
+  "devDependencies": {
+    "@mdit-vue/types": "^0.11.0",
+    "@types/body-scroll-lock": "^3.1.0",
+    "@types/estree": "^1.0.0",
+    "@types/urijs": "^1.19.19",
+    "prettier": "^2.7.1",
+    "typescript": "^4.8.2",
+    "vitepress": "^1.0.0-alpha.29",
+    "vue": "^3.2.37"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
+  }
+}

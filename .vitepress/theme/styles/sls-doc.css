@@ -1,0 +1,56 @@
+.vp-doc a[href*='\/playground/']:before {
+  content: '\25b6';
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border-radius: 10px;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+  color: var(--vt-c-green);
+  border: 2px solid var(--vt-c-green);
+  margin-right: 8px;
+  margin-left: 4px;
+  line-height: 15px;
+  padding-left: 4.5px;
+  font-size: 11px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+:root {
+  --sls-topnav-height: 73px;
+  --sls-footer-height: 89px;
+  --sls-page-max-width: 1380px;
+}
+
+.vt-box-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.vt-box-container .vt-box {
+  background-color: var(--vp-c-bg-soft);
+  transition: color 0.5s, background-color 0.5s;
+  padding: 28px 36px;
+  border-radius: 8px;
+  flex: 0 32%; /* default 3 column */
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .vt-box-container .vt-box {
+    flex: 0 100%;
+    margin-bottom: 20px;
+  }
+}
+
+.vt-box-container .vt-box .next-steps-caption {
+  margin-bottom: 0;
+  color: var(--vp-c-text-2);
+  transition: color 0.5s;
+}
