@@ -92,12 +92,6 @@ module.exports = (async () => {
       nav: getNavs(),
 
       sidebar: {
-        '/sqlfun': [
-          {
-            text: 'SQL函数',
-            items: [{ text: '函数概览', link: '/sqlfun/index' }, ...sqlfunFiles],
-          },
-        ],
         '/sqldemo': getSqldemoSider(),
         '/searchdemo': getSearchdemoSider(),
         '/opensource/ilogtail': getOpensourceSider(),

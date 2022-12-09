@@ -30,18 +30,6 @@ function getNavs() {
       ],
     },
     {
-      text: '文档',
-      activeMatch: `^/(sqlfun)/`,
-      items: [
-        {
-          items: [
-            { text: 'SQL函数', link: '/sqlfun/' },
-            // { text: "SQL语法", link: "/xx/xx" },
-          ],
-        },
-      ],
-    },
-    {
       text: '招聘',
       activeMatch: `^/(jobs)/`,
       items: [
