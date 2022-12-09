@@ -46,6 +46,11 @@ __topic__: nginx | where "__tag__:__path__" = '/data/app/access.LOG'
 __topic__: nginx | where lower(ErrorCode) != 'writequotaexceed'
 ```
 
+* 全文（任意字段）搜索
+```sql
+__topic__: nginx | where __line__ like '%WriteQuotaExceed%'
+```
+
 ## 模糊查询
 
 * 前缀查询
@@ -124,4 +129,4 @@ __topic__: nginx | where json_extract_scalar(ErrorMsg, '$.reason') = 'Project wr
 ```
 
 ## FAQ
-1. 请注意，where 表达式中的字符串请使用**单引号（'）**包裹，而不是双引号（"）。
+1. 请注意，where 表达式中的字符串请使用单引号（'）包裹，而不是双引号（"）。
