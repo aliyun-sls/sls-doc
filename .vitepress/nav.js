@@ -8,6 +8,7 @@ function getNavs() {
           items: [
             { text: '分析案例', link: '/sqldemo/' },
             { text: '查询案例', link: '/searchdemo/' },
+            { text: '加工案例', link: '/dataprocessdemo'},
           ],
         },
       ],
