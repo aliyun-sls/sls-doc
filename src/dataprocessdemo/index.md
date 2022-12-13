@@ -4,7 +4,7 @@
 
 | 案例名称 | 描述 |
 | -- | -- |
-| [Nginx日志加工处理](./nginx_data_process.md) | 使用数据加工对Nginx日志进行解析 |
+| [Nginx日志解析](./nginx_data_process.md) | 使用数据加工对Nginx日志进行解析 |
 
 ## 日志分发
 

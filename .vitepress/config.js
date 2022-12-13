@@ -2,6 +2,7 @@ const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
 const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getProductSider = require('./siderbars/getProductSider')
+const getDataProcessSider = require('./siderbars/getDataProcessSider')
 
 const getNavs = require('./nav')
 
@@ -93,6 +94,7 @@ module.exports = (async () => {
         '/sqldemo': getSqldemoSider(),
         '/searchdemo': getSearchdemoSider(),
         '/product': getProductSider(),
+        '/dataprocessdemo': getDataProcessSider(),
       },
 
       footer: {
