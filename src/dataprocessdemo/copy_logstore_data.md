@@ -10,7 +10,7 @@
 
 * 已创建logstore-a，且已完成数据写入。
 
-* 已完成logstore-b性能评估和规划。例如评估Shard数量。更多信息，请参见[性能指南](https://help.aliyun.com/document_detail/135496.htm?spm=a2c4g.11186623.2.6.ec9b1353BFjaxs#concept-2055068)。
+* 已完成logstore-b性能评估和规划。例如评估Shard数量。更多信息，请参见 [性能指南](https://help.aliyun.com/document_detail/135496.htm?spm=a2c4g.11186623.2.6.ec9b1353BFjaxs#concept-2055068)。
 
 * 已创建logstore-b。更多信息，请参见[管理Logstore](https://help.aliyun.com/document_detail/48990.htm?spm=a2c4g.11186623.2.7.ec9b1353BFjaxs#concept-xkb-zh5-vdb)。
 
