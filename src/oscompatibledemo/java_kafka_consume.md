@@ -1,16 +1,14 @@
+## 前言
 SLS已经兼容Kafka消费组协议，您可以使用原生Kafka客户端对SLS进行读操作。
-### 概念映射
+
+## 概念映射
 | Kafka | SLS | 描述 |
 | --- | --- | --- |
-| Topic | Logstore | Topic，Kafka用来区分不同类型信息的主题
-Logstore是SLS中日志数据的采集、存储和查询单元 |
-| Partition | Shard | 数据存储分区
-Partition是连续的，只增不减
-SLS的Shard可以分裂/合并/过期 |
-| Offset | Cursor | Offset，代表Partition中的消息的顺序ID
-Cursor，SLS日志的相对偏移量，通过Cursor可以获得一组相对位置的日志 |
+| Topic | Logstore | Topic，Kafka用来区分不同类型信息的主题，Logstore是SLS中日志数据的采集、存储和查询单元 |
+| Partition | Shard | 数据存储分区Partition是连续的，只增不减。SLS的Shard可以分裂/合并/过期 |
+| Offset | Cursor | Offset代表Partition中的消息的顺序ID；Cursor，SLS日志的相对偏移量，通过Cursor可以获得一组相对位置的日志 |
 
-### 账号权限配置
+## 阿里云账号权限配置
 
 - 赋予账号只读访问日志服务(Log)的权限（AliyunLogReadOnlyAccess)
 - 如果有更精细的账号权限要求，可采用自定义权限策略，参考文档[https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.61644a81pujSOA#task-2149286](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.61644a81pujSOA#task-2149286)，脚本编辑模式配置示例如下
@@ -35,7 +33,7 @@ Cursor，SLS日志的相对偏移量，通过Cursor可以获得一组相对位�
     ]
 }
 ```
-### 配置参数
+## Java消费配置参数
 
 | 参数 | 描述 |
 | --- | --- |
@@ -52,7 +50,7 @@ Cursor，SLS日志的相对偏移量，通过Cursor可以获得一组相对位�
 earliest 当有已提交的offset时，从提交的offset开始消费；无提交的offset时，从头开始消费
 latest 当有已提交的offset时，从提交的offset开始消费；无提交的offset时，消费新产生的数据 |
 
-- 代码示例：
+## Java消费代码示例
 ```
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -107,7 +105,8 @@ public class KafkaConsumerGroupTest {
 }
 
 ```
-### 相关限制
+
+## 限制说明
 
 - kafka消费协议目前支持到2.2
 - kafka client需要2.x版本(2.0以上)
@@ -171,12 +170,13 @@ public class KafkaConsumerGroupTest {
             e.printStackTrace();
         }
 ```
-### 最佳实践
-#### shard读写能力
+## 最佳实践
+### shard读写能力
 
 - 写入：5 MB/s或500次/s
 - 读取：10 MB/s或100次/s
 - 需要根据写入数据量和读取量分配合适的shard
-#### 建议
+- 
+## 建议
 
 - 建议在消费前将要消费的shard数量分裂到当前logstore写入峰值时需要的最大shard数，避免在消费时出现消费空洞shard。 kafka的partition是连续递增的，不会减少，SLS的shard会分裂、合并、过期，kafka client端的消费逻辑有校验partition是否连续递增，SLS在消费协议兼容对shard和partition的做了映射关系，如果在消费中出现shard分裂合并，会导致部分消费者消费空洞shard（当shard分裂或者合并时，原shard状态转化为readonly，超过数据保存时间后被自动回收，从而产生空洞），出现消费不均衡
