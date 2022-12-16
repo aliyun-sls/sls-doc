@@ -3,6 +3,7 @@ const getSqldemoSider = require('./siderbars/getSqldemoSider')
 const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getProductSider = require('./siderbars/getProductSider')
 const getDataProcessSider = require('./siderbars/getDataProcessSider')
+const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 
 const getNavs = require('./nav')
 
@@ -95,6 +96,7 @@ module.exports = (async () => {
         '/searchdemo': getSearchdemoSider(),
         '/product': getProductSider(),
         '/dataprocessdemo': getDataProcessSider(),
+        '/oscompatibledemo': getOscompatibleDemo(),
       },
 
       footer: {
