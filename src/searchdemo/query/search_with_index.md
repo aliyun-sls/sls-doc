@@ -11,59 +11,74 @@
 
 > 本文主要针对 __查询__ 语句，更详细的 __分析__ 和 __扫描(Scan)__ 使用方法可参考案例中心对应说明
 
-## 日志样例
+## 日志场景
+测试的日志场景为mock产生的nginx的access log，日志中的主要字段如下
 |字段名|类型|样例|
 |--|--|--|
-| Status | long|200 , 400 ...|
-| RequestId|text|639AF8452D912CE7628EF545 , 639AF8452D912CE7628EF542 ...|
-|ResourceName|text|Pic1, Pic2, Text1, VideoN ...|
-|Path|text|/mock1.host.com/route1, /mock2.host.com/route2 ...|
-|UA|text|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36|
+|body_bytes_sent|long|3000|
+|host| text(不分词)|www.mg.mock.com|
+|http_referer|text(不分词)|www.hpw.mock.com|
+|http_user_agent|text|Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.66 Safari/535.11|
+|http_x_forwarded_for|text(不分词)|127.0.0.1|
+|remote_addr|text(不分词)|127.0.0.1|
+|remote_user|text|50i0(随机字符串)|
+|request_length|long|2000|
+|request_method|text|POST|
+|request_time|long|30|
+|request_url|text|/request/path-1/file-4|
+|status|long|200|
+|time_local|text|22/Dec/2022:09:26:43|
+|upstream_response_time|double|0.5|
 
-注：默认分词符为 __, '";=()[]{}?@&<>/:\n\t\r__
+注：未注明分词的默认分词符为 __, '";=()[]{}?@&<>/:\n\t\r__
 
-## 精确查询
+你可以使用 [试用Demo](./../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=KiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ==&queryTimeType=6windo&extendsParams=true) 来进行实操
+## 普通查询
 * 查询404的状态码
 ```sql
-Status: 404
+status: 404
 ```
 * 查询大于200的状态码
 ```sql
-Status > 200
+status > 200
 ```
-* 查询特定的请求ID
-```sql
-RequestId: 639AF8452D912CE7628EF545
-```
-
-## 
-
-## 模糊查询
-* 查询所有text相关资源的日志
-```sql
-ResourceName: text*
-```
-* 查询UA中含有Mo开头la结尾的词
-```sql
-UA: mo*la
-```
-* 查询包含以mozi开头，以la结尾，中间还有一个字符的词的日志
-```sql
-UA: mozi?la
-```
-
-* 查询4xx的状态码
+* 查询request_time处于50-100ms的
 ```sql
 Status in [400 499]
 ```
+* 查询特定的host
+```sql
+host: www.ol.mock.com
+```
+
+## 模糊查询
+* 查询remote_user以a开头的字符串
+```sql
+remote_user: a*
+```
+* 查询http_user_agent中含有Mo开头la结尾的词
+```sql
+http_user_agent: mo*la
+```
+* 查询http_user_agent中包含以mozi开头，以la结尾，中间还有一个字符的词的日志
+```sql
+http_user_agent: mozi?la
+```
+> 当然也可以使用 __mozilla__, __mo*la__ 或者 __mozi?la__ 等直接查询而不指定字段
 
 ## 短语查询
-想查询path为 mock1.host.com的日志时，由于配置了分词符，在请求时会讲查询语句进行分词来查询，导致可能查询到 mock2.host.com, mock3.host.com等，如果想精确查找可参考下方语句
-* 查询所有text相关资源的日志
+想搜索time_local处于12月22日的日志，使用了
 ```
-Path: #"mock1.host.com"
+time_local: 22/Dec
 ```
 
+结果发现会存在其他如time_local字段为 __17/Dec/2022:06:22:23__ 这样格式的日志，因为查询语句被分词为 __22__ 和 __Dec__, 而本条日志中同时包含两个部分，当不指定字段直接对所有字段进行查询，出现的可能性更高了。所以在查询时可以在关键词前加一个 __#__ 避免这个问题。所以可以更换为下面的查询语句
+
+* 查询所有本地时间为12月22日的日志
+```
+time_local: #"22/Dec"
+```
+> 更详细的 __短语查询__ 说明参考[短语查询 - 官方文档](https://help.aliyun.com/document_detail/416724.html)
 ## FAQ
 1. 模糊查询不支持后缀匹配，更多需求可考虑选择分析或者扫描语句
 2. 短语查询实现为先分词查询然后再对短语进行过滤，所以其不支持 __not__ 条件，且后面也不支持跟随 __分析语句__ 进行分析
