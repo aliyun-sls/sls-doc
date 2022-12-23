@@ -26,6 +26,8 @@
 [R] microtime: 2022-12-02 11:03:09.074454
 ```
 
+Scan 语法：`{Index Search Query} | {Scan Query}`。
+
 ## 精确查询
 
 * 搜索普通字段
@@ -129,4 +131,4 @@ __topic__: nginx | where json_extract_scalar(ErrorMsg, '$.reason') = 'Project wr
 ```
 
 ## FAQ
-1. 请注意，where 表达式中的字符串请使用单引号（'）包裹，而不是双引号（"）。
+1. 请注意，where 表达式中右值的**字符串使用单引号（'）包裹**，而不是双引号（"）。
