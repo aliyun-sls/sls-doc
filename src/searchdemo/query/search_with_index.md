@@ -56,7 +56,7 @@ host: www.ol.mock.com
 ```sql
 remote_user: a*
 ```
-* 查询http_user_agent中含有Mo开头la结尾的词
+* 查询http_user_agent中含有mo开头la结尾的词
 ```sql
 http_user_agent: mo*la
 ```
