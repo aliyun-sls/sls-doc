@@ -44,7 +44,7 @@ status > 200
 ```
 * 查询request_time处于50-100ms的
 ```sql
-Status in [400 499]
+request_time in [50 100]
 ```
 * 查询特定的host
 ```sql
