@@ -44,7 +44,7 @@ status > 200
 ```
 * 查询request_time处于50-100ms的
 ```sql
-Status in [400 499]
+request_time in [50 100]
 ```
 * 查询特定的host
 ```sql
@@ -56,7 +56,7 @@ host: www.ol.mock.com
 ```sql
 remote_user: a*
 ```
-* 查询http_user_agent中含有Mo开头la结尾的词
+* 查询http_user_agent中含有mo开头la结尾的词
 ```sql
 http_user_agent: mo*la
 ```
