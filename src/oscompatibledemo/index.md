@@ -4,7 +4,7 @@
 ## Kafka兼容
 
 ### Kafka消费
-| 示例名称 | 描述|
-|---------|----|
-| [Java消费示例](./java_kafka_consume.md) | 使用Kafka Java SDK消费SLS|
+| 示例名称                          | 描述                  |
+|-------------------------------|---------------------|
+| [各语言消费示例](./kafka_consume.md) | 使用Kafka client消费SLS |
 
