@@ -32,49 +32,45 @@
 
 注：未注明分词的默认分词符为 __, '";=()[]{}?@&<>/:\n\t\r__
 
-你可以使用 [试用Demo](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=KiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ==&queryTimeType=6windo&extendsParams=true) 来进行实操
 ## 普通查询
-* 查询404的状态码
+* 查询404的状态码 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=c3RhdHVzOiA0MDQ=&queryTimeType=6windo&extendsParams=true)
 ```sql
 status: 404
 ```
-* 查询大于200的状态码
+* 查询upstream_response_time大于0.5ms的日志 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=dXBzdHJlYW1fcmVzcG9uc2VfdGltZSA+IDAuNQ==&queryTimeType=6windo&extendsParams=true)
 ```sql
-status > 200
+upstream_response_time > 0.5
 ```
-* 查询request_time处于50-100ms的
+* 查询request_time处于50-100ms的日志 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVxdWVzdF90aW1lIGluIFs1MCAxMDBd&queryTimeType=6windo&extendsParams=true)
 ```sql
 request_time in [50 100]
 ```
-* 查询特定的host
+* 查询特定的host [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aG9zdDogd3d3Lm9sLm1vY2suY29t&queryTimeType=6windo&extendsParams=true)
 ```sql
 host: www.ol.mock.com
 ```
-
 ## 模糊查询
-* 查询remote_user以a开头的字符串
+* 查询remote_user以a开头的字符串 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVtb3RlX3VzZXI6IGEq&queryTimeType=6windo&extendsParams=true)
 ```sql
 remote_user: a*
 ```
-* 查询http_user_agent中含有mo开头la结尾的词
+* 查询http_user_agent中含有mo开头la结尾的词 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aHR0cF91c2VyX2FnZW50OiBtbypsYQ==&queryTimeType=6windo&extendsParams=true)
 ```sql
 http_user_agent: mo*la
 ```
-* 查询http_user_agent中包含以mozi开头，以la结尾，中间还有一个字符的词的日志
+* 查询http_user_agent中包含以mozi开头，以la结尾，中间还有一个字符的词的日志 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aHR0cF91c2VyX2FnZW50OiBtb3ppP2xh&queryTimeType=6windo&extendsParams=true)
 ```sql
 http_user_agent: mozi?la
 ```
 > 当然也可以使用 __mozilla__, __mo*la__ 或者 __mozi?la__ 等直接查询而不指定字段
 
 ## 短语查询
-想搜索time_local处于12月22日的日志，使用了
+想搜索time_local处于12月22日的日志，使用了下方的语句会发现，存在其他如time_local字段为 __17/Dec/2022:06:22:23__ 这样格式的日志，因为查询语句被分词为 __22__ 和 __Dec__, 而本条日志中同时包含两个部分，当不指定字段直接对所有字段进行查询，出现的可能性更高了。所以在查询时可以在关键词前加一个 __#__ 避免这个问题。所以可以更换为下面的查询语句
 ```
 time_local: 22/Dec
 ```
-
-结果发现会存在其他如time_local字段为 __17/Dec/2022:06:22:23__ 这样格式的日志，因为查询语句被分词为 __22__ 和 __Dec__, 而本条日志中同时包含两个部分，当不指定字段直接对所有字段进行查询，出现的可能性更高了。所以在查询时可以在关键词前加一个 __#__ 避免这个问题。所以可以更换为下面的查询语句
-
-* 查询所有本地时间为12月22日的日志
+所以可以更换为下面的查询语句
+* 查询所有本地时间为12月22日的日志 [Playground中试试](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=dGltZV9sb2NhbDogIyIyMi9EZWMi&queryTimeType=6windo&extendsParams=true)
 ```
 time_local: #"22/Dec"
 ```
