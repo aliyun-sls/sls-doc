@@ -5,8 +5,9 @@ function getSidebar() {
             items: [{text: '总览', link: '/oscompatibledemo/index'}],
         },
         {
-            text: 'Kafka兼容',
-            items: [{text: '各语言消费示例', link: '/oscompatibledemo/kafka_consume'}],
+            text: 'Kafka 兼容',
+            items: [{text: 'Java 消费示例', link: '/oscompatibledemo/java_kafka_consume'},
+                    {text: 'Confluent-Kafka-Go 消费示例', link: '/oscompatibledemo/confluent_go_kafka_consume'}],
         }
 
     ]
