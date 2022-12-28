@@ -2,6 +2,8 @@
 
 ## Kafka兼容
 
+### [kafka消费兼容概述和注意事项](./overview.md)
+
 ### Kafka消费
 
 | 示例名称                                                 | 描述                                  |
