@@ -38,6 +38,9 @@ public class KafkaConsumerGroupTest {
         String groupId = "kafka-test";
         String endpoint = "cn-hangzhou.log.aliyuncs.com";
         String port = "10012";
+        //内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb
+        //String endpoint = "cn-hangzhou-intranet.log.aliyuncs.com";
+        //String port = "10011";
         String hosts = project + "." + endpoint + ":" + port;
         props.put("bootstrap.servers", hosts);
         props.put("security.protocol", "sasl_ssl");
