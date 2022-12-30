@@ -105,6 +105,9 @@ SLS已经兼容Kafka消费组协议，您可以使用原生Kafka客户端对SLS�
         }
 ```
 
+## 消费组延迟监控
+   您可以通过日志服务控制台查看日志消费的状态并设置告警,详见[链接](https://help.aliyun.com/document_detail/55912.html)
+
 ## 最佳实践
 
 ### shard读写能力

@@ -1,3 +1,5 @@
+## [Kafka 消费兼容概述和注意事项](./overview.md)
+
 ## Franz-go消费配置参数
 
 | 参数                | 描述                                                                                                                                                                                                                                                                                                                  |
