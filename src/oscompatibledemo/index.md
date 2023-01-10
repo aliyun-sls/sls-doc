@@ -2,7 +2,7 @@
 
 ## Kafka兼容
 
-### [kafka消费兼容概述和注意事项](./overview.md)
+### [通过 Kafka 协议消费数据功能说明](./overview.md)
 
 ### Kafka消费
 

@@ -6,7 +6,7 @@ function getSidebar() {
         },
         {
             text: 'Kafka 兼容',
-            items: [{text: 'Kafka 消费兼容概述和注意事项', link: '/oscompatibledemo/overview'},
+            items: [{text: '通过 Kafka 协议消费数据功能说明', link: '/oscompatibledemo/overview'},
                 {text: 'Java 消费示例', link: '/oscompatibledemo/java_kafka_consume'},
                 {text: 'Confluent-Kafka-Go 消费示例', link: '/oscompatibledemo/confluent_go_kafka_consume'},
                 {text: 'Franz-Kafka-Go 消费示例', link: '/oscompatibledemo/franz_go_kafka_consume'},
