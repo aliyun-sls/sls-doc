@@ -10,10 +10,10 @@ function getSidebar() {
       },
       {
         text: '日志分发',
-        items: [{ text: '复制Logstore数据', link: '/dataprocessdemo/copy_logstore_data' }],
-        items: [{ text: '复制和分发数据', link: '/dataprocessdemo/split_data_and_output.md' }],
-        items: [{ text: '多目标Logstore数据分发', link: '/dataprocessdemo/output_logstore_data.md' }],
-        items: [{ text: '跨区域数据传输', link: '/dataprocessdemo/cross_region.md' }],
+        items: [{ text: '复制Logstore数据', link: '/dataprocessdemo/copy_logstore_data' },
+            { text: '复制和分发数据', link: '/dataprocessdemo/split_data_and_output.md' },
+            { text: '多目标Logstore数据分发', link: '/dataprocessdemo/output_logstore_data.md' },
+            { text: '跨区域数据传输', link: '/dataprocessdemo/cross_region.md' }],
       }
     ]
   }
