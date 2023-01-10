@@ -52,57 +52,55 @@ SLS已经兼容Kafka消费组协议，您可以使用原生Kafka客户端对SLS�
 - 删除logstore的同时，目前需要用户通过代码调用删除关联的消费组，代码示例如下：
 
 ```java
+  props.put("bootstrap.servers", "cn-hangzhou-intranet.log.aliyuncs.com:10011");
+  props.put("security.protocol", "sasl_ssl");
+  props.put("sasl.mechanism", "PLAIN");
+  props.put("sasl.jaas.config",
+          "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"projectName\" password=\"access-key-id#access-key-secret\";");
 
-        props.put("bootstrap.servers", "cn-hangzhou-intranet.log.aliyuncs.com:10011");
-        props.put("security.protocol", "sasl_ssl");
-        props.put("sasl.mechanism", "PLAIN");
-        props.put("sasl.jaas.config",
-                "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"projectName\" password=\"access-key-id#access-key-secret\";");
+  String topic = "logstore";
 
-        String topic = "logstore";
+  AdminClient client = KafkaAdminClient.create(props);
 
-        AdminClient client = KafkaAdminClient.create(props);
+  try {
+      ListConsumerGroupsResult listConsumerGroupsResult = client.listConsumerGroups();
+      Collection<ConsumerGroupListing> groups = listConsumerGroupsResult.all().get(10, TimeUnit.SECONDS);
 
-        try {
-            ListConsumerGroupsResult listConsumerGroupsResult = client.listConsumerGroups();
-            Collection<ConsumerGroupListing> groups = listConsumerGroupsResult.all().get(10, TimeUnit.SECONDS);
+      Collection<String> groupIds = new ArrayList<>();
+      groups.forEach( group -> {
+          System.out.println(group.groupId());
+          groupIds.add(group.groupId());
+      });
 
-            Collection<String> groupIds = new ArrayList<>();
-            groups.forEach( group -> {
-                System.out.println(group.groupId());
-                groupIds.add(group.groupId());
-            });
-
-            DescribeConsumerGroupsResult describeConsumerGroupsResult = client.describeConsumerGroups(groupIds);
-            Map<String, ConsumerGroupDescription> groupMetas = describeConsumerGroupsResult.all().get(10, TimeUnit.SECONDS);
-            List<String> deleteGroupId = new ArrayList<>();
-            for (Map.Entry<String, ConsumerGroupDescription> entry : groupMetas.entrySet())
-            {
-                Set<String> logstores = new HashSet<>();
-                Iterator<MemberDescription> it = entry.getValue().members().iterator();
-                while(it.hasNext())
-                {
-                    MemberDescription member = it.next();
-                    Iterator<TopicPartition> tit = member.assignment().topicPartitions().iterator();
-                    while (tit.hasNext())
-                    {
-                        TopicPartition tp = tit.next();
-                        if(!logstores.contains(tp.topic()))
-                            logstores.add(tp.topic());
-                    }
-                }
+      DescribeConsumerGroupsResult describeConsumerGroupsResult = client.describeConsumerGroups(groupIds);
+      Map<String, ConsumerGroupDescription> groupMetas = describeConsumerGroupsResult.all().get(10, TimeUnit.SECONDS);
+      List<String> deleteGroupId = new ArrayList<>();
+      for (Map.Entry<String, ConsumerGroupDescription> entry : groupMetas.entrySet())
+      {
+          Set<String> logstores = new HashSet<>();
+          Iterator<MemberDescription> it = entry.getValue().members().iterator();
+          while(it.hasNext())
+          {
+              MemberDescription member = it.next();
+              Iterator<TopicPartition> tit = member.assignment().topicPartitions().iterator();
+              while (tit.hasNext())
+              {
+                  TopicPartition tp = tit.next();
+                  if(!logstores.contains(tp.topic()))
+                      logstores.add(tp.topic());
+              }
+          }
                
-                if (logstores.contains(topic))
-                    deleteGroupId.add(entry.getKey());
-            }
+          if (logstores.contains(topic))
+              deleteGroupId.add(entry.getKey());
+      }
 
-            DeleteConsumerGroupsResult deleteConsumerGroupsResult =  client.deleteConsumerGroups(deleteGroupId);
-            deleteConsumerGroupsResult.all().get(10, TimeUnit.SECONDS);
+      DeleteConsumerGroupsResult deleteConsumerGroupsResult =  client.deleteConsumerGroups(deleteGroupId);
+      deleteConsumerGroupsResult.all().get(10, TimeUnit.SECONDS);
 
-
-        } catch (final InterruptedException | ExecutionException | java.util.concurrent.TimeoutException e) {
-            e.printStackTrace();
-        }
+  } catch (final InterruptedException | ExecutionException | java.util.concurrent.TimeoutException e) {
+      e.printStackTrace();
+  }
 ```
 
 ## 消费组延迟监控
