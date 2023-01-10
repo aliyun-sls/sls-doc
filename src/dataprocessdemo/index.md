@@ -11,3 +11,4 @@
 | 案例名称 | 描述 |
 | -- | -- |
 | [复制Logstore数据](./copy_logstore_data.md) | 使用数据加工复制Logstore数据 |
+| [跨region复制数据]() | 使用数据加工跨region复制Logstore数据 |
