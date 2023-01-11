@@ -28,6 +28,10 @@ function getNavs() {
               text: '可视化研发工程师',
               link: '/jobs/front',
             },
+            {
+              text: '2024春招实习',
+              link: '/jobs/2024intern',
+            },
           ],
         },
       ],
