@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import URI from 'urijs'
 import { computed } from 'vue'
+import { inBrowser } from 'vitepress'
 import { isDarkTheme } from './utils'
 
-const location = window.location
+const search = inBrowser ? window.location.search : ''
 
 const params = computed(() => {
-  const parsedQuery = URI(decodeURIComponent(location.search)).escapeQuerySpace(false).query(true)
+  const parsedQuery = URI(decodeURIComponent(search)).escapeQuerySpace(false).query(true)
   if (parsedQuery == null || parsedQuery.url == null) {
     return {}
   }
