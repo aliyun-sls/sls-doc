@@ -110,10 +110,10 @@ module.exports = (async () => {
       // // For i18n translation messages
       i18n: {
         search: '搜索',
-        //   menu: 'Menu',
+        menu: '菜单',
         toc: '本页目录',
-        //   returnToTop: 'Return to top',
-        //   appearance: 'Appearance',
+        returnToTop: '返回顶部',
+        appearance: '主题',
         //   previous: 'Previous',
         //   next: 'Next',
         //   pageNotFound: 'Page Not Found',

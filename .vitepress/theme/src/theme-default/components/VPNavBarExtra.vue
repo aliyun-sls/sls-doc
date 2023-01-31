@@ -23,7 +23,7 @@ const hasExtraContent = computed(() => theme.value.localeLinks || site.value.app
 
     <div v-if="site.appearance" class="group">
       <div class="item appearance">
-        <p class="label">Appearance</p>
+        <p class="label">主题</p>
         <div class="appearance-action">
           <VPSwitchAppearance />
         </div>

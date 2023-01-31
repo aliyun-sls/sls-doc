@@ -7,7 +7,7 @@ const { site } = useData()
 
 <template>
   <div v-if="site.appearance" class="VPNavScreenAppearance">
-    <p class="text">Appearance</p>
+    <p class="text">主题</p>
     <VPSwitchAppearance />
   </div>
 </template>
