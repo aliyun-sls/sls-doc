@@ -10,9 +10,7 @@ export function isDarkTheme() {
 export function initTheme() {
   const searchParams = new URLSearchParams(window.location.search)
   const isDark = searchParams.get('theme') === 'dark'
-  if (isDark) {
-    localStorage.setItem(storageKey, 'dark')
-  }
+  localStorage.setItem(storageKey, isDark ? 'dark' : 'light')
 }
 
 export function addHistoryListener() {
