@@ -8,7 +8,8 @@ export function isDarkTheme() {
 }
 
 export function initTheme() {
-  const searchParams = new URLSearchParams(window.location.search)
+  const search = window?.location?.search ?? ''
+  const searchParams = new URLSearchParams(search)
   const isDark = searchParams.get('theme') === 'dark'
   localStorage.setItem(storageKey, isDark ? 'dark' : 'light')
 }
