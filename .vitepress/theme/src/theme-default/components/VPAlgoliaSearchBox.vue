@@ -72,6 +72,48 @@ function initialize(userOptions: DefaultTheme.AlgoliaSearchOptions) {
       }
     },
     openSearchUrl: 'https://sls-doc-search-sls-doc-search-otdlhfahpe.cn-hangzhou.fcapp.run',
+    // translations: {
+    //   button: {
+    //     buttonText: '搜索',
+    //     buttonAriaLabel: '搜索',
+    //   },
+    //   modal: {
+    //     searchBox: {
+    //       resetButtonTitle: '清除查询',
+    //       resetButtonAriaLabel: '清除查询',
+    //       cancelButtonText: '取消',
+    //       cancelButtonAriaLabel: '取消',
+    //     },
+    //     startScreen: {
+    //       recentSearchesTitle: '最近查询',
+    //       noRecentSearchesText: '没有最近查询结果',
+    //       saveRecentSearchButtonTitle: '保存查询',
+    //       removeRecentSearchButtonTitle: '清除查询历史',
+    //       favoriteSearchesTitle: 'Favorite',
+    //       removeFavoriteSearchButtonTitle: 'Remove this search from favorites',
+    //     },
+    //     errorScreen: {
+    //       titleText: '无法获取查询结果',
+    //       helpText: '请检查网络是否联通',
+    //     },
+    //     footer: {
+    //       selectText: '选择',
+    //       selectKeyAriaLabel: '搜索',
+    //       navigateText: 'to navigate',
+    //       navigateUpKeyAriaLabel: '向上',
+    //       navigateDownKeyAriaLabel: '向下',
+    //       closeText: '关闭',
+    //       closeKeyAriaLabel: 'Escape key',
+    //       searchByText: 'Search by',
+    //     },
+    //     noResultsScreen: {
+    //       noResultsText: '没有查询结果',
+    //       suggestedQueryText: '正在查询',
+    //       reportMissingResultsText: '这个查询一定会有结果吗?',
+    //       reportMissingResultsLinkText: '联系我们.',
+    //     },
+    //   },
+    // },
   })
 
   docsearch$(options)

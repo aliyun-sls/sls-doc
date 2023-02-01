@@ -43,7 +43,7 @@ function handleClick({ target: el }: Event) {
       <div class="outline-marker" ref="marker" />
 
       <div class="outline-title">
-        {{ theme.outlineTitle || 'On this page' }}
+        {{ theme.outlineTitle || '本页目录' }}
       </div>
 
       <nav aria-labelledby="doc-outline-aria-label">
