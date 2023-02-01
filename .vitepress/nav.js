@@ -2,12 +2,13 @@ function getNavs() {
   const base = [
     {
       text: '案例中心',
-      activeMatch: `^/(sqldemo|searchdemo)/`,
+      activeMatch: `^/(sqldemo|searchdemo|visulization|dataprocessdemo|oscompatibledemo)/`,
       items: [
         {
           items: [
             { text: '分析案例', link: '/sqldemo/' },
             { text: '查询案例', link: '/searchdemo/' },
+            { text: '可视化案例', link: '/visulization/' },
             { text: '加工案例', link: '/dataprocessdemo/'},
             { text: '开源兼容', link: '/oscompatibledemo/'}
           ],

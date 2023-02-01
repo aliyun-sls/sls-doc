@@ -20,7 +20,7 @@
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/">
+  <a class="vt-box" href="/doc/visulization/">
     <p class="next-steps-link">可视化案例</p>
     <p class="next-steps-caption">日志服务（SLS）支持查询与分析结果可视化，提供10多种统计图表，包括表格、线图、柱状图、地图等，并支持基于统计图表自定义仪表盘（支持外嵌与下钻分析）。</p>
   </a>
