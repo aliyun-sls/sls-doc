@@ -6,7 +6,10 @@ function getSidebar() {
     },
     {
       text: '常见图表案例',
-      items: [{ text: '如何添加多Y轴线图', link: '/visulization/doubley.md' }],
+      items: [
+        { text: '如何添加多Y轴线图', link: '/visulization/doubley.md' },
+        { text: '如何配置一个带有迷你图的单值图', link: '/visulization/singleWithMiniChart.md' },
+      ],
     },
   ]
 }
