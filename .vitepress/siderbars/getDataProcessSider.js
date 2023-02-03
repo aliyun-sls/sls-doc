@@ -12,8 +12,20 @@ function getSidebar() {
         text: '日志分发',
         items: [{ text: '复制Logstore数据', link: '/dataprocessdemo/copy_logstore_data' },
             { text: '复制和分发数据', link: '/dataprocessdemo/split_data_and_output.md' },
+            { text: '跨区域数据传输', link: '/dataprocessdemo/cross_region.md' },
             { text: '多目标Logstore数据分发', link: '/dataprocessdemo/output_logstore_data.md' },
-            { text: '跨区域数据传输', link: '/dataprocessdemo/cross_region.md' }],
+            { text: '多源Logstore数据汇总', link: '/dataprocessdemo/summary_logstore_data.md' }
+          ],
+      },
+      {
+        text: '数据富化',
+        items: [
+          { text: '数据加工富化整体介绍', link: '/dataprocessdemo/data_join.md' },
+          { text: '用Logstore做数据富化', link: '/dataprocessdemo/pull_logstore_data.md' },
+          { text: '用OSS做数据富化', link: '/dataprocessdemo/parse_oss_csv.md' },
+          { text: '用RDS做数据富化', link: '/dataprocessdemo/pull_rds_mysql_vpc.md' },
+          { text: '构建字典与表格做数据富化', link: '/dataprocessdemo/make_dict_table.md' }
+        ]
       }
     ]
   }
