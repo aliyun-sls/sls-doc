@@ -36,7 +36,7 @@ http返回码在访问日志中比较常见，将返回码富化，可以让我�
 
 下面是常见的http code码含义的映射表
 
-![](/img/dataprocessdemo/数据富化/httpcode对照表)
+![](/img/dataprocessdemo/数据富化/httpcode对照表.png)
 
 
 
