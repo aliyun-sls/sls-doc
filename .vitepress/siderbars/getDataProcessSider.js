@@ -26,6 +26,15 @@ function getSidebar() {
           { text: '用RDS做数据富化', link: '/dataprocessdemo/pull_rds_mysql_vpc.md' },
           { text: '构建字典与表格做数据富化', link: '/dataprocessdemo/make_dict_table.md' }
         ]
+      },
+      {
+        text: 'IP地址相关',
+        items: [
+          { text: '使用ipip库解析ip地址', link: '/dataprocessdemo/geo_parse_ipip.md' },
+          { text: '使用ip2location解析ip地址', link: '/dataprocessdemo/oss_ip2location.md' },
+          { text: 'FlowLog公网流量过滤', link: '/dataprocessdemo/filter_flow.md'},
+          { text: '调用函数清洗数据', link: '/dataprocessdemo/use_func.md'}
+        ]
       }
     ]
   }
