@@ -1,5 +1,6 @@
 const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
+const getSqlFunctionSider = require('./siderbars/getSqlFunctionSider')
 const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getProductSider = require('./siderbars/getProductSider')
 const getDataProcessSider = require('./siderbars/getDataProcessSider')
@@ -95,6 +96,7 @@ module.exports = (async () => {
 
       sidebar: {
         '/sqldemo': getSqldemoSider(),
+        '/sqlfunction': getSqlFunctionSider(),
         '/searchdemo': getSearchdemoSider(),
         '/product': getProductSider(),
         '/dataprocessdemo': getDataProcessSider(),
