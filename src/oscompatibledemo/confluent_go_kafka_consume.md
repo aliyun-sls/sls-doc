@@ -7,7 +7,7 @@
 | bootstrap.servers                                        | 初始连接的集群地址，格式为**Project.Endpoint:Port**，请根据Project所在的Endpoint进行配置。更多信息，请参见[服务入口](https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb) <br/> - 阿里云内网：端口号为10011，例如 **project.cn-hangzhou-intranet.log.aliyuncs.com:10011** <br/> - 公网：端口号为10012，例如 **project.cn-hangzhou.log.aliyuncs.com:10012** |
 | sasl.mechanism                                           | 建议使用"PLAIN"                                                                                                                                                                                                                                                                                                        |
 | security.protocol                                        | 为了保证数据传输的安全性，**必须使用SASL_SSL**                                                                                                                                                                                                                                                                                      |
-| sasl.username                                            | 配置为日志服务Logstore名称                                                                                                                                                                                                                                                                                                  |
+| sasl.username                                            | 配置为日志服务Project名称                                                                                                                                                                                                                                                                                                  |
 | sasl.password                                            | 配置为阿里云AK，格式为 **{access-key-id}#{access-key-secret**。请根据实际情况，将 **{access-key-id** 替换为您的AccessKey ID，将 **{access-key-secret}** 替换为您的AccessKey Secret。建议使用RAM用户的AK。更多信息，请参见[授权](https://help.aliyun.com/document_detail/47664.htm#task-xsk-ttc-ry)                                                                    |
 | group.id                                                 | 消费组id, 是用于指定消费者组的标识符,用于将消费组内的消费者分组,通过配置消费组id,可以实现消费者组内的负载均衡,实现数据的处理和分发.例如 **"kafka-test"**                                                                                                                                                                                                                         |
 | enable.auto.commit                                       | 是否自动提交消费点位，建议设为**true**                                                                                                                                                                                                                                                                                            |
@@ -55,11 +55,11 @@ func main() {
 
 func getKafkaConsumer(project string, endpoint string, port string, accessKeyID string, accessKeySecret string) *kafka.Consumer {
 	var kafkaConf = &kafka.ConfigMap{
-		"bootstrap.servers":       fmt.Sprintf("%v.%v:%v", project, endpoint, port),
+		"bootstrap.servers":       fmt.Sprintf("%s.%s:%s", project, endpoint, port),
 		"sasl.mechanism":          "PLAIN",
 		"security.protocol":       "sasl_ssl",
 		"sasl.username":           project,
-		"sasl.password":           fmt.Sprintf("%v#%v", accessKeyID, accessKeySecret),
+		"sasl.password":           fmt.Sprintf("%s#%s", accessKeyID, accessKeySecret),
 		"group.id":                "kafka-test",
 		"enable.auto.commit":      "true",
 		"auto.commit.interval.ms": 30000,
