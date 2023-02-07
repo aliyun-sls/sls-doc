@@ -35,6 +35,18 @@ function getSidebar() {
           { text: 'FlowLog公网流量过滤', link: '/dataprocessdemo/filter_flow.md'},
           { text: '调用函数清洗数据', link: '/dataprocessdemo/use_func.md'}
         ]
+      },
+      {
+        text: '特定格式处理',
+        items: [
+          { text: '数据脱敏', link: '/dataprocessdemo/remove_sensitive_info.md' },
+          { text: '日期时间格式处理', link: '/dataprocessdemo/datetime_process.md'},
+          { text: '字符串键值对动态提取', link: '/dataprocessdemo/parse_string_kv.md'},
+          { text: '特定格式文本数据加工', link: '/dataprocessdemo/text_transform.md'},
+          { text: 'JSON格式日志处理', link: '/dataprocessdemo/json_parse.md'},
+          { text: 'CSV格式日志处理', link: '/dataprocessdemo/parse_csv.md'},
+          { text: 'Log转Metric', link: '/dataprocessdemo/log2metric.md'}
+        ]
       }
     ]
   }

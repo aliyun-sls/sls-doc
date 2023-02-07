@@ -34,3 +34,17 @@
 | [使用ip2location解析ip地址](./oss_ip2location.md) | 从OSS获取IP2Location库数据，对日志中的IP地址进行富化，补充IP地址所属的国家、省、市等信息 |
 | [FlowLog公网流量过滤](./filter_flow.md) | 根据流量的5元组信息通过数据加工对流量进行过滤 |
 | [调用函数清洗数据](./use_func.md) | 介绍调用函数清洗数据的常见场景和相关操作 | 
+
+
+## 特定格式处理
+
+
+| 案例名称 | 描述 |
+| -- | -- |
+| [数据脱敏](./remove_sensitive_info.md) | 数据加工过程中常见的数据脱敏场景、对应的脱敏方法及示例 |
+| [日期时间格式处理](./datetime_process.md) | 使用函数进行日期时间数据类型转换和日期时间偏移 |
+| [字符串键值对动态提取](./parse_string_kv.md) | 使用不同方案提取字符串键值对 | 
+| [特定格式文本数据加工](./text_transform.md) | 从工单需求，加工编排等方面介绍如何使用LOG DSL编排解决任务需求 | 
+| [JSON格式日志处理](./json_parse.md) | 使用数据加工功能对复杂的JSON数据进行加工 |
+| [CSV格式日志处理](parse_csv.md) | 介绍在解析Syslog或者其他文本格式时，针对数据中以特殊字符分隔的格式如何进行解析 | 
+| [Log转Metric](./log2metric.md) | 使用数据加工将Log转成Metric | 
