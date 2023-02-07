@@ -1,5 +1,3 @@
-import RUM from '@aliyun-sls/rum-core'
-
 const storageKey = 'vitepress-theme-appearance'
 
 export function isDarkTheme() {
@@ -31,18 +29,46 @@ export function addHistoryListener() {
 }
 
 export function initRum() {
-  RUM.init({
-    host: 'cn-hangzhou.log.aliyuncs.com',
-    project: 'sls-console-log',
-    logstore: 'sls-doc-rum-raw',
-    instance: 'sls-doc',
-    env: 'prod',
-    service: 'web',
-    enableError: true,
-    enableResourcePerf: false,
-    enableAjax: true,
-    enablePerf: true,
-    enableTrace: false,
-    sampleRate: 1,
+  const init = function (h: any, o: any, u: any, n: any, d: any) {
+    h = h[d] = h[d] || {
+      p: [],
+      e: [],
+      q: [],
+      addLog: function (log: any) {
+        h.p.push(log)
+      },
+      addError: function (log: any) {
+        h.e.push(log)
+      },
+      onReady: function (c: any) {
+        h.q.push(c)
+      },
+    }
+    d = o.createElement(u)
+    d.async = 1
+    d.src = n
+    n = o.getElementsByTagName(u)[0]
+    n.parentNode.insertBefore(d, n)
+  }
+
+  init(window, document, 'script', 'https://o.alicdn.com/sls/sls-rum/sls-rum.js', 'SLS_RUM')
+
+  const thisWindow = window as any
+
+  thisWindow.SLS_RUM.onReady(function () {
+    thisWindow.SLS_RUM.init({
+      host: 'cn-hangzhou.log.aliyuncs.com',
+      project: 'sls-console-log',
+      logstore: 'sls-doc-rum-raw',
+      instance: 'sls-doc',
+      env: 'prod',
+      service: 'web',
+      enableError: true,
+      enableResourcePerf: true,
+      enableAjax: true,
+      enablePerf: true,
+      enableTrace: false,
+      sampleRate: 1,
+    })
   })
 }
