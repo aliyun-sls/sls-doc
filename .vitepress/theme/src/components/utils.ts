@@ -64,7 +64,7 @@ export function initRum() {
       env: 'prod',
       service: 'web',
       enableError: true,
-      enableResourcePerf: true,
+      enableResourcePerf: false,
       enableAjax: true,
       enablePerf: true,
       enableTrace: false,
