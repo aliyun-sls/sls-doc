@@ -143,6 +143,11 @@
     "@docsearch/css" "3.3.0"
     algoliasearch "^4.0.0"
 
+"@aliyun-sls/rum-core@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.npmmirror.com/@aliyun-sls/rum-core/-/rum-core-0.0.11.tgz#ac0795cab09d37692071683f61bd00abf5c0ef7e"
+  integrity sha512-+ZMICdsnqmhhYC6tTfFK3wRxwrJrGu05AFTj9aIWsksZd1cW5sAJ5fdQWz1pNAi4uuOxRcl1WupyrnLd2CV+dA==
+
 "@babel/parser@^7.16.4":
   version "7.20.3"
   resolved "https://registry.npmmirror.com/@babel/parser/-/parser-7.20.3.tgz#5358cf62e380cf69efcb87a7bb922ff88bfac6e2"

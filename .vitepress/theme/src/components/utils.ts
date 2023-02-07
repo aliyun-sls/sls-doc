@@ -1,3 +1,5 @@
+import RUM from '@aliyun-sls/rum-core'
+
 const storageKey = 'vitepress-theme-appearance'
 
 export function isDarkTheme() {
@@ -25,5 +27,22 @@ export function addHistoryListener() {
       // window.history.pushState(null, '', v.href)
       window.location = v.href
     }
+  })
+}
+
+export function initRum() {
+  RUM.init({
+    host: 'cn-hangzhou.log.aliyuncs.com',
+    project: 'sls-console-log',
+    logstore: 'sls-doc-rum-raw',
+    instance: 'sls-doc',
+    env: 'prod',
+    service: 'web',
+    enableError: true,
+    enableResourcePerf: false,
+    enableAjax: true,
+    enablePerf: true,
+    enableTrace: false,
+    sampleRate: 1,
   })
 }
