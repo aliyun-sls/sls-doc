@@ -6,12 +6,12 @@ function getNavs() {
       items: [
         {
           items: [
-            { text: '分析案例', link: '/sqldemo/' },
-            { text: 'SQL函数', link: '/sqlfunction/' },
+            { text: 'SQL分析案例', link: '/sqldemo/index' },
+            { text: 'SQL函数案例', link: '/sqlfunction/index' },
             { text: '查询案例', link: '/searchdemo/query/search_with_index' },
-            { text: '可视化案例', link: '/visulization/' },
-            { text: '加工案例', link: '/dataprocessdemo/'},
-            { text: '开源兼容', link: '/oscompatibledemo/'}
+            { text: '可视化案例', link: '/visulization/index' },
+            { text: '加工案例', link: '/dataprocessdemo/index'},
+            { text: '开源兼容', link: '/oscompatibledemo/index'}
           ],
         },
       ],

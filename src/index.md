@@ -13,7 +13,7 @@
     <p class="next-steps-link">SQL分析案例</p>
     <p class="next-steps-caption">日志服务（SLS）基于 SQL 提供分析功能，分析语句可以对查询的结果进行计算或者统计，需结合查询语句一起使用并配置索引，并支持Scheduled SQL和SQL独享版。</p>
   </a>
-  <a class="vt-box" href="">
+  <a class="vt-box" href="/doc/sqlfunction/">
     <p class="next-steps-link">SQL函数案例</p>
     <p class="next-steps-caption">日志服务（SLS）分析 SQL 提供10多种查询运算符、10多种机器学习函数、100多个SQL函数。</p>
   </a>
