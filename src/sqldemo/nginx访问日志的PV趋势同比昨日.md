@@ -1,22 +1,34 @@
-time - time % 60 ，将time时间戳减去，time时间戳对60的余数，得到按分钟对齐的时间stamp，用group by对stamp聚合，用COUNT函数计算每分钟的次数，将得到的结果作为一个子查询，用ts_predicate_simple函数，预测未来6个点的情况 点击查询后自动按时序图进行展示
+用from_unixtime函数将__time__转成timestamp格式，用date_format函数将timestamp格式化成小时分钟的格式t，按时间t进行聚合，用count函数计算每分钟的次数pv，作为子查询1，用compare函数查询子查询1，得到今日和昨日的每分钟pv及比值的array，作为子查询2，再查询子查询2，将今天，昨天的pv和比值用编号从array取出，作为单独一列展示 用线图进行展示
 ```sql
 * |
 select
-  ts_predicate_simple(stamp, value, 6)
-from
-  (
+  t,
+  diff [1] as today,
+  diff [2] as yestoday,
+  diff [3] as percentage
+from(
     select
-      __time__ - __time__ % 60 as stamp,
-      COUNT(1) as value
+      t,
+      compare(pv, 86400) as diff
     from
-      log
-    GROUP BY
-      stamp
+      (
+        select
+          count(1) as pv,
+          date_format(from_unixtime(__time__), '%H:%i') as t
+        from
+          log
+        group by
+          t
+        limit
+          10000
+      )
+    group by
+      t
     order by
-      stamp
+      t
+    limit
+      10000
   )
-LIMIT
-  1000
 ```
 SQL查询结果样例：
-![image.png](/img/src/sqldemo/nginx访问日志的PV趋势同比昨日/9311ae51b8517f852c22c618f0295260650cb01b70afb090a3c2e9c0c3d57d43.png)
+![image.png](/img/src/sqldemo/nginx访问日志的PV趋势同比昨日/e2921500b60ea208cafee4f5b7e7c19fff55a2fca0c281b9f7577a45465b869f.png)

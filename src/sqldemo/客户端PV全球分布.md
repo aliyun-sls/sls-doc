@@ -1,4 +1,4 @@
-通过ip_to_country获取IP所在国家，然后根据ip_country聚合，计算每个国家的客户端数量， 选择世界地图展示，国家为 ip_country ，数值 pv
+通过ip_to_country获取IP所在国家，然后根据ip_country聚合，计算每个国家的客户端数量， 选择世界地图展示，国家为 ip_country ，数值 pv  
 ```sql
 * |
 select

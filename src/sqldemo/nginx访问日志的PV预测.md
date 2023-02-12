@@ -1,16 +1,22 @@
-通过date_trunc函数将__time__对齐到小时（__time__为系统字段，日志采集的时间，默认为秒时间戳），用date_format函数将对齐的结果进行格式化，用group by将对齐的时间聚合，用sum函数计算出每小时流量合计 通过线图进行展示，X轴设置为time，左Y轴选择net_out和net_in
+time - time % 60 ，将time时间戳减去，time时间戳对60的余数，得到按分钟对齐的时间stamp，用group by对stamp聚合，用COUNT函数计算每分钟的次数，将得到的结果作为一个子查询，用ts_predicate_simple函数，预测未来6个点的情况 点击查询后自动按时序图进行展示
 ```sql
 * |
 select
-  sum(body_bytes_sent) as net_out,
-  sum(request_length) as net_in,
-  date_format(date_trunc('hour', __time__), '%m-%d %H:%i') as time
-group by
-  date_format(date_trunc('hour', __time__), '%m-%d %H:%i')
-order by
-  time
-limit
-  10000
+  ts_predicate_simple(stamp, value, 6)
+from
+  (
+    select
+      __time__ - __time__ % 60 as stamp,
+      COUNT(1) as value
+    from
+      log
+    GROUP BY
+      stamp
+    order by
+      stamp
+  )
+LIMIT
+  1000
 ```
 SQL查询结果样例：
-![image.png](/img/src/sqldemo/nginx访问日志的PV预测/ea0739404dde8b4ac615c049286568b2455f6863428a71df92c437bce84f515c.png)
+![image.png](/img/src/sqldemo/nginx访问日志的PV预测/9311ae51b8517f852c22c618f0295260650cb01b70afb090a3c2e9c0c3d57d43.png)
