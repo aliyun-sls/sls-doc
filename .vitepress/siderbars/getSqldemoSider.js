@@ -28,10 +28,6 @@ function getSidebar() {
           link: '/sqldemo/本月消费情况各产品的占比',
         },
         {
-          text: '本月消费情况各产品的占比',
-          link: '/sqldemo/本月消费情况各产品的占比',
-        },
-        {
           text: '昨天的消费及与上月的同比',
           link: '/sqldemo/昨天的消费及与上月的同比',
         },
