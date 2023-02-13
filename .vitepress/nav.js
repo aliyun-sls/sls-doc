@@ -2,12 +2,13 @@ function getNavs() {
   const base = [
     {
       text: '案例中心',
-      activeMatch: `^/(sqldemo|sqlfunction|searchdemo|visulization|dataprocessdemo|oscompatibledemo)/`,
+      activeMatch: `^/(sqldemo|sqlfunction|sqlerror|searchdemo|visulization|dataprocessdemo|oscompatibledemo)/`,
       items: [
         {
           items: [
             { text: 'SQL分析案例', link: '/sqldemo/index' },
             { text: 'SQL函数案例', link: '/sqlfunction/index' },
+            { text: 'SQL错误自助诊断', link: '/sqlerror/index' },
             { text: '查询案例', link: '/searchdemo/query/search_with_index' },
             { text: '可视化案例', link: '/visulization/index' },
             { text: '加工案例', link: '/dataprocessdemo/index'},
