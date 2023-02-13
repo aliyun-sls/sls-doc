@@ -6,13 +6,14 @@
 
 * 原始日志
 
-      _program_:error
-      _severity_:6
-      _priority_:14
-      _facility_:1
-      topic:syslog-forwarder
-      content:10.64.10.20|10/Jun/2019:11:32:16 +0800|m.zf.cn|GET /zf/11874.html HTTP/1.1|200|0.077|6404|10.11.186.82:8001|200|0.060|https://yz.m.sm.cn/s?q=%25%24%23%40%21&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei|-|Mozilla/5.0 (Linux; Android 9; HWI-AL00 Build/HUAWEIHWI-A00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36|-|-
-
+```
+_program_:error
+_severity_:6
+_priority_:14
+_facility_:1
+topic:syslog-forwarder
+content:10.64.10.20|10/Jun/2019:11:32:16 +0800|m.zf.cn|GET /zf/11874.html HTTP/1.1|200|0.077|6404|10.11.186.82:8001|200|0.060|https://yz.m.sm.cn/s?q=%25%24%23%40%21&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei|-|Mozilla/5.0 (Linux; Android 9; HWI-AL00 Build/HUAWEIHWI-A00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36|-|-
+```
    
 
 * 需求
@@ -31,82 +32,101 @@
 
   1. 如果`_program_`字段值是 *access* ，则通过e_psv函数解析`content`内容，并删除原始字段`content`。
 
-          e_if(e_search("_program_==access"), e_compose(e_psv("content", "remote_addr, time_local,host,request,status,request_time,body_bytes_sent,upstream_addr,upstream_status, upstream_response_time,http_referer,http_x_forwarded_for,http_user_agent,session_id,guid", restrict=True), e_drop_fields("content")))
 
-       返回的日志为：
+      ```
+      e_if(e_search("_program_==access"), e_compose(e_psv("content", "remote_addr, time_local,host,request,status,request_time,body_bytes_sent,upstream_addr,upstream_status, upstream_response_time,http_referer,http_x_forwarded_for,http_user_agent,session_id,guid", restrict=True), e_drop_fields("content")))
+      ```
 
-          __source__:  1.2.3.4
-          __tag__:__client_ip__:  2.3.4.5
-          __tag__:__receive_time__:  1562845168
-          __topic__:  
-          _facility_:  1
-          _priority_:  14
-          _program_:  access
-          _severity_:  6
-          body_bytes_sent:  6404
-          guid:  -
-          host:  m.zf.cn
-          http_referer:  https://yz.m.sm.cn/s?q=%25%24%23%40%21&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei
-          http_user_agent:  Mozilla/5.0 (Linux; Android 9; HWI-AL00 Build/HUAWEIHWI-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36
-          http_x_forwarded_for:  -
-          remote_addr:  10.64.10.20
-          request:  GET /zf/11874.html HTTP/1.1
-          request_time:  0.077
-          session_id:  -
-          status:  200
-          time_local:  10/Jun/2019:11:32:16 +0800
-          topic:  syslog-forwarder
-          upstream_addr:  10.11.186.82:8001
-          upstream_response_time:  0.060
-          upstream_status:  200
+      返回的日志为：
+
+      ```
+      __source__:  1.2.3.4
+      __tag__:__client_ip__:  2.3.4.5
+      __tag__:__receive_time__:  1562845168
+      __topic__:  
+      _facility_:  1
+      _priority_:  14
+      _program_:  access
+      _severity_:  6
+      body_bytes_sent:  6404
+      guid:  -
+      host:  m.zf.cn
+      http_referer:  https://yz.m.sm.cn/s?q=%25%24%23%40%21&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei
+      http_user_agent:  Mozilla/5.0 (Linux; Android 9; HWI-AL00 Build/HUAWEIHWI-AL00) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.36
+      http_x_forwarded_for:  -
+      remote_addr:  10.64.10.20
+      request:  GET /zf/11874.html HTTP/1.1
+      request_time:  0.077
+      session_id:  -
+      status:  200
+      time_local:  10/Jun/2019:11:32:16 +0800
+      topic:  syslog-forwarder
+      upstream_addr:  10.11.186.82:8001
+      upstream_response_time:  0.060
+      upstream_status:  200
+      ```
 
        
 
   2. 使用`e_regex`函数将`request`字段解析成`request_method`、`request`、`http_version`。
 
-          e_regex("request",r"^(?P<request_method>\w+) (?P<request>.+) (?P<http_version>\w+/[\d\.]+)$")
+      ```
+      e_regex("request",r"^(?P<request_method>\w+) (?P<request>.+) (?P<http_version>\w+/[\d\.]+)$")
+      ```
+
 
        返回的日志为：
 
-          request:  /zf/11874.html
-          request_method:  GET
-          http_version:  HTTP/1.1
+      ```
+      request:  /zf/11874.html
+      request_method:  GET
+      http_version:  HTTP/1.1
+      ```
 
        
 
   3. 对`http_referer`做url解码。
 
-          e_set("http",url_decoding("http_referer"))
+      ```
+      e_set("http",url_decoding("http_referer"))
+      ```
 
        返回的日志为：
 
-          http: https://yz.m.sm.cn/s?q=%$#@!&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei
-
+      ```
+      http: https://yz.m.sm.cn/s?q=%$#@!&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei
+      ```
        
 
   4. 对时间做格式化处理。
 
-          e_set("time_local",dt_strptime(v("time"),"%d/%b/%Y:%H:%M:%S +0800"))
+      ```
+      e_set("time_local",dt_strptime(v("time"),"%d/%b/%Y:%H:%M:%S +0800"))
+      ```
+
 
        返回的日志为：
 
-          time_local:  2019-06-13 13:45:11
-
+      ```
+      time_local:  2019-06-13 13:45:11
+      ```
        
 
   5. 综上解决方案具体如下：
 
-          e_if(e_search("_program_==access"), e_compose(e_psv("content", "remote_addr, time_local,host,request,status,request_time,body_bytes_sent,upstream_addr,upstream_status, upstream_response_time,http_referer,http_x_forwarded_for,http_user_agent,session_id,guid", restrict=True), e_drop_fields("content")))
-          e_regex("request",r"^(?P<request_method>\w+) (?P<request>.+) (?P<http_version>\w+/[\d\.]+)$")
-          e_set("http",url_decoding("http_referer"))
-          e_set("time_local",dt_strptime(v("time"),"%d/%b/%Y:%H:%M:%S +0800"))
-
+      ```
+      e_if(e_search("_program_==access"), e_compose(e_psv("content", "remote_addr, time_local,host,request,status,request_time,body_bytes_sent,upstream_addr,upstream_status, upstream_response_time,http_referer,http_x_forwarded_for,http_user_agent,session_id,guid", restrict=True), e_drop_fields("content")))
+      e_regex("request",r"^(?P<request_method>\w+) (?P<request>.+) (?P<http_version>\w+/[\d\.]+)$")
+      e_set("http",url_decoding("http_referer"))
+      e_set("time_local",dt_strptime(v("time"),"%d/%b/%Y:%H:%M:%S +0800"))
+      ```
        
 
   
 
 * 输出的日志
 
+      
       __source__:  1.2.3.4
       __tag__:__client_ip__:  2.3.4.5
       __tag__:__receive_time__:  1562840879
@@ -133,6 +153,7 @@
       upstream_status:  200
       http: https://yz.m.sm.cn/s?q=蛋花龙须面的做法&from=wy878378&uc_param_str=dnntnwvepffrgibijbprsvdsei
 
+
    
 
 ## 非正常形式的CSV格式日志 
@@ -141,6 +162,7 @@
 
 
 * 原始日志
+
 
       __source__:  1.2.3.4
       __tag__:__client_ip__:  2.3.4.5

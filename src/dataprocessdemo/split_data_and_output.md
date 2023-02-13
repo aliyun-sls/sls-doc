@@ -37,13 +37,13 @@
     
 
 5. 在数据加工编辑框中输入如下加工语句。
-
+      ```
         e_set("tags","target-a","target-b")
         e_split("tags")
         e_if(op_eq(v("tags"), "target-a"), e_output("target-a"))
         e_if(op_eq(v("tags"), "target-b"), e_output("target-b"))
         e_drop()
-
+      ```
     
 
 
