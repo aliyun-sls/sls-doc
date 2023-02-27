@@ -5,6 +5,7 @@
 | 案例名称 | 描述 |
 | -- | -- |
 | [Nginx日志解析](./nginx_data_process.md) | 使用数据加工对Nginx日志进行解析 |
+| [事件判断](./event_judgment.md) | 使用数据加工对日志进行事件判断 |
 
 ## 日志分发
 
@@ -25,7 +26,12 @@
 | [用OSS做数据富化](./parse_oss_csv.md) | 通过资源函数和映射富化函数从OSS中获取信息对日志数据进行富化 |
 | [用RDS做数据富化](pull_rds_mysql_vpc.md) | 通过RDS内网地址访问RDS MySQL数据库获取数据 |
 | [构建字典与表格做数据富化](./make_dict_table.md) | 字典与表格的常见构建方式与优缺点 |
-
+| [用RDS Mysql做数据富化](pull_rds_mysql_data.md) | 通过资源函数从RDS MySQL数据库获取数据进行数据富化 |
+| [用资源函数增量获取数据](pull_data_from_resource_func.md) | 通过res_rds_mysql函数增量获取数据增量获取数据 |
+| [用映射函数进行数据富化](enrichment_data.md) | 通过e_dict_map、e_search_dict_map函数进行数据富化 |
+| [用Hologres数据库做数据富化](pull_data_from_hologres.md) | 通过资源函数从进行Hologres数据库获取数据进行富化 |
+| [用e_table_map函数对HTTP请求返回码做数据富化](enrichment_http_data.md) | 通过e_table_map函数对HTTP请求返回码做数据富化 |
+| [过滤VPC流日志公网流量](filter_vpc_stream.md) | 通过日志服务数据加工对流日志进行公网流量过滤|
 ## IP地址相关
 
 | 案例名称 | 描述 |
@@ -48,3 +54,12 @@
 | [JSON格式日志处理](./json_parse.md) | 使用数据加工功能对复杂的JSON数据进行加工 |
 | [CSV格式日志处理](parse_csv.md) | 介绍在解析Syslog或者其他文本格式时，针对数据中以特殊字符分隔的格式如何进行解析 | 
 | [Log转Metric](./log2metric.md) | 使用数据加工将Log转成Metric | 
+
+## 文本解析
+
+
+| 案例名称 | 描述 |
+| -- | -- |
+| [解析Syslog标准格式数据](./parse_sys_data.md) | 使用SLS DSL中的GROK函数高效快捷的解析不同格式的Syslog日志 |
+| [解析Nginx日志](./parse_nginx.md) | 使用正则表达式函数或GROK函数解析Nginx访问日志 |
+
