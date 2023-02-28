@@ -7,7 +7,7 @@
 通过日志字段的Key和Value进行过滤。在执行过滤器操作时，将其作为过滤条件增加到查询和分析语句前，使用 **AND** 或 **NOT** 连接。例如：在过滤器中给 **Key** 的值选择 **Value1**，则所有图表语句中会 **自动** 加上 **Key: Value1** 最终变成  **Key: Value1 AND [search query] | [sql query]** 的形式。该语句表示在原查询和分析语句的结果中，查找包含**Key:Value1**的日志。
 同时 **Key** 的值可以设置多个value。例如：在过滤器中给 **Key** 的值选择 **Value2** 和 **Value3**，则所有图表语句会 **自动** 加上 **Key: Value2 OR Key: Value3** 最终变成 **Key: Value2 OR Key: Value3 AND [search query] | [sql query]** 的形式。该语句表示在原查询和分析语句的结果中，查找包含 **Key:Value2** 或者 **Key: Value3** 的日志。
 ### 变量替换
-指定变量和变量的值。如果仪表盘中已有设置了该变量占位符的统计图表，则添加变量类型的过滤器后，自动将统计图表的查询和分析语句中的变量替换为您选择的变量值。对整个仪表盘已设置该变量的统计图表都生效。一般在查询语句中通过 **手动** 添加 `xxx ${ { Key|defaultValue } } xxx` 去设置变量，**Key** 作为变量名，**defaultValue** 为默认值，在 **Key** 的值不存在的情况下生效。例如：在过滤器中给 **Key** 的值选择为 **Value**, 则所有图表语句中`xxx ${ { Key | defaultValue } } xxx` 会被替换成 **xxx Value xxx**;如果不给 Key 选择值，则所有图表语句中 `xxx ${ { Key | defaultValue } } xxx` 会被替换成 **xxx defaultValue xxx**。
+指定变量和变量的值。如果仪表盘中已有设置了该变量占位符的统计图表，则添加变量类型的过滤器后，自动将统计图表的查询和分析语句中的变量替换为您选择的变量值。对整个仪表盘已设置该变量的统计图表都生效。一般在查询语句中通过 **手动** 添加 xxx $\{ \{ Key|defaultValue \} \} xxx 去设置变量，**Key** 作为变量名，**defaultValue** 为默认值，在 **Key** 的值不存在的情况下生效。例如：在过滤器中给 **Key** 的值选择为 **Value**, 则所有图表语句中 **$\{ \{ Key|defaultValue \} \}** 会被替换成 **Value**; 如果不给 Key 选择值，则所有图表语句中 **$\{ \{ Key|defaultValue \} \}** 会被替换成 **defaultValue**。
 
 ### 过滤器配置
 本部分只对关键配置进行演示。更详细的配置，请参见[过滤器配置](https://help.aliyun.com/document_detail/93647.html)。
