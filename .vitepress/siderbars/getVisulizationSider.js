@@ -9,6 +9,7 @@ function getSidebar() {
       items: [
         { text: '如何添加多Y轴线图', link: '/visulization/doubley.md' },
         { text: '如何配置一个带有迷你图的单值图', link: '/visulization/singleWithMiniChart.md' },
+        { text: '过滤器最佳实践', link: '/visulization/filter.md' },
       ],
     },
   ]
