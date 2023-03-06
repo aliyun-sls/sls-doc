@@ -8,7 +8,7 @@ function getSidebar() {
       text: '常见日志处理',
       items: [{ text: 'Nginx日志解析', link: '/dataprocessdemo/nginx_data_process.md' }],
       items: [{ text: '事件判断', link: '/dataprocessdemo/event_judgment.md' }],
-     
+
     },
     {
       text: '日志分发',
@@ -33,7 +33,7 @@ function getSidebar() {
         { text: '用Hologres数据库做数据富化', link: "dataprocessdemo/pull_data_from_hologres.md" },
         { text: '用e_table_map函数对HTTP请求返回码做数据富化', link: "dataprocessdemo/enrichment_http_data.md" },
         { text: '过滤VPC流日志公网流量', link: "dataprocessdemo/filter_vpc_stream.md"}
-      ] 
+      ]
     },
     {
       text: 'IP地址相关',
@@ -61,6 +61,18 @@ function getSidebar() {
       items: [
         { text: '解析Syslog标准格式数据', link: '/dataprocessdemo/parse_sys_data.md' },
         { text: '解析Nginx日志', link: '/dataprocessdemo/parse_nginx.md' },
+        { text: '解析Java报错日志', link: '/dataprocessdemo/parse_java_error.md' },
+        { text: '转换Log为Metric', link: '/dataprocessdemo/transform_log_to_metric.md' },
+      ]
+    },
+    {
+      text: '使用RAM用户配置数据加工作业',
+      items: [
+        { text: '使用默认角色完成同账号数据流转', link: '/dataprocessdemo/default_role_data_flow_of_same_account.md' },
+        { text: '使用自定义角色完成同账号数据流转', link: '/dataprocessdemo/defined_role_data_flow_of_same_account.md' },
+        { text: '使用自定义角色完成跨账号数据流转', link: '/dataprocessdemo/defined_role_data_flow_of_cross_account.md' },
+        { text: '使用访问密钥完成同账号数据流转', link: '/dataprocessdemo/ak_data_flow_of_same_account.md' },
+        { text: '使用访问密钥完成跨账号的数据流转', link: '/dataprocessdemo/ak_data_flow_of_cross_account.md' },
       ]
     }
   ]

@@ -39,7 +39,7 @@
 | [使用ipip库解析ip地址](./geo_parse_ipip.md) | 从OSS获取IPIP库数据，对日志中的IP地址进行富化，补充IP地址所属的国家、省、市等信息 |
 | [使用ip2location解析ip地址](./oss_ip2location.md) | 从OSS获取IP2Location库数据，对日志中的IP地址进行富化，补充IP地址所属的国家、省、市等信息 |
 | [FlowLog公网流量过滤](./filter_flow.md) | 根据流量的5元组信息通过数据加工对流量进行过滤 |
-| [调用函数清洗数据](./use_func.md) | 介绍调用函数清洗数据的常见场景和相关操作 | 
+| [调用函数清洗数据](./use_func.md) | 介绍调用函数清洗数据的常见场景和相关操作 |
 
 
 ## 特定格式处理
@@ -49,11 +49,11 @@
 | -- | -- |
 | [数据脱敏](./remove_sensitive_info.md) | 数据加工过程中常见的数据脱敏场景、对应的脱敏方法及示例 |
 | [日期时间格式处理](./datetime_process.md) | 使用函数进行日期时间数据类型转换和日期时间偏移 |
-| [字符串键值对动态提取](./parse_string_kv.md) | 使用不同方案提取字符串键值对 | 
-| [特定格式文本数据加工](./text_transform.md) | 从工单需求，加工编排等方面介绍如何使用LOG DSL编排解决任务需求 | 
+| [字符串键值对动态提取](./parse_string_kv.md) | 使用不同方案提取字符串键值对 |
+| [特定格式文本数据加工](./text_transform.md) | 从工单需求，加工编排等方面介绍如何使用LOG DSL编排解决任务需求 |
 | [JSON格式日志处理](./json_parse.md) | 使用数据加工功能对复杂的JSON数据进行加工 |
-| [CSV格式日志处理](parse_csv.md) | 介绍在解析Syslog或者其他文本格式时，针对数据中以特殊字符分隔的格式如何进行解析 | 
-| [Log转Metric](./log2metric.md) | 使用数据加工将Log转成Metric | 
+| [CSV格式日志处理](parse_csv.md) | 介绍在解析Syslog或者其他文本格式时，针对数据中以特殊字符分隔的格式如何进行解析 |
+| [Log转Metric](./log2metric.md) | 使用数据加工将Log转成Metric |
 
 ## 文本解析
 
@@ -62,4 +62,15 @@
 | -- | -- |
 | [解析Syslog标准格式数据](./parse_sys_data.md) | 使用SLS DSL中的GROK函数高效快捷的解析不同格式的Syslog日志 |
 | [解析Nginx日志](./parse_nginx.md) | 使用正则表达式函数或GROK函数解析Nginx访问日志 |
+| [解析Java报错日志](./parse_java_error.md) | 通过数据加工解析Java错误日志 |
+| [转换Log为Metric](./transform_log_to_metric.md) | 使用日志服务数据加工函数将Log字段转换为Metric |
 
+
+## 使用RAM用户配置数据加工作业
+| 案例名称 | 描述 |
+| -- | -- |
+| [使用默认角色完成同账号数据流转](./default_role_data_flow_of_same_account.md) | 通过默认角色完成同账号内的日志数据流转 |
+| [使用自定义角色完成同账号数据流转](./defined_role_data_flow_of_same_account.md) | 通过自定义角色完成同账号内的日志数据流转|
+| [使用自定义角色完成跨账号数据流转](./defined_role_data_flow_of_cross_account.md) | 通过自定义角色完成跨账号的日志数据流转 |
+| [使用访问密钥完成同账号数据流转](./ak_data_flow_of_same_account.md) | 通过访问密钥完成同账号内的日志数据流转 |
+| [使用访问密钥完成跨账号的数据流转](./ak_data_flow_of_cross_account.md) | 通过访问密钥完成跨账号的日志数据流转 |

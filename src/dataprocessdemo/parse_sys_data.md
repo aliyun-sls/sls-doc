@@ -18,7 +18,7 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
   ```
   """
   Example1:
-  <34>1 2019-07-11T22:14:15.003Z aliyun.example.com ali - ID47 - BOM'su root' failed for lonvick on /dev/pts/8
+  <34>1 2019-07-11T22:14:15.003Z aliyun.example.com ali - ID47 - BOM'su user' failed for lonvick on /dev/pts/8
   """
   PRI -- 34
   VERSION -- 1
@@ -27,7 +27,7 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
   APP-NAME -- ali
   PROCID -- 无
   MSGID -- ID47
-  MESSAGE -- 'su root' failed for lonvick on /dev/pts/8
+  MESSAGE -- 'su user' failed for lonvick on /dev/pts/8
   """
   Example2:
   <165>1 2019-07-11T22:14:15.000003-07:00 192.0.2.1 myproc 8710 - - %% It's time to make the do-nuts.
@@ -104,7 +104,7 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
     __topic__:
-    content: 2019-05-06T09:26:07.874593+08:00 iZbp1a65x3r1vhpe94fi2qZ root: 834753
+    content: 2019-05-06T09:26:07.874593+08:00 iZbp1a65x3r1vhpe94fi2qZ user: 834753
     ```
   * SLS DSL规则
     ```python
@@ -114,10 +114,10 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
     __topic__:
-    content: 2019-05-06T09:26:07.874593+08:00 iZbp1a65x3r1vhpe94fi2qZ root: 834753
+    content: 2019-05-06T09:26:07.874593+08:00 iZbp1a65x3r1vhpe94fi2qZ user: 834753
     timestamp: 2019-05-06T09:26:07.874593+08:00
     hostname: iZbp1a65x3r1vhpe94fi2qZ
-    program: root
+    program: user
     message: 834753
     ```
 * 解析RSYSLOG_SyslogProtocol23Format格式
@@ -125,7 +125,7 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
     __topic__:
-    content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ root - - - twish
+    content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ user - - - twish
     ```
   * SLS DSL规则
     ```python
@@ -135,12 +135,12 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
     __topic__:
-    content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ root - - - twish
+    content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ user - - - twish
     priority: 13
     version: 1
     timestamp: 2019-05-06T11:50:16.015554+08:00
     hostname: iZbp1a65x3r1vhpe94fi2qZ
-    program: root
+    program: user
     message: twish
     ```
 * 解析RSYSLOG_DebugFormat格式
@@ -148,7 +148,7 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
     __topic__:
-    content: 2019-05-06T14:29:37.558854+08:00 iZbp1a65x3r1vhpe94fi2qZ root: environment
+    content: 2019-05-06T14:29:37.558854+08:00 iZbp1a65x3r1vhpe94fi2qZ user: environment
     ```
   * SLS SL规则
     ```python
@@ -158,10 +158,10 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
       ```
       receive_time: 1558663265
       __topic__:
-      content: 2019-05-06T14:29:37.558854+08:00 iZbp1a65x3r1vhpe94fi2qZ root: environment
-      timestamp: 2019-05-06T14:29:37.558854+08:00 
+      content: 2019-05-06T14:29:37.558854+08:00 iZbp1a65x3r1vhpe94fi2qZ user: environment
+      timestamp: 2019-05-06T14:29:37.558854+08:00
       hostname: iZbp1a65x3r1vhpe94fi2qZ
-      program: root
+      program: user
       message: environment
       ```
 ## 使用GROK解析Syslog非常见日志格式
@@ -203,7 +203,7 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
   * SLS DSL规则
     ```python
     e_regex('content', grok('%{POSINT:priority}>%{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:hostname} %{WORD:ident}(?P<pid>(\[[a-zA-Z0-9._-]+\]|[^:])): (?P<level>(\[(\w+)\]|[^ ])) %{GREEDYDATA:message}'))
-    ``` 
+    ```
   * 加工结果
     ```
     receive_time: 1558663265
@@ -223,12 +223,12 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
       __topic__:
-      content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ root - - - twish
+      content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ user - - - twish
       priority: 13
       version: 1
       timestamp: 2019-05-06T11:50:16.015554+08:00
       hostname: iZbp1a65x3r1vhpe94fi2qZ
-      program: root
+      program: user
       message: twish
     ```
   * SLS DSL规则
@@ -239,12 +239,12 @@ Syslog是一种行业标准的协议，可用来记录设备的日志。常见�
     ```
     receive_time: 1558663265
     __topic__:
-    content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ root - - - twish
+    content: <13>1 2019-05-06T11:50:16.015554+08:00 iZbp1a65x3r1vhpe94fi2qZ user - - - twish
     priority: 13
     version: 1
     timestamp: 2019-05-06T11:50:16.015554+08:00
     hostname: iZbp1a65x3r1vhpe94fi2qZ
-    program: root
+    program: user
     message: twish
     _facility_: 1
     _severity_: 5
