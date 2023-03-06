@@ -6,9 +6,9 @@ function getSidebar() {
     },
     {
       text: '常见日志处理',
-      items: [{ text: 'Nginx日志解析', link: '/dataprocessdemo/nginx_data_process.md' }],
-      items: [{ text: '事件判断', link: '/dataprocessdemo/event_judgment.md' }],
-
+      items: [{ text: 'Nginx日志解析', link: '/dataprocessdemo/nginx_data_process.md' },
+          { text: '事件判断', link: '/dataprocessdemo/event_judgment.md' },
+      ],
     },
     {
       text: '日志分发',
