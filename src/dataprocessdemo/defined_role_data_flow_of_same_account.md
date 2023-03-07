@@ -48,8 +48,8 @@
           "log:CreateConsumerGroup",
         ],
         "Resource": [
-          "acs:log:*:*:project/log-project-prod/logstore/access_log",
-          "acs:log:*:*:project/log-project-prod/logstore/access_log/*",
+          "acs:log:\*:\*:project/log-project-prod/logstore/access_log",
+          "acs:log:\*:\*:project/log-project-prod/logstore/access_log/\*",
         ],
         "Effect": "Allow"
       }
