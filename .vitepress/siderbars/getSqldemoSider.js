@@ -126,6 +126,16 @@ function getSidebar() {
         // ...sqldemoFiles,
       ],
     },
+    {
+      text: '机器学习',
+      items: [
+        {
+          text: '实现大规模预测模型和服务',
+          link: '/sqldemo/实现大规模预测模型和服务',
+        },
+        // ...sqldemoFiles,
+      ],
+    },
   ]
 }
 
