@@ -22,42 +22,16 @@
       | **角色名称** | 输入角色名称，例如role-A。 |
       | **选择授信服务** | 选择**日志服务**。 |
 ## 步骤二：使用阿里云账号1为角色A授予读数据权限
-  1. 使用阿里云账号登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-  2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于读取源Logstore中的数据。例如新建权限策略为**ori_read**。
+1. 使用阿里云账号登录[RAM控制台](https://ram.console.aliyun.com/overview)。
+2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于读取源Logstore中的数据。例如新建权限策略为**ori_read**。
 具体操作，请参见[创建自定义权限策略](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.16f11ff58fILkp#task-2149286)。其中关键参数配置如下：
-      <table>
-      <tr><td><b>关键参数</td><td><b>说明</td></tr>
-      <tr><td><b>名称</td><td>输入自定义权限策略名称。例如<b>ori_read。</td></tr>
-      <tr><td><b>策略内容</td>
-      <td>将配置框中的原有脚本替换为如下内容。<br>例如：源Project名称为log-project-prod，源Logstore名称为access_log。在实际场景中，请根据实际情况替换。
-  ```
-  {
-    "Version": "1",
-    "Statement": [
-      {
-        "Action": [
-          "log:ListShards",
-          "log:GetCursorOrData",
-          "log:GetConsumerGroupCheckPoint",
-          "log:UpdateConsumerGroup",
-          "log:ConsumerGroupHeartBeat",
-          "log:ConsumerGroupUpdateCheckPoint",
-          "log:ListConsumerGroup",
-          "log:CreateConsumerGroup"
-        ],
-        "Resource": [
-          "acs:log:*:*:project/log-project-prod/logstore/access_log",
-          "acs:log:*:*:project/log-project-prod/logstore/access_log/*"
-        ],
-        "Effect": "Allow"
-      }
-    ]
-  }
-```
-</td></tr>
-</table>
 
-3. 为角色A授予源Logstore读权限。
+    | 关键参数 | 说明 |
+    | -- | -- |
+    | 名称 | 输入自定义权限策略名称。例如**ori_read** |
+    | 策略内容 | 将配置框中的原有脚本替换为如下内容。<br>例如：源Project名称为log-project-prod，源Logstore名称为access_log。在实际场景中，请根据实际情况替换。<pre>{<br>  "Version": "1",<br>  "Statement": [<br>    {<br>      "Action": [<br>        "log:ListShards",<br>        "log:GetCursorOrData",<br>        "log:GetConsumerGroupCheckPoint",<br>        "log:UpdateConsumerGroup",<br>        "log:ConsumerGroupHeartBeat",<br>        "log:ConsumerGroupUpdateCheckPoint",<br>        "log:ListConsumerGroup",<br>        "log:CreateConsumerGroup",<br>      ],<br>      "Resource": [<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log",<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log/*",<br>      ],<br>      "Effect": "Allow"<br>    }<br>  ]<br>}</pre>|
+
+1. 为角色A授予源Logstore读权限。
 具体操作，请参见[为RAM角色授权](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801)。其中关键参数配置如下：
 
     | 关键参数| 说明 |
@@ -88,31 +62,13 @@
 1. 使用阿里云账号2登录[RAM控制台](https://ram.console.aliyun.com/overview)。
 2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于将数据加工结果写入到目标Logstore。例如新建权限策略为**write**。
 具体操作，请参见[创建自定义权限策略](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286)。其中关键参数配置如下：
-    <table>
-        <tr><td><b>关键参数</td><td><b>说明</td></tr>
-        <tr><td><b>名称</td><td>输入自定义权限策略名称。例如<b>write</b></td></tr>
-        <tr><td><b>策略内容</b></td>
-        <td>将配置框中的原有脚本替换为如下内容。<br>例如：目标Project名称为log-project-prod，目标Logstore名称为access_log_output。在实际场景中，请根据实际情况替换。
-  ```
-  {
-  "Version": "1",
-  "Statement": [
-    {
-      "Action": [
-        "log:Post*",
-        "log:BatchPost*"
-      ],
-        "Resource": "acs:log:*:*:project/log-project-prod/logstore/access_log_output",
-      "Effect": "Allow"
-    }
-  ]
-  }
-  ```
-  </td>
-  </tr>
-  </table>
 
-3. 为角色B授予目标Logstore写权限。
+  | 关键参数 | 说明 |
+  | -- | -- |
+  | 名称 | 输入自定义权限策略名称。例如**write** |
+  | 策略内容 | 将配置框中的原有脚本替换为如下内容。<br>例如：目标Project名称为log-project-prod，目标Logstore名称为access_log_output。在实际场景中，请根据实际情况替换。<br><pre>{<br>  "Version": "1", <br>  "Statement": [ <br>   {  <br>     "Action": [  <br>       "log:Post*",<br>       "log:BatchPost*" <br>     ],<br>     "Resource": "acs:log:*:*:project/log-project-prod/logstore/access_log_output",<br>     "Effect": "Allow" <br>   }<br>  ]<br>} </pre> |
+
+1. 为角色B授予目标Logstore写权限。
 具体操作，请参见[为RAM角色授权](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801)。其中关键参数配置如下：
     | 关键参数| 说明 |
     | -------| --------- |
@@ -170,17 +126,11 @@
     其中，其他参数配置请参考[数据加工快速入门](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.10b94b411wYwnX#task-2316153)。该场景中关键参数配置如下：
        ![创建加工规则](/img/dataprocessdemo/配置数据加工/创建加工规则.png)
 
-
-      <table>
-        <tr><td><b>关键参数</td><td><b>说明</td></tr>
-        <tr><td><b>授权方式</td><td>选择<b>自定义角色。</td></tr>
-        <tr><td><b>角色ARN</td><td>输入角色A的ARN。例如acs:ram::1379******44:role/role-a。</td></tr>
-        <tr><td><b>存储目标的授权方式</td><td>选择<b>自定义角色。
-        </td></tr>
-        <tr><td><b>角色ARN</b></td>
-        <td>输入角色B的ARN。例如acs:ram::1379******44:role/role-b。
-    </td>
-      </tr>
-      </table>
+      | 关键参数 | 说明 |
+      | -- | -- |
+      | 授权方式 | 选择**自定义角色** |
+      | 角色ARN | 输入角色A的ARN。例如`acs:ram::1379******44:role/role-a` |
+      | 存储目标的授权方式 | 选择**自定义角色** |
+      | 角色ARN | 输入角色B的ARN。例如`acs:ram::1379******44:role/role-b` |
 
 数据加工作业创建成功并运行后，使用RAM用户创建的跨账号数据流转作业完成。更多操作，请参见[管理数据加工作业](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.10b92b0d2iORzE#task-1580295)。
