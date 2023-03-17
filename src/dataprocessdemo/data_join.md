@@ -58,10 +58,15 @@ code,alias,category,description
 这里将code的映射关系保存为数据加工的高级参数，key为 http_code, 值为csv文件内容，加工语句如下：
 
 ```
-e_table_map(tab_parse_csv("code,alias,category,description\n100,1xx,Informational,Continue\n101,1xx,Informational,Switching Protocols\n102,1xx,Informational,Processing (WebDAV)\n200,2xx,Success,OK\n201,2xx,Success,Created\n202,2xx,Success,Accepted\n203,2xx,Success,Non-Authoritative Information\n204,2xx,Success,No Content\n205,2xx,Success,Reset Content\n206,2xx,Success,Partial Content\n207,2xx,Success,Multi-Status (WebDAV)\n208,2xx,Success,Already Reported (WebDAV)\n226,2xx,Success,IM Used\n300,3xx,Redirection,Multiple Choices\n301,3xx,Redirection,Moved Permanently\n302,3xx,Redirection,Found\n303,3xx,Redirection,See Other\n304,3xx,Redirection,Not Modified\n305,3xx,Redirection,Use Proxy\n306,3xx,Redirection,(Unused)\n307,3xx,Redirection,Temporary Redirect\n308,3xx,Redirection,Permanent Redirect (experimental)\n400,4xx,Client Error,Bad Request\n401,4xx,Client Error,Unauthorized\n402,4xx,Client Error,Payment Required\n403,4xx,Client Error,Forbidden\n404,4xx,Client Error,Not Found\n405,4xx,Client Error,Method Not Allowed\n406,4xx,Client Error,Not Acceptable\n407,4xx,Client Error,Proxy Authentication Required\n408,4xx,Client Error,Request Timeout\n409,4xx,Client Error,Conflict\n410,4xx,Client Error,Gone\n411,4xx,Client Error,Length Required\n412,4xx,Client Error,Precondition Failed\n413,4xx,Client Error,Request Entity Too Large\n414,4xx,Client Error,Request-URI Too Long\n415,4xx,Client Error,Unsupported Media Type\n416,4xx,Client Error,Requested Range Not Satisfiable\n417,4xx,Client Error,Expectation Failed\n418,4xx,Client Error,I'm a teapot (RFC 2324)\n420,4xx,Client Error,Enhance Your Calm (Twitter)\n422,4xx,Client Error,Unprocessable Entity (WebDAV)\n423,4xx,Client Error,Locked (WebDAV)\n424,4xx,Client Error,Failed Dependency (WebDAV)\n425,4xx,Client Error,Reserved for WebDAV\n426,4xx,Client Error,Upgrade Required\n428,4xx,Client Error,Precondition Required\n429,4xx,Client Error,Too Many Requests\n431,4xx,Client Error,Request Header Fields Too Large\n444,4xx,Client Error,No Response (Nginx)\n449,4xx,Client Error,Retry With (Microsoft)\n450,4xx,Client Error,Blocked by Windows Parental Controls (Microsoft)\n451,4xx,Client Error,Unavailable For Legal Reasons\n499,4xx,Client Error,Client Closed Request (Nginx)\n500,5xx,Server Error,Internal Server Error\n501,5xx,Server Error,Not Implemented\n502,5xx,Server Error,Bad Gateway\n503,5xx,Server Error,Service Unavailable\n504,5xx,Server Error,Gateway Timeout\n505,5xx,Server Error,HTTP Version Not Supported\n506,5xx,Server Error,Variant Also Negotiates (Experimental)\n507,5xx,Server Error,Insufficient Storage (WebDAV)\n508,5xx,Server Error,Loop Detected (WebDAV)\n509,5xx,Server Error,Bandwidth Limit Exceeded (Apache)\n510,5xx,Server Error,Not Extended\n511,5xx,Server Error,Network Authentication Required\n598,5xx,Server Error,Network read timeout error\n599,5xx,Server Error,Network connect timeout error\n"),
-              [("http_code","code")],
-              [("alias","http_code_alias"), ("description","http_code_desc"), 
-              ("category","http_code_category")])
+e_table_map(
+	tab_parse_csv(
+		"code,alias,category,description\n100,1xx,Informational,Continue\n101,1xx,Informational,Switching Protocols\n102,1xx,Informational,Processing (WebDAV)\n200,2xx,Success,OK\n201,2xx,Success,Created\n202,2xx,Success,Accepted\n203,2xx,Success,Non-Authoritative Information\n204,2xx,Success,No Content\n205,2xx,Success,Reset Content\n206,2xx,Success,Partial Content\n207,2xx,Success,Multi-Status (WebDAV)\n208,2xx,Success,Already Reported (WebDAV)\n226,2xx,Success,IM Used\n300,3xx,Redirection,Multiple Choices\n301,3xx,Redirection,Moved Permanently\n302,3xx,Redirection,Found\n303,3xx,Redirection,See Other\n304,3xx,Redirection,Not Modified\n305,3xx,Redirection,Use Proxy\n306,3xx,Redirection,(Unused)\n307,3xx,Redirection,Temporary Redirect\n308,3xx,Redirection,Permanent Redirect (experimental)\n400,4xx,Client Error,Bad Request\n401,4xx,Client Error,Unauthorized\n402,4xx,Client Error,Payment Required\n403,4xx,Client Error,Forbidden\n404,4xx,Client Error,Not Found\n405,4xx,Client Error,Method Not Allowed\n406,4xx,Client Error,Not Acceptable\n407,4xx,Client Error,Proxy Authentication Required\n408,4xx,Client Error,Request Timeout\n409,4xx,Client Error,Conflict\n410,4xx,Client Error,Gone\n411,4xx,Client Error,Length Required\n412,4xx,Client Error,Precondition Failed\n413,4xx,Client Error,Request Entity Too Large\n414,4xx,Client Error,Request-URI Too Long\n415,4xx,Client Error,Unsupported Media Type\n416,4xx,Client Error,Requested Range Not Satisfiable\n417,4xx,Client Error,Expectation Failed\n418,4xx,Client Error,I'm a teapot (RFC 2324)\n420,4xx,Client Error,Enhance Your Calm (Twitter)\n422,4xx,Client Error,Unprocessable Entity (WebDAV)\n423,4xx,Client Error,Locked (WebDAV)\n424,4xx,Client Error,Failed Dependency (WebDAV)\n425,4xx,Client Error,Reserved for WebDAV\n426,4xx,Client Error,Upgrade Required\n428,4xx,Client Error,Precondition Required\n429,4xx,Client Error,Too Many Requests\n431,4xx,Client Error,Request Header Fields Too Large\n444,4xx,Client Error,No Response (Nginx)\n449,4xx,Client Error,Retry With (Microsoft)\n450,4xx,Client Error,Blocked by Windows Parental Controls (Microsoft)\n451,4xx,Client Error,Unavailable For Legal Reasons\n499,4xx,Client Error,Client Closed Request (Nginx)\n500,5xx,Server Error,Internal Server Error\n501,5xx,Server Error,Not Implemented\n502,5xx,Server Error,Bad Gateway\n503,5xx,Server Error,Service Unavailable\n504,5xx,Server Error,Gateway Timeout\n505,5xx,Server Error,HTTP Version Not Supported\n506,5xx,Server Error,Variant Also Negotiates (Experimental)\n507,5xx,Server Error,Insufficient Storage (WebDAV)\n508,5xx,Server Error,Loop Detected (WebDAV)\n509,5xx,Server Error,Bandwidth Limit Exceeded (Apache)\n510,5xx,Server Error,Not Extended\n511,5xx,Server Error,Network Authentication Required\n598,5xx,Server Error,Network read timeout error\n599,5xx,Server Error,Network connect timeout error\n"
+	),
+	[("http_code","code")],
+	[("alias","http_code_alias"),
+	("description","http_code_desc"),
+	("category","http_code_category")]
+)
 ```
 
 
@@ -83,7 +88,7 @@ code,alias,category,description
 
 上传 http_code.csv文件到oss
 
-打开OSS控制台 http://oss.console.aliyun.com 
+打开OSS控制台 http://oss.console.aliyun.com
 
 找到已有的bucket或者新建一个bucket，根据控制台指引上传文件
 
@@ -94,15 +99,22 @@ code,alias,category,description
 
 ```
 e_table_map(
-      tab_parse_csv(
-           res_oss_file(endpoint="oss-cn-shanghai-internal.aliyuncs.com",
-              ak_id=res_local("AK_ID"), ak_key=res_local("AK_KEY"), 
-              bucket="ali-sls-etl-test", 
-              file="http_code.csv", format='text')),
-              [("http_code","code")],
-              [("alias","http_code_alias"),
-               ("description","http_code_desc"),
-               ("category","http_code_category")])
+    tab_parse_csv(
+		res_oss_file(
+			endpoint="oss-cn-shanghai-internal.aliyuncs.com",
+			ak_id=res_local("AK_ID"),
+			ak_key=res_local("AK_KEY"),
+			bucket="ali-sls-etl-test",
+			file="http_code.csv",
+			format='text')
+		),
+		[("http_code","code")],
+		[
+			("alias","http_code_alias"),
+			("description","http_code_desc"),
+			("category","http_code_category")
+		]
+	)
 ```
 
 res_local 引用的值需要在高级参数里定义。
@@ -125,12 +137,20 @@ res_local 引用的值需要在高级参数里定义。
 使用数据加工进行富化，加工语句如下：
 
 ```
-e_table_map(res_rds_mysql(address="MySQL主机地址", 
-                  username="用户名", password="密码",
-                  database="数据库",table="表名", refresh_interval=300),
-              [("http_code","code")],
-              [("alias","http_code_alias"), ("description","http_code_desc"), 
-              ("category","http_code_category")])
+e_table_map(
+	res_rds_mysql(
+		address="MySQL主机地址",
+		username="用户名",
+		password="密码",
+        database="数据库",
+		table="表名",
+		refresh_interval=300
+	),
+	[("http_code","code")],
+	[("alias","http_code_alias"),
+	("description","http_code_desc"),
+	("category","http_code_category")]
+)
 ```
 
 注意： 数据加工支持vpc方法方式rds，配置vpc打通可以参考：[https://help.aliyun.com/document_detail/162753.html](https://help.aliyun.com/document_detail/162753.html?spm=a2c4g.11186623.6.987.3e7249dbOZbV6w)
@@ -152,12 +172,20 @@ e_table_map(res_rds_mysql(address="MySQL主机地址",
 使用数据加工进行富化，加工语句如下：
 
 ```
-e_table_map( res_log_logstore_pull("cn-shanghai-intranet.log.aliyuncs.com",
-        res_local("AK_ID"),res_local("AK_KEY"),"live-demo","http_code",
-        ["code","alias","description","category"]),
-              [("http_code","code")],
-              [("alias","http_code_alias"), ("description","http_code_desc"), 
-              ("category","http_code_category")])
+e_table_map(
+	res_log_logstore_pull(
+		"cn-shanghai-intranet.log.aliyuncs.com",
+        res_local("AK_ID"),
+		res_local("AK_KEY"),
+		"live-demo",
+		"http_code",
+        ["code","alias","description","category"]
+	),
+	[("http_code","code")],
+	[("alias","http_code_alias"),
+	("description","http_code_desc"),
+	("category","http_code_category")]
+)
 ```
 
 

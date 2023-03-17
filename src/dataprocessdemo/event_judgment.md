@@ -26,7 +26,7 @@
     e_if(e_search('not a: *'), e_set("not_has_a", true))
     e_if(e_search('not b: *'), e_set("not_has_b", true))
     e_if(e_search('not c: *'), e_set("not_has_c", true))
-    ``` 
+    ```
     **说明** 加工规则中的**e_if**可通过**e_if**(**条件1，操作1，条件2，操作2**)的形式合并为一项，此处和本文其他处的拆分是为了方便阅读。
 * 加工结果
     ```python
@@ -84,9 +84,9 @@
     a: a_value
     b:       // 空字符串
     ```
-* SLS DSL编排    
-   
-  
+* SLS DSL编排
+
+
   * 方案一（推荐）：采用字段取值函数**v**
     ```python
     e_if(op_and(e_has("a"), op_not(v("a"))), e_set("empty_a", true))

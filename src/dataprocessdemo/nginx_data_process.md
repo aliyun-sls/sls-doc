@@ -39,7 +39,6 @@ dt_strftime(日期时间表达式, "格式化字符串")
 ```
 
 实现思路，先通过 dt_strptime 将local_time的时间转化为日期时间对象，然后再通过dt_strftime将日期时间对象转化为标准的日期时间字符串。 针对Nginx local_time的转化，使用如下数据加工语句：
-e_set("local_time", dt_strftime(dt_strptime(v("local_time"),"%d/%b/%Y:%H:%M:%S %z"),"%Y-%m-%d %H:%M:%S"))
 
 ```
 e_set("local_time", dt_strftime(dt_strptime(v("local_time"),"%d/%b/%Y:%H:%M:%S %z"),"%Y-%m-%d %H:%M:%S"))
@@ -87,15 +86,15 @@ e_kv("request_uri", prefix="uri_")
 ```
 # 用来做字段富化，类似sql里join的功能
 e_table_map("表格如通过tab_parse_csv(...)解析得到的",
-            "源字段列表或映射列表如[('f1', 'f1_new'), ('f2', 'f2_new')]", 
+            "源字段列表或映射列表如[('f1', 'f1_new'), ('f2', 'f2_new')]",
             "目标字段列表")
 
 # 用来把csv文件解析成table对象
 tab_parse_csv(CSV文本数据, sep=',', quote='"')
 
 # code的映射关系维度表是一个csv文件，存在oss上，使用res_oss_file
-res_oss_file(endpoint="OSS的endpoint", ak_id="OSS的AK_ID", 
-             ak_key="OSS的AK_KEY", bucket="OSS的bucket", file="在OSS中存的文件地址", 
+res_oss_file(endpoint="OSS的endpoint", ak_id="OSS的AK_ID",
+             ak_key="OSS的AK_KEY", bucket="OSS的bucket", file="在OSS中存的文件地址",
              change_detect_interval="定时更新时间,默认为0")
 ```
 
@@ -107,7 +106,7 @@ e_table_map(
       tab_parse_csv(
            res_oss_file(endpoint="oss-cn-shanghai.aliyuncs.com",
               ak_id='',ak_key='',
-              bucket="your_oss_bucket", 
+              bucket="your_oss_bucket",
               file="http_code.csv", format='text')),
               [("status","code")],
               [("alias","http_code_alias"),
@@ -197,7 +196,7 @@ e_table_map(
       tab_parse_csv(
            res_oss_file(endpoint="oss-cn-shanghai.aliyuncs.com",
               ak_id='',ak_key='',
-              bucket="ali-sls-etl-test", 
+              bucket="ali-sls-etl-test",
               file="http_code.csv", format='text')),
               [("status","code")],
               [("alias","http_code_alias"),

@@ -47,10 +47,10 @@
   请确保在**原始日志**页签中有日志数据。
 4. 在编辑框中，输入数据加工语句。
   详细的参数说明，请参见[res_rds_mysql](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.9cd91cf8bLH92K#section-49h-ufh-ptu)。
-  ```python
+    ```python
     e_table_map(
         res_rds_mysql(
-            "rm-bp1k****tp8o.mysql.rds.aliyuncs.com",     
+            "rm-bp1k****tp8o.mysql.rds.aliyuncs.com",
             "test",
             "test1234@@",
             "client-db",
@@ -64,7 +64,7 @@
         "c_id",
         ["name", "telephone"],
     )
-  ```
+    ```
 5. 快速预览数据。
   使用快速预览，确保加工语句填写正确。更多信息，请参见[快速预览](https://help.aliyun.com/document_detail/263336.htm?spm=a2c4g.11186623.0.0.9cd93c11K1aIHY#task-2089290)。
   a. 单击**快速**。
@@ -113,14 +113,14 @@
 **注意**
   * delete_flag设置为true、1等值时，都表示删除。更多信息，请参见[res_rds_mysql](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.9cd95b1bV2L9z1#section-49h-ufh-ptu)。
   * 如果在加工语句中配置了deleted_flag_key参数，则还需配置update_time_key参数。
-  
+
 例如在RDS MySQL数据库表中新增两条数据（name=mia，name=tom），其中name=mia这条数据被标记为删除，即设置delete_flag为true。则日志服务内存维表更新时，name=mia这条数据在维表中被删除，不会被加工。
 ![数据加工3](/img/dataprocessdemo/数据富化/数据加工3.png)
 加工语句示例如下：
 ```python
 e_table_map(
     res_rds_mysql(
-        "rm-bp1****l3tp.mysql.rds.aliyuncs.com",     
+        "rm-bp1****l3tp.mysql.rds.aliyuncs.com",
         "test",
         "test1234@@",
         "client-db",
@@ -134,4 +134,4 @@ e_table_map(
     "c_id",
     ["name", "telephone"],
 )
-```                       
+```

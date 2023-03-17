@@ -30,16 +30,28 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
   * 总编排
     ```
     """第一步：初步解析Nginx日志"""
-    e_regex("content",r'(?P<ip>\d+\.\d+\.\d+\.\d+)( - - \[)(?P<datetime>[\s\S]+)\] \"(?P<verb>[A-Z]+) (?P<request>[\S]*) (?P<protocol>[\S]+)["] (?P<code>\d+) (?P<sendbytes>\d+) ["](?P<refere>[\S]*)["] ["](?P<useragent>[\S\s]+)["]')
+    e_regex(
+      "content",
+      r'(?P<ip>\d+\.\d+\.\d+\.\d+)( - - \[)(?P<datetime>[\s\S]+)\] \"(?P<verb>[A-Z]+) (?P<request>[\S]*) (?P<protocol>[\S]+)["] (?P<code>\d+) (?P<sendbytes>\d+) ["](?P<refere>[\S]*)["] ["](?P<useragent>[\S\s]+)["]'
+    )
     """第二步：解析第一步得到的request"""
-    e_regex('request',r'(?P<uri_proto>(\w+)):\/\/(?P<uri_domain>[a-z0-9.]*[^\/])(?P<uri_param>(.+)$)')
+    e_regex(
+      'request',
+      r'(?P<uri_proto>(\w+)):\/\/(?P<uri_domain>[a-z0-9.]*[^\/])(?P<uri_param>(.+)$)'
+    )
     """第三步：解析第二步得到的uri_param参数"""
-    e_regex('uri_param',r'(?P<uri_path>\/\_[a-z]+[^?])\?(?<uri_query>(.+)$)')
+    e_regex(
+      'uri_param',
+      r'(?P<uri_path>\/\_[a-z]+[^?])\?(?<uri_query>(.+)$)'
+    )
     ```
   * 细分编排及对应加工结果
     * 针对需求1的加工编排如下。
       ```python
-      e_regex("content",r'(?P<ip>\d+\.\d+\.\d+\.\d+)( - - \[)(?P<datetime>[\s\S]+)\] \"(?P<verb>[A-Z]+) (?P<request>[\S]*) (?P<protocol>[\S]+)["] (?P<code>\d+) (?P<sendbytes>\d+) ["](?P<refere>[\S]*)["] ["](?P<useragent>[\S\s]+)["]')
+      e_regex(
+        "content",
+        r'(?P<ip>\d+\.\d+\.\d+\.\d+)( - - \[)(?P<datetime>[\s\S]+)\] \"(?P<verb>[A-Z]+) (?P<request>[\S]*) (?P<protocol>[\S]+)["] (?P<code>\d+) (?P<sendbytes>\d+) ["](?P<refere>[\S]*)["] ["](?P<useragent>[\S\s]+)["]'
+      )
       ```
     * 对应加工结果
       ```
@@ -58,7 +70,10 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
       ```
     * 针对需求2解析request，加工编排如下。
       ```python
-      e_regex('request',r'(?P<uri_proto>(\w+)):\/\/(?P<uri_domain>[a-z0-9.]*[^\/])(?P<uri_param>(.+)$)')
+      e_regex(
+        'request',
+        r'(?P<uri_proto>(\w+)):\/\/(?P<uri_domain>[a-z0-9.]*[^\/])(?P<uri_param>(.+)$)'
+      )
       ```
       对应加工结果：
       ```
@@ -68,7 +83,10 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
       ```
     * 针对需求3解析uri_param，加工编排如下。
       ```python
-        e_regex('uri_param',r'(?P<uri_path>\/\_[a-z]+[^?])\?(?<uri_query>(.+)$)')
+        e_regex(
+          'uri_param',
+          r'(?P<uri_path>\/\_[a-z]+[^?])\?(?<uri_query>(.+)$)'
+        )
       ```
       对应加工结果
       ```
@@ -90,7 +108,7 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
     uri_domain:  example.aliyundoc.com
     uri_proto:  http
     uri_param: /_astats?application=&inf.name=eth0
-    uri_path: /_astats 
+    uri_path: /_astats
     uri_query: application=&inf.name=eth0
     useragent:  Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.example.com/bot.html)
     verb:  GET
@@ -112,26 +130,38 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
   * 总编排
     ```
     """第一步：初步解析Nginx日志"""
-    e_regex('content',grok('%{COMBINEDAPACHELOG}'))
+    e_regex(
+      'content',
+      grok('%{COMBINEDAPACHELOG}')
+    )
     """第二步：解析第一步得到的request"""
-    e_regex('request',grok("%{URIPROTO:uri_proto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:uri_domain})?(?:%{URIPATHPARAM:uri_param})?"))
+    e_regex(
+      'request',
+      grok("%{URIPROTO:uri_proto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:uri_domain})?(?:%{URIPATHPARAM:uri_param})?")
+    )
     """第三步：解析第二步得到的uri_param参数"""
-    e_regex('uri_param',grok("%{GREEDYDATA:uri_path}\?%{GREEDYDATA:uri_query}"))
+    e_regex(
+      'uri_param',
+      grok("%{GREEDYDATA:uri_path}\?%{GREEDYDATA:uri_query}")
+    )
     ```
     使用GROK模式解析Nginx正确访问日志，只需要**COMBINEDAPACHELOG**模式即可。
-  
+
 
       | 模式| 规则 |说明 |
       | -------| --------- |--------- |
       | COMMONAPACHELOG | %{IPORHOST:clientip} %<br>{HTTPDUSER:ident} %<br>{USER:auth}\\[%<br>{HTTPDATE:timestamp}\\]"(?:%<br>{WORD:verb} %<br>{NOTSPACE:request}(?: HTTP/%<br>{NUMBER:httpversion})?\|%<br>{DATA:rawrequest})" %<br>{NUMBER:response} (?:%<br>{NUMBER:bytes}\|-) | 解析出clientip、ident、auth、timestamp、verb、request、httpversion、response、bytes信息。|
       | COMBINEDAPACHELOG | %{COMMONAPACHELOG} %<br>{QS:referrer} %{QS:agent} | 解析出上一行中所有字段，另外还解析出referrer、agent字段。|
-     
+
 
 
   * 细分编排及对应加工结果
     * 针对需求1解析Nginx日志的加工编排如下。
       ```python
-      e_regex('content',grok('%{COMBINEDAPACHELOG}'))
+      e_regex(
+        'content',
+        grok('%{COMBINEDAPACHELOG}')
+      )
       ```
       对应加工结果
       ```
@@ -152,7 +182,10 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
       ```
     * 针对需求2解析**request**，加工编排如下。
       ```python
-      e_regex('request',grok("%{URIPROTO:uri_proto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:uri_domain})?(?:%{URIPATHPARAM:uri_param})?"))
+      e_regex(
+        'request',
+        grok("%{URIPROTO:uri_proto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:uri_domain})?(?:%{URIPATHPARAM:uri_param})?")
+      )
       ```
       对应加工结果
         ```
@@ -164,14 +197,17 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
       | 模式| 规则 |说明 |
       | -------| --------- |--------- |
       | URIPROTO | [A-Za-z]+(\+[A-Za-z+]+)? | 匹配uri中的头部分。例如http://hostname.domain.tld/_astats?application=&inf.name=eth0会匹配到http。 |
-      | USER | [a-zA-Z0-9._-]+ |匹配字母、数字和符号（._-）组合。	| 
-      | URIHOST | %{IPORHOST}(?::% |匹配IPORHOST和POSINT。| 
-      | URIPATHPARAM | %{URIPATH}(?:%{URIPARAM})? |匹配uri参数部分。	| 
+      | USER | [a-zA-Z0-9._-]+ |匹配字母、数字和符号（._-）组合。	|
+      | URIHOST | %{IPORHOST}(?::% |匹配IPORHOST和POSINT。|
+      | URIPATHPARAM | %{URIPATH}(?:%{URIPARAM})? |匹配uri参数部分。	|
 
-		
+
     * 针对需求3解析uri_param，加工编排如下。
       ```python
-      e_regex('uri_param',grok("%{GREEDYDATA:uri_path}\?%{GREEDYDATA:uri_query}"))
+      e_regex(
+        'uri_param',
+        grok("%{GREEDYDATA:uri_path}\?%{GREEDYDATA:uri_query}")
+      )
       ```
       对应加工结果：
       ```
@@ -182,8 +218,8 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
       | 模式| 规则 |说明 |
       | -------| --------- |--------- |
       | GREEDYDATA | .* | 匹配任意或多个除换行符。 |
-      		
-      		
+
+
 * 加工结果
     ```
     __source__:  192.168.0.1
@@ -220,7 +256,10 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
 
 * SLS DSL编排
     ```python
-    e_regex('content',grok('%{DATESTAMP:request_time} \[%{LOGLEVEL:log_level}\] %{POSINT:pid}#%{NUMBER}: %{GREEDYDATA:errormessage}(?:, client: (?<client>%{IP}|%{HOSTNAME}))(?:, server: %{IPORHOST:server})(?:, request: "%{WORD:verb} %{NOTSPACE:request}( HTTP/%{NUMBER:http_version})")(?:, host: "%{HOSTNAME:host}")?(?:, referrer: "%{NOTSPACE:referrer}")?'))
+    e_regex(
+      'content',
+      grok('%{DATESTAMP:request_time} \[%{LOGLEVEL:log_level}\] %{POSINT:pid}#%{NUMBER}: %{GREEDYDATA:errormessage}(?:, client: (?<client>%{IP}|%{HOSTNAME}))(?:, server: %{IPORHOST:server})(?:, request: "%{WORD:verb} %{NOTSPACE:request}( HTTP/%{NUMBER:http_version})")(?:, host: "%{HOSTNAME:host}")?(?:, referrer: "%{NOTSPACE:referrer}")?')
+    )
     ```
 * 加工结果
     ```

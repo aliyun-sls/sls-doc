@@ -69,7 +69,7 @@ Nginx日志是运维网站的重要信息，日志服务通过e_table_map函数�
   | [通过MySQL表实现富化](https://help.aliyun.com/document_detail/299996.html#section-p5k-79r-f93) | 较大 |不支持	| 支持 | 频繁更新的映射表。 |
   | [通过使用OSS文件实现富化](https://help.aliyun.com/document_detail/299996.html#section-tjl-x9k-bk7) | 较大 |不支持	| 支持 | 相对静态的，更新不频繁的映射表。 |
   | [代码内嵌](https://help.aliyun.com/document_detail/299996.html#section-aqj-zb3-s8i) | 小 |不支持	| 不支持 | 简单HTTP返回码映射表。 |
-  
+
 ### 方案一：使用Logstore实现富化（推荐）
 1. 通过SDK方式将HTTP返回码写入名为http_co#de的Logstore。
   Logstore中HTTP返回码日志样例如下：
@@ -90,12 +90,20 @@ Nginx日志是运维网站的重要信息，日志服务通过e_table_map函数�
 4. 在编辑框中，输入数据加工语句。
   从HTTP返回码Logstore（名称为http_code）中读取数据，并通过e_table_map函数将对应字段的值返回。
     ```python
-    e_table_map( res_log_logstore_pull("cn-hangzhou-intranet.log.aliyuncs.com",
-            res_local("AK_ID"),res_local("AK_KEY"),"live-demo","http_code",
-            ["code","alias","description","category"]),
-                  [("http_code","code")],
-                  [("alias","http_code_alias"), ("description","http_code_desc"), 
-                  ("category","http_code_category")])
+    e_table_map(
+      res_log_logstore_pull(
+        "cn-hangzhou-intranet.log.aliyuncs.com",
+        res_local("AK_ID"),
+        res_local("AK_KEY"),
+        "live-demo",
+        "http_code",
+        ["code","alias","description","category"]
+      ),
+      [("http_code","code")],
+      [("alias","http_code_alias"),
+        ("description","http_code_desc"),
+        ("category","http_code_category")]
+    )
     ```
     **注意** 为了数据安全，建议在高级参数配置中配置AccessKey。关于如何配置高级参数，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
    * 使用res_log_logstore_pull函数从另一个Logstore中拉取数据。更多信息，请参见[res_log_logstore_pull](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.31275b1bqoJucc#section-b3c-kth-p0t)。
@@ -134,12 +142,20 @@ Nginx日志是运维网站的重要信息，日志服务通过e_table_map函数�
 4. 在编辑框中，输入数据加工语句。
   从MySQL数据库中读取数据，并通过e_table_map函数将对应字段的值返回。
     ```python
-    e_table_map(res_rds_mysql(address="MySQL主机地址", 
-                      username="用户名", password="密码",
-                      database="数据库",table="表名", refresh_interval=300),
-                  [("http_code","code")],
-                  [("alias","http_code_alias"), ("description","http_code_desc"), 
-                  ("category","http_code_category")])
+    e_table_map(
+      res_rds_mysql(
+        address="MySQL主机地址",
+        username="用户名",
+        password="密码",
+        database="数据库",
+        table="表名",
+        refresh_interval=300
+      ),
+      [("http_code","code")],
+      [("alias","http_code_alias"),
+      ("description","http_code_desc"),
+      ("category","http_code_category")]
+    )
     ```
     **注意** 为了数据安全，建议在高级参数配置中配置AccessKey。关于如何配置高级参数，请参见创建数据加工任务。
     * 使用res_rds_mysql函数从RDS MySQL数据库中拉取数据库表内容。更多信息，请参见res_rds_mysql。
@@ -179,15 +195,21 @@ Nginx日志是运维网站的重要信息，日志服务通过e_table_map函数�
   从OSS Bucket中读取数据，并通过e_table_map函数将对应字段的值返回。
     ```python
     e_table_map(
-          tab_parse_csv(
-              res_oss_file(endpoint="oss-cn-shanghai-internal.aliyuncs.com",
-                  ak_id=res_local("AK_ID"), ak_key=res_local("AK_KEY"), 
-                  bucket="ali-sls-etl-test", 
-                  file="http_code.csv", format='text')),
-                  [("http_code","code")],
-                  [("alias","http_code_alias"),
-                  ("description","http_code_desc"),
-                  ("category","http_code_category")])
+      tab_parse_csv(
+        res_oss_file(
+          endpoint="oss-cn-shanghai-internal.aliyuncs.com",
+          ak_id=res_local("AK_ID"),
+          ak_key=res_local("AK_KEY"),
+          bucket="ali-sls-etl-test",
+          file="http_code.csv",
+          format='text'
+        )
+      ),
+      [("http_code","code")],
+      [("alias","http_code_alias"),
+      ("description","http_code_desc"),
+      ("category","http_code_category")]
+    )
     ```
     **注意** 为了数据安全，建议在高级参数配置中配置AccessKey。关于如何配置高级参数，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
     * 使用res_oss_file函数从OSS Bucket中获取文件内容，并支持定期刷新。更多信息，请参见[res_oss_file](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.312760aenttgOU#section-mlb-osw-xzd)。
@@ -223,10 +245,15 @@ Nginx日志是运维网站的重要信息，日志服务通过e_table_map函数�
 3. 在编辑框中，输入数据加工语句。
   通过tab_parse_csv函数对CSV格式的HTTP返回码进行转换，并通过e_table_map函数将对应字段的值返回。
     ```python
-    e_table_map(tab_parse_csv("code,alias,category,description\n100,1xx,Informational,Continue\n101,1xx,Informational,Switching Protocols\n102,1xx,Informational,Processing (WebDAV)\n200,2xx,Success,OK\n201,2xx,Success,Created\n202,2xx,Success,Accepted\n203,2xx,Success,Non-Authoritative Information\n204,2xx,Success,No Content\n205,2xx,Success,Reset Content\n206,2xx,Success,Partial Content\n207,2xx,Success,Multi-Status (WebDAV)\n208,2xx,Success,Already Reported (WebDAV)\n226,2xx,Success,IM Used\n300,3xx,Redirection,Multiple Choices\n301,3xx,Redirection,Moved Permanently\n302,3xx,Redirection,Found\n303,3xx,Redirection,See Other\n304,3xx,Redirection,Not Modified\n305,3xx,Redirection,Use Proxy\n306,3xx,Redirection,(Unused)\n307,3xx,Redirection,Temporary Redirect\n308,3xx,Redirection,Permanent Redirect (experimental)\n400,4xx,Client Error,Bad Request\n401,4xx,Client Error,Unauthorized\n402,4xx,Client Error,Payment Required\n403,4xx,Client Error,Forbidden\n404,4xx,Client Error,Not Found\n405,4xx,Client Error,Method Not Allowed\n406,4xx,Client Error,Not Acceptable\n407,4xx,Client Error,Proxy Authentication Required\n408,4xx,Client Error,Request Timeout\n409,4xx,Client Error,Conflict\n410,4xx,Client Error,Gone\n411,4xx,Client Error,Length Required\n412,4xx,Client Error,Precondition Failed\n413,4xx,Client Error,Request Entity Too Large\n414,4xx,Client Error,Request-URI Too Long\n415,4xx,Client Error,Unsupported Media Type\n416,4xx,Client Error,Requested Range Not Satisfiable\n417,4xx,Client Error,Expectation Failed\n418,4xx,Client Error,I'm a teapot (RFC 2324)\n420,4xx,Client Error,Enhance Your Calm (Twitter)\n422,4xx,Client Error,Unprocessable Entity (WebDAV)\n423,4xx,Client Error,Locked (WebDAV)\n424,4xx,Client Error,Failed Dependency (WebDAV)\n425,4xx,Client Error,Reserved for WebDAV\n426,4xx,Client Error,Upgrade Required\n428,4xx,Client Error,Precondition Required\n429,4xx,Client Error,Too Many Requests\n431,4xx,Client Error,Request Header Fields Too Large\n444,4xx,Client Error,No Response (Nginx)\n449,4xx,Client Error,Retry With (Microsoft)\n450,4xx,Client Error,Blocked by Windows Parental Controls (Microsoft)\n451,4xx,Client Error,Unavailable For Legal Reasons\n499,4xx,Client Error,Client Closed Request (Nginx)\n500,5xx,Server Error,Internal Server Error\n501,5xx,Server Error,Not Implemented\n502,5xx,Server Error,Bad Gateway\n503,5xx,Server Error,Service Unavailable\n504,5xx,Server Error,Gateway Timeout\n505,5xx,Server Error,HTTP Version Not Supported\n506,5xx,Server Error,Variant Also Negotiates (Experimental)\n507,5xx,Server Error,Insufficient Storage (WebDAV)\n508,5xx,Server Error,Loop Detected (WebDAV)\n509,5xx,Server Error,Bandwidth Limit Exceeded (Apache)\n510,5xx,Server Error,Not Extended\n511,5xx,Server Error,Network Authentication Required\n598,5xx,Server Error,Network read timeout error\n599,5xx,Server Error,Network connect timeout error\n"),
-                  [("http_code","code")],
-                  [("alias","http_code_alias"), ("description","http_code_desc"), 
-                  ("category","http_code_category")])
+    e_table_map(
+      tab_parse_csv(
+        "code,alias,category,description\n100,1xx,Informational,Continue\n101,1xx,Informational,Switching Protocols\n102,1xx,Informational,Processing (WebDAV)\n200,2xx,Success,OK\n201,2xx,Success,Created\n202,2xx,Success,Accepted\n203,2xx,Success,Non-Authoritative Information\n204,2xx,Success,No Content\n205,2xx,Success,Reset Content\n206,2xx,Success,Partial Content\n207,2xx,Success,Multi-Status (WebDAV)\n208,2xx,Success,Already Reported (WebDAV)\n226,2xx,Success,IM Used\n300,3xx,Redirection,Multiple Choices\n301,3xx,Redirection,Moved Permanently\n302,3xx,Redirection,Found\n303,3xx,Redirection,See Other\n304,3xx,Redirection,Not Modified\n305,3xx,Redirection,Use Proxy\n306,3xx,Redirection,(Unused)\n307,3xx,Redirection,Temporary Redirect\n308,3xx,Redirection,Permanent Redirect (experimental)\n400,4xx,Client Error,Bad Request\n401,4xx,Client Error,Unauthorized\n402,4xx,Client Error,Payment Required\n403,4xx,Client Error,Forbidden\n404,4xx,Client Error,Not Found\n405,4xx,Client Error,Method Not Allowed\n406,4xx,Client Error,Not Acceptable\n407,4xx,Client Error,Proxy Authentication Required\n408,4xx,Client Error,Request Timeout\n409,4xx,Client Error,Conflict\n410,4xx,Client Error,Gone\n411,4xx,Client Error,Length Required\n412,4xx,Client Error,Precondition Failed\n413,4xx,Client Error,Request Entity Too Large\n414,4xx,Client Error,Request-URI Too Long\n415,4xx,Client Error,Unsupported Media Type\n416,4xx,Client Error,Requested Range Not Satisfiable\n417,4xx,Client Error,Expectation Failed\n418,4xx,Client Error,I'm a teapot (RFC 2324)\n420,4xx,Client Error,Enhance Your Calm (Twitter)\n422,4xx,Client Error,Unprocessable Entity (WebDAV)\n423,4xx,Client Error,Locked (WebDAV)\n424,4xx,Client Error,Failed Dependency (WebDAV)\n425,4xx,Client Error,Reserved for WebDAV\n426,4xx,Client Error,Upgrade Required\n428,4xx,Client Error,Precondition Required\n429,4xx,Client Error,Too Many Requests\n431,4xx,Client Error,Request Header Fields Too Large\n444,4xx,Client Error,No Response (Nginx)\n449,4xx,Client Error,Retry With (Microsoft)\n450,4xx,Client Error,Blocked by Windows Parental Controls (Microsoft)\n451,4xx,Client Error,Unavailable For Legal Reasons\n499,4xx,Client Error,Client Closed Request (Nginx)\n500,5xx,Server Error,Internal Server Error\n501,5xx,Server Error,Not Implemented\n502,5xx,Server Error,Bad Gateway\n503,5xx,Server Error,Service Unavailable\n504,5xx,Server Error,Gateway Timeout\n505,5xx,Server Error,HTTP Version Not Supported\n506,5xx,Server Error,Variant Also Negotiates (Experimental)\n507,5xx,Server Error,Insufficient Storage (WebDAV)\n508,5xx,Server Error,Loop Detected (WebDAV)\n509,5xx,Server Error,Bandwidth Limit Exceeded (Apache)\n510,5xx,Server Error,Not Extended\n511,5xx,Server Error,Network Authentication Required\n598,5xx,Server Error,Network read timeout error\n599,5xx,Server Error,Network connect timeout error\n"
+      ),
+      [("http_code","code")],
+      [("alias","http_code_alias"),
+      ("description","http_code_desc"),
+      ("category","http_code_category")]
+    )
     ```
     **注意** 为了数据安全，建议在高级参数配置中配置AccessKey。关于如何配置高级参数，请参见创建数据加工任务。
     * 使用tab_parse_csv函数从CSV格式的文本构建表格。更多信息，请参见tab_parse_csv。

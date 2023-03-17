@@ -13,13 +13,6 @@
 # 使用e_search_table_map函数进行数据富化
 * 原始数据
   * Hologres数据库表中的数据样例如下表所示。
-product_id	product_name	product_price	product_sales_number	sex
-2	lipstick	288	2219	girl
-5	watch	1399	265	boy
-6	mac	4200	265	boy
-3	mouse	20	2583	boy
-1	basketball	35	3658	boy
-4	notebook	9	5427	girl
 
   | product_id| product_name |product_price |product_sales_number | sex  |
   | -------| --------- |--------- |--------- |--------- |
@@ -49,10 +42,21 @@ product_id	product_name	product_price	product_sales_number	sex
 * 加工规则
   通过日志服务Logstore中的sex字段和Hologres数据库表中sex字段进行匹配，只有sex字段的值相同时，才能匹配成功。匹配成功后，返回Hologres数据库表中product_name，与Logstore中的数据拼接，生成新的数据。
   ```python
-  e_search_table_map(res_rds_mysql(address="rds-host", 
-                                  username="mysql-username",password="yourpassword",database="yourdatabasename",table="yourtablename",
-                                  refresh_interval=60,connector='pgsql'),
-                                  inpt="sex",output_fields="product_name", multi_match=True, multi_join=",")
+  e_search_table_map(
+    res_rds_mysql(
+      address="rds-host",
+      username="mysql-username",
+      password="yourpassword",
+      database="yourdatabasename",
+      table="yourtablename",
+      refresh_interval=60,
+      connector='pgsql'
+    ),
+    inpt="sex",
+    output_fields="product_name",
+    multi_match=True,
+    multi_join=","
+  )
   ```
   **说明** 为了访问Hologres实例的安全性和稳定性，建议通过VPC方式访问Hologres数据库。您可以在Hologres实例的网络配置中，获取Hologres数据库的VPC访问域名，将address配置为该值即可。
 * 加工结果
