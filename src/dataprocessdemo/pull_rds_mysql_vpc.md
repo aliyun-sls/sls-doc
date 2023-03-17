@@ -18,8 +18,6 @@
 * 日志服务除了支持通过阿里云内网地址访问RDS MySQL数据库外，还支持通过内网地址访问AnalyticDB MySQL和PolarDB MySQL数据库。具体操作，请参见[附录：使用内网地址访问AnalyticDB MySQL或PolarDB MySQL数据库](https://help.aliyun.com/document_detail/162753.html?spm=a2c4g.11186623.6.1030.17d4272cnFGFcF#section-m4o-edb-6kt)。
 
 
-
-
 ## 加工数据
 
 您可以参见如下方案配置数据加工规则和高级参数，实现通过RDS内网地址访问RDS MySQL数据库获取数据。
@@ -44,7 +42,7 @@
 
 * 加工规则
 
-  ```
+  ```python
   e_table_map(
     res_rds_mysql(
       str_format("{}:{}",
@@ -65,7 +63,7 @@
   **说明** 通过RDS内网地址访问RDS MySQL数据库，请严格遵循以下语法，请勿使用其他加工语法。
 
   加工规则格式如下所示：
-  ```
+  ```python
   e_table_map(
     res_rds_mysql(
       str_format(

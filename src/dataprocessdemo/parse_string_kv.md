@@ -37,7 +37,7 @@
 
     * 加工规则
 
-      ```
+      ```python
       #默认以特定字符集提取关键字
       e_kv("k1")
       ```
@@ -67,7 +67,7 @@
 
     * 加工规则
 
-      ```
+      ```python
       # 以&分隔键值后,用&分隔提取出关键字
       e_kv_delimit("k1", pair_sep=r"&")
       ```
@@ -96,7 +96,7 @@
 
     * 加工规则
 
-      ```
+      ```python
       # 自行指定字符集提取关键字和值
       e_regex("k1",r"(\w+)=([a-zA-Z0-9]+)",{r"\1": r"\2"})
       ```
@@ -126,7 +126,7 @@
 
     * 加工规则
 
-		```
+		```python
 		e_kv("content",sep="(?:=|:)")
 		```
 
@@ -158,7 +158,7 @@
 
     * 加工规则
 
-		```
+		```python
 		e_kv_delimit("content",pair_sep=r"&?",kv_sep="(?:=|:)")
 		```
 
@@ -186,7 +186,7 @@
 
     * 加工规则
 
-		```
+		```python
 		e_regex(
 			"content",
 			r"([a-zA-Z0-9]+)[=|:]([a-zA-Z0-9]+)",{r"\1": r"\2"}
@@ -214,7 +214,7 @@
 
   * 加工规则如果要提取字符串的关键字前有（"）符号，需要使用`e_regex`函数来提取。
 
-	```
+	```python
 	e_regex("str",r'(\w+):(\"\w+)',{r"\1":r"\2"})
 	```
 
@@ -245,7 +245,7 @@
 
   * 加工规则这种情况下使用e_kv函数，提取内容不包括`the change world`：
 
-	```
+	```python
 	e_kv("content1")
 	# e_kv_delimit函数写法，特别注意k2前有空格，所以e_kv_delimit函数的pair_sep参数需要使用`,\s`才能正常解析，否则解析不出来k2。
 	e_kv_delimit("content1",kv_sep="=", pair_sep=",\s")
@@ -274,7 +274,7 @@
 
   * 加工规则
 
-	```
+	```python
 	e_kv("content",sep="=", quote="'")
 	```
 
@@ -304,7 +304,7 @@
 
   * 加工规则（推荐）使用e_kv_delimit函数比较合适。
 
-	```
+	```python
 	e_kv_delimit("content", pair_sep="|", kv_sep=" eat ")
 	```
 
@@ -320,7 +320,7 @@
 
   * 加工规则（不推荐）使用`e_kv`函数无法解析完整。
 
-	```
+	```python
 	e_kv("f1", sep="eat")
 	```
 
@@ -348,7 +348,7 @@
 
   * 加工规则
 
-	```
+	```python
 	e_kv("k1", sep="=", quote='"', prefix="start_", suffix="_end")
 	e_kv_delimit("k1", pair_sep=r"&", kv_sep="=", prefix="start_", suffix="_end")
 	e_regex("k1",r"(\w+)=([a-zA-Z0-9]+)",{r"start_\1_end": r"\2"})
@@ -370,7 +370,7 @@
 
   * 加工规则
 
-	```
+	```python
 	e_regex("k1",r"(\w+)=([a-zA-Z0-9]+)",{r"\1_\1": r"\2"})
 	```
 
@@ -403,7 +403,7 @@
 
   * 加工规则1
 
-	```
+	```python
 	e_kv("content2",sep=":", quote='"')
 	```
 
@@ -422,7 +422,7 @@
 
   * 加工规则2`e_kv`函数通过参数`escape`支持对`\`字符转义。例如：
 
-	```
+	```python
 	e_kv("content2",sep=":", quote='"',escape=True)
 	```
 
@@ -452,7 +452,7 @@
 
   * 加工规则1默认情况下`e_kv`函数的`escape=False`，结果为：
 
-	```
+	```python
 	e_kv("data", quote="'")
 	```
 
@@ -466,7 +466,7 @@
 
   * 加工规则2`e_kv`函数通过参数`escape`支持对`\`字符转义。例如：
 
-	```
+	```python
 	e_kv("data", quote="'", escape=True)
 	```
 
@@ -491,7 +491,7 @@
 
   * 加工规则使用`e_regex`函数进行加工。
 
-	```
+	```python
 	e_regex("content", r"\b(\w+) eat ([^\|]+)", {r"\1": r"\2 by \1"})
 	```
 
@@ -536,7 +536,7 @@
 
     * 总规则
 
-		```
+		```python
 		# 初步处理解析request内容
 		e_regex(
 			'request',
@@ -557,15 +557,14 @@
 
          也可以使用正则解析，请参见[GROK函数](https://help.aliyun.com/document_detail/125480.htm?spm=a2c4g.11186623.2.11.3cf920621wFXr7#concept-1180778)和[GROK模式参考](https://help.aliyun.com/document_detail/129387.htm?spm=a2c4g.11186623.2.12.3cf920621wFXr7#concept-1597616)。
 
-		```
+		```python
 		e_regex(
 			'request',
-			grok("%{URIPROTO:uri_proto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:uri_domain})?(?:%{URIPATHPARAM:uri_param})?"))
+			grok("%{URIPROTO:uri_proto}://(?:%{USER:user}(?::[^@]*)?@)?(?:%{URIHOST:uri_domain})?(?:%{URIPATHPARAM:uri_param})?")
+		)
 		```
 
-
-
-         对应加工结果：
+		对应加工结果：
 
 		```
 		uri_domain:  yz.m.sm.cn
@@ -577,14 +576,14 @@
 
       2. 使用GROK模式对字段`uri_param`进行解析。
 
-		```
+		```python
 		e_regex(
 			'uri_param',
 			grok("%{GREEDYDATA:uri_path}\?%{GREEDYDATA:uri_query}")
 		)
 		```
 
-		  对应加工结果：
+		对应加工结果：
 
 		```
 		uri_path:  /video/getlist/s
@@ -593,17 +592,17 @@
 
       3. 对`uri_param`进行字段提取，具体操作如下：
 
-			```
-			e_kv("uri_query")
-			```
+		```python
+		e_kv("uri_query")
+		```
 
-          对应加工结果：
+		对应加工结果：
 
-			```
-			app_type:  supplier
-			os:  Android8.1.0
-			ver:  3.2.3
-			```
+		```
+		app_type:  supplier
+		os:  Android8.1.0
+		ver:  3.2.3
+		```
 
 * 加工结果预览处理后日志：
 
@@ -624,7 +623,7 @@
 
   假如只有解析request需求，可以直接对字段`request`使用[e_kv](https://help.aliyun.com/document_detail/125488.htm?spm=a2c4g.11186623.2.13.3cf920621wFXr7#section-n3z-qjb-xpp)函数。例如：
 
-	```
+	```python
 	e_kv("request")
 	```
 
@@ -645,13 +644,13 @@
 
   * 使用正则表达式
 
-	```
+	```python
 	e_regex("url", r"\b(\w+)=([^=&]+)", {r"\1": r"\2"})
 	```
 
   * 使用`e_kv_delmit`函数
 
-	```
+	```python
 	e_kv_delimit("url", pair_sep=r"?&")
 	```
 

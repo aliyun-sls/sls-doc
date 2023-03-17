@@ -6,7 +6,7 @@
 
 * 直接构建
 
-    ```
+    ```python
 	e_dict_map(
 		{"400": "error", "200": "ok", "*": "other"},
 		"status",
@@ -17,7 +17,7 @@
 
 * 从任务配置资源构建
 
-	```
+	```python
 	e_dict_map(
 		res_local("http_code_map"),
 		"status",
@@ -34,7 +34,7 @@
 
 * 从表格构建 使用`tab_to_dict`从表格构建。而表格的构建参见本文后面的表格构建。
 
-	```
+	```python
 	e_dict_map(
 		tab_to_dict(
 			tab_parse_csv("status_code,status_info\n400,error\n200,ok\n*,other"),
@@ -48,7 +48,7 @@
 
 * 从字典函数构建
 
-	```
+	```python
 	e_dict_map(
 		dct_make("400", "error", "200",  "ok", "*",  "other"),
 		"status",
@@ -59,7 +59,7 @@
 
 * 从其他表达式构建
 
-	```
+	```python
 	e_dict_map(
 		json_parse(
 			v("http_code_map")
@@ -89,7 +89,7 @@
 
 * 从文本构建
 
-	```
+	```python
 	e_table_map(
 		tab_parse_csv("city,name,age\nshanghai,aliyun,10\ncity:nanjing,Maki,18"),
 		"name",
@@ -100,7 +100,7 @@
 
 * 从任务配置资源构建
 
-	```
+	```python
 	e_search_table_map(
 		tab_parse_csv(
 			res_local("table_info")
@@ -121,7 +121,7 @@
 
 * 从RDS资源中构建
 
-	```
+	```python
 	e_table_map(
 		tab_parse_csv(
 			res_rds_mysql(...database="db", table="city")
@@ -145,7 +145,7 @@
 
 * 从其他Logstore资源构建
 
-	```
+	```python
 	e_table_map(
 		res_log_logstore_pull(
 			...,

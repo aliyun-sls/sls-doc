@@ -30,7 +30,7 @@
 
   1. 将上述`content`数据转换成JSON格式数据。
 
-      ```
+      ```python
       e_set("content_json",str_replace(ct_str(v("content")),"'",'"'))
       ```
 
@@ -69,7 +69,7 @@
 
 
   2. 对经过处理后的标准化的`content_json`数据进行展开。例如要展开第一层只需要设定JSON中的`depth`参数为 *1* 即可。
-		```
+		```python
 		e_json("content_json",depth=1,fmt='full')
 		```
        展开的日志为：
@@ -93,7 +93,7 @@
 
 
   3. 综上LOG DSL规则可以如以下形式：
-		```
+		```python
 		e_set(
 			"content_json",
 			str_replace(ct_str(v("content")),"'",'"')
@@ -165,7 +165,7 @@
 * LOG DSL编排
 
   1. 首先将日志格式转换为JSON形式，可以使用`str_logtash_config_normalize`函数进行转换，操作如下：
-		```
+		```python
 		e_set(
 			"normalize_data",
 			str_logtash_config_normalize(
@@ -176,13 +176,13 @@
 
 
   2. 可以使用JSON函数进行展开操作，具体如下：
-		```
+		```python
 		e_json("normalize_data",depth=1,fmt='full')
 		```
 
 
   3. 综上LOG DSL规则可以如以下形式：
-		```
+		```python
 		e_set(
 			"normalize_data",
 			str_logtash_config_normalize(
@@ -248,7 +248,7 @@
 
 
 * LOG DSL编排
-	```
+	```python
 	e_set("hex_encode",str_hex_escape_encode(v("content")))
 	```
 
@@ -297,7 +297,7 @@
 
 
 * LOG DSL编排
-	```
+	```python
 	e_set("str_json",xml_to_json(v("str")))
 	```
 

@@ -28,7 +28,7 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
   * 需求3：对解析出来的uri_param进行再提取，提取出uri_path、uri_query信息。
 * SLS DSL编排
   * 总编排
-    ```
+    ```python
     """第一步：初步解析Nginx日志"""
     e_regex(
       "content",
@@ -128,7 +128,7 @@ GROK学习成本低，只需要了解不同模式所代表的字段类型，就�
   * 需求3：对解析出来的**uri_param**进行再提取，提取出**uri_path、uri_query**信息。
 * SLS DSL编排
   * 总编排
-    ```
+    ```python
     """第一步：初步解析Nginx日志"""
     e_regex(
       'content',

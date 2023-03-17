@@ -25,28 +25,28 @@
 
 * 原始日志
 
-```
-http_host:  m1.abcd.com
-http_status:  200
-request_method:  GET
-request_uri:  /pic/icon.jpg
-scheme:  https
-http_host:  m2.abcd.com
-http_status:  301
-request_method:  POST
-request_uri:  /data/data.php
-scheme:  http
-http_host:  m3.abcd.com
-http_status:  404
-request_method:  GET
-request_uri:  /category/abc/product_id
-scheme:  https
-http_host:  m4.abcd.com
-http_status:  504
-request_method:  GET
-request_uri:  /data/index.html
-scheme:  https
-```
+  ```
+  http_host:  m1.abcd.com
+  http_status:  200
+  request_method:  GET
+  request_uri:  /pic/icon.jpg
+  scheme:  https
+  http_host:  m2.abcd.com
+  http_status:  301
+  request_method:  POST
+  request_uri:  /data/data.php
+  scheme:  http
+  http_host:  m3.abcd.com
+  http_status:  404
+  request_method:  GET
+  request_uri:  /category/abc/product_id
+  scheme:  https
+  http_host:  m4.abcd.com
+  http_status:  504
+  request_method:  GET
+  request_uri:  /data/index.html
+  scheme:  https
+  ```
 
 
 * 分发需求
@@ -66,27 +66,27 @@ scheme:  https
 
 * 加工规则
 
-```
-e_switch(
-	e_match("status", r"2\d+"),
-	e_set("__topic__", "success_event"),
-	e_match("status", r"3\d+"),
-	e_compose(
-		e_set("__topic__", "redirection_event"),
-		e_output("target1")
-	),
-	e_match("status", r"4\d+"),
-	e_compose(
-		e_set("__topic__", "unauthorized_event"),
-		e_output("target2")
-	),
-	e_match("status", r"5\d+"),
-	e_compose(
-		e_set("__topic__", "internal_server_error_event`"),
-		e_output("target3")
-	)
-)
-```
+  ```python
+  e_switch(
+    e_match("status", r"2\d+"),
+    e_set("__topic__", "success_event"),
+    e_match("status", r"3\d+"),
+    e_compose(
+      e_set("__topic__", "redirection_event"),
+      e_output("target1")
+    ),
+    e_match("status", r"4\d+"),
+    e_compose(
+      e_set("__topic__", "unauthorized_event"),
+      e_output("target2")
+    ),
+    e_match("status", r"5\d+"),
+    e_compose(
+      e_set("__topic__", "internal_server_error_event`"),
+      e_output("target3")
+    )
+  )
+  ```
 
 
 * 存储目标在 **创建数据加工规则** 页面中，配置存储目标详情参数说明请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.8.6b8b50a6egnakp#task-1181217)。![](/img/dataprocessdemo/p58874.png)
@@ -103,36 +103,36 @@ e_switch(
 
 * 加工结果
 
-```
-## http_status为2XX的日志，分发到账号A下logstore0中。
-__topic__:  success_event
-http_host:  m1.abcd.com
-http_status:  200
-request_method:  GET
-request_uri:  /pic/icon.jpg
-scheme:  https
-## http_status为3XX的日志，分发到账号B中的Logstore1中。
-__topic__:  redirection_event
-http_host:  m2.abcd.com
-http_status:  301
-request_method:  POST
-request_uri:  /data/data.php
-scheme:  http
-##http_status为4XX的日志，分发到账号B中的Logstore2中。
-__topic__: unauthorized_event
-http_host:  m3.abcd.com
-http_status:  404
-request_method:  GET
-request_uri:  /category/abc/product_id
-scheme:  https
-## http_status为5XX的日志，分发到账号B中的Logstore3中。
-__topic__: internal_server_error_event
-http_host:  m4.abcd.com
-http_status:  504
-request_method:  GET
-request_uri:  /data/index.html
-scheme:  https
-```
+  ```
+  ## http_status为2XX的日志，分发到账号A下logstore0中。
+  __topic__:  success_event
+  http_host:  m1.abcd.com
+  http_status:  200
+  request_method:  GET
+  request_uri:  /pic/icon.jpg
+  scheme:  https
+  ## http_status为3XX的日志，分发到账号B中的Logstore1中。
+  __topic__:  redirection_event
+  http_host:  m2.abcd.com
+  http_status:  301
+  request_method:  POST
+  request_uri:  /data/data.php
+  scheme:  http
+  ##http_status为4XX的日志，分发到账号B中的Logstore2中。
+  __topic__: unauthorized_event
+  http_host:  m3.abcd.com
+  http_status:  404
+  request_method:  GET
+  request_uri:  /category/abc/product_id
+  scheme:  https
+  ## http_status为5XX的日志，分发到账号B中的Logstore3中。
+  __topic__: internal_server_error_event
+  http_host:  m4.abcd.com
+  http_status:  504
+  request_method:  GET
+  request_uri:  /data/index.html
+  scheme:  https
+  ```
 
 场景2：简单场景动态分发
 ---------------------------------
@@ -143,40 +143,40 @@ scheme:  https
 
 * 原始日志
 
-```
-__tag__:type: dynamic_dispatch
-host:  a.b.c.com
-project: Project1
-logstore: Logstore1
-http_status:  200
-request_method:  GET
-request_uri:  /pic/icon.jpg
-scheme:  https
-__tag__:type: dynamic_dispatch
-host:  m.n.q.com
-project: Project1
-logstore: Logstore2
-http_status:  301
-request_method:  POST
-request_uri:  /data/data.php
-scheme:  http
-__tag__:type:  dynamic_dispatch
-host:   e.f.d.com
-project: Project2
-logstore: Logstore1
-http_status:  404
-request_method:  GET
-request_uri:  /category/abc/product_id
-scheme:  https
-__tag__:type: dynamic_dispatch
-host:   p.q.t.com
-project: Project2
-logstore: Logstore2
-http_status:  504
-request_method:  GET
-request_uri:  /data/index.html
-scheme:  https
-```
+  ```
+  __tag__:type: dynamic_dispatch
+  host:  a.b.c.com
+  project: Project1
+  logstore: Logstore1
+  http_status:  200
+  request_method:  GET
+  request_uri:  /pic/icon.jpg
+  scheme:  https
+  __tag__:type: dynamic_dispatch
+  host:  m.n.q.com
+  project: Project1
+  logstore: Logstore2
+  http_status:  301
+  request_method:  POST
+  request_uri:  /data/data.php
+  scheme:  http
+  __tag__:type:  dynamic_dispatch
+  host:   e.f.d.com
+  project: Project2
+  logstore: Logstore1
+  http_status:  404
+  request_method:  GET
+  request_uri:  /category/abc/product_id
+  scheme:  https
+  __tag__:type: dynamic_dispatch
+  host:   p.q.t.com
+  project: Project2
+  logstore: Logstore2
+  http_status:  504
+  request_method:  GET
+  request_uri:  /data/index.html
+  scheme:  https
+  ```
 
 
 
@@ -190,9 +190,13 @@ scheme:  https
 
 * 加工规则
 
-      e_output(project=v("project"), logstore=v("logstore"), tags={"type": "dynamic_dispatch"})
-
-
+  ```python
+  e_output(
+    project=v("project"),
+    logstore=v("logstore"),
+    tags={"type": "dynamic_dispatch"}
+  )
+  ```
 
   e_output函数动态提取project字段和logstore字段的值进行日志分发。
 
@@ -202,47 +206,46 @@ scheme:  https
   ![](/img/dataprocessdemo/p135945.png)
 
 
-
 * 加工结果
 
-```
-## 分发到Project1下的Logstore1中。
-__tag__:type: dynamic_dispatch
-host:  a.b.c.com
-project: Project1
-logstore: Logstore1
-http_status:  200
-request_method:  GET
-request_uri:  /pic/icon.jpg
-scheme:  https
-## 分发到Project1下的Logstore2中。
-__tag__:type: dynamic_dispatch
-host:  m.n.q.com
-project: Project1
-logstore: Logstore2
-http_status:  301
-request_method:  POST
-request_uri:  /data/data.php
-scheme:  http
-## 分发到Project2下的Logstore1中。
-__tag__:type:  dynamic_dispatch
-host:   e.f.d.com
-project: Project2
-logstore: Logstore1
-http_status:  404
-request_method:  GET
-request_uri:  /category/abc/product_id
-scheme:  https
-## 分发到Project2下的Logstore2中。
-__tag__:type: dynamic_dispatch
-host:   p.q.t.com
-project: Project2
-logstore: Logstore2
-http_status:  504
-request_method:  GET
-request_uri:  /data/index.html
-scheme:  https
-```
+  ```
+  ## 分发到Project1下的Logstore1中。
+  __tag__:type: dynamic_dispatch
+  host:  a.b.c.com
+  project: Project1
+  logstore: Logstore1
+  http_status:  200
+  request_method:  GET
+  request_uri:  /pic/icon.jpg
+  scheme:  https
+  ## 分发到Project1下的Logstore2中。
+  __tag__:type: dynamic_dispatch
+  host:  m.n.q.com
+  project: Project1
+  logstore: Logstore2
+  http_status:  301
+  request_method:  POST
+  request_uri:  /data/data.php
+  scheme:  http
+  ## 分发到Project2下的Logstore1中。
+  __tag__:type:  dynamic_dispatch
+  host:   e.f.d.com
+  project: Project2
+  logstore: Logstore1
+  http_status:  404
+  request_method:  GET
+  request_uri:  /category/abc/product_id
+  scheme:  https
+  ## 分发到Project2下的Logstore2中。
+  __tag__:type: dynamic_dispatch
+  host:   p.q.t.com
+  project: Project2
+  logstore: Logstore2
+  http_status:  504
+  request_method:  GET
+  request_uri:  /data/index.html
+  scheme:  https
+  ```
 
 
 场景3：跨账号动态分发
@@ -254,36 +257,36 @@ scheme:  https
 
 * 原始日志
 
-```
-host:  a.b.c.com
-project: Project1
-logstore: Logstore1
-http_status:  200
-request_method:  GET
-request_uri:  /pic/icon.jpg
-scheme:  https
-host:  m.n.q.com
-project: Project1
-logstore: Logstore2
-http_status:  301
-request_method:  POST
-request_uri:  /data/data.php
-scheme:  http
-host:   e.f.d.com
-project: Project2
-logstore: Logstore1
-http_status:  404
-request_method:  GET
-request_uri:  /category/abc/product_id
-scheme:  https
-host:   p.q.t.com
-project: Project2
-logstore: Logstore2
-http_status:  504
-request_method:  GET
-request_uri:  /data/index.html
-scheme:  https
-```
+  ```
+  host:  a.b.c.com
+  project: Project1
+  logstore: Logstore1
+  http_status:  200
+  request_method:  GET
+  request_uri:  /pic/icon.jpg
+  scheme:  https
+  host:  m.n.q.com
+  project: Project1
+  logstore: Logstore2
+  http_status:  301
+  request_method:  POST
+  request_uri:  /data/data.php
+  scheme:  http
+  host:   e.f.d.com
+  project: Project2
+  logstore: Logstore1
+  http_status:  404
+  request_method:  GET
+  request_uri:  /category/abc/product_id
+  scheme:  https
+  host:   p.q.t.com
+  project: Project2
+  logstore: Logstore2
+  http_status:  504
+  request_method:  GET
+  request_uri:  /data/index.html
+  scheme:  https
+  ```
 
 
 * 分发需求根据日志中project和logstore字段的值的不同，进行动态分发，目标Project属于不同的账号，Project1（包含两个Logstore：Logstore1、Lostore2）属于账号A，Project2（包含两个Logstore：Logstore1、Lostore2）属于账号B。
@@ -292,9 +295,13 @@ scheme:  https
 
 * 加工规则
 
-```
-e_switch(e_match(v("project"), "Project1"), e_output(name="target1", project=v("project"), logstore=v("logstore")),
-            e_match(v("project"), "Project2"), e_output(name="target2", project=v("project"), logstore=v("logstore")))
+```python
+e_switch(
+    e_match(v("project"), "Project1"),
+	e_output(name="target1", project=v("project"), logstore=v("logstore")),
+    e_match(v("project"), "Project2"),
+	e_output(name="target2", project=v("project"), logstore=v("logstore"))
+)
 ```
 
 
@@ -316,40 +323,40 @@ e_switch(e_match(v("project"), "Project1"), e_output(name="target1", project=v("
 
 * 加工结果
 
-```
-## 分发到账号A的Project1下的Logstore1中。
-host:  a.b.c.com
-project: Project1
-logstore: Logstore1
-http_status:  200
-request_method:  GET
-request_uri:  /pic/icon.jpg
-scheme:  https
-## 分发到账号A的Project1下的Logstore2中。
-host:  m.n.q.com
-project: Project1
-logstore: Logstore2
-http_status:  301
-request_method:  POST
-request_uri:  /data/data.php
-scheme:  http
-## 分发到账号B的Project2下的Logstore1中。
-host:   e.f.d.com
-project: Project2
-logstore: Logstore1
-http_status:  404
-request_method:  GET
-request_uri:  /category/abc/product_id
-scheme:  https
-## 分发到账号B的Project2下的Logstore2中
-host:   p.q.t.com
-project: Project2
-logstore: Logstore2
-http_status:  504
-request_method:  GET
-request_uri:  /data/index.html
-scheme:  https
-```
+	```
+	## 分发到账号A的Project1下的Logstore1中。
+	host:  a.b.c.com
+	project: Project1
+	logstore: Logstore1
+	http_status:  200
+	request_method:  GET
+	request_uri:  /pic/icon.jpg
+	scheme:  https
+	## 分发到账号A的Project1下的Logstore2中。
+	host:  m.n.q.com
+	project: Project1
+	logstore: Logstore2
+	http_status:  301
+	request_method:  POST
+	request_uri:  /data/data.php
+	scheme:  http
+	## 分发到账号B的Project2下的Logstore1中。
+	host:   e.f.d.com
+	project: Project2
+	logstore: Logstore1
+	http_status:  404
+	request_method:  GET
+	request_uri:  /category/abc/product_id
+	scheme:  https
+	## 分发到账号B的Project2下的Logstore2中
+	host:   p.q.t.com
+	project: Project2
+	logstore: Logstore2
+	http_status:  504
+	request_method:  GET
+	request_uri:  /data/index.html
+	scheme:  https
+	```
 
 场景4：复杂场景动态分发
 ---------------------------------
@@ -359,13 +366,13 @@ scheme:  https
 针对上述需求，您可以通过日志服务数据加工和查询分析功能解决。
 
 * 原始日志
-```
-__source__:127.0.0.0
-__tag__:__receive_time__: 1589541467
-ip:10.0.0.0
-request_method: GET
-user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0
-```
+	```
+	__source__:127.0.0.0
+	__tag__:__receive_time__: 1589541467
+	ip:10.0.0.0
+	request_method: GET
+	user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101 Firefox/50.0
+	```
 
 
 * 分发需求
@@ -379,12 +386,12 @@ user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:50.0) Gecko/20100101
 
 
 * 加工规则本案例中，您可以使用[ua_parse_os](https://help.aliyun.com/document_detail/167921.htm?spm=a2c4g.11186623.2.13.6b8b50a6egnakp#section-2ut-enh-o37)函数解析user_agent字段，使用[dct_get](https://help.aliyun.com/document_detail/129399.htm?spm=a2c4g.11186623.2.14.6b8b50a6egnakp#section-yo1-zb0-en0)函数获取请求头中的操作系统信息，再使用[e_set](https://help.aliyun.com/document_detail/125487.htm?spm=a2c4g.11186623.2.15.6b8b50a6egnakp#section-7cr-8gz-by2)函数新增一个字段os，值为操作系统信息，然后使用e_output函数和条件函数进行动态分发。
-```
-e_set("os", dct_get(ua_parse_os(v("user_agent")),"family"))
-e_if(e_search("os==Windows"),e_output(name="target1"))
-e_if(e_search("os=iOS"),e_output(name="target2"))
-e_if(e_search("os==Android"),e_output(name="target3"))
-```
+	```
+	e_set("os", dct_get(ua_parse_os(v("user_agent")),"family"))
+	e_if(e_search("os==Windows"),e_output(name="target1"))
+	e_if(e_search("os=iOS"),e_output(name="target2"))
+	e_if(e_search("os==Android"),e_output(name="target3"))
+	```
 
 
 

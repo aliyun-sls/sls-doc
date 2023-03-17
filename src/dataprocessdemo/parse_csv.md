@@ -30,7 +30,7 @@
 * 解决方案
 
   1. 如果`_program_`字段值是 *access* ，则通过e_psv函数解析`content`内容，并删除原始字段`content`。
-		```
+		```python
 		e_if(
 			e_search("_program_==access"),
 			e_compose(
@@ -86,7 +86,7 @@
 
 
   2. 使用`e_regex`函数将`request`字段解析成`request_method`、`request`、`http_version`。
-		```
+		```python
 		e_regex(
 			"request",
 			r"^(?P<request_method>\w+) (?P<request>.+) (?P<http_version>\w+/[\d\.]+)$"
@@ -101,7 +101,7 @@
 
 
   3. 对`http_referer`做url解码。
-		```
+		```python
 		e_set("http",url_decoding("http_referer"))
 		```
        返回的日志为：
@@ -111,7 +111,7 @@
 
 
   4. 对时间做格式化处理。
-		```
+		```python
 		e_set(
 			"time_local",
 			dt_strptime(v("time"),"%d/%b/%Y:%H:%M:%S +0800")
@@ -124,7 +124,7 @@
 
 
   5. 综上解决方案具体如下：
-		```
+		```python
 		e_if(
 			e_search("_program_==access"),
 			e_compose(
@@ -210,7 +210,7 @@
 
 * 解决方案 在`content`中的`GET /alyun/htsw/?ad=5|8|6|11| HTTP/1.1`，如果使用`e_csv`解析不出正确的字段。需要先把这一块提取出来，然后在`content`中把这块内容替换成空。
 
-	```
+	```python
 	e_if(
 		e_search("not remote_addr: *"),
 		e_compose(

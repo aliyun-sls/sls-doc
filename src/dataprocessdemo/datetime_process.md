@@ -49,7 +49,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
     * SLS DSL编排
 
-      ```
+      ```python
       e_set("time_diff", op_sub(v("time1"), v("time2")))
       ```
 
@@ -88,10 +88,6 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 * 专用函数智能转换函数无法满足用户的全部需求。如对于用户自定义的特殊日期格式，`dt_parse`等智能转换函数无法自动解析日志，需要使用`dt_strptime`函数来进行解析指定格式。
 
 
-
-
-
-
 **说明** 了解更多日期时间处理和转换函数，请参见[日期时间函数](https://help.aliyun.com/document_detail/125409.htm?spm=a2c4g.11186623.2.9.169c3cb8rqBjjU#concept-1130519)和[转换函数](https://help.aliyun.com/document_detail/125403.htm?spm=a2c4g.11186623.2.10.169c3cb8rqBjjU#concept-1130510)。
 
 ## 日期时间对象和Unix时间戳的相互转换
@@ -115,7 +111,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set("new_time", dt_parse(v("time"), tz="Asia/Shanghai"))
       ```
 
@@ -151,7 +147,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set(
             "Shanghai_timestamp",
             dt_parsetimestamp(
@@ -203,7 +199,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set("timestamp1", dt_parsetimestamp(v("China_time")))
       e_set("timestamp2", dt_parsetimestamp(v("America_time")))
       e_set("timestamp3", dt_parsetimestamp(v("UTC_time")))
@@ -220,9 +216,6 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
       timestamp3: 1559472086
       ```
 
-
-
-
 * 子场景3：自定义的不带时区的特殊日期格式转换成Unix时间戳。
 
   * 原始日志
@@ -235,7 +228,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set(
             "time3",
             dt_parsetimestamp(v("time1"))
@@ -284,7 +277,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set(
             "timestamp",
             dt_parsetimestamp(
@@ -309,9 +302,6 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
       ```
 
 
-
-
-
 * 场景2：不带时区的日期时间字符串转换成带时区的日期时间对象。
 
   * 原始日志
@@ -324,7 +314,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set("new_time", dt_parse(v("time"), tz="Asia/Shanghai"))
       ```
 
@@ -353,7 +343,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       e_set(
             "new_time",
             dt_astimezone(v("time"),
@@ -378,7 +368,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * `dt_add`函数的参数如下：
 
-      ```
+      ```python
       dt_add(
             字段名, dt1=None, dt2=None,
             year(s)=None, month(s)=None,
@@ -408,7 +398,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排1
 
-      ```
+      ```python
       e_set("time2", dt_add(v("time1"), year=2018))
       ```
 
@@ -425,7 +415,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排2
 
-      ```
+      ```python
       e_set("time2", dt_add(v("time1"), years=2018))
       ```
 
@@ -452,7 +442,7 @@ SLS DSL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
   * SLS DSL编排
 
-      ```
+      ```python
       #time1的下一个星期一对应的日期
       e_set(
             "nex_Monday",

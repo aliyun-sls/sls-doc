@@ -27,21 +27,21 @@ IPIP.NET提供全球IP地址数据库，可以帮助您精确查找、确定全�
 
 * 加工规则
 
-```
-e_set("geo",
-  geo_parse(v("ip"),
-    ip_db=res_oss_file(
-      endpoint='http://oss-cn-hangzhou.aliyuncs.com',
-      ak_id=res_local("AK_ID"),
-      ak_key=res_local("AK_KEY"),
-      bucket='your bucket',
-      file='ipipfree.ipdb',
-      format='binary',
-      change_detect_interval=200
+  ```python
+  e_set("geo",
+    geo_parse(v("ip"),
+      ip_db=res_oss_file(
+        endpoint='http://oss-cn-hangzhou.aliyuncs.com',
+        ak_id=res_local("AK_ID"),
+        ak_key=res_local("AK_KEY"),
+        bucket='your bucket',
+        file='ipipfree.ipdb',
+        format='binary',
+        change_detect_interval=200
+      )
     )
   )
-)
-```
+  ```
 
 
   res_oss_file函数重要字段说明如下表所示。

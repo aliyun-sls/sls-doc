@@ -39,7 +39,7 @@ OSS是阿里云提供的海量、安全、低成本、高可靠的云存储服�
 
 * 加工规则 通过日志服务Logstore中的account字段和OSS CSV文件中的account字段进行匹配，只有account字段的值完全相同，才能匹配成功。匹配成功后，返回OSS CSV文件中的nickname字段和字段值，与Logstore中的数据拼接，生成新的数据。
 
-  ```
+  ```python
   e_table_map(
     tab_parse_csv(
       res_oss_file(

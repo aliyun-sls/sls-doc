@@ -8,7 +8,7 @@
 
 
 * 日志样例
-   ```
+   ```python
    __source__:  1.2.3.4
    __topic__:
    content:{

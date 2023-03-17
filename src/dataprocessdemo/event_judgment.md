@@ -297,7 +297,13 @@
   为所有**status**字段值为200，且**request_method**字段值为GET，且**header_length**，且**body_length**的字段值之和小于等于1000的日志事件，添加一个新字段**type**，其值为normal。
   * SLS DSL编排
       ```python
-      e_if(op_and(e_search('stat  us: 200 and request_method: GET'), op_le(op_sum(v("header_length"), v("body_length")), 1000)), e_set("type", "normal"))
+      e_if(
+        op_and(
+          e_search('stat  us: 200 and request_method: GET'),
+          op_le(op_sum(v("header_length"), v("body_length")), 1000)
+        ),
+        e_set("type", "normal")
+      )
       ```
       **说明** 在复杂的逻辑场景下，您可采用**e_search**和其他表达式函数的组合完成SLS DSL编排。
   * 加工结果

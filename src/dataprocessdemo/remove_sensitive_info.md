@@ -16,28 +16,28 @@
 
   * 原始日志
 
-      ```
-      iphone: 13012345678
-      ```
+    ```
+    iphone: 13012345678
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "sec_iphone",
-            regex_replace(v('iphone'),
-            r"(\d{0,3})\d{4}(\d{4})",
-            replace=r"\1****\2")
-      )
-      ```
+    ```python
+    e_set(
+        "sec_iphone",
+        regex_replace(v('iphone'),
+        r"(\d{0,3})\d{4}(\d{4})",
+        replace=r"\1****\2")
+    )
+    ```
 
 
   * 加工结果
-      ```
-      iphone: 13012345678
-      sec_iphone: 130****5678
-      ```
+    ```
+    iphone: 13012345678
+    sec_iphone: 130****5678
+    ```
 
 ## 场景2：银行卡信息脱敏
 
@@ -48,29 +48,30 @@
 
   * 原始日志
 
-      ```
-      content: bank number is 491648411333978312 and credit card number is 4916484113339780
-      ```
+    ```
+    content: bank number is 491648411333978312 and credit card number is 4916484113339780
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "bank_number",
-            regex_replace(
-                  v('content'),
-                  r'([1-9]{1})(\d{11}|\d{13}|\d{14})(\d{4})', replace=r"****\3"
-            )
-      )
-      ```
+    ```python
+    e_set(
+        "bank_number",
+        regex_replace(
+                v('content'),
+                r'([1-9]{1})(\d{11}|\d{13}|\d{14})(\d{4})',
+                replace=r"****\3"
+        )
+    )
+    ```
 
   * 加工结果
 
-      ```
-      content: bank number is 491648411333978312 and credit card number is 4916484113339780
-      bank_number: bank number is ****978312 and credit card number is ****9780
-      ```
+    ```
+    content: bank number is 491648411333978312 and credit card number is 4916484113339780
+    bank_number: bank number is ****978312 and credit card number is ****9780
+    ```
 
 ## 场景3：邮箱地址脱敏
 
@@ -82,31 +83,31 @@
 
   * 原始日志
 
-      ```
-      content: email is twiss2345@aliyun.com
-      ```
+    ```
+    content: email is twiss2345@aliyun.com
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "email_encrypt",
-            regex_replace(
-                  v('content'),
-                  r'[A-Za-z\d]+([-_.][A-Za-z\d]+)*(@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4})',
-                  replace=r"****\2"
-            )
-      )
-      ```
+    ```python
+    e_set(
+        "email_encrypt",
+        regex_replace(
+                v('content'),
+                r'[A-Za-z\d]+([-_.][A-Za-z\d]+)*(@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4})',
+                replace=r"****\2"
+        )
+    )
+    ```
 
 
   * 处理后数据
 
-      ```
-      content: email is twiss2345@aliyun.com
-      email_encrypt: email is ****@aliyun.com
-      ```
+    ```
+    content: email is twiss2345@aliyun.com
+    email_encrypt: email is ****@aliyun.com
+    ```
 
 ## 场景4：AK脱敏
 
@@ -116,30 +117,28 @@
 
   * 原始日志
 
-      ```
-      content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
-      ```
-
-
+    ```
+    content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
+    ```
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "akid_encrypt",
-            regex_replace(v('content'),
-            r'([a-zA-Z0-9]{4})(([a-zA-Z0-9]{26})|([a-zA-Z0-9]{12}))',
-            replace=r"\1****")
-      )
-      ```
+    ```python
+    e_set(
+        "akid_encrypt",
+        regex_replace(v('content'),
+        r'([a-zA-Z0-9]{4})(([a-zA-Z0-9]{26})|([a-zA-Z0-9]{12}))',
+        replace=r"\1****")
+    )
+    ```
 
 
   * 加工结果
 
-      ```
-      content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
-      akid_encrypt: ak id is rDhc**** and ak key is XQr1****
-      ```
+    ```
+    content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
+    akid_encrypt: ak id is rDhc**** and ak key is XQr1****
+    ```
 
 ## 场景5：IP脱敏
 
@@ -150,32 +149,32 @@
 
   * 原始日志
 
-      ```
-      content: ip is 192.168.1.1
-      ```
+    ```
+    content: ip is 192.168.1.1
+    ```
 
 
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "ip_encrypt",
-            regex_replace(
-                  v('content'),
-                  grok('(%{IP})'),
-                  replace=r"****"
-            )
-      )
-      ```
+    ```python
+    e_set(
+        "ip_encrypt",
+        regex_replace(
+                v('content'),
+                grok('(%{IP})'),
+                replace=r"****"
+        )
+    )
+    ```
 
 
   * 加工结果
 
-      ```
-      content: ip is 192.168.1.1
-      ip_encrypt: ip is ****
-      ```
+    ```
+    content: ip is 192.168.1.1
+    ip_encrypt: ip is ****
+    ```
 
 ## 场景6：身份证脱敏
 
@@ -187,31 +186,31 @@
 
   * 原始日志
 
-      ```
-      content: Id card is 11010519491231002X
-      ```
+    ```
+    content: Id card is 11010519491231002X
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "id_encrypt",
-            regex_replace(
-                  v('id_card'content'),
-                  grok('(%{CHINAID})'),
-                  replace=r"\1****"
-            )
-      )
-      ```
+    ```python
+    e_set(
+        "id_encrypt",
+        regex_replace(
+                v('id_card'content'),
+                grok('(%{CHINAID})'),
+                replace=r"\1****"
+        )
+    )
+    ```
 
 
   * 加工结果
 
-      ```
-      content: Id card is 11010519491231002X
-      id_encrypt: idcard is 110105****
-      ```
+    ```
+    content: Id card is 11010519491231002X
+    id_encrypt: idcard is 110105****
+    ```
 
 ## 场景7：网址脱敏
 
@@ -223,25 +222,25 @@
 
   * 原始日志
 
-      ```
-      url: https://www.aliyun.com/sls?logstore
-      ```
+    ```
+    url: https://www.aliyun.com/sls?logstore
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set("base64_url",base64_encoding(v("url")))
-      ```
+    ```
+    e_set("base64_url",base64_encoding(v("url")))
+    ```
 
 
 
   * 加工结果
 
-      ```
-      url: https://www.aliyun.com/sls?logstore
-      base64_url: aHR0cHM6Ly93d3cuYWxpeXVuLmNvbS9zbHM/bG9nc3RvcmU=
-      ```
+    ```
+    url: https://www.aliyun.com/sls?logstore
+    base64_url: aHR0cHM6Ly93d3cuYWxpeXVuLmNvbS9zbHM/bG9nc3RvcmU=
+    ```
 
     **说明** 如果想对`base64_url`进行解码，可以使用`base64_decoding(v("base64_url"))`DSL语法规则。
 
@@ -257,24 +256,24 @@
 
   * 原始日志
 
-      ```
-      orderId: 15121412314
-      ```
+    ```
+    orderId: 15121412314
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set("md5_orderId",md5_encoding(v("orderId")))
-      ```
+    ```
+    e_set("md5_orderId",md5_encoding(v("orderId")))
+    ```
 
 
   * 加工结果
 
-      ```
-      orderId: 15121412314
-      md5_orderId: 852751f9aa48303a5691b0d020e52a0a
-      ```
+    ```
+    orderId: 15121412314
+    md5_orderId: 852751f9aa48303a5691b0d020e52a0a
+    ```
 
 
 ## 场景9：字符串脱敏
@@ -287,28 +286,28 @@
 
   * 原始日志
 
-      ```
-      data: message level is info_
-      ```
+    ```
+    data: message level is info_
+    ```
 
 
   * DSL编排规则
 
-      ```
-      e_set(
-            "data_translate",
-            str_translate(
-                  v("data"),
-                  "aeiou",
-                  "12345"
-            )
-      )
-      ```
+    ```python
+    e_set(
+        "data_translate",
+        str_translate(
+                v("data"),
+                "aeiou",
+                "12345"
+        )
+    )
+    ```
 
 
   * 加工结果
 
-      ```
-      data: message level is info
-      data_translate: m2ss1g2 l2v2l 3s 3nf4
-      ```
+    ```
+    data: message level is info
+    data_translate: m2ss1g2 l2v2l 3s 3nf4
+    ```

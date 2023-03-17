@@ -56,7 +56,7 @@
 **说明**
   * 日志字段的值和RDS MySQL数据库表字段的值进行等值匹配时，如果RDS MySQL数据库表字段存在多个相同的值（例如RDS MySQL数据库表有多个值为1的cid字段。），e_table_map函数只获取匹配到的第一行数据。
   * e_table_map函数只支持单行匹配，如果您要实现多行匹配，将匹配到的数据组合成新的日志，可使用e_search_table_map函数，详情请参见[结合e_search_map_table函数进行数据富化](https://help.aliyun.com/document_detail/135243.html#section-e98-4bk-03e)。
-    ```
+    ```python
     e_table_map(
       res_rds_mysql(
         address="rds-host",

@@ -43,7 +43,7 @@
 
 * 加工规则丢弃没有__topic__字段和__tag__:__receive_time__字段的日志。
 
-	```
+	```python
 	e_if(e_not_has("__topic__"),e_drop())
 	e_if(e_not_has("__tag__:__receive_time__"),e_drop())
 	```
@@ -67,7 +67,7 @@
 
 * 子场景1：原字段不存在或者为空时，为字段赋值。
 
-	```
+	```python
 	e_set("result", "......value......", mode="fill")
 	```
 
@@ -83,7 +83,7 @@
 
 
   * 加工规则
-	```
+	```python
 	e_set("name", "aspara2.0", mode="fill")
 	```
 
@@ -106,7 +106,7 @@
 
   * 加工规则使用GROK函数捕获提取content字段中的IP地址。
 
-	```
+	```python
 	e_regex("content", grok(r"(%{IP})"),"addr")
 	```
 
@@ -120,7 +120,7 @@
 
 
 * 子场景3：为多个字段赋值。
-		```
+		```python
 		e_set("k1", "v1", "k2", "v2", "k3", "v3", ......)
 		```
 
@@ -139,7 +139,7 @@
 
   * 加工规则为__topic__字段、__tag__字段和__receive_time__字段赋值。
 
-	```
+	```python
 	e_set(
 		"__topic__","app",
 		"__tag__","stu",
@@ -177,7 +177,7 @@
 
 * 加工规则首先判断content字段值是否为 *123* ，如果是，则删除age和name字段，再将content字段重命名为ctx。
 
-	```
+	```python
 	e_if(
 		e_search("content==123"),
 		e_compose(
@@ -218,7 +218,7 @@
 
   * 加工规则
 
-	```
+	```python
 	e_set("d",op_add(v("a"), v("b")))
 	e_set("e",op_add(ct_int(v("a")), ct_int(v("b"))))
 	```
@@ -246,7 +246,7 @@
 
   * 加工规则因为v("a")和v("b")都是字符串类型，而op_mul函数的第二个参数只能接收数值类型，所以您需要通过ct_int函数将字符串转化为整型，再传递给op_mul函数。
 
-	```
+	```python
 	e_set("c",
 		op_mul(ct_int(v("a")),
 			ct_int(v("b"))
@@ -282,7 +282,7 @@
 
   * 加工规则将time1表示的日期时间转化为Unix时间戳。
 
-	```
+	```python
 	e_set("time1", "2019-06-03 2:41:26")
 	e_set("time2",
 		dt_totimestamp(
@@ -291,7 +291,7 @@
 	)
 	```
 	或
-	```
+	```python
 	e_set(
 		"time2",
 		dt_parsetimestamp(v("time1"))
@@ -320,7 +320,7 @@
 
 * 加工规则
 
-	```
+	```python
 	e_set("data_len", op_len(v("data", default="")))
 	```
 
@@ -340,7 +340,7 @@
 
 * e_if函数
 
-	```
+	```python
 	e_if(条件1, 操作1, 条件2, 操作2, 条件3, 操作3, ....)
 	```
 
@@ -348,7 +348,7 @@
 
 * e_switch函数e_switch函数是条件与操作的配对组合。依次根据条件进行判断，满足条件的进行对应操作，然后直接返回操作结果。不满足条件的不进行对应操作，直接进行下一个条件判断。如果没有满足任一条件并且配置了default参数，则执行default配置的操作并返回。
 
-	```
+	```python
 	e_switch(条件1, 操作1, 条件2, 操作2, 条件3, 操作3, ...., default=None)
 	```
 
@@ -372,7 +372,7 @@
 
   * 加工规则
 
-	```
+	```python
 	e_if(
 		e_match("status1", "200"),
 		e_set("status1_info", "normal"),
@@ -396,7 +396,7 @@
 
   * 加工规则
 
-	```
+	```python
 	e_switch(
 		e_match("status1", "200"),
 		e_set("status1_info", "normal"),

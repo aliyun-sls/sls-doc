@@ -13,46 +13,46 @@
 
   * 用于存储个人信息的Logstore（user_logstore）
 
-      ```
-      topic:xxx
-      city:xxx
-      cid:12345
-      name:maki
-      topic:xxx
-      city:xxx
-      cid:12346
-      name:vicky
-      topic:xxx
-      city:xxx
-      cid:12347
-      name:mary
-      ```
+	```
+	topic:xxx
+	city:xxx
+	cid:12345
+	name:maki
+	topic:xxx
+	city:xxx
+	cid:12346
+	name:vicky
+	topic:xxx
+	city:xxx
+	cid:12347
+	name:mary
+	```
 
 
   * 用于存储入住信息的Logstore（check-in_logstore）
 
-      ```
-      time:1567038284
-      status:check in
-      cid:12345
-      name:maki
-      room_number:1111
-      time:1567038284
-      status:check in
-      cid:12346
-      name:vicky
-      room_number:2222
-      time:1567038500
-      status:check in
-      cid:12347
-      name:mary
-      room_number:3333
-      time:1567038500
-      status:leave
-      cid:12345
-      name:maki
-      room_number:1111
-      ```
+	```
+	time:1567038284
+	status:check in
+	cid:12345
+	name:maki
+	room_number:1111
+	time:1567038284
+	status:check in
+	cid:12346
+	name:vicky
+	room_number:2222
+	time:1567038500
+	status:check in
+	cid:12347
+	name:mary
+	room_number:3333
+	time:1567038500
+	status:leave
+	cid:12345
+	name:maki
+	room_number:1111
+	```
 
 
 * 加工规则
@@ -67,25 +67,25 @@
 
   * e_table_map函数通过两个Logstore中相同的cid字段进行匹配，只有cid字段的值完全相同，才能匹配成功。匹配成功后，返回Logstore（check-in_logstore）中的room_number字段和字段值，与Logstore（check-in_logstore）中的数据拼接，生成新的数据。
 
-      ```
-      e_table_map(
-            res_log_logstore_pull(endpoint, ak_id, ak_secret, project,
-                  logstore, fields=["cid","room_number"],
-                  from_time="begin",
-            ), "cid","room_number")
-      ```
+	```python
+	e_table_map(
+		res_log_logstore_pull(endpoint, ak_id, ak_secret, project,
+				logstore, fields=["cid","room_number"],
+				from_time="begin",
+		), "cid","room_number")
+	```
 
 
   * e_search_table_map函数使用e_search_table_map函数对Logstore（check-in_logstore）和Logstore（user_logstore）做搜索匹配，搜索Logstore（check-in_logstore）中cid为12346的数据，返回该数据中的room_number字段和字段值，与Logstore（user_logstore）中的数据拼接，生成新的数据。
 
-      ```
-      e_search_table_map(
-            res_log_logstore_pull(endpoint, ak_id,
-                  ak_secret, project, logstore,
-                  fields=["cid","room_number"],
-                  from_time="begin",
-            ), "cid=12346","room_number")
-      ```
+	```python
+	e_search_table_map(
+		res_log_logstore_pull(endpoint, ak_id,
+				ak_secret, project, logstore,
+				fields=["cid","room_number"],
+				from_time="begin",
+		), "cid=12346","room_number")
+	```
 
 
 
@@ -94,34 +94,34 @@
 
   * e_table_map函数
 
-      ```
-      topic:xxx
-      city:xxx
-      cid:12345
-      name:maki
-      room_nuber:1111
-      topic:xxx
-      city:xxx
-      cid:12346
-      name:vicky
-      room_number:2222
-      topic:xxx
-      city:xxx
-      cid:12347
-      name:mary
-      room_number:3333
-      ```
+	```
+	topic:xxx
+	city:xxx
+	cid:12345
+	name:maki
+	room_nuber:1111
+	topic:xxx
+	city:xxx
+	cid:12346
+	name:vicky
+	room_number:2222
+	topic:xxx
+	city:xxx
+	cid:12347
+	name:mary
+	room_number:3333
+	```
 
 
   * e_search_table_map函数
 
-      ```
-      topic:xxx
-      city:xxx
-      cid:12346
-      name:vicky
-      room_number:2222
-      ```
+	```python
+	topic:xxx
+	city:xxx
+	cid:12346
+	name:vicky
+	room_number:2222
+	```
 
 ## 设置黑白名单过滤数据
 
@@ -129,28 +129,28 @@
 
   * 加工规则通过fetch_include_data设置白名单，例如fetch_include_data="room_number:1111"表示在获取数据过程中，只获取room_number值为1111的数据。
 
-      ```
-      res_log_logstore_pull(endpoint, ak_id, ak_secret,
-            project, logstore,
-            ["cid","name","room_number"，"status"],
-            from_time=1567038284,
-            to_time=1567038500,
-            fetch_include_data="room_number:1111")
-      ```
+	```python
+	res_log_logstore_pull(endpoint, ak_id, ak_secret,
+		project, logstore,
+		["cid","name","room_number"，"status"],
+		from_time=1567038284,
+		to_time=1567038500,
+		fetch_include_data="room_number:1111")
+	```
 
 
   * 获取到的数据
 
-      ```
-      status: check in
-      cid:12345
-      name:maki
-      room_number:1111
-      status:leave
-      cid:12345
-      name:maki
-      room_number:1111
-      ```
+	```
+	status: check in
+	cid:12345
+	name:maki
+	room_number:1111
+	status:leave
+	cid:12345
+	name:maki
+	room_number:1111
+	```
 
 
 
@@ -159,62 +159,59 @@
 
   * 加工规则通过fetch_exclude_data设置黑名单，例如fetch_exclude_data="room_number:1111"表示在获取数据过程中，丢弃room_number值为1111的数据。
 
-      ```
-      res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
-            ["cid","name","room_number"，"status"],
-            from_time=1567038284,
-            to_time=1567038500,
-            fetch_exclude_data="room_number:1111")
-      ```
+	```python
+	res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
+		["cid","name","room_number"，"status"],
+		from_time=1567038284,
+		to_time=1567038500,
+		fetch_exclude_data="room_number:1111")
+	```
 
   * 获取到的数据
 
-      ```
-      status:check in
-      cid:12346
-      name:vicky
-      room_number:2222
-      status:check in
-      cid:12347
-      name:mary
-      room_number:3333
-      ```
-
-
-
+	```
+	status:check in
+	cid:12346
+	name:vicky
+	room_number:2222
+	status:check in
+	cid:12347
+	name:mary
+	room_number:3333
+	```
 
 
 * 同时设置黑白名单
 
   * 加工规则 同时设置黑白名单时，优先匹配黑名单，再匹配白名单。例如fetch_exclude_data="time:1567038285",fetch_include_data="status:check in"表示在数据获取过程中，先匹配time值为1567038285的数据进行丢弃，再匹配status值为check in的数据进行获取。
 
-      ```
-      res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
-            ["cid","name","room_number"，"status"],
-            from_time=1567038284,
-            to_time=1567038500,
-            fetch_exclude_data="time:1567038285",
-            fetch_include_data="status:check in")
-      ```
+	```python
+	res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
+		["cid","name","room_number"，"status"],
+		from_time=1567038284,
+		to_time=1567038500,
+		fetch_exclude_data="time:1567038285",
+		fetch_include_data="status:check in")
+	```
 
 
 
   * 获取到的数据
 
-      ```
-      status:check in
-      cid:12345
-      name:maki
-      room_number:1111
-      status:check in
-      cid:12346
-      name:vicky
-      room_number:2222
-      status:check in
-      cid:12347
-      name:mary
-      room_number:3333
-      ```
+	```
+	status:check in
+	cid:12345
+	name:maki
+	room_number:1111
+	status:check in
+	cid:12346
+	name:vicky
+	room_number:2222
+	status:check in
+	cid:12347
+	name:mary
+	room_number:3333
+	```
 
 ## 开启主键维护获取目标Logstore数据
 
@@ -230,26 +227,26 @@
 
 * 加工规则
 
-```
-res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
-      ["cid","name","room_number"，"status","time"],
-      from_time=1567038284,
-      to_time=None,
-      primary_keys="cid",
-      delete_data="status:leave")
-```
+	```python
+	res_log_logstore_pull(
+		endpoint, ak_id, ak_secret, project, logstore,
+		["cid","name","room_number"，"status","time"],
+		from_time=1567038284,
+		to_time=None,
+		primary_keys="cid",
+		delete_data="status:leave")
+	```
 
 * 获得数据name为maki的客人，最后的入住信息为status:leave表示已离开酒店，则不加工该客人的相关数据。
-
-```
-time:1567038284
-status:check in
-cid:12346
-name:vicky
-room_number:2222
-time:1567038500
-status:check in
-cid:12347
-name:mary
-room_number:3333
-```
+	```
+	time:1567038284
+	status:check in
+	cid:12346
+	name:vicky
+	room_number:2222
+	time:1567038500
+	status:check in
+	cid:12347
+	name:mary
+	room_number:3333
+	```

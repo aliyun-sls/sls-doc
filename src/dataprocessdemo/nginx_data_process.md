@@ -27,7 +27,7 @@ e_regex("content",'(?<remote_addr>[0-9:\.]*) - (?<remote_user>[a-zA-Z0-9\-_]*) \
 ## 处理时间字段
 当前提取到的localtime不易读，我们把它解析成易读的格式，会用到的以下数据加工函数：
 
-```
+```python
 # 用于设置字段值
 e_set("字段名", "固定值或表达式函数")
 
@@ -40,8 +40,17 @@ dt_strftime(日期时间表达式, "格式化字符串")
 
 实现思路，先通过 dt_strptime 将local_time的时间转化为日期时间对象，然后再通过dt_strftime将日期时间对象转化为标准的日期时间字符串。 针对Nginx local_time的转化，使用如下数据加工语句：
 
-```
-e_set("local_time", dt_strftime(dt_strptime(v("local_time"),"%d/%b/%Y:%H:%M:%S %z"),"%Y-%m-%d %H:%M:%S"))
+```python
+e_set(
+	"local_time",
+	dt_strftime(
+		dt_strptime(
+			v("local_time"),
+			"%d/%b/%Y:%H:%M:%S %z"
+		),
+		"%Y-%m-%d %H:%M:%S"
+	)
+)
 ```
 
 效果如下：
@@ -51,7 +60,7 @@ e_set("local_time", dt_strftime(dt_strptime(v("local_time"),"%d/%b/%Y:%H:%M:%S %
 ## 解析request uri
 可以看到request字段由 METHOD URI VERSION组成，我们希望对 requst字段进行抽取，获取到请求的METHOD、URI以及VERSION，并且将请求URI中的请求的参数变成字段，方便后续进行查询。可以用以下函数来做实现
 
-```
+```python
 # 使用正则将request uri抽取
 e_regex("源字段名", "正则或有命名捕获正则", "目标字段名或数组(可选)", mode="fill-auto")
 
@@ -66,7 +75,7 @@ e_kv("源字段正则或列表", sep="=", prefix="")
 ```
 
 实现语句
-```
+```python
 e_regex("request", "(?<request_method>[^\s]*) (?<request_uri>[^\s]*) (?<http_version>[^\s]*)")
 e_set("request_uri", url_decoding(v("request_uri")))
 e_kv("request_uri", prefix="uri_")
@@ -83,7 +92,7 @@ e_kv("request_uri", prefix="uri_")
 
 涉及到的数据加工函数如下：
 
-```
+```python
 # 用来做字段富化，类似sql里join的功能
 e_table_map("表格如通过tab_parse_csv(...)解析得到的",
             "源字段列表或映射列表如[('f1', 'f1_new'), ('f2', 'f2_new')]",
@@ -100,18 +109,22 @@ res_oss_file(endpoint="OSS的endpoint", ak_id="OSS的AK_ID",
 
 实际使用到的DSL语句如下
 
-```
+```python
 # http状态码映射
 e_table_map(
-      tab_parse_csv(
-           res_oss_file(endpoint="oss-cn-shanghai.aliyuncs.com",
-              ak_id='',ak_key='',
-              bucket="your_oss_bucket",
-              file="http_code.csv", format='text')),
-              [("status","code")],
-              [("alias","http_code_alias"),
-               ("description","http_code_desc"),
-               ("category","http_code_category")])
+	tab_parse_csv(
+		res_oss_file(
+			endpoint="oss-cn-shanghai.aliyuncs.com",
+			ak_id='',ak_key='',
+			bucket="your_oss_bucket",
+			file="http_code.csv", format='text'
+		)
+	),
+	[("status","code")],
+	[("alias","http_code_alias"),
+	("description","http_code_desc"),
+	("category","http_code_category")]
+)
 ```
 
 映射后的效果
@@ -123,7 +136,7 @@ e_table_map(
 
 我们想了解客户用的是什么os版本，可以通过user agent里的字段用正则匹配来判断，用到dsl语句
 
-```
+```python
 # 取某个字段的值
 v("字段名")
 
@@ -140,7 +153,7 @@ e_drop_fields("字段1", "字段2")
 
 实际用到的dsl语句
 
-```
+```python
 # 通过User Agent解析获得客户端信息
 e_set("ua",ua_parse_all(v("http_user_agent")))
 e_json("ua", fmt='full',sep='_')
@@ -154,7 +167,7 @@ e_drop_fields("ua",regex=False)
 ## 非200的日志投递到指定logstore
 
 可以使用e_output函数来做日志投递，用regex_match做字段匹配
-```
+```python
 # 条件判断if
 e_if("条件1如e_match(...)", "操作1如e_regex(...)", "条件2", "操作2", ....)
 
@@ -166,9 +179,12 @@ e_output(name="指定的目标名称")
 ```
 
 实现语句
-```
+```python
 # 分发非200的日志
-e_if(op_ne(v("http_code_alias"),"2xx"), e_output(name="img/nginx-log-bad"))
+e_if(
+	op_ne(v("http_code_alias"),"2xx"),
+	e_output(name="img/nginx-log-bad")
+)
 ```
 
 在预览里看到这个效果。（保存加工的时候，需要设置好对应project、logstore的ak信息
@@ -179,12 +195,21 @@ e_if(op_ne(v("http_code_alias"),"2xx"), e_output(name="img/nginx-log-bad"))
 ## 完整的DSL代码以及上线流程
 好了，通过一步一步的开发调试，现得到完整的DSL代码如下
 
-```
+```python
 # 通用字段抽取
 e_regex("content",'(?<remote_addr>[0-9:\.]*) - (?<remote_user>[a-zA-Z0-9\-_]*) \[(?<local_time>[a-zA-Z0-9\/ :\-]*)\] "(?<request>[^"]*)" (?<status>[0-9]*) (?<body_bytes_sent>[0-9\-]*) "(?<refer>[^"]*)" "(?<http_user_agent>[^"]*)"')
 
 # 设置localttime
-e_set("local_time", dt_strftime(dt_strptime(v("local_time"),"%d/%b/%Y:%H:%M:%S"),"%Y-%m-%d %H:%M:%S"))
+e_set(
+	"local_time",
+	dt_strftime(
+		dt_strptime(
+			v("local_time"),
+			"%d/%b/%Y:%H:%M:%S"
+		),
+		"%Y-%m-%d %H:%M:%S"
+	)
+)
 
 # uri字段抽取
 e_regex("request", "(?<request_method>[^\s]*) (?<request_uri>[^\s]*) (?<http_version>[^\s]*)")
@@ -193,15 +218,19 @@ e_kv("request_uri", prefix="uri_")
 
 # http状态码映射
 e_table_map(
-      tab_parse_csv(
-           res_oss_file(endpoint="oss-cn-shanghai.aliyuncs.com",
-              ak_id='',ak_key='',
-              bucket="ali-sls-etl-test",
-              file="http_code.csv", format='text')),
-              [("status","code")],
-              [("alias","http_code_alias"),
-               ("description","http_code_desc"),
-               ("category","http_code_category")])
+	tab_parse_csv(
+		res_oss_file(
+			endpoint="oss-cn-shanghai.aliyuncs.com",
+			ak_id='',ak_key='',
+			bucket="ali-sls-etl-test",
+			file="http_code.csv", format='text'
+		)
+	),
+	[("status","code")],
+	[("alias","http_code_alias"),
+	("description","http_code_desc"),
+	("category","http_code_category")]
+)
 
 # 通过User Agent解析获得客户端信息
 e_set("ua",ua_parse_all(v("http_user_agent")))
@@ -209,7 +238,10 @@ e_json("ua", fmt='full',sep='_')
 e_drop_fields("ua",regex=False)
 
 # 分发非200的日志
-e_if(op_ne(v("http_code_alias"),"2xx"), e_coutput(name="img/nginx-log-bad"))
+e_if(
+	op_ne(v("http_code_alias"),"2xx"),
+	e_coutput(name="img/nginx-log-bad")
+)
 ```
 
 在页面提交代码以后，保存数据加工
