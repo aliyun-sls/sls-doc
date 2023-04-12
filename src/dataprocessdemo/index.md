@@ -84,3 +84,9 @@
 | [用Hologres数据库做数据富化](pull_data_from_hologres.md) | 通过资源函数从进行Hologres数据库获取数据进行富化 |
 | [用e_table_map函数对HTTP请求返回码做数据富化](enrichment_http_data.md) | 通过e_table_map函数对HTTP请求返回码做数据富化 |
 | [过滤VPC流日志公网流量](filter_vpc_stream.md) | 通过日志服务数据加工对流日志进行公网流量过滤|
+
+## 其他
+
+| 案例名称 | 描述 |
+| -- | -- |
+| [历史数据加工](./history_data_process.md) | 历史数据加工最佳实践
