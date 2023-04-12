@@ -85,6 +85,12 @@ function getSidebar() {
         { text: '过滤VPC流日志公网流量', link: "dataprocessdemo/filter_vpc_stream.md"}
       ]
     },
+    {
+      text: '其他',
+      items: [
+        { text: '历史数据加工最佳实践', link: '/dataprocessdemo/history_data_process.md' }
+      ]
+    }
   ]
 }
 

@@ -229,7 +229,7 @@
 
   * DSL编排规则
 
-    ```
+    ```python
     e_set("base64_url",base64_encoding(v("url")))
     ```
 
@@ -263,7 +263,7 @@
 
   * DSL编排规则
 
-    ```
+    ```python
     e_set("md5_orderId",md5_encoding(v("orderId")))
     ```
 

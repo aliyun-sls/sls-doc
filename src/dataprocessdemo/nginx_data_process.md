@@ -1,7 +1,7 @@
 # Nginx日志解析
 ## Nginx原始日志
 
-通过阿里云极简模式采集了Nginx默认日志。默认的nginx 日志format如下
+通过阿里云极简模式采集了Nginx默认日志。默认的nginx日志format如下
 ```
 log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                      '$status $body_bytes_sent "$http_referer" '
@@ -11,12 +11,12 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 ![](/img/dataprocessdemo/nginx-log.png)
 
 ## 使用正则抽取基础字段
-```
+```python
 # 用于将源字段里的内容，通过正则捕获组抽取出对应的字段
 e_regex("源字段", "正则或有命名捕获正则", "目标字段名或数组(可选)")
 ```
 
-```
+```python
 # 通用字段抽取
 e_regex("content",'(?<remote_addr>[0-9:\.]*) - (?<remote_user>[a-zA-Z0-9\-_]*) \[(?<local_time>[a-zA-Z0-9\/ :\-\+]*)\] "(?<request>[^"]*)" (?<status>[0-9]*) (?<body_bytes_sent>[0-9\-]*) "(?<refer>[^"]*)" "(?<http_user_agent>[^"]*)"')
 ```
