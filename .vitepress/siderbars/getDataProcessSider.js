@@ -38,6 +38,8 @@ function getSidebar() {
         { text: '解析Nginx日志', link: '/dataprocessdemo/parse_nginx.md' },
         { text: '解析Java报错日志', link: '/dataprocessdemo/parse_java_error.md' },
         { text: '转换Log为Metric', link: '/dataprocessdemo/transform_log_to_metric.md' },
+        { text: '字符串键值对动态提取', link: '/dataprocessdemo/parse_string_kv.md'},
+        { text: '特定格式文本数据加工', link: '/dataprocessdemo/text_transform.md'},
       ]
     },
     {
@@ -52,8 +54,6 @@ function getSidebar() {
     {
       text: '特定格式处理',
       items: [
-        { text: '字符串键值对动态提取', link: '/dataprocessdemo/parse_string_kv.md'},
-        { text: '特定格式文本数据加工', link: '/dataprocessdemo/text_transform.md'},
         { text: 'JSON格式日志处理', link: '/dataprocessdemo/json_parse.md'},
         { text: 'CSV格式日志处理', link: '/dataprocessdemo/parse_csv.md'},
         { text: 'Log转Metric', link: '/dataprocessdemo/log2metric.md'}

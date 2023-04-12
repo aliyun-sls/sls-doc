@@ -36,6 +36,8 @@
 | [解析Syslog标准格式数据](./parse_sys_data.md) | 使用SLS DSL中的GROK函数高效快捷的解析不同格式的Syslog日志 |
 | [解析Nginx日志](./parse_nginx.md) | 使用正则表达式函数或GROK函数解析Nginx访问日志 |
 | [解析Java报错日志](./parse_java_error.md) | 通过数据加工解析Java错误日志 |
+| [字符串键值对动态提取](./parse_string_kv.md) | 使用不同方案提取字符串键值对 |
+| [特定格式文本数据加工](./text_transform.md) | 从工单需求，加工编排等方面介绍如何使用LOG DSL编排解决任务需求 |
 | [转换Log为Metric](./transform_log_to_metric.md) | 使用日志服务数据加工函数将Log字段转换为Metric |
 
 ## IP地址相关
@@ -53,8 +55,6 @@
 
 | 案例名称 | 描述 |
 | -- | -- |
-| [字符串键值对动态提取](./parse_string_kv.md) | 使用不同方案提取字符串键值对 |
-| [特定格式文本数据加工](./text_transform.md) | 从工单需求，加工编排等方面介绍如何使用LOG DSL编排解决任务需求 |
 | [JSON格式日志处理](./json_parse.md) | 使用数据加工功能对复杂的JSON数据进行加工 |
 | [CSV格式日志处理](parse_csv.md) | 介绍在解析Syslog或者其他文本格式时，针对数据中以特殊字符分隔的格式如何进行解析 |
 | [Log转Metric](./log2metric.md) | 使用数据加工将Log转成Metric |
