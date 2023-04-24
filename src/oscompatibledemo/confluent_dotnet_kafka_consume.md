@@ -29,22 +29,31 @@ using Confluent.Kafka;
 class Consumer
 {
     public static void Main(string[] args)
-    {
+    {   
+        string accessKeyId = "your accessKeyId";
+        string accessKeySecret = "your accessKeySecret";
+        string project = "project";
+        //内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb
+        //endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"
+        //port = "10011"
+        string endpoint = "cn-shenzhen.log.aliyuncs.com";
+        string port = "10012";
+        string host = project + "." + endpoint + ":" + port;
+        string password = accessKeyId + "#" +accessKeySecret;
+        string groupId = "test002";
+        string topic = "your logstore";
+      
         var conf = new ConsumerConfig {
-            GroupId = "groupid",
-            //内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb
-            //endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"
-            //port = "10011"
-            BootstrapServers = "project.endpoint:10012",
+            GroupId = groupId,
+            BootstrapServers = host,
             AutoOffsetReset = AutoOffsetReset.Earliest,
             SaslMechanism = SaslMechanism.Plain,
             SecurityProtocol = SecurityProtocol.SaslSsl,
-            SaslUsername = "your project",
-            SaslPassword = "accessId#accessSecret"
+            SaslUsername = project,
+            SaslPassword = password
         };
 
-        string topic = "your logstore";
-
+       
         using (var c = new ConsumerBuilder<Ignore, string>(conf).Build())
         {
             c.Subscribe(topic);
@@ -60,7 +69,7 @@ class Consumer
                 while (true)
                 {
                     try
-                    {
+                    {    
                         var cr = c.Consume(cts.Token);
                         Console.WriteLine($"Consumed message '{cr.Value}' at: '{cr.TopicPartitionOffset}'.");
                     }
