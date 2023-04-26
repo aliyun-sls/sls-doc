@@ -7,10 +7,8 @@ const getProductSider = require('./siderbars/getProductSider')
 const getDataProcessSider = require('./siderbars/getDataProcessSider')
 const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
-
-
+const getAlertSider = require('./siderbars/getAlertSider')
 const getNavs = require('./nav')
-
 const glob = require('glob')
 
 const sqlfunFiles = glob
@@ -103,7 +101,8 @@ module.exports = (async () => {
         '/product': getProductSider(),
         '/dataprocessdemo': getDataProcessSider(),
         '/oscompatibledemo': getOscompatibleDemo(),
-        '/visulization': getVisulizationDemo()
+        '/visulization': getVisulizationDemo(),
+        '/alert': getAlertSider()
       },
 
       footer: {
