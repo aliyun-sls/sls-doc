@@ -8,6 +8,7 @@ const getDataProcessSider = require('./siderbars/getDataProcessSider')
 const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
 const getAlertSider = require('./siderbars/getAlertSider')
+const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
 const glob = require('glob')
 
@@ -149,5 +150,13 @@ module.exports = (async () => {
         //   ariaSidebarNav: 'Sidebar Navigation',
       },
     },
+
+    markdown: {
+      config: (md) => {
+        md
+          .use(...createCodeGroup())
+          .use(preWrapperPlugin)
+      }
+    }
   }
 })()

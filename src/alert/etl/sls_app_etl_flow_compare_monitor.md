@@ -1,8 +1,8 @@
 # 数据加工流量（日同比）监控
 
-## Java
+::: code-group
 
-```java
+```java [Java]
 import com.alibaba.fastjson.JSON;
 import com.aliyun.openservices.log.Client;
 import com.aliyun.openservices.log.common.*;
@@ -112,8 +112,7 @@ public class App {
 }
 ```
 
-## Python
-```python
+```python [Python]
 from aliyun.log import LogClient
 
 region = "<your region>"
@@ -192,8 +191,7 @@ if __name__ == "__main__":
     create_alert()
 ```
 
-## Go
-```go
+```go [Go]
 package main
 
 import (
@@ -288,3 +286,5 @@ func main() {
 	createAlert()
 }
 ```
+
+:::

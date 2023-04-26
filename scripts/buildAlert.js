@@ -58,21 +58,21 @@ function transformAlert(config) {
   const result = `
 # ${alert.displayName}
 
-## Java
+::: code-group
 
-\`\`\`java
+\`\`\`java [Java]
 ${tpls.java(deepCopy(tplVars)).trim()}
 \`\`\`
 
-## Python
-\`\`\`python
+\`\`\`python [Python]
 ${tpls.python(deepCopy(tplVars)).trim()}
 \`\`\`
 
-## Go
-\`\`\`go
+\`\`\`go [Go]
 ${tpls.go(deepCopy(tplVars)).trim()}
 \`\`\`
+
+:::
 `
   return result.trim()
 }
