@@ -1,4 +1,10 @@
-# 数据加工失败条数监控
+# 数据加工延迟监控
+
+::: tip 说明
+- 每分钟检测一次，数据加工作业的加工延迟超过预设阈值后，触发告警。触发阈值以及监控目标等可在规则参数中配置。
+- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
+- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
+:::
 
 ::: code-group
 
@@ -24,15 +30,15 @@ public class App {
     private static void createAlert() {
         JobSchedule schedule = new JobSchedule();
         schedule.setType(JobScheduleType.FIXED_RATE);
-        schedule.setInterval("15m");
+        schedule.setInterval("1m");
 
         Query query = new Query();
         query.setStoreType("log");
         query.setRegion(REGION);
         query.setProject(PROJECT);
         query.setStore(LOGSTORE);
-        query.setQuery("(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, sum(\"progress.failed\") as \"failed_lines\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000");
-        query.setStart("-15m");
+        query.setQuery("(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\")| select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, round(avg(\"extra_info_params.latency_second\"), 3) as \"delay\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000");
+        query.setStart("-1m");
         query.setEnd("now");
         query.setPowerSqlMode("auto");
 
@@ -44,7 +50,7 @@ public class App {
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
         AlertConfiguration.ConditionConfiguration conditionConf = new AlertConfiguration.ConditionConfiguration();
-        conditionConf.setCondition("failed_lines > 10");
+        conditionConf.setCondition("delay >= 300");
         conditionConf.setCountCondition("");
         AlertConfiguration.SeverityConfiguration severityConf = new AlertConfiguration.SeverityConfiguration();
         severityConf.setSeverity(AlertConfiguration.Severity.High);
@@ -56,21 +62,21 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去15分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工失败条数过多，为${failed_lines}条，超过监控阈值(10条)。请检查是否存在异常。");
+        descAnno.setValue("过去一分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的延迟过高，为${delay}秒，大于监控阈值(300秒)。请检查是否存在异常。");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工失败条数监控");
+        titleAnno.setValue("数据加工延迟过高告警");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
-        drillDownQueryAnno.setValue("__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id} and progress.failed > 0");
+        drillDownQueryAnno.setValue("(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\") and __tag__:__schedule_id__: ${job_id}");
         annotations.add(drillDownQueryAnno);
 
         AlertConfiguration.PolicyConfiguration policyConf = new AlertConfiguration.PolicyConfiguration();
         policyConf.setAlertPolicyId("sls.builtin.dynamic");
         policyConf.setActionPolicyId("sls.builtin");
-        policyConf.setRepeatInterval("15m");
+        policyConf.setRepeatInterval("1m");
         policyConf.setUseDefault(false);
 
         AlertConfiguration configuration = new AlertConfiguration();
@@ -91,8 +97,8 @@ public class App {
         configuration.setPolicyConfiguration(policyConf);
 
         Alert alert = new Alert();
-        alert.setName("sls_app_etl_at_fail_lines_monitor");
-        alert.setDisplayName("数据加工失败条数监控");
+        alert.setName("sls_app_etl_at_delay_monitor");
+        alert.setDisplayName("数据加工延迟监控");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -125,13 +131,13 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 
 def create_alert():
     alert = {
-        "name": "sls_app_etl_at_fail_lines_monitor",
-        "displayName": "数据加工失败条数监控",
+        "name": "sls_app_etl_at_delay_monitor",
+        "displayName": "数据加工延迟监控",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
             "type": "FixedRate",
-            "interval": "15m"
+            "interval": "1m"
         },
         "configuration": {
             "version": "2.0",
@@ -141,9 +147,9 @@ def create_alert():
                 "storeType": "log",
                 "project": project,
                 "store": logstore,
-                "query": "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, sum(\"progress.failed\") as \"failed_lines\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
-                "timeSpanType": "Truncated",
-                "start": "-15m",
+                "query": "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\")| select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, round(avg(\"extra_info_params.latency_second\"), 3) as \"delay\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
+                "timeSpanType": "Relative",
+                "start": "-1m",
                 "end": "now",
                 "powerSqlMode": "auto"
             }],
@@ -155,20 +161,20 @@ def create_alert():
             "severityConfigurations": [{
                 "severity": 8,
                 "evalCondition": {
-                    "condition": "failed_lines > 10",
+                    "condition": "delay >= 300",
                     "countCondition": ""
                 }
             }],
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去15分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工失败条数过多，为${failed_lines}条，超过监控阈值(10条)。请检查是否存在异常。"
+                "value": "过去一分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的延迟过高，为${delay}秒，大于监控阈值(300秒)。请检查是否存在异常。"
             }, {
                 "key": "title",
-                "value": "数据加工失败条数监控"
+                "value": "数据加工延迟过高告警"
             }, {
                 "key": "__drill_down_query__",
-                "value": "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id} and progress.failed > 0"
+                "value": "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\") and __tag__:__schedule_id__: ${job_id}"
             }],
             "autoAnnotation": True,
             "sendResolved": False,
@@ -178,7 +184,7 @@ def create_alert():
             "policyConfiguration": {
                 "alertPolicyId": "sls.builtin.dynamic",
                 "actionPolicyId": "sls.builtin",
-                "repeatInterval": "15m",
+                "repeatInterval": "1m",
                 "useDefault": False
             }
         }
@@ -212,12 +218,12 @@ var (
 
 func createAlert() {
 	alert := &sls.Alert{
-		Name:        "sls_app_etl_at_fail_lines_monitor",
-		DisplayName: "数据加工失败条数监控",
+		Name:        "sls_app_etl_at_delay_monitor",
+		DisplayName: "数据加工延迟监控",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
-			Interval: "15m",
+			Interval: "1m",
 		},
 		Configuration: &sls.AlertConfiguration{
 			Version:   "2.0",
@@ -228,9 +234,9 @@ func createAlert() {
 					StoreType:    "log",
 					Project:      project,
 					Store:        logstore,
-					Query:        "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, sum(\"progress.failed\") as \"failed_lines\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
-					TimeSpanType: "Truncated",
-					Start:        "-15m",
+					Query:        "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\")| select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, round(avg(\"extra_info_params.latency_second\"), 3) as \"delay\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
+					TimeSpanType: "Relative",
+					Start:        "-1m",
 					End:          "now",
 					PowerSqlMode: sls.PowerSqlModeAuto,
 				},
@@ -244,7 +250,7 @@ func createAlert() {
 				&sls.SeverityConfiguration{
 					Severity: sls.High,
 					EvalCondition: sls.ConditionConfiguration{
-						Condition:      "failed_lines > 10",
+						Condition:      "delay >= 300",
 						CountCondition: "",
 					},
 				},
@@ -253,15 +259,15 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去15分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工失败条数过多，为${failed_lines}条，超过监控阈值(10条)。请检查是否存在异常。",
+					Value: "过去一分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的延迟过高，为${delay}秒，大于监控阈值(300秒)。请检查是否存在异常。",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工失败条数监控",
+					Value: "数据加工延迟过高告警",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",
-					Value: "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id} and progress.failed > 0",
+					Value: "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\") and __tag__:__schedule_id__: ${job_id}",
 				},
 			},
 			AutoAnnotation: true,
@@ -272,7 +278,7 @@ func createAlert() {
 			PolicyConfiguration: sls.PolicyConfiguration{
 				AlertPolicyId:  "sls.builtin.dynamic",
 				ActionPolicyId: "sls.builtin",
-				RepeatInterval: "15m",
+				RepeatInterval: "1m",
 				UseDefault:     false,
 			},
 		},

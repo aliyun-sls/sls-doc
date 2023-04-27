@@ -1,4 +1,10 @@
-# 数据加工流量（绝对值）监控
+# Logtail重启告警
+
+::: tip 说明
+- 每5分钟检测一次，检测过去5分钟的数据。5分钟内，当同一客户端出现Logtail重启的次数超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
+- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
+- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
+:::
 
 ::: code-group
 
@@ -15,7 +21,7 @@ import java.util.*;
 public class App {
     private static final String REGION = "<your region>";
     private static final String PROJECT = "<your project>";
-    private static final String LOGSTORE = "internal-etl-log";
+    private static final String LOGSTORE = "internal-diagnostic_log";
     private static final String ENDPOINT = REGION + ".log.aliyuncs.com";
     private static final String ACCESS_KEY_ID = "**********";
     private static final String ACCESS_KEY_SECRET = "**********";
@@ -31,40 +37,54 @@ public class App {
         query.setRegion(REGION);
         query.setProject(PROJECT);
         query.setStore(LOGSTORE);
-        query.setQuery("(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, round(sum(\"progress.accept\") / 300.0, 3) as \"accept\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000");
+        query.setQuery("__topic__: logtail_status | select  hostname, ip, count(DISTINCT instance_id) - 1 as cnt group by hostname, ip HAVING cnt > 0 ORDER by cnt desc limit 1000");
         query.setStart("-5m");
         query.setEnd("now");
         query.setPowerSqlMode("auto");
 
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
-        groupConf.setFields(Arrays.asList("job_id"));
+        groupConf.setFields(Arrays.asList("hostname", "ip"));
         
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
-        AlertConfiguration.ConditionConfiguration conditionConf = new AlertConfiguration.ConditionConfiguration();
-        conditionConf.setCondition("accept < 40000");
-        conditionConf.setCountCondition("");
-        AlertConfiguration.SeverityConfiguration severityConf = new AlertConfiguration.SeverityConfiguration();
-        severityConf.setSeverity(AlertConfiguration.Severity.High);
-        severityConf.setEvalCondition(conditionConf);
-        severityConfs.add(severityConf);
+        AlertConfiguration.ConditionConfiguration conditionConfCritical = new AlertConfiguration.ConditionConfiguration();
+        conditionConfCritical.setCondition("cnt > 3");
+        conditionConfCritical.setCountCondition("");
+        AlertConfiguration.SeverityConfiguration severityConfCritical = new AlertConfiguration.SeverityConfiguration();
+        severityConfCritical.setSeverity(AlertConfiguration.Severity.Critical);
+        severityConfCritical.setEvalCondition(conditionConfCritical);
+        severityConfs.add(severityConfCritical);
+        AlertConfiguration.ConditionConfiguration conditionConfHigh = new AlertConfiguration.ConditionConfiguration();
+        conditionConfHigh.setCondition("cnt > 1");
+        conditionConfHigh.setCountCondition("");
+        AlertConfiguration.SeverityConfiguration severityConfHigh = new AlertConfiguration.SeverityConfiguration();
+        severityConfHigh.setSeverity(AlertConfiguration.Severity.High);
+        severityConfHigh.setEvalCondition(conditionConfHigh);
+        severityConfs.add(severityConfHigh);
+        AlertConfiguration.ConditionConfiguration conditionConfMedium = new AlertConfiguration.ConditionConfiguration();
+        conditionConfMedium.setCondition("");
+        conditionConfMedium.setCountCondition("");
+        AlertConfiguration.SeverityConfiguration severityConfMedium = new AlertConfiguration.SeverityConfiguration();
+        severityConfMedium.setSeverity(AlertConfiguration.Severity.Medium);
+        severityConfMedium.setEvalCondition(conditionConfMedium);
+        severityConfs.add(severityConfMedium);
 
         List<AlertConfiguration.Tag> labels = new ArrayList<AlertConfiguration.Tag>();
 
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工流量（绝对值）过低，为平均${accept}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。");
+        descAnno.setValue("在过去的5分钟内，主机名为${hostname}、ip地址为${ip}的Logtail客户端出现${cnt}次重启。");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工流量（绝对值）过低告警");
+        titleAnno.setValue("Logtail重启告警");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
-        drillDownQueryAnno.setValue("__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}");
+        drillDownQueryAnno.setValue("__topic__: logtail_status and hostname: \"${hostname}\" and ip: \"${ip}\"");
         annotations.add(drillDownQueryAnno);
 
         AlertConfiguration.PolicyConfiguration policyConf = new AlertConfiguration.PolicyConfiguration();
@@ -91,8 +111,8 @@ public class App {
         configuration.setPolicyConfiguration(policyConf);
 
         Alert alert = new Alert();
-        alert.setName("sls_app_etl_at_abs_speed_monitor");
-        alert.setDisplayName("数据加工流量（绝对值）监控");
+        alert.setName("sls_app_logtail_ip_restart_err");
+        alert.setDisplayName("Logtail重启告警");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -117,7 +137,7 @@ from aliyun.log import LogClient
 
 region = "<your region>"
 project = "<your project>"
-logstore = "internal-etl-log"
+logstore = "internal-diagnostic_log"
 endpoint = "%s.log.aliyuncs.com" % region
 accesskey_id = "**********"
 accesskey_secret = "**********"
@@ -125,8 +145,8 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 
 def create_alert():
     alert = {
-        "name": "sls_app_etl_at_abs_speed_monitor",
-        "displayName": "数据加工流量（绝对值）监控",
+        "name": "sls_app_logtail_ip_restart_err",
+        "displayName": "Logtail重启告警",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -141,34 +161,46 @@ def create_alert():
                 "storeType": "log",
                 "project": project,
                 "store": logstore,
-                "query": "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, round(sum(\"progress.accept\") / 300.0, 3) as \"accept\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
-                "timeSpanType": "Truncated",
+                "query": "__topic__: logtail_status | select  hostname, ip, count(DISTINCT instance_id) - 1 as cnt group by hostname, ip HAVING cnt > 0 ORDER by cnt desc limit 1000",
+                "timeSpanType": "Relative",
                 "start": "-5m",
                 "end": "now",
                 "powerSqlMode": "auto"
             }],
             "groupConfiguration": {
                 "type": "custom",
-                "fields": ["job_id"]
+                "fields": ["hostname", "ip"]
             },
             "joinConfigurations": [],
             "severityConfigurations": [{
+                "severity": 10,
+                "evalCondition": {
+                    "condition": "cnt > 3",
+                    "countCondition": ""
+                }
+            }, {
                 "severity": 8,
                 "evalCondition": {
-                    "condition": "accept < 40000",
+                    "condition": "cnt > 1",
+                    "countCondition": ""
+                }
+            }, {
+                "severity": 6,
+                "evalCondition": {
+                    "condition": "",
                     "countCondition": ""
                 }
             }],
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工流量（绝对值）过低，为平均${accept}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。"
+                "value": "在过去的5分钟内，主机名为${hostname}、ip地址为${ip}的Logtail客户端出现${cnt}次重启。"
             }, {
                 "key": "title",
-                "value": "数据加工流量（绝对值）过低告警"
+                "value": "Logtail重启告警"
             }, {
                 "key": "__drill_down_query__",
-                "value": "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}"
+                "value": "__topic__: logtail_status and hostname: \"${hostname}\" and ip: \"${ip}\""
             }],
             "autoAnnotation": True,
             "sendResolved": False,
@@ -203,7 +235,7 @@ import (
 var (
 	region          = "<your region>"
 	project         = "<your project>"
-	logstore        = "internal-etl-log"
+	logstore        = "internal-diagnostic_log"
 	endpoint        = fmt.Sprintf("%s.log.aliyuncs.com", region)
 	accessKeyId     = "**********"
 	accessKeySecret = "**********"
@@ -212,8 +244,8 @@ var (
 
 func createAlert() {
 	alert := &sls.Alert{
-		Name:        "sls_app_etl_at_abs_speed_monitor",
-		DisplayName: "数据加工流量（绝对值）监控",
+		Name:        "sls_app_logtail_ip_restart_err",
+		DisplayName: "Logtail重启告警",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -228,8 +260,8 @@ func createAlert() {
 					StoreType:    "log",
 					Project:      project,
 					Store:        logstore,
-					Query:        "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, round(sum(\"progress.accept\") / 300.0, 3) as \"accept\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
-					TimeSpanType: "Truncated",
+					Query:        "__topic__: logtail_status | select  hostname, ip, count(DISTINCT instance_id) - 1 as cnt group by hostname, ip HAVING cnt > 0 ORDER by cnt desc limit 1000",
+					TimeSpanType: "Relative",
 					Start:        "-5m",
 					End:          "now",
 					PowerSqlMode: sls.PowerSqlModeAuto,
@@ -237,14 +269,28 @@ func createAlert() {
 			},
 			GroupConfiguration: sls.GroupConfiguration{
 				Type:   "custom",
-				Fields: []string{"job_id"},
+				Fields: []string{"hostname", "ip"},
 			},
 			JoinConfigurations: []*sls.JoinConfiguration{},
 			SeverityConfigurations: []*sls.SeverityConfiguration{
 				&sls.SeverityConfiguration{
+					Severity: sls.Critical,
+					EvalCondition: sls.ConditionConfiguration{
+						Condition:      "cnt > 3",
+						CountCondition: "",
+					},
+				},
+				&sls.SeverityConfiguration{
 					Severity: sls.High,
 					EvalCondition: sls.ConditionConfiguration{
-						Condition:      "accept < 40000",
+						Condition:      "cnt > 1",
+						CountCondition: "",
+					},
+				},
+				&sls.SeverityConfiguration{
+					Severity: sls.Medium,
+					EvalCondition: sls.ConditionConfiguration{
+						Condition:      "",
 						CountCondition: "",
 					},
 				},
@@ -253,15 +299,15 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工流量（绝对值）过低，为平均${accept}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。",
+					Value: "在过去的5分钟内，主机名为${hostname}、ip地址为${ip}的Logtail客户端出现${cnt}次重启。",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工流量（绝对值）过低告警",
+					Value: "Logtail重启告警",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",
-					Value: "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}",
+					Value: "__topic__: logtail_status and hostname: \"${hostname}\" and ip: \"${ip}\"",
 				},
 			},
 			AutoAnnotation: true,

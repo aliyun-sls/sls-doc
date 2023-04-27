@@ -1,4 +1,10 @@
-# 数据加工异常报错监控
+# Logtail解析失败率监控
+
+::: tip 说明
+- 每5分钟检测一次，检测过去5分钟的数据。过去5分钟内，当Logtail解析失败的行数占总行数的比率超过一定阈值后，触发告警。
+- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
+- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
+:::
 
 ::: code-group
 
@@ -15,7 +21,7 @@ import java.util.*;
 public class App {
     private static final String REGION = "<your region>";
     private static final String PROJECT = "<your project>";
-    private static final String LOGSTORE = "internal-etl-log";
+    private static final String LOGSTORE = "internal-diagnostic_log";
     private static final String ENDPOINT = REGION + ".log.aliyuncs.com";
     private static final String ACCESS_KEY_ID = "**********";
     private static final String ACCESS_KEY_SECRET = "**********";
@@ -31,40 +37,47 @@ public class App {
         query.setRegion(REGION);
         query.setProject(PROJECT);
         query.setStore(LOGSTORE);
-        query.setQuery("(__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR) | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, count(*) as cnt, array_agg(distinct etl_context) as etl_context, array_agg(distinct reason) as reason from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000");
+        query.setQuery("(__topic__: logtail_profile AND file_name: logstore_statistics)| SELECT project, SUM(parse_failures) AS FailureRecords,round(SUM(parse_failures) * 100.0 / (SUM(parse_failures) + sum(succeed_lines)), 4) AS FailureRate FROM log group by project limit 10000");
         query.setStart("-5m");
         query.setEnd("now");
         query.setPowerSqlMode("auto");
 
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
-        groupConf.setFields(Arrays.asList("job_id"));
+        groupConf.setFields(Arrays.asList("project"));
         
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
-        AlertConfiguration.ConditionConfiguration conditionConf = new AlertConfiguration.ConditionConfiguration();
-        conditionConf.setCondition("");
-        conditionConf.setCountCondition("");
-        AlertConfiguration.SeverityConfiguration severityConf = new AlertConfiguration.SeverityConfiguration();
-        severityConf.setSeverity(AlertConfiguration.Severity.High);
-        severityConf.setEvalCondition(conditionConf);
-        severityConfs.add(severityConf);
+        AlertConfiguration.ConditionConfiguration conditionConfCritical = new AlertConfiguration.ConditionConfiguration();
+        conditionConfCritical.setCondition("FailureRate > 0.1");
+        conditionConfCritical.setCountCondition("");
+        AlertConfiguration.SeverityConfiguration severityConfCritical = new AlertConfiguration.SeverityConfiguration();
+        severityConfCritical.setSeverity(AlertConfiguration.Severity.Critical);
+        severityConfCritical.setEvalCondition(conditionConfCritical);
+        severityConfs.add(severityConfCritical);
+        AlertConfiguration.ConditionConfiguration conditionConfHigh = new AlertConfiguration.ConditionConfiguration();
+        conditionConfHigh.setCondition("FailureRate > 0.05");
+        conditionConfHigh.setCountCondition("");
+        AlertConfiguration.SeverityConfiguration severityConfHigh = new AlertConfiguration.SeverityConfiguration();
+        severityConfHigh.setSeverity(AlertConfiguration.Severity.High);
+        severityConfHigh.setEvalCondition(conditionConfHigh);
+        severityConfs.add(severityConfHigh);
 
         List<AlertConfiguration.Tag> labels = new ArrayList<AlertConfiguration.Tag>();
 
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})产生了${cnt}条报错日志，etl_context: ${etl_context}, reason: ${reason}。更多报错细节请前往加工日志库internal-etl-log查看。");
+        descAnno.setValue("在过去的5分钟内，在Project ${project}下的Logtail解析失败行数占日志总行数的比率达到${FailureRate}%，请检查是否存在异常。");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工异常报错监控");
+        titleAnno.setValue("Logtail解析失败率监控");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
-        drillDownQueryAnno.setValue("__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR and __tag__:__schedule_id__: ${job_id}");
+        drillDownQueryAnno.setValue("(__topic__: logtail_profile AND file_name: logstore_statistics) and project: ${project}");
         annotations.add(drillDownQueryAnno);
 
         AlertConfiguration.PolicyConfiguration policyConf = new AlertConfiguration.PolicyConfiguration();
@@ -91,8 +104,8 @@ public class App {
         configuration.setPolicyConfiguration(policyConf);
 
         Alert alert = new Alert();
-        alert.setName("sls_app_etl_at_error_monitor");
-        alert.setDisplayName("数据加工异常报错监控");
+        alert.setName("sls_app_logtail_parse_err_line");
+        alert.setDisplayName("Logtail解析失败率监控");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -117,7 +130,7 @@ from aliyun.log import LogClient
 
 region = "<your region>"
 project = "<your project>"
-logstore = "internal-etl-log"
+logstore = "internal-diagnostic_log"
 endpoint = "%s.log.aliyuncs.com" % region
 accesskey_id = "**********"
 accesskey_secret = "**********"
@@ -125,8 +138,8 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 
 def create_alert():
     alert = {
-        "name": "sls_app_etl_at_error_monitor",
-        "displayName": "数据加工异常报错监控",
+        "name": "sls_app_logtail_parse_err_line",
+        "displayName": "Logtail解析失败率监控",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -141,34 +154,40 @@ def create_alert():
                 "storeType": "log",
                 "project": project,
                 "store": logstore,
-                "query": "(__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR) | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, count(*) as cnt, array_agg(distinct etl_context) as etl_context, array_agg(distinct reason) as reason from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
-                "timeSpanType": "Truncated",
+                "query": "(__topic__: logtail_profile AND file_name: logstore_statistics)| SELECT project, SUM(parse_failures) AS FailureRecords,round(SUM(parse_failures) * 100.0 / (SUM(parse_failures) + sum(succeed_lines)), 4) AS FailureRate FROM log group by project limit 10000",
+                "timeSpanType": "Relative",
                 "start": "-5m",
                 "end": "now",
                 "powerSqlMode": "auto"
             }],
             "groupConfiguration": {
                 "type": "custom",
-                "fields": ["job_id"]
+                "fields": ["project"]
             },
             "joinConfigurations": [],
             "severityConfigurations": [{
+                "severity": 10,
+                "evalCondition": {
+                    "condition": "FailureRate > 0.1",
+                    "countCondition": ""
+                }
+            }, {
                 "severity": 8,
                 "evalCondition": {
-                    "condition": "",
+                    "condition": "FailureRate > 0.05",
                     "countCondition": ""
                 }
             }],
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})产生了${cnt}条报错日志，etl_context: ${etl_context}, reason: ${reason}。更多报错细节请前往加工日志库internal-etl-log查看。"
+                "value": "在过去的5分钟内，在Project ${project}下的Logtail解析失败行数占日志总行数的比率达到${FailureRate}%，请检查是否存在异常。"
             }, {
                 "key": "title",
-                "value": "数据加工异常报错监控"
+                "value": "Logtail解析失败率监控"
             }, {
                 "key": "__drill_down_query__",
-                "value": "__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR and __tag__:__schedule_id__: ${job_id}"
+                "value": "(__topic__: logtail_profile AND file_name: logstore_statistics) and project: ${project}"
             }],
             "autoAnnotation": True,
             "sendResolved": False,
@@ -203,7 +222,7 @@ import (
 var (
 	region          = "<your region>"
 	project         = "<your project>"
-	logstore        = "internal-etl-log"
+	logstore        = "internal-diagnostic_log"
 	endpoint        = fmt.Sprintf("%s.log.aliyuncs.com", region)
 	accessKeyId     = "**********"
 	accessKeySecret = "**********"
@@ -212,8 +231,8 @@ var (
 
 func createAlert() {
 	alert := &sls.Alert{
-		Name:        "sls_app_etl_at_error_monitor",
-		DisplayName: "数据加工异常报错监控",
+		Name:        "sls_app_logtail_parse_err_line",
+		DisplayName: "Logtail解析失败率监控",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -228,8 +247,8 @@ func createAlert() {
 					StoreType:    "log",
 					Project:      project,
 					Store:        logstore,
-					Query:        "(__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR) | select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, count(*) as cnt, array_agg(distinct etl_context) as etl_context, array_agg(distinct reason) as reason from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000",
-					TimeSpanType: "Truncated",
+					Query:        "(__topic__: logtail_profile AND file_name: logstore_statistics)| SELECT project, SUM(parse_failures) AS FailureRecords,round(SUM(parse_failures) * 100.0 / (SUM(parse_failures) + sum(succeed_lines)), 4) AS FailureRate FROM log group by project limit 10000",
+					TimeSpanType: "Relative",
 					Start:        "-5m",
 					End:          "now",
 					PowerSqlMode: sls.PowerSqlModeAuto,
@@ -237,14 +256,21 @@ func createAlert() {
 			},
 			GroupConfiguration: sls.GroupConfiguration{
 				Type:   "custom",
-				Fields: []string{"job_id"},
+				Fields: []string{"project"},
 			},
 			JoinConfigurations: []*sls.JoinConfiguration{},
 			SeverityConfigurations: []*sls.SeverityConfiguration{
 				&sls.SeverityConfiguration{
+					Severity: sls.Critical,
+					EvalCondition: sls.ConditionConfiguration{
+						Condition:      "FailureRate > 0.1",
+						CountCondition: "",
+					},
+				},
+				&sls.SeverityConfiguration{
 					Severity: sls.High,
 					EvalCondition: sls.ConditionConfiguration{
-						Condition:      "",
+						Condition:      "FailureRate > 0.05",
 						CountCondition: "",
 					},
 				},
@@ -253,15 +279,15 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})产生了${cnt}条报错日志，etl_context: ${etl_context}, reason: ${reason}。更多报错细节请前往加工日志库internal-etl-log查看。",
+					Value: "在过去的5分钟内，在Project ${project}下的Logtail解析失败行数占日志总行数的比率达到${FailureRate}%，请检查是否存在异常。",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工异常报错监控",
+					Value: "Logtail解析失败率监控",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",
-					Value: "__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR and __tag__:__schedule_id__: ${job_id}",
+					Value: "(__topic__: logtail_profile AND file_name: logstore_statistics) and project: ${project}",
 				},
 			},
 			AutoAnnotation: true,

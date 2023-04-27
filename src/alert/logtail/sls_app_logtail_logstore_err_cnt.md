@@ -1,4 +1,10 @@
-# 数据加工流量（日同比）监控
+# 同一Logstore下的Logtail采集错误数监控
+
+::: tip 说明
+- 每5分钟检测一次，检测过去5分钟的数据。当同一Logstore在5分钟内出现的Logtail采集错误数量超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
+- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
+- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
+:::
 
 ::: code-group
 
@@ -15,7 +21,7 @@ import java.util.*;
 public class App {
     private static final String REGION = "<your region>";
     private static final String PROJECT = "<your project>";
-    private static final String LOGSTORE = "internal-etl-log";
+    private static final String LOGSTORE = "internal-diagnostic_log";
     private static final String ENDPOINT = REGION + ".log.aliyuncs.com";
     private static final String ACCESS_KEY_ID = "**********";
     private static final String ACCESS_KEY_SECRET = "**********";
@@ -31,20 +37,20 @@ public class App {
         query.setRegion(REGION);
         query.setProject(PROJECT);
         query.setStore(LOGSTORE);
-        query.setQuery("(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select job_id, job_name, logstore, today, yesterday, case when yesterday=0 then 0 else round((today - yesterday) * 100.0 / yesterday, 3) end as inc_ration from (select job_id, job_name, logstore, (case when diff[1] is null then 0 else diff[1] end) as today, (case when diff[2] is null then 0 else diff[2] end) as yesterday from (select job_id, arbitrary(job_name) as job_name, arbitrary(logstore) as logstore, compare(accept, 86400) as diff from(select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, sum(\"progress.accept\") as \"accept\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000) group by job_id))");
+        query.setQuery("__topic__: logtail_alarm | select project, logstore, coalesce(sum(alarm_count), 0) as cnt group by project, logstore order by cnt desc limit 1000");
         query.setStart("-5m");
         query.setEnd("now");
         query.setPowerSqlMode("auto");
 
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
-        groupConf.setFields(Arrays.asList("job_id"));
+        groupConf.setFields(Arrays.asList("project", "logstore"));
         
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
         AlertConfiguration.ConditionConfiguration conditionConf = new AlertConfiguration.ConditionConfiguration();
-        conditionConf.setCondition("inc_ration > 40 || inc_ration < (-20)");
+        conditionConf.setCondition("cnt > 3");
         conditionConf.setCountCondition("");
         AlertConfiguration.SeverityConfiguration severityConf = new AlertConfiguration.SeverityConfiguration();
         severityConf.setSeverity(AlertConfiguration.Severity.High);
@@ -56,15 +62,15 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})的加工流量相比于昨日变化过大，变化率为${inc_ration}%。请检查是否存在异常。");
+        descAnno.setValue("在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail采集错误。");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工流量日同比变化过大告警");
+        titleAnno.setValue("同一Logstore下的Logtail采集错误数量过多");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
-        drillDownQueryAnno.setValue("__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}");
+        drillDownQueryAnno.setValue("__topic__: logtail_alarm and project: \"${project}\" and logstore: \"${logstore}\"");
         annotations.add(drillDownQueryAnno);
 
         AlertConfiguration.PolicyConfiguration policyConf = new AlertConfiguration.PolicyConfiguration();
@@ -91,8 +97,8 @@ public class App {
         configuration.setPolicyConfiguration(policyConf);
 
         Alert alert = new Alert();
-        alert.setName("sls_app_etl_at_flow_compare_monitor");
-        alert.setDisplayName("数据加工流量（日同比）监控");
+        alert.setName("sls_app_logtail_logstore_err_cnt");
+        alert.setDisplayName("同一Logstore下的Logtail采集错误数监控");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -117,7 +123,7 @@ from aliyun.log import LogClient
 
 region = "<your region>"
 project = "<your project>"
-logstore = "internal-etl-log"
+logstore = "internal-diagnostic_log"
 endpoint = "%s.log.aliyuncs.com" % region
 accesskey_id = "**********"
 accesskey_secret = "**********"
@@ -125,8 +131,8 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 
 def create_alert():
     alert = {
-        "name": "sls_app_etl_at_flow_compare_monitor",
-        "displayName": "数据加工流量（日同比）监控",
+        "name": "sls_app_logtail_logstore_err_cnt",
+        "displayName": "同一Logstore下的Logtail采集错误数监控",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -141,34 +147,34 @@ def create_alert():
                 "storeType": "log",
                 "project": project,
                 "store": logstore,
-                "query": "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select job_id, job_name, logstore, today, yesterday, case when yesterday=0 then 0 else round((today - yesterday) * 100.0 / yesterday, 3) end as inc_ration from (select job_id, job_name, logstore, (case when diff[1] is null then 0 else diff[1] end) as today, (case when diff[2] is null then 0 else diff[2] end) as yesterday from (select job_id, arbitrary(job_name) as job_name, arbitrary(logstore) as logstore, compare(accept, 86400) as diff from(select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, sum(\"progress.accept\") as \"accept\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000) group by job_id))",
-                "timeSpanType": "Truncated",
+                "query": "__topic__: logtail_alarm | select project, logstore, coalesce(sum(alarm_count), 0) as cnt group by project, logstore order by cnt desc limit 1000",
+                "timeSpanType": "Relative",
                 "start": "-5m",
                 "end": "now",
                 "powerSqlMode": "auto"
             }],
             "groupConfiguration": {
                 "type": "custom",
-                "fields": ["job_id"]
+                "fields": ["project", "logstore"]
             },
             "joinConfigurations": [],
             "severityConfigurations": [{
                 "severity": 8,
                 "evalCondition": {
-                    "condition": "inc_ration > 40 || inc_ration < (-20)",
+                    "condition": "cnt > 3",
                     "countCondition": ""
                 }
             }],
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})的加工流量相比于昨日变化过大，变化率为${inc_ration}%。请检查是否存在异常。"
+                "value": "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail采集错误。"
             }, {
                 "key": "title",
-                "value": "数据加工流量日同比变化过大告警"
+                "value": "同一Logstore下的Logtail采集错误数量过多"
             }, {
                 "key": "__drill_down_query__",
-                "value": "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}"
+                "value": "__topic__: logtail_alarm and project: \"${project}\" and logstore: \"${logstore}\""
             }],
             "autoAnnotation": True,
             "sendResolved": False,
@@ -203,7 +209,7 @@ import (
 var (
 	region          = "<your region>"
 	project         = "<your project>"
-	logstore        = "internal-etl-log"
+	logstore        = "internal-diagnostic_log"
 	endpoint        = fmt.Sprintf("%s.log.aliyuncs.com", region)
 	accessKeyId     = "**********"
 	accessKeySecret = "**********"
@@ -212,8 +218,8 @@ var (
 
 func createAlert() {
 	alert := &sls.Alert{
-		Name:        "sls_app_etl_at_flow_compare_monitor",
-		DisplayName: "数据加工流量（日同比）监控",
+		Name:        "sls_app_logtail_logstore_err_cnt",
+		DisplayName: "同一Logstore下的Logtail采集错误数监控",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -228,8 +234,8 @@ func createAlert() {
 					StoreType:    "log",
 					Project:      project,
 					Store:        logstore,
-					Query:        "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\") | select job_id, job_name, logstore, today, yesterday, case when yesterday=0 then 0 else round((today - yesterday) * 100.0 / yesterday, 3) end as inc_ration from (select job_id, job_name, logstore, (case when diff[1] is null then 0 else diff[1] end) as today, (case when diff[2] is null then 0 else diff[2] end) as yesterday from (select job_id, arbitrary(job_name) as job_name, arbitrary(logstore) as logstore, compare(accept, 86400) as diff from(select \"__tag__:__schedule_id__\" as job_id, arbitrary(\"__tag__:__job_name__\") as job_name, arbitrary(\"etl_context.logstore\") as logstore, sum(\"progress.accept\") as \"accept\" from log where regexp_like(\"__tag__:__schedule_id__\", '.*') group by job_id limit 10000) group by job_id))",
-					TimeSpanType: "Truncated",
+					Query:        "__topic__: logtail_alarm | select project, logstore, coalesce(sum(alarm_count), 0) as cnt group by project, logstore order by cnt desc limit 1000",
+					TimeSpanType: "Relative",
 					Start:        "-5m",
 					End:          "now",
 					PowerSqlMode: sls.PowerSqlModeAuto,
@@ -237,14 +243,14 @@ func createAlert() {
 			},
 			GroupConfiguration: sls.GroupConfiguration{
 				Type:   "custom",
-				Fields: []string{"job_id"},
+				Fields: []string{"project", "logstore"},
 			},
 			JoinConfigurations: []*sls.JoinConfiguration{},
 			SeverityConfigurations: []*sls.SeverityConfiguration{
 				&sls.SeverityConfiguration{
 					Severity: sls.High,
 					EvalCondition: sls.ConditionConfiguration{
-						Condition:      "inc_ration > 40 || inc_ration < (-20)",
+						Condition:      "cnt > 3",
 						CountCondition: "",
 					},
 				},
@@ -253,15 +259,15 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})的加工流量相比于昨日变化过大，变化率为${inc_ration}%。请检查是否存在异常。",
+					Value: "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail采集错误。",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工流量日同比变化过大告警",
+					Value: "同一Logstore下的Logtail采集错误数量过多",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",
-					Value: "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}",
+					Value: "__topic__: logtail_alarm and project: \"${project}\" and logstore: \"${logstore}\"",
 				},
 			},
 			AutoAnnotation: true,

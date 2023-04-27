@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const tpls = require('./alert-template')
+const { groupNames } = require('../.vitepress/siderbars/getAlertSider')
 
 function isDirectory(file) {
   const stat = fs.statSync(file)
@@ -24,31 +25,28 @@ function ensureDstGroup(dstRoot, group) {
 }
 
 function transformAlert(config) {
-  const alert = {
-    ...config,
-    configuration: {
-      ...config.configuration,
-      sinkEventStore: {
-        enabled: false,
-        endpoint: '',
-        project: '',
-        eventStore: '',
-        roleArn: ''
-      },
-      sinkCms: {
-        enabled: false,
-      },
-      sinkAlerthub: {
-        enabled: false,
-      },
-      policyConfiguration: {
-        alertPolicyId: 'sls.builtin.dynamic',
-        actionPolicyId: 'sls.builtin',
-        repeatInterval: config.schedule.interval,
-        useDefault: false
-      }
+  const { description, alert } = config
+  Object.assign(alert.configuration, {
+    sinkEventStore: {
+      enabled: false,
+      endpoint: '',
+      project: '',
+      eventStore: '',
+      roleArn: ''
+    },
+    sinkCms: {
+      enabled: false,
+    },
+    sinkAlerthub: {
+      enabled: false,
+    },
+    policyConfiguration: {
+      alertPolicyId: 'sls.builtin.dynamic',
+      actionPolicyId: 'sls.builtin',
+      repeatInterval: alert.schedule.interval,
+      useDefault: false
     }
-  }
+  })
   const tplVars = {
     alert,
     projectIsToken: alert.configuration.queryList[0].project === '{{default.project}}',
@@ -57,6 +55,12 @@ function transformAlert(config) {
 
   const result = `
 # ${alert.displayName}
+
+::: tip 说明
+- ${description}
+- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
+- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
+:::
 
 ::: code-group
 
@@ -90,7 +94,9 @@ function buildSingleRule(srcRoot, dstRoot, group, rule) {
     const config = JSON.parse(data)
     const result = transformAlert(config)
     fs.writeFileSync(dstFile, result, 'utf8')
+    return config
   } catch(err) {
+    console.log(err)
     console.log(`Error: ${JSON.stringify({ srcRoot, group, rule })} ${err}`)
   }
 }
@@ -98,10 +104,20 @@ function buildSingleRule(srcRoot, dstRoot, group, rule) {
 /**
  * Generate src/alert/index.md
  */
-function generateIndex(srcRoot, dstRoot) {
-  const src = path.join(srcRoot, 'index.md')
-  const dst = path.join(dstRoot, 'index.md')
-  fs.copyFileSync(src, dst)
+function generateIndex(dstRoot, results) {
+  const dst = path.join(dstRoot, 'index.md')  
+  const toc = results.map(({ group, configs }) => {
+    const groupName = groupNames[group] || group
+    const rules = configs.map(c => `- [${c.alert.displayName}](./${group}/${c.alert.name})`)
+    return [`## ${groupName}`, ...rules].join('\n')
+  }).join('\n')
+  const content = `
+# 告警规则案例
+
+${toc}
+`.trim()
+
+  fs.writeFileSync(dst, content, 'utf8')
 }
 
 /**
@@ -110,19 +126,23 @@ function generateIndex(srcRoot, dstRoot) {
 function buildRules() {
   const srcRoot = path.resolve(__dirname, 'alert')
   const dstRoot = path.resolve(__dirname, '../src/alert')
+  const results = []
 
   cleanDstRoot(dstRoot)
 
   const groups = fs.readdirSync(srcRoot).filter(group => isDirectory(path.join(srcRoot, group)))
   groups.forEach(group => {
     ensureDstGroup(dstRoot, group)
+
     const rules = fs.readdirSync(path.join(srcRoot, group))
-    rules.forEach(rule => {
-      buildSingleRule(srcRoot, dstRoot, group, rule)
+    const configs = rules.map(rule => {
+      return buildSingleRule(srcRoot, dstRoot, group, rule)
     })
+
+    results.push({ group, configs })
   })
 
-  generateIndex(srcRoot, dstRoot)
+  generateIndex(dstRoot, results)
 }
 
 buildRules()

@@ -2,10 +2,13 @@ const fs = require('fs')
 const path = require('path')
 
 const groupNames = {
-  etl: '数据加工'
+  etl: '数据加工',
+  export: '数据投递',
+  logtail: 'Logtail',
+  scheduled_sql: '定时SQL',
 }
 
-module.exports = function() {
+exports = module.exports = function() {
   const baseDir = './src/alert'
   const groups = fs.readdirSync(baseDir).filter(g => !g.endsWith('.md'))
 
@@ -29,3 +32,5 @@ module.exports = function() {
 
   return toc
 }
+
+exports.groupNames = groupNames

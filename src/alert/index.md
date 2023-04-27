@@ -1,1 +1,30 @@
-# Alert
+# 告警规则案例
+
+## 数据加工
+- [数据加工流量（绝对值）监控](./etl/sls_app_etl_at_abs_speed_monitor)
+- [数据加工延迟监控](./etl/sls_app_etl_at_delay_monitor)
+- [数据加工异常报错监控](./etl/sls_app_etl_at_error_monitor)
+- [数据加工失败条数监控](./etl/sls_app_etl_at_fail_lines_monitor)
+- [数据加工流量（日同比）监控](./etl/sls_app_etl_at_flow_compare_monitor)
+## 数据投递
+- [数据投递流量（绝对值）监控](./export/sls_app_export_at_abs_speed_monitor)
+- [数据投递延迟监控](./export/sls_app_export_at_delay_monitor)
+- [数据投递异常报错监控](./export/sls_app_export_at_error_monitor)
+- [数据投递失败条数监控](./export/sls_app_export_at_fail_lines_monitor)
+- [数据投递流量（日同比）监控](./export/sls_app_export_at_flow_compare_monitor)
+## Logtail
+- [消费组延迟监控](./logtail/sls_app_consumer_at_delay_monitor)
+- [Logtail错误IP监控](./logtail/sls_app_logtail_ip_err_cnt)
+- [Logtail重启告警](./logtail/sls_app_logtail_ip_restart_err)
+- [Logtail采集延迟告警](./logtail/sls_app_logtail_logstore_collect_delay_err)
+- [同一Logstore下的Logtail采集错误数监控](./logtail/sls_app_logtail_logstore_err_cnt)
+- [同一Logstore下的Logtail采集错误数日同比监控](./logtail/sls_app_logtail_logstore_err_cnt_comp)
+- [Logtail日志解析错误告警](./logtail/sls_app_logtail_logstore_parse_err)
+- [Logtail Quota超限告警](./logtail/sls_app_logtail_logstore_quota_err)
+- [Logtail解析失败率监控](./logtail/sls_app_logtail_parse_err_line)
+- [Logtail解析成功率监控](./logtail/sls_app_logtail_parse_succ_line)
+- [同一Project下的Logtail采集错误数监控](./logtail/sls_app_logtail_project_err_cnt)
+- [同一Project下的Logtail采集错误数日同比监控](./logtail/sls_app_logtail_project_err_cnt_comp)
+## 定时SQL
+- [定时SQL任务执行延迟监控](./scheduled_sql/sls_app_sche_sql_at_delay_monitor)
+- [定时SQL任务执行错误监控](./scheduled_sql/sls_app_sche_sql_at_err_monitor)
