@@ -1,0 +1,72 @@
+{
+  "description": "每5分钟检测一次，检测过去5分钟的数据。5分钟内，当同一IP（Logtail客户端）出现的错误次数超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。",
+  "alert": {
+    "name": "sls_app_logtail_ip_err_cnt",
+    "displayName": "Logtail错误IP监控",
+    "type": "Alert",
+    "state": "Enabled",
+    "schedule": {
+      "type": "FixedRate",
+      "interval": "5m"
+    },
+    "configuration": {
+      "version": "2.0",
+      "type": "default",
+      "dashboard": "internal-alert-analysis",
+      "queryList": [
+        {
+          "storeType": "log",
+          "project": "{{default.project}}",
+          "store": "internal-diagnostic_log",
+          "query": "__topic__: logtail_alarm | select source_ip, sum(alarm_count) as cnt group by source_ip limit 10000",
+          "timeSpanType": "Relative",
+          "start": "-5m",
+          "end": "now"
+        }
+      ],
+      "groupConfiguration": {
+        "type": "custom",
+        "fields": [
+          "source_ip"
+        ]
+      },
+      "joinConfigurations": [],
+      "severityConfigurations": [
+        {
+          "severity": 10,
+          "evalCondition": {
+            "condition": "cnt > 10",
+            "countCondition": ""
+          }
+        },
+        {
+          "severity": 8,
+          "evalCondition": {
+            "condition": "cnt > 1",
+            "countCondition": ""
+          }
+        }
+      ],
+      "labels": [],
+      "annotations": [
+        {
+          "key": "desc",
+          "value": "在过去的5分钟内，IP地址为${source_ip}的Logtail客户端出现${cnt}次错误，请检查是否存在异常。"
+        },
+        {
+          "key": "title",
+          "value": "Logtail错误IP监控"
+        },
+        {
+          "key": "__drill_down_query__",
+          "value": "__topic__: logtail_alarm and source_ip: ${source_ip}"
+        }
+      ],
+      "autoAnnotation": true,
+      "sendResolved": false,
+      "threshold": 1,
+      "noDataFire": false,
+      "noDataSeverity": 6
+    }
+  }
+}

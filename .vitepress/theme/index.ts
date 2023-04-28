@@ -1,6 +1,7 @@
 import { Theme } from './src'
 import { h } from 'vue'
 import './styles/sls-doc.css'
+import './src/components/CodeGroup/code-group.css'
 
 // uncomment to test CSS variables override
 // import './override.css'
