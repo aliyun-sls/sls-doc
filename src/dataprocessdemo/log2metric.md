@@ -1,7 +1,7 @@
 # 使用数据加工将Log转成Metric
 ## 云原生时代的可观察性
 
-我们关注应用运行起来后的运行时数据，主要有Log、Trace和Metric 这3大类。 
+我们关注应用运行起来后的运行时数据，主要有Log、Trace和Metric 这3大类。
 
 Log是离散的事件，Trace可以认为是带请求追踪的事件，Metric是带统计量的事件。
 
@@ -10,7 +10,7 @@ Log是离散的事件，Trace可以认为是带请求追踪的事件，Metric是
 本质上Log、Trace、Metric都是事件，存储上满足事件存储的系统都可以用来存储这3类数据。
 
 
-阿里云SLS为运行时数据提供了两种存储:Logstore和Metricstore。 
+阿里云SLS为运行时数据提供了两种存储:Logstore和Metricstore。
 
 * Logstore：适合存储Log和Trace
 * Metricstore：适合存储Metric
@@ -23,7 +23,7 @@ SLS Metricstore 详细介绍请参考[官方链接](https://help.aliyun.com/docu
 
 很多应用的Log数据往往比Metric全面。 经常存在这样的场景: 把Log中的数据转换为Metric。
 
-前面提到，Metric可以认为是特定格式的Log，因此在SLS里可以将Log转换为Metric。 
+前面提到，Metric可以认为是特定格式的Log，因此在SLS里可以将Log转换为Metric。
 
 常见的Log转Metric的方法可以有两种:
 
@@ -67,7 +67,7 @@ Auth -> Basic auth要enable起来，Basic Auth Details输入阿里云AccesskeyID
 
 ![](/img/dataprocessdemo/特定格式处理/img5.jpg)
 
-Metricstore创建好了，那么如何向Metricstore写入指标数据呢？ 
+Metricstore创建好了，那么如何向Metricstore写入指标数据呢？
 
 可以看到下面的格式来写入, 见文档 [Metricstore格式](https://help.aliyun.com/document_detail/171773.htm)
 
@@ -75,7 +75,7 @@ Metricstore创建好了，那么如何向Metricstore写入指标数据呢？
 
 可以看到，Metricstore要求数据写入必须符合一定的格式，
 
-对于Log格式转Metric格式的场景，可以使用数据加工函数`e_to_metric`来实现. 
+对于Log格式转Metric格式的场景，可以使用数据加工函数`e_to_metric`来实现.
 
 
 接下来以Nginx日志中的request_time等指标为例，演示如何将Log转换成Metricstore的格式
@@ -94,7 +94,7 @@ Metricstore创建好了，那么如何向Metricstore写入指标数据呢？
 ![](/img/dataprocessdemo/特定格式处理/img9.jpg)
 
 数据加工实现日志转Metric主要由 `e_to_metric` 来实现, 函数参数要求如下，完整帮助参考 [链接](https://help.aliyun.com/document_detail/125484.html?#section-u7i-ymg-jzp)
-```
+```python
 e_to_metric(names=None, labels=None, time=None)
 # names字段用于指定指标名称字段，指定该字段后指标的值也会取Log中该字段名的值
 # labels字段用于指定指标label字段
@@ -102,7 +102,7 @@ e_to_metric(names=None, labels=None, time=None)
 ```
 
 我们只需要建立一个指标叫`request_time`,并且指标取值也是request_time的值，因此加工语句如下
-```
+```python
 e_to_metric(names="request_time")
 ```
 
@@ -131,21 +131,30 @@ request_time
 ### Log转Metric - 更多样例
 
 * 带上Label
-```
-e_to_metric(names="request_time",labels="slbid")
+```python
+e_to_metric(
+    names="request_time",
+    labels="slbid"
+)
 ```
 
 ![](/img/dataprocessdemo/特定格式处理/img12.jpg)
 
 * 将Log中的多个值转化为指标
-```
-e_to_metric(names=["request_time","upstream_response_time"],labels="slbid")
+```python
+e_to_metric(
+    names=["request_time","upstream_response_time"],
+    labels="slbid"
+)
 ```
 ![](/img/dataprocessdemo/特定格式处理/img13.jpg)
 
 * 多个Label
-```
-e_to_metric(names=["request_time","upstream_response_time"],labels=["slbid","scheme"])
+```python
+e_to_metric(
+    names=["request_time","upstream_response_time"],
+    labels=["slbid","scheme"]
+)
 ```
 ![](/img/dataprocessdemo/特定格式处理/img14.jpg)
 
@@ -159,8 +168,11 @@ e_to_metric(names=[("request_time","rt"),"upstream_response_time"],labels=["slbi
 
 * Label重命名
 
-```
-e_to_metric(names=[("request_time","rt"),"upstream_response_time"],labels=["slbid",("scheme","http_type")])
+```python
+e_to_metric(
+    names=[("request_time","rt"),"upstream_response_time"],
+    labels=["slbid",("scheme","http_type")]
+)
 ```
 
 ![](/img/dataprocessdemo/特定格式处理/img16.jpg)

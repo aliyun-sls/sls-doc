@@ -1,15 +1,15 @@
 const path = require('path')
 const getSqldemoSider = require('./siderbars/getSqldemoSider')
 const getSqlFunctionSider = require('./siderbars/getSqlFunctionSider')
+const getSqlErrorSider = require('./siderbars/getSqlErrorSider')
 const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getProductSider = require('./siderbars/getProductSider')
 const getDataProcessSider = require('./siderbars/getDataProcessSider')
 const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
-
-
+const getAlertSider = require('./siderbars/getAlertSider')
+const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
-
 const glob = require('glob')
 
 const sqlfunFiles = glob
@@ -97,11 +97,13 @@ module.exports = (async () => {
       sidebar: {
         '/sqldemo': getSqldemoSider(),
         '/sqlfunction': getSqlFunctionSider(),
+        '/sqlerror': getSqlErrorSider(),
         '/searchdemo': getSearchdemoSider(),
         '/product': getProductSider(),
         '/dataprocessdemo': getDataProcessSider(),
         '/oscompatibledemo': getOscompatibleDemo(),
-        '/visulization': getVisulizationDemo()
+        '/visulization': getVisulizationDemo(),
+        '/alert': getAlertSider()
       },
 
       footer: {
@@ -148,5 +150,13 @@ module.exports = (async () => {
         //   ariaSidebarNav: 'Sidebar Navigation',
       },
     },
+
+    markdown: {
+      config: (md) => {
+        md
+          .use(...createCodeGroup())
+          .use(preWrapperPlugin)
+      }
+    }
   }
 })()

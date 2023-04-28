@@ -1,0 +1,66 @@
+{
+  "description": "每5分钟检测一次，检测过去5分钟的数据。过去5分钟内，当有Logstore出现因Quota超限导致的Logtail发送失败时，会触发告警。",
+  "alert": {
+    "name": "sls_app_logtail_logstore_quota_err",
+    "displayName": "Logtail Quota超限告警",
+    "type": "Alert",
+    "state": "Enabled",
+    "schedule": {
+      "type": "FixedRate",
+      "interval": "5m"
+    },
+    "configuration": {
+      "version": "2.0",
+      "type": "default",
+      "dashboard": "internal-alert-analysis",
+      "queryList": [
+        {
+          "storeType": "log",
+          "project": "{{default.project}}",
+          "store": "internal-diagnostic_log",
+          "query": "__topic__: logtail_profile AND file_name : logstore_statistics and send_quota_error > 0 | SELECT project, logstore, count(*) as cnt group by project, logstore order by cnt desc limit 1000",
+          "timeSpanType": "Relative",
+          "start": "-5m",
+          "end": "now"
+        }
+      ],
+      "groupConfiguration": {
+        "type": "custom",
+        "fields": [
+          "project",
+          "logstore"
+        ]
+      },
+      "joinConfigurations": [],
+      "severityConfigurations": [
+        {
+          "severity": 8,
+          "evalCondition": {
+            "condition": "",
+            "countCondition": ""
+          }
+        }
+      ],
+      "labels": [],
+      "annotations": [
+        {
+          "key": "desc",
+          "value": "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，Logtail共出现${cnt}次因Quota超限导致的发送失败。"
+        },
+        {
+          "key": "title",
+          "value": "Logtail Quota超限告警"
+        },
+        {
+          "key": "__drill_down_query__",
+          "value": "__topic__: logtail_profile AND file_name : logstore_statistics and send_quota_error > 0 and project: \"${project}\" and logstore: \"${logstore}\""
+        }
+      ],
+      "autoAnnotation": true,
+      "sendResolved": false,
+      "threshold": 1,
+      "noDataFire": false,
+      "noDataSeverity": 6
+    }
+  }
+}

@@ -1,4 +1,4 @@
-时间按照分钟对齐，然后与method一起分组聚合计算pv，然后按照时间继续排序， 使用流图展示，x轴为时间，y轴pv，聚合列 request_method
+时间按照分钟对齐，然后与method一起分组聚合计算pv，然后按照时间继续排序， 使用流图展示，x轴为时间，y轴pv，聚合列 request_method  
 ```sql
 * |
 select
