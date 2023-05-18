@@ -43,7 +43,7 @@ var (
 func main() {
 	//using sasl we must add tisDialer
 	tlsDialer := &tls.Dialer{NetDialer: &net.Dialer{Timeout: 10 * time.Second}}
-	seeds := []string{fmt.Sprintf("%v.%v:%v", project, endpoint, port)}
+	seeds := []string{fmt.Sprintf("%s.%s:%s", project, endpoint, port)}
 
 	//get Kgo client
 	client, err := kgo.NewClient(
@@ -52,7 +52,7 @@ func main() {
 		kgo.ConsumeTopics(logstore),
 		kgo.SASL(plain.Auth{
 			User: project,
-			Pass: fmt.Sprintf("%v#%v", accessKeyID, accessKeySecret),
+			Pass: fmt.Sprintf("%s#%s", accessKeyID, accessKeySecret),
 		}.AsMechanism()),
 		kgo.Dialer(tlsDialer.DialContext),
 	)
