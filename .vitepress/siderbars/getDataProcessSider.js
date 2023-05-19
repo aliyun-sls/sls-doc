@@ -40,6 +40,7 @@ function getSidebar() {
         { text: '转换Log为Metric', link: '/dataprocessdemo/transform_log_to_metric.md' },
         { text: '字符串键值对动态提取', link: '/dataprocessdemo/parse_string_kv.md'},
         { text: '特定格式文本数据加工', link: '/dataprocessdemo/text_transform.md'},
+        { text: 'SLS数据加工对Json数据解析与更新', link: '/dataprocessdemo/json_parse_and_update.md'}
       ]
     },
     {
