@@ -39,7 +39,7 @@
 | [字符串键值对动态提取](./parse_string_kv.md) | 使用不同方案提取字符串键值对 |
 | [特定格式文本数据加工](./text_transform.md) | 从工单需求，加工编排等方面介绍如何使用LOG DSL编排解决任务需求 |
 | [转换Log为Metric](./transform_log_to_metric.md) | 使用日志服务数据加工函数将Log字段转换为Metric |
-| [Json数据解析与更新](./json_parse_and_update.md') | 使用SLS数据加工对Json数据进行解析与更新 |
+| [Json数据解析与更新](./json_parse_and_update.md) | 使用SLS数据加工对Json数据进行解析与更新 |
 
 ## IP地址相关
 
