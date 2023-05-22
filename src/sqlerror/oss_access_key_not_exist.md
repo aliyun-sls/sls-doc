@@ -3,25 +3,10 @@
 > ParameterInvalid
 
 **ErrorMessage**
-> ```code
 > The specified key does not exist.
-> [ErrorCode]: NoSuchKey
-> [RequestId]: 6467AB198F4874363XEDFA45
-> [HostId]: xxx.oss-cn-hangzhou.aliyuncs.com
-> [ResponseError]:
-> <?xml version="1.0" encoding="UTF-8"?>
-> <Error>
->   <Code>NoSuchKey</Code>
->   <Message>The specified key does not exist.</Message>
->   <RequestId>6467AB198F4874363XEDFA45</RequestId>
->   <HostId>xxx.oss-cn-hangzhou.aliyuncs.com</HostId>
->   <Key>sls/test.csv</Key>
->   <EC>0026-00000001</EC>
-> </Error>
-> ```
 
 ## 错误描述
-OSS bucket访问失败：指定Key不存在
+这通常发生你使用OSS做外表关联查询中，访问OSS bucket失败：指定Key不存在
 
 ## 可能原因
 您正在访问的OSS bucket中不存在指定的对象，可能已被删除或者从来不存在。这有可能是您指定了错误的OSS bucket端点，也可能是您指定了错误的对象Key。

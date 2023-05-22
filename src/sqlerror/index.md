@@ -55,3 +55,4 @@
 | [Multiple columns returned by subquery are not yet supported.](./multiple_columns_returned_by_subquery_not_supported.md) | 标量查询不支持返回多个列 |
 | [GROUP BY clause cannot contain aggregations or window functions](./group_by_clause_cannot_contain_aggregations_or_window_functions.md) | GROUP BY子句不能包含聚合函数或窗口函数 |
 | [WHERE clause cannot contain aggregations or window functions](./where_clause_cannot_contain_aggregations_or_window_functions.md) | WHERE子句不能包含聚合函数或窗口函数 |
+| [Left side of LIKE expression must evaluate to a varchar (actual: bigint)](./left_side_of_like_expression_must_evaluate_to_a_varchar.md) | LIKE表达式左侧必须为varchar类型（实际为bigint） |
