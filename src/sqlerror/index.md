@@ -1,4 +1,4 @@
-# SQL错误自助诊断
+# SQL错误中心
 
 这里罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。
 
@@ -51,8 +51,15 @@
 | [Could not choose a best candidate operator. Explicit type casts must be added.](./could_not_choose_a_best_candidate_operator.md) | 无法选择最佳的候选操作符，必须添加显式类型转换。 |
 | [Function * not registered](./function_not_registered.md) | 函数不存在 |
 | [SQL array indices start at 1](./sql_array_indices_start_at_1.md) | SQL数组索引位置从1开始 |
+| [Index must be greater than zero](./index_must_be_greater_than_zero.md) |  索引位置从1开始 |
 | [All COALESCE operands must be the same type: *](./coalesce_operands_must_be_the_same_type.md) | COALESCE函数中的所有参数必须类型一致 |
 | [Multiple columns returned by subquery are not yet supported.](./multiple_columns_returned_by_subquery_not_supported.md) | 标量查询不支持返回多个列 |
 | [GROUP BY clause cannot contain aggregations or window functions](./group_by_clause_cannot_contain_aggregations_or_window_functions.md) | GROUP BY子句不能包含聚合函数或窗口函数 |
 | [WHERE clause cannot contain aggregations or window functions](./where_clause_cannot_contain_aggregations_or_window_functions.md) | WHERE子句不能包含聚合函数或窗口函数 |
 | [Left side of LIKE expression must evaluate to a varchar (actual: bigint)](./left_side_of_like_expression_must_evaluate_to_a_varchar.md) | LIKE表达式左侧必须为varchar类型（实际为bigint） |
+| [Left side of logical expression must evaluate to a boolean (actual: varchar)](./left_side_of_logical_expression_must_evaluate_to_a_boolean.md) | 逻辑表达式左侧必须为boolean类型（实际为varchar） |
+| [Right side of logical expression must evaluate to a boolean (actual: bigint)](./right_side_of_logical_expression_must_evaluate_to_a_boolean.md) | 逻辑表达式右侧必须为boolean类型（实际为bigint） |
+| [Invalid JSON path: ...](./invalid_json_path.md) | 非法JSON访问路径 |
+| [output rows execeed 100000 rows, please refine your sql](./output_execeed_100000_rows.md) | 输出超过100000行 |
+| [max distinct num is:10, please use approx_distinct](./max_distinct_num_10.md) | 单个Query中限制最多使用10个distinct |
+| [Key not present in map](./key_not_in_map.md) | Map中不存在指定key |
