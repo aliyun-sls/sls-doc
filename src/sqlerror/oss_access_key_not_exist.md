@@ -3,20 +3,22 @@
 > ParameterInvalid
 
 **ErrorMessage**
+> ```code
 > The specified key does not exist.
-[ErrorCode]: NoSuchKey
-[RequestId]: 6467AB198F4874363XEDFA45
-[HostId]: xxx.oss-cn-hangzhou.aliyuncs.com
-[ResponseError]:
-<?xml version="1.0" encoding="UTF-8"?>
-<Error>
-  <Code>NoSuchKey</Code>
-  <Message>The specified key does not exist.</Message>
-  <RequestId>6467AB198F4874363XEDFA45</RequestId>
-  <HostId>xxx.oss-cn-hangzhou.aliyuncs.com</HostId>
-  <Key>sls/test.csv</Key>
-  <EC>0026-00000001</EC>
-</Error>
+> [ErrorCode]: NoSuchKey
+> [RequestId]: 6467AB198F4874363XEDFA45
+> [HostId]: xxx.oss-cn-hangzhou.aliyuncs.com
+> [ResponseError]:
+> <?xml version="1.0" encoding="UTF-8"?>
+> <Error>
+>   <Code>NoSuchKey</Code>
+>   <Message>The specified key does not exist.</Message>
+>   <RequestId>6467AB198F4874363XEDFA45</RequestId>
+>   <HostId>xxx.oss-cn-hangzhou.aliyuncs.com</HostId>
+>   <Key>sls/test.csv</Key>
+>   <EC>0026-00000001</EC>
+> </Error>
+> ```
 
 ## 错误描述
 OSS bucket访问失败：指定Key不存在
