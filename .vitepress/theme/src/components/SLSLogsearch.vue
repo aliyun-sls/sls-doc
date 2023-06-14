@@ -29,7 +29,7 @@ const params = computed(() => {
 
 <style scoped>
 .frame {
-  height: calc(100vh - (var(--sls-topnav-height)) - (var(--sls-footer-height)));
+  height: calc(100vh - (var(--sls-topnav-height)));
   width: 100vw;
   border: none;
   outline: none;

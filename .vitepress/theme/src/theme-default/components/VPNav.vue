@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { provide } from 'vue'
+import { useRoute } from 'vitepress'
 import { useNav } from '../composables/nav.js'
 import { useSidebar } from '../composables/sidebar.js'
 import VPNavBar from './VPNavBar.vue'
@@ -9,10 +10,13 @@ const { isScreenOpen, closeScreen, toggleScreen } = useNav()
 const { hasSidebar } = useSidebar()
 
 provide('close-screen', closeScreen)
+
+const route = useRoute()
+
 </script>
 
 <template>
-  <header class="VPNav" :class="{ 'no-sidebar' : !hasSidebar }">
+  <header class="VPNav" :class="{ 'no-sidebar' : !hasSidebar, 'header-shadow': route.path.includes('/playground/') }">
     <VPNavBar :is-screen-open="isScreenOpen" @toggle-screen="toggleScreen">
       <template #nav-bar-title-before><slot name="nav-bar-title-before" /></template>
       <template #nav-bar-title-after><slot name="nav-bar-title-after" /></template>
@@ -34,6 +38,10 @@ provide('close-screen', closeScreen)
   z-index: var(--vp-z-index-nav);
   width: 100%;
   pointer-events: none;
+}
+
+.header-shadow {
+  box-shadow: 0 2px 4px 0 var(--cb-color-shadow,rgba(0,0,0,0.16));
 }
 
 @media (min-width: 960px) {

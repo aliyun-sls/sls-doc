@@ -10,11 +10,7 @@ import VPSidebar from './components/VPSidebar.vue'
 import VPContent from './components/VPContent.vue'
 import VPFooter from './components/VPFooter.vue'
 
-const {
-  isOpen: isSidebarOpen,
-  open: openSidebar,
-  close: closeSidebar
-} = useSidebar()
+const { isOpen: isSidebarOpen, open: openSidebar, close: closeSidebar } = useSidebar()
 
 const route = useRoute()
 watch(() => route.path, closeSidebar)
@@ -64,7 +60,7 @@ const { frontmatter } = useData()
       <template #aside-ads-after><slot name="aside-ads-after" /></template>
     </VPContent>
 
-    <VPFooter />
+    <VPFooter v-if="!route.path.includes('/playground/')" />
     <slot name="layout-bottom" />
   </div>
   <Content v-else />
