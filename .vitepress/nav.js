@@ -13,7 +13,7 @@ function getNavs() {
             { text: '可视化案例', link: '/visulization/index' },
             { text: '加工案例', link: '/dataprocessdemo/index' },
             { text: '开源兼容', link: '/oscompatibledemo/index' },
-            { text: '告警规则案例', link: '/alert/index' }
+            { text: '告警规则案例', link: '/alert/index' },
           ],
         },
       ],
@@ -45,6 +45,10 @@ function getNavs() {
       items: [
         {
           items: [
+            {
+              text: '控制台 Playground',
+              link: 'https://sls.aliyun.com/doc/playground/demo.html',
+            },
             {
               text: '日志服务控制台',
               link: 'https://sls.console.aliyun.com/',
