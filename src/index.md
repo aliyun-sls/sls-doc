@@ -34,6 +34,61 @@
   </a>
 </div>
 
+## CloudLens
+
+CloudLens 基于日志服务构建统一的云产品可观测能力，通过日志、指标、配置计量等数据的关联分析，提供阿里云产品的用量分析、性能监控、安全分析、数据保护、异常检测、访问分析等服务。从成本、性能、安全、数据保护、稳定性、访问分析六个维度，助力您快速构建云产品的可观测性，更好地使用云产品。
+
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/app/lens/clb" target="_blank">
+    <p class="next-steps-link">CloudLens for CLB</p>
+    <p class="next-steps-caption">传统型负载均衡日志中心</p>
+  </a>
+    <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/app/lens/alb" target="_blank">
+    <p class="next-steps-link">CloudLens for ALB</p>
+    <p class="next-steps-caption">应用型负载均衡日志中心</p>
+  </a>
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/app/lens/sls" target="_blank">
+    <p class="next-steps-link">CloudLens for SLS</p>
+    <p class="next-steps-caption">SLS数据洞察</p>
+  </a>
+</div>
+
+## 日志分析仪表盘案例
+
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=%2Flognext%2Fproject%2Fhost-monitor-demo-log%2Fdashboard%2Fsls_host_host-monitor-metric%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">主机监控</p>
+  </a>
+    <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">Nginx访问日志</p>
+  </a>
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">Nginx监控中心</p>
+  </a>
+</div>
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">Nginx秒级指标监控</p>
+  </a>
+    <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">Nginx访问日志分析</p>
+  </a>
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">CDN用户分析</p>
+  </a>
+</div>
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">CDN基础数据</p>
+  </a>
+    <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">CDN错误分析</p>
+  </a>
+  <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+    <p class="next-steps-link">CDN热门资源</p>
+  </a>
+</div>
+
 ## 更多参考
 
 B 站：https://space.bilibili.com/630680534

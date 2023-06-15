@@ -12,6 +12,7 @@ const params = computed(() => {
     return {
       dest: '%2Flognext%2Fprofile',
       theme: 'default',
+      maxWidth: queries.maxWidth === true,
     }
   }
   return {
@@ -24,7 +25,9 @@ let dest = ref('')
 
 watchEffect(async () => {
   const response = await fetch(
-    `https://s-sls-demo-thysjcgqcl.cn-shanghai.fcapp.run?dest=${params.value.dest}&theme=${params.value.theme}`
+    `https://s-sls-demo-thysjcgqcl.cn-shanghai.fcapp.run?dest=${encodeURIComponent(
+      params.value.dest
+    )}&theme=${params.value.theme}`
   )
   const json = await response.json()
   if (json.success) {
@@ -34,7 +37,8 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <iframe v-if="dest !== ''" :src="dest" class="frame"> </iframe>
+  <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.dest }">
+  </iframe>
 </template>
 
 <style scoped>
@@ -44,6 +48,10 @@ watchEffect(async () => {
   border: none;
   outline: none;
   margin: auto;
+}
+
+.max-width {
+  max-width: var(--sls-page-max-width);
 }
 
 .dark .frame {

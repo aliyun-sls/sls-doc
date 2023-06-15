@@ -55,3 +55,11 @@
   color: var(--vp-c-text-2);
   transition: color 0.5s;
 }
+
+.vt-box-container .vt-box .next-steps-link {
+  font-size: 18px;
+}
+
+.vp-doc .vt-box-container a[href*='\/playground/']:before {
+  display: none;
+}
