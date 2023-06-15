@@ -12,12 +12,13 @@ const params = computed(() => {
     return {
       dest: '%2Flognext%2Fprofile',
       theme: 'default',
-      maxWidth: queries.maxWidth === true,
+      maxWidth: false,
     }
   }
   return {
     dest: queries.dest,
     theme: isDarkTheme() ? 'dark' : 'default',
+    maxWidth: queries.maxWidth === true,
   }
 })
 
@@ -37,7 +38,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.dest }">
+  <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.maxWidth }">
   </iframe>
 </template>
 

@@ -55,7 +55,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 
 ## 日志分析仪表盘案例
 
-<div class="vt-box-container next-steps margin-top-20">
+<div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
   <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=%2Flognext%2Fproject%2Fhost-monitor-demo-log%2Fdashboard%2Fsls_host_host-monitor-metric%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">主机监控</p>
   </a>
@@ -66,7 +66,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
     <p class="next-steps-link">Nginx监控中心</p>
   </a>
 </div>
-<div class="vt-box-container next-steps margin-top-20">
+<div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
   <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Nginx秒级指标监控</p>
   </a>
@@ -77,7 +77,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
     <p class="next-steps-link">CDN用户分析</p>
   </a>
 </div>
-<div class="vt-box-container next-steps margin-top-20">
+<div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
   <a class="vt-box" href="https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">CDN基础数据</p>
   </a>

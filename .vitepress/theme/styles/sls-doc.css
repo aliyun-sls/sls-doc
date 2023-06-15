@@ -60,6 +60,10 @@
   font-size: 18px;
 }
 
+.vt-box-container-thin .vt-box {
+  padding: 16px 24px;
+}
+
 .vp-doc .vt-box-container a[href*='\/playground/']:before {
   display: none;
 }

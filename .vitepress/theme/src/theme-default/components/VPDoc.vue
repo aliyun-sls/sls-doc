@@ -94,11 +94,11 @@ provide('onContentUpdated', onContentUpdated)
 
 @media (min-width: 1440px) {
   .VPDoc:not(.has-sidebar) .content {
-    max-width: 784px;
+    max-width: 1200px;
   }
 
   .VPDoc:not(.has-sidebar) .container {
-    max-width: 1104px;
+    max-width: 1400px;
   }
 }
 
@@ -172,7 +172,7 @@ provide('onContentUpdated', onContentUpdated)
   margin: 0 auto;
 }
 
-.VPDoc.has-aside .content-container {
+/* .VPDoc.has-aside .content-container {
   max-width: 688px;
-}
+} */
 </style>
