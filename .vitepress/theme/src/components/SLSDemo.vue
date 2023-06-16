@@ -7,16 +7,16 @@ import { isDarkTheme } from './utils'
 const search = inBrowser ? window.location.search : ''
 
 const params = computed(() => {
-  const queries = URI(search).escapeQuerySpace(false).query(true)
+  const queries = URI(search).query(true)
   if (queries == null || queries.dest == null) {
     return {
-      dest: '%2Flognext%2Fprofile',
+      dest: '/lognext/profile',
       theme: 'default',
       maxWidth: false,
     }
   }
   return {
-    dest: queries.dest,
+    dest: encodeURIComponent(queries.dest),
     theme: isDarkTheme() ? 'dark' : 'default',
     maxWidth: queries.maxWidth === true,
   }
