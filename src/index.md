@@ -55,20 +55,18 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 
 ## 日志应用 Demo
 
-CloudLens 基于日志服务构建统一的云产品可观测能力，通过日志、指标、配置计量等数据的关联分析，提供阿里云产品的用量分析、性能监控、安全分析、数据保护、异常检测、访问分析等服务。从成本、性能、安全、数据保护、稳定性、访问分析六个维度，助力您快速构建云产品的可观测性，更好地使用云产品。
-
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/lens/clb" target="_blank">
+  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/ingress_metrics/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access" target="_blank">
     <p class="next-steps-link">Ingress 日志中心</p>
-    <p class="next-steps-caption">传统型负载均衡日志中心</p>
+    <p class="next-steps-caption">Kubernetes Ingress访问日志中心</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/lens/alb" target="_blank">
+    <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/k8s-event/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/k8s-event/dashboardtemplate/k8s-event-center" target="_blank">
     <p class="next-steps-link">K8s 事件中心</p>
-    <p class="next-steps-caption">应用型负载均衡日志中心</p>
+    <p class="next-steps-caption">Kubernetes 事件监控</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/lens/sls" target="_blank">
-    <p class="next-steps-link">CloudLens for SLS</p>
-    <p class="next-steps-caption">SLS数据洞察</p>
+  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/nginx_metrics/project/nginx-demo-log/logstore/nginx-access-log/dashboardtemplate/nginx-overview" target="_blank">
+    <p class="next-steps-link">Nginx 日志中心</p>
+    <p class="next-steps-caption">Nginx 7层日志中心 </p>
   </a>
 </div>
 
