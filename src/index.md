@@ -39,15 +39,15 @@
 CloudLens 基于日志服务构建统一的云产品可观测能力，通过日志、指标、配置计量等数据的关联分析，提供阿里云产品的用量分析、性能监控、安全分析、数据保护、异常检测、访问分析等服务。从成本、性能、安全、数据保护、稳定性、访问分析六个维度，助力您快速构建云产品的可观测性，更好地使用云产品。
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/lens/clb" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/clb" target="_blank">
     <p class="next-steps-link">CloudLens for CLB</p>
     <p class="next-steps-caption">传统型负载均衡日志中心</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/lens/alb" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/alb" target="_blank">
     <p class="next-steps-link">CloudLens for ALB</p>
     <p class="next-steps-caption">应用型负载均衡日志中心</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/lens/sls" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/sls" target="_blank">
     <p class="next-steps-link">CloudLens for SLS</p>
     <p class="next-steps-caption">SLS数据洞察</p>
   </a>
@@ -56,15 +56,15 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 ## 日志应用 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/ingress_metrics/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/ingress_metrics/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access" target="_blank">
     <p class="next-steps-link">Ingress 日志中心</p>
     <p class="next-steps-caption">Kubernetes Ingress访问日志中心</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/k8s-event/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/k8s-event/dashboardtemplate/k8s-event-center" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/k8s-event/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/k8s-event/dashboardtemplate/k8s-event-center" target="_blank">
     <p class="next-steps-link">K8s 事件中心</p>
     <p class="next-steps-caption">Kubernetes 事件监控</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/app/nginx_metrics/project/nginx-demo-log/logstore/nginx-access-log/dashboardtemplate/nginx-overview" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/nginx_metrics/project/nginx-demo-log/logstore/nginx-access-log/dashboardtemplate/nginx-overview" target="_blank">
     <p class="next-steps-link">Nginx 日志中心</p>
     <p class="next-steps-caption">Nginx 7层日志中心 </p>
   </a>
@@ -73,46 +73,46 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 ## 日志分析仪表盘 Demo
 
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=%2Flognext%2Fproject%2Fhost-monitor-demo-log%2Fdashboard%2Fsls_host_host-monitor-metric%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=%2Flognext%2Fproject%2Fhost-monitor-demo-log%2Fdashboard%2Fsls_host_host-monitor-metric%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">主机监控</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Nginx访问日志</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Nginx监控中心</p>
   </a>
 </div>
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Nginx秒级指标监控</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Nginx访问日志分析</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">CDN用户分析</p>
   </a>
 </div>
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">CDN基础数据</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">CDN错误分析</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">CDN热门资源</p>
   </a>
 </div>
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-metrics-monitoring%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-metrics-monitoring%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Ingress详细监控</p>
   </a>
-    <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-overview%3FisShare%3Dtrue" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-overview%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Ingress运营大盘</p>
   </a>
-  <a class="vt-box" href="./playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access%3FisShare%3Dtrue" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">Ingress访问中心</p>
   </a>
 </div>
