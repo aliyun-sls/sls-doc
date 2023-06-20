@@ -2,6 +2,12 @@
 
 日志服务 SLS 是云原生观测与分析平台，为 Log、Metric、Trace 等数据提供大规模、低成本、实时的平台化服务。日志服务一站式提供数据采集、加工、查询与分析、可视化、告警、消费与投递等功能，全面提升您在研发、运维、运营、安全等场景的数字化能力。
 
+:::tip SLS Playground 发布啦！！！
+SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 SLS 控制台只读账号，包含智能运维类 APP Demo、CloudLen APP Demo、多种日志分析 Demo，可视化 Demo 等等，尽情畅玩吧！
+
+[尝试](/playground/demo.html)
+:::
+
 ## 案例中心介绍
 
 <div class="vt-box-container next-steps">
@@ -119,6 +125,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 | DDos 高防日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddos-anti-log%3FisShare%3Dtrue){target="_blank"}     | [DDos访问中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddos-anti-log-ddos_access_center_cn%3FisShare%3Dtrue){target="_blank"} [DDoS运营中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddos-anti-log_ddos_operation_center_cn%3FisShare%3Dtrue){target="_blank"} |
 | DDos 高防（新BGP）日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddoscoo_access_log%3FisShare%3Dtrue){target="_blank"}     | [DDoS高防（新BGP）访问中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/dashboard-1687261346085-692043%3FisShare%3Dtrue){target="_blank"} [DDoS高防（新BGP）运营中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddoscoo_access_log_ddos_cd_operation_center_cn%3FisShare%3Dtrue){target="_blank"} |
 | DDos 高防（国际）日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddosdip_access_log%3FisShare%3Dtrue){target="_blank"}     | [DDoS高防（国际）访问中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/dashboard-1687262195623-457552%3FisShare%3Dtrue){target="_blank"} [DDoS高防（国际）运营中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddosdip_access_log_ddos_cd_operation_center_cn%3FisShare%3Dtrue){target="_blank"} |
+| DDos 原生防护日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddosbgp-logstore%3FisShare%3Dtrue){target="_blank"}     | [DDoS原生防护事件报表](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddosbgp-logstore_ddosbgp_event_center_cn%3FisShare%3Dtrue){target="_blank"} [DDoS原生清洗分析报表](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddosbgp-logstore_ddosbgp_traffic_center_cn%3FisShare%3Dtrue){target="_blank"} |
 
 ## 更多参考
 
