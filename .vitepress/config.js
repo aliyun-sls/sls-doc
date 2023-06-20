@@ -8,6 +8,8 @@ const getDataProcessSider = require('./siderbars/getDataProcessSider')
 const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
 const getAlertSider = require('./siderbars/getAlertSider')
+const getCloudlenSider = require('./siderbars/getCloudLenSider')
+
 const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
 const glob = require('glob')
@@ -103,7 +105,8 @@ module.exports = (async () => {
         '/dataprocessdemo': getDataProcessSider(),
         '/oscompatibledemo': getOscompatibleDemo(),
         '/visulization': getVisulizationDemo(),
-        '/alert': getAlertSider()
+        '/alert': getAlertSider(),
+        '/cloudlen': getCloudlenSider(),
       },
 
       footer: {

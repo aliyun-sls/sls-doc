@@ -14,6 +14,7 @@ function getNavs() {
             { text: '加工案例', link: '/dataprocessdemo/index' },
             { text: '开源兼容', link: '/oscompatibledemo/index' },
             { text: '告警规则案例', link: '/alert/index' },
+            { text: 'CloudLen案例', link: '/cloudlen/index' },
           ],
         },
       ],

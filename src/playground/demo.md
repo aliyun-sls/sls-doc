@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Logsearch Playground
+title: SLS Playground
 ---
 
 <script setup>

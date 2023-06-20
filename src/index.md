@@ -34,16 +34,41 @@
   </a>
 </div>
 
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/sqlerror/">
+    <p class="next-steps-link">错误中心</p>
+    <p class="next-steps-caption">罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。</p>
+  </a>
+  <a class="vt-box" href="/doc/alert/">
+    <p class="next-steps-link">告警</p>
+    <p class="next-steps-caption">日志服务（SLS）告警规则案例，包括数据加工、数据投递、Logtail、定时SQL</p>
+  </a>
+  <a class="vt-box" href="/doc/cloudlen/">
+    <p class="next-steps-link">CloudLens 案例</p>
+    <p class="next-steps-caption">日志服务（SLS）CloudLens 介绍与使用。</p>
+  </a>
+</div>
+
+## 智能运维 Demo
+
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/home" target="_blank">
+    <p class="next-steps-link">全栈可观测</p>
+    <p class="next-steps-caption">一站式IT系统可观测方案，包含IT系统监控、全链路Trace、智能告警等功能。本文介绍全栈可观测功能的相关信息。
+</p>
+  </a>
+</div>
+
 ## CloudLens Demo
 
 CloudLens 基于日志服务构建统一的云产品可观测能力，通过日志、指标、配置计量等数据的关联分析，提供阿里云产品的用量分析、性能监控、安全分析、数据保护、异常检测、访问分析等服务。从成本、性能、安全、数据保护、稳定性、访问分析六个维度，助力您快速构建云产品的可观测性，更好地使用云产品。
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/clb" target="_blank">
+  <a class="vt-box" href="/doc/cloudlen/slb" target="_blank">
     <p class="next-steps-link">CloudLens for CLB</p>
     <p class="next-steps-caption">传统型负载均衡日志中心</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/alb" target="_blank">
+    <a class="vt-box" href="/doc/cloudlen/slb" target="_blank">
     <p class="next-steps-link">CloudLens for ALB</p>
     <p class="next-steps-caption">应用型负载均衡日志中心</p>
   </a>
@@ -70,39 +95,17 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   </a>
 </div>
 
+## 日志分析 Demo
+| 日志类型  |   日志查询 Demo   |   分析仪表盘 Demo |
+| -------- | ----------------| -----------------|
+| Nginx日志 |  [试用 Demo](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FisShare%3Dtrue){target="_blank"} |  [Nginx访问日志](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue){target="_blank"} [Nginx监控中心](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue){target="_blank"} [Nginx秒级指标监控](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue){target="_blank"}  [Nginx访问日志分析](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue){target="_blank"}|
+| CDN日志 |  [试用 Demo](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} |  [CDN用户分析](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN基础数据](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN错误分析](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"}  [CDN热门资源](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"}|
+
 ## 日志分析仪表盘 Demo
 
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
   <a class="vt-box" href="/doc/playground/demo.html?dest=%2Flognext%2Fproject%2Fhost-monitor-demo-log%2Fdashboard%2Fsls_host_host-monitor-metric%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">主机监控</p>
-  </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Nginx访问日志</p>
-  </a>
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Nginx监控中心</p>
-  </a>
-</div>
-<div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Nginx秒级指标监控</p>
-  </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Nginx访问日志分析</p>
-  </a>
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">CDN用户分析</p>
-  </a>
-</div>
-<div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">CDN基础数据</p>
-  </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">CDN错误分析</p>
-  </a>
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">CDN热门资源</p>
   </a>
 </div>
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
