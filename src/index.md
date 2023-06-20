@@ -57,6 +57,14 @@
     <p class="next-steps-caption">一站式IT系统可观测方案，包含IT系统监控、全链路Trace、智能告警等功能。本文介绍全栈可观测功能的相关信息。
 </p>
   </a>
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/home" target="_blank">
+    <p class="next-steps-link">Trace</p>
+    <p class="next-steps-caption">日志服务提供基于原生OpenTelemetry协议的分布式链路追踪功能，支持各类Trace数据的接入、存储、分析、可视化、告警、人工智能运维等。</p>
+  </a>
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/home" target="_blank">
+    <p class="next-steps-link">全栈监控</p>
+    <p class="next-steps-caption">全栈监控应用是日志服务提供的一站式IT系统监控方案，监控的目标包括主机监控、Kubernetes监控、数据库监控、中间件监控等。</p>
+  </a>
 </div>
 
 ## CloudLens Demo
@@ -96,27 +104,20 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 </div>
 
 ## 日志分析 Demo
-| 日志类型  |   日志查询 Demo   |   分析仪表盘 Demo |
-| -------- | ----------------| -----------------|
-| Nginx日志 |  [试用 Demo](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FisShare%3Dtrue){target="_blank"} |  [Nginx访问日志](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue){target="_blank"} [Nginx监控中心](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue){target="_blank"} [Nginx秒级指标监控](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue){target="_blank"}  [Nginx访问日志分析](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue){target="_blank"}|
-| CDN日志 |  [试用 Demo](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} |  [CDN用户分析](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN基础数据](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN错误分析](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"}  [CDN热门资源](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"}|
+
+| 日志类型     | 日志查询 Demo                                                                                                                                                 | 分析仪表盘 Demo                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 主机指标日志   | [试用 Demo](/playground/demo.html?dest=/lognext/project/host-monitor-demo-log/dashboard/sls_host_host-monitor-metric%3FisShare%3Dtrue){target="_blank"}                         | [主机监控](/playground/demo.html?dest=/lognext/project/host-monitor-demo-log/dashboard/sls_host_host-monitor-metric%3FisShare%3Dtrue){target="_blank"}  |
+| Nginx 日志   | [试用 Demo](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FisShare%3Dtrue){target="_blank"}                         | [Nginx 访问日志](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue){target="_blank"} [Nginx 监控中心](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue){target="_blank"} [Nginx 秒级指标监控](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_detail_monitoring_cn%3FisShare%3Dtrue){target="_blank"} [Nginx 访问日志分析](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_access_cn%3FisShare%3Dtrue){target="_blank"} |
+| CDN 日志     | [试用 Demo](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"}    | [CDN 用户分析](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN 基础数据](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN 错误分析](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"} [CDN 热门资源](/playground/demo.html?dest=/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log%3FisShare%3Dtrue){target="_blank"}                                                             |
+| Ingress 日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logsearch/nginx-ingress%3FisShare%3Dtrue){target="_blank"} | [Ingress 详细监控](/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-metrics-monitoring%3FisShare%3Dtrue){target="_blank"} [Ingress 运营大盘](/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-overview%3FisShare%3Dtrue){target="_blank"} [Ingress 访问中心](/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access%3FisShare%3Dtrue){target="_blank"}                                |
+| RDS 审计日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/rds-log-demo/logsearch/rds-audit-log%3FisShare%3Dtrue){target="_blank"}                              | [RDS 审计中心](/playground/demo.html?dest=/lognext/project/rds-log-demo/dashboard/rds-audit-log_rds_audit_center_cn%3FisShare%3Dtrue){target="_blank"} [RDS 审计性能中心](/playground/demo.html?dest=/lognext/project/rds-log-demo/dashboard/rds-audit-log_rds_performance_center_cn%3FisShare%3Dtrue){target="_blank"} [RDS 审计安全中心](/playground/demo.html?dest=/lognext/project/rds-log-demo/dashboard/rds-audit-log_rds_security_center_cn%3FisShare%3Dtrue){target="_blank"}                                                                                                                                                                                                      |
 
 ## 日志分析仪表盘 Demo
 
 <div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
   <a class="vt-box" href="/doc/playground/demo.html?dest=%2Flognext%2Fproject%2Fhost-monitor-demo-log%2Fdashboard%2Fsls_host_host-monitor-metric%3FisShare%3Dtrue" target="_blank">
     <p class="next-steps-link">主机监控</p>
-  </a>
-</div>
-<div class="vt-box-container vt-box-container-thin next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-metrics-monitoring%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Ingress详细监控</p>
-  </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-overview%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Ingress运营大盘</p>
-  </a>
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access%3FisShare%3Dtrue" target="_blank">
-    <p class="next-steps-link">Ingress访问中心</p>
   </a>
 </div>
 
