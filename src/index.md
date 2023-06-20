@@ -57,11 +57,11 @@
     <p class="next-steps-caption">一站式IT系统可观测方案，包含IT系统监控、全链路Trace、智能告警等功能。本文介绍全栈可观测功能的相关信息。
 </p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/home" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/trace" target="_blank">
     <p class="next-steps-link">Trace</p>
     <p class="next-steps-caption">日志服务提供基于原生OpenTelemetry协议的分布式链路追踪功能，支持各类Trace数据的接入、存储、分析、可视化、告警、人工智能运维等。</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/home" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/monitor" target="_blank">
     <p class="next-steps-link">全栈监控</p>
     <p class="next-steps-caption">全栈监控应用是日志服务提供的一站式IT系统监控方案，监控的目标包括主机监控、Kubernetes监控、数据库监控、中间件监控等。</p>
   </a>
@@ -72,11 +72,11 @@
 CloudLens 基于日志服务构建统一的云产品可观测能力，通过日志、指标、配置计量等数据的关联分析，提供阿里云产品的用量分析、性能监控、安全分析、数据保护、异常检测、访问分析等服务。从成本、性能、安全、数据保护、稳定性、访问分析六个维度，助力您快速构建云产品的可观测性，更好地使用云产品。
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/cloudlen/slb" target="_blank">
+  <a class="vt-box" href="/doc/cloudlen/slb.html" target="_blank">
     <p class="next-steps-link">CloudLens for CLB</p>
     <p class="next-steps-caption">传统型负载均衡日志中心</p>
   </a>
-    <a class="vt-box" href="/doc/cloudlen/slb" target="_blank">
+    <a class="vt-box" href="/doc/cloudlen/slb.html" target="_blank">
     <p class="next-steps-link">CloudLens for ALB</p>
     <p class="next-steps-caption">应用型负载均衡日志中心</p>
   </a>
@@ -113,6 +113,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 | Ingress 日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logsearch/nginx-ingress%3FisShare%3Dtrue){target="_blank"} | [Ingress 详细监控](/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-metrics-monitoring%3FisShare%3Dtrue){target="_blank"} [Ingress 运营大盘](/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-overview%3FisShare%3Dtrue){target="_blank"} [Ingress 访问中心](/doc/playground/demo.html?dest=/lognext/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access%3FisShare%3Dtrue){target="_blank"}                                |
 | RDS 审计日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/rds-log-demo/logsearch/rds-audit-log%3FisShare%3Dtrue){target="_blank"}                              | [RDS 审计中心](/playground/demo.html?dest=/lognext/project/rds-log-demo/dashboard/rds-audit-log_rds_audit_center_cn%3FisShare%3Dtrue){target="_blank"} [RDS 审计性能中心](/playground/demo.html?dest=/lognext/project/rds-log-demo/dashboard/rds-audit-log_rds_performance_center_cn%3FisShare%3Dtrue){target="_blank"} [RDS 审计安全中心](/playground/demo.html?dest=/lognext/project/rds-log-demo/dashboard/rds-audit-log_rds_security_center_cn%3FisShare%3Dtrue){target="_blank"} |
 | WAF 云产品日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/waf-demo-log/logsearch/waf-log%3FisShare%3Dtrue){target="_blank"}  | [WAF 访问中心](/playground/demo.html?dest=/lognext/project/waf-demo-log/dashboard/waf-log_waf_access_center_cn%3FisShare%3Dtrue){target="_blank"} [WAF 运营中心](/playground/demo.html?dest=/lognext/project/waf-demo-log/dashboard/waf-log_waf_operation_center_cn%3FisShare%3Dtrue){target="_blank"} [WAF 安全中心](/playground/demo.html?dest=/lognext/project/waf-demo-log/dashboard/waf-log_waf_security_center_cn%3FisShare%3Dtrue){target="_blank"} |
+| VPC 流日志   | [试用 Demo](/playground/demo.html?dest=/lognext/project/vpc-flowlog-demo/logsearch/vpc-flowlog%3FisShare%3Dtrue){target="_blank"}   | [VPC 流日志概览](/playground/demo.html?dest=/lognext/project/vpc-flowlog-demo/dashboard/vpc-flowlog-vpc_flow_log_overview_cn%3FisShare%3Dtrue){target="_blank"}  |
 
 ## 更多参考
 
