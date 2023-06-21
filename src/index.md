@@ -92,7 +92,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/oss_lens" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/oss_lens%3Fresource=/ossLens/data-access" target="_blank">
     <p class="next-steps-link">CloudLens for OSS</p>
     <p class="next-steps-caption">OSS 数据洞察</p>
   </a>
