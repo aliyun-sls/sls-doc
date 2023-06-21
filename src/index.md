@@ -119,6 +119,13 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
     <p class="next-steps-caption">Nginx 7层日志中心 </p>
   </a>
 </div>
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/flowlog/vpc-flowlog-demo/s7d5s02ji9%3Fresource=/flowlog/project/vpc-flowlog-demo/logstore/vpc-flowlog/dashboardtemplate/flowlog-overview" target="_blank">
+    <p class="next-steps-link">Flowlog 日志中心</p>
+    <p class="next-steps-caption">VPC Flowlog 日志分析APP</p>
+  </a>
+</div>
+
 
 ## 其他日志应用 Demo
 
