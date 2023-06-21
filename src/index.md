@@ -92,7 +92,7 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/oss" target="_blank">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/oss_lens" target="_blank">
     <p class="next-steps-link">CloudLens for OSS</p>
     <p class="next-steps-caption">OSS 数据洞察</p>
   </a>
@@ -146,7 +146,9 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 | DDos 高防（新BGP）日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddoscoo_access_log%3FisShare%3Dtrue){target="_blank"}     | [DDoS高防（新BGP）访问中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/dashboard-1687261346085-692043%3FisShare%3Dtrue){target="_blank"} [DDoS高防（新BGP）运营中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddoscoo_access_log_ddos_cd_operation_center_cn%3FisShare%3Dtrue){target="_blank"} |
 | DDos 高防（国际）日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddosdip_access_log%3FisShare%3Dtrue){target="_blank"}     | [DDoS高防（国际）访问中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/dashboard-1687262195623-457552%3FisShare%3Dtrue){target="_blank"} [DDoS高防（国际）运营中心](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddosdip_access_log_ddos_cd_operation_center_cn%3FisShare%3Dtrue){target="_blank"} |
 | DDos 原生防护日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/ddos-demo-log/logsearch/ddosbgp-logstore%3FisShare%3Dtrue){target="_blank"}     | [DDoS原生防护事件报表](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddosbgp-logstore_ddosbgp_event_center_cn%3FisShare%3Dtrue){target="_blank"} [DDoS原生清洗分析报表](/playground/demo.html?dest=/lognext/project/ddos-demo-log/dashboard/ddosbgp-logstore_ddosbgp_traffic_center_cn%3FisShare%3Dtrue){target="_blank"} |
-| Api 网关日志（云产品） | [试用 Demo](/playground/demo.html?dest=/lognext/project/apigateway-demo-log/logsearch/apigateway-log%3FisShare%3Dtrue){target="_blank"}     | [API 网关访问日志](/playground/demo.html?dest=/lognext/project/apigateway-demo-log/dashboard/apigateway-log_accesslog_dashboard_cn%3FisShare%3Dtrue){target="_blank"}
+| Api 网关日志（云产品） | [试用 Demo](/playground/demo.html?dest=/lognext/project/apigateway-demo-log/logsearch/apigateway-log%3FisShare%3Dtrue){target="_blank"}     | [API 网关访问日志](/playground/demo.html?dest=/lognext/project/apigateway-demo-log/dashboard/apigateway-log_accesslog_dashboard_cn%3FisShare%3Dtrue){target="_blank"} |
+| 函数计算消费日志（云产品） | [试用 Demo](/playground/demo.html?dest=/lognext/project/fc-demo-log/logsearch/fc-log%3FisShare%3Dtrue){target="_blank"}     | |
+| OSS 访问日志 | [试用 Demo](/playground/demo.html?dest=/lognext/project/oss-demo-log/logsearch/oss-access-log%3FisShare%3Dtrue){target="_blank"}     | [OSS访问中心](/playground/demo.html?dest=/lognext/project/oss-demo-log/dashboard/oss-access-log_oss_access_center_cn%3FisShare%3Dtrue){target="_blank"} [OSS审计中心](/playground/demo.html?dest=/lognext/project/oss-demo-log/dashboard/oss-access-log_oss_audit_center_cn%3FisShare%3Dtrue){target="_blank"} [OSS运维中心](/playground/demo.html?dest=/lognext/project/oss-demo-log/dashboard/oss-access-log_oss_operation_center_cn%3FisShare%3Dtrue){target="_blank"} [OSS性能中心](/playground/demo.html?dest=/lognext/project/oss-demo-log/dashboard/oss-access-log_oss_performance_center_cn%3FisShare%3Dtrue){target="_blank"} |
 
 ## 更多参考
 
