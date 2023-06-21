@@ -55,7 +55,7 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   </a>
 </div>
 
-## 智能运维 Demo
+## 智能运维应用 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/home" target="_blank">
@@ -88,12 +88,23 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   </a>
   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/sls" target="_blank">
     <p class="next-steps-link">CloudLens for SLS</p>
-    <p class="next-steps-caption">SLS数据洞察</p>
+    <p class="next-steps-caption">SLS 数据洞察</p>
   </a>
 </div>
-
-## 日志应用 Demo
-
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/oss" target="_blank">
+    <p class="next-steps-link">CloudLens for OSS</p>
+    <p class="next-steps-caption">OSS 数据洞察</p>
+  </a>
+   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/polardb" target="_blank">
+    <p class="next-steps-link">CloudLens for PolarDB</p>
+    <p class="next-steps-caption">PolarDB 数据洞察</p>
+  </a>
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/rds" target="_blank">
+    <p class="next-steps-link">CloudLens for RDS</p>
+    <p class="next-steps-caption">RDS 数据洞察</p>
+  </a>
+</div>
 <div class="vt-box-container next-steps margin-top-20">
   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/ingress_metrics/project/k8s-log-cfa82911e541341a1b9d21d527075cbfe/logstore/nginx-ingress/dashboardtemplate/k8s-ingress-nginx-access" target="_blank">
     <p class="next-steps-link">Ingress 日志中心</p>
@@ -106,6 +117,15 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/nginx_metrics/project/nginx-demo-log/logstore/nginx-access-log/dashboardtemplate/nginx-overview" target="_blank">
     <p class="next-steps-link">Nginx 日志中心</p>
     <p class="next-steps-caption">Nginx 7层日志中心 </p>
+  </a>
+</div>
+
+## 其他日志应用 Demo
+
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/bill_app" target="_blank">
+    <p class="next-steps-link">成本管家</p>
+    <p class="next-steps-caption">账单数据分析，云产品费用优化</p>
   </a>
 </div>
 
