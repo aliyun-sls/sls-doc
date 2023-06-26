@@ -30,8 +30,8 @@ class Consumer
 {
     public static void Main(string[] args)
     {   
-        string accessKeyId = "your accessKeyId";
-        string accessKeySecret = "your accessKeySecret";
+        string accessKeyId = Environment.GetEnvironmentVariable("SLS_ACCESS_KEY_ID");
+        string accessKeySecret = Environment.GetEnvironmentVariable("SLS_ACCESS_KEY_SECRET");
         string project = "project";
         //内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb
         //endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"
