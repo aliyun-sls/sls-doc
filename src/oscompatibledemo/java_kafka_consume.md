@@ -34,8 +34,9 @@ public class KafkaConsumerGroupTest {
         Properties props = new Properties();
         String project = "project";
         String logstore = "logtore";
-        String accessKeyID = "access-key-id";
-        String accessKeySecret = "access-key-secret";
+        // 从环境变量获取AccessKeyId和AccessKeySecret
+        String accessKeyID = System.getenv("SLS_ACCESS_KEY_ID");
+        String accessKeySecret = System.getenv("SLS_ACCESS_KEY_SECRET");
         String groupId = "kafka-test";
         String endpoint = "cn-hangzhou.log.aliyuncs.com";
         String port = "10012";
