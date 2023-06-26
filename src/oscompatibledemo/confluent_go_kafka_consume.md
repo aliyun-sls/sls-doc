@@ -26,13 +26,14 @@ package main
 
 import (
 	"fmt"
+        "os"
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func main() {
 	endpoint := "cn-hangzhou.log.aliyuncs.com"
-	accessKeyID := "access-key-id"
-	accessKeySecret := "access-key-secret"
+	accessKeyID := os.Getenv("SLS_ACCESS_KEY_ID")
+	accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
 	project := "project"
 	logstore := "logstore"
 	port := "10012"
