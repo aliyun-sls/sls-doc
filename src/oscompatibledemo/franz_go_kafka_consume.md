@@ -21,30 +21,29 @@ import (
 	"context"
 	"crypto/tls"
 	"fmt"
+        "os"
 	"github.com/twmb/franz-go/pkg/kgo"
 	"github.com/twmb/franz-go/pkg/sasl/plain"
 	"net"
 	"time"
 )
 
-var (
-	project         = "project"
-	accessKeyID     = "access-key-id"
-	accessKeySecret = "access-key-secret"
-	logstore        = "logstore"
-	endpoint        = "cn-hangzhou.log.aliyuncs.com"
-	port            = "10012"
+func main() {
+	project         := "project"
+	logstore        := "logstore"
+	endpoint        := "cn-hangzhou.log.aliyuncs.com"
+	port            := "10012"
 	//内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb
 	//endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"
 	//port     = "10011"
-	groupId         = "kafka-test"
-)
+	groupId         := "kafka-test"
+	accessKeyID     := os.Getenv("SLS_ACCESS_KEY_ID")	
+        accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
 
-func main() {
-	//using sasl we must add tisDialer
+ 	//using sasl we must add tisDialer
 	tlsDialer := &tls.Dialer{NetDialer: &net.Dialer{Timeout: 10 * time.Second}}
 	seeds := []string{fmt.Sprintf("%s.%s:%s", project, endpoint, port)}
-
+ 
 	//get Kgo client
 	client, err := kgo.NewClient(
 		kgo.SeedBrokers(seeds...),
