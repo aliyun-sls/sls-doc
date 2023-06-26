@@ -43,22 +43,20 @@ import (
 	"github.com/Shopify/sarama"
 )
 
-// Sarama confuration options
-var (
-	endpoint  = "cn-beijing.log.aliyuncs.com"
-	port      = "10012"
+func main() {
+
+	endpoint  := "cn-beijing.log.aliyuncs.com"
+	port      := "10012"
 	//内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://help.aliyun.com/document_detail/29008.htm#reference-wgx-pwq-zdb
 	//endpoint := "cn-hangzhou-intranet.log.aliyuncs.com"
 	//port    := "10011"
-	version   = "2.1.0"
-	project   = "test-project"                   // sls project
-	topics    = "your sls logstore"              // sls logstore
-	accessId  = "your ak id"                     // aliyun accessId
-	accessKey = "your ak secret"                 // aliyun accessKeySecret
-	group     = "test-groupId"                   // consume group name
-)
+	version   := "2.1.0"
+	project   := "test-project"                   // sls project
+	topics    := "your sls logstore"              // sls logstore
+	accessId  := os.Getenv("SLS_ACCESS_KEY_ID")                     // aliyun accessId
+	accessKey := os.Getenv("SLS_ACCESS_KEY_SECRET")                 // aliyun accessKeySecret
+	group     := "test-groupId"                   // consume group name
 
-func main() {
 	keepRunning := true
 	log.Println("Starting a new Sarama consumer")
 
