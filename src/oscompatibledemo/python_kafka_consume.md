@@ -19,12 +19,13 @@
 ## Python消费代码示例
 
 ```python
+import os
 import time
 
 from kafka import KafkaConsumer
 
-accessKeyId = "access-key-id"
-accessKeySecret = "access-key-secret"
+accessKeyId = os.environ.get('SLS_ACCESS_KEY_ID')
+accessKeySecret = os.environ.get('SLS_ACCESS_KEY_SECRET')
 project = "project"
 logstore = "logstore"
 endpoint = "cn-hangzhou.log.aliyuncs.com"
