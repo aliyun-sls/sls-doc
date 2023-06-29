@@ -1,3 +1,6 @@
+import { inBrowser } from 'vitepress'
+import URI from 'urijs'
+
 const storageKey = 'vitepress-theme-appearance'
 
 export function isDarkTheme() {
@@ -71,4 +74,14 @@ export function initRum() {
       sampleRate: 1,
     })
   })
+}
+
+const search = inBrowser ? window.location.search : ''
+const lang = URI(search).query(true)?.lang ?? 'zh'
+
+export function useSLSConfig() {
+  return {
+    lang,
+    hasTopbar: lang === 'zh'
+  }
 }

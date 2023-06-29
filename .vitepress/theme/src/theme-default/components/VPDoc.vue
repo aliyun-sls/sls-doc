@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { useRoute, inBrowser } from 'vitepress'
+import { useRoute } from 'vitepress'
 import { computed, provide, ref } from 'vue'
 import { useSidebar } from '../composables/sidebar.js'
 import VPDocAside from './VPDocAside.vue'
 import VPDocFooter from './VPDocFooter.vue'
-import URI from 'urijs'
+import { useSLSConfig } from '../../components/utils'
 
 const route = useRoute()
 const { hasSidebar, hasAside } = useSidebar()
-const search = inBrowser ? window.location.search : ''
-const lang = URI(search).query(true)?.lang || 'zh'
+
+const { hasTopbar } = useSLSConfig()
 
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, '')
@@ -27,7 +27,7 @@ provide('onContentUpdated', onContentUpdated)
     <div class="container">
       <div v-if="hasAside" class="aside">
         <div class="aside-curtain" />
-        <div class="aside-container" :class="{'has-nav': lang === 'zh'}">
+        <div class="aside-container" :class="{'has-nav': hasTopbar}">
           <div class="aside-content">
             <VPDocAside>
               <template #aside-top><slot name="aside-top" /></template>

@@ -3,23 +3,14 @@ import URI from 'urijs'
 import { computed, ref, watchEffect } from 'vue'
 import { inBrowser } from 'vitepress'
 // import Cookies from 'js-cookie'
-import { isDarkTheme } from './utils'
+import { isDarkTheme, useSLSConfig } from './utils'
 
 const search = inBrowser ? window.location.search : ''
 
-// const domain = '.aliyun.com'
+const { hasTopbar } = useSLSConfig()
 
 const params = computed(() => {
   const queries = URI(search).query(true)
-  // const lang = queries.lang
-
-  // if (lang === 'en' || lang === 'zh') {
-  //   // 主动设置才会修改 lang
-  //   const aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
-  //   if (lang !== aliyun_lang) {
-  //     Cookies.set('aliyun_lang', lang, { domain })
-  //   }
-  // }
 
   if (queries == null || queries.dest == null) {
     return {
@@ -51,17 +42,25 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.maxWidth }">
+  <iframe
+    v-if="dest !== ''"
+    :src="dest"
+    :class="{ frame: true, 'max-width': params.maxWidth, 'has-nav': hasTopbar }"
+  >
   </iframe>
 </template>
 
 <style scoped>
 .frame {
-  height: calc(100vh - (var(--sls-topnav-height)));
+  height: calc(100vh);
   width: 100vw;
   border: none;
   outline: none;
   margin: auto;
+}
+
+.frame.has-nav {
+  height: calc(100vh - (var(--sls-topnav-height)));
 }
 
 .max-width {
