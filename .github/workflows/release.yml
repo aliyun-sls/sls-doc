@@ -12,7 +12,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   run_if:
-    if: contains(github.event.release.name, '@release')
+    # if: contains(github.event.release.name, '@release')
     strategy:
       matrix:
         platform: [ubuntu-latest]
