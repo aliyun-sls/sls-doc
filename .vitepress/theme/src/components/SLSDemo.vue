@@ -2,15 +2,24 @@
 import URI from 'urijs'
 import { computed, ref, watchEffect } from 'vue'
 import { inBrowser } from 'vitepress'
-// import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import { isDarkTheme, useSLSConfig } from './utils'
 
 const search = inBrowser ? window.location.search : ''
 
-const { hasTopbar } = useSLSConfig()
+const { hasTopbar, rawLang } = useSLSConfig()
+const domain = '.aliyun.com'
 
 const params = computed(() => {
   const queries = URI(search).query(true)
+
+  if (rawLang === 'en' || rawLang === 'zh') {
+    // 主动设置才会修改 lang
+    const aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
+    if (rawLang !== aliyun_lang) {
+      Cookies.set('aliyun_lang', rawLang, { domain })
+    }
+  }
 
   if (queries == null || queries.dest == null) {
     return {

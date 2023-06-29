@@ -77,11 +77,12 @@ export function initRum() {
 }
 
 const search = inBrowser ? window.location.search : ''
-const lang = URI(search).query(true)?.lang ?? 'zh'
+const lang = URI(search).query(true)?.lang
 
 export function useSLSConfig() {
   return {
-    lang,
+    rawLang: lang,
+    lang: lang ?? 'zh',
     hasTopbar: lang === 'zh'
   }
 }
