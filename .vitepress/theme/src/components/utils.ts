@@ -77,7 +77,7 @@ export function initRum() {
 }
 
 export function useSLSConfig() {
-  const search = inBrowser ? window.location.search : ''
+  const search = inBrowser ? window.location.search : '?lang=en'
   const lang = URI(search).query(true)?.lang
 
   return {
