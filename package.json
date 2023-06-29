@@ -34,6 +34,7 @@
     "body-scroll-lock": "^3.1.5",
     "fast-glob": "^3.2.12",
     "glob": "^8.0.3",
+    "js-cookie": "^3.0.5",
     "normalize.css": "^8.0.1",
     "sitemap": "^7.1.1",
     "urijs": "^1.19.11"
@@ -42,6 +43,7 @@
     "@mdit-vue/types": "^0.11.0",
     "@types/body-scroll-lock": "^3.1.0",
     "@types/estree": "^1.0.0",
+    "@types/js-cookie": "^3.0.3",
     "@types/urijs": "^1.19.19",
     "markdown-it-container": "^3.0.0",
     "prettier": "^2.7.1",

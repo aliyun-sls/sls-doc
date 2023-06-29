@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import { provide } from 'vue'
-import { useRoute } from 'vitepress'
+import { useRoute, inBrowser } from 'vitepress'
 import { useNav } from '../composables/nav.js'
 import { useSidebar } from '../composables/sidebar.js'
 import VPNavBar from './VPNavBar.vue'
 import VPNavScreen from './VPNavScreen.vue'
+import URI from 'urijs'
 
 const { isScreenOpen, closeScreen, toggleScreen } = useNav()
 const { hasSidebar } = useSidebar()
+const search = inBrowser ? window.location.search : ''
+const lang = URI(search).query(true)?.lang || 'zh'
 
 provide('close-screen', closeScreen)
 
@@ -16,7 +19,7 @@ const route = useRoute()
 </script>
 
 <template>
-  <header class="VPNav" :class="{ 'no-sidebar' : !hasSidebar, 'header-shadow': route.path.includes('/playground/') }">
+  <header v-if="lang === 'zh'" class="VPNav" :class="{ 'no-sidebar' : !hasSidebar, 'header-shadow': route.path.includes('/playground/') }">
     <VPNavBar :is-screen-open="isScreenOpen" @toggle-screen="toggleScreen">
       <template #nav-bar-title-before><slot name="nav-bar-title-before" /></template>
       <template #nav-bar-title-after><slot name="nav-bar-title-after" /></template>

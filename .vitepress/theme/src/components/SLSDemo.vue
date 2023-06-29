@@ -2,12 +2,25 @@
 import URI from 'urijs'
 import { computed, ref, watchEffect } from 'vue'
 import { inBrowser } from 'vitepress'
+// import Cookies from 'js-cookie'
 import { isDarkTheme } from './utils'
 
 const search = inBrowser ? window.location.search : ''
 
+// const domain = '.aliyun.com'
+
 const params = computed(() => {
   const queries = URI(search).query(true)
+  // const lang = queries.lang
+
+  // if (lang === 'en' || lang === 'zh') {
+  //   // 主动设置才会修改 lang
+  //   const aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
+  //   if (lang !== aliyun_lang) {
+  //     Cookies.set('aliyun_lang', lang, { domain })
+  //   }
+  // }
+
   if (queries == null || queries.dest == null) {
     return {
       dest: '/lognext/profile',
