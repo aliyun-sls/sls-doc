@@ -1,4 +1,4 @@
-import { inBrowser } from 'vitepress'
+import { inBrowser, useRoute } from 'vitepress'
 import URI from 'urijs'
 
 const storageKey = 'vitepress-theme-appearance'
@@ -77,10 +77,15 @@ export function initRum() {
 }
 
 export function useSLSConfig() {
+  const route = useRoute()
+
   const search = inBrowser ? window.location.search : ''
   const lang = URI(search).query(true)?.lang
 
+  console.log(route.path)
+
   return {
+    path: route.path,
     rawLang: lang,
     lang: lang ?? 'zh',
     hasTopbar: lang === 'zh' || lang === '' || lang == null,

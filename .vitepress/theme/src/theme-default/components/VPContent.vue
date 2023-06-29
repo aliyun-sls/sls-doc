@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useRoute, useData } from 'vitepress'
+import { useRoute, useData, useRouter } from 'vitepress'
 import { useSidebar } from '../composables/sidebar.js'
 import VPPage from './VPPage.vue'
 import VPHome from './VPHome.vue'
@@ -8,7 +8,11 @@ import { inject } from 'vue'
 import { useSLSConfig } from '../../components/utils'
 
 const route = useRoute()
-const { frontmatter } = useData()
+
+const router = useRouter()
+console.log(router)
+
+const data = useData()
 const { hasSidebar } = useSidebar()
 
 const { hasTopbar } = useSLSConfig()
@@ -22,15 +26,15 @@ const NotFound = inject('NotFound')
     id="VPContent"
     :class="{
       'has-sidebar': hasSidebar,
-      'is-home': frontmatter.layout === 'home',
+      'is-home': (data.frontmatter as any).layout === 'home',
       'has-nav': hasTopbar,
     }"
   >
     <NotFound v-if="route.component === NotFound" />
 
-    <VPPage v-else-if="frontmatter.layout === 'page'" />
+    <VPPage v-else-if="(data.frontmatter as any).layout === 'page'" />
 
-    <VPHome v-else-if="frontmatter.layout === 'home'">
+    <VPHome v-else-if="(data.frontmatter as any).layout === 'home'">
       <template #home-hero-before><slot name="home-hero-before" /></template>
       <template #home-hero-after><slot name="home-hero-after" /></template>
       <template #home-features-before><slot name="home-features-before" /></template>
