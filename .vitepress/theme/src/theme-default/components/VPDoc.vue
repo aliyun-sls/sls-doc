@@ -1,15 +1,12 @@
 <script setup lang="ts">
-import { useRoute, inBrowser } from 'vitepress'
+import { useRoute } from 'vitepress'
 import { computed, provide, ref } from 'vue'
 import { useSidebar } from '../composables/sidebar.js'
 import VPDocAside from './VPDocAside.vue'
 import VPDocFooter from './VPDocFooter.vue'
-import URI from 'urijs'
 
 const route = useRoute()
 const { hasSidebar, hasAside } = useSidebar()
-const search = inBrowser ? window.location.search : ''
-const lang = URI(search).query(true)?.lang || 'zh'
 
 const pageName = computed(() =>
   route.path.replace(/[./]+/g, '_').replace(/_html$/, '')
@@ -27,7 +24,7 @@ provide('onContentUpdated', onContentUpdated)
     <div class="container">
       <div v-if="hasAside" class="aside">
         <div class="aside-curtain" />
-        <div class="aside-container" :class="{'has-nav': lang === 'zh'}">
+        <div class="aside-container">
           <div class="aside-content">
             <VPDocAside>
               <template #aside-top><slot name="aside-top" /></template>
@@ -123,17 +120,12 @@ provide('onContentUpdated', onContentUpdated)
 .aside-container {
   position: sticky;
   top: 0;
-  margin-top: calc(var(--vp-layout-top-height, 0px) * -1 - 32px);
-  padding-top: calc(var(--vp-layout-top-height, 0px) + 32px);
+  margin-top: calc((var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px)) * -1 - 32px);
+  padding-top: calc(var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px) + 32px);
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: none;
-}
-
-.aside-container.has-nav {
-  margin-top: calc((var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px)) * -1 - 32px);
-  padding-top: calc(var(--vp-nav-height-desktop) + var(--vp-layout-top-height, 0px) + 32px);
 }
 
 .aside-container::-webkit-scrollbar {

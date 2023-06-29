@@ -23,7 +23,7 @@
     "test": "npm run lint && npm run type",
     "dev": "vitepress",
     "build": "vitepress build && npm run sitemap",
-    "serve": "npm run demo-build && vitepress serve demo",
+    "serve": "vitepress serve .",
     "build-alert": "node scripts/buildAlert.js"
   },
   "dependencies": {

@@ -1,17 +1,14 @@
 <script setup lang="ts">
-import { useRoute, useData, inBrowser } from 'vitepress'
+import { useRoute, useData } from 'vitepress'
 import { useSidebar } from '../composables/sidebar.js'
 import VPPage from './VPPage.vue'
 import VPHome from './VPHome.vue'
 import VPDoc from './VPDoc.vue'
 import { inject } from 'vue'
-import URI from 'urijs'
 
 const route = useRoute()
 const { frontmatter } = useData()
 const { hasSidebar } = useSidebar()
-const search = inBrowser ? window.location.search : ''
-const lang = URI(search).query(true)?.lang || 'zh'
 const NotFound = inject('NotFound')
 </script>
 
@@ -22,7 +19,6 @@ const NotFound = inject('NotFound')
     :class="{
       'has-sidebar': hasSidebar,
       'is-home': frontmatter.layout === 'home',
-      'has-nav': lang === 'zh'
     }"
   >
     <NotFound v-if="route.component === NotFound" />
@@ -69,7 +65,7 @@ const NotFound = inject('NotFound')
 }
 
 @media (min-width: 960px) {
-  .VPContent.has-nav {
+  .VPContent {
     padding-top: var(--vp-nav-height);
   }
 
