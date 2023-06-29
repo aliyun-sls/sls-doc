@@ -76,13 +76,13 @@ export function initRum() {
   })
 }
 
-const search = inBrowser ? window.location.search : ''
-const lang = URI(search).query(true)?.lang
-
 export function useSLSConfig() {
+  const search = inBrowser ? window.location.search : ''
+  const lang = URI(search).query(true)?.lang
+
   return {
     rawLang: lang,
     lang: lang ?? 'zh',
-    hasTopbar: lang === 'zh'
+    hasTopbar: lang === 'zh' || lang === '' || lang == null,
   }
 }
