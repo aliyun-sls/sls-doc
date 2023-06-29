@@ -1,25 +1,19 @@
 <script lang="ts" setup>
 import URI from 'urijs'
 import { computed, ref, watchEffect } from 'vue'
-import { inBrowser } from 'vitepress'
-// import Cookies from 'js-cookie'
 import { isDarkTheme } from './utils'
-
-const search = inBrowser ? window.location.search : ''
-
-// const domain = '.aliyun.com'
+import { inBrowser } from 'vitepress'
 
 const params = computed(() => {
+  const search = inBrowser ? window.location.search : ''
   const queries = URI(search).query(true)
-  // const lang = queries.lang
+  // const hasTopbar = lang === 'zh' || lang === '' || lang == null
 
-  // if (lang === 'en' || lang === 'zh') {
-  //   // 主动设置才会修改 lang
-  //   const aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
-  //   if (lang !== aliyun_lang) {
-  //     Cookies.set('aliyun_lang', lang, { domain })
-  //   }
-  // }
+  // const navMobile = hasTopbar ? '56px' : '0px'
+  // const navDesktop = hasTopbar ? '72px' : '0px'
+
+  // document.body.style.setProperty('--vp-nav-height-mobile', navMobile);
+  // document.body.style.setProperty('--vp-nav-height-desktop', navDesktop);
 
   if (queries == null || queries.dest == null) {
     return {
@@ -28,6 +22,7 @@ const params = computed(() => {
       maxWidth: false,
     }
   }
+
   return {
     dest: encodeURIComponent(queries.dest),
     theme: isDarkTheme() ? 'dark' : 'default',

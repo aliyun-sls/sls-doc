@@ -1,3 +1,7 @@
+import URI from 'urijs'
+import Cookies from 'js-cookie'
+import { inBrowser } from 'vitepress'
+
 const storageKey = 'vitepress-theme-appearance'
 
 export function isDarkTheme() {
@@ -26,6 +30,44 @@ export function addHistoryListener() {
       window.location = v.href
     }
   })
+}
+
+export function initLang() {
+  const search = inBrowser ? window.location.search : ''
+
+  const domain = '.aliyun.com'
+  const queries = URI(search).query(true)
+  const lang = queries.lang
+
+  if (lang === 'en' || lang === 'zh') {
+    // 主动设置才会修改 lang
+    const aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
+    if (lang !== aliyun_lang) {
+      Cookies.set('aliyun_lang', lang, { domain })
+    }
+  }
+
+  const hasTopbar = lang === 'zh' || lang === '' || lang == null
+
+  if (!hasTopbar) {
+    const styleElement = document.createElement('style')
+    styleElement.type = 'text/css'
+
+    styleElement.innerHTML = `
+      body {
+        --vp-nav-height-mobile: 0px !important;
+        --vp-nav-height-desktop: 0px !important;
+        --sls-topnav-height: 0px !important;
+      }
+      .VPContent {
+        padding-top: 0px !important;
+      }
+      .VPNav {
+        display: none !important;
+      }
+    `
+    document.head.appendChild(styleElement)
+  }
 }
 
 export function initRum() {
