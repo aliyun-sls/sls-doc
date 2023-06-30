@@ -7,13 +7,6 @@ import { inBrowser } from 'vitepress'
 const params = computed(() => {
   const search = inBrowser ? window.location.search : ''
   const queries = URI(search).query(true)
-  // const hasTopbar = lang === 'zh' || lang === '' || lang == null
-
-  // const navMobile = hasTopbar ? '56px' : '0px'
-  // const navDesktop = hasTopbar ? '72px' : '0px'
-
-  // document.body.style.setProperty('--vp-nav-height-mobile', navMobile);
-  // document.body.style.setProperty('--vp-nav-height-desktop', navDesktop);
 
   if (queries == null || queries.dest == null) {
     return {
