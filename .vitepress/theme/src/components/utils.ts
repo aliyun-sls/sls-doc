@@ -39,15 +39,14 @@ export function initLang() {
   const queries = URI(search).query(true)
   const lang = queries.lang
 
-  if (lang === 'en' || lang === 'zh') {
-    // 主动设置才会修改 lang
-    const aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
-    if (lang !== aliyun_lang) {
-      Cookies.set('aliyun_lang', lang, { domain })
-    }
+  let aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
+
+  if (lang !== '' && lang != null) {
+    Cookies.set('aliyun_lang', lang, { domain })
+    aliyun_lang = lang
   }
 
-  const hasTopbar = lang === 'zh' || lang === '' || lang == null
+  const hasTopbar = aliyun_lang === 'zh' || aliyun_lang === '' || aliyun_lang == null
 
   if (!hasTopbar) {
     const styleElement = document.createElement('style')
