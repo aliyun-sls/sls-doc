@@ -38,6 +38,7 @@ export function initLang() {
   const domain = '.aliyun.com'
   const queries = URI(search).query(true)
   const lang = queries.lang
+  const isShareStr = queries.isShare
 
   let aliyun_lang = (Cookies as any).get('aliyun_lang', { domain })
 
@@ -46,7 +47,9 @@ export function initLang() {
     aliyun_lang = lang
   }
 
-  const hasTopbar = aliyun_lang === 'zh' || aliyun_lang === '' || aliyun_lang == null
+  const isShare = isShareStr === 'true' || isShareStr === true
+
+  const hasTopbar = !isShare && (aliyun_lang === 'zh' || aliyun_lang === '' || aliyun_lang == null)
 
   if (!hasTopbar) {
     const styleElement = document.createElement('style')
