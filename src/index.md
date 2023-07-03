@@ -130,6 +130,10 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
     <p class="next-steps-link">Flowlog 日志中心</p>
     <p class="next-steps-caption">VPC Flowlog 日志分析APP</p>
   </a>
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/ebs_lens%3Fresource=/overview/project/aliyun-product-data-1819385687343877-cn-hangzhou/logstore/ebs_disk_metric/dashboardtemplate/ebs-overview" target="_blank">
+    <p class="next-steps-link">CloudLens for EBS</p>
+    <p class="next-steps-caption">块存储数据洞察</p>
+  </a>
 </div>
 
 
