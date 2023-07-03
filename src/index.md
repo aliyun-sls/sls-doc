@@ -72,6 +72,12 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-caption">全栈监控应用是日志服务提供的一站式IT系统监控方案，监控的目标包括主机监控、Kubernetes监控、数据库监控、中间件监控等。</p>
   </a>
 </div>
+<div class="vt-box-container next-steps margin-top-20">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/ids/public-demo-aiops%3Fresource=/overview" target="_blank">
+    <p class="next-steps-link">智能异常分析</p>
+    <p class="next-steps-caption">智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台。</p>
+  </a>
+</div>
 
 ## CloudLens Demo
 
@@ -133,6 +139,10 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/bill_app" target="_blank">
     <p class="next-steps-link">成本管家</p>
     <p class="next-steps-caption">账单数据分析，云产品费用优化</p>
+  </a>
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/audit/project/slsaudit-center-1819385687343877-cn-hangzhou/dashboard/internal-auditservice-overall_cn" target="_blank">
+    <p class="next-steps-link">日志审计服务</p>
+    <p class="next-steps-caption">跨区域中心化存储、审计</p>
   </a>
 </div>
 
