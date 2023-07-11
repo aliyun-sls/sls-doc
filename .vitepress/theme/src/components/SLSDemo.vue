@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import URI from 'urijs'
 import { computed, ref, watchEffect } from 'vue'
-import { isDarkTheme } from './utils'
+import { isDarkTheme, parseCommonQuery } from './utils'
 import { inBrowser } from 'vitepress'
 
 const params = computed(() => {
@@ -23,6 +23,16 @@ const params = computed(() => {
   }
 })
 
+const { lang, isShare } = parseCommonQuery()
+
+const tip = ref(
+  isShare
+    ? ''
+    : lang === 'en'
+    ? 'The current data is for demonstration purposes only, please do not use it for production.'
+    : '当前为演示数据，请勿用于生产'
+)
+
 let dest = ref('')
 
 watchEffect(async () => {
@@ -39,11 +49,30 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.maxWidth }">
-  </iframe>
+  <div class="container">
+    <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.maxWidth }">
+    </iframe>
+    <div class="tip">{{ tip }}</div>
+  </div>
 </template>
 
 <style scoped>
+.container {
+  height: calc(100vh - (var(--sls-topnav-height)));
+  width: 100vw;
+  position: relative;
+}
+
+.tip {
+  position: absolute;
+  bottom: 0px;
+  color: red;
+  width: 100%;
+  text-align: center;
+  padding: 10px 16px;
+  pointer-events: none;
+}
+
 .frame {
   height: calc(100vh - (var(--sls-topnav-height)));
   width: 100vw;

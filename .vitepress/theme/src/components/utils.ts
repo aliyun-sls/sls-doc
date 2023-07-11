@@ -32,7 +32,7 @@ export function addHistoryListener() {
   })
 }
 
-export function initLang() {
+export function parseCommonQuery() {
   const search = inBrowser ? window.location.search : ''
 
   const domain = '.aliyun.com'
@@ -49,7 +49,15 @@ export function initLang() {
 
   const isShare = isShareStr === 'true' || isShareStr === true
 
-  const hasTopbar = !isShare && (aliyun_lang === 'zh' || aliyun_lang === '' || aliyun_lang == null)
+  return {
+    isShare,
+    lang: aliyun_lang === 'en' ? 'en' : 'zh',
+  }
+}
+
+export function initLang() {
+  const { lang, isShare } = parseCommonQuery()
+  const hasTopbar = !isShare && lang === 'zh'
 
   if (!hasTopbar) {
     const styleElement = document.createElement('style')

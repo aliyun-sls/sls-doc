@@ -41,6 +41,10 @@
 }
 
 @media (max-width: 768px) {
+  .vt-box-container {
+    grid-template-columns: 1fr;
+  }
+
   .vt-box-container .vt-box {
     flex: 0 100%;
     margin-bottom: 20px;
