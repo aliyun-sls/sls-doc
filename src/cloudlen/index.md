@@ -1,4 +1,9 @@
-# CloudLen 案例
+# CloudLen 案例总览
+
+## CloudLen 快速介绍
+| 名称 | 描述 |
+| -- | -- |
+| [CloudLen EBS 介绍](./ebsintro.md) | CloudLens for EBS 快速介绍 |
 
 ## CloudLen 案例列表
 
