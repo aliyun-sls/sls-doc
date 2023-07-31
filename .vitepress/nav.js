@@ -11,6 +11,7 @@ function getNavs() {
             { text: 'SQL错误中心', link: '/sqlerror/index' },
             { text: '查询案例', link: '/searchdemo/query/search_with_index' },
             { text: '可视化案例', link: '/visulization/index' },
+            { text: '数据采集案例', link: '/dataaccess/index' },
             { text: '加工案例', link: '/dataprocessdemo/index' },
             { text: '开源兼容', link: '/oscompatibledemo/index' },
             { text: '告警规则案例', link: '/alert/index' },

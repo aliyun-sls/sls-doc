@@ -9,6 +9,7 @@ const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
 const getAlertSider = require('./siderbars/getAlertSider')
 const getCloudlenSider = require('./siderbars/getCloudLenSider')
+const getDataAccessSider = require('./siderbars/getDataAccessSider')
 
 const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
@@ -107,6 +108,7 @@ module.exports = (async () => {
         '/visulization': getVisulizationDemo(),
         '/alert': getAlertSider(),
         '/cloudlen': getCloudlenSider(),
+        '/dataaccess': getDataAccessSider(),
       },
 
       footer: {

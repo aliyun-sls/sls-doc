@@ -41,9 +41,9 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/sqlerror/">
-    <p class="next-steps-link">错误中心</p>
-    <p class="next-steps-caption">罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。</p>
+  <a class="vt-box" href="/doc/dataaccess/">
+    <p class="next-steps-link">数据采集案例</p>
+    <p class="next-steps-caption">日志服务支持采集服务器与应用、开源软件、物联网、移动端、标准协议、阿里云产品等多种来源的数据。</p>
   </a>
   <a class="vt-box" href="/doc/alert/">
     <p class="next-steps-link">告警</p>
@@ -52,6 +52,13 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   <a class="vt-box" href="/doc/cloudlen/">
     <p class="next-steps-link">CloudLens 案例</p>
     <p class="next-steps-caption">日志服务（SLS）CloudLens 介绍与使用。</p>
+  </a>
+</div>
+
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/sqlerror/">
+    <p class="next-steps-link">错误中心</p>
+    <p class="next-steps-caption">罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。</p>
   </a>
 </div>
 
