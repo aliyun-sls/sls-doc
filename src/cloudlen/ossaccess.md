@@ -1,6 +1,6 @@
 # 使用CloudLens for OSS构建服务端性能指标可观测实践
 :::tip CloudLens for OSS
-[试用 Demo](/playground/demo.html?dest=/lognext/app/oss_lens)
+[试用 Demo](/playground/demo.html?dest=/lognext/app/oss_lens){target="_blank"}
 :::
 
 ## 使用场景
