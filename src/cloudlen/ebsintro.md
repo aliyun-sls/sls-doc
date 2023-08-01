@@ -7,7 +7,7 @@ CloudLens for EBS 针对块存储提供自动数据采集、资源分析、性�
 [试用 Demo](/playground/demo.html?dest=/lognext/app/ebs_lens){target="_blank"}
 :::
 
-## 视屏介绍
+## 视频介绍
 <iframe src="https://player.bilibili.com/player.html?aid=446425323&cid=1209604755&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe>
 
 ## 功能优势
