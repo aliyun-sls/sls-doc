@@ -8,6 +8,7 @@
 *|select bucket, bucket_location, bucket_storage_type, http_method, http_status, object, operation, (__time__ - __time__ % 60) as __time__ , sum(content_length_out) as response_size from log group by bucket, bucket_location, bucket_storage_type, http_method, http_status, object, operation, __time__
 ```
 
+
 #### 写入模式
 ![image-47.png](/img/src/scheduledsql/log2log/84ab887c63b788bcbd1ea91a3bd9c1c0b5befa546892fce4d5c75c40c7876bdb.png)
 当源为日志库时，可以选择日志库导入日志库以及日志库导入时序库 , 这里选择日志库
