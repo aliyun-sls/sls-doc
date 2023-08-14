@@ -17,6 +17,7 @@ function getNavs() {
             { text: '开源兼容', link: '/oscompatibledemo/index' },
             { text: '告警规则案例', link: '/alert/index' },
             { text: 'CloudLen案例', link: '/cloudlen/index' },
+            { text: '智能运维案例', link: '/intelligentom/index' },
           ],
         },
       ],

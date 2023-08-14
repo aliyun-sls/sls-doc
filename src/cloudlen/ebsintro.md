@@ -8,7 +8,9 @@ CloudLens for EBS 针对块存储提供自动数据采集、资源分析、性�
 :::
 
 ## 视频介绍
-<iframe src="https://player.bilibili.com/player.html?aid=446425323&cid=1209604755&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe>
+<video src="https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/file-manage-files/zh-CN/20230806/zhhh/CloudLens for EBS.mp4" controls="controls" width="100%" height="500" autoplay="autoplay">
+您的浏览器不支持 video 标签。
+</video>
 
 ## 功能优势
 - 资源分析：分析云盘使用负载，协助客户通过在线扩容或变更云盘类型进行升级，降低资源升级带来的停机和业务变更风险。

@@ -62,7 +62,11 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   </a>
   <a class="vt-box" href="/doc/scheduledsql/">
     <p class="next-steps-link">定时SQL</p>
-    <p class="next-steps-caption">日志服务（SLS）定时SQL 使用案例</p>
+    <p class="next-steps-caption">日志服务（SLS）定时 SQL 使用案例</p>
+  </a>
+  <a class="vt-box" href="/doc/intelligentom/">
+    <p class="next-steps-link">智能运维</p>
+    <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
   </a>
 </div>
 
@@ -78,7 +82,7 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">Trace</p>
     <p class="next-steps-caption">日志服务提供基于原生OpenTelemetry协议的分布式链路追踪功能，支持各类Trace数据的接入、存储、分析、可视化、告警、人工智能运维等。</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/monitor/sls-mall/sls-mall%3Fresource=/fullmonitor/project/sls-mall/dataaccess/sls-mall" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/monitor/sls-mall/sls-mall%3Fresource=/fullmonitor/project/sls-mall/logstore/logstore/dashboardtemplate/fullstack-monitor-host-common-overview" target="_blank">
     <p class="next-steps-link">全栈监控</p>
     <p class="next-steps-caption">全栈监控应用是日志服务提供的一站式IT系统监控方案，监控的目标包括主机监控、Kubernetes监控、数据库监控、中间件监控等。</p>
   </a>

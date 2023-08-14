@@ -8,7 +8,9 @@ CloudLens for OSS 针对对象存储 OSS ，实现用户实现资源用量监控
 :::
 
 ## 视频介绍
-<iframe src="https://player.bilibili.com/player.html?aid=488907822&cid=1209618157&page=1&high_quality=1&danmaku=0" allowfullscreen="allowfullscreen" width="100%" height="500" scrolling="no" frameborder="0" sandbox="allow-top-navigation allow-same-origin allow-forms allow-scripts allow-popups"></iframe>
+<video src="https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/file-manage-files/zh-CN/20230806/uvbw/CloudLens for OSS.mp4" controls="controls" width="100%" height="500" autoplay="autoplay">
+您的浏览器不支持 video 标签。
+</video>
 
 ## 功能优势
 - 成本：对于资源用量，多纬度查看统计，并可设置用量预警；检测不合理或异常使用模式。

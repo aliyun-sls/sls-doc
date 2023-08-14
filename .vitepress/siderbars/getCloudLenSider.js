@@ -9,6 +9,7 @@ function getSidebar() {
       items: [
         { text: 'CloudLens for EBS 快速介绍', link: '/cloudlen/ebsintro.md' },
         { text: 'CloudLens for OSS 快速介绍', link: '/cloudlen/ossintro.md' },
+        { text: 'CloudLens for SLS 快速介绍', link: '/cloudlen/slslenintro.md' },
       ],
     },
     {

@@ -5,6 +5,8 @@
 | -- | -- |
 | [CloudLen EBS 介绍](./ebsintro.md) | CloudLens for EBS 快速介绍 |
 | [CloudLen OSS 介绍](./ossintro.md) | CloudLens for OSS 快速介绍 |
+| [CloudLen SLS 介绍](./slslenintro.md) | CloudLens for SLS 快速介绍 |
+
 
 ## CloudLen 案例列表
 
