@@ -1,5 +1,5 @@
 ### 背景
-这篇文章旨在向用户介绍如何开启定时SQL告警并跟踪任务执行情况,以便及时发现异常情况并确保定时SQL任务顺利执行.
+本文旨在向用户介绍如何开启定时SQL告警并跟踪任务执行情况,以便及时发现异常情况并确保定时SQL任务顺利执行.
 ### 开通任务运行日志
 
 1. 在定时 SQL 任务所在 Project 的概览页面,点击开通服务日志.
@@ -35,6 +35,7 @@
 | source_type | 源类型 | Complete |
 | status | 任务实例执行结果，可以为 FAILED 或者 SUCCEEDED | SUCCEEDED |
 | succeed_lines | 如果实例成功，说明写入行数；如果实例失败，则为 0 | 100 |
+| task_type | 任务类型 |  |
 | trigger_time | 任务实例触发时间，单位为秒 | 1690868640 |
 
 
@@ -51,13 +52,11 @@
 
 在告警管理标签页中，点击行动策略下拉框，打开编辑框。可以看到定时SQL内置的行动策略，点击修改按钮，在第一行动列表中添加想要的通知方式。支持十多种通知渠道。更多信息请参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/create-an-action-policy)。用户也可以自定义 定时SQL 告警的行动策略，通过添加按钮添加新的行动策略。
 ![image-69.png](/img/src/scheduledsql/scheduledsql_alert/9045b295994dd77e34a01181a2b7b837241dae03f771f8c6cfc5831d0ee6cf03.png)
-
 ![image-70.png](/img/src/scheduledsql/scheduledsql_alert/f40b6c3de117222a8f45cb2b0107ac672c61c7580a5a5b465789fcff0a27924a.png)
-
 ![image-71.png](/img/src/scheduledsql/scheduledsql_alert/12a57aedb070dd92a508b4896ee2e3dac598fe65d45b2843e266d0758b5fcea1.png)
 #### 内置告警
+[告警中心页面链接]()
 ![image-73.png](/img/src/scheduledsql/scheduledsql_alert/065ce61547039081e08eee306bf9f042a9a83e581c287333b3cceef5b2b76843.png)
-
 ![image-74.png](/img/src/scheduledsql/scheduledsql_alert/c19b85b9d3d4754ea7a9ded393ae58950fcee00966b7276ee910fd600570fec7.png)
 
 在告警中心的规则视图页面，选中SLS 定时SQL复选框，筛选出内置告警规则。点击添加按钮，在弹出窗口中填写告警配置，即可完成告警规则的配置。需要注意内置告警规则评估间隔为5分钟。
@@ -74,7 +73,6 @@
 #### 自定义告警
 如果内置告警规则不符合需求，也可以自定义告警规则。可以通过点击新建告警按钮，新建自定义告警。关于自定义告警的配置详情，可以参考官方文档。
 ![image-75.png](/img/src/scheduledsql/scheduledsql_alert/6bcc66855769c56d6219de363be49cb117030456d33972a5ac1590d3165cab6e.png)
-
 ![image-76.png](/img/src/scheduledsql/scheduledsql_alert/47f818579a35d622f83c8ef1028c8a6f6bebb209dfb45c03393916cbbcfdfdc5.png)
 
 图中表示当15分钟内统计到的 http_status 为 500 的日志条数大于 50 条时，触发告警。并根据内置的行动规则进行告警
