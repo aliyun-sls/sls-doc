@@ -60,6 +60,10 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">错误中心</p>
     <p class="next-steps-caption">罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。</p>
   </a>
+  <a class="vt-box" href="/doc/scheduledsql/">
+    <p class="next-steps-link">定时SQL</p>
+    <p class="next-steps-caption">日志服务（SLS）定时SQL 使用案例</p>
+  </a>
 </div>
 
 ## 智能运维应用 Demo

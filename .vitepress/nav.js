@@ -9,6 +9,7 @@ function getNavs() {
             { text: 'SQL分析案例', link: '/sqldemo/index' },
             { text: 'SQL函数案例', link: '/sqlfunction/index' },
             { text: 'SQL错误中心', link: '/sqlerror/index' },
+            { text: '定时SQL案例', link: '/scheduledsql/index' },
             { text: '查询案例', link: '/searchdemo/query/search_with_index' },
             { text: '可视化案例', link: '/visulization/index' },
             { text: '数据采集案例', link: '/dataaccess/index' },
