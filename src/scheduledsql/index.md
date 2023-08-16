@@ -1,9 +1,9 @@
 # 定时SQL 使用案例
 
-## 演示数据地址 
-进入 Project 列表,查找 scheduled-sql-demo 
+:::tip 演示案例
+[试用 Demo](/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){target="_blank"}
+:::
 
-[定时SQL 演示案例](https://sls.aliyun.com/doc/playground/demo.html)
 ## 任务配置
 
 | 案例名称                                  | 描述                                |
