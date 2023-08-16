@@ -73,22 +73,22 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
 ## 智能运维应用 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer" target="_blank">
+  <a class="vt-box" href="/doc/intelligentom/fullstackintro">
     <p class="next-steps-link">全栈可观测</p>
     <p class="next-steps-caption">一站式IT系统可观测方案，包含IT系统监控、全链路Trace、智能告警等功能。本文介绍全栈可观测功能的相关信息。
 </p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer" target="_blank">
+    <a class="vt-box" href="/doc/intelligentom/traceintro">
     <p class="next-steps-link">Trace</p>
     <p class="next-steps-caption">日志服务提供基于原生OpenTelemetry协议的分布式链路追踪功能，支持各类Trace数据的接入、存储、分析、可视化、告警、人工智能运维等。</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/monitor/sls-mall/sls-mall%3Fresource=/fullmonitor/project/sls-mall/logstore/logstore/dashboardtemplate/fullstack-monitor-host-common-overview" target="_blank">
+    <a class="vt-box" href="/doc/intelligentom/fullstackintro">
     <p class="next-steps-link">全栈监控</p>
     <p class="next-steps-caption">全栈监控应用是日志服务提供的一站式IT系统监控方案，监控的目标包括主机监控、Kubernetes监控、数据库监控、中间件监控等。</p>
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/ids/public-demo-aiops%3Fresource=/overview" target="_blank">
+    <a class="vt-box" href="/doc/intelligentom/anomalyanalysisintro">
     <p class="next-steps-link">智能异常分析</p>
     <p class="next-steps-caption">智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台。</p>
   </a>
@@ -99,21 +99,21 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
 CloudLens 基于日志服务构建统一的云产品可观测能力，通过日志、指标、配置计量等数据的关联分析，提供阿里云产品的用量分析、性能监控、安全分析、数据保护、异常检测、访问分析等服务。从成本、性能、安全、数据保护、稳定性、访问分析六个维度，助力您快速构建云产品的可观测性，更好地使用云产品。
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/cloudlen/slb.html" target="_blank">
+  <a class="vt-box" href="/doc/cloudlen/slb.html">
     <p class="next-steps-link">CloudLens for CLB</p>
     <p class="next-steps-caption">传统型负载均衡日志中心</p>
   </a>
-    <a class="vt-box" href="/doc/cloudlen/slb.html" target="_blank">
+    <a class="vt-box" href="/doc/cloudlen/slb.html">
     <p class="next-steps-link">CloudLens for ALB</p>
     <p class="next-steps-caption">应用型负载均衡日志中心</p>
   </a>
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/sls" target="_blank">
+  <a class="vt-box" href="/doc/cloudlen/slslenintro">
     <p class="next-steps-link">CloudLens for SLS</p>
     <p class="next-steps-caption">SLS 数据洞察</p>
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/oss_lens%3Fresource=/ossLens/data-access" target="_blank">
+  <a class="vt-box" href="/doc/cloudlen/ossintro">
     <p class="next-steps-link">CloudLens for OSS</p>
     <p class="next-steps-caption">OSS 数据洞察</p>
   </a>
@@ -141,11 +141,11 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/flowlog/vpc-flowlog-demo/s7d5s02ji9%3Fresource=/flowlog/project/vpc-flowlog-demo/logstore/vpc-flowlog/dashboardtemplate/flowlog-overview" target="_blank">
+  <a class="vt-box" href="/doc/cloudlen/flowlogintro">
     <p class="next-steps-link">Flowlog 日志中心</p>
     <p class="next-steps-caption">VPC Flowlog 日志分析APP</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/ebs_lens%3Fresource=/overview/project/aliyun-product-data-1819385687343877-cn-hangzhou/logstore/ebs_disk_metric/dashboardtemplate/ebs-overview" target="_blank">
+    <a class="vt-box" href="/doc/cloudlen/ebsintro">
     <p class="next-steps-link">CloudLens for EBS</p>
     <p class="next-steps-caption">块存储数据洞察</p>
   </a>
@@ -155,11 +155,11 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 ## 其他日志应用 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/bill_app" target="_blank">
+  <a class="vt-box" href="/doc/billandsecurity/costmanagerintro">
     <p class="next-steps-link">成本管家</p>
     <p class="next-steps-caption">账单数据分析，云产品费用优化</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/audit/project/slsaudit-center-1819385687343877-cn-hangzhou/dashboard/internal-auditservice-overall_cn" target="_blank">
+    <a class="vt-box" href="/doc/billandsecurity/logauditintro">
     <p class="next-steps-link">日志审计服务</p>
     <p class="next-steps-caption">跨区域中心化存储、审计</p>
   </a>
