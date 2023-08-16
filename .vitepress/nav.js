@@ -18,6 +18,7 @@ function getNavs() {
             { text: '告警规则案例', link: '/alert/index' },
             { text: 'CloudLen案例', link: '/cloudlen/index' },
             { text: '智能运维案例', link: '/intelligentom/index' },
+            { text: '审计与安全案例', link: '/billandsecurity/index' },
           ],
         },
       ],

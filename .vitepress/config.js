@@ -12,6 +12,7 @@ const getCloudlenSider = require('./siderbars/getCloudLenSider')
 const getDataAccessSider = require('./siderbars/getDataAccessSider')
 const getIntelligentOMSider = require('./siderbars/getIntelligentOMSider')
 const getScheduledsqlSider = require('./siderbars/getScheduledsqlSider')
+const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 
 const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
@@ -112,7 +113,8 @@ module.exports = (async () => {
         '/cloudlen': getCloudlenSider(),
         '/dataaccess': getDataAccessSider(),
         '/intelligentom': getIntelligentOMSider(),
-        '/scheduledsql': getScheduledsqlSider()
+        '/scheduledsql': getScheduledsqlSider(),
+        '/billandsecurity': getBillandsecuritySider()
       },
 
       footer: {
