@@ -13,6 +13,7 @@ const getDataAccessSider = require('./siderbars/getDataAccessSider')
 const getIntelligentOMSider = require('./siderbars/getIntelligentOMSider')
 const getScheduledsqlSider = require('./siderbars/getScheduledsqlSider')
 const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
+const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 
 const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
@@ -114,7 +115,8 @@ module.exports = (async () => {
         '/dataaccess': getDataAccessSider(),
         '/intelligentom': getIntelligentOMSider(),
         '/scheduledsql': getScheduledsqlSider(),
-        '/billandsecurity': getBillandsecuritySider()
+        '/billandsecurity': getBillandsecuritySider(),
+        '/metrics': getMetricStoreSider()
       },
 
       footer: {
