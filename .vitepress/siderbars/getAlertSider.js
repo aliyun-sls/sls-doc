@@ -6,6 +6,8 @@ const groupNames = {
   export: '数据投递',
   logtail: 'Logtail',
   scheduled_sql: '定时SQL',
+  ack: 'K8S事件',
+  k8s_audit: 'K8S审计',
 }
 
 exports = module.exports = function() {

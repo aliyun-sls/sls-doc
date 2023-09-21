@@ -1,0 +1,78 @@
+{
+  "description": "每5分钟检查一次，触发条件为存在事件：集群节点slab释放异常（SlabFreeErr）",
+  "alert": {
+    "name": "sls_app_ack_at_slab_free_error",
+    "displayName": "集群节点slab释放异常",
+    "type": "Alert",
+    "state": "Enabled",
+    "schedule": {
+      "type": "FixedRate",
+      "interval": "5m"
+    },
+    "configuration": {
+      "version": "2.0",
+      "type": "default",
+      "dashboard": "internal-alert-analysis",
+      "queryList": [
+        {
+          "storeType": "log",
+          "project": "{{default.project}}",
+          "store": "k8s-event",
+          "query": "eventId.reason : \"SlabFreeErr\" | SELECT ARRAY_AGG(\"eventId.message\") as message, \"eventId.metadata.namespace\" as namespace, \"eventId.involvedObject.name\" as node_name, COUNT(*) as cnt from log GROUP by namespace, node_name",
+          "timeSpanType": "Relative",
+          "start": "-360s",
+          "end": "now"
+        }
+      ],
+      "groupConfiguration": {
+        "type": "custom",
+        "fields": [
+          "namespace",
+          "node_name"
+        ]
+      },
+      "joinConfigurations": [],
+      "severityConfigurations": [
+        {
+          "severity": 6,
+          "evalCondition": {
+            "condition": "cnt > 0",
+            "countCondition": ""
+          }
+        }
+      ],
+      "labels": [],
+      "annotations": [
+        {
+          "key": "message",
+          "value": "${message}"
+        },
+        {
+          "key": "namespace",
+          "value": "${namespace}"
+        },
+        {
+          "key": "node_name",
+          "value": "${node_name}"
+        },
+        {
+          "key": "count",
+          "value": "${cnt}"
+        },
+        {
+          "key": "cluster_id",
+          "value": "{{default.clusterId}}"
+        },
+        {
+          "key": "__drill_down_query__",
+          "value": "eventId.reason : \"SlabFreeErr\" and \"eventId.metadata.namespace\": ${namespace} and \"eventId.involvedObject.name\": ${node_name}"
+        }
+      ],
+      "autoAnnotation": true,
+      "sendResolved": false,
+      "threshold": 1,
+      "noDataFire": false,
+      "noDataSeverity": 6
+    }
+  }
+}

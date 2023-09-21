@@ -1,0 +1,109 @@
+{
+  "description": "每分钟检查一次，查询过去2分钟的日志。当存在登录容器或对容器执行命令的行为后，告警触发。",
+  "alert": {
+    "name": "sls_app_k8s_audit_at_command",
+    "displayName": "Kubernetes 登录容器/执行命令告警",
+    "type": "Alert",
+    "state": "Enabled",
+    "schedule": {
+      "type": "FixedRate",
+      "interval": "1m"
+    },
+    "configuration": {
+      "version": "2.0",
+      "type": "default",
+      "dashboard": "internal-alert-analysis",
+      "queryList": [
+        {
+          "storeType": "log",
+          "project": "{{default.project}}",
+          "store": "{{default.logstore}}",
+          "query": "verb : create and objectRef.subresource:exec and stage:  ResponseStarted | SELECT auditID, verb, date_format(from_unixtime(__time__), '%Y-%m-%d %T' ) as time, \"objectRef.resource\" as \"resource\", \"objectRef.name\" as resourceName, regexp_extract(\"requestURI\", '\\?(.*)', 1) as \"command\" ,\"responseStatus.code\" as \"responseCode\", \"objectRef.namespace\" as namespace, json_extract(requestObject, '$.kind') as operationType, CASE   WHEN \"user.username\" != 'kubernetes-admin' then \"user.username\"  WHEN \"user.username\" = 'kubernetes-admin' and regexp_like(\"annotations.authorization.k8s.io/reason\", 'RoleBinding') then regexp_extract(\"annotations.authorization.k8s.io/reason\", ' to User \"(\\w+)\"', 1)  ELSE 'kubernetes-admin' END as \"user\",  CASE WHEN json_array_length(sourceIPs) = 1 then json_format(json_array_get(sourceIPs, 0)) ELSE  sourceIPs END as \"sourceIP\" WHERE regexp_like(\"objectRef.namespace\", '.*') and not regexp_like(\"objectRef.namespace\", '`') order by \"time\" desc  limit 10000",
+          "timeSpanType": "Relative",
+          "start": "-120s",
+          "end": "now"
+        }
+      ],
+      "groupConfiguration": {
+        "type": "custom",
+        "fields": [
+          "auditID"
+        ]
+      },
+      "joinConfigurations": [],
+      "severityConfigurations": [
+        {
+          "severity": 6,
+          "evalCondition": {
+            "condition": "",
+            "countCondition": ""
+          }
+        }
+      ],
+      "labels": [],
+      "annotations": [
+        {
+          "key": "desc",
+          "value": "存在登录容器或对容器执行命令的行为，请检查是否存在异常。命令：${command}，资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，源IP：${sourceIP}。"
+        },
+        {
+          "key": "title",
+          "value": "Kubernetes 登录容器/执行命令告警"
+        },
+        {
+          "key": "__drill_down_query__",
+          "value": "verb : create and objectRef.subresource:exec and stage:  ResponseStarted and auditID: ${auditID}"
+        },
+        {
+          "key": "auditID",
+          "value": "${auditID}"
+        },
+        {
+          "key": "verb",
+          "value": "${verb}"
+        },
+        {
+          "key": "time",
+          "value": "${time}"
+        },
+        {
+          "key": "resource",
+          "value": "${resource}"
+        },
+        {
+          "key": "resourceName",
+          "value": "${resourceName}"
+        },
+        {
+          "key": "operationType",
+          "value": "${command}"
+        },
+        {
+          "key": "responseCode",
+          "value": "${responseCode}"
+        },
+        {
+          "key": "namespace",
+          "value": "${namespace}"
+        },
+        {
+          "key": "user",
+          "value": "${user}"
+        },
+        {
+          "key": "sourceIP",
+          "value": "${sourceIP}"
+        },
+        {
+          "key": "cluster_id",
+          "value": "{{cluster_id}}"
+        }
+      ],
+      "autoAnnotation": true,
+      "sendResolved": false,
+      "threshold": 1,
+      "noDataFire": false,
+      "noDataSeverity": 6
+    }
+  }
+}
