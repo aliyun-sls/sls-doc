@@ -22,7 +22,7 @@
     "type": "tsc --noEmit",
     "test": "npm run lint && npm run type",
     "dev": "vitepress",
-    "build": "vitepress build && npm run sitemap",
+    "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 vitepress build && npm run sitemap",
     "serve": "vitepress serve .",
     "build-alert": "node scripts/buildAlert.js"
   },
@@ -45,6 +45,7 @@
     "@types/estree": "^1.0.0",
     "@types/js-cookie": "^3.0.3",
     "@types/urijs": "^1.19.19",
+    "cross-env": "^5.2.0",
     "markdown-it-container": "^3.0.0",
     "prettier": "^2.7.1",
     "typescript": "^4.8.2",
