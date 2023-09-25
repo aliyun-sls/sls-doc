@@ -36,14 +36,16 @@ const tip = ref(
 let dest = ref('')
 
 watchEffect(async () => {
-  const response = await fetch(
-    `https://s-sls-demo-thysjcgqcl.cn-shanghai.fcapp.run?dest=${encodeURIComponent(
-      params.value.dest
-    )}&theme=${params.value.theme}`
-  )
-  const json = await response.json()
-  if (json.success) {
-    dest.value = json.data.url
+  if (inBrowser) {
+    const response = await fetch(
+      `https://s-sls-demo-thysjcgqcl.cn-shanghai.fcapp.run?dest=${encodeURIComponent(
+        params.value.dest
+      )}&theme=${params.value.theme}`
+    )
+    const json = await response.json()
+    if (json.success) {
+      dest.value = json.data.url
+    }
   }
 })
 </script>
