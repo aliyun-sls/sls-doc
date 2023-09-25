@@ -1,15 +1,17 @@
-# 【最佳实践】主机场景下如何使用ilogtail采集超大规模文件
-##　目标读者
+# 主机场景下如何使用ilogtail采集超大规模文件
+
+## 目标读者
 数字化系统开发运维（DevOps）工程师、稳定性工程师（SRE）、可观测平台运维人员等。
 
 ## 使用场景
 客户的某些场景下，业务拆分的比较细，每个业务会定时输出一个日志文件（比如每小时输出一个文件），那么在一台机器上，可能会产生大量的日志文件。由于某些原因，用户不想在业务服务器上安装采集端，因此采用比如Rsync的方式把日志文件同步到一台日志服务器上，那么这台日志服务器上的文件数量会非常大。Logtail由于采用的是注册事件监听以及定期轮询机制进行文件发现，对于采集文件/文件夹的数量有一定的限制，[参考文档](./https://help.aliyun.com/document_detail/64999.html?spm=a2c4g.26937906.0.0.48aa5b53mNFAlh)。
 
-##　相关概念
+## 相关概念
+
 ### Logtail
 Logtail是日志服务提供的日志采集Agent，用于采集阿里云ECS、自建IDC、其他云厂商等服务器上的日志。本文介绍Logtail的功能、优势、使用限制及配置流程等信息。
 
-##　方案架构
+## 方案架构
 
 单个Logtail实例的对于采集文件/文件夹的数量有一定的限制，参考文档, 内存2G的情况下
 
@@ -18,7 +20,7 @@ Logtail是日志服务提供的日志采集Agent，用于采集阿里云ECS、�
  > 单个采集配置监控目录和文件总数：10W（目录不包含Logtail采集配置中指定的目录黑名单，文件包含未被Logtail采集配置匹配的文件）。
  > 单个目录中被监控的子目录和文件总数：10W（目录包含Logtail采集配置中指定的目录黑名单，文件包含未被Logtail采集配置匹配的文件）。
 
-   ![image.png](./img4.1.png)
+   ![image.png](./img/4.1.png)
 
  > 因此考虑使用多实例的方式，来进行能力拓展，具体架构如下：
  > 将要采集的文件划分在不同的文件夹下
@@ -139,31 +141,31 @@ taiye_1
 ```
 为Logtail2，Logtail3，Logtail4也分别创建自定义标识taiye_2, taiye_3, taiye_4创建好之后，我们在SLS的页面上，分别创建4个机器组
 
-   ![image.png](./img4.2.png)
+   ![image.png](./img/4.2.png)
 
 创建好之后，分别查看每个机器组的状态，可以看到机器组的心跳已经正常了
-   ![image.png](./img4.3.png)
+   ![image.png](./img/4.3.png)
 4. 对每个实例配置采集配置
-   ![image.png](./img4.4.png)
+   ![image.png](./img/4.4.png)
 
 如图所示，采集配置test_log1，只使用taiye_1的机器组（里面只包含了Logtail1的实例），采集的日志路径里，也只配置了/root/test_log/dir1的路径。以此类比，创建采集配置test_log2，test_log3，test_log4。
 
 5. 验证配置效果
 通过查看每个Logtail实例下的user_log_config.json文件，可以确认采集配置被正确下发了。
- ![image.png](./img4.5.png)
+ ![image.png](./img/4.5.png)
 
  通过日志查询，可以看到每个实例下的日志都被采集上来了。
-  ![image.png](./img4.6.png)
+  ![image.png](./img/4.6.png)
 
-##　注意事项
+## 注意事项
 > 采用本方案启动多个Logtail实例，不能使用IP型机器组，否则相同的采集配置会下发到每个实例中，浪费资源。
 > 如果该主机之前已经有过Logtail实例，且为IP型机器组，那么需要把原来的IP型机器组删除，确保没有之前的采集配置遗留。
 
-##　参考
+## 参考
 　> 使用Logtail自定义插件采集数据：https://help.aliyun.com/document_detail/65064.html
   > SLS（日志服务）云原生观测分析平台：https://www.aliyun.com/product/sls
   > 欢迎扫群加入阿里云-日志服务（SLS）技术交流或关注公众号, 获得第一手资料与支持：
- ![image.png](./img4.7.png)
+ ![image.png](./img/4.7.png)
 
 
 
