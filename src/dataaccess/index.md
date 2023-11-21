@@ -19,5 +19,5 @@
 ## 插件使用案例
 | 案例名称 | 描述 |
 | -- | -- |
-| Logtail日志采集支持高精度时间戳 | [Logtail日志采集支持高精度时间戳](./plugintimeUnit.md)|
+| Logtail日志采集支持纳秒时间戳 | [Logtail日志采集支持纳秒时间戳](./enableTimeNano.md)|
 | Logtail使用Grok语法解析日志  | [Logtail使用Grok语法解析日志](./GrokAnaysis.md)|
