@@ -92,6 +92,10 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">智能异常分析</p>
     <p class="next-steps-caption">智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台。</p>
   </a>
+   <a class="vt-box" href="/doc/intelligentom/maasintro">
+    <p class="next-steps-link">基础模型能力</p>
+    <p class="next-steps-caption">针对 Log、Metric、Trace 这三类基础数据的特点，以及围绕这三类数据的高频场景进行建模，提供 API 维度的模型能力集成</p>
+  </a>
 </div>
 
 ## CloudLens Demo
