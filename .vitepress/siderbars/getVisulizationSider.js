@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '可视化案例',
-      items: [{ text: '案例总览', link: '/visulization/' }],
+      items: [{ text: '案例总览', link: '/visulization/index' }],
     },
     {
       text: '常见图表案例',

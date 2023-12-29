@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '案例总览',
-      items: [{ text: '案例总览', link: '/intelligentom/' }],
+      items: [{ text: '案例总览', link: '/intelligentom/index' }],
     },
     {
       text: '智能运维快速介绍',

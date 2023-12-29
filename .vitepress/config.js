@@ -14,6 +14,7 @@ const getIntelligentOMSider = require('./siderbars/getIntelligentOMSider')
 const getScheduledsqlSider = require('./siderbars/getScheduledsqlSider')
 const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
+const getToolsSider = require('./siderbars/getToolsSider')
 
 const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
@@ -116,7 +117,8 @@ module.exports = (async () => {
         '/intelligentom': getIntelligentOMSider(),
         '/scheduledsql': getScheduledsqlSider(),
         '/billandsecurity': getBillandsecuritySider(),
-        '/metrics': getMetricStoreSider()
+        '/metrics': getMetricStoreSider(),
+        '/tools': getToolsSider(),
       },
 
       footer: {
@@ -166,10 +168,8 @@ module.exports = (async () => {
 
     markdown: {
       config: (md) => {
-        md
-          .use(...createCodeGroup())
-          .use(preWrapperPlugin)
-      }
-    }
+        md.use(...createCodeGroup()).use(preWrapperPlugin)
+      },
+    },
   }
 })()

@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '案例总览',
-      items: [{ text: '案例总览', link: '/billandsecurity/' }],
+      items: [{ text: '案例总览', link: '/billandsecurity/index' }],
     },
     {
       text: '审计与安全快速介绍',

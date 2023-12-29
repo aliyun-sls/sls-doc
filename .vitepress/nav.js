@@ -25,6 +25,24 @@ function getNavs() {
       ],
     },
     {
+      text: '常用工具',
+      activeMatch: `^/(tools)/`,
+      items: [
+        {
+          items: [
+            {
+              text: '同步索引配置',
+              link: '/tools/syncIndexConfig',
+            },
+            {
+              text: '同步定时 SQL',
+              link: '/tools/syncScheduleSql',
+            },
+          ],
+        },
+      ],
+    },
+    {
       text: '产品动态',
       link: '/product/',
     },
