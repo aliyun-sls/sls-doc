@@ -3,7 +3,7 @@
 日志服务 SLS 是云原生观测与分析平台，为 Log、Metric、Trace 等数据提供大规模、低成本、实时的平台化服务。日志服务一站式提供数据采集、加工、查询与分析、可视化、告警、消费与投递等功能，全面提升您在研发、运维、运营、安全等场景的数字化能力。
 
 :::tip SLS Playground 发布啦！！！
-SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 SLS 控制台只读账号，包含智能运维类 APP Demo、CloudLen APP Demo、多种日志分析 Demo，可视化 Demo 等等，尽情畅玩吧！
+SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 SLS 控制台只读账号，包含智能运维类 APP Demo、CloudLens APP Demo、多种日志分析 Demo，可视化 Demo 等等，尽情畅玩吧！
 
 [尝试](/playground/demo.html){target="_blank"}
 :::
