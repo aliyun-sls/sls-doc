@@ -19,13 +19,13 @@
         "project": "sls-ml-demo",
         "logstore": "cdn_access_log",
         "endpoint": "cn-chengdu.log.aliyuncs.com",
-        "roleArn": "acs:ram::1654218965343050:role/aliyunlogetlrole"
+        "roleArn": "acs:ram::xxxxx:role/aliyunlogetlrole"
       },
       "destination": {
         "project": "sls-ml-demo",
         "logstore": "test_temp",
         "endpoint": "cn-chengdu-intranet.log.aliyuncs.com",
-        "roleArn": "acs:ram::1654218965343050:role/aliyunlogetlrole"
+        "roleArn": "acs:ram::xxxxx:role/aliyunlogetlrole"
       }
     }
   }
@@ -41,6 +41,7 @@ newly_job_config
 + fromTime、toTime 这两个字段主要用来设置，新创建的任务的开始时间和结束时间，如果设置的值 <= 0，则复用原始Job的时间区间
 + source 该字段用来设置，新的Job创建在哪个Project中
 + destination 该字段用来设置，新的Job中的SQL结果数据存储到哪个Logstore中。如果 destination 和 source 在相同的Region，则设置destination中的endpoint为私网地址，可以降低流量费用
++ roleArn 这里的配置需要让用户在控制台上先确认，如果未进行授权的话，需要手动处理后，在进行配置
 
 ## 示例代码
 ```python
