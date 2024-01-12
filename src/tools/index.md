@@ -6,3 +6,5 @@
 | ------------------------------------ | ------------ |
 | [同步索引配置](./syncIndexConfig.md) | 同步索引配置 |
 | [同步定时 SQL](./syncScheduleSql.md) | 同步定时 SQL |
+| [批量更新定时 SQL](./updateScheduleSqlConfig.md) | 批量更新定时 SQL |
+
