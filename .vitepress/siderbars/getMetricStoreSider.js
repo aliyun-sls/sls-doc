@@ -85,11 +85,61 @@ function getSidebar() {
           text: '使用SQL对时序数据做聚合计算',
           link: '/metrics/15.聚合计算.md',
         },
+        {
+          text: '创建定时SQL任务',
+          link: '/metrics/15.聚合计算.md',
+        },
+      ],
+    },
+    {
+      text: '高级配置项',
+      items: [
+        {
+          text: '配置并发查询',
+          link: '/metrics/26.配置并发查询.md',
+        },
+        {
+          text: '配置全局缓存',
+          link: '/metrics/27.配置全局缓存.md',
+        },
+        {
+          text: '配置降采样',
+          link: '/metrics/28.配置降采样.md',
+        },
+        {
+          text: '配置RemoteWrite过滤条件',
+          link: '/metrics/29.配置数据过滤条件.md',
+        },
+      ],
+    },
+    {
+      text: '仪表盘图表相关',
+      items: [
+        {
+          text: '保存图表到仪表盘',
+          link: '/metrics/22.创建仪表盘.md',
+        },
+        {
+          text: '添加时序图表',
+          link: '/metrics/23.新建时序图表.md',
+        },
+        {
+          text: '为PromQL添加变量替换',
+          link: '/metrics/24.添加变量替换.md',
+        },
+        {
+          text: '添加时序过滤器',
+          link: '/metrics/25.添加时序过滤器.md',
+        },
       ],
     },
     {
       text: '为时序库创建告警策略',
       items: [
+        {
+          text: '在时序查询界面创建告警',
+          link: '/metrics/21.在时序查询界面创建告警.md',
+        },
         {
           text: '实例宕机',
           link: '/metrics/16.宕机告警.md',
