@@ -76,7 +76,27 @@ pip install alibabacloud_sls20201230==4.1.0
             "Resource": [
                 "acs:log:*:*:/ml/service/sls_builtin_service_metric_anomaly/",
                 "acs:log:*:*:/ml/service/sls_builtin_service_log_struct/",
-                "acs:log:*:*:/ml/service/sls_builtin_service_trace_rca/"
+                "acs:log:*:*:/ml/service/sls_builtin_service_trace_rca/",
+                "acs:log:*:*:/ml/service/sls_builtin_service_series_prediction/"
+            ],
+            "Effect": "Allow"
+        }
+    ]
+}
+```
+
+还有一种更佳精简的配置方法，具体如下
+```
+{
+    "Version": "1",
+    "Statement": [
+        {
+            "Action": [
+                "log:Get*"
+            ],
+            "Resource": [
+                "acs:log:*:*:/ml/service/sls_builtin_service_*",
+                "acs:log:*:*:/ml/service/sls_builtin_service_*/*"
             ],
             "Effect": "Allow"
         }
@@ -514,4 +534,152 @@ class Sample:
 
 if __name__ == '__main__':
     Sample.main(sys.argv[1:])
+```
+
+### 4. 时序预测方法
+#### 服务名称
+> sls_builtin_service_series_prediction
+
+#### 请求参数
+body.parameter
+```
+{
+  "time_name": "time",
+  "feature_names": "[\"flow\"]",
+  "pred_config": "{
+      \"periods\": 720,
+      \"freq\": \"min\"
+  }"
+}
+```
++ time_name 表示 input 的每个数据中时间字段的名称
++ feature_names 表示 input 的每个数据中的指标字段的名称
++ pred_config 表示要预测多长时间的序列，其中 periods 表示要预测多少个点，freq 表示每一个点的时间单位，可选时间单位如下
+    + hour 表示小时
+    + min 表示分钟
+    + s 表示秒
+    + day 表示天
+
+body.input
+```
+[
+  {
+    "{column_name}": "{column_value}"
+  }
+]
+```
+
+输入的内容是一个是 json 结构数组，其中包含一个时间字段（由 parameter.time_name 指定）和若干个指标字段（由 parameter.feature_names 指定）。
+其中时间字段的值必须可以转换成整数类型，以秒为单位；指标字段的值必须可以转换成数值类型。
+
+具体的一个例子如下：
+```
+[
+  {
+    "flow": "670",
+    "time": "1705998420"
+  },
+  {
+    "flow": "499",
+    "time": "1705998480"
+  },
+  ...
+]
+```
+
+#### 返回参数
+data
+```
+[
+  {
+      "flow_hat": "733.412776",
+      "flow_upper": "924.663573873938",
+      "time": "1705973340",
+      "flow_lower": "573.3463870005102"
+  },
+  {
+      "flow_hat": "728.8411423109048",
+      "flow_upper": "899.7568154110494",
+      "time": "1705973400",
+      "flow_lower": "560.4061980744253"
+  },
+  ...
+]
+```
+输出内容中每一个 json 结构表示对于每一个时间时刻的预测结果
++ ${time_name} 表示 json 结构对应的时刻，以秒为单位
++ ${feature_name}_hat 表示对应时刻的预测值
++ ${feature_name}_upper 表示对应时刻的预测值的上界
++ ${feature_name}_lower 表示对应时刻的预测值的下界
+
+
+status
+```
+{
+  "flow_mse": "5084.058",
+  "flow_r2": "0.5278"
+}
+```
+包含对于每一个指标的历史数据的拟合程度
++ ${feature_name}_mse 表示拟合对应指标历史数据的均方误差。误差越小，表示预测值对于历史数据的拟合程度越好
++ ${feature_name}_r2 表示拟合对应指标历史数据的 r2 分数。分数越高，表示预测值对于历史数据的拟合程度
+
+
+#### 使用示例（Python）
+```
+import traceback
+
+from alibabacloud_sls20201230.client import Client as Sls20201230Client
+from alibabacloud_tea_openapi import models as open_api_models
+from alibabacloud_sls20201230 import models as sls_20201230_models
+from alibabacloud_tea_util import models as util_models
+from alibabacloud_tea_util.client import Client as UtilClient
+
+config = open_api_models.Config(
+    # 必填，您的 AccessKey ID,
+    access_key_id=access_key_id,
+    # 必填，您的 AccessKey Secret,
+    access_key_secret=access_key_secret,
+    read_timeout=60*1000,
+    connect_timeout=60*1000,
+    # Endpoint 请参考 https://api.aliyun.com/product/Sls
+    endpoint = "cn-shanghai.log.aliyuncs.com"
+)
+client = Sls20201230Client(config)
+
+param = sls_20201230_models.MLServiceAnalysisParam()
+param.parameter = {
+    "time_name": "time",                                 # input 中的时间字段
+    "feature_names": "[\"flow\"]",                       # input 中的指标字段
+    "pred_config": "{\"periods\": 720, \"freq\": \"min\"}" # 需要预测多长时间的序列，包括时序点的数量和时序点的单位
+}
+
+# 设置待预测的时间序列，每一个 json 结构包含一个时序点对应的时间和指标值
+param.input = [
+    {"flow": "632", "time": "1705973340"},
+    {"flow": "679", "time": "1705973400"}, 
+    {"flow": "534", "time": "1705973460"}, 
+    {"flow": "615", "time": "1705973520"}, 
+    {"flow": "675", "time": "1705973580"}, 
+    {"flow": "764", "time": "1705973640"}, 
+    {"flow": "556", "time": "1705973700"}, 
+    {"flow": "505", "time": "1705973760"}, 
+    {"flow": "780", "time": "1705973820"}, 
+    {"flow": "579", "time": "1705973880"}
+]
+
+request = sls_20201230_models.GetMLServiceResultsRequest()
+request.allow_builtin = "true"
+request.body = param
+
+runtime = util_models.RuntimeOptions()
+headers = {}
+try:
+    service_name = "sls_builtin_service_series_prediction"
+    resp = client.get_mlservice_results_with_options(service_name, request, headers, runtime)
+    if resp.status_code == 200:
+        print(resp.body)
+except Exception as error:
+    print(traceback.format_exc())
+    UtilClient.assert_as_string(error.message)
 ```
