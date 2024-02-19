@@ -16,7 +16,9 @@ const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 const getToolsSider = require('./siderbars/getToolsSider')
 
-const getNavs = require('./nav')
+const getCnNavs = require('./nav').getCnNavs
+const getEnNavs = require('./nav').getEnNavs
+
 const glob = require('glob')
 
 const sqlfunFiles = glob
@@ -66,7 +68,7 @@ module.exports = (async () => {
         lang: 'zh',
         description: 'SLS 案例中心',
         themeConfig: {
-          nav: getNavs(),
+          nav: getCnNavs(),
 
           sidebar: {
             '/sqldemo': getSqldemoSider(),
@@ -93,7 +95,7 @@ module.exports = (async () => {
           },
 
           outline: {
-            label: '页面导航'
+            label: '页面导航',
           },
         },
       },
@@ -103,6 +105,9 @@ module.exports = (async () => {
         description: 'SLS Demo Center',
 
         themeConfig: {
+          nav: getEnNavs(),
+          sidebar: {},
+
           editLink: {
             pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
             text: 'Edit this page on GitHub',

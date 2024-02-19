@@ -1,4 +1,4 @@
-function getNavs() {
+function getCnNavs() {
   const base = [
     {
       text: '案例中心',
@@ -11,7 +11,7 @@ function getNavs() {
             { text: 'SQL错误中心', link: '/sqlerror/index' },
             { text: '定时SQL案例', link: '/scheduledsql/index' },
             { text: '查询案例', link: '/searchdemo/query/search_with_index' },
-            { text: '时序库查询案例', link: '/metrics/index'},
+            { text: '时序库查询案例', link: '/metrics/index' },
             { text: '可视化案例', link: '/visulization/index' },
             { text: '数据采集案例', link: '/dataaccess/index' },
             { text: '加工案例', link: '/dataprocessdemo/index' },
@@ -112,4 +112,9 @@ function getNavs() {
   return base
 }
 
-module.exports = getNavs
+function getEnNavs() {
+  return []
+}
+
+exports.getCnNavs = getCnNavs
+exports.getEnNavs = getEnNavs
