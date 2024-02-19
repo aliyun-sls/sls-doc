@@ -48,7 +48,7 @@ module.exports = (async () => {
     ignoreDeadLinks: true,
     base: '/doc',
     srcDir: 'src',
-    lang: 'en-US',
+
     title: 'SLS',
     description: 'SLS 案例中心',
 
@@ -59,6 +59,57 @@ module.exports = (async () => {
     },
 
     lastUpdated: true,
+
+    locales: {
+      root: {
+        label: '简体中文',
+        lang: 'zh',
+        description: 'SLS 案例中心',
+        themeConfig: {
+          nav: getNavs(),
+
+          sidebar: {
+            '/sqldemo': getSqldemoSider(),
+            '/sqlfunction': getSqlFunctionSider(),
+            '/sqlerror': getSqlErrorSider(),
+            '/searchdemo': getSearchdemoSider(),
+            '/product': getProductSider(),
+            '/dataprocessdemo': getDataProcessSider(),
+            '/oscompatibledemo': getOscompatibleDemo(),
+            '/visulization': getVisulizationDemo(),
+            '/alert': getAlertSider(),
+            '/cloudlen': getCloudlenSider(),
+            '/dataaccess': getDataAccessSider(),
+            '/intelligentom': getIntelligentOMSider(),
+            '/scheduledsql': getScheduledsqlSider(),
+            '/billandsecurity': getBillandsecuritySider(),
+            '/metrics': getMetricStoreSider(),
+            '/tools': getToolsSider(),
+          },
+
+          editLink: {
+            pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
+            text: '在GitHub修改本页',
+          },
+
+          outline: {
+            label: '页面导航'
+          },
+        },
+      },
+      en: {
+        label: 'English',
+        lang: 'en',
+        description: 'SLS Demo Center',
+
+        themeConfig: {
+          editLink: {
+            pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
+            text: 'Edit this page on GitHub',
+          },
+        },
+      },
+    },
 
     /**
      * @type {import('.theme/src/vitepress/config').Config}
@@ -71,29 +122,6 @@ module.exports = (async () => {
         provider: 'local',
       },
 
-      // algolia: {
-      //   indexName: 'sls-doc-test',
-      //   appId: 'H7AKHYSS2Y',
-      //   apiKey: '5562d4b6eb57fe8fd21a319d961a3bf2',
-      //   placeholder: '在SLS案例中心查找',
-      //   translations: {
-      //     modal: {
-      //       searchBox: {
-      //         cancelButtonText: 'Abort',
-      //         resetButtonTitle: 'Clear search term',
-      //       },
-      //       footer: {
-      //         searchByText: 'Search gracefully done by ',
-      //       },
-      //     },
-      //   },
-      // },
-
-      editLink: {
-        pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
-        text: '在GitHub修改本页',
-      },
-
       socialLinks: [
         {
           icon: 'github',
@@ -101,40 +129,14 @@ module.exports = (async () => {
         },
       ],
 
-      nav: getNavs(),
-
-      sidebar: {
-        '/sqldemo': getSqldemoSider(),
-        '/sqlfunction': getSqlFunctionSider(),
-        '/sqlerror': getSqlErrorSider(),
-        '/searchdemo': getSearchdemoSider(),
-        '/product': getProductSider(),
-        '/dataprocessdemo': getDataProcessSider(),
-        '/oscompatibledemo': getOscompatibleDemo(),
-        '/visulization': getVisulizationDemo(),
-        '/alert': getAlertSider(),
-        '/cloudlen': getCloudlenSider(),
-        '/dataaccess': getDataAccessSider(),
-        '/intelligentom': getIntelligentOMSider(),
-        '/scheduledsql': getScheduledsqlSider(),
-        '/billandsecurity': getBillandsecuritySider(),
-        '/metrics': getMetricStoreSider(),
-        '/tools': getToolsSider(),
-      },
-
       outline: {
         level: 'deep',
       },
 
       footer: {
-        // license: {
-        //   text: 'MIT License',
-        //   link: 'https://opensource.org/licenses/MIT'
-        // },
         copyright: `Copyright © 2021-${new Date().getFullYear()} Aliyun SLS`,
       },
 
-      // // For i18n translation messages
       i18n: {
         search: '搜索',
         menu: '菜单',
