@@ -4,7 +4,7 @@ function getSidebar() {
       text: 'Cheatsheet',
       items: [
         { text: '索引搜索', link: '/searchdemo/query/search_with_index' },
-        { text: 'Scan 搜索', link: '/searchdemo/query/search_with_scan' },
+        { text: '使用 SPL 搜索', link: '/searchdemo/query/search_with_spl' },
       ],
     },
     {
