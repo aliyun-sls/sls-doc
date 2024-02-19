@@ -1,6 +1,7 @@
 ---
 layout: page
 title: SLS Playground
+footer: false
 ---
 
 <script setup>

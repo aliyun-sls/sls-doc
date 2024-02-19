@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Logsearch Playground
+footer: false
 ---
 
 <script setup>
