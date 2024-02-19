@@ -122,6 +122,10 @@ module.exports = (async () => {
         '/tools': getToolsSider(),
       },
 
+      outline: {
+        level: 'deep',
+      },
+
       footer: {
         // license: {
         //   text: 'MIT License',
