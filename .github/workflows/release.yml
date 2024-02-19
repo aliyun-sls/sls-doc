@@ -28,9 +28,9 @@ jobs:
         with:
           node-version: 16
 
-      - run: yarn install --registry https://registry.npmjs.org/
+      - run: pnpm install --registry https://registry.npmjs.org/
 
-      - run: yarn build
+      - run: pnpm build
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1

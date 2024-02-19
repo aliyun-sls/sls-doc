@@ -1,5 +1,33 @@
 :root {
-  --vt-c-brand: #646cff;
-  --vt-c-brand-light: #747bff;
-  --vt-c-brand-dark: #444cd8;
+  /* --vt-c-brand: var(--vp-c-green);
+  --vt-c-brand-light: var(--vp-c-green-light);
+  --vt-c-brand-dark: var(--vp-c-green-dark); */
+  --vp-c-green: #42b883;
+  --vp-c-green-light: #42d392;
+  --vp-c-green-dark: #33a06f;
+  --vp-c-green-dimm-1: rgba(66, 184, 131, 0.5);
+  --vp-c-brand-soft: rgba(66, 184, 131, 0.05);
+
+  --vp-custom-block-tip-border: var(--vp-c-green-dimm-1);
+  --vp-c-brand-1: var(--vp-c-green);
+  --vp-c-brand-2: var(--vp-c-green-light);
+  --vp-c-brand-3: var(--vp-c-green-dark);
+}
+
+.vp-doc a {
+  text-decoration: inherit;
+}
+
+@media (min-width: 1440px) {
+  .VPDoc:not(.has-sidebar) .content {
+    max-width: 1200px !important;
+  }
+
+  .VPDoc:not(.has-sidebar) .container {
+    max-width: 1400px !important;
+  }
+}
+
+.VPDoc.has-aside .content-container {
+  max-width: 1080px !important;
 }

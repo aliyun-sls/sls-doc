@@ -1,13 +1,15 @@
-import { Theme } from './src'
+import Theme from 'vitepress/theme'
+
 import { h } from 'vue'
+
+import SLSContributors from './src/components/SLSContributors.vue'
 import './styles/sls-doc.css'
-import './src/components/CodeGroup/code-group.css'
 
 // uncomment to test CSS variables override
-// import './override.css'
+import './override.css'
 
 export default {
-  ...Theme,
+  extends: Theme,
   Layout() {
     return h(Theme.Layout, null, {
       // uncomment to test layout slots
@@ -17,7 +19,7 @@ export default {
       // 'content-bottom': () => h('div', 'Some ads'),
       // 'aside-top': () => h('div', 'this could be huge'),
       // 'aside-mid': () => h('div', { style: { height: '300px' }}, 'Sponsors'),
-      // 'aside-bottom': () => h('div', { style: { height: '300px' }}, 'Sponsors'),
+      'aside-outline-after': () => h(SLSContributors),
     })
   },
 }
