@@ -13,23 +13,22 @@ node -v
 npm -v
 ```
 
-## 安装 Yarn
+## 安装 pnpm
 
 ```bash
-npm install yarn -g --registry https://registry.npmmirror.com
-yarn -v
+npm install pnpm -g --registry https://registry.npmmirror.com
 ```
 
 ## 安装依赖
 
 ```bash
-yarn install --registry https://registry.npmmirror.com
+pnpm install --registry https://registry.npmmirror.com
 ```
 
 ## 开发
 
 ```bash
-yarn dev
+pnpm dev
 ```
 
 ## 导航栏配置
