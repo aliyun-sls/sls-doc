@@ -16,7 +16,7 @@ jobs:
     strategy:
       matrix:
         platform: [ubuntu-latest]
-        node: ['16']
+        node: ['18']
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -26,11 +26,13 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
-      - run: yarn install --registry https://registry.npmjs.org/
+      - run: npm install pnpm -g --registry https://registry.npmjs.org/
 
-      - run: yarn build
+      - run: pnpm install --registry https://registry.npmjs.org/
+
+      - run: pnpm build
 
       - name: upload files to OSS
         uses: fangbinwei/aliyun-oss-website-action@v1

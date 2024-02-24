@@ -38,6 +38,10 @@ function getNavs() {
               text: '同步定时 SQL',
               link: '/tools/syncScheduleSql',
             },
+            {
+              text: '批量更新定时 SQL',
+              link: '/tools/updateScheduleSqlConfig',
+            },
           ],
         },
       ],

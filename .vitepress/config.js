@@ -16,7 +16,6 @@ const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 const getToolsSider = require('./siderbars/getToolsSider')
 
-const { preWrapperPlugin, createCodeGroup } = require('./theme/src/components/CodeGroup/code-group')
 const getNavs = require('./nav')
 const glob = require('glob')
 
@@ -68,23 +67,27 @@ module.exports = (async () => {
       logo: '/img/sls.png',
       lastUpdatedText: '最近修改',
 
-      algolia: {
-        indexName: 'sls-doc-test',
-        appId: 'H7AKHYSS2Y',
-        apiKey: '5562d4b6eb57fe8fd21a319d961a3bf2',
-        placeholder: '在SLS案例中心查找',
-        translations: {
-          modal: {
-            searchBox: {
-              cancelButtonText: 'Abort',
-              resetButtonTitle: 'Clear search term',
-            },
-            footer: {
-              searchByText: 'Search gracefully done by ',
-            },
-          },
-        },
+      search: {
+        provider: 'local',
       },
+
+      // algolia: {
+      //   indexName: 'sls-doc-test',
+      //   appId: 'H7AKHYSS2Y',
+      //   apiKey: '5562d4b6eb57fe8fd21a319d961a3bf2',
+      //   placeholder: '在SLS案例中心查找',
+      //   translations: {
+      //     modal: {
+      //       searchBox: {
+      //         cancelButtonText: 'Abort',
+      //         resetButtonTitle: 'Clear search term',
+      //       },
+      //       footer: {
+      //         searchByText: 'Search gracefully done by ',
+      //       },
+      //     },
+      //   },
+      // },
 
       editLink: {
         pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
@@ -96,8 +99,6 @@ module.exports = (async () => {
           icon: 'github',
           link: 'https://github.com/aliyun-sls/sls-doc',
         },
-        // { icon: "twitter", link: "https://twitter.com/vuejs" },
-        // { icon: "discord", link: "https://discord.com/invite/HBherRA" },
       ],
 
       nav: getNavs(),
@@ -119,6 +120,10 @@ module.exports = (async () => {
         '/billandsecurity': getBillandsecuritySider(),
         '/metrics': getMetricStoreSider(),
         '/tools': getToolsSider(),
+      },
+
+      outline: {
+        level: 'deep',
       },
 
       footer: {
@@ -163,12 +168,6 @@ module.exports = (async () => {
         //   ariaMainNav: 'Main Navigation',
         //   ariaMobileNav: 'Mobile Navigation',
         //   ariaSidebarNav: 'Sidebar Navigation',
-      },
-    },
-
-    markdown: {
-      config: (md) => {
-        md.use(...createCodeGroup()).use(preWrapperPlugin)
       },
     },
   }
