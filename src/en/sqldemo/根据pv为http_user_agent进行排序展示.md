@@ -1,0 +1,57 @@
+通过 http_user_agent 分组聚合，然后查询出各个代理的请求、以及返回客户端流量的和，由于单位是byte，运算转为MB并保留两位小数；再使用case when为status分层，分为2xx、3xx、4xx、5xx以及各层所占的比例。 使用表格展示，可以较为直观的看到这些数据及含义  
+```sql
+* |
+select
+  http_user_agent as "用户代理",
+  count(*) as pv,
+  round(sum(request_length) / 1024.0 / 1024, 2) as "请求报文流量(MB)",
+  round(sum(body_bytes_sent) / 1024.0 / 1024, 2) as "返回客户端流量(MB)",
+  round(
+    sum(
+      case
+        when status >= 200
+        and status < 300 then 1
+        else 0
+      end
+    ) * 100.0 / count(1),
+    6
+  ) as "2xx比例(%)",
+  round(
+    sum(
+      case
+        when status >= 300
+        and status < 400 then 1
+        else 0
+      end
+    ) * 100.0 / count(1),
+    6
+  ) as "3xx比例(%)",
+  round(
+    sum(
+      case
+        when status >= 400
+        and status < 500 then 1
+        else 0
+      end
+    ) * 100.0 / count(1),
+    6
+  ) as "4xx比例(%)",
+  round(
+    sum(
+      case
+        when status >= 500
+        and status < 600 then 1
+        else 0
+      end
+    ) * 100.0 / count(1),
+    6
+  ) as "5xx比例(%)"
+group by
+  "用户代理"
+order by
+  pv desc
+limit
+  100
+```
+SQL查询结果样例：
+![image.png](/img/src/sqldemo/根据pv为http_user_agent进行排序展示/90d75af1e25a889abb085f0582444fbad2e39eac5d7cc53b64711e2b86445573.png)
