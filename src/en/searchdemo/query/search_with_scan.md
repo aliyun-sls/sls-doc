@@ -1,6 +1,5 @@
 ## Scan 介绍
 1. 功能说明、算子文档请参考[官方文档](https://help.aliyun.com/document_detail/457238.html)。
-2. 视频教程，[B 站地址](https://www.bilibili.com/video/BV1Rt4y1T7Wr)。
 ## 日志样例
 * 原始字段：**标识 `[R]`**，适用于 Scan 搜索。
 * 索引字段：**标识 `[I]`**，适用于索引搜索，可大大加速 Scan 搜索。
