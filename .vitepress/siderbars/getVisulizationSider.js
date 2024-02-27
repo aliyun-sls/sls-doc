@@ -83,23 +83,23 @@ function getSidebar() {
         },
         {
           text: '如何设置表格单元格进度条样式（普通、LCD、渐变）',
-          link: '#',
+          link: '/visulization/tablePro/progressStyle.md',
         },
         {
           text: '如何在表格单元格中设置线图、面积图、柱状图',
-          link: '#',
+          link: '/visulization/tablePro/setCharts.md',
         },
         {
           text: '表格如何支持行列转换',
-          link: '#',
+          link: '/visulization/tablePro/rowColSwitch.md',
         },
         {
           text: '如何控制表格列的宽度',
-          link: '#',
+          link: '/visulization/tablePro/setColWidth.md',
         },
         {
           text: '如何设置表格单元格的搜索和过滤功能',
-          link: '#',
+          link: '/visulization/tablePro/tableFilterAndSearch.md',
         },
         {
           text: '如何使用表格的阈值功能',
