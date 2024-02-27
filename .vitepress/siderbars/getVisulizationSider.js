@@ -10,34 +10,34 @@ function getSidebar() {
       items: [
         { text: '如何添加多Y轴线图', link: '/visulization/generalDashbaord/doubley.md' },
         { text: '如何配置一个带有迷你图的单值图', link: '/visulization/generalDashbaord/singleWithMiniChart.md' },
-        { text: '过滤器最佳实践', link: '/visulization//generalDashbaordfilter.md' },
+        { text: '过滤器最佳实践', link: '/visulization/generalDashbaordfilter.md' },
         {
           text: '导入仪表盘最佳实践',
           link: '/visulization/generalDashbaord/importOtherProjectDashboard.md',
         },
         {
           text: '时序模式的理解方式',
-          link: '#',
+          link: '/visulization/generalDashbaord/metricMode.md',
         },
         {
           text: '什么是字段配置',
-          link: '#',
+          link: '/visulization/generalDashbaord/fieldConfig.md',
         },
         {
           text: '如何配置格式化（以线图和表格为例）',
-          link: '#',
+          link: '/visulization/generalDashbaord/fieldFormat.md',
         },
         {
           text: '如何配置单位 （表格有个特殊的要求）',
-          link: '#',
+          link: '/visulization/generalDashbaord/unitConfig.md',
         },
         {
           text: '如何定制图例点击的效果 （以线图为例）',
-          link: '#',
+          link: '/visulization/generalDashbaord/legendClick.md',
         },
         {
           text: '如何自定义 Tooltip 显示内容 （以线图和散点图为例）',
-          link: '#',
+          link: '/visulization/generalDashbaord/tooltip.md',
         },
         {
           text: '图例如何实现排序及其效果 （流图特殊说明可以实现 topk 的能力）',
@@ -51,11 +51,11 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基础表格',
-          link: '#',
+          link: '/visulization/tablePro/baseTablePro.md',
         },
         {
           text: '如何配置多查询语句的表格',
-          link: '#',
+          link: '/visulization/tablePro/multipleQuery.md',
         },
         {
           text: '如何通过数据转换将多个表格 join 在同一个表格中',
@@ -63,23 +63,23 @@ function getSidebar() {
         },
         {
           text: '如何配置表格行高',
-          link: '#',
+          link: '/visulization/tablePro/lineHight.md',
         },
         {
           text: '如何设置表格默认的排序字段',
-          link: '#',
+          link: '/visulization/tablePro/setSortField.md',
         },
         {
           text: '如何设置表格单元格文本高亮',
-          link: '#',
+          link: '/visulization/tablePro/textHighlight.md',
         },
         {
           text: '如何设置表格单元格背景高亮',
-          link: '#',
+          link: '/visulization/tablePro/cellHighlight.md',
         },
         {
           text: '如何设置表格单元格整行背景高亮',
-          link: '#',
+          link: '/visulization/tablePro/lineHighlight.md',
         },
         {
           text: '如何设置表格单元格进度条样式（普通、LCD、渐变）',
