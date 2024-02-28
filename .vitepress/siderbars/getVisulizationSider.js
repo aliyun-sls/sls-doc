@@ -121,51 +121,51 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本线图',
-          link: '#',
+          link: '/visulization/lineChart/baseChart.md',
         },
         {
           text: '如何开启时序模式线图',
-          link: '#',
+          link: '/visulization/lineChart/metricMode.md',
         },
         {
           text: '如何配置两条或更多条的线图',
-          link: '#',
+          link: '/visulization/lineChart/moreLineChart.md',
         },
         {
           text: '如何给不同的线设置显示名（别名）',
-          link: '#',
+          link: '/visulization/lineChart/setAlias.md',
         },
         {
           text: '如何为不同的线配置不同颜色',
-          link: '#',
+          link: '/visulization/lineChart/setLineColor.md',
         },
         {
           text: 'x轴时间范围、数据时间范围与查询时间范围之间的关系',
-          link: '#',
+          link: '',
         },
         {
           text: '线图如何配置x轴格式化',
-          link: '#',
+          link: '/visulization/lineChart/setXFormat.md',
         },
         {
           text: '线图如何开启/关闭x轴',
-          link: '#',
+          link: '/visulization/lineChart/setXShow.md',
         },
         {
           text: '线图如何开启/关闭y轴',
-          link: '#',
+          link: '/visulization/lineChart/setYShow.md',
         },
         {
           text: '线图如何配置y轴范围',
-          link: '#',
+          link: '/visulization/lineChart/setYRange.md',
         },
         {
           text: '线图如何开启堆叠模式',
-          link: '#',
+          link: '/visulization/lineChart/stacking.md',
         },
         {
           text: '如何配置一组数据为线图，另一组数据为柱状图',
-          link: '#',
+          link: '/visulization/lineChart/lineAndHistogramCharts.md',
         },
         {
           text: '线图如何配置阈值',
@@ -173,7 +173,7 @@ function getSidebar() {
         },
         {
           text: '如何开启数据补全及其效果',
-          link: '#',
+          link: '/visulization/lineChart/completionData.md',
         },
       ],
     },
