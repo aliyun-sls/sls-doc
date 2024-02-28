@@ -24,24 +24,24 @@ function getSidebar() {
           link: '/visulization/generalDashbaord/fieldConfig.md',
         },
         {
-          text: '如何配置格式化（以线图和表格为例）',
+          text: '如何配置格式化',
           link: '/visulization/generalDashbaord/fieldFormat.md',
         },
         {
-          text: '如何配置单位 （表格有个特殊的要求）',
+          text: '如何配置单位',
           link: '/visulization/generalDashbaord/unitConfig.md',
         },
         {
-          text: '如何定制图例点击的效果 （以线图为例）',
+          text: '如何定制图例点击的效果',
           link: '/visulization/generalDashbaord/legendClick.md',
         },
         {
-          text: '如何自定义 Tooltip 显示内容 （以线图和散点图为例）',
+          text: '如何自定义 Tooltip 显示内容',
           link: '/visulization/generalDashbaord/tooltip.md',
         },
         {
-          text: '图例如何实现排序及其效果 （流图特殊说明可以实现 topk 的能力）',
-          link: '#',
+          text: '图例如何实现排序及其效果',
+          link: '/visulization/generalDashbaord/legendSortOrder.md',
         },
       ],
     },
