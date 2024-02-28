@@ -183,23 +183,23 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的柱状图',
-          link: '#',
+          link: '/visulization/barPro/createBar.md',
         },
         {
           text: '如何配置多查询的柱状图',
-          link: '#',
+          link: '/visulization/barPro/muiltSearch.md',
         },
         {
           text: '如何配置堆叠柱状图',
-          link: '#',
+          link: '/visulization/barPro/stackingBar.md',
         },
         {
           text: '柱状图外观有哪些配置项',
-          link: '#',
+          link: '/visulization/barPro/appearance.md',
         },
         {
           text: '柱状图标签如何配置在柱子内部显示',
-          link: '#',
+          link: '/visulization/barPro/insideTag.md',
         },
       ],
     },
@@ -209,11 +209,11 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的流图（分类线图）',
-          link: '#',
+          link: '/visulization/flowGraph/basicFlow.md',
         },
         {
           text: '流图分类数据限制说明',
-          link: '#',
+          link: '/visulization/flowGraph/dataLimit.md',
         },
       ],
     },
