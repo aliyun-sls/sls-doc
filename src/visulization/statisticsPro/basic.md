@@ -5,4 +5,4 @@
 
 2.配置统计图的 sql 查询结果
 查询数据配置：查询分析模块，选择数据来源，数据类型，然后添加查询分析语法。
-如图所示![图1](/img/src/visulization/statistics/statistics1.png)
+如图所示:![图1](/img/src/visulization/statistics/statistics1.png)
