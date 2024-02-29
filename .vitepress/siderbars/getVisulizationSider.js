@@ -399,11 +399,11 @@ function getSidebar() {
       items: [
         {
           text: '如何配置 markdown 图表',
-          link: '#',
+          link: '/visulization/markdownPro/markdownBasic.md',
         },
         {
           text: '如何在 markdown 图表中使用查询结果',
-          link: '#',
+          link: '/visulization/markdownPro/markdownWithQuery.md',
         },
       ],
     },
