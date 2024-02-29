@@ -8,12 +8,12 @@ function getSidebar() {
     {
       text: '仪表盘通用案例',
       items: [
-        { text: '如何添加多Y轴线图', link: '/visulization/generalDashbaord/doubley.md' },
-        { text: '如何配置一个带有迷你图的单值图', link: '/visulization/generalDashbaord/singleWithMiniChart.md' },
-        { text: '过滤器最佳实践', link: '/visulization/generalDashbaord/filter.md' },
+        { text: '如何添加多Y轴线图', link: '/visulization/generalDashbaord/doubley.md', description: '线图支持双Y轴以及多Y轴' },
+        { text: '如何配置一个带有迷你图的单值图', link: '/visulization/generalDashbaord/singleWithMiniChart.md', description: "统计图支持配置迷你图" },
+        { text: '过滤器最佳实践', link: '/visulization/generalDashbaord/filter.md', description:'过滤器最佳实践' },
         {
           text: '导入仪表盘最佳实践',
-          link: '/visulization/generalDashbaord/importOtherProjectDashboard.md',
+          link: '/visulization/generalDashbaord/importOtherProjectDashboard.md', description: '跨project导入仪表盘',
         },
         {
           text: '时序模式的理解方式',
@@ -82,7 +82,7 @@ function getSidebar() {
           link: '/visulization/tablePro/lineHighlight.md',
         },
         {
-          text: '如何设置表格单元格进度条样式（普通、LCD、渐变）',
+          text: '如何设置表格单元格进度条样式',
           link: '/visulization/tablePro/progressStyle.md',
         },
         {
@@ -132,7 +132,7 @@ function getSidebar() {
           link: '/visulization/lineChart/moreLineChart.md',
         },
         {
-          text: '如何给不同的线设置显示名（别名）',
+          text: '如何给不同的线设置显示名',
           link: '/visulization/lineChart/setAlias.md',
         },
         {
@@ -208,7 +208,7 @@ function getSidebar() {
       text: '流图Pro案例',
       items: [
         {
-          text: '如何配置一个基本的流图（分类线图）',
+          text: '如何配置一个基本的流图',
           link: '/visulization/flowGraph/basicFlow.md',
         },
         {
@@ -452,10 +452,6 @@ function getSidebar() {
         {
           text: '如何在交互事件中打开 trace 详情',
           link: '/visulization/interactionEvents/openTraceDetail.md',
-        },
-        {
-          text: '如何在交互事件中再次打开 trace 详情',
-          link: '#',
         },
       ],
     },
