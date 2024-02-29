@@ -435,23 +435,23 @@ function getSidebar() {
       items: [
         {
           text: '图表如何配置交互事件打开日志库',
-          link: '#',
+          link: '/visulization/interactionEvents/openLog.md',
         },
         {
           text: '图表如何配置交互事件打开仪表盘',
-          link: '#',
+          link: '/visulization/interactionEvents/openDashboard.md',
         },
         {
           text: '交互事件打开仪表盘如何设置新的变量',
-          link: '#',
+          link: '/visulization/interactionEvents/settingVariable.md',
         },
         {
           text: '如何在交互事件中控制打开日志库的查询时间',
-          link: '#',
+          link: '/visulization/interactionEvents/checkTime.md',
         },
         {
           text: '如何在交互事件中打开 trace 详情',
-          link: '#',
+          link: '/visulization/interactionEvents/openTraceDetail.md',
         },
         {
           text: '如何在交互事件中再次打开 trace 详情',
