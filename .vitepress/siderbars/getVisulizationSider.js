@@ -377,7 +377,7 @@ function getSidebar() {
         },
         {
           text: '拓扑图如何设置连线指标',
-          link: '#',
+          link: '/visulization/topology/topologyLineOptions.md',
         },
         {
           text: '拓扑图如何配置节点类型',

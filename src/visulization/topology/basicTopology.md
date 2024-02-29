@@ -1,3 +1,4 @@
+# 如何配置一个拓扑图
 ## **数据准备**
 采用多查询方式，支持配置哪个查询是边的数据，还是节点指标的数据
 ![图 1](/img/src/visulization/topology/basicTopology/9b74f9652068220b692c0ce1007c0a8523f9cab8f39c5c516dd97602198dac26.png)
