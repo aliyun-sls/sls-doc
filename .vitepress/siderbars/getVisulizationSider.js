@@ -24,24 +24,24 @@ function getSidebar() {
           link: '/visulization/generalDashbaord/fieldConfig.md',
         },
         {
-          text: '如何配置格式化（以线图和表格为例）',
+          text: '如何配置格式化',
           link: '/visulization/generalDashbaord/fieldFormat.md',
         },
         {
-          text: '如何配置单位 （表格有个特殊的要求）',
+          text: '如何配置单位',
           link: '/visulization/generalDashbaord/unitConfig.md',
         },
         {
-          text: '如何定制图例点击的效果 （以线图为例）',
+          text: '如何定制图例点击的效果',
           link: '/visulization/generalDashbaord/legendClick.md',
         },
         {
-          text: '如何自定义 Tooltip 显示内容 （以线图和散点图为例）',
+          text: '如何自定义 Tooltip 显示内容',
           link: '/visulization/generalDashbaord/tooltip.md',
         },
         {
-          text: '图例如何实现排序及其效果 （流图特殊说明可以实现 topk 的能力）',
-          link: '#',
+          text: '图例如何实现排序及其效果',
+          link: '/visulization/generalDashbaord/legendSortOrder.md',
         },
       ],
     },
@@ -183,23 +183,23 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的柱状图',
-          link: '#',
+          link: '/visulization/barPro/createBar.md',
         },
         {
           text: '如何配置多查询的柱状图',
-          link: '#',
+          link: '/visulization/barPro/muiltSearch.md',
         },
         {
           text: '如何配置堆叠柱状图',
-          link: '#',
+          link: '/visulization/barPro/stackingBar.md',
         },
         {
           text: '柱状图外观有哪些配置项',
-          link: '#',
+          link: '/visulization/barPro/appearance.md',
         },
         {
           text: '柱状图标签如何配置在柱子内部显示',
-          link: '#',
+          link: '/visulization/barPro/insideTag.md',
         },
       ],
     },
@@ -209,11 +209,11 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的流图（分类线图）',
-          link: '#',
+          link: '/visulization/flowGraph/basicFlow.md',
         },
         {
           text: '流图分类数据限制说明',
-          link: '#',
+          link: '/visulization/flowGraph/dataLimit.md',
         },
       ],
     },
@@ -223,31 +223,31 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的统计图（单值图）',
-          link: '#',
+          link: '/visulization/statisticsPro/basic.md',
         },
         {
           text: '如何配置多查询的统计图',
-          link: '#',
+          link: '/visulization/statisticsPro/muiltSearch.md',
         },
         {
           text: '统计图如何配置值和标题',
-          link: '#',
+          link: '/visulization/statisticsPro/setValTitle.md',
         },
         {
           text: '统计图有哪些布局方式',
-          link: '#',
+          link: '/visulization/statisticsPro/layoutMode.md',
         },
         {
           text: '统计图如何配置对比值',
-          link: '#',
+          link: '/visulization/statisticsPro/contrastValue.md',
         },
         {
           text: '统计图如何配置阈值',
-          link: '#',
+          link: '/visulization/statisticsPro/threshold.md',
         },
         {
           text: '统计图如何配置趋势图',
-          link: '#',
+          link: '/visulization/statisticsPro/TrendChart.md',
         },
       ],
     },
@@ -257,19 +257,19 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的计量图',
-          link: '#',
+          link: '/visulization/calculate/basic.md',
         },
         {
           text: '计量图如何配置多查询',
-          link: '#',
+          link: '/visulization/calculate/muiltSearch.md',
         },
         {
           text: '如何配置一个刻度盘',
-          link: '#',
+          link: '/visulization/calculate/scale.md',
         },
         {
           text: '计量图如何配置阈值',
-          link: '#',
+          link: '/visulization/calculate/threshold.md',
         },
       ],
     },
@@ -279,19 +279,19 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个饼图',
-          link: '#',
+          link: '/visulization/piePro/basic.md',
         },
         {
           text: '饼图刻度文本有哪些配置选项',
-          link: '#',
+          link: '/visulization/piePro/scaleText.md',
         },
         {
           text: '如何配置一个环形图',
-          link: '#',
+          link: '/visulization/piePro/annular.md',
         },
         {
           text: '饼图如何配置多查询',
-          link: '#',
+          link: '/visulization/piePro/muiltSearch.md',
         },
       ],
     },
@@ -301,15 +301,15 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个直方图',
-          link: '#',
+          link: '/visulization/histogram/basic.md',
         },
         {
           text: '如何限制直方图区间的范围和数量',
-          link: '#',
+          link: '/visulization/histogram/areaRange.md',
         },
         {
           text: '如何配置堆叠直方图',
-          link: '#',
+          link: '/visulization/histogram/stacking.md',
         },
       ],
     },
@@ -319,15 +319,15 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个基本的雷达图',
-          link: '#',
+          link: '/visulization/radarPro/basic.md',
         },
         {
           text: '雷达图的重要配置项有哪些',
-          link: '#',
+          link: '/visulization/radarPro/setting.md',
         },
         {
-          text: '如何配置查询驱动的雷达图',
-          link: '#',
+          text: '如何配置多查询合并的雷达图',
+          link: '/visulization/radarPro/combineSearch.md',
         },
       ],
     },
@@ -337,11 +337,11 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个交叉表Pro',
-          link: '#',
+          link: '/visulization/crossConnect/basic.md',
         },
         {
           text: '如何配置多聚合字段的交叉表',
-          link: '#',
+          link: '/visulization/crossConnect/polymerization.md',
         },
       ],
     },
@@ -351,19 +351,19 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个散点图',
-          link: '#',
+          link: '/visulization/scatterPlot/basic.md',
         },
         {
           text: '散点图如何支持分类',
-          link: '#',
+          link: '/visulization/scatterPlot/classification.md',
         },
         {
           text: '如何动态设置散点图中点的大小',
-          link: '#',
+          link: '/visulization/scatterPlot/drop.md',
         },
         {
           text: '散点图如何设置阈值',
-          link: '#',
+          link: '/visulization/scatterPlot/threshold.md',
         },
       ],
     },
