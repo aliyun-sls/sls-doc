@@ -380,8 +380,8 @@ function getSidebar() {
           link: '/visulization/topology/topologyLineOptions.md',
         },
         {
-          text: '拓扑图如何配置节点类型',
-          link: '#',
+          text: '拓扑图如何配置节点指标',
+          link: '/visulization/topology/topologyNodeOptions.md',
         },
         {
           text: '拓扑图如何配置图标类型节点',
