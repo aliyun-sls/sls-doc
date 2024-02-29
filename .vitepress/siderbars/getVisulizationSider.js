@@ -141,7 +141,7 @@ function getSidebar() {
         },
         {
           text: 'x轴时间范围、数据时间范围与查询时间范围之间的关系',
-          link: '',
+          link: '/visulization/lineChart/timeRange.md',
         },
         {
           text: '线图如何配置x轴格式化',
@@ -169,7 +169,7 @@ function getSidebar() {
         },
         {
           text: '线图如何配置阈值',
-          link: '#',
+          link: '/visulization/lineChart/setThreshold.md',
         },
         {
           text: '如何开启数据补全及其效果',
