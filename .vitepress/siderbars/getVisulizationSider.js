@@ -10,7 +10,7 @@ function getSidebar() {
       items: [
         { text: '如何添加多Y轴线图', link: '/visulization/generalDashbaord/doubley.md' },
         { text: '如何配置一个带有迷你图的单值图', link: '/visulization/generalDashbaord/singleWithMiniChart.md' },
-        { text: '过滤器最佳实践', link: '/visulization/generalDashbaordfilter.md' },
+        { text: '过滤器最佳实践', link: '/visulization/generalDashbaord/filter.md' },
         {
           text: '导入仪表盘最佳实践',
           link: '/visulization/generalDashbaord/importOtherProjectDashboard.md',
@@ -373,7 +373,7 @@ function getSidebar() {
       items: [
         {
           text: '如何配置一个拓扑图',
-          link: '#',
+          link: '/visulization/topology/basicTopology.md',
         },
         {
           text: '拓扑图如何设置连线指标',
