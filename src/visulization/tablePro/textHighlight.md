@@ -6,5 +6,5 @@
 3. 再次点击**添加配置**，选择**阈值>阈值**，设置颜色
 ![图 4](/img/src/visulization/tablePro/textHighlight/textHighlight2.png)
 
-还可以点击添加阈值对某一个单元格的文本进行高亮，例如设置字符串等于/request/path-0/file-5，则表格中符合该条件的文本进行高亮显示。
+还可以点击**添加阈值**对某一个单元格的文本进行高亮，例如设置字符串等于/request/path-0/file-5，则表格中符合该条件的文本进行高亮显示。
 ![图 5](/img/src/visulization/tablePro/textHighlight/textHighlight3.png)

@@ -59,7 +59,7 @@ function getSidebar() {
         },
         {
           text: '如何通过数据转换将多个表格 join 在同一个表格中',
-          link: '#',
+          link: '/visulization/tablePro/tableJoin.md',
         },
         {
           text: '如何配置表格行高',
@@ -103,15 +103,15 @@ function getSidebar() {
         },
         {
           text: '如何使用表格的阈值功能',
-          link: '#',
+          link: '/visulization/tablePro/threshold.md',
         },
         {
           text: '如何在表格中使用变量替换',
-          link: '#',
+          link: '/visulization/tablePro/varReplace.md',
         },
         {
           text: '如何在表格中使用值映射',
-          link: '#',
+          link: '/visulization/tablePro/valueMapping.md',
         },
       ],
     },
@@ -141,7 +141,7 @@ function getSidebar() {
         },
         {
           text: 'x轴时间范围、数据时间范围与查询时间范围之间的关系',
-          link: '',
+          link: '/visulization/lineChart/timeRange.md',
         },
         {
           text: '线图如何配置x轴格式化',
@@ -169,7 +169,7 @@ function getSidebar() {
         },
         {
           text: '线图如何配置阈值',
-          link: '#',
+          link: '/visulization/lineChart/setThreshold.md',
         },
         {
           text: '如何开启数据补全及其效果',
