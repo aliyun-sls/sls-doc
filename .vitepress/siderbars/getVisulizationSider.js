@@ -413,7 +413,7 @@ function getSidebar() {
       items: [
         {
           text: '如何配置中国地图',
-          link: '#',
+          link: '/visulization/mapPro/chinaMap.md',
         },
         {
           text: '如何配置世界地图',
