@@ -1,4 +1,4 @@
-const getSidebar = require('./siderbars/getVisulizationSider')
+const getSidebar = require('../.vitepress/siderbars/getVisulizationSider')
 
 function convertToMultiLevelMarkdownTable(data) {
   let markdown = ''
