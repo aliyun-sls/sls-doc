@@ -384,8 +384,8 @@ function getSidebar() {
           link: '/visulization/topology/topologyNodeOptions.md',
         },
         {
-          text: '拓扑图如何配置图标类型节点',
-          link: '#',
+          text: '拓扑图如何配置节点的展示形式',
+          link: '/visulization/topology/topologyNodeType.md',
         },
         {
           text: '拓扑图支持哪些布局方式',
