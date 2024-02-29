@@ -1,4 +1,5 @@
-#### . 计量图如何配置多查询
+#### 计量图如何配置多查询
 
 配置多条查询，只需要在仪表盘图表下方的查询分析下面添加多条查询分析，然后在【查询分析设置】里面配置多查询显示的字段。
-如图所示：![图2](/img/src/visulization/calculate/calculate2.png)
+如图所示：
+![图2](/img/src/visulization/calculate/calculate2.jpg)

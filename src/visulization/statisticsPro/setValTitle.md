@@ -13,4 +13,5 @@
 ##### 3.配置显示字段：
 
 在【查询分析设置】里面配置，查询所要现实的字段，如图所示
-[图 3](/img/src/visulization/statistics/statistics3.png)
+
+![图 3](/img/src/visulization/statistics/statistics3.png)
