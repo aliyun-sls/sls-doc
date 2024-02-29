@@ -417,15 +417,15 @@ function getSidebar() {
         },
         {
           text: '如何配置世界地图',
-          link: '#',
+          link: '/visulization/mapPro/worldMap.md',
         },
         {
           text: '如何配置高德地图',
-          link: '#',
+          link: '/visulization/mapPro/geoMap.md',
         },
         {
           text: '如何配置热力图',
-          link: '#',
+          link: '/visulization/mapPro/heatMap.md',
         },
       ],
     },
