@@ -61,8 +61,8 @@ function getNavs() {
               link: '/jobs/front',
             },
             {
-              text: '2024秋季校园招聘',
-              link: '/jobs/2024intern',
+              text: '2025春招实习',
+              link: '/jobs/2025intern',
             },
           ],
         },
