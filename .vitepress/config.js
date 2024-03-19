@@ -5,6 +5,7 @@ const getSqlErrorSider = require('./siderbars/getSqlErrorSider')
 const getSearchdemoSider = require('./siderbars/getSearchdemoSider')
 const getProductSider = require('./siderbars/getProductSider')
 const getDataProcessSider = require('./siderbars/getDataProcessSider')
+const getSplDataProcessSider = require('./siderbars/getSplDataProcessSider')
 const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
 const getAlertSider = require('./siderbars/getAlertSider')
@@ -110,6 +111,7 @@ module.exports = (async () => {
         '/searchdemo': getSearchdemoSider(),
         '/product': getProductSider(),
         '/dataprocessdemo': getDataProcessSider(),
+        '/spldataprocessdemo': getSplDataProcessSider(),
         '/oscompatibledemo': getOscompatibleDemo(),
         '/visulization': getVisulizationDemo(),
         '/alert': getAlertSider(),
