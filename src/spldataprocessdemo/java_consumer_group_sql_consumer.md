@@ -11,7 +11,7 @@
 以Java SDK为例实现消费组消费数据。
 1. 添加Maven依赖。
 在Java项目的根目录下，打开pom.xml文件，添加以下代码： 
-    ```html
+    ```java
     <dependency>
       <groupId>com.google.protobuf</groupId>
       <artifactId>protobuf-java</artifactId>
@@ -33,9 +33,9 @@
         // 日志服务的服务接入点，请您根据实际情况填写。
         private static String Endpoint = "cn-hangzhou.log.aliyuncs.com";
         // 日志服务项目名称，请您根据实际情况填写。请从已创建项目中获取项目名称。
-        private static String Project = "ali-cn-hangzhou-sls-admin";
+        private static String Project = "your_project";
         // 日志库名称，请您根据实际情况填写。请从已创建日志库中获取日志库名称。
-        private static String Logstore = "sls_operation_log";
+        private static String Logstore = "your_logstore";
         // 消费组名称，请您根据实际情况填写。您无需提前创建，该程序运行时会自动创建该消费组。
         private static String ConsumerGroup = "consumerGroupX";
         // 本示例从环境变量中获取AccessKey ID和AccessKey Secret。。

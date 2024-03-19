@@ -50,7 +50,7 @@ SLS SPL语法中的日期时间处理主要涉及三种数据类型：日期时�
     * SPL语句
 
       ```python
-      * | extend time_diff = cast(time1 as BIGINT) - cast(time2 as BIGINT)d
+      * | extend time_diff = cast(time1 as BIGINT) - cast(time2 as BIGINT)
       ```
 
 

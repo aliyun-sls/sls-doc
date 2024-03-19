@@ -18,64 +18,64 @@
     package main
 
     import (
-        "fmt"
-        "time"
-        "os"
+      "fmt"
+      "time"
+      "os"
 
-        sls "github.com/aliyun/aliyun-log-go-sdk"
+      sls "github.com/aliyun/aliyun-log-go-sdk"
     )
 
     func main() {
-        client := &sls.Client{
+      client := &sls.Client{
         AccessKeyID:     os.Getenv("ALIBABA_CLOUD_ACCESS_KEY_ID"),
         AccessKeySecret: os.Getenv("ALIBABA_CLOUD_ACCESS_KEY_SECRET"),
         Endpoint:        "",
-        }
+      }
 
-        project := ""
-        logstore := ""
-        initCursor := "end"
-        query := "* | where cast(body_bytes_sent as bigint) > 14000"
+      project := ""
+      logstore := ""
+      initCursor := "end"
+      query := "* | where cast(body_bytes_sent as bigint) > 14000"
 
-        shards, err := client.ListShards(project, logstore)
-        if err != nil {
+      shards, err := client.ListShards(project, logstore)
+      if err != nil {
         fmt.Println("ListShards error", err)
         return
-        }
+      }
 
-        shardCursorMap := map[int]string{}
-        for _, shard := range shards {
+      shardCursorMap := map[int]string{}
+      for _, shard := range shards {
         cursor, err := client.GetCursor(project, logstore, shard.ShardID, initCursor)
         if err != nil {
-        fmt.Println("GetCursor error", shard.ShardID, err)
-        return
+          fmt.Println("GetCursor error", shard.ShardID, err)
+          return
         }
         shardCursorMap[shard.ShardID] = cursor
-        }
+      }
 
-        for {
+      for {
         for _, shard := range shards {
-        pullLogRequest := &sls.PullLogRequest{
-        Project:          project,
-        Logstore:         logstore,
-        ShardID:          shard.ShardID,
-        LogGroupMaxCount: 10,
-        Query:            query,
-        Cursor:           shardCursorMap[shard.ShardID],
+          pullLogRequest := &sls.PullLogRequest{
+            Project:          project,
+            Logstore:         logstore,
+            ShardID:          shard.ShardID,
+            LogGroupMaxCount: 10,
+            Query:            query,
+            Cursor:           shardCursorMap[shard.ShardID],
+          }
+          lg, nextCursor, err := client.PullLogsV2(pullLogRequest)
+          fmt.Println("shard: ", shard.ShardID, "loggroups: ", len(lg.LogGroups), "nextCursor: ", nextCursor)
+          if err != nil {
+            fmt.Println("PullLogsV2 error", shard.ShardID, err)
+            return
+          }
+          shardCursorMap[shard.ShardID] = nextCursor
+          if len(lg.LogGroups) == 0 {
+            // only for debug
+            time.Sleep(time.Duration(3) * time.Second)
+          }
         }
-        lg, nextCursor, err := client.PullLogsV2(pullLogRequest)
-        fmt.Println("shard: ", shard.ShardID, "loggroups: ", len(lg.LogGroups), "nextCursor: ", nextCursor)
-        if err != nil {
-        fmt.Println("PullLogsV2 error", shard.ShardID, err)
-        return
-        }
-        shardCursorMap[shard.ShardID] = nextCursor
-        if len(lg.LogGroups) == 0 {
-        // only for debug
-        time.Sleep(time.Duration(3) * time.Second)
-        }
-        }
-        }
+      }
     }
     ```
 3. 运行main函数，查看输出结果

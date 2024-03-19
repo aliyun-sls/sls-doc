@@ -12,16 +12,16 @@
 本示例中，并调用PullLog接口读取日志数据，完成使用Java SDK基于SPL消费日志数据的演示。关于日志服务SDK的更多信息，请参见[日志服务SDK参考](https://help.aliyun.com/zh/sls/developer-reference/overview-of-log-service-sdk#reference-n3h-2sq-zdb)。
 1. 添加Maven依赖。
 在Java项目的根目录下，打开pom.xml文件，添加以下代码：
-    ```html
+    ```java
     <dependency>
-    <groupId>com.google.protobuf</groupId>
-    <artifactId>protobuf-java</artifactId>
-    <version>2.5.0</version>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+      <version>2.5.0</version>
     </dependency>
     <dependency>
     <groupId>com.aliyun.openservices</groupId>
-    <artifactId>loghub-client-lib</artifactId>
-    <version>0.6.100</version>
+      <artifactId>aliyun-log</artifactId>
+      <version>0.6.99</version>
     </dependency>
     ```
 2. 创建PullLogsWithSPLDemo.java文件。
