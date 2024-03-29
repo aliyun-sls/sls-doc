@@ -34,6 +34,10 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">加工案例</p>
     <p class="next-steps-caption">日志服务（SLS）提供200多个内置函数、400多个正则表达式、灵活的自定义函数，实现过滤、分裂、转换、富化、复制等效果，满足数据分派、规整、融合等场景。</p>
   </a>
+  <a class="vt-box" href="/doc/spldataprocessdemo/">
+    <p class="next-steps-link">SPL数据处理案例</p>
+    <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
+  </a>
   <a class="vt-box" href="/doc/oscompatibledemo/">
     <p class="next-steps-link">开源兼容</p>
     <p class="next-steps-caption">日志服务（SLS）提供了多种开源兼容的方案，本模块主要聚集介绍如何用开源的标准接口（Kafka等）访问SLS。</p>
