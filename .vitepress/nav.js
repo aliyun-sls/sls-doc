@@ -7,7 +7,7 @@ function getNavs() {
         {
           items: [
             { text: 'SQL分析案例', link: '/sqldemo/index' },
-            { text: 'SPL分析案例', link: '/spldataprocessdemo/index' },
+            { text: 'SPL数据处理案例', link: '/spldataprocessdemo/index' },
             { text: 'SQL函数案例', link: '/sqlfunction/index' },
             { text: 'SQL错误中心', link: '/sqlerror/index' },
             { text: '定时SQL案例', link: '/scheduledsql/index' },
