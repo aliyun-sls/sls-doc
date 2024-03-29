@@ -36,7 +36,7 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   </a>
   <a class="vt-box" href="/doc/spldataprocessdemo/">
     <p class="next-steps-link">SPL数据处理案例</p>
-    <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集三个日志服务场景中使用；本案例介绍SPL基本语法及在不同场景中的应用。</p>
+    <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
   </a>
   <a class="vt-box" href="/doc/oscompatibledemo/">
     <p class="next-steps-link">开源兼容</p>
