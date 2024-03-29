@@ -6,13 +6,13 @@ function getSidebar() {
     },
     {
       text: '处理日期时间',
-      items: [{ text: '日期时间对象和Unix时间戳的相互转换', link: '/splspldataprocessdemo/date_time_object_to_unix.md' },
-        { text: '日期时间对象和日期时间字符串的相互转换', link: '/splspldataprocessdemo/date_time_object_to_date_time_str.md' },
+      items: [{ text: '日期时间对象和Unix时间戳的相互转换', link: '/spldataprocessdemo/date_time_object_to_unix.md' },
+        { text: '日期时间对象和日期时间字符串的相互转换', link: '/spldataprocessdemo/date_time_object_to_date_time_str.md' },
       ],
     },
     {
       text: '数据过滤与清洗',
-      items: [{ text: '过滤日志', link: '/splspldataprocessdemo/filter_log.md' },
+      items: [{ text: '过滤日志', link: '/spldataprocessdemo/filter_log.md' },
         { text: '为日志空缺字段赋值', link: '/spldataprocessdemo/assign_values_to_log.md' },
         { text: '删除和重命名字段', link: '/spldataprocessdemo/delete_rename_fields.md' },
         { text: '转换日志参数类型', link: '/spldataprocessdemo/conversion_log_parameter_types.md' },

@@ -34,18 +34,18 @@
 * 重命名 __\_\_source\_\___ 为**serviceIP**
 * 其余字段舍弃
 最终需要的字段列表如下，基于这样一个表格模型，我们可以便捷的使用Flink SQL进行数据分析。
-![图1](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis1.png)
+![图1](/img/sqldataprocessdemo/flink_spl_structured_analysis1.png)
 ## 解决方案
 实现这样的数据清洗，有很多种方法，这里列举几种基于SLS与Flink的方案，不同方案之间没有绝对的优劣，需要根据不同的场景选择不同的方案。
 
 * 数据加工方案：在SLS控制台创建目标Logstore，通过创建数据加工任务，完成对数据的清洗。
-![图2](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis2.png)
+![图2](/img/sqldataprocessdemo/flink_spl_structured_analysis2.png)
 
 * Flink方案：将error和payload指定为源表字段，通过SQL 正则函数、JSON函数对字段进行解析，解析后的字段写入临时表，然后对临时表进行分析。
-![图3](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis3.png)
+![图3](/img/sqldataprocessdemo/flink_spl_structured_analysis3.png)
 
 * SPL方案：在Flink SLS Connector中配置SPL语句，对数据进行清洗，Flink中源表字段定义为清洗后的数据结构。
-![图4](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis4.png)
+![图4](/img/sqldataprocessdemo/flink_spl_structured_analysis4.png)
 
 从上述三种方案的原理不难看出，在需要数据清洗的场景中，在SLS Connector 中 配置SPL是一种更轻量化的方案，具有轻量化、易维护、易扩展的特点。
 在日志数据弱结构化的场景中，SPL方案既避免了方案一中创建临时中间Logstore，也避免了方案二中在Flink中创建临时表，在离数据源更近的位置进行数据清洗，在计算平台关注业务逻辑，职责分离更加清晰。
@@ -55,12 +55,12 @@
 ### SLS准备数据
 * 开通SLS，在SLS创建Project，Logstore，并创建具有消费Logstore的权限的账号AK/SK。
 * 当前Logstore数据使用SLS SDK写入模拟数据，格式使用上述日志片段，其中包含JSON、复杂字符串等弱结构化字段。
-![图5](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis5.png)
+![图5](/img/sqldataprocessdemo/flink_spl_structured_analysis5.png)
 
 
 ### 预览SPL效果
 在Logstore可以可以开启[扫描模式](https://help.aliyun.com/zh/sls/user-guide/scan-based-query-overview?spm=a2c4g.11186623.0.i6)，类似Unix管道，SLS SPL管道式语法使用 **|** 分隔符分割不同的指令，每次输入一个指令可以即时查看结果，然后在增加管道数，渐进式、探索式获取最终结果。
-![图6](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis6.png)
+![图6](/img/sqldataprocessdemo/flink_spl_structured_analysis6.png)
 
 
 对上图中的SPL进行简单描述
@@ -89,7 +89,7 @@
 
 ### 创建SQL作业
 在阿里云Flink控制台创建一个空白的SQL的流作业草稿，点击下一步，进入作业编写
-![图7](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis7.png)
+![图7](/img/sqldataprocessdemo/flink_spl_structured_analysis7.png)
 
 在作业草稿中输入如下创建临时表的语句：
 ```sql
@@ -124,6 +124,6 @@ CREATE TEMPORARY TABLE sls_input_complex (
 SELECT * FROM sls_input_complex
 ```
 点击右上角调试按钮，进行调试，可以看到TABLE中每一列的值，对应SPL处理后的结果。
-![图8](/src/public/img/sqldataprocessdemo/flink_spl_structured_analysis8.png)
+![图8](/img/sqldataprocessdemo/flink_spl_structured_analysis8.png)
 
 
