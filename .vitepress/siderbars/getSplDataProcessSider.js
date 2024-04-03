@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: 'SPL数据处理',
-      items: [{ text: '案例总览', link: '/spldataprocessdemo/index' }],
+      items: [{ text: '案例总览', link: '/spldataprocessdemo/home' }],
     },
     {
       text: '处理日期时间',

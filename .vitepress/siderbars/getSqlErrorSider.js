@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: 'SQL错误自助诊断',
-      items: [{ text: 'SQL错误总览', link: '/sqlerror/index' }],
+      items: [{ text: 'SQL错误总览', link: '/sqlerror/home' }],
     },
     {
       text: '通用错误',

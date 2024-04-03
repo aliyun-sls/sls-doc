@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: 'SQL函数概述',
-      items: [{ text: '函数总览', link: '/sqlfunction/index' }],
+      items: [{ text: '函数总览', link: '/sqlfunction/home' }],
     },
     {
       text: 'SQL语法',

@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '查询分析案例',
-      items: [{ text: '案例总览', link: '/sqldemo/index' }],
+      items: [{ text: '案例总览', link: '/sqldemo/home' }],
     },
     {
       text: '通用聚合分析',

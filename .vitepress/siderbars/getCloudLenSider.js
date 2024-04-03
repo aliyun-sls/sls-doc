@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '案例总览',
-      items: [{ text: '案例总览', link: '/cloudlen/index' }],
+      items: [{ text: '案例总览', link: '/cloudlen/home' }],
     },
     {
       text: 'CloudLen 快速介绍',

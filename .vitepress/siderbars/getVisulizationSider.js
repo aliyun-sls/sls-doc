@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '可视化案例',
-      items: [{ text: '案例总览', link: '/visulization/index' }],
+      items: [{ text: '案例总览', link: '/visulization/home' }],
     },
     // 文件路径 '/visulization/generalDashbaord/xxxx.md'
     {
