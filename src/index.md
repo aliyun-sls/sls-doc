@@ -15,62 +15,62 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">查询案例</p>
     <p class="next-steps-caption">日志服务（SLS）支持秒级查询十亿到千亿级别的日志数据，并支持使用SQL对查询结果进行统计分析，或者使用Scan功能对查询结果的指定字段进行扫描查询。</p>
   </a>
-  <a class="vt-box" href="/doc/sqldemo/">
+  <a class="vt-box" href="/doc/sqldemo/home">
     <p class="next-steps-link">SQL分析案例</p>
     <p class="next-steps-caption">日志服务（SLS）基于 SQL 提供分析功能，分析语句可以对查询的结果进行计算或者统计，需结合查询语句一起使用并配置索引，并支持Scheduled SQL和SQL独享版。</p>
   </a>
-  <a class="vt-box" href="/doc/sqlfunction/">
+  <a class="vt-box" href="/doc/sqlfunction/home">
     <p class="next-steps-link">SQL函数案例</p>
     <p class="next-steps-caption">日志服务（SLS）分析 SQL 提供10多种查询运算符、10多种机器学习函数、100多个SQL函数。</p>
   </a>
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/visulization/">
+  <a class="vt-box" href="/doc/visulization/home">
     <p class="next-steps-link">可视化案例</p>
     <p class="next-steps-caption">日志服务（SLS）支持查询与分析结果可视化，提供10多种统计图表，包括表格、线图、柱状图、地图等，并支持基于统计图表自定义仪表盘（支持外嵌与下钻分析）。</p>
   </a>
-  <a class="vt-box" href="/doc/dataprocessdemo/">
+  <a class="vt-box" href="/doc/dataprocessdemo/home">
     <p class="next-steps-link">加工案例</p>
     <p class="next-steps-caption">日志服务（SLS）提供200多个内置函数、400多个正则表达式、灵活的自定义函数，实现过滤、分裂、转换、富化、复制等效果，满足数据分派、规整、融合等场景。</p>
   </a>
-  <a class="vt-box" href="/doc/oscompatibledemo/">
+  <a class="vt-box" href="/doc/oscompatibledemo/home">
     <p class="next-steps-link">开源兼容</p>
     <p class="next-steps-caption">日志服务（SLS）提供了多种开源兼容的方案，本模块主要聚集介绍如何用开源的标准接口（Kafka等）访问SLS。</p>
   </a>
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/dataaccess/">
+  <a class="vt-box" href="/doc/dataaccess/home">
     <p class="next-steps-link">数据采集案例</p>
     <p class="next-steps-caption">日志服务支持采集服务器与应用、开源软件、物联网、移动端、标准协议、阿里云产品等多种来源的数据。</p>
   </a>
-  <a class="vt-box" href="/doc/alert/">
+  <a class="vt-box" href="/doc/alert/home">
     <p class="next-steps-link">告警</p>
     <p class="next-steps-caption">日志服务（SLS）告警规则案例，包括数据加工、数据投递、Logtail、定时SQL</p>
   </a>
-  <a class="vt-box" href="/doc/cloudlen/">
+  <a class="vt-box" href="/doc/cloudlen/home">
     <p class="next-steps-link">CloudLens 案例</p>
     <p class="next-steps-caption">日志服务（SLS）CloudLens 介绍与使用。</p>
   </a>
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/sqlerror/">
+  <a class="vt-box" href="/doc/sqlerror/home">
     <p class="next-steps-link">错误中心</p>
     <p class="next-steps-caption">罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。</p>
   </a>
-  <a class="vt-box" href="/doc/scheduledsql/">
+  <a class="vt-box" href="/doc/scheduledsql/home">
     <p class="next-steps-link">定时SQL</p>
     <p class="next-steps-caption">日志服务（SLS）定时 SQL 使用案例</p>
   </a>
-  <a class="vt-box" href="/doc/intelligentom/">
+  <a class="vt-box" href="/doc/intelligentom/home">
     <p class="next-steps-link">智能运维</p>
     <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/spldataprocessdemo/">
+  <a class="vt-box" href="/doc/spldataprocessdemo/home">
     <p class="next-steps-link">SPL数据处理案例</p>
     <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
   </a>
