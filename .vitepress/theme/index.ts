@@ -3,6 +3,9 @@ import Theme from 'vitepress/theme'
 import { h } from 'vue'
 
 import SLSContributors from './src/components/SLSContributors.vue'
+
+import './src/index'
+
 import './styles/sls-doc.css'
 
 // uncomment to test CSS variables override

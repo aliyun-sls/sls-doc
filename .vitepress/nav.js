@@ -2,7 +2,7 @@ function getNavs() {
   const base = [
     {
       text: '案例中心',
-      activeMatch: `^/(sqldemo|sqlfunction|sqlerror|searchdemo|metrics|visulization|dataprocessdemo|oscompatibledemo)/`,
+      activeMatch: `^/(sqldemo|sqlfunction|sqlerror|searchdemo|metrics|visulization|dataprocessdemo|oscompatibledemo|spldataprocessdemo)/`,
       items: [
         {
           items: [
