@@ -49,7 +49,7 @@ function getNavs() {
     },
     {
       text: '产品动态',
-      link: '/product/',
+      link: 'https://help.aliyun.com/zh/sls/product-overview/release-notes',
     },
     {
       text: '招聘',
