@@ -17,7 +17,7 @@ const params = computed(() => {
   }
 
   return {
-    dest: encodeURIComponent(queries.dest),
+    dest: queries.dest,
     theme: isDarkTheme() ? 'dark' : 'default',
     maxWidth: queries.maxWidth === true,
   }
@@ -37,14 +37,14 @@ let dest = ref('')
 
 watchEffect(async () => {
   if (inBrowser) {
-    const response = await fetch(
-      `https://s-sls-demo-thysjcgqcl.cn-shanghai.fcapp.run?dest=${encodeURIComponent(
-        params.value.dest
-      )}&theme=${params.value.theme}`
-    )
+    const response = await fetch(`https://new-share-sls-demo-mptiifapvo.cn-shanghai.fcapp.run`)
     const json = await response.json()
     if (json.success) {
-      dest.value = json.data.url
+      const hasQm = params.value.dest.indexOf('?') > -1
+      const destUrl = `https://sls.console.aliyun.com${params.value.dest}${
+        hasQm ? '&' : '?'
+      }sls_ticket=${json.data.ticket}&theme=${params.value.theme}`
+      dest.value = destUrl
     }
   }
 })
@@ -67,12 +67,13 @@ watchEffect(async () => {
 
 .tip {
   position: absolute;
-  bottom: 0px;
+  top: 6px;
   color: red;
   width: 100%;
   text-align: center;
   padding: 10px 16px;
   pointer-events: none;
+  font-size: 18px;
 }
 
 .frame {

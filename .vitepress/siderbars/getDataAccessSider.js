@@ -3,7 +3,7 @@ function getSidebar() {
     {
       text: '数据采集案例',
       items: [
-        { text: '案例总览', link: '/dataaccess/index' },
+        { text: '案例总览', link: '/dataaccess/home' },
         { text: '安装部署', link: '/dataaccess/ossBatchInstall.md' },
         { text: '通过Logtail跨阿里云账号采集日志', link: '/dataaccess/aliyunAcountlog.md' },
         { text: '通过Logtail跨阿里云账号采集容器日志', link: '/dataaccess/collectContainerLogs.md' },

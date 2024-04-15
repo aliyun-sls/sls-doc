@@ -162,6 +162,111 @@ function getSidebar() {
         },
       ],
     },
+    {
+      text: 'PromQL函数使用示例',
+      items: [
+        {
+          text: 'abs()',
+          link: '/metrics/30.abs().md',
+        },
+        {
+          text: 'changes()',
+          link: '/metrics/31.changes().md',
+        },
+        {
+          text: 'absent()',
+          link: '/metrics/32.absent().md',
+        },
+        {
+          text: 'absent_over_time()',
+          link: '/metrics/33.absent_over_time().md',
+        },
+        {
+          text: 'ceil()',
+          link: '/metrics/34.ceil().md',
+        },
+        {
+          text: 'clamp()',
+          link: '/metrics/35.clamp().md',
+        },
+        {
+          text: 'clamp_max()',
+          link: '/metrics/36.clamp_max().md',
+        },
+        {
+          text: 'clamp_min()',
+          link: '/metrics/37.clamp_min().md',
+        },
+        {
+          text: 'day_of_month()',
+          link: '/metrics/38.day_of_month().md',
+        },
+        {
+          text: 'day_of_week()',
+          link: '/metrics/38.day_of_week().md',
+        },
+        {
+          text: 'day_of_year()',
+          link: '/metrics/38.day_of_year().md',
+        },
+        {
+          text: 'delta()',
+          link: '/metrics/39.delta().md',
+        },
+        {
+          text: 'deriv()',
+          link: '/metrics/40.deriv().md',
+        },
+        {
+          text: 'exp()',
+          link: '/metrics/41.exp().md',
+        },
+        {
+          text: 'floor()',
+          link: '/metrics/42.floor().md',
+        },
+        {
+          text: 'holt_winters()',
+          link: '/metrics/43.holt_winters().md',
+        },
+        {
+          text: 'rate()',
+          link: '/metrics/44.rate().md',
+        },
+        {
+          text: 'idelta()',
+          link: '/metrics/45.idelta().md',
+        },
+        {
+          text: 'increase()',
+          link: '/metrics/46.increase().md',
+        },
+        {
+          text: 'irate()',
+          link: '/metrics/47.irate().md',
+        },
+        {
+          text: 'hour()',
+          link: '/metrics/48.hour().md',
+        },
+        {
+          text: 'minute()',
+          link: '/metrics/48.minute().md',
+        },
+        {
+          text: 'month()',
+          link: '/metrics/48.month().md',
+        },
+        {
+          text: 'resets()',
+          link: '/metrics/49.resets().md',
+        },
+        {
+          text: 'round()',
+          link: '/metrics/50.round().md',
+        },
+      ],
+    },
   ]
 }
 

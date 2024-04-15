@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '开源兼容总览',
-      items: [{ text: '总览', link: '/oscompatibledemo/index' }],
+      items: [{ text: '总览', link: '/oscompatibledemo/home' }],
     },
     {
       text: 'Kafka 兼容',

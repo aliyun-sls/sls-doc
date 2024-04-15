@@ -2,7 +2,7 @@ function getSidebar() {
   return [
     {
       text: '案例总览',
-      items: [{ text: '案例总览', link: '/scheduledsql/index' }],
+      items: [{ text: '案例总览', link: '/scheduledsql/home' }],
     },
     {
       text: '任务配置案例',

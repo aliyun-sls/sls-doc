@@ -4,7 +4,7 @@
 |----|----|----|----|
 |查询语句|查询语句用于指定日志查询时的过滤规则，返回符合条件的日志|可单独出现，需配置索引| Status: 400|
 |分析语句|分析语句可以对查询的结果进行计算或者统计，为SQL语法，竖线(\|)跟随查询语句: 查询语句\|分析语句|需结合查询语句一起使用，需配置索引|* \| SELECT status, count(*) AS PV GROUP BY status|
-|扫描语句|扫描语句可以对查询的结果进行扫描计算，为SLS的Scan语法，竖线(\|)跟随查询语句: 查询语句 \| WHERE bool_expression|需配合查询语句使用,无需配置索引| * \| status:200 \| WHERE userId = '123'|
+|扫描语句|扫描语句可以对查询的结果进行扫描计算，为SLS的Scan语法，竖线(\|)跟随查询语句: 查询语句 \| WHERE bool_expression|需配合查询语句使用,无需配置索引| *  \| WHERE userId = '123'|
 > 更详细的 __查询__ 说明参考[查询概述 - 官方文档](https://help.aliyun.com/document_detail/43772.html)
 
 > 更详细的 __索引__ 说明参考[配置索引 - 官方文档](https://help.aliyun.com/document_detail/90732.html)

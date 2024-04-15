@@ -55,31 +55,6 @@ export function parseCommonQuery() {
   }
 }
 
-export function initLang() {
-  const { lang, isShare } = parseCommonQuery()
-  const hasTopbar = !isShare && lang === 'zh'
-
-  if (!hasTopbar) {
-    const styleElement = document.createElement('style')
-    styleElement.type = 'text/css'
-
-    styleElement.innerHTML = `
-      body {
-        --vp-nav-height-mobile: 0px !important;
-        --vp-nav-height-desktop: 0px !important;
-        --sls-topnav-height: 0px !important;
-      }
-      .VPContent {
-        padding-top: 0px !important;
-      }
-      .VPNav {
-        display: none !important;
-      }
-    `
-    document.head.appendChild(styleElement)
-  }
-}
-
 export function initRum() {
   const init = function (h: any, o: any, u: any, n: any, d: any) {
     h = h[d] = h[d] || {
