@@ -1,10 +1,11 @@
-# K8s通用Warn警示事件
+# Kubernetes common warning
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为:存在K8s通用Warn警示事件（kubernetes cluster warn event）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:A Kubernetes common warning occurs in the cluster.（kubernetes cluster warn event）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "kind", "object_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -114,7 +115,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_common_at_common_warn");
-        alert.setDisplayName("K8s通用Warn警示事件");
+        alert.setDisplayName("Kubernetes common warning");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -148,7 +149,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_common_at_common_warn",
-        "displayName": "K8s通用Warn警示事件",
+        "displayName": "Kubernetes common warning",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -247,7 +248,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_common_at_common_warn",
-		DisplayName: "K8s通用Warn警示事件",
+		DisplayName: "Kubernetes common warning",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

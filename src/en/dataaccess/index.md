@@ -1,23 +1,25 @@
-# 数据采集案例
+# Data collection cases
 
+## Installation and deployment
 
-## 安装部署
-| 案例名称 | 描述 |
-| -- | -- |
-| 安装部署 | [使用OOS批量安装或升级Logtail](./ossBatchInstall.md)  |
+| Case name                   | Description                                                                |
+| --------------------------- | -------------------------------------------------------------------------- |
+| Installation and deployment | [Batch installation or upgrade of Logtail using OOS](./ossBatchInstall.md) |
 
-## 采集案例
-| 案例名称 | 描述 |
-| -- | -- |
-| 通过Logtail跨阿里云账号采集日志     | [通过Logtail跨阿里云账号采集日志](./aliyunAcountlog.md) |
-| 通过Logtail跨阿里云账号采集容器日志   | [通过Logtail跨阿里云账号采集容器日志](./collectContainerLogs.md) |
-| 通过Logtail采集Zabbix数据   | [通过Logtail采集Zabbix数据](./ZabbixLogtail.md) |
-| 采集企业内网服务器日志   | [采集企业内网服务器日志](./InternalnetworkLog.md) |
-| 主机场景下如何使用Logtail采集超大规模文件   | [主机场景下如何使用Logtail采集超大规模文件](./superLarge.md) |
-| Kubernetes挂载PVC日志采集的轻量级部署方案   | [Kubernetes挂载PVC日志采集的轻量级部署方案](./pvcLog.md) |
+## Data collection cases
 
-## 插件使用案例
-| 案例名称 | 描述 |
-| -- | -- |
-| Logtail日志采集支持纳秒时间戳 | [Logtail日志采集支持纳秒时间戳](./enableTimeNano.md)|
-| Logtail使用Grok语法解析日志  | [Logtail使用Grok语法解析日志](./GrokAnaysis.md)|
+| Case name                                                                                                                  | Description                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Use Logtail to collect logs across Alibaba Cloud accounts                                                                  | [Use Logtail to collect logs across Alibaba Cloud accounts](./aliyunAcountlog.md)                                                         |
+| Use Logtail to collect container logs across Alibaba Cloud accounts                                                        | [Use Logtail to collect container logs across Alibaba Cloud accounts](./collectContainerLogs.md)                                          |
+| Use Logtail to collect Zabbix data                                                                                         | [Use Logtail to collect Zabbix data](./ZabbixLogtail.md)                                                                                  |
+| Collect logs from servers in a corporate intranet                                                                          | [Collect logs from servers in a corporate intranet](./InternalnetworkLog.md)                                                              |
+| Use Logtail to collect ultra-large files from hosts                                                                        | [Use Logtail to collect ultra-large files from hosts](./superLarge.md)                                                                    |
+| Use a lightweight deployment solution to collect logs from Kubernetes clusters to which volumes are mounted by using a PVC | [Use a lightweight deployment solution to collect logs from Kubernetes clusters to which volumes are mounted by using a PVC](./pvcLog.md) |
+
+## Plug-in use cases
+
+| Case name                                                                                | Description                                                                                                     |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| Parse nanosecond-precision timestamps from raw logs when you use Logtail to collect logs | [Parse nanosecond-precision timestamps from raw logs when you use Logtail to collect logs](./enableTimeNano.md) |
+| Parse logs by using iLogtail that uses the Grok syntax                                   | [Parse logs by using iLogtail that uses the Grok syntax](./GrokAnaysis.md)                                      |

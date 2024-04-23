@@ -1,10 +1,11 @@
-# 定时SQL任务执行延迟监控
+# LATENCY MONITORING ON A SCHEDULED SQL TASK
 
-::: tip 说明
-- 每5分钟检测一次，定时SQL任务的延迟超过指定阈值后触发告警。告警阈值可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an error occurred on a scheduled SQL task within the last 5 minutes, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "job_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("Project “${project}”下的定时SQL任务“${job_name}”的执行延迟过高（${delay}分钟）。请检查是否存在异常。");
+        descAnno.setValue("The latency of the scheduled SQL task ${job_name} in the project ${project} exceeds the specified threshold. the latency reaches ${delay} minutes.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("定时SQL任务执行延迟告警");
+        titleAnno.setValue("ALERT FOR SCHEDULED SQL TASK WHOSE LATENCY EXCEEDS THE SPECIFIED THRESHOLD");
         annotations.add(titleAnno);
 
         AlertConfiguration.PolicyConfiguration policyConf = new AlertConfiguration.PolicyConfiguration();
@@ -94,7 +95,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_sche_sql_at_delay_monitor");
-        alert.setDisplayName("定时SQL任务执行延迟监控");
+        alert.setDisplayName("LATENCY MONITORING ON A SCHEDULED SQL TASK");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -128,7 +129,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_sche_sql_at_delay_monitor",
-        "displayName": "定时SQL任务执行延迟监控",
+        "displayName": "LATENCY MONITORING ON A SCHEDULED SQL TASK",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -164,10 +165,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "Project “${project}”下的定时SQL任务“${job_name}”的执行延迟过高（${delay}分钟）。请检查是否存在异常。"
+                "value": "The latency of the scheduled SQL task ${job_name} in the project ${project} exceeds the specified threshold. the latency reaches ${delay} minutes."
             }, {
                 "key": "title",
-                "value": "定时SQL任务执行延迟告警"
+                "value": "ALERT FOR SCHEDULED SQL TASK WHOSE LATENCY EXCEEDS THE SPECIFIED THRESHOLD"
             }],
             "autoAnnotation": True,
             "sendResolved": False,
@@ -212,7 +213,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_sche_sql_at_delay_monitor",
-		DisplayName: "定时SQL任务执行延迟监控",
+		DisplayName: "LATENCY MONITORING ON A SCHEDULED SQL TASK",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -252,11 +253,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "Project “${project}”下的定时SQL任务“${job_name}”的执行延迟过高（${delay}分钟）。请检查是否存在异常。",
+					Value: "The latency of the scheduled SQL task ${job_name} in the project ${project} exceeds the specified threshold. the latency reaches ${delay} minutes.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "定时SQL任务执行延迟告警",
+					Value: "ALERT FOR SCHEDULED SQL TASK WHOSE LATENCY EXCEEDS THE SPECIFIED THRESHOLD",
 				},
 			},
 			AutoAnnotation: true,

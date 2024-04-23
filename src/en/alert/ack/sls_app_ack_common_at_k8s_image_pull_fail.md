@@ -1,10 +1,12 @@
-# 集群镜像拉取失败
+# Image pull failure
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在集群镜像拉取失败事件（kubernetes image pull back off event）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+-Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:Image pull failure（kubernetes image pull back off event）
+
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +47,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "pod_name", "node_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -114,7 +116,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_common_at_k8s_image_pull_fail");
-        alert.setDisplayName("集群镜像拉取失败");
+        alert.setDisplayName("Image pull failure");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -148,7 +150,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_common_at_k8s_image_pull_fail",
-        "displayName": "集群镜像拉取失败",
+        "displayName": "Image pull failure",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -247,7 +249,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_common_at_k8s_image_pull_fail",
-		DisplayName: "集群镜像拉取失败",
+		DisplayName: "Image pull failure",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

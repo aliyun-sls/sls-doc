@@ -1,10 +1,11 @@
-# Ingress重载配置失败
+# Ingress configuration reload failure
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在Ingress重载配置失败事件（kubernetes ingress reload config error）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:存在 Ingress configuration reload failure 事件（kubernetes ingress reload config error）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "pod_name", "node_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -114,7 +115,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_ingress_at_err_reload_nginx");
-        alert.setDisplayName("Ingress重载配置失败");
+        alert.setDisplayName("Ingress configuration reload failure");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -148,7 +149,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_ingress_at_err_reload_nginx",
-        "displayName": "Ingress重载配置失败",
+        "displayName": "Ingress configuration reload failure",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -247,7 +248,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_ingress_at_err_reload_nginx",
-		DisplayName: "Ingress重载配置失败",
+		DisplayName: "Ingress configuration reload failure",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

@@ -1,10 +1,11 @@
-# 挂载点正在被进程占用，卸载挂载点失败
+# Failure of unmounting a mount target because the mount target is being used
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在事件：挂载点正在被进程占用，卸载挂载点失败（kubernetes csi disk device busy）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:Failure of unmounting a mount target because the mount target is being used（kubernetes csi disk device busy）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "kind", "object_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -114,7 +115,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_csi_at_device_busy");
-        alert.setDisplayName("挂载点正在被进程占用，卸载挂载点失败");
+        alert.setDisplayName("Failure of unmounting a mount target because the mount target is being used");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -148,7 +149,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_csi_at_device_busy",
-        "displayName": "挂载点正在被进程占用，卸载挂载点失败",
+        "displayName": "Failure of unmounting a mount target because the mount target is being used",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -247,7 +248,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_csi_at_device_busy",
-		DisplayName: "挂载点正在被进程占用，卸载挂载点失败",
+		DisplayName: "Failure of unmounting a mount target because the mount target is being used",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

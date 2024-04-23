@@ -1,10 +1,11 @@
-# Kubernetes 登录容器/执行命令告警
+# Container logon or command execution
 
-::: tip 说明
-- 每分钟检查一次，查询过去2分钟的日志。当存在登录容器或对容器执行命令的行为后，告警触发。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Logs of the last 2 minutes are inspected at a 1-minute interval.If a user logs on to a container or executes a command on the container, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("auditID"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("存在登录容器或对容器执行命令的行为，请检查是否存在异常。命令：${command}，资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，源IP：${sourceIP}。");
+        descAnno.setValue("A container logon or command execution occurs. Check whether an exception exists.Command: ${command}. Resource: ${resource}. Resource name: ${resourceName}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Source IP address: ${sourceIP}.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Kubernetes 登录容器/执行命令告警");
+        titleAnno.setValue("Container logon or command execution");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -142,7 +143,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_k8s_audit_at_command");
-        alert.setDisplayName("Kubernetes 登录容器/执行命令告警");
+        alert.setDisplayName("Container logon or command execution");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -176,7 +177,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_k8s_audit_at_command",
-        "displayName": "Kubernetes 登录容器/执行命令告警",
+        "displayName": "Container logon or command execution",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -212,10 +213,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "存在登录容器或对容器执行命令的行为，请检查是否存在异常。命令：${command}，资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，源IP：${sourceIP}。"
+                "value": "A container logon or command execution occurs. Check whether an exception exists.Command: ${command}. Resource: ${resource}. Resource name: ${resourceName}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Source IP address: ${sourceIP}."
             }, {
                 "key": "title",
-                "value": "Kubernetes 登录容器/执行命令告警"
+                "value": "Container logon or command execution"
             }, {
                 "key": "__drill_down_query__",
                 "value": "verb : create and objectRef.subresource:exec and stage:  ResponseStarted and auditID: ${auditID}"
@@ -296,7 +297,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_k8s_audit_at_command",
-		DisplayName: "Kubernetes 登录容器/执行命令告警",
+		DisplayName: "Container logon or command execution",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -336,11 +337,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "存在登录容器或对容器执行命令的行为，请检查是否存在异常。命令：${command}，资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，源IP：${sourceIP}。",
+					Value: "A container logon or command execution occurs. Check whether an exception exists.Command: ${command}. Resource: ${resource}. Resource name: ${resourceName}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Source IP address: ${sourceIP}.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Kubernetes 登录容器/执行命令告警",
+					Value: "Container logon or command execution",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

@@ -1,96 +1,95 @@
-# 场景五：使用访问密钥完成跨账号的数据流转
+# Scenario 5：Use AccessKey pairs to transfer data across different Alibaba Cloud accounts
 
-使用RAM用户创建数据加工作业时，您可以通过访问密钥完成跨账号的日志数据流转。
+When you use a Resource Access Management (RAM) user to create a data transformation job, you can specify AccessKey pairs to transfer data across different Alibaba Cloud accounts.
 
+## Step 1: Use Alibaba Cloud Account 1 to obtain the AccessKey pair of RAM User S
 
-## 前提条件
-* 已创建并获取源Logstore和目标Logstore的名称及Project名称。更多信息，请参见[管理Logstore](https://help.aliyun.com/document_detail/48990.htm?spm=a2c4g.11186623.0.0.16f15b29n6bPmt#concept-xkb-zh5-vdb)和[管理Project](https://help.aliyun.com/document_detail/48984.htm?spm=a2c4g.11186623.0.0.16f17934Z4NUG1#concept-mxk-414-vdb)。
-* 已创建RAM用户，并授予RAM用户数据加工操作权限。更多信息，请参见[授予RAM用户数据加工操作权限](https://help.aliyun.com/document_detail/125779.htm?spm=a2c4g.11186623.0.0.16f129dbREi77F#task-2005445)。
+1. Log on to the [RAM console] by using an Alibaba Cloud account 1.(https://ram.console.aliyun.com/overview)。
+2. Obtain the AccessKey pair of RAM User S.
+For more information, see [Create an AccessKey pair for a RAM user](https://help.aliyun.com/document_detail/215905.htm?spm=a2c4g.11186623.0.0.2f5c4bebZ0UBih#task-188766).
+  <table><tr><td bgcolor="#d6e7f8"><b>Note</b><br>The AccessKey secret of a RAM user is displayed only when you create the AccessKey pair for the RAM user. You cannot query the AccessKey secret after the AccessKey pair is created. Keep your AccessKey secret confidential.<br>If the AccessKey pair of a RAM user is disclosed or lost, you must create another AccessKey pair. You can create a maximum of two AccessKey pairs for a RAM user. </td></tr></table>
 
+## Step 2: Use Alibaba Cloud Account 2 to obtain the AccessKey pair of RAM User T
 
-## 步骤一：使用阿里云账号1获取RAM用户S的AccessKey
-  1. 使用阿里云账号1登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-  2. 获取RAM用户S的AccessKey。
-    具体操作，请参见[为RAM用户创建访问密钥](https://help.aliyun.com/document_detail/215905.htm?spm=a2c4g.11186623.0.0.2f5c4bebZ0UBih#task-188766)。
-      <table><tr><td bgcolor="#d6e7f8"><b>说明</b><br> AccessKey Secret只在创建时显示，不支持查询，请妥善保管。<br>若AccessKey泄露或丢失，则需要创建新的AccessKey，最多可以创建2个AccessKey。  </td></tr></table>
+1. Log on to the [RAM console] by using Alibaba Cloud Account 2.(https://ram.console.aliyun.com/overview)。
+2. Obtain the AccessKey pair of RAM User T.
+   For more information, see [Create an AccessKey pair for a RAM user].(https://help.aliyun.com/document_detail/215905.htm?spm=a2c4g.11186623.0.0.2f5c4bebZ0UBih#task-188766)。
 
+   <table><tr><td bgcolor="#d6e7f8"><b>Note</b><br>The AccessKey secret of a RAM user is displayed only when you create the AccessKey pair for the RAM user. You cannot query the AccessKey secret after the AccessKey pair is created. Keep your AccessKey secret confidential.<br>If the AccessKey pair of a RAM user is disclosed or lost, you must create another AccessKey pair. You can create a maximum of two AccessKey pairs for a RAM user. </td></tr></table>
 
-## 步骤二：使用阿里云账号2获取RAM用户T的AccessKey
-1. 使用阿里云账号2登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-2. 获取RAM用户T的AccessKey
-   具体操作，请参见[为RAM用户创建访问密钥](https://help.aliyun.com/document_detail/215905.htm?spm=a2c4g.11186623.0.0.2f5c4bebZ0UBih#task-188766)。
+## If the AccessKey pair of a RAM user is disclosed or lost, you must create another AccessKey pair. You can create a maximum of two AccessKey pairs for a RAM user.
 
-   <table><tr><td bgcolor="#d6e7f8"><b>说明</b><br>AccessKey Secret只在创建时显示，不支持查询，请妥善保管。<br>若AccessKey泄露或丢失，则需要创建新的AccessKey，最多可以创建2个AccessKey。  </td></tr></table>
+1. Log on to the [RAM console] by using an Alibaba Cloud account 1.(https://ram.console.aliyun.com/overview)。
+2. Create a custom policy on the JSON tab.The policy grants the permissions to read data from the source Logstore.In this example, create a policy named **ori_read**.s
+   For more information, see [Create custom policies](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286).Key parameter:
 
+| Key parameter  | Note                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name           | Enter a name for the custom policy.Example:                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **ori_read**   |
+| Policy content | Replace the content in the code editor with the following script.<br>For example, the name of the source project is log-project-prod. The name of the source Logstore is access_log_output.You can replace the project and Logstore names based on your business requirements.<pre>{<br> "Version": "1",<br> "Statement": [<br> {<br> "Action": [<br> "log:ListShards",<br> "log:GetCursorOrData",<br> "log:GetConsumerGroupCheckPoint",<br> "log:UpdateConsumerGroup",<br> "log:ConsumerGroupHeartBeat",<br> "log:ConsumerGroupUpdateCheckPoint",<br> "log:ListConsumerGroup",<br> "log:CreateConsumerGroup",<br> ],<br> "Resource": [<br> "acs:log:*:*:project/log-project-prod/logstore/access_log",<br> "acs:log:*:*:project/log-project-prod/logstore/access_log/*",<br> ],<br> "Effect": "Allow"<br> }<br> ]<br>}</pre> |
 
-## 步骤三：使用阿里云账号1为RAM用户S授予源Logstore读数据权限
-1. 使用阿里云账号1登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于读取源Logstore中的数据。例如新建权限策略为**ori_read**。
-具体操作，请参见[创建自定义权限策略](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286)。其中关键参数配置如下：
+3. Grant the read permissions on the source Logstore to RAM User S.
+   For more information, see [Grant permissions to a RAM role](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801).The following table describes the key parameters.
+   | Key parameter| Note |
+   | -------| --------- |
+   | **Authorized Scope** | Select **Alibaba Cloud Account**.The permissions granted to the RAM user take effect on resources within the current Alibaba Cloud account. |
+   | **Principal** | Select**RAM User S**。 |
+   | **Custom Policy** | Select**ori_read**。 |
 
-| 关键参数 | 说明 |
-| -- | -- |
-| 名称 | 输入自定义权限策略名称。例如**ori_read** |
-| 策略内容 | 将配置框中的原有脚本替换为如下内容。<br>例如：源Project名称为log-project-prod，源Logstore名称为access_log_output。在实际场景中，请根据实际情况替换。<pre>{<br>  "Version": "1",<br>  "Statement": [<br>    {<br>      "Action": [<br>        "log:ListShards",<br>        "log:GetCursorOrData",<br>        "log:GetConsumerGroupCheckPoint",<br>        "log:UpdateConsumerGroup",<br>        "log:ConsumerGroupHeartBeat",<br>        "log:ConsumerGroupUpdateCheckPoint",<br>        "log:ListConsumerGroup",<br>        "log:CreateConsumerGroup",<br>      ],<br>      "Resource": [<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log",<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log/*",<br>      ],<br>      "Effect": "Allow"<br>    }<br>  ]<br>}</pre>|
+## Step 4：Use Alibaba Cloud Account 2 to grant the write permissions on the destination Logstores to RAM User T.
 
-3. 为RAM用户S授予源Logstore读权限。
-具体操作，请参见[为RAM角色授权](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801)。其中关键参数配置如下：
-    | 关键参数| 说明 |
-    | -------| --------- |
-    | **授权范围** | 选择**整个云账号**。权限在当前阿里云账号内生效。 |
-    | **授权主体** | 选择**用户S**。 |
-    | **自定义策略** | 选择**ori_read**。 |
+1. Log on to the [RAM console](https://ram.console.aliyun.com/overview) by using Alibaba Cloud Account 2.
+2. Create a custom policy on the JSON tab.The policy grants the permissions to write data to the destination Logstores.In this example, create a policy named**write**。
+   For more information, see [Create custom policies](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286).The following table describes the key parameters:
 
-## 步骤四：使用阿里云账号2为RAM用户T授予目标Logstore写数据权限
+| Key parameter  | Note                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Name           | Enter a name for the custom policy.Example:**write**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Policy content | Replace the content in the code editor with the following script.<br>For example, the name of the source project is log-project-prod. The name of the source Logstore is access_log_output.You can replace the project and Logstore names based on your business requirements.<br><pre>{<br> "Version": "1", <br> "Statement": [ <br> { <br> "Action": [ <br> "log:Post*",<br> "log:BatchPost*" <br> ],<br> "Resource": "acs:log:\*:\_:project/log-project-prod/logstore/access_log_output",<br> "Effect": "Allow" <br> }<br> ]<br>} </pre> |
 
-1. 使用阿里云账号2登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于将数据加工结果写入到目标Logstore。例如新建权限策略为**write**。
-具体操作，请参见[创建自定义权限策略](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286)。其中关键参数配置如下：
+3. Grant the read permissions on the source Logstore to RAM User T.
+   For more information, see [Grant permissions to a RAM role](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801).The following table describes the key parameters:
+   | Key parameter| Note |
+   | -------| --------- |
+   | **Authorized Scope** | Select **Alibaba Cloud Account**.The permissions granted to the RAM user take effect on resources within the current Alibaba Cloud account. |
+   | **Principal** | Select**User T**。|
+   | **Custom Policy** | Select**write**。 |
 
-| 关键参数 | 说明 |
-| -- | -- |
-| 名称 | 输入自定义权限策略名称。例如**write** |
-| 策略内容 | 将配置框中的原有脚本替换为如下内容。<br>例如：目标Project名称为log-project-prod，目标Logstore名称为access_log_output。在实际场景中，请根据实际情况替换。<br><pre>{<br>  "Version": "1", <br>  "Statement": [ <br>   {  <br>     "Action": [  <br>       "log:Post*",<br>       "log:BatchPost*" <br>     ],<br>     "Resource": "acs:log:*:*:project/log-project-prod/logstore/access_log_output",<br>     "Effect": "Allow" <br>   }<br>  ]<br>} </pre> |
+## Step 5: Use the RAM user to create a data transformation job
 
-3. 为RAM用户T授予目标Logstore写权限。
-具体操作，请参见[为RAM角色授权](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801)。其中关键参数配置如下：
-    | 关键参数| 说明 |
-    | -------| --------- |
-    | **授权范围** | 选择**整个云账号**。权限在当前阿里云账号内生效。 |
-    | **授权主体** | 选择**用户T**。|
-    | **自定义策略** | 选择**write**。 |
+1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.10b94450uwe8VN) by using the RAM user.
+2. Go to the data transformation page.
+   a. In the Projects section, click the desired project.
+   b. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the desired Logstore.
+   c. On the query and analysis page, click **Data Transformation**.
+3. In the upper-right corner of the page, specify a time range for the required log data.
+   Make sure that log data exists on the **Raw Logs** tab.
+4. In the code editor, enter the following data transformation statement.
+   For more information, see [Data processing syntax].(https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584)。
+5. Preview data.
+   a. Select **Quick**.
+   You can select Quick or Advanced.For more information, see [Preview mode overview](https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.10b9708cCzGvXG#task-2565077).
+   b. Click Preview Data.
+   View the transformation results.
 
-## 步骤五：使用RAM用户创建数据加工作业
-1. 使用RAM用户登录[日志服务控制台](https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.10b94450uwe8VN)。
-2. 进入数据加工页面。
-  a. 在Project列表区域，单击目标Project。
-  b. 在**日志存储 > 日志库**页签中，单击目标Logstore。
-  c. 在查询和分析页面，单击**数据加工**。
-3. 在页面右上角，选择数据的时间范围。
-  请确保在**原始日志**页签中有日志数据。
-4. 在编辑框中，输入数据加工语句。
-  加工语句的语法请参见[数据加工语法](https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584)。
-5. 预览数据。
-  a. 单击**快速**。
-    日志服务支持快速预览和高级预览。更多信息，请参见[预览调试概述](https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.10b9708cCzGvXG#task-2565077)。
-  b. 单击预览数据。
-    查看预览结果。
+   - If the data fails to be transformed because the syntax of the transformation statement or the permissions are invalid, troubleshoot the failure as prompted.
+   - If the transformed data is returned as expected, go to the next step.
 
-    * 如果加工语句错误或者权限配置错误，导致数据加工失败，请根据页面提示处理。
-    * 如果确认数据加工结果无误，请执行步骤下一步。
-6. 创建数据加工作业。
-  a. 单击**保存数据**加工。
-  b. 在**创建数据加工规则**页面，配置相关参数，然后单击**确定**。
-    其中，其他参数配置请参考[数据加工快速入门](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.10b94b411wYwnX#task-2316153)。该场景中关键参数配置如下：
-       ![创建加工规则1](/img/dataprocessdemo/配置数据加工/创建加工规则1.png)
+6. Create a data transformation job.
+   a. Click **Save as Transformation Job**.
+   b. In the **Create Data Transformation Job** panel, configure the parameters and click **OK**.
+   For more information about parameter configurations, see [Get started with data transformation](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.10b94b411wYwnX#task-2316153).The following table describes the key parameters:
+   Create Data Transformation Job 1](/img/dataprocessdemo/配置数据加工/创建 Transformation rule 1.png)
+   the AccessKey pair of RAM User S.
 
-    | 关键参数 | 说明 |
-    | -- | -- |
-    | 授权方式 | 选择**密钥** |
-    | AccessKey ID | RAM用户S的AccessKey ID |
-    | AccessKey Secret | RAM用户S的AccessKey Secret |
-    | 存储目标的授权方式 | 选择**密钥** |
-    | AccessKey ID | RAM用户T的AccessKey ID |
-    | AccessKey Secret | RAM用户T的AccessKey Secret |
+   | Key parameter                               | Note                               |
+   | ------------------------------------------- | ---------------------------------- |
+   | Authorization Method                        | Select **AccessKey**               |
+   | AccessKey ID                                | RAM User S of the AccessKey ID     |
+   | AccessKey Secret                            | RAM User S of the AccessKey Secret |
+   | Authorization Method in Storage Destination | Select**AccessKey**                |
+   | AccessKey ID                                | RAM User T of the AccessKey ID     |
+   | AccessKey Secret                            | RAM User T of the AccessKey Secret |
 
-数据加工作业创建成功并运行后，使用RAM用户创建的跨账号数据流转作业完成。更多操作，请参见[管理数据加工作业](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.10b92b0d2iORzE#task-1580295)。
+After the data transformation job is created and run, data can be transferred across the two Alibaba Cloud accounts.For more information, see [Manage a data transformation job](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.10b92b0d2iORzE#task-1580295).

@@ -1,10 +1,11 @@
-# 数据加工流量（绝对值）监控
+# Monitoring on the absolute value of data transformation traffic
 
-::: tip 说明
-- 每5分钟检测一次，过去5分钟内，数据加工作业的加工流量（绝对值）低于预设阈值后，触发告警。触发阈值以及监控目标等可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If the absolute value of data transformation traffic within the last 5 minutes exceeds the specified threshold, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("job_id"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工流量（绝对值）过低，为平均${accept}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。");
+        descAnno.setValue("The absolute value of the traffic of the data transformation job ${job_name} with the ID ${job_id} in the source Logstore ${logstore} within the last 5 minutes is smaller than the specified threshold. The average value is ${accept} rows per second, and the threshold is 40,000 rows per second.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工流量（绝对值）过低告警");
+        titleAnno.setValue("Alert for absolute value of data transformation traffic that is smaller than the specified threshold");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_etl_at_abs_speed_monitor");
-        alert.setDisplayName("数据加工流量（绝对值）监控");
+        alert.setDisplayName("Monitoring on the absolute value of data transformation traffic");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_etl_at_abs_speed_monitor",
-        "displayName": "数据加工流量（绝对值）监控",
+        "displayName": "Monitoring on the absolute value of data transformation traffic",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工流量（绝对值）过低，为平均${accept}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。"
+                "value": "The absolute value of the traffic of the data transformation job ${job_name} with the ID ${job_id} in the source Logstore ${logstore} within the last 5 minutes is smaller than the specified threshold. The average value is ${accept} rows per second, and the threshold is 40,000 rows per second."
             }, {
                 "key": "title",
-                "value": "数据加工流量（绝对值）过低告警"
+                "value": "Alert for absolute value of data transformation traffic that is smaller than the specified threshold"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__:  __etl-log-status__ AND __tag__:__schedule_type__: Resident and event_id:  \"shard_worker:metrics:checkpoint\" and __tag__:__schedule_id__: ${job_id}"
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_etl_at_abs_speed_monitor",
-		DisplayName: "数据加工流量（绝对值）监控",
+		DisplayName: "Monitoring on the absolute value of data transformation traffic",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的加工流量（绝对值）过低，为平均${accept}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。",
+					Value: "The absolute value of the traffic of the data transformation job ${job_name} with the ID ${job_id} in the source Logstore ${logstore} within the last 5 minutes is smaller than the specified threshold. The average value is ${accept} rows per second, and the threshold is 40,000 rows per second.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工流量（绝对值）过低告警",
+					Value: "Alert for absolute value of data transformation traffic that is smaller than the specified threshold",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

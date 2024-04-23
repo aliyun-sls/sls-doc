@@ -1,36 +1,35 @@
-# 复制 Logstore 数据
+# Replicate data from a Logstore
 
-日志服务支持对每一个源 Logstore 配置一个加工任务，实现复制 Logstore 数据。本文介绍复制 Logstore 数据的典型场景和操作方法。
+Simple Log Service allows you to replicate data from a source Logstore to a destination Logstore. To replicate the data, you can create a data transformation job for the source Logstore.This topic describes how to replicate data from a source Logstore to a destination Logstore in a typical scenario.
 
-## 操作步骤
+## Procedure
 
-1. 登录[日志服务控制台](https://sls.console.aliyun.com)[日志服务控制台](https://partners-intl.console.aliyun.com/#/sls)。
+1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com).
+2. In the **Projects** section, click project-a.
 
-2. 在 **全部 Project** 区域，单击 project-a。
+3. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click logstore-a.
 
-3. 在 **日志存储** \> **日志库** 页签中，单击 logstore-a。
+4. In the upper-right corner of the query and analysis page, click **Data Transformation**.
 
-4. 在查询和分析页面的右上角单击 **数据加工** ，进入数据加工模式。
+5. Click **Save as Transformation Job**.
 
-5. 单击 **保存数据加工** 。
+6. In the **Create Data Transformation Job** panel, configure the following parameters.
 
-6. 在 **创建数据加工规则** 页面，配置如下参数。
+   | parameters           | Note                                                                                                                                                                |
+   | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+   | Job Name             | The name of the data transformation job.Example: test.                                                                                                              |
+   | Authorization Method | Authorizes Simple Log Service to read data from the logstore-a Logstore.Example: Default Role.                                                                      |
+   | Destination Name     | The name of the storage destination.Example: test.                                                                                                                  |
+   | Destination Region   | The region in which the destination project resides.In this example, the China (Hangzhou) region is used.                                                           |
+   | Destination Project  | logstore-b The name of the destination project.Example:project-b。                                                                                                  |
+   | Target Store         | logstore-b name Examplelogstore-b。                                                                                                                                 |
+   | Authorization Method | The method that is used to authorize Simple Log Service to read data from and write data to the logstore-a Logstore of the target-a project. Example: Default Role. |
+   | Time Range           | The time range for data transformation. All: transforms data in the source Logstore from the first log entry until the data transformation job is manually stopped. |
 
-   | 参数         | 说明                                                                                        |
-   | ------------ | ------------------------------------------------------------------------------------------- |
-   | 规则名称     | 数据加工规则的名称。输入 test。                                                             |
-   | 授权方式     | 授予日志服务读取 logstore-a 中数据的权限。以默认角色为例，选择默认角色。                    |
-   | 目标名称     | 存储目标名称。输入 test。                                                                   |
-   | 目标 Region  | 目标 Project 所在地域。选择华东 1（杭州）。                                                 |
-   | 目标 Project | logstore-b 所属的 Project 名称。输入 project-b。                                            |
-   | 目标库       | logstore-b 名称。输入 logstore-b。                                                          |
-   | 授权方式     | 授予日志服务读写 logstore-b 的权限。 以默认角色为例，选择默认角色。                         |
-   | 时间范围     | 加工的时间范围。 对 Logstore 中的数据从开始位置持续加工，直到加工任务被手动停止。选择所有。 |
+For more information about parameter configurations, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.9.ec9b1353uPmG8o#task-1181217).
 
-   更多参数配置，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.9.ec9b1353uPmG8o#task-1181217)。
+7. Click **OK**.
 
-7. 单击 **确定** 。
+## Result
 
-## 执行结果
-
-打开 project-b 项目，在 **日志存储** \> **日志库** 页签中选择 logstore-b 日志库，您可以查看到从 logstore-a 复制过来的数据。![样例图片](/img/dataprocessdemo/p226660.png)
+In the Projects section, click the project-b project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, select the logstore-b Logstore. You can view the data that is replicated from the logstore-a Logstore.![Sample picture](/img/dataprocessdemo/p226660.png)

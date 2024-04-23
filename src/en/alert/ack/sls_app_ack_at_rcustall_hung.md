@@ -1,10 +1,11 @@
-# Node发生RcuStall夯机
+# Node crash due to RCU stall
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在事件：Node发生RcuStall夯机（Node.Kernel.Hung.RcuStall）。节点发生RcuStall夯机，可能导致节点无法响应。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:Node crash due to RCU stall（Node.Kernel.Hung.RcuStall）.If a node crash occurs due to RCU stall, the node may fail to respond to requests.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "node_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -110,7 +111,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_at_rcustall_hung");
-        alert.setDisplayName("Node发生RcuStall夯机");
+        alert.setDisplayName("Node crash due to RCU stall");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -144,7 +145,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_at_rcustall_hung",
-        "displayName": "Node发生RcuStall夯机",
+        "displayName": "Node crash due to RCU stall",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -240,7 +241,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_at_rcustall_hung",
-		DisplayName: "Node发生RcuStall夯机",
+		DisplayName: "Node crash due to RCU stall",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

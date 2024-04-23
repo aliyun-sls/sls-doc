@@ -1,10 +1,11 @@
-# 数据加工延迟监控
+# Latency monitoring on data transformation
 
-::: tip 说明
-- 每分钟检测一次，数据加工作业的加工延迟超过预设阈值后，触发告警。触发阈值以及监控目标等可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 1-minute interval. If the latency of a data transformation job exceeds the specified threshold, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("job_id"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去一分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的延迟过高，为${delay}秒，大于监控阈值(300秒)。请检查是否存在异常。");
+        descAnno.setValue("The latency of the data transformation job ${job_name} with the ID ${job_id} in the source Logstore ${logstore} within the last minute exceeds the specified threshold. The latency is ${delay} seconds, and the threshold is 300 seconds.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工延迟过高告警");
+        titleAnno.setValue("Alert for data transformation latency over the threshold");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_etl_at_delay_monitor");
-        alert.setDisplayName("数据加工延迟监控");
+        alert.setDisplayName("Data is inspected at a 1-minute interval. If the latency of a data transformation job exceeds the specified threshold, an alert is triggered.");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_etl_at_delay_monitor",
-        "displayName": "数据加工延迟监控",
+        "displayName": "Data is inspected at a 1-minute interval. If the latency of a data transformation job exceeds the specified threshold, an alert is triggered.",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去一分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的延迟过高，为${delay}秒，大于监控阈值(300秒)。请检查是否存在异常。"
+                "value": "The latency of the data transformation job ${job_name} with the ID ${job_id} in the source Logstore ${logstore} within the last minute exceeds the specified threshold. The latency is ${delay} seconds, and the threshold is 300 seconds."
             }, {
                 "key": "title",
-                "value": "数据加工延迟过高告警"
+                "value": "Alert for data transformation latency over the threshold"
             }, {
                 "key": "__drill_down_query__",
                 "value": "(__topic__:  __etl-log-status__ AND __tag__:__schedule_type__:  Resident and event_id:  \"shard_worker:metrics:checkpoint\") and __tag__:__schedule_id__: ${job_id}"
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_etl_at_delay_monitor",
-		DisplayName: "数据加工延迟监控",
+		DisplayName: "Data is inspected at a 1-minute interval. If the latency of a data transformation job exceeds the specified threshold, an alert is triggered.",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去一分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id},作业名称:${job_name})的延迟过高，为${delay}秒，大于监控阈值(300秒)。请检查是否存在异常。",
+					Value: "The latency of the data transformation job ${job_name} with the ID ${job_id} in the source Logstore ${logstore} within the last minute exceeds the specified threshold. The latency is ${delay} seconds, and the threshold is 300 seconds.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工延迟过高告警",
+					Value: "Alert for data transformation latency over the threshold",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

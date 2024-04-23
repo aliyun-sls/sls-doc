@@ -1,109 +1,108 @@
-# 场景二：使用自定义角色完成同账号数据流转
+# Scenario 2：Use custom roles to transfer data within the same Alibaba Cloud account
 
-使用RAM用户创建数据加工作业时，您可以通过自定义角色完成同账号内的日志数据流转。
+Use the RAM user to create a data transformation job 时，您可以通过自定义角色完成同账号内的日志数据流转。
 
+## Step 1：Use Alibaba Cloud Account to create Role B
 
-## 步骤一：使用阿里云账号创建角色A
-  1. 使用阿里云账号登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-  2. 创建角色A。
-  具体操作，请参见[创建可信实体为阿里云服务的RAM角色](https://help.aliyun.com/document_detail/116800.htm?spm=a2c4g.11186623.0.0.16f11550FDwDIG#task-2448632)。其中关键参数配置如下：
-      | 关键参数| 说明 |
-      | -------| --------- |
-      | **选择可信实体类型** | 选择**阿里云服务**。 |
-      | **角色类型** | 选择**普通服务角色**。 |
-      | **角色名称** | 输入角色名称，例如role-A。 |
-      | **选择授信服务** | 选择**日志服务**。 |
+1. Log on to the [RAM console] by using an Alibaba Cloud account.(https://ram.console.aliyun.com/overview)。
+2. Create Role A.
+   For more information, see [Create a RAM role for a trusted Alibaba Cloud service](https://help.aliyun.com/document_detail/116800.htm?spm=a2c4g.11186623.0.0.16f11550FDwDIG#task-2448632).The following table describes the key parameters.
+   | Key parameter| Note |
+   | -------| --------- |
+   | **Select Trusted Entity** | Select **Alibaba Cloud service**。 |
+   | **Role Type** | Select **Normal Service Role**。|
+   | **Role Name** | Enter a name for the role. Example: role-A。 |
+   | Select**Normal Service Role**。 | Select **Simple Log Service**。 |
 
+## Step 二：Use Alibaba Cloud Account 1 to grant the read permissions on the source Logstore to RAM User A
 
+1.  Log on to the [RAM console] by using an Alibaba Cloud account.(https://ram.console.aliyun.com/overview)。
+2.  Create a custom policy on the JSON tab.The policy grants the permissions to read data from the source Logstore.In this example, create a policy named **ori_read**.
+    For more information, see [Create custom policies].(https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.16f11ff58fILkp#task-2149286)The following table describes the key parameters.
 
-## 步骤二：使用阿里云账号为角色A授予读数据权限
-1. 使用阿里云账号登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于读取源Logstore中的数据。例如新建权限策略为**ori_read**。
-具体操作，请参见[创建自定义权限策略](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.16f11ff58fILkp#task-2149286)。其中关键参数配置如下：
+        |Key parameter| Note |
+        | -- | -- |
+        |Name| Enter a name for the custom policy.Example:**ori_read** |
+        | Policy content | Replace the content in the code editor with the following script.<br>For example, the name of the source project is log-project-prod. The name of the source Logstore is access_log_output.You can replace the project and Logstore names based on your business requirements.<br><pre>{<br>  "Version": "1",<br>  "Statement": [<br>    {<br>      "Action": [<br>        "log:ListShards",<br>        "log:GetCursorOrData",<br>        "log:GetConsumerGroupCheckPoint",<br>        "log:UpdateConsumerGroup",<br>        "log:ConsumerGroupHeartBeat",<br>        "log:ConsumerGroupUpdateCheckPoint",<br>        "log:ListConsumerGroup",<br>        "log:CreateConsumerGroup",<br>      ],<br>      "Resource": [<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log",<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log/*",<br>      ],<br>      "Effect": "Allow"<br>    }<br>  ]<br>}</pre>
 
-    | 关键参数 | 说明 |
-    | -- | -- |
-    | 名称 | 输入自定义权限策略名称。例如**ori_read** |
-    | 策略内容 | 将配置框中的原有脚本替换为如下内容。<br>例如：源Project名称为log-project-prod，源Logstore名称为access_log。在实际场景中，请根据实际情况替换。<br><pre>{<br>  "Version": "1",<br>  "Statement": [<br>    {<br>      "Action": [<br>        "log:ListShards",<br>        "log:GetCursorOrData",<br>        "log:GetConsumerGroupCheckPoint",<br>        "log:UpdateConsumerGroup",<br>        "log:ConsumerGroupHeartBeat",<br>        "log:ConsumerGroupUpdateCheckPoint",<br>        "log:ListConsumerGroup",<br>        "log:CreateConsumerGroup",<br>      ],<br>      "Resource": [<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log",<br>        "acs:log:*:*:project/log-project-prod/logstore/access_log/*",<br>      ],<br>      "Effect": "Allow"<br>    }<br>  ]<br>}</pre>
+3.  Grant the read permissions on the source Logstore to role A.
+    For more information, see [Grant permissions to a RAM role](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801).The following table describes the key parameters.
 
-1. 为角色A授予源Logstore读权限。
-具体操作，请参见[为RAM角色授权](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801)。其中关键参数配置如下：
+        | **Key parameter** | **Note** |
+        | -- | -- |
+        | **Authorized Scope** | Select **Alibaba Cloud Account**.The permissions granted to the RAM user take effect on resources within the current Alibaba Cloud account. |
+        | **Principal** | Select **role-A** |
+        | **Custom Policy** | Select**ori_read**。 |
 
-    | **关键参数** | **说明** |
-    | -- | -- |
-    | **授权范围** | 选择**整个云账号**。权限在当前阿里云账号内生效。 |
-    | **授权主体** | 选择**role-A**。即您在步骤一中创建的角色role-A。 |
-    | **自定义策略** | 选择**ori_read**。 |
+4.  Obtain the Alibaba Cloud Resource Name (ARN) of the RAM role.
+    In the **Basic Information** section on the details page of Role A, obtain the ARN of the role. Example:`acs:ram::1379******44:role/role-a`。
 
-1. 获取RAM角色标识（ARN）。
-在该角色A的**基本信息**中查看，例如```acs:ram::1379******44:role/role-a```。
+## Step 3：Use Alibaba Cloud Account to create Role B
 
-## 步骤三：使用阿里云账号创建角色B
-1. 使用阿里云账号登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-2. 创建角色B。
-  具体操作，请参见[创建可信实体为阿里云服务的RAM角色](https://help.aliyun.com/document_detail/116800.htm?spm=a2c4g.11186623.0.0.72064450hX7Yq6#task-2448632)。其中关键参数配置如下：
+1. Log on to the [RAM console] by using an Alibaba Cloud account.(https://ram.console.aliyun.com/overview)。
+   2.create Role B
+   For more information, see [Create a data transformation job](https://help.aliyun.com/document_detail/116800.htm?spm=a2c4g.11186623.0.0.72064450hX7Yq6#task-2448632).The following table describes the key parameters.
 
-    | 关键参数| 说明 |
+   | Key parameter                    | Note                                         |
+   | -------------------------------- | -------------------------------------------- |
+   | **Select Trusted Entity**        | Select **Alibaba Cloud service**。           |
+   | **Role Type**                    | Select **Normal Service Role**。             |
+   | **Role Name**                    | Enter a name for the role. Example: role-B。 |
+   | Select **Normal Service Role**。 | Select **Simple Log Service**                |
+
+## Step 4：Use Alibaba Cloud Account 2 to grant the write permissions to Role B
+
+1.  Log on to the [RAM console] by using an Alibaba Cloud account.(https://ram.console.aliyun.com/overview)。
+2.  Create a custom policy on the JSON tab.The policy grants the permissions to write data to the destination Logstores.In this example, create a policy named **write**。
+    For more information, see [Create custom policies](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286).The following table describes the key parameters.
+
+        |Key parameter| Note |
+        | -- | -- |
+        |Name| Enter a name for the custom policy.Example:write |
+        | Policy content | Replace the content in the code editor with the following script.For example, the name of the source project is log-project-prod. The name of the source Logstore is access_log_output.You can replace the project and Logstore names based on your business requirements.<br><pre>{<br>  "Version": "1", <br>  "Statement": [ <br>   {  <br>     "Action": [  <br>       "log:Post*",<br>       "log:BatchPost*" <br>     ],<br>     "Resource": "acs:log:*:*:project/log-project-prod/logstore/access_log_output",<br>     "Effect": "Allow" <br>   }<br>  ]<br>} </pre>|
+
+3.  Grant the write permissions on the destination Logstores torole B
+    For more information, see [Grant permissions to a RAM role](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801).The following table describes the key parameters.
+    | Key parameter| Note |
     | -------| --------- |
-    | **选择可信实体类型** | 选择**阿里云服务**。 |
-    | **角色类型** | 选择**普通服务角色**。 |
-    | **角色名称** | 输入角色名称，例如role-B。 |
-    | **选择授信服务** | 选择**日志服务**。 |
+    | Authorized Scope | Select **Alibaba Cloud Account**.The permissions granted to the RAM user take effect on resources within the current Alibaba Cloud account. |
+    | Principal | Select **role-B**|
+    | Custom Policy | Select **write**。 |
 
+4.  Obtain the Alibaba Cloud Resource Name (ARN) of the RAM role.
+    In the **Basic Information** section on the details page of Role B, obtain the ARN of the role. Example:`acs:ram::1379******44:role/role-b`。
 
-## 步骤四：使用阿里云账号为角色B授予写数据权限
-1. 使用阿里云账号登录[RAM控制台](https://ram.console.aliyun.com/overview)。
-2. 通过脚本编辑模式，创建自定义权限策略。该权限策略用于将数据加工结果写入到目标Logstore。例如新建权限策略为**write**。
-具体操作，请参见[创建自定义权限策略](https://help.aliyun.com/document_detail/93733.htm?spm=a2c4g.11186623.0.0.720664a1umWb1J#task-2149286)。其中关键参数配置如下：
+## Step 5：Use the RAM user to create a data transformation job
 
-    | 关键参数 | 说明 |
-    | -- | -- |
-    | 名称 | 输入自定义权限策略名称。例如write |
-    | 策略内容 | 将配置框中的原有脚本替换为如下内容。例如：目标Project名称为log-project-prod，目标Logstore名称为access_log_output。在实际场景中，请根据实际情况替换。<br><pre>{<br>  "Version": "1", <br>  "Statement": [ <br>   {  <br>     "Action": [  <br>       "log:Post*",<br>       "log:BatchPost*" <br>     ],<br>     "Resource": "acs:log:*:*:project/log-project-prod/logstore/access_log_output",<br>     "Effect": "Allow" <br>   }<br>  ]<br>} </pre>|
+1. Log on to the Simple Log Service console by using the RAM user.(https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.10b94450uwe8VN)。
+2. Go to the data transformation page.
+   a. In the Projects section, click the desired project.
+   b. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the desired Logstore.
+   c. On the query and analysis page, click **Data Transformation**.
+3. In the upper-right corner of the page, specify a time range for the required log data.
+   Make sure that log data exists on the **Raw Logs** tab.
+4. In the code editor, enter the following data transformation statement.
+   For more information, see [Data processing syntax](https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584).(https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584)。
+5. Preview data in advanced mode.
+   a. Select **Quick**.
+   You can select Quick or Advanced.For more information, see [Preview mode overview].(https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.10b9708cCzGvXG#task-2565077)。
+   b. 单击 Preview data in advanced mode.
+   View the transformation results.
 
+   - If the data fails to be transformed because the syntax of the transformation statement or the permissions are invalid, troubleshoot the failure as prompted.
+   - If the transformed data is returned as expected, go to the next step.
 
-3. 为角色B授予目标Logstore写权限。
-具体操作，请参见[为RAM角色授权](https://help.aliyun.com/document_detail/116147.htm?spm=a2c4g.11186623.0.0.16f12d7ayYMcWn#task-187801)。其中关键参数配置如下：
-    | 关键参数| 说明 |
-    | -------| --------- |
-    | 授权范围 | 选择**整个云账号**。权限在当前阿里云账号内生效。 |
-    | 授权主体 | 选择**role-B**。即您在[步骤三：使用阿里云账号创建角色B](https://help.aliyun.com/document_detail/448355.html#section-jp3-5x0-7bc)中创建的角色role-B。 |
-    | 自定义策略 | 选择**write**。 |
+6. Create a data transformation job.
+   a. Click **Save as Transformation Job**.
+   b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**.
+   For more information about parameter configurations, see [Get started with data transformation](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.10b94b411wYwnX#task-2316153).The following table describes the key parameters.
+   ![Create Data Transformation Job](/img/dataprocessdemo/配置数据加工/创建 Transformation rule.png)
 
+| Key parameter                               | Note                                                              |
+| ------------------------------------------- | ----------------------------------------------------------------- |
+| Authorization Method                        | Select **custom roles**                                           |
+| role ARN                                    | Enter for the role A. Example:`acs:ram::1379******44:role/role-a` |
+| Authorization Method in Storage Destination | Select**custom roles**                                            |
+| role ARN                                    | Enter for the role B. Example:`acs:ram::1379******44:role/role-b` |
 
-4. 获取RAM角色标识（ARN）。
-在该角色B的**基本信息**中查看，例如```acs:ram::1379******44:role/role-b```。
-
-## 步骤五：使用RAM用户创建数据加工作业
-1. 使用RAM用户登录[日志服务控制台](https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.10b94450uwe8VN)。
-2. 进入数据加工页面。
-  a. 在Project列表区域，单击目标Project。
-  b. 在**日志存储 > 日志库**页签中，单击目标Logstore。
-  c. 在查询和分析页面，单击**数据加工**。
-3. 在页面右上角，选择数据的时间范围。
-  请确保在**原始日志**页签中有日志数据。
-4. 在编辑框中，输入数据加工语句。
-  加工语句的语法请参见[数据加工语法](https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584)。
-5. 预览数据。
-  a. 单击**快速**。
-    日志服务支持快速预览和高级预览。更多信息，请参见[预览调试概述](https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.10b9708cCzGvXG#task-2565077)。
-  b. 单击预览数据。
-    查看预览结果。
-
-    * 如果加工语句错误或者权限配置错误，导致数据加工失败，请根据页面提示处理。
-    * 如果确认数据加工结果无误，请执行步骤下一步。
-6. 创建数据加工作业。
-  a. 单击**保存数据**加工。
-  b. 在**创建数据加工规则**页面，配置相关参数，然后单击**确定**。
-    其中，其他参数配置请参考[数据加工快速入门](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.10b94b411wYwnX#task-2316153)。该场景中关键参数配置如下：
-       ![创建加工规则](/img/dataprocessdemo/配置数据加工/创建加工规则.png)
-
-| 关键参数 | 说明 |
-| -- | -- |
-| 授权方式 | 选择**自定义角色** |
-| 角色ARN | 输入角色A的ARN。例如`acs:ram::1379******44:role/role-a` |
-| 存储目标的授权方式 | 选择**自定义角色** |
-| 角色ARN | 输入角色B的ARN。例如`acs:ram::1379******44:role/role-b` |
-
-
-数据加工作业创建成功并运行后，使用RAM用户创建的账号内数据流转作业完成。更多操作，请参见[管理数据加工作业](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.10b92b0d2iORzE#task-1580295)。
+After the data transformation job is created and run, data can be transferred across the two Alibaba Cloud accounts.For more information, see [Manage a data transformation job](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.10b92b0d2iORzE#task-1580295).

@@ -1,10 +1,11 @@
-# 删除长时间未启动节点
+# Deletion of a node that is not started for an extended period of time
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在事件：删除长时间未启动节点（DeleteLongNotStarted）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:Deletion of a node that is not started for an extended period of time（DeleteLongNotStarted）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "node_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -110,7 +111,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_at_delete_started_timeout");
-        alert.setDisplayName("删除长时间未启动节点");
+        alert.setDisplayName("Deletion of a node that is not started for an extended period of time");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -144,7 +145,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_at_delete_started_timeout",
-        "displayName": "删除长时间未启动节点",
+        "displayName": "Deletion of a node that is not started for an extended period of time",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -240,7 +241,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_at_delete_started_timeout",
-		DisplayName: "删除长时间未启动节点",
+		DisplayName: "Deletion of a node that is not started for an extended period of time",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

@@ -1,10 +1,11 @@
-# Kubernetes 节点 Label 监控
+# Kubernetes Alert for label-related operation on a node
 
-::: tip 说明
-- 每分钟检查一次，查询过去2分钟的日志。监控对Kubernetes节点Label的相关操作，进行Label相关操作后，告警触发。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- 每分钟检查一次，查询过去 2 分钟的日志。监控对 Kubernetes 节点 Label 的相关操作，进行 Label 相关操作后，告警触发。
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("auditID"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("Kubernetes 节点 Label 监控。Label: ${Label}，节点名称：${node}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，操作类型：${operationType}，源IP：${sourceIP}。");
+        descAnno.setValue("Kubernetes Alert for label-related operation on a node.Label: ${Label}. Node name: ${node}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Operation type: ${operationType}. Source IP address: ${sourceIP}.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Kubernetes 节点 Label 监控");
+        titleAnno.setValue("Kubernetes Alert for label-related operation on a node");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -142,7 +143,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_k8s_audit_at_label");
-        alert.setDisplayName("Kubernetes 节点 Label 监控");
+        alert.setDisplayName("Kubernetes Alert for label-related operation on a node");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -176,7 +177,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_k8s_audit_at_label",
-        "displayName": "Kubernetes 节点 Label 监控",
+        "displayName": "Kubernetes Alert for label-related operation on a node",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -212,10 +213,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "Kubernetes 节点 Label 监控。Label: ${Label}，节点名称：${node}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，操作类型：${operationType}，源IP：${sourceIP}。"
+                "value": "Kubernetes Alert for label-related operation on a node。Label: ${Label}. Node name: ${node}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Operation type: ${operationType}. Source IP address: ${sourceIP}."
             }, {
                 "key": "title",
-                "value": "Kubernetes 节点 Label 监控"
+                "value": "Kubernetes Alert for label-related operation on a node"
             }, {
                 "key": "__drill_down_query__",
                 "value": "auditID: ${auditID} and objectRef.resource : nodes  and   (verb : update or verb : patch )  NOT  user.username: node NOT  user.username: serviceaccount NOT  user.username: apiserver NOT  user.username: kube-scheduler NOT  user.username: kube-controller-manager"
@@ -296,7 +297,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_k8s_audit_at_label",
-		DisplayName: "Kubernetes 节点 Label 监控",
+		DisplayName: "Kubernetes Alert for label-related operation on a node",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -336,11 +337,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "Kubernetes 节点 Label 监控。Label: ${Label}，节点名称：${node}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，操作类型：${operationType}，源IP：${sourceIP}。",
+					Value: "Kubernetes Alert for label-related operation on a node。Label: ${Label}. Node name: ${node}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Operation type: ${operationType}. Source IP address: ${sourceIP}.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Kubernetes 节点 Label 监控",
+					Value: "Kubernetes Alert for label-related operation on a node",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

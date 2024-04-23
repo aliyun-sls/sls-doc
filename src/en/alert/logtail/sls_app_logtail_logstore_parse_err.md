@@ -1,10 +1,11 @@
-# Logtail日志解析错误告警
+# Log parsing error
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。过去5分钟内，当有Logstore出现Logtail日志解析错误时，会触发告警。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If a Logtail log parsing error occurred in a Logstore within the last 5 minutes, an alert is triggered.Data of the last 5 minutes is inspected at a 5-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "logstore"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail日志解析错误。");
+        descAnno.setValue("A total of ${cnt} Logtail log parsing errors occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Logtail日志解析错误告警");
+        titleAnno.setValue("Log parsing error");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_logtail_logstore_parse_err");
-        alert.setDisplayName("Logtail日志解析错误告警");
+        alert.setDisplayName("Log parsing error");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_logtail_logstore_parse_err",
-        "displayName": "Logtail日志解析错误告警",
+        "displayName": "Log parsing error",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail日志解析错误。"
+                "value": "A total of ${cnt} Logtail log parsing errors occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes."
             }, {
                 "key": "title",
-                "value": "Logtail日志解析错误告警"
+                "value": "Log parsing error"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: logtail_alarm AND (alarm_type : REGEX_MATCH_ALARM  or alarm_type : SPLIT_LOG_FAIL_ALARM  or alarm_type : PARSE_LOG_FAIL_ALARM  or alarm_type : PARSE_TIME_FAIL_ALARM) and project: \"${project}\" and logstore: \"${logstore}\""
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_logtail_logstore_parse_err",
-		DisplayName: "Logtail日志解析错误告警",
+		DisplayName: "Log parsing error",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -263,7 +264,7 @@ func createAlert() {
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Logtail日志解析错误告警",
+					Value: "Log parsing error",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

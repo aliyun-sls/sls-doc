@@ -1,50 +1,49 @@
-# 场景一：使用默认角色完成同账号的数据流转
+# Scenario 1：Use a default role to transfer data within the same Alibaba Cloud account
 
-使用RAM用户创建数据加工作业时，您可以通过默认角色完成同账号内的日志数据流转。
+When you use a Resource Access Management (RAM) user to create a data transformation job, you can specify a default role to transfer log data within the same Alibaba Cloud account.
 
+## Step 1：Use an Alibaba Cloud account to create the AliyunLogETLRole system role
 
-## 步骤一：使用阿里云账号创建系统角色AliyunLogETLRole
-<table><tr><td bgcolor="#d6e7f8"><b>说明</b> 仅在首次配置时需要该操作。已完成授权系统角色AliyunLogETLRole的阿里云账号，无需再次授权。</td></tr></table>
-RAM用户使用默认角色授权完成数据加工作业，需要确保阿里云账号下存在AliyunLogETLRole角色，否则需要通知阿里云账号对其进行创建。
+<table><tr><td bgcolor="#d6e7f8"><b>Note</b> This step is required for the first time you grant permissions to the AliyunLogETLRole system role.If the system role is granted the required permissions within your Alibaba Cloud account, you can skip this step.</td></tr></table>
+If you want to use a RAM user that assumes the default role to create a data transformation job, make sure that the AliyunLogETLRole role exists within your Alibaba Cloud account. If the AliyunLogETLRole role does not exist in your Alibaba Cloud account, you need to contact the owner of your Alibaba Cloud account to create the role.
 
-1. 使用阿里云账号登录[日志服务控制台](https://sls.console.aliyun.com/lognext/profile)。
-2. 授权系统角色AliyunLogETLRole。
-     * 方式一
-        单击[授权系统角色AliyunLogETLRole](https://ram.console.aliyun.com/role/authorization?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT&request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22Log%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunLogETLRole%22%2C%22TemplateId%22%3A%22ETL%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fsls.console.aliyun.com%22%7D)，按照向导完成授权。
+1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com/lognext/profile) by using an Alibaba Cloud account.
+2. Grant permissions to the AliyunLogETLRole system role.
 
-     * 方式二
-      在任意数据加工的**创建数据加工规则**面板中，单击**默认角色**下的[授权系统角色AliyunLogETLRole](https://ram.console.aliyun.com/role/authorization?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT&request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22Log%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunLogETLRole%22%2C%22TemplateId%22%3A%22ETL%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fsls.console.aliyun.com%22%7D)，按照向导完成授权。
+   - Method 1
+     Click [You must authorize the system role AliyunLogETLRole].(https://ram.console.aliyun.com/role/authorization?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT&request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22Log%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunLogETLRole%22%2C%22TemplateId%22%3A%22ETL%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fsls.console.aliyun.com%22%7D),Follow the wizard to complete authorization.
 
-## 步骤二：使用RAM用户创建数据加工作业
-1. 使用RAM用户登录[日志服务控制台](https://sls.console.aliyun.com/lognext/profile)。
-2. 进入数据加工页面。
-  a. 在Project列表区域，单击目标Project。
-  b. 在**日志存储 > 日志库**页签中，单击目标Logstore。
-  c. 在查询和分析页面，单击**数据加工**。
-3. 在页面右上角，选择数据的时间范围。
-  请确保在**原始日志**页签中有日志数据。
-4. 在编辑框中，输入数据加工语句。
-  加工语句的语法请参见[数据加工语法](https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT#concept-1130584)。
+   - Method 2
+     In the **Create Data Transformation Job** panel, click [You must authorize the system role AliyunLogETLRole] below **Default Role**.(https://ram.console.aliyun.com/role/authorization?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT&request=%7B%22Services%22%3A%5B%7B%22Service%22%3A%22Log%22%2C%22Roles%22%3A%5B%7B%22RoleName%22%3A%22AliyunLogETLRole%22%2C%22TemplateId%22%3A%22ETL%22%7D%5D%7D%5D%2C%22ReturnUrl%22%3A%22https%3A%2F%2Fsls.console.aliyun.com%22%7D),Follow the wizard to complete authorization.
 
-5. 预览数据。
-  a. 单击**快速**。
-      日志服务支持快速预览和高级预览。更多信息，请参见[预览调试概述](https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.3ecc708czav3P0#task-2565077)。
-  b. 单击**预览数据**。
-      查看预览结果。
-      * 如果加工语句错误或者权限配置错误，导致数据加工失败，请根据页面提示处理。
-      * 如果确认数据加工结果无误，请执行步骤下一步。
-1. 创建数据加工作业。
-  a. 单击**保存数据加工**。
-  b. 在**创建数据加工规则**页面，配置相关参数，然后单击**确定**。
-    其中，其他参数配置请参考[数据加工快速入门](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.3ecc4b41qzBlx8#task-2316153)。该场景中关键参数配置如下：
+## Step 二：Use the RAM user to create a data transformation job
 
-    ![数据加工作业1](/img/dataprocessdemo/配置数据加工/数据加工作业1.png)
-     | 关键参数| 说明 |
-      | -------| --------- |
-      | **授权方式** | 选择**默认角色**。 |
-      | **存储目标的授权方式** | 选择**默认角色**。 |
+1. Log on to the Simple Log Service console by using the RAM user.(https://sls.console.aliyun.com/lognext/profile)。
+2. Go to the data transformation page.
+   a. In the Projects section, click the desired project.
+   b. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the desired Logstore.
+   c. On the query and analysis page, click **Data Transformation**.
+3. In the upper-right corner of the page, specify a time range for the required log data.
+   Make sure that log data exists on the **Raw Logs** tab.
+4. In the code editor, enter the following data transformation statement.
+   For more information, see [Data processing syntax](https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584).(https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT#concept-1130584)。
 
+5. Preview data in advanced mode.
+   a. Select **Quick**.
+   You can select Quick or Advanced.For more information, see [Preview mode overview].(https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.3ecc708czav3P0#task-2565077)。
+   b. Click **Preview Data**.
+   View the transformation results.
+   _ If the data fails to be transformed because the syntax of the transformation statement or the permissions are invalid, troubleshoot the failure as prompted.
+   _ If the transformed data is returned as expected, go to the next step.
+6. Create a data transformation job.
+   a. Click **Save as Transformation Job**.
+   b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**.
+   For more information about parameter configurations, see [Get started with data transformation](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.3ecc4b41qzBlx8#task-2316153).The following table describes the key parameters.
 
+   ![data transformation job1](/img/dataprocessdemo/配置数据加工/数据加工作业1.png)
+   | Key parameter| Note |
+   | -------| --------- |
+   | **Authorization Method** | Select **Default Role.**. |
+   | **Authorization Method in Storage Destination** | Select **Default Role.**. |
 
-  数据加工作业创建成功并运行后，使用RAM用户创建的账号内数据流转作业完成。更多操作，请参见[管理数据加工作业](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.3ecc2b0dnrsMRZ#task-1580295)。
-
+After the data transformation job is created and run, data can be transferred across the two Alibaba Cloud accounts.For more information, see [Manage a data transformation job](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.3ecc2b0dnrsMRZ#task-1580295)。

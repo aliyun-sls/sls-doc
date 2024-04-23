@@ -1,49 +1,49 @@
-# 历史数据加工最佳实践
+# Best practices for transforming historical data
 
-## 如何对历史数据进行加工
+## How to transform historical data
 
-当您的数据之前已经导入了名为data_collection的logstore中，现在想要对这些历史数据进行加工，那么您只需要在数据加工规则配置面板设置一下加工范围即可。具体步骤如下：
-1. 在data_collection面板中点击**数据加工**按钮
-2. 在数据加工面板编写数据加工语句
-3. 点击**保存数据加工**按钮，配置规则名称、授权方式以及存储目标
-4. 选择加工范围为**所有**，或**某时间开始**或**特定时间范围**。
+If your data has been imported to a Logstore named data_collection and you want to transform the historical data, you need to only configure parameters in the Time Range for Data Transformation section of the Create Data Transformation Job panel.To transform historical data, perform the following steps:
+
+1. In the data_collection panel, click **Data Transformation**.
+2. In the code editor of the data transformation page, enter a data transformation statement.
+3. Click **Save as Transformation Job**. In the Create Data Transformation Job panel, configure Job Name, Authorization Method, and Storage Destination.
+4. In the Time Range for Data Transformation section, set the Time Range parameter to **All**, **From Specific Time**, or **Specific Time Range**.
 
 ![](/img/dataprocessdemo/其他/加工范围.png)
 
-加工范围说明
+Time Range for Data Transformation Note
 
-| 选项 | 说明 |
-| -- | -- |
-| 所有 | 从Logstore接收到第一条日志的时间点开始数据加工任务，直到加工任务被手动停止 |
-| 某时间开始 | 指定数据加工任务的开始时间，从该时间点开始加工，直到加工任务被手动停止 |
-| 特定时间范围 | 指定数据加工任务的起止时间，加工任务执行到指定时间后自动停止 |
+| option              | Note                                                                                                                                                                                            |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| All                 | Transforms data in the source Logstore from the first log until the job is manually stopped.                                                                                                    |
+| From Specific Time  | Transforms data in the source Logstore from the log that is received at the specified start time until the job is manually stopped.                                                             |
+| Specific Time Range | Transforms data in the source Logstore from the log that is received at the specified start time to the log that is received at the specified end time. Then, the job is automatically stopped. |
 
-## 查看历史数据加工结果
+## View the results of the data transformation job
 
-您可以直接到目标logstore查看对应的加工结果。假设您将数据加工结果分发至名为target的logstore后，如果目标logstore无数据，您可以参考以下方案进行解决。
+You can view the transformed data in the destination Logstore.Assume that you distribute data transformation results to the Logstore named target. If no data exists in the destination Logstore, you can use the following solutions.
 
-### 扩大数据检索时间范围
+### Increase the query time range of data
 
-如果您在数据加工语句中未对__time__字段进行设置，那么某条数据在源logstore中出现的时间会与目标logstore保存一致，而刚进入某个logstore，默认的数据检索时间范围为最近15分钟，因此，您可能看不到历史数据的加工结果。这时，您可以通过设置搜索框右侧的时间选择器来查看指定时间范围内的历史数据。
+If you do not specify the **time** field in the data transformation statement, the time of a log in the source Logstore is used in the destination Logstore. If you retain the default query time range when you query transformation results in the destination Logstore, you may fail to obtain the log. The default query time range is 15 minutes.In this case, you can specify the query time range by using the time selector next to the search box.
 
 ![](/img/dataprocessdemo/其他/时间选择.png)
 
-### 创建索引
+### Create indexes
 
-索引是一种倒排的数据存储结构，由关键词和指向实际数据的逻辑指针组成，用于快速根据关键词定位到具体数据行，类似于数据的目录。您只有创建索引后，才能进行查询和分析操作。如果您进入目标logstore看到如下错误提示，那么您需要开启索引才能看到加工结果数据。具体步骤与注意事项请参考[创建索引](https://help.aliyun.com/document_detail/90732.html)。
+An index is an inverted storage structure that consists of keywords and logical pointers. The logical pointers can be used to refer to actual data. You can use an index to quickly locate data rows based on keywords. An index is similar to a data catalog.For more information, see [Create indexes](https://help.aliyun.com/document_detail/90732.html).
 
 ![](/img/dataprocessdemo/其他/未建索引报错.png)
 
-### 重建索引
+### Reindex logs for a Logstore
 
-创建索引只对之后进入logstore的数据有效，如果您是在数据加工任务已经创建之后才在目标logstore创建了索引，那么在创建索引之前数据加工导入的数据对您将是不可见的，这时，您可以重建索引功能以对之前进入logstore的数据配置索引。具体步骤与注意事项请参考[重建索引](https://help.aliyun.com/document_detail/154965.htm?spm=a2c4g.11186623.0.0.3e0756097AnQYK#task-2424026)。
+A new index of the destination Logstore takes effect only on data that is written to the Logstore after the index is created. If you create indexes for the destination Logstore after you create the data transformation job, you cannot query data that is written to the Logstore by the job before the indexes are created. In this case, you can reindex the data that has been written to the destination Logstore.For more information, see [Reindex logs for a Logstore](https://help.aliyun.com/document_detail/154965.htm?spm=a2c4g.11186623.0.0.3e0756097AnQYK#task-2424026).
 
-## 提高历史数据加工效率
+## Improve the efficiency of historical data transformation
 
-当您的历史数据量比较大，同时还需要对它们进行加工以进行下一步的数据消费时，受限于单个数据加工任务的处理效率，往往很难满足实时性的需求。这时，您可以针对历史数据创建一个或多个数据加工任务对其进行处理，而对实时导入的数据，使用单独的数据加工任务进行处理。具体案例如下：
-某个logstore中存在大量的历史数据，同时每时每刻还会有很多的数据被导入，我们想要对过去一周的历史数据以及之后导入的数据进行加工处理，如果只创建一个数据加工任务来进行处理的话，将可能会出现加工消费延迟大且不降低的现象。此时可以使用多个加工任务来对历史数据进行分时间段处理，对新导入的数据使用单独的作业进行处理。
-这里我们处理从2023.01.01导入的所有数据，创建数据加工作业的时间为2023.01.16，在此，我们将历史数据按照时间分成四份，每一份使用单独的数据加工作业进行处理，图示如下：
+If you have a large amount of historical log data and want to concurrently transform historical data and real-time data for later data consumption, the requirements for real-time transformation are difficult to meet. This is due to the efficiency limit of a single data transformation job.In this case, you can create one or more data transformation jobs for historical data, and create a separate data transformation job for real-time data.For example,a large amount of historical log data is saved in a Logstore, and a large amount of data will be imported at any time. If you want to transform the historical data of the last week and the data imported later by creating only one data transformation job, high latency may exist and cannot be reduced.In this case, you can use multiple data transformation jobs to transform the historical data in different time ranges, and use a separate data transformation job to transform the newly imported data.
+You need to create a data transformation job on 2023-01-16 to transform data that is written to the source Logstore on and after 2023-01-01 00:00:00. To improve efficiency, you can classify historical data in the time range from 2023-01-01 00:00:00 to 2023-01-15 23:59:59 into three groups, create a data transformation job for each group of data, and then create a data transformation job for data that is written after 2023-01-16 00:00:00. The following figure shows the jobs.
 
 ![](/img/dataprocessdemo/其他/任务分割图示.png)
 
-通过如上设置，可以有效地避免数据加工一直在处理历史数据导致数据延迟很大的问题。
+The preceding configurations prevent the historical data from being transformed all the time and prevent high data latency.

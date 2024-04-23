@@ -1,192 +1,220 @@
-# iLogtail使用Grok语法解析日志
+# Parse logs by using iLogtail that uses the Grok syntax
 
-## 相关概念
+## Terms
+
 ### iLogtail
-iLogtail 是日志服务提供的日志采集 Agent，用于采集阿里云 ECS、自建 IDC、其他云厂商等服务器上的日志。
 
-## Grok语法
-Grok 是一种将行与正则表达式匹配、将行的特定部分映射到专用字段并基于此映射执行操作的方法，它的基础语法是：
+iLogtail is a log collection agent provided by Simple Log Service. It is used to collect logs from servers such as Alibaba Cloud Elastic Compute Service (ECS) instances, servers in self-managed data centers, and servers of other cloud service vendors.
+
+## Grok syntax
+
+Grok matches a row to a regular expression, maps a specific part of the row to a dedicated field, and performs operations based on the mapping. The syntax for a Grok pattern is %{SYNTAX:SEMANTIC}.
+
 ```
 %{SYNTAX:SEMANTIC}
 ```
 
-SYNTAX 是用于匹配文本的匹配规则名称，例如 NUMBER 匹配规则可以匹配 3.14 ，IP 匹配规则可以匹配 127.0.0.1 。SEMANTIC 是为要匹配的文本提供的标识符。例如，3.14 可能是事件的持续时间，因此可以简单地标注 duration ；字符串 127.0.0.1 可能是发出请求的地址，所以标识为 client 。这两个例子用 Grok 表达就像这样：
+The SEMANTIC is the identifier that you provide for the text to be matched.For example, 3.14 may be the duration of an event and a string of 127.0.0.1 may be the IP address from which a request is sent. In this case, you can set the identifiers to duration and client.These two examples can be expressed in Grok in the following format:
 
 ```
 %{NUMBER:duration} %{IP:client}
 ```
-同时，Grok 基于正则表达式之上，因此任何正则表达式在 Grok 中也是有效的。每一个匹配规则，也对应着一个Grok表达式或者正则表达式，例如上文的NUMBER和IP的定义如下：
+
+Grok is implemented based on regular expressions. Therefore, all regular expressions are valid in Grok.Each matching rule corresponds to a Grok expression or a regular expression. For example, the preceding NUMBER and IP address patterns are defined in the following format:
+
 ```
 NUMBER (?:%{BASE10NUM})
 IP (?:%{IPV6}|%{IPV4})
 ```
-而BASE10NUM和IPV4的定义如下：
+
+The BASE10NUM and IPv4 patterns are defined in the following format:
 
 ```
 BASE10NUM (?<![0-9.+-])(?>[+-]?(?:(?:[0-9]+(?:\.[0-9]+)?)|(?:\.[0-9]+)))
 IPV4 (?<![0-9])(?:(?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))(?![0-9])
 ```
-## 方案实施
-### 前提条件
- > 开通阿里云日志服务
 
-### 样例说明
+## Solution implementation
 
-这里以采集文件日志举例。这里假定日志文件为服务器上的/home/test-ilogtail/test-log/processor-grok.log，内容是单行的数据，每条数据包含年月日和一句话。我们需要把这样的一整行数据，解析为年、月、日、说的话四个字段。
+### Prerequisites
 
-  > .样例输入
-  ```
-  2022 Nov 1 "Hello World"
-  ```
-  > .预期输出
-  ```json
-  {
-  "month":"Nov",
-  "year":"2022",
-  "motto":"\"Hello World\"",
-  "day":"1",
-}
-  ```
-## 基础使用
-### 步骤一：创建Project、Logstore
-1. 登录日志服务控制台，在Project列表页面，选择已有的Project或者创建新的Project。
-2. 在日志库标签页，选择已有Logstore或者单击+图标创建新的Logstore。
+> Alibaba Cloud Simple Log Service is activated.
 
-### 步骤二：创建/选择机器组
-1. 在数据接入-> Logtail配置，点击+，接入数据。
-   ![image.png](./img/7.1.png)
-2. 快速数据接入页面，选择单行-文本日志。
-  ![image.png](./img/7.2.png)
+### Example
 
-3. 创建/选择机器组。
-  > .如果您已有可用的机器组，请单击使用现有机器组。
-  > .如果您还没有可用的机器组，请执行以下操作（以ECS为例）。在ECS机器页签中，通过手动选择实例方式选择目标ECS实例，单击立即执行。
-   ![image.png](./img/7.3.png)
+In this example, file logs are collected.The logs are stored in the /home/test-ilogtail/test-log/processor-grok.log path on the server, and each row of the logs indicates a data entry. Each data entry contains a date and a sentence.In this example, each data row is parsed into four fields: year, month, day and motto.
 
-- 安装完成后，单击确认安装完毕。
-> .在创建机器组页面，输入名称，单击下一步。日志服务支持创建IP地址机器组和用户自定义标识机器组
- ![image.png](./img/7.4.png)
+> .Sample input
 
+```
+2022 Nov 1 "Hello World"
+```
 
-  > .在创建机器组页面，输入名称，单击下一步。日志服务支持创建IP地址机器组和用户自定义标识机器组
-
-### 步骤三：创建Grok采集配置
-根据样例需求，编辑采集配置文件。
-Grok 插件有丰富的可配置项，详细信息可以参考[链接](https://help.aliyun.com/document_detail/196154.html?spm=a2c4g.26937906.0.0.615f12c9SsVo9e#section-ucx-pqc-4wh){target="_blank"}。
+> .Expected output
 
 ```json
 {
-    "processors": [
-        {
-            "detail": {
-                "SplitKey": "content"
-            },
-            "type": "processor_split_log_string"
-        },
-        {
-            "detail": {
-                "SourceKey": "content",
-                "IgnoreParseFailure": false,
-                "KeepSource": false,
-                "Match": [
-                    "%{YEAR:year} %{MONTH:month} %{MONTHDAY:day} %{QUOTEDSTRING:motto}"
-                ]
-            },
-            "type": "processor_grok"
-        }
-    ]
+  "month": "Nov",
+  "year": "2022",
+  "motto": "\"Hello World\"",
+  "day": "1"
 }
-
 ```
- ![image.png](./img/7.5.png)
 
-点击下一步，开始查询日志。
+## Basic usage
 
-### 步骤四：查询采集后的日志
-1. 写入日志
-在ECS中写入日志文件
+### Step 1: Create a project and a Logstore
+
+1. Log on to the Simple Log Service console. In the Projects section, select an existing project or create a new project.
+2. On the Logstore tab, select an existing Logstore or click the + icon to create a Logstore.
+
+### Step 2: Create or select a machine group
+
+1. After you select a machine group, choose Data Collection > Logtail Configurations and click the + icon to collect data.
+   ![image.png](./img/7.1.png)
+2. In the Quick Data Import dialog box, select Single Line - Text Log.
+   ![image.png](./img/7.2.png)
+
+3. Create or select a machine group.
+   > .If a machine group is available, click Use Existing Machine Groups in the Create Machine Group step.
+   > .If no machine groups are available, perform the following steps to create a machine group. In this example, an ECS instance is used.On the ECS Instance tab, select an ECS instance and click Execute Now.
+   > ![image.png](./img/7.3.png)
+
+- After the installation is complete, click Complete Installation.
+
+  > .Simple Log Service allows you to create IP address-based machine groups and custom identifier-based machine groups.
+  > ![image.png](./img/7.4.png)
+
+  > .In the Create Machine Group step, specify a name for the machine group and click Next.
+
+### Step 3: Create a Grok collection configuration
+
+Modify the collection configuration file based on the requirements of the example.
+The Grok plug-in supports a variety of configuration items. For more information, see the [Grok mode](https://help.aliyun.com/document_detail/196154.html?spm=a2c4g.26937906.0.0.615f12c9SsVo9e#section-ucx-pqc-4wh){target="\_blank"} section of the "Extract content from log fields" topic.
+
+```json
+{
+  "processors": [
+    {
+      "detail": {
+        "SplitKey": "content"
+      },
+      "type": "processor_split_log_string"
+    },
+    {
+      "detail": {
+        "SourceKey": "content",
+        "IgnoreParseFailure": false,
+        "KeepSource": false,
+        "Match": ["%{YEAR:year} %{MONTH:month} %{MONTHDAY:day} %{QUOTEDSTRING:motto}"]
+      },
+      "type": "processor_grok"
+    }
+  ]
+}
+```
+
+![image.png](./img/7.5.png)
+
+Click Next to query logs.
+
+### Step 4: Query the collected logs
+
+1. Write logs.
+   Write log files to the ECS instance.
+
 ```
 echo '2022 Nov 1 "Hello World"' >> /home/test-ilogtail/test-log/processor-grok.log
 ```
-2. 登录日志服务控制台。
-3. 选择目标Project和Logstore，点开logstore菜单，选择放大镜按钮，查询分析，即可查询采集到的日志。可以看到，一条日志已经被解析为了不同的字段。
 
- ![image.png](./img/7.8.png)
+2. Log on to the Simple Log Service console.
+3. Select the project and the Logstore. On the Logstore tab, click the Search & Analysis icon to query the collected logs.A log entry is parsed into different fields.
 
-##  进阶用法
-### 自定义匹配规则
-Grok 支持两种匹配规则自定义的方式：
-直接配置：设置 Grok 插件配置文件的 CustomPatterns 参数，可以配置多条。这种方式支持修改匹配模式后热加载生效。
-文件导入：预先创建匹配规则文件，将文件所在的文件夹通过 Grok 插件配置文件的 CustomPatternDir 参数导入。这种方式若修改匹配规则文件，由于无法触发配置文件更新，需要重启 ilogtail 使匹配规则生效。
+![image.png](./img/7.8.png)
 
-Grok 插件自带一些默认加载的匹配规则，也提供了其他常用的匹配规则（需要将文件导入）。若是不同定义方法的匹配规则出现规则名冲突的情况，Grok 会按以下优先级使用匹配规则：CustomPatterns > CustomPatternDir > 默认匹配规则。
+## Advanced usage
 
-### 优化匹配失败时间
-Grok 插件的性能与正则表达式一致。所有的匹配规则和 Match 参数中的匹配目标都会在插件初始化时翻译成正则表达式并编译，在实际运行时实际就是进行正则表达式的匹配，性能取决于正则引擎效率。<br />与正则表达式类似，Grok 在匹配失败的情况下时间开销巨大，为了提高效率必须优化匹配失败的时间。这里给出几种可以优化匹配失败时间的思路。
+### Customize matching rules
 
-### 表达式与数据尽量完全匹配
+Grok supports two methods to customize matching rules.
+Direct configuration: Configure the CustomPatterns parameter in the configuration file of the Grok plug-in. You can configure multiple parameters.In this mode, hot load takes effect after the matching mode is modified.
+File import: Create a matching rule file in advance and import the file by using the CustomPatternDir parameter in the configuration file of the Grok plug-in.If you modify the matching rule file in this mode, you must restart iLogtail to make the matching rule take effect because the configuration file cannot be updated.
 
-在 Grok 表达式中添加锚点，例如^、$等，减少不必要的匹配尝试
-设置超时时间，即配置参数中的 TimeoutMilliSeconds 参数
+By default, the Grok plug-in provides preset matching rules. The plug-in also provides other commonly used matching rules. You need to import the matching rule files.If a name conflict occurs between matching rules that are defined by using different methods, Grok uses matching rules based on the following priority: Matching rules defined by the CustomPatterns parameter > Matching rules defined by the CustomPatternDir parameter > Default matching rules.
 
-### 多项匹配优化
-使用多项匹配时，由于需要一个个匹配合适的表达式，会经历很多匹配失败的情况。在使用时，最好是能做到尽量不使用多项匹配，或者减少重复的匹配。下面是使用分层策略减少重复匹配的一个样例。
+### Optimize the match failure period
 
- >. 输入
-输入共三条数据。
+### Maximize the match between expressions and data
+
+Add anchor points such as ^ and $ in Grok expressions to reduce unnecessary matches.
+Configure the TimeoutMilliSeconds parameter in the configuration parameters to specify the timeout period.
+
+### Optimize multi-item matching
+
+When you use the multi-item matching feature, match failures may occur because expressions are matched one by one.If possible, we recommend that you do not use the multi-item matching feature, or you reduce duplicate matches.The following example shows how to use a tiered policy to reduce duplicate matches.
+
+> . Sample input
+> Enter three data entries.
+
 ```
 '8.8.8.8 process-name[666]: a b 1 2 a lot of text at the end'
 '8.8.8.8 process-name[667]: a 1 2 3 a lot of text near the end;4'
 '8.8.8.8 process-name[421]: a completely different format | 1111'
 ```
->. 常规配置
 
-标准的多项匹配，一个一个匹配完整的表达式。
+> . Regular configurations
+
+The expressions are matched one by one, which is a standard multi-item match.
 
 ```
 processors:
   - Type: processor_grok
     SourceKey: content
-    Match: 
-      - '%{IPORHOST:clientip} %{DATA:process_name}\[%{NUMBER:process_id}\]: %{WORD:word_1} %{WORD:word_2} %{NUMBER:number_1} %{NUMBER:number_2} %{DATA:data}'    
+    Match:
+      - '%{IPORHOST:clientip} %{DATA:process_name}\[%{NUMBER:process_id}\]: %{WORD:word_1} %{WORD:word_2} %{NUMBER:number_1} %{NUMBER:number_2} %{DATA:data}'
       - '%{IPORHOST:clientip} %{DATA:process_name}\[%{NUMBER:process_id}\]: %{WORD:word_1} %{NUMBER:number_1} %{NUMBER:number_2} %{NUMBER:number_3} %{DATA:data};%{NUMBER:number_4}'
       - '%{IPORHOST:clientip} %{DATA:process_name}\[%{NUMBER:process_id}\]: %{DATA:data} \| %{NUMBER:number}'
 
 ```
->. 优化配置
-先统一处理前半部分，然后统一处理后半部分。
+
+> . Configuration optimization
+> Process the front half of each data entry and then process the latter half of each data entry.
+
 ```
 processors:
   - Type: processor_grok
     SourceKey: content
-    Match: 
+    Match:
       - '%{IPORHOST:clientip} %{DATA:process_name}\[%{NUMBER:process_id}\]: %{GREEDYDATA:content_2}'
     KeepSource: false
   - Type: processor_grok
     SourceKey: content_2
-    Match: 
+    Match:
       - '%{WORD:word_1} %{WORD:word_2} %{NUMBER:number_1} %{NUMBER:number_2} %{GREEDYDATA:data}'
       - '%{WORD:word_1} %{NUMBER:number_1} %{NUMBER:number_2} %{NUMBER:number_3} %{DATA:data};%{NUMBER:number_4}'
       - '%{DATA:data} \| %{NUMBER:number}'
     KeepSource: false
 ```
-## 如何快速配置 Grok 插件
-我们用一个例子，来学习如何使用 Grok 插件。假设我们有一些日志，他们有三种格式：
+
+## Configure the Grok plug-in
+
+The following example shows how to use the Grok plug-in.In this example, logs of the following types are provided:
 
 ```
-# 日志类型A：普通运行日志 
+# LOGA: regular run logs
 # 'tag=run | 2022-11-24 16:22:37 | 0.0.0.0 | 12345 | "some info"'
 tag=run | time | ip | process_id | content
 
-# 日志类型B：运行成功日志
+# LOGB: success logs
 # 'tag=succses | 2022-11-24 16:23:02 | 0.0.0.0 | 12345 | "some info" | 114 | "some result"'
 tag=success | time | ip | process_id | content | interval | result
 
-# 日志类型C：运行失败日志
+# LOGC: failure logs
 # 'tag=succses | 2022-11-24 16:23:02 | 0.0.0.0 | 12345 | 1000 | "type" | "some msg"'
 tag=fail | time | ip | process_id | interval | err_type | err_msg
 ```
-我们需要同时处理三种类型的日志，分别进行解析。如何分析这样一个需求？回想上面的内容，我们可能需要使用多项匹配。我们定义LOGA、LOGB、LOGC三种自定义的匹配规则，这里因为量不多，而且为了方便查看，就直接写在 CustomPatterns 参数里：
+
+The three types of logs need to be processed at the same time and separately parsed.To process logs based on such a requirement,you need to use the multi-item matching feature.You need to define only three custom matching rules based on LOGA, LOGB, and LOGC. Therefore, you can directly define the custom matching rules in the CustomPatterns parameter.
 
 ```
 processors:
@@ -195,23 +223,23 @@ processors:
     CustomPatterns:
       LOGA: ''
       LOGB: ''
-      LOGC: '' 
-    Match: 
+      LOGC: ''
+    Match:
       -	'%{LOGA}'
       - '%{LOGB}'
       - '%{LOGC}'
     KeepSource: false
 ```
 
-如何定义这三个自定义的匹配规则呢？来看一下每个类型包含的数据类型。以最复杂的 B 为例，它包括了：
+To define these three custom matching rules,you must analyze the types of data that is contained in each type of log.In this example, LOGB is analyzed. LOGB contains the following types of data:
 
-  > .tag：格式是“tag=success”
-  > .time：是一个 timestamp 格式的日期
-  > .ip：是一个 ipv4 地址
-  > .process_id、interval：正整数
-  > .content、result：字符串
+> .tag：The value is in the format of tag=success.
+> .time：The value is a date in the timestamp format.
+> .ip：The value is an IPv4 address.
+> .process_id、interval：The value is a positive integer.
+> .content、result：The value is a string.
 
-查阅之前提到的 Grok 插件自带一些默认加载的匹配规则，发现上述格式处理 tag 都可以直接使用，例如time 可以用 grok 表达式 %{TIMESTAMP_ISO8601:time}将这里的值提取到 time 字段中去。还剩下什么呢？tag 和 “|”。这个解决起来就更简单了，之前提到过，grok 语法基于正则表达式，这里可以直接用正则表达式自定义一个 tag 匹配规则 TAG tag=%{WORD:tag}，“|”直接写在表达式中。整理好的 Grok 插件如下：
+The Grok plug-in provides preset matching rules by default. You can process the tags in the preceding format. For example, you can use the Grok expression %{TIMESTAMP_ISO8601:time} to parse the value in the log to the time field.The Grok syntax is implemented based on regular expressions. To process the tag and vetical bar (|), you can directly use a regular expression to customize a tag matching rule, such as TAG tag=%{WORD:tag}, and write the vetical bar (|) in the expression.The following Grok plug-in is configured:
 
 ```
 processors:
@@ -221,21 +249,21 @@ processors:
       TAG: 'tag=%{WORD:tag}'
       LOGA: '%{TAG} \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{QUOTEDSTRING:content}'
       LOGB: '%{TAG} \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{QUOTEDSTRING:content} \| %{NUMBER:interval} \| %{QUOTEDSTRING:result}'
-      LOGC: '%{TAG} \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{NUMBER:interval} \| %{QUOTEDSTRING:err_type} \| %{QUOTEDSTRING:err_msg}' 
-    Match: 
+      LOGC: '%{TAG} \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{NUMBER:interval} \| %{QUOTEDSTRING:err_type} \| %{QUOTEDSTRING:err_msg}'
+    Match:
       -	'%{LOGA}'
       - '%{LOGB}'
       - '%{LOGC}'
     KeepSource: false
 ```
 
-这样的插件已经是可以使用的了，但是他还是有可以改进的地方。我们发现三种日志的开头非常相似，匹配失败的可能性非常大。一种方法是参考前面提到的多项匹配优化，使用分层策略进行处理。但是这里还有更简单的方法。三种日志可以直接通过开头来区分，所以不如直接就在开头区分好。将 tag 直接用正则表达式书写，并在前面加上锚点，可以极大的减少匹配失败的消耗。又由于 CustomPatterns 中只剩下三个待匹配的表达式，就直接将它们写在 Match 里。修改后的 Grok 插件配置如下：
+Such a plug-in is already available, but it can be optimized.The beginning of the three types of logs is similar and match failures may occur.To resolve the issue, you can use a tiered policy to optimize the multi-item matching configurations.Alternatively, you can optimize the multi-item matching configurations in an easier way.The three types of logs can be distinguished directly by the beginning.Therefore, you can write tags directly with regular expressions and add anchor points in front of the tags to reduce match failures.Only three expressions to be matched exist in the CustomPatterns parameter. Directly write the expressions in the Match parameter.The following Grok plug-in is configured:
 
 ```
 processors:
   - Type: processor_grok
     SourceKey: content
-    Match: 
+    Match:
       -	'^tag=(?P<tag>run) \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{QUOTEDSTRING:content}'
       - '^tag=(?P<tag>success) \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{QUOTEDSTRING:content} \| %{NUMBER:interval} \| %{QUOTEDSTRING:result}'
       - '^tag=(?P<tag>fail) \| %{TIMESTAMP_ISO8601:time} \| %{IP:ip} \| %{NUMBER:process_id} \| %{NUMBER:interval} \| %{QUOTEDSTRING:err_type} \| %{QUOTEDSTRING:err_msg}'
@@ -243,23 +271,8 @@ processors:
 
 ```
 
-这样我们就成功配置了一个简单高效的 Grok 插件。
+A simple and efficient Grok plug-in is configured.
 
-## 关于iLogtail
+## About iLogtail
 
-iLogtail作为阿里云SLS提供的可观测数据采集器，可以运行在服务器、容器、K8s、嵌入式等多种环境，支持采集数百种可观测数据（日志、监控、Trace、事件等），已经有千万级的安装量。目前，iLogtail已正式开源，欢迎使用及参与共建。
-
-GitHub: https://github.com/alibaba/ilogtail
-
-社区版文档：https://ilogtail.gitbook.io/ilogtail-docs/about/readme
-
-企业版官网：https://help.aliyun.com/document_detail/65018.html
-
-哔哩哔哩：阿里云SLS
-
-知乎：阿里云日志服务
-
- ![image.png](./img/7.9.png)
-
-
-
+iLogtail is an observable data collector provided by Alibaba Cloud Simple Log Service. It can run in a variety of environments, such as servers, containers, Kubernetes clusters, and embedded systems. It can collect hundreds of types of observable data such as logs, monitoring data, traces, and events. It has been installed tens of millions of times.iLogtail has been officially open source. Welcome to use iLogtail and make contribution to iLogtail.

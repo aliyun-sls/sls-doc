@@ -1,10 +1,11 @@
-# 同一Logstore下的Logtail采集错误数监控
+# The daily growth rate of the Logtail collection errors that occurred in the same Logstore exceeds the specified threshold.
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。当同一Logstore在5分钟内出现的Logtail采集错误数量超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If the number of Logtail collection errors that occurred in a Logstore within the last 5 minutes exceeds the specified threshold, an alert is triggered. Data of the last 5 minutes is inspected at a 5-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "logstore"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail采集错误。");
+        descAnno.setValue("A total of ${cnt} Logtail collection errors occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("同一Logstore下的Logtail采集错误数量过多");
+        titleAnno.setValue("The number of Logtail collection errors that occur in a Logstore exceeds the specified threshold.");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_logtail_logstore_err_cnt");
-        alert.setDisplayName("同一Logstore下的Logtail采集错误数监控");
+        alert.setDisplayName("Monitoring on the Logtail collection errors in a Logstore");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_logtail_logstore_err_cnt",
-        "displayName": "同一Logstore下的Logtail采集错误数监控",
+        "displayName": "Monitoring on the Logtail collection errors in a Logstore",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail采集错误。"
+                "value": "A total of ${cnt} Logtail collection errors occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes."
             }, {
                 "key": "title",
-                "value": "同一Logstore下的Logtail采集错误数量过多"
+                "value": "The number of Logtail collection errors that occur in a Logstore exceeds the specified threshold."
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: logtail_alarm and project: \"${project}\" and logstore: \"${logstore}\""
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_logtail_logstore_err_cnt",
-		DisplayName: "同一Logstore下的Logtail采集错误数监控",
+		DisplayName: "Monitoring on the Logtail collection errors in a Logstore",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，共出现${cnt}次Logtail采集错误。",
+					Value: "A total of ${cnt} Logtail collection errors occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "同一Logstore下的Logtail采集错误数量过多",
+					Value: "The number of Logtail collection errors that occur in a Logstore exceeds the specified threshold.",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

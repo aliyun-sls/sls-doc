@@ -1,10 +1,11 @@
-# 磁盘绑定的pvc发生slowIO
+# Slow I/O rate of the PVC that is associated with a cloud disk
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在事件：磁盘绑定的pvc发生slowIO（kubernetes csi pvc latency load too high）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:Slow I/O rate of the PVC that is associated with a cloud disk（kubernetes csi pvc latency load too high）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "kind", "object_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -114,7 +115,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_csi_at_latency_too_high");
-        alert.setDisplayName("磁盘绑定的pvc发生slowIO");
+        alert.setDisplayName("Slow I/O rate of the PVC that is associated with a cloud disk");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -148,7 +149,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_csi_at_latency_too_high",
-        "displayName": "磁盘绑定的pvc发生slowIO",
+        "displayName": "Slow I/O rate of the PVC that is associated with a cloud disk",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -247,7 +248,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_csi_at_latency_too_high",
-		DisplayName: "磁盘绑定的pvc发生slowIO",
+		DisplayName: "Slow I/O rate of the PVC that is associated with a cloud disk",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

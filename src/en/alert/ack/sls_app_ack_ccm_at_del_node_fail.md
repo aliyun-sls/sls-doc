@@ -1,10 +1,11 @@
-# 删除节点失败
+# Node deletion failure
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为:存在删除节点失败的事件（kubernetes delete node failed）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered: Node deletion failure（kubernetes delete node failed）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "node_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -110,7 +111,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_ccm_at_del_node_fail");
-        alert.setDisplayName("删除节点失败");
+        alert.setDisplayName("Node deletion failure");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -144,7 +145,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_ccm_at_del_node_fail",
-        "displayName": "删除节点失败",
+        "displayName": "Node deletion failure",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -240,7 +241,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_ccm_at_del_node_fail",
-		DisplayName: "删除节点失败",
+		DisplayName: "Node deletion failure",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

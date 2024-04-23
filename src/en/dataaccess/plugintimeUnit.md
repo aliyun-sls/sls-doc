@@ -1,140 +1,158 @@
-# Logtail日志采集支持高精度时间戳
+# Parse high-precision timestamps from raw logs when you use Logtail to collect logs
 
-本文为您介绍在使用Logtail进行日志采集时，如何从原始日志中提取毫秒精度时间戳。
+This topic describes how to parse timestamps that are accurate to milliseconds from raw logs when you use Logtail to collect logs.
 
-## 方案架构
-Logtail是日志服务提供的日志采集Agent，用于采集阿里云ECS、自建IDC、其他云厂商等服务器上的日志。本文介绍Logtail的功能、优势、使用限制及配置流程等信息。
-文本日志采集场景下有两种形式：
-> . 单一文本模式：提供单一类型文本日志的采集能力，包括极简模式、完整正则模式、分隔符模式、JSON模式等。核心处理部分由日志切分（Splitter）和日志解析（Parser）组成，根据选择的日志采集模式，把读取的文件内容切割成为一条条日志（比如单行基于换行符、多行基于行首正则），然后交由日志解析从单条日志中提取字段。由此可见，日志的采集模式固定了处理行为，比如完整正则模式要求日志必须完全符合设置的正则表达式，否则会报错。这种基于采集模式的固定行为，拥有更好的性能，但牺牲了灵活性。
+## Architecture
 
- ![image.png](./img/8.1.png)
+Logtail is a log collection agent provided by Simple Log Service. It is used to collect logs from servers such as Alibaba Cloud Elastic Compute Service (ECS) instances, servers in self-managed data centers, and servers of other cloud service vendors.You can collect text logs in the following two modes:
 
->.插件扩展模式：实际业务场景下，日志可能往往不再是单一格式，有可能同时由 JSON、分隔符等多部分组成而成。Logtail 引入了插件扩展模式，一方面借助 Logtail 完善的事件机制来保证数据读取阶段的可靠性，另一方面，依赖于插件系统丰富的插件，来加强 Logtail 对复杂日志的处理能力。该模式下，会牺牲一定的性能和计算资源来换取灵活性。如下图，Logtail 会将日志切分的结果直接提交给插件进行处理，在后者中，我们可以组合多种处理插件，来满足我们的需求。
+> . Single text mode: provides a capability to collect text logs of a single type, including simple mode, full regex mode, delimiter mode, and JSON mode.The core of the mode consists of the splitter and parser. Based on the log collection mode that you select, the read file content is split into log entries. For example, a single line is split based on line breaks and multiple lines are split based on the regular expressions that are used to match the beginning of the first line of a log. Then, the log entries are parsed to extract fields from a single log entry.Therefore, the log collection mode determines the action to process logs. For example, the full regex mode requires that the logs must completely match the set regular expressions. Otherwise, an error is reported.
 
- ![image.png](./img/8.2.png)
+![image.png](./img/8.1.png)
 
-上述两种采集模式，因为实现机制上的差异，所以采集配置上也有所差异。高精度时间戳提取功能也需要支持这两种模式，并且也会稍有差异：
+> .Plug-in-based mode: In actual business scenarios, logs may consist of multiple parts such as JSON data and delimiters.Logtail supports the plug-in-based mode. On the one hand, this mode uses the comprehensive event mechanism of Logtail to ensure the reliability during the data reading phase. On the other hand, this mode relies on various plug-ins of the plug-in system to enhance the processing capability of Logtail for complex logs.In this mode, a specific amount of performance and computing resources is consumed to improve flexibility.The following figure shows that Logtail directly submits the log splitting result to the plug-in for processing. During the log processing phase, you can combine multiple plug-ins to meet your business requirements.
 
-- .单一文本模式
+![image.png](./img/8.2.png)
 
- > .配置参数：采用高级参数实现功能扩展。
- > .时间转换格式：纯C++实现，因为对于毫秒/微秒/纳秒精度解析支持不友好，时间转换格式配置到秒即可。例如
-%Y-%m-%d %H:%M:%S。
+The preceding two log collection modes have different collection configurations due to differences in implementation mechanisms.
 
-- .插件扩展模式
+- .Single text mode
 
-> .配置参数：因为插件扩展能力更强，所以使用processor_strptime即可完成高精度时间提取。
-> .时间转换格式：Golang实现，对高精度时间天然支持，可以通过%f实现高精度时间的解析。例如，%Y-%m-%d %H:%M:%S.%f，其中%f为秒的小数部分，精度最高支持为纳秒。时间解析格式详见链接。
-如何快速区分两种模式，文本采集场景下，如果采集配置勾选了启动插件处理，那么就是插件扩展模式，否则为单一文本模式。
+> .Configuration parameters: Advanced parameters are used to extend the feature.
+> .Time conversion format: Time is converted only in C++. The single text mode does not completely support the millisecond, microsecond, or nanosecond-precision timestamp parsing. You can set the time conversion format to seconds.
+> %Y-%m-%d %H:%M:%S。
 
-配置参数：因为插件扩展能力更强，所以使用processor_strptime即可完成高精度时间提取。
+- .Plug-in-based mode
 
-时间转换格式：Golang实现，对高精度时间天然支持，可以通过%f实现高精度时间的解析。例如，%Y-%m-%d %H:%M:%S.%f，其中%f为秒的小数部分，精度最高支持为纳秒。时间解析格式详见链接。
+> .Configuration parameters: The plug-in-based mode provides higher performance. You can use the processor_strptime plug-in to parse high-precision timestamps.
+> .Time conversion format: Time is converted in Golang. The plug-in-based mode supports high-precision timestamp parsing. You can use %f to parse high-precision timestamps.For more information about the timestamp parsing format, see the relevant link.
+> You can use the following method to distinguish the two modes: In the text log collection scenario, if you turn on Enable Plug-in Processing for the collection configuration, the plug-in-based mode is used. Otherwise, the single text mode is used.
 
-如何快速区分两种模式，文本采集场景下，如果采集配置勾选了启动插件处理，那么就是插件扩展模式，否则为单一文本模式。
+Configuration parameters: The plug-in-based mode provides higher performance. You can use the processor_strptime plug-in to parse high-precision timestamps.
 
- ![image.png](./img/8.4.png)
+Time conversion format: Time is converted in Golang. The plug-in-based mode supports high-precision timestamp parsing. You can use %f to parse high-precision timestamps.For example, you can set the time conversion format to %Y-%m-%d %H:%M:%S.%f. %f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.
 
-## 方案实施
-本章节以JSON模式为例展示操作步骤。
+You can use the following method to distinguish the two modes: In the text log collection scenario, if you turn on Enable Plug-in Processing for the collection configuration, the plug-in-based mode is used. Otherwise, the single text mode is used.
 
-### 解析效果展示
-原始日志格式如下，其中t1字段为原始日志的时间戳（包含了更高时间精度）。
+![image.png](./img/8.4.png)
+
+## Solution implementation
+
+This section describes how to parse timestamps in JSON mode.
+
+### Log parsing results
+
+The raw logs are in the following format. The t1 field indicates the timestamp of the raw log. The timestamp contains a higher-precision time.
+
 ```json
-{"t1": "2022-06-01 22:04:56.344754012", "t2": "2022-06-01 22:04:56", "a":"b","c":2,"d":1, "seq": 11}
+{
+  "t1": "2022-06-01 22:04:56.344754012",
+  "t2": "2022-06-01 22:04:56",
+  "a": "b",
+  "c": 2,
+  "d": 1,
+  "seq": 11
+}
 ```
 
-处理后的效果如下。其中，__time__为SLS时间戳，继续是秒级精度，precise_timestamp为从t1提取出毫秒精度时间戳。
+The following figure shows the parsing results.The time displayed in the following figure is the timestamp of Simep Log Service, which is accurate to the seconds. The value of the precise_timestamp parameter indicates the millisecond-precision timestamp that is parsed from the t1 field.
 
- ![image.png](./img/8.5.png)
+![image.png](./img/8.5.png)
 
-## 使用前提
-已在服务器上安装Logtail，并已经创建了包含该服务器的机器组。
-说明：高精度时间戳提取功能需要Linux Logtail 1.0.32及以上版本，Window Logtail 1.0.0.32及以上版本。
+## Prerequisites
 
-### 场景一：单一文本模式操作步骤
-### 步骤1：创建JSON模式的采集配置
-采集配置选择JSON模式，关闭系统时间，设定“指定时间字段Key名称”为t1，“时间转换格式”设定为%Y-%m-%d %H:%M:%S。时间转换格式需要与原始日志中的时间格式保持一致，完整格式参加常见时间格式表达式，因为单一文本模式仅支持秒级精度格式化解析，所以时间格式只需配置到秒，无需配置毫秒、微秒等信息。
+Logtail is installed on a server and a machine group that contains the server is created.
+The high-precision timestamp parsing feature requires Linux Logtail 1.0.32 or later or Windows Logtail 1.0.0.32 or later.
 
- ![image.png](./img/8.6.png)
+### Scenario 1： Parse timestamps in single text mode
 
-### 步骤2：采集配置开启高级参数扩展
-在扩展配置中添加"enable_precise_timestamp": true。
+### Step 1： Create a log collection configuration in JSON mode
 
- ![image.png](./img/8.7.png)
+In the Logtail Configuration step, set the Mode parameter to JSON Mode, turn off Use Sytem Time, and set the Ket Name of Time Field field to t1 and the Time Conversion Format field to %Y-%m-%d %H:%M:%S.The time conversion format must be consistent with the time format in raw logs. For more information, see the [Commonly used time formats in logs] section of the "Time formats" topic. The single text mode only supports second-precision timestamp parsing. Therefore, you need to set the time conversion format only to seconds instead of milliseconds or microseconds.
 
-### 步骤3：调整高精度时间字段或单位（可选）
-如果默认高精度字段名和毫秒的精度无法满足实际需求，可以通过precise_timestamp_key自定义高精度时间戳字段名，通过precise_timestamp_unit参数调整高精度时间戳的时间精度。
+![image.png](./img/8.6.png)
 
- ![image.png](./img/8.8.png)
+### Step 2：Configure advanced parameters for the log collection configuration
 
- 例如，如下配置可以实现微秒级的时间精度提取，并将结果存入precise_timestamp_new字段。
+Set the enable_precise_timestamp parameter to true in the advanced configurations."enable_precise_timestamp": true。
 
- ```json
- {
+![image.png](./img/8.7.png)
+
+### Step 3：Modify the name of the high-precision timestamp field or time precision (optional)
+
+If the default name of the high-precision timestamp field and the precision in milliseconds cannot meet your business requirements, you can use the precise_timestamp_key parameter to customize the name of the high-precision timestamp field and use the precise_timestamp_unit parameter to adjust the time precision of high-precision timestamps.
+
+![image.png](./img/8.8.png)
+
+For example, you can use the following configuration to parse microsecond-precision timestamps and store the results to the precise_timestamp_new field.
+
+```json
+{
   "enable_precise_timestamp": true,
   "precise_timestamp_key": "precise_timestamp_new",
   "precise_timestamp_unit": "us"
 }
+```
 
- ```
+### Scenario 2：Parse timestamps in plug-in-based mode
 
-### 场景二：模式操作步骤
-### 步骤1：创建JSON模式的采集配置
-同纯Logtail模式操作中的步骤一。
-### 步骤2：启动插件处理
-开启插件处理后，SLS前端会自动生成对应的插件配置，其中processor_strptime为日志时间提取processor插件。
-编辑插件配置，开启高精度时间配置，如下图红框部分，Format需要根据实际的时间格式配置。
+### Step 1： Create a log collection configuration in JSON mode
+
+This step is the same as Step 1 in Scenario 1.
+
+### Step 2：Enable plug-in processing
+
+After plug-in processing is enabled, Simple Log Service automatically generates the corresponding plug-in configuration in the frontend. The processor_strptime plug-in is the processor that parses timestamps of logs.
+Specify parameters for the plug-in and enable the high-precision timestamp parsing feature. The following sample code provides an example on the parameter settings. Specify the Format parameter based on the actual time format.
 
 ```json
-    {
-      "detail": {
-        "SourceKey": "t1",
-        "Format": "%Y-%m-%d %H:%M:%S.%f",
-        "EnablePreciseTimestamp": true
-      },
-      "type": "processor_strptime"
-    }
+{
+  "detail": {
+    "SourceKey": "t1",
+    "Format": "%Y-%m-%d %H:%M:%S.%f",
+    "EnablePreciseTimestamp": true
+  },
+  "type": "processor_strptime"
+}
 ```
-### 步骤3：调整高精度时间字段或单位（可选）
 
-如果默认高精度字段名和毫秒的精度无法满足实际需求，可以通过配置[可选参数] (https://help.aliyun.com/document_detail/196161.html?spm=a2c4g.26937906.0.0.6c923b52v9rEdh#section-r4r-ukg-8b1)控制。
+### Step 3：Modify the name of the high-precision timestamp field or time precision (optional)
 
-### 方案验证
-上述采集配置完成后，可以到Logstore查询页面发现高精度时间戳已经存入precise_timestamp字段。
+If the default name of the high-precision timestamp field and the precision in milliseconds cannot meet your business requirements, you can configure optional parameters to modify the name of the high-precision timestamp field and the precision. For more information, see the [Time format supported by strptime](https://help.aliyun.com/document_detail/196161.html?spm=a2c4g.26937906.0.0.6c923b52v9rEdh#section-r4r-ukg-8b1) section of the "Extract log time" topic.
 
- 针对precise_timestamp创建索引后，可以实现过滤、大小比较、排序等功能。
-  ![image.png](./img/8.10.png)
+### Solution verification
 
+After the preceding log collection configuration is complete, check whether the high-precision timestamp is stored in the precise_timestamp field on the Logstore page.
 
-## 常见问题
-### 问题1
-原因：纯Logtail模式时间精度解析，不支持%f。
-发现日志并未正常解析。
-> .发现日志并未正常解析。
- ![image.png](./img/8.12.png)
+After you create an index on the precise_timestamp field, you can implement features such as filtering, size comparison, and sorting.
+![image.png](./img/8.10.png)
 
-> .可以在对应logstore下点击诊断按钮进行分析。发现存在时间格式解析异常PARSE_TIME_FAIL_ALARM，因为单一文本模式仅支持到秒级精度的极细，所以不支持提示中的%f。完整格式支持请参考常见时间格式表达式。
- ![image.png](./img/8.13.png)
+## FAQ
 
- ### 问题2
-原因：插件扩展模式支持%f，但是时间格式需要与源时间内容保持一致。
-配置采集后，发现高精度时间并未正常提取。
- ![image.png](./img/8.14.png)
+### Question 1
 
-> .登录logtail机器，查看日志，发现大量STRPTIME_PARSE_ALARM异常日志。
+Cause: The single text mode does not support %f.
+Logs are not parsed as expected.
+
+> .Logs are not parsed as expected.
+> ![image.png](./img/8.12.png)
+
+> .You can click the Diagnose icon below the name of the Logstore for analysis.An error "PARSE_TIME_FAIL_ALARM" is reported, which indicates that the time conversion format is abnormal. This is because %f is not supported in the single text mode. The single text mode only supports the precision that is accurate to seconds.For more information, see the [Commonly used time formats in logs] section of the "Time formats" topic.
+> ![image.png](./img/8.13.png)
+
+### Question 2
+
+Cause: The plug-in-based mode supports %f. However, the formats of the parsed timestamps must be consistent with the time format of the log.
+Otherwise, the high-precision timestamps are not parsed as expected.
+![image.png](./img/8.14.png)
+
+> .Log on to the server on which Logtail is installed and view the logs. An error "STRPTIME_PARSE_ALARM" is reported for a large number of abnormal logs.
+
 ```
 tail -f /usr/local/ilogtail/logtail_plugin.LOG
 2022-04-30 08:10:45 [WRN] [strptime.go:163] [processLog] [##1.0##yemo-test-hongkong$bigdata-config,ecs-test-file-logstore] AlarmType:STRPTIME_PARSE_ALARM strptime(2022-04-30 08:10:45,873, %Y-%m-%d %H:%M:%S %f) failed: 0001-01-01 00:00:00 +0000 UTC, <nil>
 ```
 
-原始日志：2022-04-30 08:10:45,873，秒与高精度时间（这里是毫秒）之间分隔符为,。
-解析格式：%Y-%m-%d %H:%M:%S %f，秒与高精度时间（这里是毫秒）之间分隔符为。
-修改采集配置中时间转换格式为%Y-%m-%d %H:%M:%S,%f即可。
-
-
-
-
-
-
-
+Raw log: 2022-04-30 08:10:45,873. The delimiter between seconds and milliseconds is a comma (,).
+Time conversion format: %Y-%m-%d %H:%M:%S %f. The delimiter between seconds and milliseconds is a space.
+To resolve this issue, change the time conversion format to %Y-%m-%d %H:%M:%S,%f for the Logtail configuration.

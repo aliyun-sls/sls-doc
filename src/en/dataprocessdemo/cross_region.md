@@ -1,81 +1,51 @@
-# 跨区域数据传输
+# Transmit data across regions
 
-## 使用场景
+## How to use cross region transmission
 
-当我们的业务分布在不同的Region，日志会分布在不同的Region，当需要对不同Region的日志进行集中管理就会遇到一定的麻烦。那么通过SLS数据加工-跨Region传输的功能，可以很好地解决这样的问题
-
-
-
-![](/img/dataprocessdemo/dataflow2.png)
-
-
-## 跨Region传输使用方法
-
-
-
-### Step1. 打开logstore的数据加工
+### Step1. Click Data Transformation to go to the data transformation page.
 
 ![](/img/dataprocessdemo/begin-data-process.jpg)
 
-
-### Step2. 编写DSL（如果是复制的话，DSL语句为空），编写完后，点击 预览数据进入下一步
+### Step2. On the page that appears, enter a domain-specific language (DSL) statement and click Preview Data. If you need to only copy data, no DSL statement is required.
 
 ![](/img/dataprocessdemo/begin-data-process-step2.jpg)
 
-
-### Step3. 保存数据加工
+### Step3. If no error occurs, click Save as Transformation Job.
 
 ![](/img/dataprocessdemo/begin-data-process-step3.jpg)
 
-
-
-### Step4. 填写Output 表单， 选择或填写目标Region
+### Fill in an output form. In the Create Data Transformation Job panel, configure the Destination Region parameter and other related parameters.
 
 ![](/img/dataprocessdemo/begin-data-process-step4.jpg)
 
+### Step 5. Click OK. The data transformation job is configured.
 
-
-### Step 5. 点击“确定” 按钮完成数据加工任务配置
-
-
-
-### Step 6. 检查对端logstore能否收到数据
+### Step 6. Check whether the destination Logstore receives data.
 
 ![](/img/dataprocessdemo/begin-data-process-step5.jpg)
 
-
 ## FAQ
 
+### How am I charged for data transmission across regions?
 
+1.You are charged based on the size of compressed data during data transmission.For example, if the compression ratio is 10:1 and you need to transmit 10 MB of raw data, the size of the data after compression is 1 MB. This way, only 1 MB of data incurs fees. For more information about the billing methods, see [Billable items of pay-by-feature](https://help.aliyun.com/document_detail/173043.html).
 
-### 如何收费？
+### How do I increase the data compression ratio?
 
-1.按照传输的压缩流量计费。比如10MB的数据，如果按照1:10的压缩比，那么会产生1MB的传输流量(按这个计费)，计费参考  [链接](https://help.aliyun.com/document_detail/173043.html)
-
-
-
-### 如何提高传输压缩率？
-
-1.对于webtracking的场景，建议对__topic__、__tag__:* 、__source__进行处理，减少传输发送次数，提升压缩率， 原因是发送日志数据的时候，组织的单位是一个Loggroup，如果有多种__source__、__topic__、__tag__:*组合的话，会产生多个LogGroup从而降低压缩率
+1.If you want to increase the data compression ratio when you use the web tracking feature, we recommend that you specify fixed values for the **topic**, **tag**:_, and **source** fields in different log entries to transmit the fields as a log group. Log data is compressed by log group. If you do not specify fixed values for the **source**, **topic**, and **tag**:_ fields, multiple log groups may be generated and the data compression ratio is reduced.
 
 ![](/img/dataprocessdemo/dataflow8.png)
 
-### 网络不稳定怎么办？
+### What do I do if a network connection is unstable?
 
-1.跨Region传输依赖公网网络环境，如果是跨境传输的话，网络稳定性不一定保证，加工作业会自动做重试
+1.The stability of cross-region data transmission varies based on the network environment of the Internet. If you transmit data across borders, network stability cannot be ensured. If the network connection is unstable, the data transmission job automatically retries.
 
-2.如果想提升传输的网络质量，可以启用DCDN加速方案
-
-
+2.You can activate Dynamic Content Delivery Network (DCDN) to improve network stability.
 
 ![](/img/dataprocessdemo/dataflow9.png)
 
+DCDN Activate DCDN. Reference:[https://help.aliyun.com/document_detail/86819.html](https://help.aliyun.com/document_detail/86819.html?spm=a2c4g.11186623.6.587.2bd06330XCteoT)
 
-
-DCDN启用帮助文档：[https://help.aliyun.com/document_detail/86819.html](https://help.aliyun.com/document_detail/86819.html?spm=a2c4g.11186623.6.587.2bd06330XCteoT)
-
-
-
-DCDN配置完成后，在创建加工任务里可以勾选“DCDN”，即可使用DCDN网络进行加速
+DCDN After DCDN is configured, select DCDN Acceleration and click Connectivity Test of DCDN Acceleration in the Create Data Transformation Job panel.
 
 ![](/img/dataprocessdemo/dcdn-test.jpg)

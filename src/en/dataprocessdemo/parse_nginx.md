@@ -2,16 +2,16 @@
 
 Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日志对业务运维具有重要意义。本文介绍如何使用正则表达式函数或 GROK 函数解析 Nginx 访问日志。
 
-**说明**
+**Note**
 
 - GROK 模式的本质是正则表达式，在有需要的情况下，可以组合使用 GROK 与正则表达式。
-- 自定义的 Nginx 日志格式，可以通过正则表达式或 GROK 方案的调整实现解析。
+- 自定义的 Nginx 日志格式，可以通过正则表达式或 GROK Solution 的调整实现解析。
 
 ## 使用正则表达式解析 Nginx 成功访问日志
 
 现以一条 Nginx 成功访问日志为例，介绍如何使用正则表达式解析 Nginx 成功访问日志。
 
-- 原始日志
+- Raw log entries
   ```
   __source__:  192.168.0.1
   __tag__:__client_ip__:  192.168.254.254
@@ -22,7 +22,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
   - 需求 1：从 Nginx 日志中提取出 code、ip、datetime、protocol、request、sendbytes、refere、useragent、verb 信息。
   - 需求 2：对 request 进行再提取，提取出 uri_proto、uri_domain、uri_param 信息。
   - 需求 3：对解析出来的 uri_param 进行再提取，提取出 uri_path、uri_query 信息。
-- SLS DSL 编排
+- SLS DSL orchestration
   - 总编排
     ```python
     """第一步：初步解析Nginx日志"""
@@ -41,7 +41,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
       r'(?P<uri_path>\/\_[a-z]+[^?])\?(?<uri_query>(.+)$)'
     )
     ```
-  - 细分编排及对应加工结果
+  - 细分编排及对应 Transformation result
     - 针对需求 1 的加工编排如下。
       ```python
       e_regex(
@@ -49,7 +49,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
         r'(?P<ip>\d+\.\d+\.\d+\.\d+)( - - \[)(?P<datetime>[\s\S]+)\] \"(?P<verb>[A-Z]+) (?P<request>[\S]*) (?P<protocol>[\S]+)["] (?P<code>\d+) (?P<sendbytes>\d+) ["](?P<refere>[\S]*)["] ["](?P<useragent>[\S\s]+)["]'
       )
       ```
-    - 对应加工结果
+    - 对应 Transformation result
       ```
       __source__:  192.168.0.1
       __tag__:  __receive_time__:  1563443076
@@ -71,7 +71,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
         r'(?P<uri_proto>(\w+)):\/\/(?P<uri_domain>[a-z0-9.]*[^\/])(?P<uri_param>(.+)$)'
       )
       ```
-      对应加工结果：
+      对应 Transformation result:
       ```
       uri_param: /_astats?application=&inf.name=eth0
       uri_domain: example.aliyundoc.com
@@ -84,12 +84,12 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
           r'(?P<uri_path>\/\_[a-z]+[^?])\?(?<uri_query>(.+)$)'
         )
       ```
-      对应加工结果
+      对应 Transformation result
       ```
       uri_path: /_astats
       uri_query: application=&inf.name=eth0
       ```
-- 加工结果
+- Transformation result
   ```
   __source__:  192.168.0.1
   __tag__:  __receive_time__:  1563443076
@@ -114,7 +114,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
 
 现以一条 Nginx 成功访问日志为例，介绍如何使用 GROK 解析 Nginx 成功访问日志。
 
-- 原始日志
+- Raw log entries
   ```
   __source__:  192.168.0.1
   __tag__:__client_ip__:  192.168.254.254
@@ -125,7 +125,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
   - 需求 1：从 Nginx 日志中提取出**clientip、bytes、agent、auth、verb、request、identtimestamp, httpversion、response、bytes、referrer**信息。
   - 需求 2：对解析出来的**request**进行再提取，提取出**uri_proto、uri_domain、uri_param**信息。
   - 需求 3：对解析出来的**uri_param**进行再提取，提取出**uri_path、uri_query**信息。
-- SLS DSL 编排
+- SLS DSL orchestration
 
   - 总编排
 
@@ -149,12 +149,12 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
 
     使用 GROK 模式解析 Nginx 正确访问日志，只需要**COMBINEDAPACHELOG**模式即可。
 
-    | 模式              | 规则                                                                                                                                                                                                                                                    | 说明                                                                                        |
+    | 模式              | 规则                                                                                                                                                                                                                                                    | Note                                                                                        |
     | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
     | COMMONAPACHELOG   | %{IPORHOST:clientip} %<br>{HTTPDUSER:ident} %<br>{USER:auth}\\[%<br>{HTTPDATE:timestamp}\\]"(?:%<br>{WORD:verb} %<br>{NOTSPACE:request}(?: HTTP/%<br>{NUMBER:httpversion})?\|%<br>{DATA:rawrequest})" %<br>{NUMBER:response} (?:%<br>{NUMBER:bytes}\|-) | 解析出 clientip、ident、auth、timestamp、verb、request、httpversion、response、bytes 信息。 |
     | COMBINEDAPACHELOG | %{COMMONAPACHELOG} %<br>{QS:referrer} %{QS:agent}                                                                                                                                                                                                       | 解析出上一行中所有字段，另外还解析出 referrer、agent 字段。                                 |
 
-  - 细分编排及对应加工结果
+  - 细分编排及对应 Transformation result
 
     - 针对需求 1 解析 Nginx 日志的加工编排如下。
       ```python
@@ -163,7 +163,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
         grok('%{COMBINEDAPACHELOG}')
       )
       ```
-      对应加工结果
+      对应 Transformation result
       ```
       clientip: 192.168.0.1
       __tag__:  __receive_time__:  1563443076
@@ -189,7 +189,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
       )
       ```
 
-      对应加工结果
+      对应 Transformation result
 
       ```
       uri_proto: http
@@ -197,8 +197,8 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
       uri_param: /_astats?application=&inf.name=eth0
       ```
 
-      特别说明，只需要使用 GROK 的以下数种模式组合即可对**request**完成解析，如下表所示。
-      | 模式| 规则 |说明 |
+      特别 Note，只需要使用 GROK 的以下数种模式组合即可对**request**完成解析，如下表所示。
+      | 模式| 规则 |Note |
       | -------| --------- |--------- |
       | URIPROTO | [A-Za-z]+(\+[A-Za-z+]+)? | 匹配 uri 中的头部分。例如http://hostname.domain.tld/_astats?application=&inf.name=eth0会匹配到http。 |
       | USER | [a-zA-Z0-9._-]+ |匹配字母、数字和符号（.\_-）组合。 |
@@ -212,17 +212,17 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
         grok("%{GREEDYDATA:uri_path}\?%{GREEDYDATA:uri_query}")
       )
       ```
-      对应加工结果：
+      对应 Transformation result:
       ```
       uri_path: /_astats
       uri_query: application=&inf.name=eth0
       ```
       使用 GROK 的以下模式即可完成对 uri_param 的解析，如下表所示。
-      | 模式| 规则 |说明 |
+      | 模式| 规则 |Note |
       | -------| --------- |--------- |
       | GREEDYDATA | .\* | 匹配任意或多个除换行符。 |
 
-- 加工结果
+- Transformation result
   ```
   __source__:  192.168.0.1
   __tag__:__receive_time__:  1563443076
@@ -249,7 +249,7 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
 
 以下以一条 Nginx 失败访问日志为例，介绍如何使用 GROK 解析 Nginx 失败访问日志。
 
-- 原始日志
+- Raw log entries
   ```
   __source__:  192.168.0.1
   __tag__:__client_ip__:  192.168.254.254
@@ -259,14 +259,14 @@ Nginx 访问日志记录了用户访问的详细信息，解析 Nginx 访问日�
 - 解析需求
   从 content 中解析出错误访问日志 host、http_version、log_level、pid、referrerrequest、request_time、server、verb 信息。
 
-- SLS DSL 编排
+- SLS DSL orchestration
   ```python
   e_regex(
     'content',
     grok('%{DATESTAMP:request_time} \[%{LOGLEVEL:log_level}\] %{POSINT:pid}#%{NUMBER}: %{GREEDYDATA:errormessage}(?:, client: (?<client>%{IP}|%{HOSTNAME}))(?:, server: %{IPORHOST:server})(?:, request: "%{WORD:verb} %{NOTSPACE:request}( HTTP/%{NUMBER:http_version})")(?:, host: "%{HOSTNAME:host}")?(?:, referrer: "%{NOTSPACE:referrer}")?')
   )
   ```
-- 加工结果
+- Transformation result
   ```
   ___source__:  192.168.0.1
   __tag__:__client_ip__:  192.168.254.254

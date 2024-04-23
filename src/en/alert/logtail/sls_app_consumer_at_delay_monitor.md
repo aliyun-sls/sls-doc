@@ -1,10 +1,11 @@
-# 消费组延迟监控
+# LATENCY MONITORING ON A CONSUMER GROUP
 
-::: tip 说明
-- 每5分钟检测一次，过去5分钟内，消费组的平均延迟超过指定阈值后，触发告警。告警阈值和监控目标可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If the average latency of a consumer group within the last 5 minutes exceeds the specified threshold, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "logstore", "consumer_group"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，Project '${project}'，Logstore '${logstore}'下的消费组'${consumer_group}'的平均延迟为${delay}秒，大于告警阈值300。请检查是否存在异常。");
+        descAnno.setValue("Project '${project}'，Logstore '${logstore}' of consumer group'${consumer_group}'The average delay is ${delay} seconds,exceeds the specified threshold 300.Check whether an exception exists.times within the last 5 minutes.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("消费组延迟过高告警");
+        titleAnno.setValue("Latency alert on a consumer group");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_consumer_at_delay_monitor");
-        alert.setDisplayName("消费组延迟监控");
+        alert.setDisplayName("LATENCY MONITORING ON A CONSUMER GROUP");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_consumer_at_delay_monitor",
-        "displayName": "消费组延迟监控",
+        "displayName": "LATENCY MONITORING ON A CONSUMER GROUP",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，Project '${project}'，Logstore '${logstore}'下的消费组'${consumer_group}'的平均延迟为${delay}秒，大于告警阈值300。请检查是否存在异常。"
+                "value": "Project '${project}'，Logstore '${logstore}' of consumer group'${consumer_group}'The average delay is ${delay} seconds,exceeds the specified threshold 300.Check whether an exception exists.times within the last 5 minutes."
             }, {
                 "key": "title",
-                "value": "消费组延迟过高告警"
+                "value": "Latency alert on a consumer group"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: consumergroup_log and project: \"${project}\" and logstore: \"${logstore}\" and consumer_group: \"${consumer_group}\""
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_consumer_at_delay_monitor",
-		DisplayName: "消费组延迟监控",
+		DisplayName: "LATENCY MONITORING ON A CONSUMER GROUP",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，Project '${project}'，Logstore '${logstore}'下的消费组'${consumer_group}'的平均延迟为${delay}秒，大于告警阈值300。请检查是否存在异常。",
+					Value: "Project '${project}'，Logstore '${logstore}' of consumer group'${consumer_group}'The average delay is ${delay} seconds,exceeds the specified threshold 300.Check whether an exception exists.times within the last 5 minutes.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "消费组延迟过高告警",
+					Value: "Latency alert on a consumer group",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

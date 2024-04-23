@@ -8,10 +8,6 @@
 [试用 Demo](/playground/demo.html?dest=/lognext/app/bill_app){target="_blank"}
 :::
 
-## 视频介绍
-<video src="https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/file-manage-files/zh-CN/20230806/hkbx/SLS成本管家.mp4" controls="controls" width="100%" height="500" autoplay="autoplay">
-您的浏览器不支持 video 标签。
-</video>
 
 ## 功能优势
 - 费用优化：统计各产品按量付费账单及转化为包年包月多少钱

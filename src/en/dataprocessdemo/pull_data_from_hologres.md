@@ -35,7 +35,7 @@
     sex:boy
     ```
 
-- 加工规则
+- Transformation rule
   通过日志服务 Logstore 中的 sex 字段和 Hologres 数据库表中 sex 字段进行匹配，只有 sex 字段的值相同时，才能匹配成功。匹配成功后，返回 Hologres 数据库表中 product_name，与 Logstore 中的数据拼接，生成新的数据。
   ```python
   e_search_table_map(
@@ -54,8 +54,8 @@
     multi_join=","
   )
   ```
-  **说明** 为了访问 Hologres 实例的安全性和稳定性，建议通过 VPC 方式访问 Hologres 数据库。您可以在 Hologres 实例的网络配置中，获取 Hologres 数据库的 VPC 访问域名，将 address 配置为该值即可。
-- 加工结果
+  **Note** 为了访问 Hologres 实例的安全性和稳定性，建议通过 VPC 方式访问 Hologres 数据库。您可以在 Hologres 实例的网络配置中，获取 Hologres 数据库的 VPC 访问域名，将 address 配置为该值即可。
+- Transformation result
 
   ```
   __source__:192.168.2.100

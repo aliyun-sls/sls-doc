@@ -1,29 +1,26 @@
-# FlowLog公网流量过滤
+# Filter flow logs that record Internet traffic
 
-Flowlog底层由阿里云vpc提供，开启方式参考 [开启Flowlog](https://help.aliyun.com/document_detail/173648.html)
+Virtual Private Cloud (VPC) provides the flow log feature. For more information about how to enable the flow log feature, see [Enable a flow log](https://help.aliyun.com/document_detail/173648.html).
 
-Flowlog里包含所有流量的5元组信息，当我们只关心某一些网段流量的时候，可以通过数据加工来进行流量过滤。
+Each log records the specified 5-tuple of network traffic. If you want to obtain traffic in specified CIDR blocks, you can use the data transformation feature to filter the traffic.
 
-下面演示如何通过数据加工过滤出公网的流量
+This topic describes how to use the data transformation feature to filter the Internet traffic.
 
-## 进入数据加工编码IDE
+## Go to the data transformation page and execute a data transformation statement IDE
 
 ![](/img/dataprocessdemo/IP地址相关/flow1.png)
 
 ![](/img/dataprocessdemo/IP地址相关/flow2.png)
 
-## 使用数据加工进行流量过滤
+## Use the data transformation feature to filter the traffic
 
 ```python
-# 如果srcaddr和dstaddr字段不存在，则丢弃
 e_if(e_not_has("srcaddr"), e_drop())
 e_if(e_not_has("dstaddr"), e_drop())
 
-# 如果srcaddr和dstaddr不符合ip格式，则丢弃
 e_if(op_not(e_match("srcaddr", grok(r'%{IP}'))), e_drop());
 e_if(op_not(e_match("dstaddr", grok(r'%{IP}'))), e_drop());
 
-# 如果是私网之间互通的流量，丢弃
 e_if(
 	op_and(
 		op_or(
@@ -41,8 +38,6 @@ e_if(
 )
 ```
 
-## 保存加工任务
+## Click Save as Transformation Job.
 
 ![](/img/dataprocessdemo/IP地址相关/flow3.png)
-
-

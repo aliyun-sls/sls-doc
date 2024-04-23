@@ -1,10 +1,11 @@
-# 集群节点调度资源不足
+# Insufficient node resources for scheduling
 
-::: tip 说明
-- 每5分钟检查一次，触发条件为存在集群节点调度资源不足事件（kubernetes node resource insufficient）
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered: Insufficient node resources for scheduling（kubernetes node resource insufficient）
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("namespace", "pod_name", "node_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -114,7 +115,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_ack_common_at_no_resource");
-        alert.setDisplayName("集群节点调度资源不足");
+        alert.setDisplayName("Insufficient node resources for scheduling");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -148,7 +149,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_ack_common_at_no_resource",
-        "displayName": "集群节点调度资源不足",
+        "displayName": "Insufficient node resources for scheduling",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -247,7 +248,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_ack_common_at_no_resource",
-		DisplayName: "集群节点调度资源不足",
+		DisplayName: "Insufficient node resources for scheduling",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

@@ -1,10 +1,11 @@
-# Logtail解析失败率监控
+# Monitoring on the failure rate of log parsing
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。过去5分钟内，当Logtail解析失败的行数占总行数的比率超过一定阈值后，触发告警。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If the ratio of the number of rows that failed to be parsed by Logtail to the total number of rows within the last 5 minutes exceeds the specified threshold, an alert is triggered.Data of the last 5 minutes is inspected at a 5-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -69,11 +70,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，在Project ${project}下的Logtail解析失败行数占日志总行数的比率达到${FailureRate}%，请检查是否存在异常。");
+        descAnno.setValue("The failure rate of log parsing by Logtail in the project ${project} within the last 5 minutes reaches ${FailureRate}%. Check whether an exception exists.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Logtail解析失败率监控");
+        titleAnno.setValue("Monitoring on the failure rate of log parsing");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -105,7 +106,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_logtail_parse_err_line");
-        alert.setDisplayName("Logtail解析失败率监控");
+        alert.setDisplayName("Monitoring on the failure rate of log parsing");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -139,7 +140,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_logtail_parse_err_line",
-        "displayName": "Logtail解析失败率监控",
+        "displayName": "Monitoring on the failure rate of log parsing",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -181,10 +182,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，在Project ${project}下的Logtail解析失败行数占日志总行数的比率达到${FailureRate}%，请检查是否存在异常。"
+                "value": "The failure rate of log parsing by Logtail in the project ${project} within the last 5 minutes reaches ${FailureRate}%. Check whether an exception exists."
             }, {
                 "key": "title",
-                "value": "Logtail解析失败率监控"
+                "value": "Monitoring on the failure rate of log parsing"
             }, {
                 "key": "__drill_down_query__",
                 "value": "(__topic__: logtail_profile AND file_name: logstore_statistics) and project: ${project}"
@@ -232,7 +233,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_logtail_parse_err_line",
-		DisplayName: "Logtail解析失败率监控",
+		DisplayName: "Monitoring on the failure rate of log parsing",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -279,11 +280,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "在过去的5分钟内，在Project ${project}下的Logtail解析失败行数占日志总行数的比率达到${FailureRate}%，请检查是否存在异常。",
+					Value: "The failure rate of log parsing by Logtail in the project ${project} within the last 5 minutes reaches ${FailureRate}%. Check whether an exception exists.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Logtail解析失败率监控",
+					Value: "Monitoring on the failure rate of log parsing",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

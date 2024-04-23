@@ -1,28 +1,28 @@
-# 使用 e_table_map 函数对 HTTP 请求返回码进行富化
+# Use the e_table_map function to enrich HTTP response status codes
 
-Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函数快速对 HTTP 请求的返回码进行富化，便于您分析日志数据。本文介绍通过日志服务数据加工富化 HTTP 返回码的操作方法。
+NGINX logs record important information that can be used for website O&M. Simple Log Service provides the e_table_map function that you can use to enrich HTTP response status codes for NGINX log analysis.
 
-### 加工流程
+### Transformation process
 
-![加工流程1](/img/dataprocessdemo/数据富化/加工流程1.png)
+![Transformation process1](/img/dataprocessdemo/数据富化/加工流程1.png)
 
-1. 将 HTTP 返回码转换为 Table 对象。
-2. 使用 e_table_map 函数进行数据加工富化。
+1. Convert HTTP response status codes to table objects.
+2. Use the e_table_map function to transform and enrich data.
 
-### 可选方案
+### Recommended solutions
 
-为实现以上需求，您可以选择如下合适方案进行数据富化。
-| 方案| 数据量支持能力 |增量更新 |批量更新 | 适用场景 |
+The following table describes the solutions that you can use to enrich data.
+| solutions| Supported data volume |Incremental update |Batch update | Scenario |
 | -------| --------- |--------- |--------- |--------- |
-| [使用 Logstore 实现富化（推荐）](https://help.aliyun.com/document_detail/299996.html#section-os8-4jd-yw6) | 大量 | 支持 |支持 |大数据量且频繁更新的映射表。 |
-| [通过 MySQL 表实现富化](https://help.aliyun.com/document_detail/299996.html#section-p5k-79r-f93) | 较大 |不支持 | 支持 | 频繁更新的映射表。 |
-| [通过使用 OSS 文件实现富化](https://help.aliyun.com/document_detail/299996.html#section-tjl-x9k-bk7) | 较大 |不支持 | 支持 | 相对静态的，更新不频繁的映射表。 |
-| [代码内嵌](https://help.aliyun.com/document_detail/299996.html#section-aqj-zb3-s8i) | 小 |不支持 | 不支持 | 简单 HTTP 返回码映射表。 |
+| [(Recommended) Enrich data based on a Logstore](https://help.aliyun.com/document_detail/299996.html#section-os8-4jd-yw6) | large number | Support |Support |A mapping table with large amounts of data and frequent update |
+| [Enrich data based on a MySQL table](https://help.aliyun.com/document_detail/299996.html#section-p5k-79r-f93) |large number |not Support| Support | The mapping table is frequently updated. |
+| [Enrich data based on an Object Storage Service (OSS) object](https://help.aliyun.com/document_detail/299996.html#section-tjl-x9k-bk7) | large number |not Supports |Supports | The mapping table is infrequently updated. |
+| [Enrich data based on embedded code](https://help.aliyun.com/document_detail/299996.html#section-aqj-zb3-s8i) | small | not Support | not Support | The mapping table contains typical HTTP response status codes. |
 
-### 方案一：使用 Logstore 实现富化（推荐）
+### Solution 1：(Recommended) Enrich data based on a Logstore
 
-1. 通过 SDK 方式将 HTTP 返回码写入名为 http_co#de 的 Logstore。
-   Logstore 中 HTTP 返回码日志样例如下：
+1. Use an SDK to write HTTP response status codes to a Logstore named http_code.
+   The following example shows a log that contains an HTTP response status code in the http_code Logstore:
    ```
    __source__:203.0.103.10
    __tag__:__receive_time__:1595424194
@@ -32,13 +32,13 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
    description:OK
    category:Success
    ```
-   更多信息，请参见[SDK 参考](https://help.aliyun.com/document_detail/29063.htm?spm=a2c4g.11186623.0.0.31272f7aJIawy8#reference-n3h-2sq-zdb)。
-2. 获取 HTTP 返回码 Logstore 的名称、服务入口和 AccessKey，用于后续编辑数据加工语句。
-   日志服务的服务入口和访问密钥 AccessKey。更多信息，请参见[服务入口](https://help.aliyun.com/document_detail/29008.htm?spm=a2c4g.11186623.0.0.31273007p9ITXQ#reference-wgx-pwq-zdb)和[访问密钥](https://help.aliyun.com/document_detail/29009.htm?spm=a2c4g.11186623.0.0.3127229fi02lhe#reference-rh5-tfy-zdb)。
-3. 登录原始日志 nginx-demo 的 Logstore，进入数据加工页面。
-   具体操作，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
-4. 在编辑框中，输入数据加工语句。
-   从 HTTP 返回码 Logstore（名称为 http_code）中读取数据，并通过 e_table_map 函数将对应字段的值返回。
+   For more information, see[SDK](https://help.aliyun.com/document_detail/29063.htm?spm=a2c4g.11186623.0.0.31272f7aJIawy8#reference-n3h-2sq-zdb)。
+2. Obtain the name and endpoint of the http_code Logstore and the required AccessKey pair. The obtained information is used to write a data transformation statement.
+   For more information about Simple Log Service endpoints and AccessKey pairs, see [Endpoints](https://help.aliyun.com/document_detail/29008.htm?spm=a2c4g.11186623.0.0.31273007p9ITXQ#reference-wgx-pwq-zdb) and [AccessKey pair](https://help.aliyun.com/document_detail/29009.htm?spm=a2c4g.11186623.0.0.3127229fi02lhe#reference-rh5-tfy-zdb).
+3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
+   For more information, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+4. In the code editor, enter the following data transformation statement.
+   Read data from the http_code Logstore and use the e_table_map function to return the values of the matched fields.
    ```python
    e_table_map(
      res_log_logstore_pull(
@@ -55,11 +55,11 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
        ("category","http_code_category")]
    )
    ```
-   **注意** 为了数据安全，建议在高级参数配置中配置 AccessKey。关于如何配置高级参数，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
-   - 使用 res_log_logstore_pull 函数从另一个 Logstore 中拉取数据。更多信息，请参见[res_log_logstore_pull](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.31275b1bqoJucc#section-b3c-kth-p0t)。
-   - 根据输入字段的值，在表格中查找对应的行，返回对应字段的值。更多信息，请参见[e_table_map](https://help.aliyun.com/document_detail/125489.htm?spm=a2c4g.11186623.0.0.31273c11KZ5Xvb#section-s80-usp-myx)。
-5. 单击**预览数据**。
-   Nginx 日志富化后，已新增 HTTP 返回码相关字段。
+   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+   - The res_log_logstore_pull function pulls data from another Logstore when you transform data in a Logstore.For more information, see[res_log_logstore_pull](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.31275b1bqoJucc#section-b3c-kth-p0t)。
+   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see[e_table_map](https://help.aliyun.com/document_detail/125489.htm?spm=a2c4g.11186623.0.0.31273c11KZ5Xvb#section-s80-usp-myx)。
+5. Click **Preview Data**.
+   Nginx After the raw log is enriched, new fields that are related to the HTTP response status code are included in the log.
    ```
    body_bytes_sent:1750
    host:www.example.com
@@ -79,27 +79,27 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
    time_local:11/Aug/2021:06:52:27
    upstream_response_time:0.66
    ```
-6. 创建数据加工任务。
-   更多信息，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+6. Create a data transformation job
+   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 
-### 方案二：通过 MySQL 表实现富化
+### Solution 2：Enrich data based on a MySQL table
 
-1. 将 HTTP 返回码存入 RDS MySQL 数据库。
-   RDS MySQL 中 HTTP 返回码映射表如下所示。
-   ![mysql映射表](/img/dataprocessdemo/数据富化/mysql映射表.png)
-2. 获取 RDS MySQL 数据库的主机地址、用户名、密码和数据库表等，用于后续编辑数据加工语句。
-3. 登录原始日志 nginx-demo 的 Logstore，进入数据加工页面。
-   具体操作，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
-4. 在编辑框中，输入数据加工语句。
-   从 MySQL 数据库中读取数据，并通过 e_table_map 函数将对应字段的值返回。
+1. Save HTTP response status codes to an ApsaraDB RDS for MySQL database.
+   RDS MySQL The following figure shows the mapping table of HTTP response status codes that are stored in the ApsaraDB RDS for MySQL database.
+   ![ApsaraDB RDS for MySQL mapping table](/img/dataprocessdemo/数据富化/mysql映射表.png)
+2. Obtain the host address, username, password, database name, and table name of the ApsaraDB RDS for MySQL database. The obtained information is used to write a data transformation statement.
+3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
+   For more information, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+4. In the code editor, enter the following data transformation statement.
+   Read data from the MySQL database and use the e_table_map function to return the values of the matched fields.
    ```python
    e_table_map(
      res_rds_mysql(
-       address="MySQL主机地址",
-       username="用户名",
-       password="密码",
-       database="数据库",
-       table="表名",
+       address="MySQL host address",
+       username="Username",
+       password="password",
+       database="database",
+       table="table name",
        refresh_interval=300
      ),
      [("http_code","code")],
@@ -108,11 +108,11 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
      ("category","http_code_category")]
    )
    ```
-   **注意** 为了数据安全，建议在高级参数配置中配置 AccessKey。关于如何配置高级参数，请参见创建数据加工任务。
-   - 使用 res_rds_mysql 函数从 RDS MySQL 数据库中拉取数据库表内容。更多信息，请参见 res_rds_mysql。
-   - 根据输入字段的值，在表格中查找对应的行，返回对应字段的值。更多信息，请参见 e_table_map。
-5. 单击**预览数据**。
-   Nginx 日志富化后，已新增 HTTP 返回码相关字段。
+   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see Create a data transformation job.
+   - The res_rds_mysql function pulls data from the specified table in an ApsaraDB RDS for MySQL database.
+   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see e_table_map。
+5. Click **Preview Data**.
+   Nginx After the raw log is enriched, new fields that are related to the HTTP response status code are included in the log.
    ```
    body_bytes_sent:1750
    host:www.example.com
@@ -132,19 +132,19 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
    time_local:11/Aug/2021:06:52:27
    upstream_response_time:0.66
    ```
-6. 创建数据加工任务。
-   更多信息，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+6. Create a data transformation job
+   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 
-### 方案三：通过使用 OSS 文件实现富化
+### Solution 3：Enrich data based on an Object Storage Service (OSS) object
 
-1. 将 HTTP 返回码保存至名为 http_code.csv 的文件中，上传至 OSS Bucket。
-   更多信息，请参见[OSS 上传文件](https://help.aliyun.com/document_detail/31848.html)。
-2. 获取 http_code.csv 文件所在 OSS Bucket 名称、服务入口和 AccessKey，用于后续编辑数据加工语句。
-   对象存储 OSS 的服务入口。更多信息，请参见[访问域名和数据中心](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.312748ed4WxWyr#concept-zt4-cvy-5db)。
-3. 登录原始日志 nginx-demo 的 Logstore，进入数据加工页面。
-   具体操作，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
-4. 在编辑框中，输入数据加工语句。
-   从 OSS Bucket 中读取数据，并通过 e_table_map 函数将对应字段的值返回。
+1. Save HTTP response status codes to an object named http_code.csv and upload the object to
+   For more information, see[Upload objects](https://help.aliyun.com/document_detail/31848.html)。
+2. Obtain the name and endpoint of the OSS bucket to which the http_code.csv object is uploaded and the required AccessKey pair. The obtained information is used to write a data transformation statement.
+   For more information, see [Regions and endpoints](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.312748ed4WxWyr#concept-zt4-cvy-5db).
+3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
+   For more information, see [Create a data transformation job].(https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+4. In the code editor, enter the following data transformation statement.
+   Read data from the OSS bucket and use the e_table_map function to return the values of the matched fields.
    ```python
    e_table_map(
      tab_parse_csv(
@@ -163,12 +163,12 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
      ("category","http_code_category")]
    )
    ```
-   **注意** 为了数据安全，建议在高级参数配置中配置 AccessKey。关于如何配置高级参数，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
-   - 使用 res_oss_file 函数从 OSS Bucket 中获取文件内容，并支持定期刷新。更多信息，请参见[res_oss_file](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.312760aenttgOU#section-mlb-osw-xzd)。
-   - 使用 tab_parse_csv 函数从 CSV 格式的文本构建表格。更多信息，请参见[tab_parse_csv](https://help.aliyun.com/document_detail/129400.htm?spm=a2c4g.11186623.0.0.7fe32f7a0jls5u#section-tsx-vav-cte)。
-   - 根据输入字段的值，在表格中查找对应的行，返回对应字段的值。更多信息，请参见[e_table_map](https://help.aliyun.com/document_detail/125489.htm?spm=a2c4g.11186623.0.0.7fe34732cWFsCH#section-s80-usp-myx)。
-5. 单击**预览数据**。
-   Nginx 日志富化后，已新增 HTTP 返回码相关字段。
+   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+   - The res_oss_file function pulls data from an object in the specified OSS bucket. The data can be updated at regular intervals.For more information, see[res_oss_file](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.312760aenttgOU#section-mlb-osw-xzd).
+   - The tab_parse_csv function creates a table from a CSV file.For more information, see[tab_parse_csv](https://help.aliyun.com/document_detail/129400.htm?spm=a2c4g.11186623.0.0.7fe32f7a0jls5u#section-tsx-vav-cte)。
+   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see[e_table_map](https://help.aliyun.com/document_detail/125489.htm?spm=a2c4g.11186623.0.0.7fe34732cWFsCH#section-s80-usp-myx)。
+5. Click **Preview Data**.
+   Nginx After the raw log is enriched, new fields that are related to the HTTP response status code are included in the log.
    ```
    body_bytes_sent:1750
    host:www.example.com
@@ -188,16 +188,16 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
    time_local:11/Aug/2021:06:52:27
    upstream_response_time:0.66
    ```
-6. 创建数据加工任务。
-   更多信息，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+6. Create a data transformation job
+   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 
-### 方案四：代码内嵌
+### Solution 4：Enrich data based on embedded code
 
-1. 准备 CSV 格式的 HTTP 返回码映射表。
-2. 登录原始日志 nginx-demo 的 Logstore，进入数据加工页面。
-   具体操作，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
-3. 在编辑框中，输入数据加工语句。
-   通过 tab_parse_csv 函数对 CSV 格式的 HTTP 返回码进行转换，并通过 e_table_map 函数将对应字段的值返回。
+1. Prepare a mapping table of HTTP response status codes in the CSV format.
+2. Go to raw log entries nginx-demo 的 Logstore，Go to the data transformation page.
+   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+3. In the code editor, enter the following data transformation statement.
+   Use the tab_parse_csv function to create a table from the CSV file and use the e_table_map function to return the values of the matched fields.
    ```python
    e_table_map(
      tab_parse_csv(
@@ -209,11 +209,11 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
      ("category","http_code_category")]
    )
    ```
-   **注意** 为了数据安全，建议在高级参数配置中配置 AccessKey。关于如何配置高级参数，请参见创建数据加工任务。
-   - 使用 tab_parse_csv 函数从 CSV 格式的文本构建表格。更多信息，请参见 tab_parse_csv。
-   - 根据输入字段的值，在表格中查找对应的行，返回对应字段的值。更多信息，请参见 e_table_map。
-4. 单击预览数据。
-   Nginx 日志富化后，已新增 HTTP 返回码相关字段。
+   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see Create a data transformation job.
+   - The tab_parse_csv function creates a table from a CSV file.For more information, see tab_parse_csv。
+   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see e_table_map。
+4. Click Preview data in advanced mode.
+   Nginx After the raw log is enriched, new fields that are related to the HTTP response status code are included in the log.
    ```
    body_bytes_sent:1750
    host:www.example.com
@@ -233,5 +233,5 @@ Nginx 日志是运维网站的重要信息，日志服务通过 e_table_map 函�
    time_local:11/Aug/2021:06:52:27
    upstream_response_time:0.66
    ```
-5. 创建数据加工任务。
-   更多信息，请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+5. Create a data transformation job
+   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。

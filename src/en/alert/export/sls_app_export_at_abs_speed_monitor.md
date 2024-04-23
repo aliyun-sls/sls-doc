@@ -1,10 +1,11 @@
-# 数据投递流量（绝对值）监控
+# Monitoring on the absolute value of data shipping traffic
 
-::: tip 说明
-- 每5分钟检测一次，过去5分钟内，数据投递的投递流量（绝对值）低于预设阈值后，触发告警。触发阈值以及监控目标等可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If the absolute value of data shipping traffic within the last 5 minutes is smaller than the specified threshold, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("job_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，数据投递作业(作业名称:${job_name})的投递流量（绝对值）过低，为平均${events}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。");
+        descAnno.setValue("The absolute value of the traffic of the data shipping job ${job_name} within the last 5 minutes is smaller than the specified threshold. The average value is ${events} rows per second, and the threshold is 40,000 rows per second.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据投递流量（绝对值）过低告警");
+        titleAnno.setValue("Alert for absolute value of data shipping traffic that is smaller than the specified threshold");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_export_at_abs_speed_monitor");
-        alert.setDisplayName("数据投递流量（绝对值）监控");
+        alert.setDisplayName("Monitoring on the absolute value of data shipping traffic");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_export_at_abs_speed_monitor",
-        "displayName": "数据投递流量（绝对值）监控",
+        "displayName": "Monitoring on the absolute value of data shipping traffic",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，数据投递作业(作业名称:${job_name})的投递流量（绝对值）过低，为平均${events}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。"
+                "value": "The absolute value of the traffic of the data shipping job ${job_name} within the last 5 minutes is smaller than the specified threshold. The average value is ${events} rows per second, and the threshold is 40,000 rows per second."
             }, {
                 "key": "title",
-                "value": "数据投递流量（绝对值）过低告警"
+                "value": "Alert for absolute value of data shipping traffic that is smaller than the specified threshold"
             }, {
                 "key": "__drill_down_query__",
                 "value": "(__topic__: etl_metrics and metric_type: ConnectorMetrics and \"_etl_:connector_meta.action\": deliver) and (job_name: ${job_name})"
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_export_at_abs_speed_monitor",
-		DisplayName: "数据投递流量（绝对值）监控",
+		DisplayName: "Monitoring on the absolute value of data shipping traffic",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，数据投递作业(作业名称:${job_name})的投递流量（绝对值）过低，为平均${events}行/秒，低于监控阈值(40000行/秒)。请检查是否存在异常。",
+					Value: "The absolute value of the traffic of the data shipping job ${job_name} within the last 5 minutes is smaller than the specified threshold. The average value is ${events} rows per second, and the threshold is 40,000 rows per second.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据投递流量（绝对值）过低告警",
+					Value: "Alert for absolute value of data shipping traffic that is smaller than the specified threshold",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

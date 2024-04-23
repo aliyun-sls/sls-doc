@@ -1,10 +1,11 @@
-# Logtail Quota超限告警
+# Quota over the threshold
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。过去5分钟内，当有Logstore出现因Quota超限导致的Logtail发送失败时，会触发告警。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If Logtail fails to transfer data in a Logstore because the quota exceeds the specified threshold within the last 5 minutes, an alert is triggered.Data of the last 5 minutes is inspected at a 5-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "logstore"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，Logtail共出现${cnt}次因Quota超限导致的发送失败。");
+        descAnno.setValue("If Logtail fails to transfer data in a Logstore because the quota exceeds the specified threshold within the last 5 minutes, an alert is triggered.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Logtail Quota超限告警");
+        titleAnno.setValue("Quota over the threshold");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_logtail_logstore_quota_err");
-        alert.setDisplayName("Logtail Quota超限告警");
+        alert.setDisplayName("Quota over the threshold");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_logtail_logstore_quota_err",
-        "displayName": "Logtail Quota超限告警",
+        "displayName": "Quota over the threshold",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，Logtail共出现${cnt}次因Quota超限导致的发送失败。"
+                "value": "If Logtail fails to transfer data in a Logstore because the quota exceeds the specified threshold within the last 5 minutes, an alert is triggered."
             }, {
                 "key": "title",
-                "value": "Logtail Quota超限告警"
+                "value": "Quota over the threshold"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: logtail_profile AND file_name : logstore_statistics and send_quota_error > 0 and project: \"${project}\" and logstore: \"${logstore}\""
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_logtail_logstore_quota_err",
-		DisplayName: "Logtail Quota超限告警",
+		DisplayName: "Quota over the threshold",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "在过去的5分钟内，在Project\"${project}\"中的Logstore\"${logstore}\"下，Logtail共出现${cnt}次因Quota超限导致的发送失败。",
+					Value: "If Logtail fails to transfer data in a Logstore because the quota exceeds the specified threshold within the last 5 minutes, an alert is triggered.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Logtail Quota超限告警",
+					Value: "Quota over the threshold",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

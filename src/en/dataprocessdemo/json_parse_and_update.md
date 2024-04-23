@@ -1,26 +1,26 @@
-# SLS 数据加工对 Json 数据解析与更新
+# Use the data transformation feature to parse and update JSON data
 
-本文档介绍对于包含 Json 格式字段的日志如何进行解析。
+This topic describes how to use the data transformation feature of Simple Log Service to parse and update JSON objects that are included in logs.
 
-## 场景一：Json 对象展开与提取
+## Scenario 1: Expand and extract JSON objects
 
-日志中包含 Json 对象，通过 e_json 进行字段展开与对象提取
+If a log contains JSON objects, you can use the e_json function to expand and extract an object.
 
-**示例 1: Json 一层展开**
+**Example 1: Expand the JSON object at the first layer\*\***
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1": "v1", "k2": {"k3": "v3", "k4": "v4"}}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_json("data", depth=1)
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data: {"k1": "v1", "k2": {"k3": "v3", "k4": "v4"}}
@@ -28,21 +28,21 @@ k1: v1
 k2: {"k3": "v3", "k4": "v4"}
 ```
 
-**示例 2: Json 完全展开**
+**Example 2: Expand the JSON object at each layer**
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1": "v1", "k2": {"k3": "v3", "k4": "v4"}}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_json("data")
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"k1": "v1", "k2": {"k3": "v3", "k4": "v4"}}
@@ -51,9 +51,9 @@ k3:v3
 k4:v4
 ```
 
-**示例 3: 指定名称精确提取 Json 对象**
+**Example 3: Extract a JSON object value by specifying a key**
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {
@@ -70,7 +70,7 @@ data: {
 }
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_json("data", jmes="foo", output="foo")
@@ -79,7 +79,7 @@ e_json("data", jmes="peoples[0].name", output="name")
 e_json("data", jmes="peoples[*].name", output="names")
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"foo": {"bar": "baz"}, "peoples": [{"name": "xh", "sex": "girl"}, {"name": "xm", "sex": "boy"}]}
@@ -89,136 +89,136 @@ name:xh
 names:["xh", "xm"]
 ```
 
-## 场景二：获取 Json 对象值
+## Scenario 2: Extract JSON object values
 
-日志中包含 Json 对象，通过 dct_get 提取 Json 字段值
+If a log contains JSON objects, you can use the dct_get function to extract a JSON object value.
 
-**示例 1: Json 对象包含目标字段**
+**Example 1: A JSON object contains the required field**
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1":"v1","k2":"v2"}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```
 e_set("key1", dct_get(v("data"), "k1"))
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"k1": "v1", "k2": "v2"}
 key1:v1
 ```
 
-**示例 2: Json 对象不包含目标字段，设置默认值**
+**Example 2: A JSON object does not contain the required field. Assign the default value to the key3 key**
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1":"v1","k2":"v2"}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_set("key3", dct_get(v("data"), "k3", default="default"))
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"k1": "v1", "k2": "v2"}
 key3:default
 ```
 
-## 场景三：更新 Json 字段
+## Scenario 3: Update JSON object values
 
-日志中包含 Json 对象，通过 dct_update 更新 Json 对象字段值
-**示例 1: 修改 Json 对象字段值**
+If a log contains JSON objects, you can use the dct_update function to update a JSON object value.
+**Example 1: Change a JSON object value\*\***
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1":"v1","k2":"v2"}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_set("data", dct_update(v("data"), {"k1": "new_k1"}))
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"k1": "new_k1", "k2": "v2"}
 ```
 
-**示例 2: 为 Json 对象增加字段**
+**Example 2: Add a key-value pair to a JSON object\*\***
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1":"v1","k2":"v2"}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_set("data", dct_update(v("data"), {"k3": "k3"}))
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"k1": "v1", "k2": "v2", "k3": "k3"}
 ```
 
-## 场景四：删除 Json 字段
+## Scenario 4: Delete a JSON object value
 
-日志中包含 Json 对象，通过 dct_delete 删除 Json 对象字段
+If a log contains JSON objects, you can use the dct_delete function to delete a JSON object value.
 
-**示例 1:**
+**Example 1:**
 
-- 原始日志
+- Raw log entries
 
 ```
 data: {"k1":"v1","k2":"v2", "k3": "v3"}
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_set("data", dct_delete(v("data"), "k1", "k2"))
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:{"k3": "v3"}
 ```
 
-## 场景五：将值解析为 Json 对象
+## Scenario 5: Parse a value into a JSON object
 
-**示例 1: 将字符串解析为 Json 对象**
+**Example 1: Parse a string into a JSON object**
 
-- 原始日志
+- Raw log entries
 
 ```
 data: "pre{ \"k1\": \"v1\", \"k2\": \"v2\"}"
 ```
 
-- 加工规则
+- Transformation rule
 
 ```python
 e_set("json_object", json_parse(op_slice(v("data"), 3, 28)))
 ```
 
-- 加工结果
+- Transformation result
 
 ```
 data:pre{ "k1": "v1", "k2": "v2"}

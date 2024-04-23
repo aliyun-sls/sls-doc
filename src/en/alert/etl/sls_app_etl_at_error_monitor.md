@@ -1,10 +1,11 @@
-# 数据加工异常报错监控
+# Error monitoring on data transformation
 
-::: tip 说明
-- 每5分钟检测一次，过去5分钟内，数据加工作业出现异常报错后，触发告警。监控目标等可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If an error occurs on a data transformation job, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("job_id"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})产生了${cnt}条报错日志，etl_context: ${etl_context}, reason: ${reason}。更多报错细节请前往加工日志库internal-etl-log查看。");
+        descAnno.setValue("A total of ${cnt} errors occurred on the data transformation job ${job_name} with the ID ${job_id} in the source Logstore {logstore} within the last 5 minutes due to the following reasons: ${reason}. You can view the etl_context field to obtain the following detailed information: ${etl_context}.。");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("数据加工异常报错监控");
+        titleAnno.setValue("Error monitoring on data transformation");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_etl_at_error_monitor");
-        alert.setDisplayName("数据加工异常报错监控");
+        alert.setDisplayName("Error monitoring on data transformation");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_etl_at_error_monitor",
-        "displayName": "数据加工异常报错监控",
+        "displayName": "Error monitoring on data transformation",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})产生了${cnt}条报错日志，etl_context: ${etl_context}, reason: ${reason}。更多报错细节请前往加工日志库internal-etl-log查看。"
+                "value": "A total of ${cnt} errors occurred on the data transformation job ${job_name} with the ID ${job_id} in the source Logstore {logstore} within the last 5 minutes due to the following reasons: ${reason}. You can view the etl_context field to obtain the following detailed information: ${etl_context}.。"
             }, {
                 "key": "title",
-                "value": "数据加工异常报错监控"
+                "value": "Error monitoring on data transformation"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__:  __etl-log-status__ and \"logging.levelname\": ERROR and __tag__:__schedule_id__: ${job_id}"
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_etl_at_error_monitor",
-		DisplayName: "数据加工异常报错监控",
+		DisplayName: "Error monitoring on data transformation",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，源logstore ${logstore}下的数据加工作业(作业ID:${job_id}, 作业名称:${job_name})产生了${cnt}条报错日志，etl_context: ${etl_context}, reason: ${reason}。更多报错细节请前往加工日志库internal-etl-log查看。",
+					Value: "A total of ${cnt} errors occurred on the data transformation job ${job_name} with the ID ${job_id} in the source Logstore {logstore} within the last 5 minutes due to the following reasons: ${reason}. You can view the etl_context field to obtain the following detailed information: ${etl_context}.。",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "数据加工异常报错监控",
+					Value: "Error monitoring on data transformation",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

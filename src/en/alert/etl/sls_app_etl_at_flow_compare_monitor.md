@@ -1,10 +1,11 @@
-# 数据加工流量（日同比）监控
+# Monitoring on the daily comparison of data transformation traffic
 
-::: tip 说明
-- 每5分钟检测一次，过去5分钟内，数据加工作业的加工流量的日同比变化过大时，触发告警。触发阈值以及监控目标等可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If the daily fluctuation rate of data transformation traffic within the last 5 minutes exceeds the specified threshold, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("job_id"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -98,7 +99,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_etl_at_flow_compare_monitor");
-        alert.setDisplayName("数据加工流量（日同比）监控");
+        alert.setDisplayName("Monitoring on the daily comparison of data transformation traffic");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -132,7 +133,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_etl_at_flow_compare_monitor",
-        "displayName": "数据加工流量（日同比）监控",
+        "displayName": "Monitoring on the daily comparison of data transformation traffic",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -219,7 +220,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_etl_at_flow_compare_monitor",
-		DisplayName: "数据加工流量（日同比）监控",
+		DisplayName: "Monitoring on the daily comparison of data transformation traffic",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,

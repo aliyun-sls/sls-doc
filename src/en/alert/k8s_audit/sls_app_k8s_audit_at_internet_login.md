@@ -1,10 +1,11 @@
-# Kubernetes 公网登录告警
+# Kubernetes LOGON OVER THE INTERNET
 
-::: tip 说明
-- 每分钟检查一次，查询过去2分钟的日志。当存在公网登录事件时，告警触发。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- 每分钟检查一次，查询过去 2 分钟的日志。当存在公网登录事件时，告警触发。
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("no_group");
         groupConf.setFields(Arrays.asList());
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("登录的公网IP数：${ip_count}, 总登录次数 ${total}, 失败次数: ${failCount}。");
+        descAnno.setValue("Number of IP addresses used for logons over the Internet: ${ip_count}. Number of logons: ${total}. Number of logon failures: ${failCount}.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Kubernetes 公网登录告警");
+        titleAnno.setValue("Kubernetes LOGON OVER THE INTERNET");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -102,7 +103,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_k8s_audit_at_internet_login");
-        alert.setDisplayName("Kubernetes 公网登录告警");
+        alert.setDisplayName("Kubernetes LOGON OVER THE INTERNET");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -136,7 +137,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_k8s_audit_at_internet_login",
-        "displayName": "Kubernetes 公网登录告警",
+        "displayName": "Kubernetes LOGON OVER THE INTERNET",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -172,10 +173,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "登录的公网IP数：${ip_count}, 总登录次数 ${total}, 失败次数: ${failCount}。"
+                "value": "Number of IP addresses used for logons over the Internet: ${ip_count}. Number of logons: ${total}. Number of logon failures: ${failCount}."
             }, {
                 "key": "title",
-                "value": "Kubernetes 公网登录告警"
+                "value": "Kubernetes LOGON OVER THE INTERNET"
             }, {
                 "key": "__drill_down_query__",
                 "value": "*|select CASE WHEN json_array_length(sourceIPs) = 1 then json_format(json_array_get(sourceIPs, 0)) ELSE  sourceIPs END  as ip, count(1) as total,  sum(CASE WHEN \"responseStatus.code\" < 400 then 0   ELSE 1 END) * 1.0 / count(1) as fail_rate,  count_if(\"responseStatus.code\" > 399) as failCount from log WHERE ip_to_domain(json_format(json_array_get(sourceIPs, 0))) = 'internet' group by ip ORDER BY total desc limit 10000"
@@ -226,7 +227,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_k8s_audit_at_internet_login",
-		DisplayName: "Kubernetes 公网登录告警",
+		DisplayName: "Kubernetes LOGON OVER THE INTERNET",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -266,11 +267,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "登录的公网IP数：${ip_count}, 总登录次数 ${total}, 失败次数: ${failCount}。",
+					Value: "Number of IP addresses used for logons over the Internet: ${ip_count}. Number of logons: ${total}. Number of logon failures: ${failCount}.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Kubernetes 公网登录告警",
+					Value: "Kubernetes LOGON OVER THE INTERNET",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

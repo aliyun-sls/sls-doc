@@ -1,94 +1,83 @@
-# 通过 Logtail 跨阿里云账号采集容器日志
+# Use Logtail to collect container logs across Alibaba Cloud accounts
 
-本文介绍跨阿里云账号采集阿里云 Kubernetes 中的容器日志的操作步骤。
+This topic describes how to collect container logs from Container Service for Kubernetes (ACK) across Alibaba Cloud accounts.
 
-## 背景信息
+## Step 1: Configure the ID of an Alibaba Cloud account as a user identifier
 
-例如某电商公司拥有两个电商应用，部署在阿里云杭州地域的 Kubernetes 集群中，并使用杭州地域的日志服务进行日志管理。
+1. Log on to the [ACK console] by using Alibaba Cloud Account B.(https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.490e598dKX7ysr){target="\_blank"}。
+2. Configure the ID of Alibaba Cloud Account A as a user identifier.
+   > In the left-side navigation pane, click Clusters.
+   > On the Clusters page, find the cluster that you want to manage and click the ID of the cluster.
+   > In the left-side navigation pane, choose Configurations > ConfigMaps.
+   > Set the Namespace parameter to kube-system. In the ConfigMap list, find alibaba-log-configuration and click Edit in the Actions column.
+   > In the Edit panel, complete the following configurations and click OK.
 
-> 应用 A 部署在阿里云账号 A（12\***\*456）下的 Kubernetes 集群中，并使用该账号下的日志服务进行日志管理。
-> 应用 B 部署在阿里云账号 B（17\*\***397）下的 Kubernetes 集群中，并使用该账号下的日志服务进行日志管理。
-
-现公司业务调整，计划将两个应用的日志集中采集到阿里云账号 A（12\*\*\*\*456）下的日志服务中，即将两个应用的日志分别采集到同一个日志服务 Project 下的不同 Logstore 中。因此您需要新增一个 Logtail 采集配置、机器组和 Logstore，用于采集和存储应用 B 相关的日志。应用 A 相关的日志采集保持不变（使用原有的 Logtail 采集配置、机器组和 Logstore）。
-
-![image.png](./img/contnierlog.png)
-
-## 步骤一：设置阿里云账号为用户标识
-
-1. 使用阿里云账号 B 登录[容器服务管理控制台](https://cs.console.aliyun.com/?spm=a2c4g.11186623.0.0.490e598dKX7ysr){target="\_blank"}。
-2. 设置阿里云账号 A 为用户标识。
-   > 在左侧导航栏中，单击集群。
-   > 在集群列表页面中，单击目标集群。
-   > 在左侧导航栏中，选择配置管理 > 配置项。
-   > 选择命名空间为 kube-system，然后在配置项列表中单击 alibaba-log-configuration 对应的编辑。
-   > 在编辑面板中，完成如下操作，然后单击确定。
-
-- 在 log-ali-uid 配置项中增加阿里云账号 A 的 ID，然后记录 log-machine-group 配置项的值（例如 k8s-group-cc47\*\*\*\*54428），在创建机器组时需设置用户自定义标识为该值。
-- 多个账号之间使用半角逗号（,）相隔，例如 17\***\*397,12\*\***456。
+- Specify the ID of Alibaba Cloud Account A for the log-ali-uid parameter, and then obtain the value of the log-machine-group parameter, such as k8s-group-cc47\*\*\*\*54428. When you create a machine group, specify the value for the Custom Identifier parameter.
+- Separate multiple account IDs with commas (,). Example: 17\***\*397,12\*\***456.
 
 ![image.png](./img/contnierlog2.png)
 
-3. 重启 logtail-ds，使配置生效。
+3. Restart logtail-ds for the settings to take effect.
 
-   > a.在左侧导航栏中，选择工作负载 > 进程守护集。
-   > b.在守护进程集列表中，单击 logtail-ds 对应的编辑。
-   > c.在环境变量区域，单击新增。
-   > d.新增一个任意内容的自定义变量（例如 random_id：439157431651471905349）。
+   > a.In the left-side navigation pane, choose Workloads > DaemonSets.
+   > b.In the DaemonSets list, find logtail-ds and click Edit in the Actions column.
+   > c.In the Environment Variable section, click Add.
+   > d.Add a custom variable and specify an arbitrary key-value pair.
 
    ![image.png](./img/contnierlog6.png)
 
-> e.单击更新。
+> e.Click Update.
 
-- 在 logtail-ds 详情页面，确认各个容器组的状态为 Running 且创建时间为您更新配置后的时间。
+- On the details page of logtail-ds, check whether each container pod is in the Running state and whether the time when each pod is created is the same as the time when you update the settings.
 
 ![image.png](./img/contnierlog3.png)
 
-# 步骤二：创建机器组
+# Step 2: Create a machine group
 
-1.  使用阿里云账号 A 登录[日志服务控制台](https://account.alibabacloud.com/login/login.htm?oauth_callback=https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.490e598dKX7ysr){target="\_blank"}。
-2.  在 Project 列表区域，单击目标 Project。
-3.  在左侧导航栏中，选择资源 > 机器组。
-4.  选择机器组右侧的机器组 > 创建机器组。
-5.  在创建机器组对话框中，配置如下参数，然后单击确定
+1. Log on to the [Simple Log Service console](https://account.alibabacloud.com/login/login.htm?oauth_callback=https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.490e598dKX7ysr){target="\_blank"}。 by using Alibaba Cloud Account A.
+2. In the Projects section, click the name of the project that you want to manage.
+3. In the left navigation pane, choose Resource > Machine Group.
+4. On the Machine Group tab, choose More > Create Machine Group.
+5. In the Create Machine Group panel, configure the parameters and click OK. The following figure shows the parameters.
 
-- 其中用户自定义标识需设置为您在[步骤一：设置阿里云账号为用户标识](./aliyunAcountlog.md)中获取的机器组标识（例如 k8s-group-cc47\*\*\*\*54428）。其他参数说明，请参见[创建用户自定义标识机器组](https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i1#concept-gyy-k3q-zdb){target="\_blank"}。
+- In the Custom Identifier field, enter the machine group identifier that you obtained in [Step 1: Configure the ID of an Alibaba Cloud account as a user identifier](./aliyunAcountlog.md).For more information about other parameters, see [Create a custom identifier-based machine group](https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i1#concept-gyy-k3q-zdb){target="\_blank"}.
 
 ![image.png](./img/contnierlog4.png)
 
-6. 检查机器组中的服务器心跳都为 OK。
-   > a.在机器组列表中，单击目标机器组。
-   > b.在机器组配置页面，查看容器节点（ECS）的心跳状态。
-   > 心跳为 OK 表示容器节点与日志服务的连接正常。如果显示 FAIL 请参见[Logtail 机器组无心跳](https://help.aliyun.com/zh/sls/user-guide/troubleshoot-the-errors-related-to-logtail-machine-groups?spm=a2c4g.11186623.0.i2#concept-nfs-hs3-bfb){target="\_blank"}。
+6. Check whether the heartbeat status of each server in the machine group is OK.
 
+   > a.In the Machine Group list, click the machine group.
+   > b.On the Machine Group Configurations page, view the status of each ECS instance.
+   > If the heartbeat status of an ECS instance is OK, the ECS instance is connected to Simple Log Service.If the status is FAIL, see [How do I troubleshoot an error that is related to a Logtail machine group in a host environment?].(https://help.aliyun.com/zh/sls/user-guide/troubleshoot-the-errors-related-to-logtail-machine-groups?spm=a2c4g.11186623.0.i2#concept-nfs-hs3-bfb){target="\_blank"}。
 
-    ![image.png](./img/contnierlog5.png)
+   ![image.png](./img/contnierlog5.png)
 
-## 步骤三：创建 Logtail 采集配置
+## Step 3: Create a Logtail configuration
 
-1. 使用阿里云账号 A 登录[日志服务控制台] (https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.1eae598dLCgNTM)。
-2. 在数据接入区域，单击 Kubernetes-文件。
-3. 选择目标 Project 和 Logstore，单击下一步。
-4. 单击使用现有机器组。
-5. 选中您在步骤二：创建机器组中所创建的机器组，将该机器组从源机器组移动到应用机器组，单击下一步。
-6. 设置 Logtail 采集配置，单击下一步。
+1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.1eae598dLCgNTM) by using Alibaba Cloud Account A.
+2. In the Import Data section, click Kubernetes - File.
+3. Select a project and a Logstore. Then, click Next.
+4. Click Use Existing Machine Groups.
+5. Select the machine group that you created in [Step 2: Create a machine group], move the machine group from the Source Machine Group section to the Applied Server Groups section, and then click Next.
+6. Configure the parameters for the Logtail configuration and click Next.
 
-- 具体参数说明，请参见通过 DaemonSet-控制台方式采集容器文本日志。
+- For more information about the parameters, see [Use the Simple Log Service console to collect container text logs in DaemonSet mode].
 
-  **重要**
+  **important**
 
-- 默认一个文件只能匹配一个 Logtail 采集配置。此时账号 B 下的采集未停止，账号 A 下的 Logtail 采集配置无法生效，因此您需要使用如下方式使账号 A 下的 Logtail 采集配置生效。
-  > 停止账号 B 下的采集，即使用账号 B 登录日志服务控制台，从目标机器组中移除 Logtail 采集配置。具体操作，请参见[应用 Logtail 采集配置](https://help.aliyun.com/zh/sls/user-guide/manage-machine-groups?spm=a2c4g.11186623.0.i19#section-gqq-rp1-ry){target="\_blank"}。
-  > 在账号 A 下添加强制采集配置。更多信息，请参见[如何实现文件中的日志被采集多份](https://help.aliyun.com/zh/sls/user-guide/what-do-i-do-if-i-want-to-use-multiple-logtail-configurations-to-collect-logs-from-a-log-file?spm=a2c4g.11186623.0.i21#concept-2180900){target="\_blank"}。
-- 此处创建 Logtail 采集配置成功后，请删除阿里云账号 B 下的原有 Logtail 采集配置，避免重复采集日志。如何删除，请参见[删除 Logtail 采集配置](https://help.aliyun.com/zh/sls/user-guide/manage-logtail-configurations-for-log-collection?spm=a2c4g.11186623.0.i20#section-vgw-rm1-ry){target="\_blank"}。
+- By default, you can use only one Logtail configuration to collect each log file.The collection process of Logtail in Alibaba Cloud Account B is not stopped. In this case, the Logtail configuration of Alibaba Cloud Account A cannot take effect. To ensure that the Logtail configuration of Alibaba Cloud Account A takes effect, you can use one of the following methods:
+  > Stop the collection process in Alibaba Cloud Account B. To stop the collection process, log on to the Simple Log Service console by using Alibaba Cloud Account B and remove the original Logtail configuration from the machine group.For more information, see the [Apply Logtail configurations to a machine group](https://help.aliyun.com/zh/sls/user-guide/manage-machine-groups?spm=a2c4g.11186623.0.i19#section-gqq-rp1-ry){target="\_blank"} section of the "Manage machine groups" topic.
+  > Add compulsory collection settings to the Logtail configuration of Alibaba Cloud Account A.For more information, see [What do I do if I want to use multiple Logtail configurations to collect logs from a log file?](https://help.aliyun.com/zh/sls/user-guide/what-do-i-do-if-i-want-to-use-multiple-logtail-configurations-to-collect-logs-from-a-log-file?spm=a2c4g.11186623.0.i21#concept-2180900){target="\_blank"}。
+- After you create the Logtail configuration, delete the original Logtail configuration of Alibaba Cloud Account B to prevent repeated collection of logs.see the [Delete Logtail configurations] section of the "Manage Logtail configurations for log collection" topic.(https://help.aliyun.com/zh/sls/user-guide/manage-logtail-configurations-for-log-collection?spm=a2c4g.11186623.0.i20#section-vgw-rm1-ry){target="\_blank"}。
 
-7. 预览数据及设置索引，单击下一步。
+7. Preview data, configure indexes, and then click Next.
 
-- 日志服务默认开启全文索引。您也可以根据采集到的日志，手动或者自动设置字段索引。更多信息，请参见[配置索引](https://help.aliyun.com/zh/sls/user-guide/create-indexes?spm=a2c4g.11186623.0.i24#task-jqz-v55-cfb){target="\_blank"}。
+- By default, the full-text indexing feature is enabled for Simple Log Service.You can configure field indexes based on the collected logs in manual mode or automatic mode.For more information, see [Create indexes](https://help.aliyun.com/zh/sls/user-guide/create-indexes?spm=a2c4g.11186623.0.i24#task-jqz-v55-cfb){target="\_blank"}.
 
-## 相关操作
+## What to do next
 
-如果您需要将阿里云账号 B 下的历史数据迁移到当前的 Logstore 中，可以在原 Logstore 中创建数据加工任务，将数据复制到当前 Logstore 中。具体操作，请参见[复制 Logstore 数据](https://help.aliyun.com/zh/sls/user-guide/replicate-data-from-a-logstore?spm=a2c4g.11186623.0.i29#task-2036148){target="\_blank"}。
-**重要** 跨账号加工数据时，需使用自定义角色或密钥方式进行授权，此处以自定义角色为例。
+If you want to migrate historical data from Alibaba Cloud Account B to the current Logstore, you can create a data transformation job in the original Logstore, and then replicate the data to the current Logstore.For more information, see [Replicate data from a Logstore].(https://help.aliyun.com/zh/sls/user-guide/replicate-data-from-a-logstore?spm=a2c4g.11186623.0.i29#task-2036148){target="\_blank"}。
+**Important** If you create a data transformation job to transform data across Alibaba Cloud accounts, you must use a custom role or an AccessKey pair to grant the required permissions for the job. In this example, a custom role is used.
 
-> 第一个角色 ARN 用于授予数据加工任务使用该角色来读取源 Logstore 中的数据。角色权限配置说明请参见[授予 RAM 角色源 Logstore 读权限](https://help.aliyun.com/zh/sls/user-guide/access-data-by-using-a-custom-role?spm=a2c4g.11186623.0.i37#section-wms-rsm-fgd){target="\_blank"}。
-> 第二个角色 ARN 用于授予数据加工任务使用该角色将数据加工结果写入目标 Logstore。角色权限配置说明请参见[授予 RAM 角色目标 Logstore 写权限（跨账号）](https://help.aliyun.com/zh/sls/user-guide/access-data-by-using-a-custom-role?spm=a2c4g.11186623.0.i41#section-5y6-5dk-etx){target="\_blank"}。
+> The first Alibaba Cloud resource name (ARN) of the role is used to grant the custom role or AccessKey pair the required permissions to read data from a source Logstore.For more information about how to grant the required permissions to a Resource Access Management (RAM) role, see the [Grant the RAM role the permissions to read data from a source Logstore](https://help.aliyun.com/zh/sls/user-guide/access-data-by-using-a-custom-role?spm=a2c4g.11186623.0.i37#section-wms-rsm-fgd){target="\_blank"} section of the "Access data by using a custom role" topic.
+> The second ARN of the role is used to grant the custom role or AccessKey pair the required permissions to write transformation results to a destination Logstore.角色权限配置说 For information about how to grant the required permissions to a RAM role, see the [Grant the RAM role the permissions to write data to a destination Logstore across Alibaba Cloud accounts](https://help.aliyun.com/zh/sls/user-guide/access-data-by-using-a-custom-role?spm=a2c4g.11186623.0.i41#section-5y6-5dk-etx){target="\_blank"} section of the "Access data by using a custom role" topic.

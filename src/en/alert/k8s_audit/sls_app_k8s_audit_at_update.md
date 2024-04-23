@@ -1,10 +1,11 @@
-# Kubernetes 修改资源告警
+# Kubernetes Resource modification
 
-::: tip 说明
-- 每分钟检查一次，查询过去2分钟的日志。当存在修改资源事件时，告警触发。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If a resource is modified, an alert is triggered.Logs of the last 2 minutes are inspected at a 1-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("no_group");
         groupConf.setFields(Arrays.asList());
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("Kubernetes 修改资源告警, 修改资源请求数: ${count}");
+        descAnno.setValue("Alert for resource modification. The number of requests to modify resources is ${count}.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Kubernetes 修改资源告警");
+        titleAnno.setValue("Kubernetes Resource modification");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -102,7 +103,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_k8s_audit_at_update");
-        alert.setDisplayName("Kubernetes 修改资源告警");
+        alert.setDisplayName("Kubernetes Resource modification");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -136,7 +137,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_k8s_audit_at_update",
-        "displayName": "Kubernetes 修改资源告警",
+        "displayName": "Kubernetes Resource modification",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -172,10 +173,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "Kubernetes 修改资源告警, 修改资源请求数: ${count}"
+                "value": "Alert for resource modification. The number of requests to modify resources is ${count}."
             }, {
                 "key": "title",
-                "value": "Kubernetes 修改资源告警"
+                "value": "Kubernetes Resource modification"
             }, {
                 "key": "__drill_down_query__",
                 "value": "(verb : update or verb : patch) NOT  user.username: node NOT  user.username: serviceaccount NOT  user.username: apiserver NOT  user.username: kube-scheduler NOT  user.username: kube-controller-manager"
@@ -226,7 +227,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_k8s_audit_at_update",
-		DisplayName: "Kubernetes 修改资源告警",
+		DisplayName: "Kubernetes Resource modification",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -266,11 +267,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "Kubernetes 修改资源告警, 修改资源请求数: ${count}",
+					Value: "Alert for resource modification. The number of requests to modify resources is ${count}.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Kubernetes 修改资源告警",
+					Value: "Kubernetes Resource modification",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

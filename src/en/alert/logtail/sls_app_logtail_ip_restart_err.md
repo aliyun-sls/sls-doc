@@ -1,10 +1,11 @@
-# Logtail重启告警
+# Logtail restart
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。5分钟内，当同一客户端出现Logtail重启的次数超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If the number of Logtail restarts within the last 5 minutes exceeds the specified threshold, an alert is triggered.Data of the last 5 minutes is inspected at a 5-minute interval.You can specify the threshold in the input parameters of the alert rule.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("hostname", "ip"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -76,11 +77,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，主机名为${hostname}、ip地址为${ip}的Logtail客户端出现${cnt}次重启。");
+        descAnno.setValue("Logtail that is hosted on the ${hostname} server of the ${ip} IP address restarts for ${cnt} times within the last 5 minutes.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Logtail重启告警");
+        titleAnno.setValue("Logtail restart");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -112,7 +113,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_logtail_ip_restart_err");
-        alert.setDisplayName("Logtail重启告警");
+        alert.setDisplayName("Logtail restart");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -146,7 +147,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_logtail_ip_restart_err",
-        "displayName": "Logtail重启告警",
+        "displayName": "Logtail restart",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -194,10 +195,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，主机名为${hostname}、ip地址为${ip}的Logtail客户端出现${cnt}次重启。"
+                "value": "Logtail that is hosted on the ${hostname} server of the ${ip} IP address restarts for ${cnt} times within the last 5 minutes."
             }, {
                 "key": "title",
-                "value": "Logtail重启告警"
+                "value": "Logtail restart"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: logtail_status and hostname: \"${hostname}\" and ip: \"${ip}\""
@@ -245,7 +246,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_logtail_ip_restart_err",
-		DisplayName: "Logtail重启告警",
+		DisplayName: "Logtail restart",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -299,11 +300,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "在过去的5分钟内，主机名为${hostname}、ip地址为${ip}的Logtail客户端出现${cnt}次重启。",
+					Value: "Logtail that is hosted on the ${hostname} server of the ${ip} IP address restarts for ${cnt} times within the last 5 minutes.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Logtail重启告警",
+					Value: "Logtail restart",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

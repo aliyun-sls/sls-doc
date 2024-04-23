@@ -1,10 +1,11 @@
-# Logtail错误IP监控
+# Error monitoring on Logtail of a specific IP address
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。5分钟内，当同一IP（Logtail客户端）出现的错误次数超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- 每 5 分钟检测一次，检测过去 5 分钟的数据。5 分钟内，当同一 IP（Logtail 客户端）出现的错误次数超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("source_ip"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -69,11 +70,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，IP地址为${source_ip}的Logtail客户端出现${cnt}次错误，请检查是否存在异常。");
+        descAnno.setValue("If the number of errors that occurred on Logtail of a specific IP address within the last 5 minutes exceeds the specified threshold, an alert is triggered.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Logtail错误IP监控");
+        titleAnno.setValue("Error monitoring on Logtail of a specific IP address");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -105,7 +106,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_logtail_ip_err_cnt");
-        alert.setDisplayName("Logtail错误IP监控");
+        alert.setDisplayName("Error monitoring on Logtail of a specific IP address");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -139,7 +140,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_logtail_ip_err_cnt",
-        "displayName": "Logtail错误IP监控",
+        "displayName": "Error monitoring on Logtail of a specific IP address",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -181,10 +182,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，IP地址为${source_ip}的Logtail客户端出现${cnt}次错误，请检查是否存在异常。"
+                "value": "If the number of errors that occurred on Logtail of a specific IP address within the last 5 minutes exceeds the specified threshold, an alert is triggered."
             }, {
                 "key": "title",
-                "value": "Logtail错误IP监控"
+                "value": "Error monitoring on Logtail of a specific IP address"
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: logtail_alarm and source_ip: ${source_ip}"
@@ -232,7 +233,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_logtail_ip_err_cnt",
-		DisplayName: "Logtail错误IP监控",
+		DisplayName: "Error monitoring on Logtail of a specific IP address",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -279,11 +280,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "在过去的5分钟内，IP地址为${source_ip}的Logtail客户端出现${cnt}次错误，请检查是否存在异常。",
+					Value: "If the number of errors that occurred on Logtail of a specific IP address within the last 5 minutes exceeds the specified threshold, an alert is triggered.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Logtail错误IP监控",
+					Value: "Error monitoring on Logtail of a specific IP address",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

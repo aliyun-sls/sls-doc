@@ -1,40 +1,38 @@
-# Logtail 日志采集支持纳秒精度时间戳
+# Logtail Parse nanosecond-precision timestamps from raw logs when you use Logtail to collect logs
 
-本文为您介绍在使用 Logtail 进行日志采集时，如何从原始日志中提取纳秒精度时间戳。
+This topic describes how to parse nanosecond-precision timestamps from raw logs when you use Logtail to collect logs.
 
-## 使用前提
+## Prerequisites
 
-已在服务器上安装 Logtail，并已经创建了包含该服务器的机器组。
+Logtail is installed on your server and a machine group that contains the server is created.
 
-> 说明：纳秒精度时间戳的提取功能需要 Linux Logtail 1.8.0 及以上版本。
+> Note: To parse nanosecond-precision timestamps, Linux Logtail 1.8.0 or later is required.
 
-## 文件采集场景
+## File collection scenarios
 
-以下分了三个文件采集场景作为案例。
+| Scenario                                                                                                                                                                                                                                            | Parsing method                                                                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Scenario 1: Parse delimiter logs <br />Sample Log:<br /> 2023.11.06-15.12.12.123456,10.10.\*.\*,"POST /PutData?Category=a a s d f&AccessKeyId=\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*&Date=123&Topic=raw&Signature=123 HTTP/1.1",200,18204,aliyun-sdk-java | Use the delimiter parsing plug-in to parse delimiter logs and extract high-precision timestamps.`2023.11.06-15.12.12.123456`                                                               |
+| Scenario 2: Use the extended processor to process JSON data and parse timestamps in the time format supported by strptime                                                                                                                           | Use the extended processor to process JSON data and parse timestamps in the time format supported by strptime. For example, you can use the processor_json plug-in to process JSON fields. |
+| Scenario 3: Use the extended processor to process JSON data and parse timestamps in the time format supported by Go                                                                                                                                 | Use the extended processor to process JSON data and parse timestamps in the time format supported by Go. For example, you can use the processor_json plug-in to process JSON fields.       |
 
-| 日志特点                                                                                                                                                                                                                             | 处理方式                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| 场景一：分隔符日志 <br />日志样例：<br /> 2023.11.06-15.12.12.123456,10.10.\*.\*,"POST /PutData?Category=a a s d f&AccessKeyId=\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*&Date=123&Topic=raw&Signature=123 HTTP/1.1",200,18204,aliyun-sdk-java | 使用分隔符解析插件对分隔符日志进行解析，并提取高精度时间`2023.11.06-15.12.12.123456`                                          |
-| 场景二：使用拓展 Processor 进行 Json 数据处理，并使用 strptime 时间格式进行时间提取                                                                                                                                                  | 需要使用拓展 Processor 进行数据处理（例如展开 JSON 字段-processor_json 插件），然后需要使用 strptime 时间格式，进行时间提取。 |
-| 场景三：使用拓展 Processor 进行 Json 数据处理，并使用 Go 语言时间格式进行时间提取                                                                                                                                                    | 需要使用拓展 Processor 进行数据处理（例如展开 JSON 字段-processor_json 插件），然后需要使用 Go 语言时间格式，进行时间提取     |
+### Scenario 1: Parse delimiter logs
 
-### 场景一：分隔符日志解析操作步骤
+#### Log parsing results
 
-#### 解析效果展示
-
-测试日志
+Test log
 
 ```text
 2023.11.06-15.12.12.123456,10.10.*.*,"POST /PutData?Category=YunOsAccountOpLog&AccessKeyId=****************&Date=Fri%2C%2028%20Jun%202013%2006%3A53%3A30%20GMT&Topic=raw&Signature=******************************** HTTP/1.1",200,18204,aliyun-sdk-java
 ```
 
-解析结果
+Parsing results
 
-![解析结果](./img/enableTimeNano/1.png)
+![Parsing results](./img/enableTimeNano/1.png)
 
-#### 步骤 1：采集配置开启高级参数
+#### Step 1: Configure advanced parameters for the log collection configuration
 
-在高级参数中添加`"EnableTimestampNanosecond":true`。
+Set the EnableTimestampNanosecond parameter to true in the advanced parameters.`"EnableTimestampNanosecond":true`。
 
 ![image](./img/enableTimeNano/2.png)
 
@@ -44,28 +42,28 @@
 }
 ```
 
-#### 步骤 2：使用`分隔符解析插件`进行分隔符解析
+#### Step 2: Use the delimiter parsing plug-in to parse delimiters
 
-处理配置新增分隔符解析（processor_parse_delimiter_native），具体可参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/separator-pattern-resolution)
+Configure a configuration to parse logs in delimiter mode.（processor_parse_delimiter_native）,For more information, see [Parsing in delimiter mode](https://help.aliyun.com/zh/sls/user-guide/separator-pattern-resolution)
 
 ![image](./img/enableTimeNano/3.png)
 
 ![image](./img/enableTimeNano/4.png)
 
-#### 步骤 3：使用`时间解析插件`进行时间解析
+#### Step 3: Use the timestamp parsing plug-in to parse timestamps
 
-时间解析插件需要配置时间格式，例如分隔符插件解析后的字段`time`为`2023.10.26-20.58.12.123456`，`时间转换格式`
-应调整为`%Y.%m.%d-%H.%M.%S.%f`，其中`%f`
-为秒的小数部分，精度最高支持为纳秒。时间转换格式需要与原始日志中的时间格式保持一致，完整格式参考[常见时间格式表达式](https://help.aliyun.com/document_detail/28980.html)
-。该插件的具体配置说明可参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/time-parsing)。
+You must configure a time format for the timestamp parsing plug-in. For example, if the time field parsed by the delimiter parsing plug-in is 2023.10.26-20.58.12.123456, the time conversion format must be set to
+%Y.%m.%d-%H.%M.%S.%f.`%f`
+%f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://help.aliyun.com/document_detail/28980.html) section of the "Time formats" topic.
+For more information about the configuration of the plug-in, see [Time parsing](https://help.aliyun.com/zh/sls/user-guide/time-parsing).
 
 ![image](./img/enableTimeNano/5.png)
 
-### 场景二：扩展插件提取日志时间（strptime 时间格式）操作步骤
+### Scenario 2: Use the extended processor to process JSON data and parse timestamps in the time format supported by strptime
 
-#### 解析效果展示
+#### Log parsing results
 
-源日志
+Raw logs:
 
 ```json
 {
@@ -79,34 +77,33 @@
 }
 ```
 
-解析结果
+Test log
 
-![解析结果](./img/enableTimeNano/6.png)
+![Test log](./img/enableTimeNano/6.png)
 
-#### 步骤 1：采集配置开启高级参数
+#### Step 1: Configure advanced parameters for the log collection configuration
 
-同 原生插件操作步骤 步骤一
+Set the EnableTimestampNanosecond parameter to true in the advanced parameters.
 
-#### 步骤 2：使用展开 JSON 字段插件进行 JSON 解析
+#### Step 2: Use the processor_json plug-in to process JSON fields
 
-处理配置新增 JSON 解析（processor_parse_json_native），具体可参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/expand-json-fields)
+Configure a configuration to process JSON data. For more information, see [Expand JSON fields](https://help.aliyun.com/zh/sls/user-guide/expand-json-fields).
 
 ![image](./img/enableTimeNano/7.png)
 
 ![image](./img/enableTimeNano/8.png)
 
-#### 步骤 3：使用提取日志时间（strptime 时间格式）插件进行时间解析
+#### Step 3: Use the timestamp parsing plug-in to parse timestamps in the time format supported by strptime
 
-该插件需要配置时间格式，例如原始日志时间字段为`"asctime": "2022-04-29 21:37:40,251"`，`时间转换格式`
-应调整为`%Y-%m-%d %H:%M:%S,%f`，其中`%f`
-为秒的小数部分，精度最高支持为纳秒。时间转换格式需要与原始日志中的时间格式保持一致，完整格式参考[常见时间格式表达式](https://help.aliyun.com/document_detail/28980.html)
-。该插件的具体配置说明可参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-3sq-fik-1b7)。
+You must configure a time format for the timestamp parsing plug-in. For example, if the asctime field in the raw logs is 2022-04-29 21:37:40,251, the time conversion format must be set to %Y-%m-%d %H:%M:%S,%f.
+%f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://help.aliyun.com/document_detail/28980.html) section of the "Time formats" topic.
+For more information about the configuration of the plug-in, see the [Time format supported by strptime](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-3sq-fik-1b7) section of the "Extract log time" topic.
 
 ![image](./img/enableTimeNano/9.png)
 
-### 场景三：扩展插件提取日志时间（Go 语言时间格式）操作步骤
+### Scenario 3: Use the extended processor to process JSON data and parse timestamps in the time format supported by Go
 
-#### 解析效果展示
+#### Log parsing results
 
 ```json
 {
@@ -122,22 +119,21 @@
 
 ![image](./img/enableTimeNano/10.png)
 
-#### 步骤 1：采集配置开启高级参数
+#### Step 1: Configure advanced parameters for the log collection configuration
 
-同 原生插件操作步骤 步骤一
+Set the EnableTimestampNanosecond parameter to true in the advanced parameters.
 
-#### 步骤 2：使用展开 JSON 字段插件进行 JSON 解析
+#### Step 2: Use the processor_json plug-in to process JSON fields
 
-同 扩展插件提取日志时间（strptime 时间格式）操作步骤 步骤二
+Configure a configuration to process JSON data. For more information, see [Expand JSON fields].
 
-#### 步骤 3：使用提取日志时间（Go 语言时间格式）进行时间解析
+#### Step 3: Use the timestamp parsing plug-in to parse timestamps in the time format supported by Go
 
-该插件的时间格式需要按照 golang 的时间格式规范来编写。其中的格式化时间模板不是常见的`%Y-%m-%d %H:%M:%S`
-，而是使用 Go 语言的诞生时间 `2006-01-02 15:04:05 -0700 MST`。
+The time format of the plug-in must be configured based on the time format specification of Golang.The timestamps are not parsed in the %Y-%m-%d %H:%M:%S format.The timestamps are parsed in the format that is consistent with the time when Go was created, which is 2006-01-02 15:04:05 -0700 MST.
 
-例如，`2023-10-25 01:36:10,199999999`对应的时间格式应该为`2006-01-02 15:04:05,999999999`
+For example, 2023-10-25 01:36:10,199999999 is parsed in the format of 2006-01-02 15:04:05,999999999.
 
-以下提供 Golang 官方的时间格式案例。
+The following sample code provides examples of the time formats supported by Golang:
 
 ```go
 const (
@@ -161,27 +157,27 @@ const (
 )
 ```
 
-该插件的具体配置说明可参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-xxl-q69-w5q)。
+For more information about the configuration of the plug-in, see the [Time format supported by Go](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-xxl-q69-w5q) section of the "Extract log time" topic.
 
 ![image](./img/enableTimeNano/11.png)
 
-## 标准输出采集场景
+## Stdout and Stderr Collection
 
-本章节以 Docker 标准输出为例展示操作步骤。
+This section describes how to parse timestamps in Stdout and Stderr Collection
 
-### 场景一：解析容器输出时间的纳秒精度时间
+### Scenario 1: Parse the nanosecond-precision timestamps of standard output logs that are collected from containers
 
-#### 解析效果展示
+#### Log parsing results
 
 ![image](./img/enableTimeNano/12.png)
 
-#### 步骤 1：创建 Docker 标准输出的采集配置
+#### Step 1: Create a collection configuration to collect standard output logs from a Docker container
 
 ![image](./img/enableTimeNano/13.png)
 
-#### 步骤 2：采集配置开启高级参数扩展
+#### Step 2: Configure advanced parameters for the log collection configuration
 
-在扩展配置中添加`"enable_timestamp_nanosecond": true`。
+Set the enable_precise_timestamp parameter to true in the advanced configurations. `"enable_timestamp_nanosecond": true`。
 
 ```json
 {
@@ -191,13 +187,13 @@ const (
 
 ![image](./img/enableTimeNano/14.png)
 
-#### 步骤 3：使用提取日志时间（Go 语言时间格式）插件进行时间解析
+#### Step 3: Use the timestamp parsing plug-in to parse timestamps in the time format supported by Go
 
 ![image](./img/enableTimeNano/15.png)
 
-### 场景二：解析 Json 字段的纳秒精度时间为日志时间
+### Scenario 2: Parse the nanosecond-precision timestamps of the JSON fields as log timestamps
 
-#### 解析效果展示
+#### Log parsing results
 
 ```json
 {
@@ -211,22 +207,22 @@ const (
 }
 ```
 
-可以发现，asctime 和日志时间一致。
+The value of the asctime field is consistent with the log timestamp.
 
 ![image](./img/enableTimeNano/16.png)
 
-#### 步骤 1：创建 Docker 标准输出的采集配置
+#### Step 1: Create a collection configuration to collect standard output logs from a Docker container
 
-同 场景一 步骤一
+The configuration is the same as that in Step 1 of Scenario 1.
 
-#### 步骤 2：采集配置开启高级参数扩展
+#### Step 2: Configure advanced parameters for the log collection configuration
 
-同 场景一 步骤二
+The configuration is the same as that in Step 2 of Scenario 1.
 
-#### 步骤 3：使用展开 JSON 字段插件进行 JSON 解析
+#### Step 3: Use the processor_json plug-in to parse JSON data.
 
 ![image](./img/enableTimeNano/17.png)
 
-#### 步骤 4：使用提取日志时间（strptime 时间格式）插件进行时间解析
+#### Step 4: Use the timestamp parsing plug-in to parse timestamps in the time format supported by strptime
 
 ![image](./img/enableTimeNano/18.png)

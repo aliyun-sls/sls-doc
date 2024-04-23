@@ -1,10 +1,11 @@
-# Kubernetes 删除资源告警
+# Kubernetes Resource deletion
 
-::: tip 说明
-- 每分钟检查一次，查询过去2分钟的日志。当发生删除资源的操作时，告警触发。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If an operation is performed to delete a resource, an alert is triggered.Logs of the last 2 minutes are inspected at a 1-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("auditID"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("存在Kubernetes删除资源事件，请检查是否存在异常。资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，操作类型：${operationType}，源IP：${sourceIP}。");
+        descAnno.setValue("An operation is performed to delete a resource. Check whether an exception exists.Resource: ${resource}. Resource name: ${resourceName}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Operation type: ${operationType}. Source IP address: ${sourceIP}.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Kubernetes 删除资源告警");
+        titleAnno.setValue("Kubernetes RESOURCE DELETION");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -142,7 +143,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_k8s_audit_at_delete");
-        alert.setDisplayName("Kubernetes 删除资源告警");
+        alert.setDisplayName("Kubernetes RESOURCE DELETION");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -176,7 +177,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_k8s_audit_at_delete",
-        "displayName": "Kubernetes 删除资源告警",
+        "displayName": "Kubernetes RESOURCE DELETION",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -212,10 +213,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "存在Kubernetes删除资源事件，请检查是否存在异常。资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，操作类型：${operationType}，源IP：${sourceIP}。"
+                "value": "An operation is performed to delete a resource. Check whether an exception exists.Resource: ${resource}. Resource name: ${resourceName}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Operation type: ${operationType}. Source IP address: ${sourceIP}."
             }, {
                 "key": "title",
-                "value": "Kubernetes 删除资源告警"
+                "value": "Kubernetes RESOURCE DELETION"
             }, {
                 "key": "__drill_down_query__",
                 "value": "auditID: ${auditID} and verb : delete NOT  user.username: node NOT  user.username: serviceaccount NOT  user.username: apiserver NOT  user.username: kube-scheduler NOT  user.username: kube-controller-manager"
@@ -296,7 +297,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_k8s_audit_at_delete",
-		DisplayName: "Kubernetes 删除资源告警",
+		DisplayName: "Kubernetes RESOURCE DELETION",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -336,11 +337,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "存在Kubernetes删除资源事件，请检查是否存在异常。资源：${resource}，资源名称：${resourceName}，命名空间：${namespace}，操作账号：${user}，操作时间：${time}，操作类型：${operationType}，源IP：${sourceIP}。",
+					Value: "An operation is performed to delete a resource. Check whether an exception exists.Resource: ${resource}. Resource name: ${resourceName}. Namespace: ${namespace}. Account: ${user}. Time: ${time}. Operation type: ${operationType}. Source IP address: ${sourceIP}.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Kubernetes 删除资源告警",
+					Value: "Kubernetes RESOURCE DELETION",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",

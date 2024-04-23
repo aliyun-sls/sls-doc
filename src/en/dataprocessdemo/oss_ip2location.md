@@ -14,13 +14,13 @@
 
 ## 实践案例
 
-- 原始日志
+- Raw log entries
 
   ```
   ip: 19.0.0.0
   ```
 
-- 加工规则
+- Transformation rule
 
   ```python
   e_set("geo",
@@ -39,18 +39,18 @@
   e_json("geo")
   ```
 
-  res_oss_file 函数重要字段说明如下表所示。
+  res_oss_file 函数重要字段 Note 如下表所示。
 
-  | 字段     | 说明                                                                                                                                                                                                                                                                                                                  |
-  | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | endpoint | OSS 访问域名，详情请参见[访问域名和数据中心](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.2.11.4996415aKwzQM9#concept-zt4-cvy-5db)。                                                                                                                                                          |
-  | ak_id    | 具备只读 OSS 权限的 AccessKey ID。 出于安全考虑，建议配置为 res_local("AK_ID")，表示从高级参数配置中获取。高级参数配置操作步骤请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.12.4996415aKwzQM9#task-1181217)。![](/img/dataprocessdemo/IP地址相关/高级参数配置.png) |
-  | ak_key   | 具备只读 OSS 权限的 AccessKey Secret。 出于安全考虑，建议配置为 res_local("AK_KEY")表示从高级参数配置中获取。                                                                                                                                                                                                         |
-  | bucket   | 用于存储 IP 地址文件的 OSS Bucket。                                                                                                                                                                                                                                                                                   |
-  | file     | 您已上传的 IP 地址文件的名称。                                                                                                                                                                                                                                                                                        |
-  | format   | 使用 res_oss_file 函数从 OSS 获取 IP2Location 库数据时，文件输出格式需设置为 format='binary'。                                                                                                                                                                                                                        |
+  | 字段     | Note                                                                                                                                                                                                                                                                                                                     |
+  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+  | endpoint | OSS 访问域名，详情请参见[访问域名和数据中心](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.2.11.4996415aKwzQM9#concept-zt4-cvy-5db)。                                                                                                                                                             |
+  | ak_id    | 具备只读 OSS 权限的 AccessKey ID。 出于安全考虑，建议配置为 res_local("AK_ID")，表示从高级参数配置中获取。高级参数配置 Procedure 请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.12.4996415aKwzQM9#task-1181217)。![](/img/dataprocessdemo/IP地址相关/高级参数配置.png) |
+  | ak_key   | 具备只读 OSS 权限的 AccessKey Secret。 出于安全考虑，建议配置为 res_local("AK_KEY")表示从高级参数配置中获取。                                                                                                                                                                                                            |
+  | bucket   | 用于存储 IP 地址文件的 OSS Bucket。                                                                                                                                                                                                                                                                                      |
+  | file     | 您已上传的 IP 地址文件的名称。                                                                                                                                                                                                                                                                                           |
+  | format   | 使用 res_oss_file 函数从 OSS 获取 IP2Location 库数据时，文件输出格式需设置为 format='binary'。                                                                                                                                                                                                                           |
 
-- 加工结果
+- Transformation result
 
   ```
   ip: 19.0.0.0

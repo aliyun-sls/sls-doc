@@ -1,10 +1,11 @@
-# 定时SQL任务执行错误监控
+# LATENCY MONITORING ON A SCHEDULED SQL TASK
 
-::: tip 说明
-- 每5分钟检测一次，过去5分钟内，定时SQL任务出现报错后，触发告警。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- Data is inspected at a 5-minute interval. If the latency of a scheduled SQL task exceeds the specified threshold, an alert is triggered.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "job_name"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,7 +63,7 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("过去5分钟内，Project “${project}”下的定时SQL任务“${job_name}”出现了${cnt}次报错。请检查是否存在异常。");
+        descAnno.setValue("The latency of the scheduled SQL task ${job_name} in the project ${project} exceeds the specified threshold. the latency reaches ${delay} minutes.within the last 5 minutes. check whether an exception exists.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
@@ -94,7 +95,7 @@ public class App {
 
         Alert alert = new Alert();
         alert.setName("sls_app_sche_sql_at_err_monitor");
-        alert.setDisplayName("定时SQL任务执行错误监控");
+        alert.setDisplayName("Error monitoring on a scheduled SQL task");
         alert.setState(JobState.ENABLED);
         alert.setSchedule(schedule);
         alert.setConfiguration(configuration);
@@ -128,7 +129,7 @@ client = LogClient(endpoint, accesskey_id, accesskey_secret)
 def create_alert():
     alert = {
         "name": "sls_app_sche_sql_at_err_monitor",
-        "displayName": "定时SQL任务执行错误监控",
+        "displayName": "Error monitoring on a scheduled SQL task",
         "type": "Alert",
         "state": "Enabled",
         "schedule": {
@@ -164,10 +165,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "过去5分钟内，Project “${project}”下的定时SQL任务“${job_name}”出现了${cnt}次报错。请检查是否存在异常。"
+                "value": "The latency of the scheduled SQL task ${job_name} in the project ${project} exceeds the specified threshold. the latency reaches ${delay} minutes.within the last 5 minutes. check whether an exception exists."
             }, {
                 "key": "title",
-                "value": "定时SQL任务执行失败"
+                "value": "Error monitoring on a scheduled SQL task"
             }],
             "autoAnnotation": True,
             "sendResolved": False,
@@ -212,7 +213,7 @@ var (
 func createAlert() {
 	alert := &sls.Alert{
 		Name:        "sls_app_sche_sql_at_err_monitor",
-		DisplayName: "定时SQL任务执行错误监控",
+		DisplayName: "Error monitoring on a scheduled SQL task",
 		State:       "Enabled",
 		Schedule: &sls.Schedule{
 			Type:     sls.ScheduleTypeFixedRate,
@@ -252,11 +253,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "过去5分钟内，Project “${project}”下的定时SQL任务“${job_name}”出现了${cnt}次报错。请检查是否存在异常。",
+					Value: "The latency of the scheduled SQL task ${job_name} in the project ${project} exceeds the specified threshold. the latency reaches ${delay} minutes.within the last 5 minutes. check whether an exception exists.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "定时SQL任务执行失败",
+					Value: "scheduled SQL task execution failed",
 				},
 			},
 			AutoAnnotation: true,

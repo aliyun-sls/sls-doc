@@ -1,12 +1,12 @@
-# 复杂 JSON 数据加工
+# Transform complex JSON data
 
-本文档主要为您介绍如何使用日志服务数据加工功能对复杂的 JSON 数据进行加工。
+This topic describes how to use the data transformation feature of Simple Log Service to transform complex JSON data.
 
-## 多子键为数组的复杂 JSON 数据加工
+## Transform complex JSON data with multiple subkeys each of which is an array
 
-程序构建的日志会以一种统计性质的 JSON 格式写入，通常包含一个基础信息以及多个子健为数组的数据形式。例如一个服务器每隔 1 分钟写入一条日志，包含当前信息状态，以及相关服务器和客户端节点的统计状态信息。
+Program-built logs are written in a statistical JSON format, usually containing basic information and multiple subkeys each of which is an array.For example, a server writes a log at an interval of 1 minute. The log contains the data information status and the statistical status of servers and clients generating logs.
 
-- 日志样例
+- Sample log
 
   ```python
   __source__:  1.2.3.4
@@ -37,19 +37,18 @@
   }
   ```
 
-- 加工需求
+- Data transformation requirements
 
-  1. 对原始日志进行`topic`分裂，分别是`overall_type`、`client_status`、`server_status`。
+  1. Split the raw log by `topic`, including `overall_type`、`client_status`、`server_status`。
 
-  2. 对不同的`topic`保存不同的信息。
+  2. Store different information in each `topic` as follows:
 
-     - `overall_type`：保留 server、client 数量、overal_status 颜色和 service 信息。
+     - `overall_type`：stores the server count, client count, overall status (color), and service information.
 
-     - `client_status`：保留 host 地址、status 状态和 service 信息。
+     - `client_status`：stores the server count, client count, overall status (color), and service information.
+     - `server_status`：stores the host IP address, status, and service information.
 
-     - `server_status`：保留 host 地址、status 状态和 service 信息。
-
-- 期望结果
+- Expected result
 
   ```
   __source__:  1.2.3.4
@@ -80,9 +79,9 @@
   service:  search_service
   ```
 
-- 解决方案
+- Solution
 
-  1. 将一条日志拆分成三条日志，给主题赋予三个不同值再进行分裂，经过分裂后会分成除`topic`不同，其他信息相同的三条日志。
+  1. Split the raw log into three logs and then further split the logs by topic. After the splitting, the three logs have the same information except for the `topic` field.
 
      ```
      e_set(
@@ -92,35 +91,35 @@
      e_split("__topic__")
      ```
 
-     处理后日志格式如下：
+     The log after processing is as follows:
 
      ```
      __source__:  1.2.3.4
      __topic__:  server_status
      content:  {
-        ...如上...
+        ...
      }
      ```
 
-  2. 基于`content`的 JSON 内容在第一层展开，并删除`content`字段。
+  2. Expand the JSON data in the `content` field at the first layer and delete the `content` field.
 
      ```
      e_json('content',depth=1)
      e_drop_fields("content")
      ```
 
-     处理后的日志格式如下：
+  The log after processing is as follows:
 
-     ```
-     __source__:  1.2.3.4
-     __topic__:  overall_type              // 另外2条是client_status和overall_type, 其他一样
-     clients:  [{"host": "1.2.3.6", "status": "green"}, {"host": "1.2.3.7", "status": "red"}]
-     overal_status:  yellow
-     servers:  [{"host": "1.2.3.4", "status": "green"}, {"host": "1.2.3.5", "status": "green"}]
-     service:  search_service
-     ```
+  ```
+  __source__:  1.2.3.4
+  __topic__:  overall_type
+  clients:  [{"host": "1.2.3.6", "status": "green"}, {"host": "1.2.3.7", "status": "red"}]
+  overal_status:  yellow
+  servers:  [{"host": "1.2.3.4", "status": "green"}, {"host": "1.2.3.5", "status": "green"}]
+  service:  search_service
+  ```
 
-  3. 对主题是`overall_type`的日志，统计`client_count`和`server_count`。
+  3. For the log with the topic `overall_type`, compute the values for `client_count` and `server_count`.
 
      ```
      e_if(
@@ -137,14 +136,14 @@
         )
      )
 
-     处理后的日志为：
+     The log after processing is as follows:
 
      __topic__:  overall_type
      server_count:  2
      client_count:  2
      ```
 
-  4. 丢弃相关字段：
+  4. Delete the clients and servers fields.
 
      ```
      e_if(
@@ -153,7 +152,7 @@
      )
      ```
 
-  5. 对主题是`server_status`的日志，进行进一步分裂。
+  5. Further split the log with the topic `server_status`.
 
      ```
      e_if(
@@ -165,7 +164,7 @@
      )
      ```
 
-     处理后的日志为如下两条：
+     The log after processing is as follows:
 
      ```
      __topic__:  server_status
@@ -179,7 +178,7 @@
      status: green
      ```
 
-  6. 保留相关字段：
+  6. Delete the servers field.
 
      ```
      e_if(
@@ -188,7 +187,7 @@
      )
      ```
 
-  7. 对主题是`client_status`的日志进行进一步分裂，再删除多余字段。
+  7. Further split the log with the topic `client_status` and delete the clients field.
 
      ```
      e_if(
@@ -201,7 +200,7 @@
      )
      ```
 
-     处理后的日志为如下两个日志：
+     The log after processing is as follows:
 
      ```
      __topic__:  client_status
@@ -213,48 +212,45 @@
      status: red
      ```
 
-  8. 综上 LOG DSL 规则：
-     ```
-     # 总体分裂
-     e_set("__topic__", "server_status,client_status,overall_type")
-     e_split("__topic__")
-     e_json('content',depth=1)
-     e_drop_fields("content")
-     # 处理overall_type日志
-     e_if(e_search("__topic__==overall_type"),
-        e_compose(
-           e_set("client_count",
-              json_select(v("clients"), "length([*])", default=0)
-           ),
-           e_set("server_count",
-              json_select(v("servers"), "length([*])", default=0)
-           )
+  8. use the following LOG domain-specific language (DSL) rules:
+
+  ```
+  e_set("__topic__", "server_status,client_status,overall_type")
+  e_split("__topic__")
+  e_json('content',depth=1)
+  e_drop_fields("content")
+  e_if(e_search("__topic__==overall_type"),
+     e_compose(
+        e_set("client_count",
+           json_select(v("clients"), "length([*])", default=0)
+        ),
+        e_set("server_count",
+           json_select(v("servers"), "length([*])", default=0)
         )
      )
-     # 处理server_status日志
-     e_if(
-        e_search("__topic__==server_status"),
-        e_compose(
-           e_split("servers"),
-           e_json("servers", depth=1)
-     ))
-     e_if(
-        e_search("__topic__==overall_type"),
-        e_drop_fields("servers")
+  )
+  e_if(
+     e_search("__topic__==server_status"),
+     e_compose(
+        e_split("servers"),
+        e_json("servers", depth=1)
+  ))
+  e_if(
+     e_search("__topic__==overall_type"),
+     e_drop_fields("servers")
+  )
+  e_if(e_search("__topic__==client_status"),
+     e_compose(
+        e_split("clients"),
+        e_json("clients", depth=1),
+        e_drop_fields("clients")
      )
-     # 处理client_status日志
-     e_if(e_search("__topic__==client_status"),
-        e_compose(
-           e_split("clients"),
-           e_json("clients", depth=1),
-           e_drop_fields("clients")
-        )
-     )
-     ```
+  )
+  ```
 
-方案优化
+Solution optimization
 
-上述方案对`content.servers`和`content.servers`为空时的处理有一些问题。假设原始日志是：
+The preceding solution does not work well if the `content.clients` or `content.servers` field is empty.
 
 ```
 __source__:  1.2.3.4
@@ -267,7 +263,7 @@ content:{
 }
 ```
 
-按照上述方案分裂为三条日志，其中主题为`client_status`和`server_status`的日志内容是空的。
+If you split this raw log into three logs by using the preceding solution, the logs with the topics `client_status` and `server_status` are empty.
 
 ```
 __source__:  1.2.3.4
@@ -286,17 +282,17 @@ status:  green
 service:  search_service
 ```
 
-- 方案 1 可以在初始分裂后，处理`server_status`和`client_status`日志前分别判断并丢弃空的相关事件。
+- Optimized solution 1. Check whether the logs with the topics `server_status` and `client_status` are empty after the raw log is split. If so, discard the logs.
 
   ```
-  # 处理server_status: 空的丢弃（非空保留）
+
   e_keep(
      op_and(
         e_search("__topic__==server_status"),
         json_select(v("servers"), "length([*])")
      )
   )
-  # 处理client_status: 空的丢弃（非空保留）
+
   e_keep(
      op_and(
         e_search("__topic__==client_status"),
@@ -305,74 +301,72 @@ service:  search_service
   )
   ```
 
-  综上 LOG DSL 规则是：
+use the following LOG DSL rules:
+
+```
+e_set("__topic__", "server_status,client_status,overall_type")
+e_split("__topic__")
+e_json('content',depth=1)
+e_drop_fields("content")
+e_if(e_search("__topic__==overall_type"),
+   e_compose(
+      e_set(
+         "client_count",
+         json_select(v("clients"),
+            "length([*])", default=0
+         )
+      ),
+      e_set(
+         "server_count",
+         json_select(v("servers"),
+            "length([*])", default=0
+         )
+      )
+   )
+)
+# Check whether the log with the topic server_status is empty. If so, discard it. If not, retain it.
+e_keep(
+   op_and(
+      e_search("__topic__==server_status"),
+      json_select(v("servers"), "length([*])")
+   )
+)
+
+e_if(
+   e_search("__topic__==server_status"),
+   e_compose(
+      e_split("servers"),
+      e_json("servers", depth=1)
+   )
+)
+e_if(
+   e_search("__topic__==overall_type"),
+   e_drop_fields("servers")
+)
+# Check whether the log with the topic server_status is empty. If so, discard it. If not, retain it.
+e_keep(
+   op_and(
+      e_search("__topic__==client_status"),
+      json_select(v("clients"), "length([*])")
+   )
+)
+
+e_if(
+   e_search("__topic__==client_status"),
+   e_compose(
+      e_split("clients"),
+      e_json("clients", depth=1),
+      e_drop_fields("clients")
+   )
+)
+```
+
+- Optimized solution 2. Check whether a field is empty before splitting the raw log. If the field is not empty, split the raw log based on the field.
 
   ```
-  # 总体分裂
-  e_set("__topic__", "server_status,client_status,overall_type")
-  e_split("__topic__")
-  e_json('content',depth=1)
-  e_drop_fields("content")
-  # 处理overall_type日志
-  e_if(e_search("__topic__==overall_type"),
-     e_compose(
-        e_set(
-           "client_count",
-           json_select(v("clients"),
-              "length([*])", default=0
-           )
-        ),
-        e_set(
-           "server_count",
-           json_select(v("servers"),
-              "length([*])", default=0
-           )
-        )
-     )
-  )
-  # 新增: 预处理server_status: 空的丢弃（非空保留）
-  e_keep(
-     op_and(
-        e_search("__topic__==server_status"),
-        json_select(v("servers"), "length([*])")
-     )
-  )
-  # 处理server_status日志
-  e_if(
-     e_search("__topic__==server_status"),
-     e_compose(
-        e_split("servers"),
-        e_json("servers", depth=1)
-     )
-  )
-  e_if(
-     e_search("__topic__==overall_type"),
-     e_drop_fields("servers")
-  )
-  # 新增: 预处理client_status: 空的丢弃（非空保留）
-  e_keep(
-     op_and(
-        e_search("__topic__==client_status"),
-        json_select(v("clients"), "length([*])")
-     )
-  )
-  # 处理client_status日志
-  e_if(
-     e_search("__topic__==client_status"),
-     e_compose(
-        e_split("clients"),
-        e_json("clients", depth=1),
-        e_drop_fields("clients")
-     )
-  )
-  ```
 
-- 方案 2 在初始分裂时进行判断，如果对应数据为空就进行分裂。
-
-  ```
-  # 初始主题
   e_set("__topic__", "server_status")
-  # 如果content.servers非空, 则从server_status分裂出1条日志
+
   e_if(
      json_select(v("content"), "length(servers[*])"),
      e_compse(
@@ -380,7 +374,7 @@ service:  search_service
         e_split("__topic__")
      )
   )
-  # 如果content.clients非空, 则从overall_type再分裂出1条日志
+
   e_if(
      op_and(
         e_search("__topic__==overall_type"),
@@ -393,78 +387,77 @@ service:  search_service
   )
   ```
 
-  综上 LOG DSL 规则是：
+use the following LOG DSL rules:
 
-  ```
-  # 总体分裂
-  e_set("__topic__", "server_status")
-  # 如果content.servers非空, 则从server_status分裂出1条日志
-  e_if(
-     json_select(v("content"), "length(servers[*])"),
-     e_compse(
-        e_set("__topic__", "server_status,overall_type"),
-        e_split("__topic__")
-     )
-  )
-  # 如果content.clients非空, 则从server_status分裂出1条日志
-  e_if(
-     op_and(
-        e_search("__topic__==overall_type"),
-        json_select(v("content"), "length(clients[*])")
-     ),
-     e_compse(
-        e_set("__topic__", "client_status,overall_type"),
-        e_split("__topic__")
-     )
-  )
-  # 处理overall_type日志
-  e_if(
-     e_search("__topic__==overall_type"),
-     e_compose(
-        e_set(
-           "client_count",
-           json_select(v("clients"), "length([*])", default=0)
-        ),
-        e_set(
-           "server_count",
-           json_select(v("servers"), "length([*])", default=0)
-        )
-     )
-  )
-  # 处理server_status日志
-  e_if(
-     e_search("__topic__==server_status"),
-     e_compose(
-        e_split("servers"),
-        e_json("servers", depth=1)
-     )
-  )
-  e_if(
-     e_search("__topic__==overall_type"),
-     e_drop_fields("servers")
-  )
-  # 处理client_status日志
-  e_if(
-     e_search("__topic__==client_status"),
-     e_compose(
-        e_split("clients"),
-        e_json("clients", depth=1),
-        e_drop_fields("clients")
-     )
-  )
-  ```
+```
+e_set("__topic__", "server_status")
+# 如果content.servers非空, 则从server_status分裂出1条日志
+e_if(
+   json_select(v("content"), "length(servers[*])"),
+   e_compse(
+      e_set("__topic__", "server_status,overall_type"),
+      e_split("__topic__")
+   )
+)
 
-方案对比
+e_if(
+   op_and(
+      e_search("__topic__==overall_type"),
+      json_select(v("content"), "length(clients[*])")
+   ),
+   e_compse(
+      e_set("__topic__", "client_status,overall_type"),
+      e_split("__topic__")
+   )
+)
 
-- 方案 1 在分裂出日志后再删除为空的日志，逻辑上有些多余，但规则简单易维护。默认推荐该方案。
+e_if(
+   e_search("__topic__==overall_type"),
+   e_compose(
+      e_set(
+         "client_count",
+         json_select(v("clients"), "length([*])", default=0)
+      ),
+      e_set(
+         "server_count",
+         json_select(v("servers"), "length([*])", default=0)
+      )
+   )
+)
 
-- 方案 2 会在分裂前进行判断，处理效率会高一些，但规则略微冗余，仅在特定场景例如初始分裂可能导致大量额外事件产生时推荐。
+e_if(
+   e_search("__topic__==server_status"),
+   e_compose(
+      e_split("servers"),
+      e_json("servers", depth=1)
+   )
+)
+e_if(
+   e_search("__topic__==overall_type"),
+   e_drop_fields("servers")
+)
 
-## 多层数组对象嵌套的复杂 JSON 数据加工
+e_if(
+   e_search("__topic__==client_status"),
+   e_compose(
+      e_split("clients"),
+      e_json("clients", depth=1),
+      e_drop_fields("clients")
+   )
+)
+```
 
-以一个复杂的保护多层数组嵌套的对象为示例，将`users`下的每个对象中的`login_histories`的每个登录信息都拆成一个登录事件。
+Solution comparison
 
-- 原始日志
+- Solution 1 is redundant in logic because it deletes empty logs after obtaining them from the raw log. However, the rules are simple and easy to maintain.
+
+- Solution 2 has higher processing efficiency because it checks for empty fields before splitting. However, this solution uses redundant rules. We recommend that you use this solution only for specific scenarios, for example, when a large number of additional events may be produced after the raw log is split.
+
+## Transform complex JSON data with multiple layers of nested array objects
+
+Take the following complex JSON data with multiple layers of nested arrays as an example. Assume that you want to split the logon information stored in `login_histories` of different objects in the `users` field into separate logon events.
+
+- Raw log entries
 
   ```
   __source__:  1.2.3.4
@@ -499,18 +492,18 @@ service:  search_service
               "login_ip": "1.1.1.3"
               },
         {
-        ...更多登录信息...
+        ...more...
         }
            ]
         },
      {
-        ....更多user....
+        ....more user....
      }
      ]
   }
   ```
 
-- 期望分裂出的日志
+- Expected logs after splitting
 
   ```
   __source__:  1.2.3.4
@@ -529,48 +522,48 @@ service:  search_service
   name:  user2
   date:  2019-10-11 1:0:0
   login_ip:  1.1.1.3
-  ....更多日志....
+  ....more....
   ```
 
-- 解决方案
+- Solution
 
-  1. 对`content`中的`users`进行分裂和展开操作。
+  1. Split the log and expand data based on `users` in the `content` field.
 
      ```
      e_split("content", jmes='users[*]', output='item')
      e_json("item",depth=1)
      ```
 
-     处理后返回的日志：
+     The log after processing is as follows:：
 
      ```
      __source__:  1.2.3.4
      __topic__:
-     content:{...如前...}
+     content:{......}
      item:  {"name": "user1", "login_histories": [{"date": "2019-10-10 0:0:0", "login_ip": "1.1.1.1"}, {"date": "2019-10-10 1:0:0", "login_ip": "1.1.1.1"}]}
      login_histories:  [{"date": "2019-10-10 0:0:0", "login_ip": "1.1.1.1"}, {"date": "2019-10-10 1:0:0", "login_ip": "1.1.1.1"}]
      name:  user1
      __source__:  1.2.3.4
      __topic__:
-     content:{...如前...}
+     content:{......}
      item:  {"name": "user2", "login_histories": [{"date": "2019-10-11 0:0:0", "login_ip": "1.1.1.2"}, {"date": "2019-10-11 1:0:0", "login_ip": "1.1.1.3"}]}
      login_histories:  [{"date": "2019-10-11 0:0:0", "login_ip": "1.1.1.2"}, {"date": "2019-10-11 1:0:0", "login_ip": "1.1.1.3"}]
      name:  user2
      ```
 
-  2. 对`login_histories`先分裂再展开。
+  2. Split the log and expand data based on `login_histories`.
 
      ```
      e_split("login_histories")
      e_json("login_histories", depth=1)
      ```
 
-     处理后返回的日志：
+     The log after processing is as follows:
 
      ```
      __source__:  1.2.3.4
      __topic__:
-     content: {...如前...}
+     content: {......}
      date:  2019-10-11 0:0:0
      item:  {"name": "user2", "login_histories": [{"date": "2019-10-11 0:0:0", "login_ip": "1.1.1.2"}, {"date": "2019-10-11 1:0:0", "login_ip": "1.1.1.3"}]}
      login_histories:  {"date": "2019-10-11 0:0:0", "login_ip": "1.1.1.2"}
@@ -578,7 +571,7 @@ service:  search_service
      name:  user2
      __source__:  1.2.3.4
      __topic__:
-     content: {...如前...}
+     content: {......}
      date:  2019-10-11 1:0:0
      item:  {"name": "user2", "login_histories": [{"date": "2019-10-11 0:0:0", "login_ip": "1.1.1.2"}, {"date": "2019-10-11 1:0:0", "login_ip": "1.1.1.3"}]}
      login_histories:  {"date": "2019-10-11 1:0:0", "login_ip": "1.1.1.3"}
@@ -602,13 +595,13 @@ service:  search_service
      name:  user1
      ```
 
-  3. 删除无关字段。
+  3. Delete irrelevant fields.
 
      ```
      e_drop_fields("content", "item", "login_histories")
      ```
 
-     处理后返回的日志：
+     The log after processing is as follows:
 
      ```
      __source__: 1.2.3.4
@@ -633,7 +626,7 @@ service:  search_service
      login_ip:  1.1.1.3
      ```
 
-  4. 综上 LOG DSL 规则可以如以下形式：
+  4. To sum up, use the following LOG DSL rules:
      ```
      e_split("content", jmes='users[*]', output='item')
      e_json("item",depth=1)
@@ -642,4 +635,4 @@ service:  search_service
      e_drop_fields("content", "item", "login_histories")
      ```
 
-总结：针对以上类似的需求，首先进行分裂，然后再做展开操作，最后删除无关信息。
+Conclusion: If you have requirements similar to the above, split the log, expand data based on specified fields, and then delete irrelevant fields.

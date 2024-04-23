@@ -1,38 +1,38 @@
-# 日志富化实践
+# Log enrichment practices
 
-## 数据加工介绍
+## Data transformation overview
 
-数据加工是阿里云日志服务推出的一项功能，用于对结构化或非结构化日志进行实时 ETL 行处理。目前该功能包含了 200+的算子，本文从富化场景出发，介绍如何在数据加工过程中使用富化函数。
+Data transformation is a feature of Simple Log Service provided by Alibaba Cloud. The data transformation feature is used to perform extract-transform-load (ETL) processing on structured or unstructured logs in real time.The feature supports more than 200 operators. This topic describes how to use enrichment functions to enrich log data during data transformation.
 
-PS： 我们这里讲的富化，对应的是 SQL ETL 场景的 join
+PS： The enrichment in this topic refers to join operations in SQL ETL scenarios.
 
 ![](/img/dataprocessdemo/数据富化/数据富化整体概念.png)
 
-数据加工的入口：
+Data transformation portal:
 
-打开 sls 日志服务，选择相关 logstore 的查询页面后，可以看到有一个 “数据加工”的链接，点击这个链接就可以写数据加工的代码了。
+Log on to the Simple Log Service console. Select the desired Logstore. On the page that appears, click Data Transformation. On the data transformation page, enter a data transformation statement.
 
 ![](/img/dataprocessdemo/begin-data-process.jpg)
 
-数据加工函数总览：http://help.aliyun.com/document_detail/159702.html
+Overview of data transformation functions: http://help.aliyun.com/document_detail/159702.html
 
-## 场景设定
+## Scenario
 
-本文以 Nginx 日志 http code 富化为例抛砖引玉，帮助大家熟悉数据加工中的日志富化方法。
+This topic describes how to enrich HTTP status codes in NGINX logs. This helps you learn about methods of log enrichment during data transformation.
 
-http 返回码在访问日志中比较常见，将返回码富化，可以让我们更直观地看到每个请求的状态，做更多统计工作。
+HTTP response status codes are common in access logs. After HTTP response status codes are enriched, you can explicitly view the status of each request for more statistical operations.
 
-![](/img/dataprocessdemo/数据富化/原始日志.png)
+![](/img/dataprocessdemo/数据富化/Raw log entries.png)
 
-下面是常见的 http code 码含义的映射表
+The following table is a mapping table of common HTTP status codes.
 
 ![](/img/dataprocessdemo/数据富化/httpcode对照表.png)
 
-## 使用数据加工 进行日志富化
+## Use the data transformation feature to enrich log data
 
-### 方式 1 - 使用 res_local 高级参数
+### Method 1 - Use the res_local advanced parameter to enrich log data
 
-假设，我们富化的数据是一个 csv 保存了 code 的映射关系
+Assume that the data that you want to enrich is saved to a CSV file with mappings of HTTP status codes included.
 
 ```
 code,alias,category,description
@@ -41,7 +41,7 @@ code,alias,category,description
 ...
 ```
 
-这里将 code 的映射关系保存为数据加工的高级参数，key 为 http_code, 值为 csv 文件内容，加工语句如下：
+Save the mappings of HTTP status codes as an advanced parameter for data transformation. The key parameter is set to http_code, and the corresponding parameter value is included in the CSV file. The following sample code provides a data transformation statement:
 
 ```python
 e_table_map(
@@ -55,13 +55,13 @@ e_table_map(
 )
 ```
 
-加工结果：
+Transformation result:
 
 ![](/img/dataprocessdemo/数据富化/httpcode富化效果.png)
 
-### 方式 2 - 通过使用 OSS 文件实现富化
+### Method 2 - Enrich data based on an Object Storage Service (OSS) object
 
-假设，我们的 http code 映射关系存在一个文件里。格式如下：
+Assume that the mappings of HTTP status codes are saved to an object.The following code provides an example on the valid format:
 
 ```
 code,alias,category,description
@@ -70,15 +70,15 @@ code,alias,category,description
 ...
 ```
 
-上传 http_code.csv 文件到 oss
+Upload the object named http_code.csv to an OSS bucket.
 
-打开 OSS 控制台 http://oss.console.aliyun.com
+Log on to the OSS console. http://oss.console.aliyun.com
 
-找到已有的 bucket 或者新建一个 bucket，根据控制台指引上传文件
+Find the desired OSS bucket or create an OSS bucket, and upload the object to the OSS bucket as prompted.
 
 ![](/img/dataprocessdemo/数据富化/上传oss.png)
 
-使用数据加工进行富化，加工语句如下：
+Use the data transformation feature to enrich log data. The following sample code provides a data transformation statement:
 
 ```python
 e_table_map(
@@ -100,30 +100,30 @@ e_table_map(
 	)
 ```
 
-res_local 引用的值需要在高级参数里定义。
+res_local The referenced value needs to be defined in the advanced parameters.
 
 ![](/img/dataprocessdemo/数据富化/高级参数设置.jpg)
 
-加工结果：
+Transformation result:
 
-![](/img/dataprocessdemo/数据富化/加工结果2.png)
+![](/img/dataprocessdemo/数据富化/Transformation result2.png)
 
-### 方式 3 - 通过 MySQL 表实现富化
+### Method 3 - Enrich data based on a MySQL table
 
-假设，我们的 http_code 映射关系存在一个 mysql 表里
+Assume that the mappings of HTTP status codes are saved to an object.
 
 ![](/img/dataprocessdemo/数据富化/http2sql.png)
 
-使用数据加工进行富化，加工语句如下：
+Use the data transformation feature to enrich log data. The following sample code provides a data transformation statement:
 
 ```python
 e_table_map(
 	res_rds_mysql(
-		address="MySQL主机地址",
-		username="用户名",
-		password="密码",
-        database="数据库",
-		table="表名",
+		address="MySQL host address",
+		username="Username",
+		password="password ",
+        database="database",
+		table="table name",
 		refresh_interval=300
 	),
 	[("http_code","code")],
@@ -133,19 +133,18 @@ e_table_map(
 )
 ```
 
-注意： 数据加工支持 vpc 方法方式 rds，配置 vpc 打通可以参考：[https://help.aliyun.com/document_detail/162753.html](https://help.aliyun.com/document_detail/162753.html?spm=a2c4g.11186623.6.987.3e7249dbOZbV6w)
+You can obtain data from an ApsaraDB RDS for MySQL database over the internal network. For more information about VPC configurations, see the documentation at[https://help.aliyun.com/document_detail/162753.html](https://help.aliyun.com/document_detail/162753.html?spm=a2c4g.11186623.6.987.3e7249dbOZbV6w)
 
-加工结果：
+Transformation result:
 
-![](/img/dataprocessdemo/数据富化/加工结果3.png)
+![](/img/dataprocessdemo/数据富化/Transformation result3.png)
 
-### 方式 4 - 使用 Logstore 实现富化
+### Method 4 - Enrich data based on a Logstore
 
-假设，我们的映射关系在 logstore 里
+Assume that the mappings of HTTP status codes are saved to a Logstore.
 
-![](/img/dataprocessdemo/数据富化/原始日志1.png)
-
-使用数据加工进行富化，加工语句如下：
+![](/img/dataprocessdemo/数据富化/Raw log entries1.png)
+Use the data transformation feature to enrich log data. The following sample code provides a data transformation statement:
 
 ```python
 e_table_map(
@@ -164,22 +163,22 @@ e_table_map(
 )
 ```
 
-res_local 引用的值需要在高级参数里定义。
+res_local The referenced value needs to be defined in the advanced parameters.
 
 ![](/img/dataprocessdemo/数据富化/高级参数设置.jpg)
 
-## 总结
+## Summary
 
-### 整体流程
+### Overall process
 
 ![](/img/dataprocessdemo/数据富化/整体流程.png)
 
-### 方法比较
+### Comparison of the methods
 
-| 方法     | 数据量支持 | 增量更新 | 批量更新 | 适用场景                 |
-| -------- | ---------- | -------- | -------- | ------------------------ |
-| 代码内嵌 | 小         | 不支持   | 不支持   | 较简单的映射             |
-| OSS      | 较大       | 不支持   | 支持     | 相对静态的，更新不频繁的 |
-| MySQL    | 较大       | 不支持   | 支持     | 频繁更新的               |
+| methods       | Supported data volume | Incremental update | Batch update  | Scenario                                    |
+| ------------- | --------------------- | ------------------ | ------------- | ------------------------------------------- |
+| Embedded code | small                 | Not supported      | Not supported | The mapping table contains simple mappings. |
+| OSS           | more                  | Not supported      | supported     | The mapping table is infrequently updated.  |
+| MySQL         | more                  | Not supported      | supported     | The mapping table is frequently updated.    |
 
-限制：所有维表限制在 2G
+Limit: The maximum size of each dimension table is 2 GB.

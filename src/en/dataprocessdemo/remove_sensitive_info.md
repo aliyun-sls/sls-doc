@@ -1,21 +1,20 @@
 # 数据脱敏
 
-数据脱敏可以有效地减少敏感数据在加工、传输、使用等环节中的暴露，降低敏感数据泄露的风险，保护用户权益。本文为您介绍日志服务数据加工过程中常见的脱敏场景、对应的脱敏方法及示例。
+数据脱敏可以有效地减少敏感数据在加工、传输、使用等环节中的暴露，降低敏感数据泄露的风险，保护用户权益。本文为您介绍日志服务数据加工过程中常见的脱敏 Scenario、对应的脱敏方法及示例。
 
-## 场景1：手机号脱敏
+## Scenario 1：手机号脱敏
 
-* 脱敏方法日志中包含不希望被暴露的手机号，可采用正则表达式，运用 *regex_replace* 函数脱敏。
+- 脱敏方法日志中包含不希望被暴露的手机号，可采用正则表达式，运用 _regex_replace_ 函数脱敏。
 
-* 示例
+- 示例
 
-  * 原始日志
+  - Raw log entries
 
     ```
     iphone: 13012345678
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -26,28 +25,25 @@
     )
     ```
 
-
-  * 加工结果
+  - Transformation result
     ```
     iphone: 13012345678
     sec_iphone: 130****5678
     ```
 
-## 场景2：银行卡信息脱敏
+## Scenario 2：银行卡信息脱敏
 
-* 脱敏方法日志中包含银行卡或者信用卡信息，可采用正则表达式，运用 *regex_replace* 函数隐藏关键数据而脱敏。
+- 脱敏方法日志中包含银行卡或者信用卡信息，可采用正则表达式，运用 _regex_replace_ 函数隐藏关键数据而脱敏。
 
+- 示例
 
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     content: bank number is 491648411333978312 and credit card number is 4916484113339780
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -60,29 +56,26 @@
     )
     ```
 
-  * 加工结果
+  - Transformation result
 
     ```
     content: bank number is 491648411333978312 and credit card number is 4916484113339780
     bank_number: bank number is ****978312 and credit card number is ****9780
     ```
 
-## 场景3：邮箱地址脱敏
+## Scenario 3：邮箱地址脱敏
 
-* 脱敏方法日志中包含邮箱信息，可采用正则表达式，运用 *regex_replace* 函数脱敏。
+- 脱敏方法日志中包含邮箱信息，可采用正则表达式，运用 _regex_replace_ 函数脱敏。
 
+- 示例
 
-
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     content: email is twiss2345@aliyun.com
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -95,27 +88,26 @@
     )
     ```
 
-
-  * 处理后数据
+  - 处理后数据
 
     ```
     content: email is twiss2345@aliyun.com
     email_encrypt: email is ****@aliyun.com
     ```
 
-## 场景4：AK脱敏
+## Scenario 4：AK 脱敏
 
-* 脱敏方法日志中包含AccessKey信息，可采用正则表达式，应用 *regex_replace* 函数。
+- 脱敏方法日志中包含 AccessKey 信息，可采用正则表达式，应用 _regex_replace_ 函数。
 
-* 示例
+- 示例
 
-  * 原始日志
+  - Raw log entries
 
     ```
     content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
     ```
 
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -126,30 +118,26 @@
     )
     ```
 
-
-  * 加工结果
+  - Transformation result
 
     ```
     content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
     akid_encrypt: ak id is rDhc**** and ak key is XQr1****
     ```
 
-## 场景5：IP脱敏
+## Scenario 5：IP 脱敏
 
-* 脱敏方法日志中包含IP信息，可同时运用 *regex_replace* 函数和 *grok* 函数，对IP地址进行正则捕获后而脱敏。
+- 脱敏方法日志中包含 IP 信息，可同时运用 _regex_replace_ 函数和 _grok_ 函数，对 IP 地址进行正则捕获后而脱敏。
 
+- 示例
 
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     content: ip is 192.168.1.1
     ```
 
-
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -162,30 +150,26 @@
     )
     ```
 
-
-  * 加工结果
+  - Transformation result
 
     ```
     content: ip is 192.168.1.1
     ip_encrypt: ip is ****
     ```
 
-## 场景6：身份证脱敏
+## Scenario 6：身份证脱敏
 
-* 脱敏方法日志中包含身份证信息，可同时运用 *regex_replace* 函数和 *grok* 函数，对身份证号进行正则捕获后而脱敏。
+- 脱敏方法日志中包含身份证信息，可同时运用 _regex_replace_ 函数和 _grok_ 函数，对身份证号进行正则捕获后而脱敏。
 
+- 示例
 
-
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     content: Id card is 11010519491231002X
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -198,94 +182,78 @@
     )
     ```
 
-
-  * 加工结果
+  - Transformation result
 
     ```
     content: Id card is 11010519491231002X
     id_encrypt: idcard is 110105****
     ```
 
-## 场景7：网址脱敏
+## Scenario 7：网址脱敏
 
-* 脱敏方法对日志内容中的网址做脱敏处理，并且将脱敏的数据转成明文格式，可运用Base64编码解码函数，对网址进行转码。
+- 脱敏方法对日志内容中的网址做脱敏处理，并且将脱敏的数据转成明文格式，可运用 Base64 编码解码函数，对网址进行转码。
 
+- 示例
 
-
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     url: https://www.aliyun.com/sls?logstore
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set("base64_url",base64_encoding(v("url")))
     ```
 
-
-
-  * 加工结果
+  - Transformation result
 
     ```
     url: https://www.aliyun.com/sls?logstore
     base64_url: aHR0cHM6Ly93d3cuYWxpeXVuLmNvbS9zbHM/bG9nc3RvcmU=
     ```
 
-    **说明** 如果想对`base64_url`进行解码，可以使用`base64_decoding(v("base64_url"))`DSL语法规则。
+    **Note** 如果想对`base64_url`进行解码，可以使用`base64_decoding(v("base64_url"))`DSL 语法规则。
 
+## Scenario 8：订单号脱敏
 
-## 场景8：订单号脱敏
+- 脱敏方法对日志内容中的订单号做脱敏处理，同时不希望其他人能够解码，可运用 MD5 编码函数，对订单号进行编码。
 
+- 示例
 
-* 脱敏方法对日志内容中的订单号做脱敏处理，同时不希望其他人能够解码，可运用MD5编码函数，对订单号进行编码。
-
-
-
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     orderId: 15121412314
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set("md5_orderId",md5_encoding(v("orderId")))
     ```
 
-
-  * 加工结果
+  - Transformation result
 
     ```
     orderId: 15121412314
     md5_orderId: 852751f9aa48303a5691b0d020e52a0a
     ```
 
+## Scenario 9：字符串脱敏
 
-## 场景9：字符串脱敏
+- 脱敏方法您希望日志中的关键字符串不被暴露，可通过 _str_translate_ 函数制订映射规则，对关键字符或字符串进行映射脱敏。
 
-* 脱敏方法您希望日志中的关键字符串不被暴露，可通过 *str_translate* 函数制订映射规则，对关键字符或字符串进行映射脱敏。
+- 示例
 
-
-
-* 示例
-
-  * 原始日志
+  - Raw log entries
 
     ```
     data: message level is info_
     ```
 
-
-  * DSL编排规则
+  - DSL orchestration 规则
 
     ```python
     e_set(
@@ -298,8 +266,7 @@
     )
     ```
 
-
-  * 加工结果
+  - Transformation result
 
     ```
     data: message level is info

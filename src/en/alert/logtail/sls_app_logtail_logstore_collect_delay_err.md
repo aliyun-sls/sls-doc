@@ -1,10 +1,11 @@
-# Logtail采集延迟告警
+# Logtail collection latency
 
-::: tip 说明
-- 每5分钟检测一次，检测过去5分钟的数据。当过去5分钟内，有Logstore出现Logtail采集延迟时，会触发告警。
-- [告警SDK使用参考](https://help.aliyun.com/document_detail/387421.html)
-- [告警规则数据结构参考](https://help.aliyun.com/document_detail/433029.htm)
-:::
+::: Note
+
+- If a Logtail collection latency occurred in a Logstore within the last 5 minutes, an alert is triggered.Data of the last 5 minutes is inspected at a 5-minute interval.
+- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
+- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+  :::
 
 ::: code-group
 
@@ -45,7 +46,7 @@ public class App {
         AlertConfiguration.GroupConfiguration groupConf = new AlertConfiguration.GroupConfiguration();
         groupConf.setType("custom");
         groupConf.setFields(Arrays.asList("project", "logstore"));
-        
+
         List<AlertConfiguration.JoinConfiguration> joinConfs = new ArrayList<>();
 
         List<AlertConfiguration.SeverityConfiguration> severityConfs = new ArrayList<>();
@@ -62,11 +63,11 @@ public class App {
         List<AlertConfiguration.Tag> annotations = new ArrayList<AlertConfiguration.Tag>();
         AlertConfiguration.Tag descAnno = new AlertConfiguration.Tag();
         descAnno.setKey("desc");
-        descAnno.setValue("在过去的5分钟内，Project\"${project}\"中的Logstore\"${logstore}\"出现Logtail采集延迟。");
+        descAnno.setValue("A Logtail collection latency occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes.");
         annotations.add(descAnno);
         AlertConfiguration.Tag titleAnno = new AlertConfiguration.Tag();
         titleAnno.setKey("title");
-        titleAnno.setValue("Logtail出现采集延迟");
+        titleAnno.setValue("Logtail collection latency occurs.");
         annotations.add(titleAnno);
         AlertConfiguration.Tag drillDownQueryAnno = new AlertConfiguration.Tag();
         drillDownQueryAnno.setKey("__drill_down_query__");
@@ -168,10 +169,10 @@ def create_alert():
             "labes": [],
             "annotations": [{
                 "key": "desc",
-                "value": "在过去的5分钟内，Project\"${project}\"中的Logstore\"${logstore}\"出现Logtail采集延迟。"
+                "value": "A Logtail collection latency occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes."
             }, {
                 "key": "title",
-                "value": "Logtail出现采集延迟"
+                "value": "Logtail collection latency occurs."
             }, {
                 "key": "__drill_down_query__",
                 "value": "__topic__: logtail_alarm and alarm_type:READ_LOG_DELAY_ALARM and project: \"${project}\" and logstore: \"${logstore}\""
@@ -259,11 +260,11 @@ func createAlert() {
 			Annotations: []*sls.Tag{
 				&sls.Tag{
 					Key:   "desc",
-					Value: "在过去的5分钟内，Project\"${project}\"中的Logstore\"${logstore}\"出现Logtail采集延迟。",
+					Value: "A Logtail collection latency occurred in the Logstore ${logstore} of the project ${project} within the last 5 minutes.",
 				},
 				&sls.Tag{
 					Key:   "title",
-					Value: "Logtail出现采集延迟",
+					Value: "Logtail collection latency occurs.",
 				},
 				&sls.Tag{
 					Key:   "__drill_down_query__",
