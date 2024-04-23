@@ -1,10 +1,10 @@
 # nginx日志查看今日PV和昨日对比
 
-先通过count函数计算总的pv，再用compare函数得出今日的pv与昨日的同比
+Use the count function to calculate the total page views (PVs) and then use the compare function to obtain the day-to-day comparison for PVs of today and yesterday.
 
-通过单值图进行展示，显示值为20.381Mil，对比值为-2%
+The results are displayed in a single value chart. In this example, the number of PVs of today is 20.381Mil, with a change of –2% compared with that of yesterday.
 
-[试用 Demo](./../playground/demo.md?dest=%2Flognext%2Fproject%2Fnginx-demo-log%2Flogsearch%2Fnginx-access-log%3Fencode%3Dbase64%26queryString%3DKiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ%3D%3D%26queryTimeType%3D6%26isShare%3Dtrue&maxWidth=true){target="_blank"}
+[Trial Demo](./../playground/demo.md?dest=%2Flognext%2Fproject%2Fnginx-demo-log%2Flogsearch%2Fnginx-access-log%3Fencode%3Dbase64%26queryString%3DKiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ%3D%3D%26queryTimeType%3D6%26isShare%3Dtrue&maxWidth=true){target="_blank"}
 
 ```SQL
 * |

@@ -1,4 +1,4 @@
-先在SQL内部获取到请求status超过400的错误请求数量，以及总的请求数量，然后再外部计算比值， 展示时使用单值图中的刻度盘，单位改为 %
+Obtain the number of error requests for which the status code is greater than or equal to 400 and the total number of requests in the internal SQL statement, and then calculate the proportions in the external SQL statement. The results are displayed in a dial scale, in which the unit is percentage (%).
 ```sql
 * |
 select
@@ -17,6 +17,6 @@ from
       log
   )
 ```
-SQL查询结果样例：
+Sample SQL query result
 ![image.png](/img/src/sqldemo/tomcat错误请求占比/5dc737065737ada1ed7d0b61bb625130a647c84491e99e4ded94f4f353288b4d.png)
 

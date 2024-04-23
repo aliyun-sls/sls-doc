@@ -1,4 +1,4 @@
-通过ip_to_province函数得出ip对应的省地址，用group by对地址聚合，用count函数计算出每个地址出现的次数 通过地图进行展示，鼠标悬浮可以展示，对应省的次数
+Use the ip_to_province function to obtain the provinces based on the IP addresses, use the group by clause to aggregate the provinces, and then use the count function to calculate the number of requests from each province. The results are displayed on a map. You can move the pointer over a province on the map to view the number of requests from the specified province.
 ```sql
 * |
 select
@@ -10,6 +10,6 @@ limit
   100
 ```
 
-SQL查询结果样例：
+Sample SQL query result
 ![image.png](/img/src/sqldemo/index/99548efeb6f162424decd707000e353de1817f3b33592ed61dfa21e3d2114f2b.png)
 

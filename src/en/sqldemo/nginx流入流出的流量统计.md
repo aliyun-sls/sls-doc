@@ -9,9 +9,8 @@ group by
   date_format(date_trunc('hour', __time__), '%m-%d %H:%i')
 order by
   time
-limit
   10000
 ```
-SQL查询结果样例：
+Sample SQL query result
 ![image.png](/img/src/sqldemo/nginx流入流出的流量统计/ea0739404dde8b4ac615c049286568b2455f6863428a71df92c437bce84f515c.png)
 

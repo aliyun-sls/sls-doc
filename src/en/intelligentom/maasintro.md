@@ -1,6 +1,6 @@
 # 日志服务 SLS – 基础模型能力
 
-## 功能介绍
+## Features
 
 在智能运维这个场景中，SLS 针对 Log、Metric、Trace 这三类基础数据的特点，以及围绕这三类数据的高频场景进行建模
 
@@ -12,21 +12,21 @@
 
 并对这些模型服务化，供客户可以远程调用。跟自己的业务系统进行 API 维度的能力集成。
 
-### Metric 模型能力
+### Metric model capabilities
 
-在提供的数据中，可以使用如下 SQL，提取相关的指标数据，当数据点数据量大于 100 个点时就可以主动触发该序列的异常检测。
+Use the following SQL statement to extract relevant metric data from available data. When the number of data points is greater than 100, anomaly detection is actively triggered for time series data.
 
 ```
 * and endpoint: "cn-chengdu.192.168.11.202" | select __time__ - __time__ % 60 as time, sum(flow) as flow_sum from log group by time order by time limit 10000
 ```
 
-:::tip 时序指标异常检测
-[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/eip-flow-monitor){target="\_blank"}
+:::tip Anomaly detection for time series metrics
+[Trial Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/eip-flow-monitor){target="\_blank"}
 :::
 
-### LogNER 模型能力
+### LogNER model capabilities
 
-样例日志一：
+Sample log 1:
 
 ```
 {
@@ -35,11 +35,11 @@
 }
 ```
 
-:::tip 标准软件库 NER
-[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-logs){target="\_blank"}
+:::tip Standard software library NER
+[Trial Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-logs){target="\_blank"}
 :::
 
-样例日志二：
+Sample log 2:
 
 ```
 {
@@ -48,29 +48,29 @@
 }
 ```
 
-:::tip 标准软件库 NER
-[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-library-logs){target="\_blank"}
+:::tip Standard software library NER
+[Trial Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-library-logs){target="\_blank"}
 :::
 
-## 功能优势
+## Benefits
 
-- 在机器数据领域收集并整理了大量的真实数据，进行建模
-- 相关模型在日志领域可以做到开箱即用，无需特别多的启动数据
-- 在平台上提供了基础的 API 能力，客户在在自己的业务场景中进行集成
+- Collects and sorts a large amount of real data from machine data for modeling.
+- Provides out-of-the-box models for logging, without the need for much startup data.
+- Provides basic API capabilities on the platform, and allows you to integrate API capabilities in your own business scenarios.
 
-## 核心价值
+## Core values
 
-- 智能异常分析应用围绕运维场景中的监控指标、程序日志、服务关系等核心要素展开，通过机器学习等手段产生异常事件，通过服务拓扑关联分析时序数据和事件，最终降低企业的运维复杂度，提高服务质量。
+- The Intelligent Anomaly Analysis application focuses on core elements such as metrics, program logs, and service relationships in O&M scenarios. The application generates anomalous events by using methods such as machine learning, and performs association analysis on time series data and events based on service topologies. This reduces the O&M complexity for enterprises and improves service quality.
 
-## 通过 OpenAPI 使用基础模型
+## Use basic model services based on API capabilities
 
-- 安装所依赖的软件包
+- Install the dependent software package.
 
 ```
 pip install alibabacloud_sls20201230==4.1.0
 ```
 
-- 账号所需要的权限
+- Grant the required permissions to your account.
 
 ```
 {
@@ -92,7 +92,7 @@ pip install alibabacloud_sls20201230==4.1.0
 }
 ```
 
-还有一种更佳精简的配置方法，具体如下
+The following code shows a simpler configuration method:
 
 ```
 {
@@ -112,13 +112,13 @@ pip install alibabacloud_sls20201230==4.1.0
 }
 ```
 
-### 1. 日志数据中的实体识别
+### 1. Perform NER on log data
 
-#### 服务名称
+#### Service name
 
 > sls_builtin_service_log_struct
 
-#### 请求参数
+#### Request parameters
 
 body.parameter
 
@@ -130,9 +130,9 @@ body.parameter
 }
 ```
 
-- is_struct 为 true 时，表示日志格式为 json 结构。目前只支持设置为 true
-- use_gpu 表示是否使用 gpu 资源
-- max_fields 表示当日志格式为 json 结构时，最多分析其中的几个字段，默认只分析一个字段
+- is_struct: specifies whether the format of logs is JSON. A value of true specifies that logs are in the JSON format. Set the value to
+- use_gpu: specifies whether to use GPU resources.
+- max_fields: the maximum number of fields that can be analyzed when logs are in the JSON format. By default, only one field is analyzed.
 
 body.input
 
@@ -144,12 +144,12 @@ body.input
 ]
 ```
 
-输入的内容是一个是 json 结构数组，其中
+The input is a JSON array that contains JSON-formatted logs, where:
 
-- column_name 表示 json 结构的日志的某个字段名称
-- column_value 表示 json 结构的日志的某个字段的值
+- column_name : the name of the log field.
+- column_value : the value of the log field.
 
-#### 返回参数
+#### Response parameters
 
 data
 
@@ -161,12 +161,12 @@ data
 ]
 ```
 
-输出内容中每一个 json 结构与输入的 json 结构日志一一对应，其中
+Each JSON object in the output corresponds to a JSON-formatted log in the input, where:
 
-- column_name 表示 json 结构的日志的被分析了的某个字段名称，最多有 max_fields 个字段被分析
-- column*value 表示 json 结构的日志的被分析了的某个字段的值，字段值中的 NER 结果被标签 <ml_ner*${ner_type}></ml_ner_${ner_type}> 包裹，其中 ${ner_type} 是具体的 NER 类型
+- column_name : the name of the analyzed log field. The maximum number of fields that are analyzed is specified by the max_fields parameter.
+- column*value : the value of the analyzed log field. The NER result in the field value is enclosed in the <ml_ner*${ner_type}></ml_ner_${ner_type}> tag. ${ner_type} indicates the NER type.
 
-#### 使用示例（Python）
+#### Sample code（Python）
 
 ```
 import traceback
@@ -196,7 +196,7 @@ param.parameter = {
     "max_fields": "2"
 }
 
-# 设置待分析的日志列表，每一条日志为 dict 格式
+# The logs to be analyzed. Each log is in the dict format.
 param.input = [
     {
         "column_name_1": 'column_value_1',
@@ -224,13 +224,13 @@ except Exception as error:
     UtilClient.assert_as_string(error.message)
 ```
 
-### 2. 时序数据的异常检测
+### 2. Detect anomalies in time series data
 
-#### 服务名称
+#### Service name
 
 > sls_builtin_service_metric_anomaly
 
-#### 请求参数
+#### Request parameters
 
 body.parameter
 
@@ -244,11 +244,11 @@ body.parameter
 }
 ```
 
-- isOrdered 表示输入的数据是否是有序的，如果输入的序列是按照时间维度从小到大，升序排列的，设置为 true，否则设置为 false
-- interval 表示时间序列的间隔大小，按照秒来描述。比如：序列是每分钟一个点，则设置为 60；如果不确定序列的间隔，则设置为 -1
-- timeColumnName 表示输入的序列中，时间维度的名称
-- analysisColumnNames 表示输入的序列中，带分析的数值特征维度的名称，使用数组来表示，且需要将这个数组序列化成字符串
-- keys 表示输入的数据的各列的名称，使用数组表示，且需要将这个数组序列化成字符串
+- isOrdered: specifies whether the input time series data is ordered. If the input data is ordered in ascending order by time, set this parameter to true. Otherwise, set this parameter to false.
+- interval: the interval of the time series data. Unit: seconds. For example, set this parameter to 60 if one data point is generated per minute. If the interval of the time series data is uncertain, set this parameter to -1
+- timeColumnName: the name of the time dimension in the input time series data.
+- analysisColumnNames: the names of the numeric dimensions to be analyzed in the input time series data. The value is an array and must be serialized into a string.
+- keys: the names of columns in the input data. The value is an array and must be serialized into a string.
 
 body.input
 
@@ -260,16 +260,16 @@ body.input
 ]
 ```
 
-输入的内容是一个是数组，其中
+The input is a JSON array, where:
 
-- column_name 表示序列中某个字段的名称
-- column_value 表示序列中某个字段的值的内容。当 {column_name} 等于 {timeColumnName} 时，对应的值表示的是时间大小，使用 unixtime 时间戳来表示，单位是秒
+- column_name: the name of the field in the time series data.
+- column_value: the value of the field in the time series data.If the value of the {column_name} parameter is the same as the value of the {timeColumnName} parameter, the field value is a UNIX timestamp representing the number of seconds that have elapsed since January 1, 1970, 00:00:00 UTC.
 
-几个限制说明
+Limits
 
-1. 输入的序列长度，需要在 [100, 10000] 个点
+1. The input time series data must contain 100 to 10,000 data points.
 
-#### 返回参数
+#### Response parameters
 
 data
 
@@ -283,9 +283,9 @@ data
 ]
 ```
 
-- start 表示检测出来的异常区间的开始时间
-- end 表示检测出来的异常区间的结束时间
-- label 表示检测出来的当前区间的异常类型
+- start: the start time of the range during which an anomaly is detected.
+- end: the end time of the range during which an anomaly is detected.
+- label: the type of the anomaly detected in the current time range. Valid values:
   - SPIKE_UP_TYPE
   - SPIKE_DOWN_TYPE
   - TREND_UP_TYPE
@@ -293,7 +293,7 @@ data
   - MEANSHIFT_UPWARD_TYPE
   - MEANSHIFT_DOWNWARD_TYPE
 
-#### 使用示例（Python）
+#### Sample code（Python）
 
 ```
 # -*- coding: utf-8 -*-
@@ -374,8 +374,8 @@ class Sample:
     def main(
         args: List[str],
     ) -> None:
-        # 请确保代码运行环境设置了环境变量 ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
-        # 工程代码泄露可能会导致 AccessKey 泄露，并威胁账号下所有资源的安全性。以下代码示例使用环境变量获取 AccessKey 的方式进行调用，仅供参考，建议使用更安全的 STS 方式，更多鉴权访问方式请参见：https://help.aliyun.com/document_detail/378659.html
+        # Make sure that the following environment variables are configured for the runtime environment of the code: ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
+        # Project code leakage may lead to the leakage of the AccessKey pair. This exposes all resources within the current account to security risks. The following sample code uses environment variables to obtain an AccessKey pair. The sample code is for reference only. We recommend that you use Security Token Service (STS), which is more secure. For more information, see https://help.aliyun.com/document_detail/378659.html
         ALIBABA_CLOUD_ACCESS_KEY_ID = ""
         ALIBABA_CLOUD_ACCESS_KEY_SECRET = ""
         client = Sample.create_client(ALIBABA_CLOUD_ACCESS_KEY_ID, ALIBABA_CLOUD_ACCESS_KEY_SECRET)
@@ -385,7 +385,7 @@ class Sample:
         runtime = util_models.RuntimeOptions()
         headers = {}
         try:
-            # 复制代码运行请自行打印 API 的返回值
+            # Obtain the returned data of the API operation after the sample code is run.
             service_name = "sls_builtin_service_metric_anomaly"
             resp = client.get_mlservice_results_with_options(service_name, get_mlservice_results_request, headers, runtime)
             if resp.status_code == 200:
@@ -402,13 +402,13 @@ if __name__ == '__main__':
         time.sleep(1)
 ```
 
-### 3. 高延时 Trace 根因分析
+### 3. Analyze the root causes of high-latency traces
 
-#### 服务名称
+#### Service name
 
 > sls_builtin_service_trace_rca
 
-#### 请求参数
+#### Request parameters
 
 body.parameter
 
@@ -421,10 +421,10 @@ body.parameter
 }
 ```
 
-- project 表示待分析的 Trace 数据存储在 SLS 中的 Project 的名称
-- logstore 表示待分析的 Trace 数据存储在 SLS 中的 Logstore 的名称
-- endpoint 表示 project 所在地域的 endpoint 信息，这里必须使用公网域名，内网域名无法访问
-- role_arn 表示已经对该资源进行授权的角色信息，这里务必使用 ETLRole 或者 AuditRole 的 arn 信息
+- project: the name of the Simple Log Service project in which the trace data to be analyzed is stored.
+- logstore: the name of the Simple Log Service Logstore in which the trace data to be analyzed is stored.
+- endpoint: the endpoint of the region in which the project resides. You must specify a public endpoint because an internal endpoint is inaccessible.
+- role_arn: the Alibaba Cloud Resource Name (ARN) of the role that is authorized to access relevant resources. You must specify the ARN of the AliyunLogETLRole or AliyunServiceRoleForSLSAudit role.
 
 body.input
 
@@ -442,16 +442,16 @@ body.input
 ]
 ```
 
-输入的内容是一个是数组，切输入的数组的长度是 1，其中对应的参数的含义解释如下：
+The input is an array. The array contains the following parameters:
 
-- service 表示某个或者某一批待诊断的 TraceID 的服务名称，可以从 logstore 中获得
-- name 表示某个或者某一批待诊断的 TraceID 的服务名称，可以从 logstore 中获得
-- from_ts_sec 表示待分析的开始时间戳，单位是秒
-- to_ts_sec 表示待分析的结束时间戳，单位是秒
-- batch_id 表示当前待分析的一批 TraceID 的名称
-- trace_ids 表示当前请求中对应的 trace_id 的列表，使用 json 序列化成字符串
+- service: the name of the service whose trace data is to be analyzed. You can obtain the service name from the Logstore.
+- name: the name of the service whose trace data is to be analyzed. You can obtain the service name from the Logstore.
+- from_ts_sec: the end timestamp of the trace data to be analyzed. Unit: seconds.
+- to_ts_sec: the start timestamp of the trace data to be analyzed. Unit: seconds.
+- batch_id: the batch name of the trace IDs to be analyzed.
+- trace_ids: the trace IDs to be analyzed. The value is in the JSON format and must be serialized into a string.
 
-#### 返回参数
+#### Response parameters
 
 data
 
@@ -483,7 +483,7 @@ data
 ]
 ```
 
-#### 使用示例（Python）
+#### Sample code（Python）
 
 ```
 # -*- coding: utf-8 -*-
@@ -555,8 +555,8 @@ class Sample:
     def main(
         args: List[str],
     ) -> None:
-        # 请确保代码运行环境设置了环境变量 ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
-        # 工程代码泄露可能会导致 AccessKey 泄露，并威胁账号下所有资源的安全性。以下代码示例使用环境变量获取 AccessKey 的方式进行调用，仅供参考，建议使用更安全的 STS 方式，更多鉴权访问方式请参见：https://help.aliyun.com/document_detail/378659.html
+        # Make sure that the following environment variables are configured for the runtime environment of the code: ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
+        # Project code leakage may lead to the leakage of the AccessKey pair. This exposes all resources within the current account to security risks. The following sample code uses environment variables to obtain an AccessKey pair. The sample code is for reference only. We recommend that you use STS, which is more secure. For more information, see https://help.aliyun.com/document_detail/378659.html
         ALIBABA_CLOUD_ACCESS_KEY_ID = ""
         ALIBABA_CLOUD_ACCESS_KEY_SECRET = ""
         client = Sample.create_client(ALIBABA_CLOUD_ACCESS_KEY_ID, ALIBABA_CLOUD_ACCESS_KEY_SECRET)
@@ -566,7 +566,7 @@ class Sample:
         runtime = util_models.RuntimeOptions()
         headers = {}
         try:
-            # 复制代码运行请自行打印 API 的返回值
+            # Obtain the returned data of the API operation after the sample code is run.
             service_name = "sls_builtin_service_trace_rca"
             resp = client.get_mlservice_results_with_options(service_name, get_mlservice_results_request, headers, runtime)
             if resp.status_code == 200:
@@ -581,13 +581,13 @@ if __name__ == '__main__':
     Sample.main(sys.argv[1:])
 ```
 
-### 4. 时序预测方法
+### 4. Predict time series data
 
-#### 服务名称
+#### Service name
 
 > sls_builtin_service_series_prediction
 
-#### 请求参数
+#### Request parameters
 
 body.parameter
 
@@ -603,12 +603,12 @@ body.parameter
 ```
 
 - time_name 表示 input 的每个数据中时间字段的名称
-- feature_names 表示 input 的每个数据中的指标字段的名称
-- pred_config 表示要预测多长时间的序列，其中 periods 表示要预测多少个点，freq 表示每一个点的时间单位，可选时间单位如下
-  - hour 表示小时
-  - min 表示分钟
-  - s 表示秒
-  - day 表示天
+- feature_names: the names of the metric fields in the input data.
+- pred_config: the length of the time series data to be predicted. The periods parameter specifies the number of data points to be predicted, and the freq parameter specifies the time unit of each data point. The following time units are available:
+  - hour: hour.
+  - min: minute.
+  - s: second.
+  - day: day.
 
 body.input
 
@@ -620,10 +620,10 @@ body.input
 ]
 ```
 
-输入的内容是一个是 json 结构数组，其中包含一个时间字段（由 parameter.time_name 指定）和若干个指标字段（由 parameter.feature_names 指定）。
-其中时间字段的值必须可以转换成整数类型，以秒为单位；指标字段的值必须可以转换成数值类型。
+The input is a JSON array, which contains a time field and multiple metric fields. The time field is specified by the parameter.time_name parameter, and the metric fields are specified by the parameter.feature_names parameter.
+The value of the time field must be converted to the INTEGER type. Unit: seconds. The values of the metric fields must be converted to the NUMERIC type.
 
-具体的一个例子如下：
+The following sample code provides an example:
 
 ```
 [
@@ -639,7 +639,7 @@ body.input
 ]
 ```
 
-#### 返回参数
+#### Response parameters
 
 data
 
@@ -661,12 +661,12 @@ data
 ]
 ```
 
-输出内容中每一个 json 结构表示对于每一个时间时刻的预测结果
+Each JSON object in the output indicates the prediction results for a metric at a point in time.
 
-- ${time_name} 表示 json 结构对应的时刻，以秒为单位
-- ${feature_name}\_hat 表示对应时刻的预测值
-- ${feature_name}\_upper 表示对应时刻的预测值的上界
-- ${feature_name}\_lower 表示对应时刻的预测值的下界
+- ${time_name}: the point in time of the JSON object. Unit: seconds.
+- ${feature_name}\_hat: the predicted value at the point in time.
+- ${feature_name}\_upper: the upper limit of the predicted value at the point in time.
+- ${feature_name}\_lower: the lower limit of the predicted value at the point in time.
 
 status
 
@@ -677,12 +677,12 @@ status
 }
 ```
 
-包含对于每一个指标的历史数据的拟合程度
+This parameter indicates the degree at which the predicted value of each metric fits historical data.
 
-- ${feature_name}\_mse 表示拟合对应指标历史数据的均方误差。误差越小，表示预测值对于历史数据的拟合程度越好
-- ${feature_name}\_r2 表示拟合对应指标历史数据的 r2 分数。分数越高，表示预测值对于历史数据的拟合程度
+- ${feature_name}\_mse: the mean square error for fitting the historical data of the metric. A smaller error indicates that the predicted value better fits the historical data.
+- ${feature_name}\_r2: the r2 score for fitting the historical data of the metric. A higher score indicates that the predicted value better fits the historical data.
 
-#### 使用示例（Python）
+#### Sample code（Python）
 
 ```
 import traceback
@@ -712,7 +712,7 @@ param.parameter = {
     "pred_config": "{\"periods\": 720, \"freq\": \"min\"}"
 }
 
-# 设置待预测的时间序列，每一个 json 结构包含一个时序点对应的时间和指标值
+# The time series data to be predicted. Each JSON object contains the time and metric value at a point in time.
 param.input = [
     {"flow": "632", "time": "1705973340"},
     {"flow": "679", "time": "1705973400"},

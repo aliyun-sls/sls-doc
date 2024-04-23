@@ -1,4 +1,4 @@
-用from_unixtime函数将__time__转成timestamp格式，用date_format函数将timestamp格式化成小时分钟的格式t，按时间t进行聚合，用count函数计算每分钟的次数pv，作为子查询1，用compare函数查询子查询1，得到今日和昨日的每分钟pv及比值的array，作为子查询2，再查询子查询2，将今天，昨天的pv和比值用编号从array取出，作为单独一列展示 用线图进行展示
+Use the from_unixtime function to convert the value of the __time__ field into a timestamp, use the date_format function to format timestamps into time t in the hour-minute format, and then aggregate the data by time t. Use the count function to calculate the number of page views (PVs) per minute and use the results as Subquery 1. Use the compare function to query the results of Subquery 1 to obtain the arrays of PVs per minute and the ratio of PVs of today to PVs of yesterday and use the results as Subquery 2. Then, query the results of Subquery 2 to obtain the PVs of today and yesterday and the comparison ratio from the arrays. The results are displayed in separate columns in a line chart.
 ```sql
 * |
 select
@@ -30,5 +30,5 @@ from(
       10000
   )
 ```
-SQL查询结果样例：
+Sample SQL query result
 ![image.png](/img/src/sqldemo/nginx访问日志的PV趋势同比昨日/e2921500b60ea208cafee4f5b7e7c19fff55a2fca0c281b9f7577a45465b869f.png)

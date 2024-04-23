@@ -1,4 +1,4 @@
-内层SQL获取到状态大于等于400的请求数，中间层SQL使用compare函数获取3600秒前的数据，外层中c1是当前时间的错误数量，c2是3600秒前的错误数量，c3是c1/c2的比值，用于展示趋势， 图中使用的是单值图中的同比环比图展示，c1为显示值，c3是对比值
+The internal SQL statement obtains the number of requests for which the status code is greater than or equal to 400. The middle SQL statement uses the compare function to obtain the data 3,600 seconds ago. In the outer SQL statement, c1 indicates the number of errors at the current time, c2 indicates the number of errors 3,600 seconds ago, and c3 indicates the ratio of c1 to c2, which shows the trend. The trend is displayed in an hour-to-hour comparison chart, in which c1 is the display value and c3 is the ratio.
 ```sql
 status >= 400 |
 SELECT
@@ -18,6 +18,6 @@ FROM
       )
   )
 ```
-SQL查询结果样例：
+Sample SQL query result
 ![image.png](/img/src/sqldemo/tomcat错误请求数量以及与上一小时错误请求比较/95d7010717267db2d993a1076f4e2fec522297a54fc538071acf6599159da47f.png)
 

@@ -1,23 +1,23 @@
-# 日志服务 SLS – 全栈可观测
+# Simple Log Service: Full-stack Observability
 
-## 功能介绍
+## Features
 全栈可观测应用是日志服务提供的一站式IT系统可观测方案，包含IT系统监控、全链路 Trace、智能告警等功能。
 
-:::tip 全栈可观测
-[试用 Demo](/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){target="_blank"}
+:::tip Full-stack Observability
+[Trial Demo](/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){target="_blank"}
 :::
 
 
-## 功能优势
-- 简单：一站式开通、中心化使用，内置丰富的报表，可满足监控大盘、问题排查、可观测数据融合分析等需求。
-- 全栈：全面覆盖各类IT系统，支持多种可观测数据，支持多种语言的指标、日志、Trace 接入。
-- 自动化：支持 ECS、Kubernetes 自动安装，具备自动生成服务拓扑和网络拓扑的能力。
-- 海量：基于日志服务自研的可观测存储分析引擎，支持写入与查询超大规模的可观测数据。
-- 弹性：支持过滤任意的可观测数据，也支持任意设置可观测数据存储周期。Logstore 和 Metricstore 容量可动态伸缩满足业务增长需求。
-- 智能：基于达摩院智能 AIOps 的流式巡检算法，有助于更快发现并定位问题。
+## Benefits
+- Easy-to-use: You can enable the application with a few clicks and use centralized storage for the application. The application provides built-in reports to meet different requirements, such as monitoring dashboards, troubleshooting, and the convergence and analysis of observable data.
+- Full-stack: The application supports various types of IT systems and observable data. It allows you to collect metric data, log data, and trace data in multiple programming languages.
+- Automatic: The application supports the automatic installation of Logtail on Elastic Compute Service (ECS) instances and in Kubernetes clusters. The application can automatically generate service topologies and network topologies.
+- Large-scale: The application allows you to write and query ultra-large amounts of observable data based on the observable data storage and analysis engine of Simple Log Service.
+- Scalable: You can filter all types of observable data or specify a custom retention period for the data.The storage capacity of a Logstore or Metricstore can be dynamically scaled to meet business requirements.
+- Intelligent: The application can detect and identify errors in an efficient manner because it uses the stream inspection algorithm that is developed by Alibaba DAMO Academy for artificial intelligence for IT operations (AIOps).
 
 
-## 核心价值
-- 一站式开箱即用，log/trace/metric 融合关联分析，帮助用户实现多端融合全链路可观测。
+## Core values
+- The Full-stack Observability application provides all-in-one, out-of-the-box features to support the convergence and association analysis of logs, traces, and metrics. This enables the end-to-end observability of IT systems.
 
 
