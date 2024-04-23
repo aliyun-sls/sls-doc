@@ -1,18 +1,18 @@
-# 定时SQL 使用案例
+# Use cases of Scheduled SQL
 
-:::tip 演示案例
-[试用 Demo](/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){target="_blank"}
+:::tip Demonstration case
+[Trial Demo](/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){target="_blank"}
 :::
 
-## 任务配置
+## Job configurations
 
-| 案例名称                                  | 描述                                |
+| Case name                                  | Description                                |
 |---------------------------------------|-----------------------------------|
-| [日志数据转日志数据](./log2log.md)               | 日志库 -> 日志库                        |
-| [日志数据转时序数据](./log2metric.md)         | 日志库 -> 时序库                        |
-| [时序数据转时序数据](./metric2metric.md)      | 时序库 -> 时序库                        |
+| [[Process and store data from a Logstore to another Logstore]](./log2log.md)               | Logstore -> Logstore                        |
+| [[Process and store data from a Logstore to a Metricstore]](./log2metric.md)         | Logstore -> Metricstore                        |
+| [[Process and store data from a Metricstore to another Metricstore]](./metric2metric.md)      | Metricstore -> Metricstore                        |
 
-## 告警配置
-| 案例名称                                  | 描述                                |
+## Alert configuration
+| Case name                                  | Description                                |
 |---------------------------------------|-----------------------------------|
-| [定时 SQL 告警介绍](./scheduledsql_alert.md) | 介绍任务运行日志，告警规则，行动策略 ，开启告警，自定义告警等内容 |
+| [Configure alerting for Scheduled SQL](./scheduledsql_alert.md) | View the run logs of Scheduled SQL jobs and configure action policies and alert rules for Scheduled SQL.|

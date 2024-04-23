@@ -1,75 +1,75 @@
-# 定时 SQL 告警介绍
+# Configure alerting for Scheduled SQL
 
-## 背景
-本文旨在向用户介绍如何开启定时SQL告警并跟踪任务执行情况,以便及时发现异常情况并确保定时SQL任务顺利执行.
-## 开通任务运行日志
+## Background
+The topic describes how to configure alerting for Scheduled SQL to track Scheduled SQL jobs. This helps you detect exceptions at the earliest opportunity and ensures that the jobs can be run as expected.
+## Activate task operation logs
 
-1. 在定时 SQL 任务所在 Project 的概览页面,点击开通服务日志.
+1. Go to the details page of the project that you want to manage and click the Service Log tab. Then, click Enable Service Logs.
 ![image-64.png](/img/src/scheduledsql/scheduledsql_alert/d3e8ed81c1183c215ea1e02842c4624f13f907f47c6b29adfde9ce5cc5d6fe7d.png)
-2. 点击任务运行日志按钮，开通定时 SQL 任务运行日志.
+2. In the Modify Service Log Settings panel, turn on Job Operational Logs to enable run logs for Scheduled SQL jobs. Then, you can view the run logs of Scheduled SQL jobs in the internal-diagnostic_log Logstore of the project.
 ![image-65.png](/img/src/scheduledsql/scheduledsql_alert/28e148a04cf2bb3c1b2e94c43e670bd7b61fca7d45c97b291f824872ac6386d4.png)
-开启任务运行日志后，您可以在项目的 internal-diagnostic_log 中查看定时SQL的任务运行日志。
+In the Modify Service Log Settings panel, turn on Job Operational Logs to enable run logs for Scheduled SQL jobs. Then, you can view the run logs of Scheduled SQL jobs in the internal-diagnostic_log Logstore of the project.
 
-## 查看任务运行日志
+## View the run logs of Scheduled SQL jobs
 
-在控制台查询页面输入
+Go to the details page of the internal-diagnostic_log Logstore in the console and execute the following SQL statement:
 
 ```sql
 * and job_type: ScheduledSQL
 ```
 
-可以查看定时SQL的任务运行日志，每个任务实例的执行情况均可以查看。
+You can view the run logs of Scheduled SQL jobs and the details of each instance.
 ![image-66.png](/img/src/scheduledsql/scheduledsql_alert/ea46f4223b6cdb0e5e42509ce829179126b756c83389ad32b833a56954b6ffdd.png)
 
-### 字段说明
-| 字段 | 说明 | 示例 |
+### Field Description
+| Field | Description | Example |
 | --- | --- | --- |
-| create_time | 任务实例创建时间，单位为秒 | 1690868640 |
-| error_code | 如果实例执行失败，说明失败原因码 | SQLFailed |
-| error_message | 如果实例执行失败，说明失败详情 | sql syntax error |
-| fallbehind | 任务触发时间和调度时间间隔，说明执行延迟，单位为秒 | 0 |
-| instance_id | 任务实例标识 | 49078b63c9f6b997-601d608a6db4d-3b997c0 |
-| job_name | 任务名称 | sql-1690513925-248017 |
-| job_type | 任务类型 | ScheduledSQL |
-| project | 任务所在项目名称 | scheduled-sql-demo |
-| schedule_id | 调度配置标识 | 6f0a8b2c7d12e11695c04faf8e9b1b3f |
-| schedule_time | 运势实例调度时间,单位为妙 | 1690868640 |
-| source_type | 源类型 | Complete |
-| status | 任务实例执行结果，可以为 FAILED 或者 SUCCEEDED | SUCCEEDED |
-| succeed_lines | 如果实例成功，说明写入行数；如果实例失败，则为 0 | 100 |
-| task_type | 任务类型 |  |
-| trigger_time | 任务实例触发时间，单位为秒 | 1690868640 |
+| create_time | The time when the instance was created. Unit: seconds. | 1690868640 |
+| error_code | The error code returned if the instance failed. | SQLFailed |
+| error_message | The error message returned if the instance failed. | sql syntax error |
+| fallbehind | The time interval between the time when the instance was triggered and the scheduled time of the instance, which indicates a latency. Unit: seconds. | 0 |
+| instance_id | The instance ID. | 49078b63c9f6b997-601d608a6db4d-3b997c0 |
+| job_name | The name of the job. | sql-1690513925-248017 |
+| job_type | The type of the job. | ScheduledSQL |
+| project | The name of the project to which the job belongs. | scheduled-sql-demo |
+| schedule_id | The scheduling configuration ID. | 6f0a8b2c7d12e11695c04faf8e9b1b3f |
+| schedule_time | The scheduled time of the instance. Unit: seconds. | 1690868640 |
+| source_type | The type of the source. | Complete |
+| status | The state of the instance. Valid values: FAILED and SUCCEEDED. | SUCCEEDED |
+| succeed_lines | The number of rows written if the instance was successful. If the instance failed, 0 is returned. 0 | 100 |
+| task_type | The type of the job. |  |
+| trigger_time | The time when the instance was triggered. Unit: seconds. | 1690868640 |
 
 
-## 告警规则
+## Configure alert rules
 
-通过监控任务执行日志，可以配置告警规则监控任务的执行情况。用户可以自定义告警规则，也可以使用内置的定时SQL告警规则。
+You can configure alert rules to monitor Scheduled SQL jobs based on their run logs.You can customize alert rules or use the built-in alert rules for Scheduled SQL.
 
-### 开启新版告警
+### Enable the new alerting feature
 
-在任务运行日志所在的 project，点击左侧的告警按钮打开告警中心，开启新版告警服务
+Go to the details page of the project that you want to manage. On the left-side navigation submenu, click the Alerts icon. On the Alert Center page, enable the new alerting feature.
 ![image-68.png](/img/src/scheduledsql/scheduledsql_alert/d9c03ece1b954c0852caad29874ebb7e702d4087462c2f6f943c487980de2dd7.png)
 
-### 行动策略
+### Manage action policies
 
-在告警管理标签页中，点击行动策略下拉框，打开编辑框。可以看到定时SQL内置的行动策略，点击修改按钮，在第一行动列表中添加想要的通知方式。支持十多种通知渠道。更多信息请参考[官方文档](https://help.aliyun.com/zh/sls/user-guide/create-an-action-policy)。用户也可以自定义 定时SQL 告警的行动策略，通过添加按钮添加新的行动策略。
+On the Alert Center page, click the Notification Policy tab and then the Action Policy tab.On the Action Policy tab, you can view the built-in action policies for Scheduled SQL. Find an action policy that you want to manage and click Edit in the Actions column. In the Edit Action Policy dialog box, add notification methods on the Primary Action Policy tab.More than 10 notification methods are supported.For more information, see [Create an action policy](https://help.aliyun.com/zh/sls/user-guide/create-an-action-policy). You can also click Create on the Action Policy tab to customize an action policy for Scheduled SQL.
 ![image-69.png](/img/src/scheduledsql/scheduledsql_alert/9045b295994dd77e34a01181a2b7b837241dae03f771f8c6cfc5831d0ee6cf03.png)
 ![image-70.png](/img/src/scheduledsql/scheduledsql_alert/f40b6c3de117222a8f45cb2b0107ac672c61c7580a5a5b465789fcff0a27924a.png)
 ![image-71.png](/img/src/scheduledsql/scheduledsql_alert/12a57aedb070dd92a508b4896ee2e3dac598fe65d45b2843e266d0758b5fcea1.png)
-### 内置告警
-[告警中心页面链接]()
+### Use built-in alert rules
+[Go to the Alert Center page]()
 ![image-73.png](/img/src/scheduledsql/scheduledsql_alert/065ce61547039081e08eee306bf9f042a9a83e581c287333b3cceef5b2b76843.png)
 ![image-74.png](/img/src/scheduledsql/scheduledsql_alert/c19b85b9d3d4754ea7a9ded393ae58950fcee00966b7276ee910fd600570fec7.png)
 
-在告警中心的规则视图页面，选中SLS 定时SQL复选框，筛选出内置告警规则。点击添加按钮，在弹出窗口中填写告警配置，即可完成告警规则的配置。需要注意内置告警规则评估间隔为5分钟。
+On the Alert Rule tab of the Alert Center page, set filter conditions to view the built-in alert rules for Scheduled SQL.Find an alert rule that you want to manage and click Edit in the Actions column. In the Edit Alert panel, configure the alert rule.
 
-| 配置 | 说明 |
+| Configuration | Description |
 | --- | --- |
-| 告警名称 | 告警实例名称 |
-| 监控的Project | 需要监控的 定时SQL任务所在的 Project，.* 表示监控所有 Project |
-| 监控的任务名称 | 需要监控的 定时SQL任务名称，.* 表示监控所有任务 |
-| 行动策略 | 行动策略小节中配置的行动策略，默认使用内置行动策略 |
-| 告警严重度 | 告警的严重程度 |
+| Rule name | The name of the alert rule. |
+| Projects monitored | The name of the project to which the Scheduled SQL job to be monitored belongs. You can enter .* to specify all projects. |
+| Jobs monitored | The name of the Scheduled SQL job to be monitored. You can enter .* to specify all Scheduled SQL jobs. |
+| Action policy | The action policy configured on the Action Policy tab. By default, a built-in action policy is used. |
+| Alert severity | The severity of the alert. |
 
 
 ### 自定义告警

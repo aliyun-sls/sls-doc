@@ -1,10 +1,10 @@
-# 控制台查询
+# Query logs in the console
 
 ![](/img/searchdemo/scan_sdk_demo_on_web_console.jpg)
 
-# Java SDK 代码访问
+# Query logs by using SDK for Java
 
-## Maven 依赖
+## Maven dependency
 ```
 <!-- https://mvnrepository.com/artifact/com.aliyun.openservices/aliyun-log -->
 <dependency>
@@ -14,7 +14,7 @@
 </dependency>
 ```
 
-## 代码样例
+## Sample code
 
 ```java
 public void doScan() throws LogException {
@@ -23,11 +23,11 @@ public void doScan() throws LogException {
     String logstore = "fill your SLS logsotre here";
     int fromTime = 1671154200; // event-time, [from, to)
     int toTime = 1671154200 + 3600; // event-time, [from, to)
-    String query = "Status:404 | where ErrorCode = 'ConsumerGroupNotExist'"; // 不返回上下文信息
-    // String query = "Status:404 | where ErrorCode = 'ConsumerGroupNotExist' | with_pack_meta"; // 返回上下文信息
+    String query = "Status:404 | where ErrorCode = 'ConsumerGroupNotExist'"; // No contextual fields are returned.
+    // String query = "Status:404 | where ErrorCode = 'ConsumerGroupNotExist' | with_pack_meta"; // Contextual fields are returned.
     int totalCount = 0;
-    boolean reverse = false; // 从前向后查找
-    // boolean reverse = true; // 从后向前查找
+    boolean reverse = false; // Search from beginning to end.
+    // boolean reverse = true; // Search from end to beginning.
     boolean forward = true;
     int offset = 0;
     while (true) {
@@ -45,7 +45,7 @@ public void doScan() throws LogException {
     System.out.println("totally scanned logs\t: " + totalCount);
 }
 ```
-运行输出:
+Expected output:
 
 ```
 [response of this scan]	begin offset: 0	end offset: 13659	result logs: 100	is finished: false
@@ -59,31 +59,31 @@ public void doScan() throws LogException {
 totally scanned logs	: 722
 ```
 
-## 上下文信息
+## Contextual query
 
-Scan 语法是：`{Index Search Query} | {Scan Query}`，此时返回的日志信息中不包含上下文字段。
+Scan syntax：`{Index Search Query} | {Scan Query}`，logs with no contextual fields are returned.。
 
-带上下文字段返回的语法是 `{Index Search Query} | {Scan Query} | with_pack_meta`
+To obtain logs with contextual fields, you can use the following syntax: `{Index Search Query} | {Scan Query} | with_pack_meta`
 
-日志上下文字段，样例如下：
+Sample contextual fields:：
 ```
 __pack_meta__: 3|MTY3MTExNTcxMDM2ODE3ODE3NQ==|518|73
 __tag__:__pack_id__: 7154B46F35F6D009-141
 ```
 
-Q：有了这些上下文信息后，如何获得这条日志在原始文件中的上一条、下一条呢？
+Q：With contextual fields of a log, how do I query the previous and next logs of the log in a raw log file?
 
-A：请参考[GetContextLogs](https://help.aliyun.com/document_detail/152116.html)。
+A：see[GetContextLogs](https://help.aliyun.com/document_detail/152116.html)。
 
-# SDK 参数说明
+# SDK parameters
 
-| reverse | forward | offset | 行为 |
+| reverse | forward | offset | action |
 |---------|---------|--------|------|
-| false | true | 0 或上次请求响应的 endOffset | 从前（时间戳小）往后（时间戳大）翻页 |
-| true | true | 0 或上次请求响应的 endOffset | 从后（时间戳大）往前（时间戳小）翻页 |
-| false | false | 索引命中的日志总数或上次请求响应的 beginOffset | 从后（时间戳大）往前（时间戳小）翻页 |
-| true | false | 索引命中的日志总数或上次请求响应的 beginOffset | 从前（时间戳小）往后（时间戳大）翻页 |
+| false | true | 0 or the endOffset returned in the last response endOffset | Turns page from the smaller timestamp to the larger timestamp |
+| true | true | 0 or the endOffset returned in the last response endOffset | Turns page from the larger timestamp to the smaller timestamp |
+| false | false | The total number of logs hit by the index or the beginOffset returned in the last response beginOffset | Turns page from the larger timestamp to the smaller timestamp |
+| true | false | The total number of logs hit by the index or the beginOffset returned in the last response beginOffset | Turns page from the smaller timestamp to the larger timestamp |
 
-Q: 如何获取索引命中的日志总数？
+Q: How do I obtain the total number of logs hit by the index?
 
-A: 对竖线前查询语句（Status:404）调用 GetHistorgram 获取。
+A: You can call the GetHistorgram operation in a search statement that is before the vertical bar (\|). For example, you can call the operation in the Status:404 statement.
