@@ -30,6 +30,12 @@ const tip = ref(
 )
 
 let dest = ref('')
+if (inBrowser) {
+  const destination = params.value.dest === '' ? '' : `destination=${params.value.dest}`
+  dest.value = `https://arms-unify-demo-arms-unify-demo-awqlqbyvcc.cn-hangzhou.fcapp.run?${destination}`
+}
+
+console.log(dest.value)
 
 watchEffect(async () => {
   // if (inBrowser) {
@@ -43,8 +49,6 @@ watchEffect(async () => {
   //     dest.value = destUrl
   //   }
   // }
-  const destination = params.value.dest === '' ? '' : `destination=${params.value.dest}`
-  dest.value = `https://arms-unify-demo-arms-unify-demo-awqlqbyvcc.cn-hangzhou.fcapp.run?${destination}`
 })
 </script>
 
