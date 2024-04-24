@@ -8,7 +8,7 @@
 
 ## 使用场景
 
-随着 K8s 和云的普及，越来越多的公司将业务系统部署到云上，并且使用 K8s 来部署应用。日志采集是 K8s 应用中非常重要的运维工具，日志服务提供了[Daemonset 和 Sidecar](https://help.aliyun.com/document_detail/66654.html?spm=a2c4g.26937906.0.0.7bc35f68ZZQyyT){target="\_blank"} 两种针对 K8s 的采集方式，对于 K8s 应用的日志采集提供了极大的便捷性。当日志目录挂载 PVC 时，可以使用[Sidecar 方式共享数据卷](https://developer.aliyun.com/article/691428?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN)的方式采集，这种方式需要每个业务容器伴随一个 logtail 容器，具有非常高的采集性能，另一方面也需要更多的资源开销。
+随着 K8s 和云的普及，越来越多的公司将业务系统部署到云上，并且使用 K8s 来部署应用。日志采集是 K8s 应用中非常重要的运维工具，日志服务提供了[Daemonset 和 Sidecar](https://help.aliyun.com/document_detail/66654.html?spm=a2c4g.26937906.0.0.7bc35f68ZZQyyT){target="_blank"} 两种针对 K8s 的采集方式，对于 K8s 应用的日志采集提供了极大的便捷性。当日志目录挂载 PVC 时，可以使用[Sidecar 方式共享数据卷](https://developer.aliyun.com/article/691428?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN)的方式采集，这种方式需要每个业务容器伴随一个 logtail 容器，具有非常高的采集性能，另一方面也需要更多的资源开销。
 本文提供一种相对 Sidecar 部署更轻量级的采集方式，只需要部署少量的 Logtail 容器，即可采集不同业务容器的日志。主要场景如下：
 
 ### 场景 1：业务容器用 PVC 挂载日志目录
