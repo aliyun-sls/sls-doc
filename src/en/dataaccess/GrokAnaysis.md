@@ -90,7 +90,7 @@ In this example, file logs are collected.The logs are stored in the /home/test-i
 ### Step 3: Create a Grok collection configuration
 
 Modify the collection configuration file based on the requirements of the example.
-The Grok plug-in supports a variety of configuration items. For more information, see the [Grok mode](https://www.alibabacloud.com/help/en/doc-detail/196154.html?spm=a2c4g.26937906.0.0.615f12c9SsVo9e#section-ucx-pqc-4wh){target="\_blank"} section of the "Extract content from log fields" topic.
+The Grok plug-in supports a variety of configuration items. For more information, see the [Grok mode](https://www.alibabacloud.com/help/en/doc-detail/196154.html?spm=a2c4g.26937906.0.0.615f12c9SsVo9e#section-ucx-pqc-4wh){} section of the "Extract content from log fields" topic.
 
 ```json
 {

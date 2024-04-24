@@ -170,10 +170,10 @@ CloudLens provides unified observability by using Simple Log Service. You can us
 ## Demos for other log applications
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/en/billandsecurity/costmanagerintro">
+  <!-- <a class="vt-box" href="/doc/en/billandsecurity/costmanagerintro">
     <p class="next-steps-link">Cost Manager</p>
     <p class="next-steps-caption">Allows you to analyze bills and reduce the costs of your cloud services.</p>
-  </a>
+  </a> -->
     <a class="vt-box" href="/doc/en/billandsecurity/logauditintro">
     <p class="next-steps-link">Log Audit Service</p>
     <p class="next-steps-caption">Allows you to collect and audit logs from cloud services that belong to different accounts or reside in different regions.</p>

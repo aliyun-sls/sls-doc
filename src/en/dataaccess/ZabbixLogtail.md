@@ -36,7 +36,7 @@ systemctl restart zabbix-server
 
 ## Step 2: Create a Logtail configuration
 
-1. Log on to the [Simple Log Service console] by using Alibaba Cloud Account A.(https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.29de2b96o6sz8B){target="\_blank"}.
+1. Log on to the [Simple Log Service console] by using Alibaba Cloud Account A.(https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.29de2b96o6sz8B){}.
 2. In the Import Data section, click JSON - Text Log.
 3. Select the project and Logstore. Then, click Next.
 4. Create a machine group.
