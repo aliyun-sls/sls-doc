@@ -11,7 +11,7 @@ const groupNames = {
 }
 
 exports = module.exports = function() {
-  const baseDir = './src/en/salert'
+  const baseDir = './src/en/alert'
   const groups = fs.readdirSync(baseDir).filter(g => !g.endsWith('.md'))
 
   const toc = groups.map(group => {

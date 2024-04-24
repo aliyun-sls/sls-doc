@@ -140,7 +140,7 @@ function getEnNavs() {
         {
           items: [
             { text: 'SQL分析案例', link: '/en/sqldemo/home' },
-            { text: 'SPL数据处理案例', link: '/en/spldataprocessdemo/home' },
+            // { text: 'SPL数据处理案例', link: '/en/spldataprocessdemo/home' },
             { text: 'SQL函数案例', link: '/en/sqlfunction/home' },
             { text: 'SQL错误中心', link: '/en/sqlerror/home' },
             { text: '定时SQL案例', link: '/en/scheduledsql/home' },
