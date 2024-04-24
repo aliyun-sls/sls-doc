@@ -50,10 +50,10 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Data collection</p>
     <p class="next-steps-caption">Simple Log Service allows you to collect data from multiple sources, such as servers, applications, open source software, IoT devices, mobile devices, and Alibaba Cloud services. You can also collect data that is transferred over standard protocols.</p>
   </a> -->
-  <a class="vt-box" href="/doc/en/alert/">
+  <!-- <a class="vt-box" href="/doc/en/alert/">
     <p class="next-steps-link">Alerting</p>
     <p class="next-steps-caption">Simple Log Service allows you to configure alert rules for multiple resources, including data transformation jobs, data shipping jobs, Logtail configurations, and Scheduled SQL jobs.</p>
-  </a>
+  </a> -->
   <a class="vt-box" href="/doc/en/cloudlen/">
     <p class="next-steps-link">CloudLens</p>
     <p class="next-steps-caption">Simple Log Service provides CloudLens applications.</p>
@@ -62,14 +62,15 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Error Center</p>
     <p class="next-steps-caption">Error Center lists the common errors that are reported by users. You can troubleshoot errors based on the corresponding error messages to diagnose and fix the errors.</p>
   </a>
+    <a class="vt-box" href="/doc/en/scheduledsql/">
+    <p class="next-steps-link">Scheduled SQL</p>
+    <p class="next-steps-caption">Simple Log Service provides the Scheduled SQL feature.</p>
+  </a>
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
 
-  <a class="vt-box" href="/doc/en/scheduledsql/">
-    <p class="next-steps-link">Scheduled SQL</p>
-    <p class="next-steps-caption">Simple Log Service provides the Scheduled SQL feature.</p>
-  </a>
+
   <a class="vt-box" href="/doc/en/intelligentom/">
     <p class="next-steps-link">Intelligent O&M</p>
     <p class="next-steps-caption">Simple Log Service provides intelligent O&M applications.</p>
