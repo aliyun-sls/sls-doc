@@ -8,18 +8,18 @@
 | SaslMechanism    | Set the value to SaslMechanism.Plain                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | SecurityProtocol | To ensure the data transmission security，**Set the value to SecurityProtocol.SaslSsl**                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | SaslUsername     | The name of the Simple Log Service project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| SaslPassword     | 配置为阿里云 AK，格式为 **{access-key-id}#{access-key-secret**。请根据实际情况，将 **{access-key-id** 替换为您的 AccessKey ID，将 **{access-key-secret}** 替换为您的 AccessKey Secret。建议使用 RAM 用户的 AK。更多信息，请参见[授权](https://www.alibabacloud.com/help/en/doc-detail/47664.htm#task-xsk-ttc-ry)                                                                                                                                                                                                         |
+| SaslPassword     | The AccessKey pair of your Alibaba Cloud account, in the **{access-key-id}#{access-key-secret** format. Replace **{access-key-id** with your AccessKey ID and **{access-key-secret}** with your AccessKey secret. We recommend that you use the AccessKey pair of a Resource Access Management (RAM) user. For more information, see [Create a RAM user and authorize the RAM user to access Simple Log Service](https://www.alibabacloud.com/help/en/doc-detail/47664.htm#task-xsk-ttc-ry)                                                                                                                                                                                                         |
 | GroupId          | The ID of the consumer group. You can add consumers to a consumer group. Then, you can specify the ID of the consumer group to implement load balancing, data processing, and data delivery. Example: **"kafka-test"**                                                                                                                                                                                                                                                                                                   |
-| AutoOffsetReset  | 消费起始点位 常用的二个值是 AutoOffsetReset.Latest 和 AutoOffsetReset.Earliest，<br>Earliest：表示消费者从最早的可用记录开始消费。如果消费者组之前没有消费过该主题，则会从最早的可用记录开始消费。如果之前已经消费过，则会从该消费者组最后提交的偏移量开始消费。<br>Latest：表示消费者从最新的可用记录开始消费。如果消费者组之前没有消费过该主题，则只会消费该主题上生产者将来生产的消息。如果之前已经消费过，则会从该消费者组最后提交的偏移量开始消费。                                                                 |
+| AutoOffsetReset  | The start position of consumption. Common values: latest and earliest. Default value: The start position of consumption. Common values: Earliest and Latest.<br>Earliest: The earliest offset is used. A consumer starts to read data from the earliest message. If no offset is committed, a consumer starts to read data from the beginning. If an offset is committed, a consumer starts to read data from the committed offset. <br>Latest: The latest offset is used. A consumer starts to read data from the latest message. If no offset is committed, a consumer starts to read data from the latest message. If an offset is committed, a consumer starts to read data from the committed offset.                              |
 
-## 环境准备
+## Preparation
 
 测试环境为 centos 7 环境为例子
 
-1. 安装 dotnet core sdk
+1. Install dotnet core sdk
    `yum install dotnet-sdk-3.1`
-2. 新建 dotnet 项目 `dotnet new console -n myconsumer -o /home/user/projects/myconsumer`
-3. 安装 confluent kafka 依赖 `dotnet add package -v 1.9.4-RC1 Confluent.Kafka`
+2. Install dotnet `dotnet new console -n myconsumer -o /home/user/projects/myconsumer`
+3. Install the Confluent.Kafka dependency. `dotnet add package -v 1.9.4-RC1 Confluent.Kafka`
 
 ## Confluent-kafka-c# sample code
 
@@ -35,9 +35,7 @@ class Consumer
         string accessKeyId = Environment.GetEnvironmentVariable("SLS_ACCESS_KEY_ID");
         string accessKeySecret = Environment.GetEnvironmentVariable("SLS_ACCESS_KEY_SECRET");
         string project = "project";
-        //内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://www.alibabacloud.com/help/en/doc-detail/29008.htm#reference-wgx-pwq-zdb
-        //endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"
-        //port = "10011"
+       
         string endpoint = "cn-shenzhen.log.aliyuncs.com";
         string port = "10012";
         string host = project + "." + endpoint + ":" + port;

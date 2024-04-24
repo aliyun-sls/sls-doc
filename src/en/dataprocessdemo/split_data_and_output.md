@@ -5,7 +5,6 @@ Simple Log Service allows you to replicate data from a source Logstore to a dest
 ## Scenario Note
 
 A data analytics company wants to replicate all log entries from a source Logstore and distribute the log entries to two destination Logstores.The replication and distribution features of Simple Log Service allow the company to use the e_set function to specify tags, use the e_split function to categorize the log entries based on the tags that you specify, and then use the e_output function to distribute each category of log entries to the destination Logstore that matches the tag for the category.The following figure shows the basic logic of the replication and distribution features.
-![split](/img/dataprocessdemo/p228486.png)
 
 - A project named target-a and a Logstore named logstore-a are created. A project named target-b and a Logstore named logstore-b are created.For example, evaluate the number of shards in each of these Logstores.For more information, see [Performance guide](https://www.alibabacloud.com/help/en/doc-detail/135496.htm?spm=a2c4g.11186623.2.6.729765fdl9EAWW#concept-2055068).
 
@@ -41,7 +40,7 @@ A data analytics company wants to replicate all log entries from a source Logsto
 
 6. click **Preview data** 。
 
-On the Transformation Results tab, the specified tags are added to raw log entries. The raw log entries with the target-a tag are distributed to the target-a storage destination, and the raw log entries with the target-b tag are distributed to the target-b storage destination.![](/img/dataprocessdemo/p228492.png)
+On the Transformation Results tab, the specified tags are added to raw log entries. The raw log entries with the target-a tag are distributed to the target-a storage destination, and the raw log entries with the target-b tag are distributed to the target-b storage destination.
 
 7. Click **Save as Transformation Job**
 
@@ -84,6 +83,6 @@ On the Transformation Results tab, the specified tags are added to raw log entri
 
 ## Result
 
-- In the Projects section, click the target-a project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the logstore-a Logstore. Then, you can view the log entries that are distributed to the logstore-a Logstore.![](/img/dataprocessdemo/p228506.png)
+- In the Projects section, click the target-a project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the logstore-a Logstore. Then, you can view the log entries that are distributed to the logstore-a Logstore.
 
-- In the Projects section, click the target-b project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the logstore-b Logstore. Then, you can view the log entries that are distributed to the logstore-a Logstore.![](/img/dataprocessdemo/p228518.png)
+- In the Projects section, click the target-b project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the logstore-b Logstore. Then, you can view the log entries that are distributed to the logstore-a Logstore.

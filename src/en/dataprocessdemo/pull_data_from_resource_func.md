@@ -8,14 +8,12 @@ When Simple Log Service pulls incremental data, it pulls only new or updated dat
   - Project：client-project
   - source Logstore：client-log
     The following figure shows data samples.
-    ![samples](/img/dataprocessdemo/数据富化/数据样例1.png)
   - target Logstore：client-information
 - RDS resource
 
   - Database：client-db
   - Database table name：client
     The following figure shows data samples.
-    ![samples 2](/img/dataprocessdemo/数据富化/数据样例2.png)
 
   - Username and password of an account that is used to connect to the database: test/test1234@@
   - Public endpoint of the database: rm-bp1k\*\*\*\*tp8o.mysql.rds.aliyuncs.com
@@ -70,24 +68,23 @@ When Simple Log Service pulls incremental data, it pulls only new or updated dat
    ```
    d. Click **Preview Data**.
    View the transformation results.Quick preview results
-   ![Quick preview results1](/img/dataprocessdemo/数据富化/Preview result 1.png)
 6. Preview data in advanced mode.
    Check whether Simple Log Service is connected to the ApsaraDB RDS for MySQL instance.
    a. Click **senior**。
    b. Click **Preview Data**.
    c. In the Add Preview Settings panel, configure the Authorization Method parameter and click **OK**.
-   ![Preview result 2](/img/dataprocessdemo/数据富化/Preview result 2.png)
+  
    d. View the transformation results.
-   ![Preview result 3](/img/dataprocessdemo/数据富化/Preview result 3.png)
+  
    If an error is reported, fix the error by following the instructions provided in [How do I fix syntax errors that occur when I pull data from ApsaraDB RDS for MySQL?](https://www.alibabacloud.com/help/en/doc-detail/135597.htm?spm=a2c4g.11186623.0.0.9cd93c05OdrePh#concept-2070603).
 
 7. Create a data transformation job
    a. Click **Save as Transformation Job**.
    b. In the **Create Data Transformation Job** panel, configure the following parameters.
    For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.9cd93d89eMoN40#task-1181217).
-   ![data transformation job 1](/img/dataprocessdemo/数据富化/数据加工1.png)
+  
    After the data transformation job is created, you can view the transformed data in the destination Logstore.
-   ![ data transformation job 2](/img/dataprocessdemo/数据富化/数据加工2.png)
+  
 
 ## FAQ
 

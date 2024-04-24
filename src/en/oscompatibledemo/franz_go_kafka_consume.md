@@ -33,9 +33,7 @@ func main() {
 	logstore        := "logstore"
 	endpoint        := "cn-hangzhou.log.aliyuncs.com"
 	port            := "10012"
-	//内网endpoint和对应port，可以通过阿里云内部网络访问日志服务，相比公网有更好的链路质量和安全性，详见文档 https://www.alibabacloud.com/help/en/doc-detail/29008.htm#reference-wgx-pwq-zdb
-	//endpoint = "cn-hangzhou-intranet.log.aliyuncs.com"
-	//port     = "10011"
+	
 	groupId         := "kafka-test"
 	accessKeyID     := os.Getenv("SLS_ACCESS_KEY_ID")
         accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
@@ -77,7 +75,7 @@ func main() {
 }
 ```
 
-## Franz-go 与 Confluent-kafka-go 简单对比
+##  Comparison between franz-go and confluent-kafka-go
 
-Franz-kafka-go 目前 github star 数为 857 ,Confluent-kafka-go 目前 github star 数为 3.7k , 实际使用过程中 franz-kafka-go
-如果参数配置有误,能返回的报错信息相比后者少很多,甚至完全不报错,此时排查起来有较大的难度,建议使用 confluent-kafka-go
+franz-go has 857 stars on GitHub, whereas confluent-kafka-go has 3,700 stars on GitHub.
+In real applications, franz-go reports fewer errors than confluent-kafka-go in case of a parameter configuration error, or even does not report errors. This increases the troubleshooting difficulty. We recommend that you use confluent-kafka-go.

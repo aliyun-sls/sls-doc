@@ -4,8 +4,6 @@ NGINX logs record important information that can be used for website O&M. Simple
 
 ### Transformation process
 
-![Transformation process1](/img/dataprocessdemo/数据富化/加工流程1.png)
-
 1. Convert HTTP response status codes to table objects.
 2. Use the e_table_map function to transform and enrich data.
 
@@ -86,7 +84,7 @@ The following table describes the solutions that you can use to enrich data.
 
 1. Save HTTP response status codes to an ApsaraDB RDS for MySQL database.
    RDS MySQL The following figure shows the mapping table of HTTP response status codes that are stored in the ApsaraDB RDS for MySQL database.
-   ![ApsaraDB RDS for MySQL mapping table](/img/dataprocessdemo/数据富化/mysql映射表.png)
+
 2. Obtain the host address, username, password, database name, and table name of the ApsaraDB RDS for MySQL database. The obtained information is used to write a data transformation statement.
 3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
    For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).

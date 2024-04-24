@@ -6,7 +6,6 @@ The runtime data of applications includes log data, trace data, and metric data.
 
 A log indicates a discrete event. A trace indicates an event that contains a call chain. A metric indicates an event that contains numeric measurements.
 
-![](/img/dataprocessdemo/特定格式处理/img1.jpg)
 
 Logs, traces, and metrics are events. A system that can store events can also store the three types of data.
 
@@ -27,7 +26,6 @@ Metrics can be considered as logs in a specific format. Simple Log Service allow
 
 You can use one of the following methods to convert logs to metrics:
 
-![](/img/dataprocessdemo/特定格式处理/img2.jpg)
 
 - Use the Scheduled SQL feature of Simple Log Service to aggregate logs to generate metrics. The Scheduled SQL feature functions as the GROUP BY operation.
 - Use the e_to_metric function to convert logs to metrics.
@@ -37,8 +35,6 @@ This topic describes how to use the e_to_metric function to convert logs to metr
 ## Introduction to the data transformation feature of Simple Log Service
 
 The data transformation feature is the log row processing feature of Simple Log Service. The feature is designed for scenarios such as log standardization, filtering, and enrichment.
-
-![](/img/dataprocessdemo/特定格式处理/img3.jpg)
 
 A domain-specific language (DSL) is a language (similar to Python) that is customized for real-time log row processing.Currently, more than 200 row processing functions are supported. For more information, see [Function overview](https://www.alibabacloud.com/help/en/doc-detail/159702.html).
 
@@ -52,7 +48,6 @@ Create a Metricstore that is used to receive metric data.
 
 - Create a Metricstore in the Simple Log Service console, as shown in the following figure.
 
-![](/img/dataprocessdemo/特定格式处理/img4.jpg)
 
 - Configure Metricstore access in Grafana. After the configurations are completed, you can use Grafana to query data in the Metricstore. Go to the homepage of Grafana.
 
@@ -66,13 +61,9 @@ https://${Endpoint}/prometheus/${Project}/${Metricstore}/
 
 Auth -> In the Auth section, turn on Basic auth. In the Basic Auth Details section, enter the AccessKey ID in the User field and the AccessKey secret in the Password field.
 
-![](/img/dataprocessdemo/特定格式处理/img5.jpg)
-
 Metricstore The Metricstore is created. How do I write metric data to the Metricstore?
 
 You can refer to the following format to write metric data. For more information, see [Encoding format](https://www.alibabacloud.com/help/en/doc-detail/171773.htm).
-
-![](/img/dataprocessdemo/特定格式处理/img6.jpg)
 
 As shown in the previous figure, data that is written to a Metricstore must be in a specific format.
 
@@ -83,15 +74,10 @@ The following example shows how to convert a log to a metric by using the reques
 ### Step2 - Convert a log to a metric
 
 The following figure shows an NGINX log. Create a metric named request_time in the NGINX log.
-![](/img/dataprocessdemo/特定格式处理/img7.jpg)
 
 - Click the Logstore in which the NGINX log is stored. On the query and analysis page, click \*Data Transformation\*\*.
 
-![](/img/dataprocessdemo/特定格式处理/img8.jpg)
-
 - In the code editor, enter a DSL statement. After the DSL statement is executed, the `request_time` metric is generated.
-
-![](/img/dataprocessdemo/特定格式处理/img9.jpg)
 
 The `e_to_metric` function is used to convert logs to metrics. The following figure shows the function requirements. For more information about the function, see [e_to_metric](https://www.alibabacloud.com/help/en/doc-detail/125484.html?#section-u7i-ymg-jzp).
 
@@ -108,13 +94,10 @@ e_to_metric(names="request_time")
 
 Click Preview Data to preview data transformation results.
 
-![](/img/dataprocessdemo/特定格式处理/preview1.jpg)
 
 As shown in the previous figure, the `request_time` metric is generated and the labels field is not displayed. This section will not show the labels field. For more information about how to specify the labels field, see the following section.
 
 - Click Save as Transformation Job. Find the Storage Destination section, and select the Metricstore created in Step 1 for Target Store.
-
-![](/img/dataprocessdemo/特定格式处理/img10.jpg)
 
 ### Step3 – query Metricstore
 
@@ -126,7 +109,6 @@ Enter a PromQL statement or the metric name to query the metric.
 request_time
 ```
 
-![](/img/dataprocessdemo/特定格式处理/img11.jpg)
 
 ### More examples for converting logs to metrics
 
@@ -139,8 +121,6 @@ e_to_metric(
 )
 ```
 
-![](/img/dataprocessdemo/特定格式处理/img12.jpg)
-
 - Convert multiple logs to metrics.
 
 ```python
@@ -149,8 +129,6 @@ e_to_metric(
     labels="slbid"
 )
 ```
-
-![](/img/dataprocessdemo/特定格式处理/img13.jpg)
 
 - Set multiple values for the labels field.
 
@@ -161,15 +139,12 @@ e_to_metric(
 )
 ```
 
-![](/img/dataprocessdemo/特定格式处理/img14.jpg)
 
 - Metric Rename
 
 ```
 e_to_metric(names=[("request_time","rt"),"upstream_response_time"],labels=["slbid","scheme"])
 ```
-
-![](/img/dataprocessdemo/特定格式处理/img15.jpg)
 
 - Label Rename
 
@@ -179,8 +154,6 @@ e_to_metric(
     labels=["slbid",("scheme","http_type")]
 )
 ```
-
-![](/img/dataprocessdemo/特定格式处理/img16.jpg)
 
 ## Summary
 

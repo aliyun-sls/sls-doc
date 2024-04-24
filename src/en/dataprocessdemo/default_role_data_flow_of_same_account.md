@@ -40,7 +40,7 @@ If you want to use a RAM user that assumes the default role to create a data tra
    b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**.
    For more information about parameter configurations, see [Get started with data transformation](https://www.alibabacloud.com/help/en/doc-detail/140895.htm?spm=a2c4g.11186623.0.0.3ecc4b41qzBlx8#task-2316153).The following table describes the key parameters.
 
-   ![data transformation job1](/img/dataprocessdemo/配置数据加工/数据加工作业1.png)
+
    | Key parameter| Note |
    | -------| --------- |
    | **Authorization Method** | Select **Default Role.**. |

@@ -11,7 +11,7 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
 ```
 
 The following sample code shows an NGINX log collected in simple mode of Alibaba Cloud.
-![](/img/dataprocessdemo/nginx-log.png)
+
 
 ## Use regular expressions to extract basic fields
 
@@ -25,7 +25,6 @@ e_regex("content",'(?<remote_addr>[0-9:\.]*) - (?<remote_user>[a-zA-Z0-9\-_]*) \
 
 After a regular expression is used for field extraction, fields such as refer, remote_addr, remote_user, and request are added to the log.
 
-![](/img/dataprocessdemo/nginx-step1.png)
 
 ## Process a time field
 
@@ -56,7 +55,6 @@ e_set(
 
 The effect is as follows:
 
-![](/img/dataprocessdemo/nginx-step2.png)
 
 ## Analysis request uri
 
@@ -86,13 +84,11 @@ e_kv("request_uri", prefix="uri_")
 
 The following result is returned:
 
-![](/img/dataprocessdemo/nginx-step3.png)
 
 ## http code status code mapping
 
 Each HTTP status code represents a different meaning. The following table describes the mappings of HTTP status codes. You can use the e_table_map function to extend the status code information to log fields for subsequent statistical analysis.
 
-![](/img/dataprocessdemo/http-code.png)
 
 The following data transformation functions are used:
 
@@ -131,8 +127,6 @@ e_table_map(
 
 The following result is returned:
 
-![](/img/dataprocessdemo/nginx-step4.png)
-
 ## Use the http_user_agent field to determine the operating system of a client
 
 You can execute a DSL statement and determine the operating system of the customer by using regular expression match of the http_user_agent field.
@@ -159,8 +153,6 @@ e_drop_fields("ua",regex=False)
 
 The following result is returned:
 
-![](/img/dataprocessdemo/nginx-step5.png)
-
 ## Deliver logs whose HTTP status codes are not 200 to the specified
 
 You can use the e_output function to deliver logs to the specified Logstore, and use the regex_match function to match a field value.
@@ -185,7 +177,6 @@ e_if(
 
 The following result is returned.（When you save the data transformation job, you must set the project and the AccessKey pair of the Logstore.)
 
-![](/img/dataprocessdemo/nginx-step6.png)
 
 ## Complete DSL statement and job launch process
 
@@ -238,10 +229,6 @@ e_if(
 After the statement is submitted, click Save as Transformation Job.
 Configure the destination Logstores. By default, logs are sent to the first destination Logstore after the data transformation job is complete. You have specified a destination Logstore in the e_output function. Therefore, you must configure two destination Logstores. Make sure that the name of the second destination Logstore is the same as that specified in the e_output function.
 
-![](/img/dataprocessdemo/nginx-step-done.png)
-
 After the data transformation job is saved, the job is launched. Choose Data Processing > Data Transformation to view the data transformation job. Click the data transformation job to view the information such as the transformation latency.
-
-![](/img/dataprocessdemo/nginx-dashboard.png)
 
 <img class="img-responsive" src='http://doc-stat.cn-beijing.log.aliyuncs.com/logstores/access/track_ua.gif?APIVersion=0.6.0&doc=best_practices/nginx/parse_nginx.md'/>

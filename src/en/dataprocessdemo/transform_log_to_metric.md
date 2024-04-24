@@ -66,7 +66,6 @@ e_to_metric(
 `
    For more information, see[e_to_metric](https://www.alibabacloud.com/help/en/doc-detail/125484.htm?spm=a2c4g.11186623.0.0.1b421283FwBl0i#section-u7i-ymg-jzp)。
 4. Click **Preview Data**.
-   ![Preview data.1](/img/dataprocessdemo/文本解析/预览数据1.png)
 
 5. Create a data transformation job
    a. Click **Save as Transformation Job**.
@@ -98,6 +97,5 @@ After you perform the preceding steps, Simple Log Service transforms the log dat
    **Note** The query and analysis results may contain time series data that is generated 1 minute earlier or later than the specified time range.
 4. On the **Query Statements** tab, select the RequestTime metric or the ReponseTime metric from the **Metrics** drop-down list and click **Preview**.
    - The following figure shows the change trend of the RequestTime metric for each host.
-     ![ReponseTime1](/img/dataprocessdemo/文本解析/预览数据2.jpg)
    - The following figure shows the change trend of the ReponseTime metric for each host.
-     ![ReponseTime2](/img/dataprocessdemo/文本解析/预览数据3.jpg)
+     

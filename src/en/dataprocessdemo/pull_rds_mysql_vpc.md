@@ -18,9 +18,9 @@ The following figures show how to configure data transformation rules and advanc
 
 - Raw data
 
-  - RDS MySQL Sample data records in a table of a database![](/img/dataprocessdemo/数据富化/mysql数据样例.png)
+  - RDS MySQL Sample data records in a table of a database
 
-  - Sample log in a Logstore of Simple Log Service![](/img/dataprocessdemo/数据富化/Raw log entries2.png)
+  - Sample log in a Logstore of Simple Log Service
 
 - Transformation process
 
@@ -30,8 +30,7 @@ The following figures show how to configure data transformation rules and advanc
 
   3. Save the data transformation result to the destination Logstore.
 
-  ![](/img/dataprocessdemo/数据富化/加工流程.png)
-
+ 
 - Transformation rule
 
   ```python
@@ -81,7 +80,7 @@ The following figures show how to configure data transformation rules and advanc
 
 - Advanced parameter settings. You must configure Advanced Parameter Settings when you configure the preview mode and a transformation rule. For more information about how to configure other parameters, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.13.576b2c1c2nCZIC#task-1181217).
 
-  ![Add preview configuration](/img/dataprocessdemo/数据富化/高级参数设置3.png)
+ 
 
 You must set the same value for the name parameter in the config.vpc.vpc_id.name, config.vpc.instance_id.name, and config.vpc.instance_port.name parameters. The value must be the same as the name specified in the transformation rule. You can customize the value.
 

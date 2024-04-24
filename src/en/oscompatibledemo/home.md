@@ -2,7 +2,7 @@
 
 ## Compatibility with Kafka
 
-### [Feature description for data consumption by using the Kafka protocol](./overview.md)
+### Feature description for data consumption by using the Kafka protocol
 
 ### Compatibility with Kafka
 

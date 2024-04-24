@@ -32,4 +32,4 @@ For more information about parameter configurations, see [Create a data transfor
 
 ## Result
 
-In the Projects section, click the project-b project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, select the logstore-b Logstore. You can view the data that is replicated from the logstore-a Logstore.![Sample picture](/img/dataprocessdemo/p226660.png)
+In the Projects section, click the project-b project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, select the logstore-b Logstore. You can view the data that is replicated from the logstore-a Logstore.

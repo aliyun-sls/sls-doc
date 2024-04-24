@@ -119,7 +119,7 @@ Use the RAM user to create a data transformation job 时，您可以通过自定
     a. Click **Save as Transformation Job**.
     b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**.
     For more information about parameter configurations, see [Get started with data transformation](https://www.alibabacloud.com/help/en/doc-detail/140895.htm?spm=a2c4g.11186623.0.0.10b94b411wYwnX#task-2316153).The following table describes the key parameters.
-    ![Create Data Transformation Job 1](/img/dataprocessdemo/配置数据加工/创建 Transformation rule.png)
+
 
         |Key parameter| Note |
         | -- | -- |
