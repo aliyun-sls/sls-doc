@@ -48,7 +48,7 @@ const authors = reactive({
 
 <template>
   <div class="vp-doc" v-if="authors.isFinished">
-    <h2>{{langText}} {{ authors.data.length }}）</h2>
+    <h2>{{langText}} （{{ authors.data.length }}）</h2>
     <div class="authors">
       <a
         v-for="author in authors.data"
