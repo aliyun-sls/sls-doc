@@ -5,15 +5,15 @@ function getSidebar() {
       items: [
         {
           text: 'Basic PromQL use cases',
-          link: '/en/metrics/index#PromQL基础使用案例',
+          link: '/en/metrics/home#Basic PromQL use cases',
         },
         {
           text: 'How to use SQL queries to query data in a Metricstore',
-          link: '/en/metrics/index#如何在时序库中使用SQL查询',
+          link: '/en/metrics/home#如何在时序库中使用SQL查询',
         },
         {
           text: 'Create an alert policy for a Metricstore',
-          link: '/en/metrics/index#为时序库创建告警策略',
+          link: '/en/metrics/home#为时序库创建告警策略',
         },
       ],
     },

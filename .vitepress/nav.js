@@ -132,7 +132,7 @@ function getCnNavs() {
 }
 
 function getEnNavs() {
-    const base = [
+  const base = [
     {
       text: 'Demo Center',
       activeMatch: `^/(sqldemo|sqlfunction|sqlerror|searchdemo|metrics|visulization|dataprocessdemo|oscompatibledemo|spldataprocessdemo)/`,
@@ -145,16 +145,14 @@ function getEnNavs() {
             { text: 'SQL error center', link: '/en/sqlerror/home' },
             { text: 'Scheduled SQL', link: '/en/scheduledsql/home' },
             { text: 'Query cases', link: '/en/searchdemo/query/search_with_index' },
-            { text: 'Metricstore query cases', link: '/en/metrics/home'},
+            { text: 'Metricstore query cases', link: '/en/metrics/home' },
             // { text: '可视化案例', link: '/en/visulization/home' },
-            { text: 'Data collection cases', link: '/en/dataaccess/home' },
+            { text: 'Data access cases', link: '/en/dataaccess/home' },
             { text: 'Data transformation cases', link: '/en/dataprocessdemo/home' },
             { text: 'Open source compatibility', link: '/en/oscompatibledemo/home' },
-            { text: 'Alert rule cases', link: '/en/alert/home' },
             { text: 'CloudLen cases', link: '/en/cloudlen/home' },
             { text: 'Demos for intelligent O&M cases', link: '/en/intelligentom/home' },
             // { text: '审计与安全案例', link: '/en/billandsecurity/home' },
-           
           ],
         },
       ],
@@ -181,11 +179,7 @@ function getEnNavs() {
         },
       ],
     },
- 
-
   ]
-
-
 
   return base
 }
