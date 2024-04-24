@@ -12,7 +12,7 @@ function getCnNavs() {
             { text: 'SQL错误中心', link: '/sqlerror/home' },
             { text: '定时SQL案例', link: '/scheduledsql/home' },
             { text: '查询案例', link: '/searchdemo/query/search_with_index' },
-            { text: '时序库查询案例', link: '/metrics/home'},
+            { text: '时序库查询案例', link: '/metrics/home' },
             { text: '可视化案例', link: '/visulization/home' },
             { text: '数据采集案例', link: '/dataaccess/home' },
             { text: '加工案例', link: '/dataprocessdemo/home' },
@@ -73,14 +73,32 @@ function getCnNavs() {
       text: '链接',
       items: [
         {
+          text: 'Playground',
           items: [
             {
-              text: '控制台 Playground',
+              text: '日志服务 Playground',
               link: 'https://sls.aliyun.com/doc/playground/demo.html',
             },
             {
-              text: '日志服务控制台',
+              text: 'ARMS Playground',
+              link: 'https://sls.aliyun.com/doc/playground/armsdemo.html',
+            },
+          ],
+        },
+        {
+          text: '控制台',
+          items: [
+            {
+              text: '日志服务',
               link: 'https://sls.console.aliyun.com/',
+            },
+            {
+              text: 'ARMS',
+              link: 'https://arms.console.aliyun.com/',
+            },
+            {
+              text: '云监控',
+              link: 'https://cloudmonitornext.console.aliyun.com/',
             },
           ],
         },
