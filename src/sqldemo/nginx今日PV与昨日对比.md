@@ -4,7 +4,7 @@
 
 通过单值图进行展示，显示值为 20.381Mil，对比值为-2%
 
-[试用 Demo](./../playground/demo.md?dest=%2Flognext%2Fproject%2Fnginx-demo-log%2Flogsearch%2Fnginx-access-log%3Fencode%3Dbase64%26queryString%3DKiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ%3D%3D%26queryTimeType%3D6%26isShare%3Dtrue&maxWidth=true){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](./../playground/demo.md?dest=%2Flognext%2Fproject%2Fnginx-demo-log%2Flogsearch%2Fnginx-access-log%3Fencode%3Dbase64%26queryString%3DKiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ%3D%3D%26queryTimeType%3D6%26isShare%3Dtrue&maxWidth=true){target="_blank"}
 
 ```SQL
 * |

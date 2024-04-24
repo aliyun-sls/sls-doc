@@ -1,7 +1,7 @@
 # Use CloudLens for OSS to observe server performance metrics
 
 :::tip CloudLens for OSS
-[试用 Demo](/playground/demo.html?dest=/lognext/app/oss_lens){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/oss_lens){target="_blank"}
 :::
 
 ## Prerequisite for use

@@ -16,11 +16,11 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Query</p>
     <p class="next-steps-caption">Simple Log Service allows you to query billions to hundreds of billions of logs within seconds. You can use SQL syntax to perform statistical analysis on query results. Simple Log Service provides the scan feature that allows you to scan logs based on specified fields to return query results.</p>
   </a>
-  <a class="vt-box" href="/doc/en/sqldemo/">
+  <a class="vt-box" href="/doc/en/sqldemo/home">
     <p class="next-steps-link">SQL-based analysis</p>
     <p class="next-steps-caption">Simple Log Service provides the SQL-based analysis feature. You can specify analytic statements to perform calculation or analyze statistics based on query results. To perform an analysis operation, you must configure indexes, and then specify an analytic statement together with a search statement. Simple Log Service also provides the Scheduled SQL and Dedicated SQL features.</p>
   </a>
-  <a class="vt-box" href="/doc/en/sqlfunction/">
+  <a class="vt-box" href="/doc/en/sqlfunction/home">
     <p class="next-steps-link">SQL functions</p>
     <p class="next-steps-caption">Simple Log Service supports more than 10 operators, more than 10 machine learning functions, and more than 100 SQL functions.</p>
   </a>
@@ -31,15 +31,15 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Visualization</p>
     <p class="next-steps-caption">Simple Log Service allows you to visualize query and analysis results. Simple Log Service provides more than 10 types of charts, such as tables, line charts, column charts, and maps. You can customize dashboards based on charts. You can also perform embedded analysis and drill-down analysis.</p>
   </a> -->
-  <a class="vt-box" href="/doc/en/dataprocessdemo/">
+  <a class="vt-box" href="/doc/en/dataprocessdemo/home">
     <p class="next-steps-link">Data transformation</p>
     <p class="next-steps-caption">Simple Log Service provides more than 200 built-in functions, more than 400 regular expressions, and flexible custom functions to filter, split, convert, enrich, and replicate data. This feature meets your business requirements for multiple scenarios, such as data distribution, data standardization, and data integration.</p>
   </a>
-  <a class="vt-box" href="/doc/en/oscompatibledemo/">
+  <a class="vt-box" href="/doc/en/oscompatibledemo/home">
     <p class="next-steps-link">Compatibility with open source services</p>
     <p class="next-steps-caption">Simple Log Service is compatible with multiple open source services. In this example, open source standards and APIs such as Kafka are used to access Simple Log Service.</p>
   </a>
-   <a class="vt-box" href="/doc/en/dataaccess/">
+   <a class="vt-box" href="/doc/en/dataaccess/home">
     <p class="next-steps-link">Data collection</p>
     <p class="next-steps-caption">Simple Log Service allows you to collect data from multiple sources, such as servers, applications, open source software, IoT devices, mobile devices, and Alibaba Cloud services. You can also collect data that is transferred over standard protocols.</p>
   </a>
@@ -54,15 +54,15 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Alerting</p>
     <p class="next-steps-caption">Simple Log Service allows you to configure alert rules for multiple resources, including data transformation jobs, data shipping jobs, Logtail configurations, and Scheduled SQL jobs.</p>
   </a> -->
-  <a class="vt-box" href="/doc/en/cloudlen/">
+  <a class="vt-box" href="/doc/en/cloudlen/home">
     <p class="next-steps-link">CloudLens</p>
     <p class="next-steps-caption">Simple Log Service provides CloudLens applications.</p>
   </a>
-    <a class="vt-box" href="/doc/en/sqlerror/">
+    <a class="vt-box" href="/doc/en/sqlerror/home">
     <p class="next-steps-link">Error Center</p>
     <p class="next-steps-caption">Error Center lists the common errors that are reported by users. You can troubleshoot errors based on the corresponding error messages to diagnose and fix the errors.</p>
   </a>
-    <a class="vt-box" href="/doc/en/scheduledsql/">
+    <a class="vt-box" href="/doc/en/scheduledsql/home">
     <p class="next-steps-link">Scheduled SQL</p>
     <p class="next-steps-caption">Simple Log Service provides the Scheduled SQL feature.</p>
   </a>
@@ -71,7 +71,7 @@ SLS Playground provides a read-only account that you can use to access the Simpl
 <div class="vt-box-container next-steps margin-top-20">
 
 
-  <a class="vt-box" href="/doc/en/intelligentom/">
+  <a class="vt-box" href="/doc/en/intelligentom/home">
     <p class="next-steps-link">Intelligent O&M</p>
     <p class="next-steps-caption">Simple Log Service provides intelligent O&M applications.</p>
   </a>

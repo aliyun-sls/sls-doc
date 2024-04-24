@@ -3,11 +3,11 @@
 CloudLens 为阿里云负载均衡提供访问日志分析、秒级监控指标分析、实时告警等功能。
 
 :::tip CloudLens for CLB
-[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/clb){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/clb){target="_blank"}
 :::
 
 :::tip CloudLens for ALB
-[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/alb){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/alb){target="_blank"}
 :::
 
 ## 目标读者

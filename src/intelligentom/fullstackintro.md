@@ -5,7 +5,7 @@
 全栈可观测应用是日志服务提供的一站式 IT 系统可观测方案，包含 IT 系统监控、全链路 Trace、智能告警等功能。
 
 :::tip 全栈可观测
-[试用 Demo](/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){target="_blank"}
 :::
 
 ## 视频介绍

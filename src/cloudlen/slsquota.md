@@ -1,7 +1,7 @@
 # 使用 CloudLens for SLS 监控 Project 资源配额最佳实践
 
 :::tip CloudLens for SLS
-[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/sls%3Fresource=/instancemenuoverview/dashboard/quota){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/sls%3Fresource=/instancemenuoverview/dashboard/quota){target="_blank"}
 :::
 
 # 背景介绍
