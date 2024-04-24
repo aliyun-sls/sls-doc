@@ -125,8 +125,9 @@ module.exports = (async () => {
         description: 'SLS Demo Center',
 
         themeConfig: {
+          lastUpdatedText: 'Last Modified',
           nav: getEnNavs(),
-           sidebar: {
+          sidebar: {
             '/en/sqldemo': getSqldemoSiderEn(),
             '/en/sqlfunction': getSqlFunctionSiderEn(),
             '/en/sqlerror': getSqlErrorSiderEn(),
@@ -199,41 +200,6 @@ module.exports = (async () => {
 
       footer: {
         copyright: `Copyright © 2021-${new Date().getFullYear()} Aliyun SLS`,
-      },
-
-      i18n: {
-        search: '搜索',
-        menu: '菜单',
-        toc: '本页目录',
-        returnToTop: '返回顶部',
-        appearance: '主题',
-        //   previous: 'Previous',
-        //   next: 'Next',
-        //   pageNotFound: 'Page Not Found',
-        //   deadLinkFound: {
-        //     before: 'You found a dead link: ',
-        //     after: ''
-        //   },
-        //   deadLinkReport: {
-        //     before: 'Please ',
-        //     content: 'let us know',
-        //     after: ' so we can fix it.'
-        //   },
-        //   footerLicense: {
-        //     before: 'Released under the ',
-        //     after: '.'
-        //   }
-        //   // aria labels
-        //   ariaAnnouncer: {
-        //     before: '',
-        //     after: ' has loaded'
-        //   },
-        //   ariaDarkMode: 'Toggle Dark Mode',
-        //   ariaSkip: 'Skip to content',
-        //   ariaTOC: 'Table of Contents for current page',
-        //   ariaMainNav: 'Main Navigation',
-        //   ariaMobileNav: 'Mobile Navigation',
-        //   ariaSidebarNav: 'Sidebar Navigation',
       },
     },
   }
