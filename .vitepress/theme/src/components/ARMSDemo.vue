@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 import { computed, ref, watchEffect } from 'vue'
-import { parseCommonQuery } from './utils'
-import { inBrowser } from 'vitepress'
+import { inBrowser, useData } from 'vitepress'
 import URI from 'urijs'
+
+const { lang } = useData()
 
 const params = computed(() => {
   const search = inBrowser ? window.location.search : ''
@@ -21,10 +22,8 @@ const params = computed(() => {
   }
 })
 
-const { lang } = parseCommonQuery()
-
 const tip = ref(
-  lang === 'en'
+  lang.value === 'en'
     ? 'The current data is for demonstration purposes only, please do not use it for production.'
     : '当前为演示数据，请勿用于生产'
 )
