@@ -37,25 +37,25 @@ Note: The fields except those marked with "not segmented" use the following defa
 
 ## Regular search
 
-- Query logs that contain the status code 404 [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=c3RhdHVzOiA0MDQ=&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs that contain the status code 404 [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=c3RhdHVzOiA0MDQ=&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 status: 404
 ```
 
-- Query logs in which the value of the upstream_response_time field is greater than 0.5 milliseconds [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=dXBzdHJlYW1fcmVzcG9uc2VfdGltZSA+IDAuNQ==&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs in which the value of the upstream_response_time field is greater than 0.5 milliseconds [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=dXBzdHJlYW1fcmVzcG9uc2VfdGltZSA+IDAuNQ==&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 upstream_response_time > 0.5
 ```
 
-- Query logs in which the value of the request_time field is greater than 50 milliseconds and less than 100 milliseconds [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVxdWVzdF90aW1lIGluIFs1MCAxMDBd&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs in which the value of the request_time field is greater than 50 milliseconds and less than 100 milliseconds [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVxdWVzdF90aW1lIGluIFs1MCAxMDBd&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 request_time in [50 100]
 ```
 
-- Query logs with a specific value of host [Try in the Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aG9zdDogd3d3Lm9sLm1vY2suY29t&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs with a specific value of host [Try in the Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aG9zdDogd3d3Lm9sLm1vY2suY29t&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 host: www.ol.mock.com
@@ -63,19 +63,19 @@ host: www.ol.mock.com
 
 ## Fuzzy search
 
-- Query logs in which the value of the remote_user field is a string that starts with a [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVtb3RlX3VzZXI6IGEq&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs in which the value of the remote_user field is a string that starts with a [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVtb3RlX3VzZXI6IGEq&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 remote_user: a*
 ```
 
-- Query logs in which the value of the http_user_agent field contains a string that starts with mo and ends with la [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aHR0cF91c2VyX2FnZW50OiBtbypsYQ==&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs in which the value of the http_user_agent field contains a string that starts with mo and ends with la [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aHR0cF91c2VyX2FnZW50OiBtbypsYQ==&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 http_user_agent: mo*la
 ```
 
-- Query logs in which the value of the http_user_agent field contains a string that starts with mozi, ends with la, and includes one character between mozi and la [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aHR0cF91c2VyX2FnZW50OiBtb3ppP2xh&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query logs in which the value of the http_user_agent field contains a string that starts with mozi, ends with la, and includes one character between mozi and la [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=aHR0cF91c2VyX2FnZW50OiBtb3ppP2xh&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 http_user_agent: mozi?la
@@ -93,7 +93,7 @@ time_local: 22/Dec
 
 Original search statement:
 
-- Query all logs with a local time of December 22nd [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=dGltZV9sb2NhbDogIyIyMi9EZWMi&queryTimeType=6windo&extendsParams=true){target="_blank"}
+- Query all logs with a local time of December 22nd [Try in Playground](../../en/playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=dGltZV9sb2NhbDogIyIyMi9EZWMi&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```
 time_local: #"22/Dec"

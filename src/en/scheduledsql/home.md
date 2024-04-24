@@ -1,7 +1,7 @@
 # Use cases of Scheduled SQL
 
 :::tip Demonstration case
-[Trial Demo](/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){target="_blank"}
 :::
 
 ## Job configurations

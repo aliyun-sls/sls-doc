@@ -5,7 +5,7 @@
 The Intelligent Anomaly Analysis application is a highly available service that can be hosted and scaled. The application provides the following capabilities: intelligent inspection, text analysis, and root cause diagnostics.
 
 :::tip Intelligent Anomaly Analysis
-[Trial Demo](/playground/demo.html?dest=/lognext/app/ids/public-demo-aiops%3Fresource=/overview){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/app/ids/public-demo-aiops%3Fresource=/overview){target="_blank"}
 :::
 
 ## Benefits

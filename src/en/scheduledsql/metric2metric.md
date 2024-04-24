@@ -3,11 +3,11 @@
 In this example, the source Metricstore log2metric contains multiple metric columns, including http_status, request_count, request_size, response_size, and response_time. A Scheduled SQL job is created to query the response_time metric of the bucket00788 bucket in the source Metricstore log2metric and store the queried data to the destination Metricstore metric2metric.
 
 ### Raw Log  
-[Source Metricstore](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/metric/log2metric_metricstore)
+[Source Metricstore](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/metric/log2metric_metricstore)
 <!-- ![image.png](/img/src/scheduledsql/metric2metric/9d85c3bd3d21c688b03d8db27a9c4b44d7fe81f7c9502d44ddb88c4a344234be.png) -->
 
 ### Processed logs 
-[Destination Metricstore](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/metric/metirc2metric)
+[Destination Metricstore](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/metric/metirc2metric)
 <!-- ![image.png](/img/src/scheduledsql/metric2metric/a6625915b5b8a4b43a821b7cb190cb8dfda373143ff0c7f9130d9b9c14eb4917.png) -->
 
 ### SQL
@@ -17,7 +17,7 @@ Query the response_time metric of the bucket00788 bucket.
 * | select promql_query_range('response_time{bucket="bucket00788"}') from metrics limit 1000
 ```
 ## Calculation configurations 
-[Modify a Scheduled SQL job](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690515709-728271)
+[Modify a Scheduled SQL job](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690515709-728271)
  Click Edit Configurations. In the Modify Scheduled SQL panel, configure the parameters.
 <!-- ![image.png](/img/src/scheduledsql/metric2metric/89407a9066246ad04ce56845b5ea7027e22adc989f93876ea73f7c4828334b62.png) -->
 
@@ -58,7 +58,7 @@ For more information about the calculation and scheduling configurations of a Sc
 ## Use an SDK to create a Scheduled SQL job
 For more information about how to use an SDK to create a Scheduled SQL job, see [Use Simple Log Service SDK for Java to create a Scheduled SQL job](https://help.aliyun.com/zh/sls/developer-reference/use-log-service-sdk-for-java-to-create-a-scheduled-sql-task?spm=a2c4g.11186623.0.0.23883cb3qpNgsY#task-2218965)  
 ## Job Management
-[Go to the Job Management page](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690515709-728271)
+[Go to the Job Management page](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690515709-728271)
 You can view the created Scheduled SQL jobs in the Simple Log Service console.
 ![image-51.png](/img/src/scheduledsql/metric2metric/afe3c96717b14b387b7a857f297eae08636c2e6d0ef9c9dc206b1080ea82ba8f.png)
 On the details page of a Scheduled SQL job, you can view the instances of the job.

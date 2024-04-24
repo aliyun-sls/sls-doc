@@ -1,7 +1,7 @@
 # Use CloudLens for OSS to observe server performance metrics
 
 :::tip CloudLens for OSS
-[Try Demo](/playground/demo.html?dest=/lognext/app/oss_lens){target="_blank"}
+[Try Demo](/en/playground/demo.html?dest=/lognext/app/oss_lens){target="_blank"}
 :::
 
 ## Prerequisite for use
