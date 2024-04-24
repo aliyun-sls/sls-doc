@@ -5,11 +5,7 @@
 账单分析 APP，自动的实时从账单中心拉取账单数据，提供账单数据的存储、分析功能。主要应用于成本报表、预测预算、异常告警、成本优化的场景。
 
 :::tip 成本管家
-<<<<<<< HEAD
-[试用 Demo](/playground/demo.html?dest=/lognext/app/bill_app){target="_blank"}
-=======
 [Try Demo](/playground/demo.html?dest=/lognext/app/bill_app){target="_blank"}
->>>>>>> d80cffe5254e346a6b636e36b7e3ff4574e7eeba
 :::
 
 ## 功能优势
