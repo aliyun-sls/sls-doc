@@ -114,7 +114,61 @@ function getCnNavs() {
 }
 
 function getEnNavs() {
-  return []
+    const base = [
+    {
+      text: '案例中心',
+      activeMatch: `^/(sqldemo|sqlfunction|sqlerror|searchdemo|metrics|visulization|dataprocessdemo|oscompatibledemo|spldataprocessdemo)/`,
+      items: [
+        {
+          items: [
+            { text: 'SQL分析案例', link: '/en/sqldemo/home' },
+            { text: 'SPL数据处理案例', link: '/en/spldataprocessdemo/home' },
+            { text: 'SQL函数案例', link: '/en/sqlfunction/home' },
+            { text: 'SQL错误中心', link: '/en/sqlerror/home' },
+            { text: '定时SQL案例', link: '/en/scheduledsql/home' },
+            { text: '查询案例', link: '/en/searchdemo/query/search_with_index' },
+            { text: '时序库查询案例', link: '/en/metrics/home'},
+            // { text: '可视化案例', link: '/en/visulization/home' },
+            { text: '数据采集案例', link: '/en/dataaccess/home' },
+            { text: '加工案例', link: '/en/dataprocessdemo/home' },
+            { text: '开源兼容', link: '/en/oscompatibledemo/home' },
+            { text: '告警规则案例', link: '/en/alert/home' },
+            { text: 'CloudLen案例', link: '/en/cloudlen/home' },
+            { text: '智能运维案例', link: '/en/intelligentom/home' },
+            { text: '审计与安全案例', link: '/en/billandsecurity/home' },
+          ],
+        },
+      ],
+    },
+    {
+      text: '常用工具',
+      activeMatch: `^/en/(tools)/`,
+      items: [
+        {
+          items: [
+            {
+              text: '同步索引配置',
+              link: '/en/tools/syncIndexConfig',
+            },
+            {
+              text: '同步定时 SQL',
+              link: '/en/tools/syncScheduleSql',
+            },
+            {
+              text: '批量更新定时 SQL',
+              link: '/en/tools/updateScheduleSqlConfig',
+            },
+          ],
+        },
+      ],
+    },
+ 
+
+  ]
+
+
+
+  return base
 }
 
 exports.getCnNavs = getCnNavs

@@ -17,6 +17,25 @@ const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 const getToolsSider = require('./siderbars/getToolsSider')
 
+// 英文导航栏
+const getSqldemoSiderEn = require('./siderbarsEn/getSqldemoSider')
+const getSqlFunctionSiderEn = require('./siderbarsEn/getSqlFunctionSider')
+const getSqlErrorSiderEn = require('./siderbarsEn/getSqlErrorSider')
+const getSearchdemoSiderEn = require('./siderbarsEn/getSearchdemoSider')
+const getProductSiderEn = require('./siderbarsEn/getProductSider')
+const getDataProcessSiderEn = require('./siderbarsEn/getDataProcessSider')
+const getSplDataProcessSiderEn = require('./siderbarsEn/getSplDataProcessSider')
+const getOscompatibleDemoEn = require('./siderbarsEn/getOscompatibleDemo')
+const getVisulizationDemoEn = require('./siderbarsEn/getVisulizationSider')
+const getAlertSiderEn = require('./siderbarsEn/getAlertSider')
+const getCloudlenSiderEn = require('./siderbarsEn/getCloudLenSider')
+const getDataAccessSiderEn = require('./siderbarsEn/getDataAccessSider')
+const getIntelligentOMSiderEn = require('./siderbarsEn/getIntelligentOMSider')
+const getScheduledsqlSiderEn = require('./siderbarsEn/getScheduledsqlSider')
+const getBillandsecuritySiderEn = require('./siderbarsEn/getBillandsecuritySider')
+const getMetricStoreSiderEn = require('./siderbarsEn/getMetricStoreSider')
+const getToolsSiderEn = require('./siderbarsEn/getToolsSider')
+
 const getCnNavs = require('./nav').getCnNavs
 const getEnNavs = require('./nav').getEnNavs
 
@@ -107,7 +126,24 @@ module.exports = (async () => {
 
         themeConfig: {
           nav: getEnNavs(),
-          sidebar: {},
+           sidebar: {
+            '/en/sqldemo': getSqldemoSiderEn(),
+            '/en/sqlfunction': getSqlFunctionSiderEn(),
+            '/en/sqlerror': getSqlErrorSiderEn(),
+            '/en/searchdemo': getSearchdemoSiderEn(),
+            '/en/product': getProductSiderEn(),
+            '/en/dataprocessdemo': getDataProcessSiderEn(),
+            '/en/oscompatibledemo': getOscompatibleDemoEn(),
+            '/en/visulization': getVisulizationDemoEn(),
+            '/en/alert': getAlertSiderEn(),
+            '/en/cloudlen': getCloudlenSiderEn(),
+            '/en/dataaccess': getDataAccessSiderEn(),
+            '/en/intelligentom': getIntelligentOMSiderEn(),
+            '/en/scheduledsql': getScheduledsqlSiderEn(),
+            // '/billandsecurity': getBillandsecuritySiderEn(),
+            '/en/metrics': getMetricStoreSiderEn(),
+            '/en/tools': getToolsSiderEn(),
+          },
 
           editLink: {
             pattern: 'https://github.com/aliyun-sls/sls-doc/edit/main/src/:path',
@@ -135,7 +171,7 @@ module.exports = (async () => {
         },
       ],
 
-      nav: getNavs(),
+      // nav: getNavs(),
 
       sidebar: {
         '/sqldemo/': getSqldemoSider(),
