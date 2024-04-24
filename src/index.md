@@ -45,9 +45,9 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">数据采集案例</p>
     <p class="next-steps-caption">日志服务支持采集服务器与应用、开源软件、物联网、移动端、标准协议、阿里云产品等多种来源的数据。</p>
   </a>
-  <a class="vt-box" href="/doc/alert/home">
-    <p class="next-steps-link">告警</p>
-    <p class="next-steps-caption">日志服务（SLS）告警规则案例，包括数据加工、数据投递、Logtail、定时SQL</p>
+  <a class="vt-box" href="/doc/spldataprocessdemo/home">
+    <p class="next-steps-link">SPL数据处理案例</p>
+    <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
   </a>
   <a class="vt-box" href="/doc/cloudlen/home">
     <p class="next-steps-link">CloudLens 案例</p>
@@ -67,12 +67,6 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   <a class="vt-box" href="/doc/intelligentom/home">
     <p class="next-steps-link">智能运维</p>
     <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
-  </a>
-</div>
-<div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/spldataprocessdemo/home">
-    <p class="next-steps-link">SPL数据处理案例</p>
-    <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
   </a>
 </div>
 
