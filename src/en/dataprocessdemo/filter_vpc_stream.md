@@ -55,7 +55,7 @@ After you enable the flow log feature in the Virtual Private Cloud (VPC) console
 
 6. Click **Preview Data**.
    Only the flow logs that record Internet traffic are retained.
-   ![Flow log](/img/dataprocessdemo/数据富化/流日志.png)
+   
 7. Click **Save as Transformation Job**.
 8. In the **Create Data Transformation Job** panel, configure the parameters and click **OK**. The following table describes the parameters.
    a. Configure the basic parameters.
@@ -86,4 +86,4 @@ After creation, you can:
   ```python
   * | select ip_to_city(srcaddr) as sourceAddr,ip_to_city(dstaddr) as dstAddr,COUNT(*) as pv group by sourceAddr,dstAddr order by pv limit 10
   ```
-  ![Flow log1](/img/dataprocessdemo/数据富化/流日志1.png)
+

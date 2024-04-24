@@ -57,7 +57,7 @@ In a datetime string with a time zone, the time difference is appended to the da
 ## Use functions to convert data types
 
 The following figure shows how to use functions to convert the three data types: datetime string, datetime object, and UNIX timestamp.
-![](/img/dataprocessdemo/特定格式处理/date-parse-loop.png)
+
 The following table describes the conversion scenarios and conversion functions.
 
 | Conversion scenario                                                    |                                                 | Conversion function                                                                                                                                                                            |

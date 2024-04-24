@@ -57,8 +57,6 @@ Simple Log Service allows you to replicate data from a source Logstore to a dest
   )
   ```
 
-  ![](/img/dataprocessdemo/数据富化/存储目标.png)
-
   - Configure the following transformation rules for the Logstore_2 Logstore of Account 2. In the **Create Data Transformation Job** panel, set Destination Name to target_logstore, set Destination Project to Project_3, set Target Store to Logstore_3, and specify the authorization method.
 
   ```python

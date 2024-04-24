@@ -4,25 +4,20 @@
 
 ### Step1. Click Data Transformation to go to the data transformation page.
 
-![](/img/dataprocessdemo/begin-data-process.jpg)
 
 ### Step2. On the page that appears, enter a domain-specific language (DSL) statement and click Preview Data. If you need to only copy data, no DSL statement is required.
 
-![](/img/dataprocessdemo/begin-data-process-step2.jpg)
 
 ### Step3. If no error occurs, click Save as Transformation Job.
 
-![](/img/dataprocessdemo/begin-data-process-step3.jpg)
 
 ### Fill in an output form. In the Create Data Transformation Job panel, configure the Destination Region parameter and other related parameters.
 
-![](/img/dataprocessdemo/begin-data-process-step4.jpg)
 
 ### Step 5. Click OK. The data transformation job is configured.
 
 ### Step 6. Check whether the destination Logstore receives data.
 
-![](/img/dataprocessdemo/begin-data-process-step5.jpg)
 
 ## FAQ
 
@@ -34,7 +29,6 @@
 
 1.If you want to increase the data compression ratio when you use the web tracking feature, we recommend that you specify fixed values for the **topic**, **tag**:_, and **source** fields in different log entries to transmit the fields as a log group. Log data is compressed by log group. If you do not specify fixed values for the **source**, **topic**, and **tag**:_ fields, multiple log groups may be generated and the data compression ratio is reduced.
 
-![](/img/dataprocessdemo/dataflow8.png)
 
 ### What do I do if a network connection is unstable?
 
@@ -42,10 +36,9 @@
 
 2.You can activate Dynamic Content Delivery Network (DCDN) to improve network stability.
 
-![](/img/dataprocessdemo/dataflow9.png)
+
 
 DCDN Activate DCDN. Reference:[https://www.alibabacloud.com/help/en/doc-detail/86819.html](https://www.alibabacloud.com/help/en/doc-detail/86819.html?spm=a2c4g.11186623.6.587.2bd06330XCteoT)
 
 DCDN After DCDN is configured, select DCDN Acceleration and click Connectivity Test of DCDN Acceleration in the Create Data Transformation Job panel.
 
-![](/img/dataprocessdemo/dcdn-test.jpg)

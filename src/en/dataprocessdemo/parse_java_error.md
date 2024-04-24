@@ -5,7 +5,6 @@ In big data scenarios that require high concurrency, effective analysis of Java 
 ## The procedure consists of the following steps:
 
 The error logs of Application A are collected by using Logtail and are stored in the cloud_product_error_log Logstore. Then, the error logs are transformed and the transformed logs are sent to the Logstore of each cloud service for error analysis.The procedure consists of the following steps:
-![Procedure 1](/img/dataprocessdemo/文本解析/总体流程1.png)
 
 1. Design a data transformation statement: In this step, analyze the transformation logic and write a transformation statement.
 2. Create a data transformation job: In this step, send logs to different Logstores of cloud services for error analysis.
@@ -19,12 +18,12 @@ To analyze error logs in a convenient manner, you must complete the following op
 
 1. Extract the log time, error code, status code, service name, error message, request method, and error line number from the message field.
 2. Send error logs to the Logstore of each cloud service.
-   ![Transformation procedure 1](/img/dataprocessdemo/文本解析/加工流程1.png)
+   
 
 ### Transformation logic
 
 In this case, you must analyze the log time, error code, status code, service name, error message, request method, and error line number in the raw log field, and then design regular expressions for each field that you want to extract.
-![Transformation logic](/img/dataprocessdemo/文本解析/加工逻辑分析.png)
+
 
 ### Grammar Explanation
 
@@ -37,7 +36,7 @@ In this case, you must analyze the log time, error code, status code, service na
 ### Transformation statement syntax
 
 The following figure shows how to use regular expressions to parse a Simple Log Service error log.
-![Transformation statement syntax](/img/dataprocessdemo/文本解析/语法解析.png)
+
 The following example shows the specific syntax of a data transformation statement:：
 
 ```python
@@ -95,7 +94,7 @@ e_switch(
    )
    ```
 4. Click **Preview Data**.
-   ![Preview data](/img/dataprocessdemo/文本解析/预览数据.png)
+   
 5. Create a data transformation job
    a. Click **Save as Transformation Job**.
    b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**. The following table describes the parameters.
@@ -113,7 +112,7 @@ e_switch(
    | **Time Range** | Select **All**. |
 
 After you create a data transformation job, Simple Log Service creates a dashboard for the job by default. You can view the metrics of the job on the dashboard.
-![Metrics](/img/dataprocessdemo/文本解析/运行指标.png)
+
 On the **Exception detail** chart, you can view the logs that failed to be parsed, and then modify the regular expression.
 
 - If a log fails to be parsed, you can specify the severity of the log as WARNING to report the log.

@@ -69,7 +69,7 @@ In this scenario, you can use the data transformation feature to distribute the 
   )
   ```
 
-- In the **Create Data Transformation Job** panel, configure the storage destination. For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.8.6b8b50a6egnakp#task-1181217).![](/img/dataprocessdemo/p58874.png)
+- In the **Create Data Transformation Job** panel, configure the storage destination. For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.8.6b8b50a6egnakp#task-1181217).
 
   | Label | Storage target | Destination Project and Logstore | AccessKey                       |
   | ----- | -------------- | -------------------------------- | ------------------------------- |

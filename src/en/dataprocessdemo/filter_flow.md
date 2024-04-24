@@ -8,9 +8,6 @@ This topic describes how to use the data transformation feature to filter the In
 
 ## Go to the data transformation page and execute a data transformation statement IDE
 
-![](/img/dataprocessdemo/IP地址相关/flow1.png)
-
-![](/img/dataprocessdemo/IP地址相关/flow2.png)
 
 ## Use the data transformation feature to filter the traffic
 
@@ -40,4 +37,3 @@ e_if(
 
 ## Click Save as Transformation Job.
 
-![](/img/dataprocessdemo/IP地址相关/flow3.png)

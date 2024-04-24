@@ -6,13 +6,11 @@ Data transformation is a feature of Simple Log Service provided by Alibaba Cloud
 
 PS： The enrichment in this topic refers to join operations in SQL ETL scenarios.
 
-![](/img/dataprocessdemo/数据富化/数据富化整体概念.png)
 
 Data transformation portal:
 
 Log on to the Simple Log Service console. Select the desired Logstore. On the page that appears, click Data Transformation. On the data transformation page, enter a data transformation statement.
 
-![](/img/dataprocessdemo/begin-data-process.jpg)
 
 Overview of data transformation functions: http://help.aliyun.com/document_detail/159702.html
 
@@ -22,11 +20,9 @@ This topic describes how to enrich HTTP status codes in NGINX logs. This helps y
 
 HTTP response status codes are common in access logs. After HTTP response status codes are enriched, you can explicitly view the status of each request for more statistical operations.
 
-![](/img/dataprocessdemo/数据富化/Raw log entries.png)
 
 The following table is a mapping table of common HTTP status codes.
 
-![](/img/dataprocessdemo/数据富化/httpcode对照表.png)
 
 ## Use the data transformation feature to enrich log data
 
@@ -55,10 +51,6 @@ e_table_map(
 )
 ```
 
-Transformation result:
-
-![](/img/dataprocessdemo/数据富化/httpcode富化效果.png)
-
 ### Method 2 - Enrich data based on an Object Storage Service (OSS) object
 
 Assume that the mappings of HTTP status codes are saved to an object.The following code provides an example on the valid format:
@@ -75,8 +67,6 @@ Upload the object named http_code.csv to an OSS bucket.
 Log on to the OSS console. http://oss.console.aliyun.com
 
 Find the desired OSS bucket or create an OSS bucket, and upload the object to the OSS bucket as prompted.
-
-![](/img/dataprocessdemo/数据富化/上传oss.png)
 
 Use the data transformation feature to enrich log data. The following sample code provides a data transformation statement:
 
@@ -102,17 +92,11 @@ e_table_map(
 
 res_local The referenced value needs to be defined in the advanced parameters.
 
-![](/img/dataprocessdemo/数据富化/高级参数设置.jpg)
-
 Transformation result:
-
-![](/img/dataprocessdemo/数据富化/Transformation result2.png)
 
 ### Method 3 - Enrich data based on a MySQL table
 
 Assume that the mappings of HTTP status codes are saved to an object.
-
-![](/img/dataprocessdemo/数据富化/http2sql.png)
 
 Use the data transformation feature to enrich log data. The following sample code provides a data transformation statement:
 
@@ -135,15 +119,10 @@ e_table_map(
 
 You can obtain data from an ApsaraDB RDS for MySQL database over the internal network. For more information about VPC configurations, see the documentation at[https://www.alibabacloud.com/help/en/doc-detail/162753.html](https://www.alibabacloud.com/help/en/doc-detail/162753.html?spm=a2c4g.11186623.6.987.3e7249dbOZbV6w)
 
-Transformation result:
-
-![](/img/dataprocessdemo/数据富化/Transformation result3.png)
-
 ### Method 4 - Enrich data based on a Logstore
 
 Assume that the mappings of HTTP status codes are saved to a Logstore.
 
-![](/img/dataprocessdemo/数据富化/Raw log entries1.png)
 Use the data transformation feature to enrich log data. The following sample code provides a data transformation statement:
 
 ```python
@@ -165,13 +144,9 @@ e_table_map(
 
 res_local The referenced value needs to be defined in the advanced parameters.
 
-![](/img/dataprocessdemo/数据富化/高级参数设置.jpg)
-
 ## Summary
 
 ### Overall process
-
-![](/img/dataprocessdemo/数据富化/整体流程.png)
 
 ### Comparison of the methods
 
