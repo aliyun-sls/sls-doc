@@ -2,7 +2,7 @@
 
 ## Features
 
-全栈监控是日志服务提供的一站式 IT 系统监控方案，监控的目标包括主机监控、Kubernetes 监控、数据库监控、中间件监控等。
+Full-stack Monitoring is an end-to-end solution that is used to monitor IT systems, such as hosts, Kubernetes clusters, middleware, databases, and networks. Full-stack Monitoring allows you to import, store, analyze, and visualize data. You can also configure alert rules for the data. 
 
 :::tip Full-stack Monitoring
 [Trial Demo](/en/playground/demo.html?dest=/lognext/app/monitor/sls-mall/sls-mall%3Fresource=/fullmonitor/project/sls-mall/logstore/logstore/dashboardtemplate/fullstack-monitor-host-common-overview){target="_blank"}

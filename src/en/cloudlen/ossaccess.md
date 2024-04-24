@@ -8,8 +8,6 @@
 
 1.  Activate CloudLens for OSS to access log details.
 
-![image](/img/src/cloudlen/ossaccess/b3eb2420294a9c22322c28ce0f1e5b13b6eb98b268ff0762b07cea9ff341e01d.png)
-
 2.  Simple Log Service automatically creates a dedicated project and a Logstore to store access logs of OSS buckets. The project is named in the oss-log-_Alibaba Cloud account ID_\-_region ID_ format. The Logstore is named oss-log-store.
 
 For more information about detailed log fields, see [OSS log field details\_Simple Log Service-Alibaba Cloud Help Center].(https://www.alibabacloud.com/help/en/doc-detail/458773.html?spm=a2c4g.456011.0.0.5b6936cfRh5Exj#section-uzb-eoc-28t)
