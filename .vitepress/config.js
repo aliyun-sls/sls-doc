@@ -88,6 +88,8 @@ module.exports = (async () => {
         lang: 'zh',
         description: 'SLS 案例中心',
         themeConfig: {
+          lastUpdatedText: '最近修改',
+
           nav: getCnNavs(),
 
           sidebar: {
@@ -95,8 +97,8 @@ module.exports = (async () => {
             '/sqlfunction': getSqlFunctionSider(),
             '/sqlerror': getSqlErrorSider(),
             '/searchdemo': getSearchdemoSider(),
-            '/product': getProductSider(),
             '/dataprocessdemo': getDataProcessSider(),
+            '/spldataprocessdemo/': getSplDataProcessSider(),
             '/oscompatibledemo': getOscompatibleDemo(),
             '/visulization': getVisulizationDemo(),
             '/alert': getAlertSider(),
@@ -132,7 +134,6 @@ module.exports = (async () => {
             '/en/sqlfunction': getSqlFunctionSiderEn(),
             '/en/sqlerror': getSqlErrorSiderEn(),
             '/en/searchdemo': getSearchdemoSiderEn(),
-            '/en/product': getProductSiderEn(),
             '/en/dataprocessdemo': getDataProcessSiderEn(),
             '/en/oscompatibledemo': getOscompatibleDemoEn(),
             '/en/visulization': getVisulizationDemoEn(),
@@ -159,7 +160,6 @@ module.exports = (async () => {
      */
     themeConfig: {
       logo: '/img/sls.png',
-      lastUpdatedText: '最近修改',
 
       search: {
         provider: 'local',
@@ -171,28 +171,6 @@ module.exports = (async () => {
           link: 'https://github.com/aliyun-sls/sls-doc',
         },
       ],
-
-      // nav: getNavs(),
-
-      sidebar: {
-        '/sqldemo/': getSqldemoSider(),
-        '/sqlfunction/': getSqlFunctionSider(),
-        '/sqlerror/': getSqlErrorSider(),
-        '/searchdemo/': getSearchdemoSider(),
-        '/product/': getProductSider(),
-        '/dataprocessdemo/': getDataProcessSider(),
-        '/spldataprocessdemo/': getSplDataProcessSider(),
-        '/oscompatibledemo/': getOscompatibleDemo(),
-        '/visulization/': getVisulizationDemo(),
-        '/alert/': getAlertSider(),
-        '/cloudlen/': getCloudlenSider(),
-        '/dataaccess/': getDataAccessSider(),
-        '/intelligentom/': getIntelligentOMSider(),
-        '/scheduledsql/': getScheduledsqlSider(),
-        '/billandsecurity/': getBillandsecuritySider(),
-        '/metrics/': getMetricStoreSider(),
-        '/tools/': getToolsSider(),
-      },
 
       outline: {
         level: 'deep',
