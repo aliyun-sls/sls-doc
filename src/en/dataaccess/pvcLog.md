@@ -89,7 +89,7 @@ spec:
 > .replicas Set the replicas parameter to 1. You do not need to start multiple containers.
 > .ALIYUN_LOGTAIL_USER_ID：Specify an Alibaba Cloud account.
 > .ALIYUN_LOGTAIL_USER_DEFINED_ID：Specify a custom machine group identifier. In this example, logtail-state-machinegroup is used.
-> .user_config_file_path、docker_file_cache_path、check_point_filename、buffer_file_path Record the persistent information of Logtail.We recommend that you read [Data reliability when iLogtail containers are restarted](https://developer.aliyun.com/article/901257?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN){}.
+> .user_config_file_path、docker_file_cache_path、check_point_filename、buffer_file_path Record the persistent information of Logtail.We recommend that you read [Data reliability when iLogtail containers are restarted](https://developer.aliyun.com/article/901257?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN){target="\_blank"}.
 > .PVC shared with the business container pvc：nas-pvc
 > .volumeMounts contains the business container directory and the directory that contains persistent information about Logtail.
 
