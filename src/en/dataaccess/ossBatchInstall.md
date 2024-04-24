@@ -8,7 +8,7 @@ This topic describes how to install or update Logtail on multiple Elastic Comput
 
 * If you install or update Logtail on ECS instances as a Resource Access Management (RAM) user, the RAM user must have the following permissions:
 * AliyunOOSFullAccess permission: For more information about how to grant the AliyunOOSFullAccess permission to a RAM user, see [Grant permissions to a RAM user](https://help.aliyun.com/zh/ram/user-guide/grant-permissions-to-the-ram-user?spm=a2c4g.11186623.0.i11).
-* Custom permissions: To grant the following custom permissions to a RAM user, you must create a custom policy and attach the custom policy to the RAM user.For more information, see [Create custom policies](https://help.aliyun.com/zh/ram/user-guide/create-a-custom-policy?spm=a2c4g.11186623.0.i17) and [Grant permissions to a RAM user](https://help.aliyun.com/zh/ram/user-guide/grant-permissions-to-the-ram-user?spm=a2c4g.11186623.0.i18){}.
+* Custom permissions: To grant the following custom permissions to a RAM user, you must create a custom policy and attach the custom policy to the RAM user.For more information, see [Create custom policies](https://help.aliyun.com/zh/ram/user-guide/create-a-custom-policy?spm=a2c4g.11186623.0.i17) and [Grant permissions to a RAM user](https://help.aliyun.com/zh/ram/user-guide/grant-permissions-to-the-ram-user?spm=a2c4g.11186623.0.i18){target="\_blank"}.
 
 ```json
 {
@@ -44,7 +44,7 @@ This topic describes how to install or update Logtail on multiple Elastic Comput
 
 ## Procedure
 
-1.  Log on to the [OOS console](https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Foos.console.aliyun.com%2F%3Fspm%3Da2c4g.11186623.0.0.69233028xdubSL&lang=zh){}.
+1.  Log on to the [OOS console](https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Foos.console.aliyun.com%2F%3Fspm%3Da2c4g.11186623.0.0.69233028xdubSL&lang=zh){target="\_blank"}.
 2.  In the left-side navigation pane, choose Automated Task Public Template.
 3.  On the Public Template page, enter LogAgent in the search box, find the ACS-ECS-BulkyInstallLogAgent template, and then click Create Execution.
 
@@ -66,7 +66,7 @@ This topic describes how to install or update Logtail on multiple Elastic Comput
     | On LogAgent        | Uninstall Logtail and install the latest version.                                           | Uninstall Logtail and install the latest version.                                                                                                      | Uninstall Logtail |
     | Off LogAgent       | The system returns a message indicating that Logtail already exists and is not overwritten. | Retain the original configurations of Logtail and install the latest version. After Logtail is installed, collect logs based on the previous progress. | Uninstall Logtail |
 
-    - TargetInstance: Select your ECS instances.For more information, see [Install Logtail on ECS instances](https://help.aliyun.com/zh/sls/user-guide/install-logtail-on-ecs-instances?spm=a2c4g.11186623.0.i3#table-pf1-ty1-5qj){}.
+    - TargetInstance: Select your ECS instances.For more information, see [Install Logtail on ECS instances](https://help.aliyun.com/zh/sls/user-guide/install-logtail-on-ecs-instances?spm=a2c4g.11186623.0.i3#table-pf1-ty1-5qj){target="\_blank"}.
 
 5. Confirm the preceding settings and click Create.
 6. View the execution result.
