@@ -21,7 +21,7 @@ Use the following SQL statement to extract relevant metric data from available d
 ```
 
 :::tip Anomaly detection for time series metrics
-[Trial Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/eip-flow-monitor){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/eip-flow-monitor){target="_blank"}
 :::
 
 ### LogNER model capabilities
@@ -36,7 +36,7 @@ Sample log 1:
 ```
 
 :::tip Standard software library NER
-[Trial Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-logs){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-logs){target="_blank"}
 :::
 
 Sample log 2:
@@ -49,7 +49,7 @@ Sample log 2:
 ```
 
 :::tip Standard software library NER
-[Trial Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-library-logs){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-library-logs){target="_blank"}
 :::
 
 ## Benefits

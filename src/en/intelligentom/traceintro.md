@@ -5,7 +5,7 @@
 The Trace application (Distributed Tracing) of Simple Log Service is based on OpenTelemetry. You can use Trace to import, store, analyze, and visualize trace data. You can also configure alerts for trace data.
 
 :::tip Trace
-[Trial Demo](/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer){target="_blank"}
 :::
 
 ## Benefits

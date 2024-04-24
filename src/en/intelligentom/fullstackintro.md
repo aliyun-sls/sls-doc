@@ -5,7 +5,7 @@
 Full-stack Observability is a one-stop observability solution based on OpenTelemetry. Full-stack Observability allows you to import, aggregate, analyze, and visualize data from various monitoring data sources, such as IT system monitoring, Kubernetes monitoring, middleware monitoring, and Trace. You can also configure alert rules for the data.
 
 :::tip Full-stack Observability
-[Trial Demo](/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){target="_blank"}
+[Trial Demo](/en/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){target="_blank"}
 :::
 
 ## Benefits

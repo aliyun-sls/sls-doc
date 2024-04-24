@@ -2,7 +2,7 @@
 
 ### Raw logs
 
-[Source Logstore oss_source](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/logsearch/oss_source)
+[Source Logstore oss_source](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/logsearch/oss_source)
 
 <!-- ![image.png](/img/src/scheduledsql/log2log/b8845881b27e8d7e37088c0ee2332482fa8b19917a60275905398017bbc68624.png) -->
 
@@ -10,7 +10,7 @@ Raw logs generated at scattered points in time contain many fields and are large
 
 ### Processed logs
 
-[Destination Logstore log2log](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/logsearch/log2log)
+[Destination Logstore log2log](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/logsearch/log2log)
 
 <!-- ![image.png](/img/src/scheduledsql/log2log/150032d15bb53c7eb22f2293850fe2551d7a7fd1d3b0c13b4ec61e3263ceeee9.png) -->
 
@@ -27,7 +27,7 @@ Calculate the amount of OSS response data (response_size) per minute and round t
 
 ## Calculation configurations
 
-[Modify a Scheduled SQL job](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017)
+[Modify a Scheduled SQL job](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017)
 Click Edit Configurations. In the Modify Scheduled SQL panel, configure the parameters.
 
 <!-- ![image.png](/img/src/scheduledsql/log2log/e9a6533d91862de264157b9550f60857feef2ac81b8b115f5f40f179b0e9aa41.png) -->
@@ -81,7 +81,7 @@ For more information about how to use an SDK to create a Scheduled SQL job, see 
 
 ## Job Management
 
-[Go to the Job Management page](https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/overview)
+[Go to the Job Management page](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/overview)
 You can view the created Scheduled SQL jobs in the Simple Log Service console.
 ![image-51.png](/img/src/scheduledsql/log2log/afe3c96717b14b387b7a857f297eae08636c2e6d0ef9c9dc206b1080ea82ba8f.png)
 On the details page of a Scheduled SQL job, you can view the instances of the job.

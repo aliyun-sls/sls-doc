@@ -1,7 +1,7 @@
 # Use CloudLens for SLS to monitor project resource quotas
 
 :::tip CloudLens for SLS
-[Try Demo](/playground/demo.html?dest=/lognext/app/lens/sls%3Fresource=/instancemenuoverview/dashboard/quota){target="_blank"}
+[Try Demo](/en/playground/demo.html?dest=/lognext/app/lens/sls%3Fresource=/instancemenuoverview/dashboard/quota){target="_blank"}
 :::
 
 # Background Introduction
