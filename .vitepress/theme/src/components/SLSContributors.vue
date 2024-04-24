@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
 import { useFetch } from '@vueuse/core'
-import { computed, reactive } from 'vue'
+import { computed, reactive, ref } from 'vue'
 
 interface CommitAuthor {
   login: string
@@ -9,14 +9,17 @@ interface CommitAuthor {
   url: string
 }
 
-const { page } = useData()
+const { page, lang } = useData()
+
+const langText = ref('')
+langText.value = lang.value === 'zh' ? '贡献者' : 'Contributors'
 
 const url = computed(
   () =>
     `https://api.github.com/repos/aliyun-sls/sls-doc/commits?path=src/${page.value.relativePath}&per_page=100`
 )
 
-const { data, error, statusCode, isFetching, isFinished, canAbort } = useFetch(url, {
+const { data, error, statusCode, isFetching, isFinished, canAbort } = useFetch(url as any, {
   refetch: true,
 }).get()
 
@@ -45,7 +48,7 @@ const authors = reactive({
 
 <template>
   <div class="vp-doc" v-if="authors.isFinished">
-    <h2>贡献者（{{ authors.data.length }}）</h2>
+    <h2>{{langText}} {{ authors.data.length }}）</h2>
     <div class="authors">
       <a
         v-for="author in authors.data"

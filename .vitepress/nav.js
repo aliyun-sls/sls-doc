@@ -6,19 +6,20 @@ function getCnNavs() {
       items: [
         {
           items: [
-            { text: 'SQL-based analysis', link: '/sqldemo/home' },
+            { text: 'SQL分析案例', link: '/sqldemo/home' },
             { text: 'SPL数据处理案例', link: '/spldataprocessdemo/home' },
-            { text: 'SQL functions', link: '/sqlfunction/home' },
-            { text: 'SQL error center', link: '/sqlerror/home' },
-            { text: 'Scheduled SQL', link: '/scheduledsql/home' },
-            { text: 'Query cases', link: '/searchdemo/query/search_with_index' },
-            { text: 'Metricstore query cases', link: '/metrics/home' },
+            { text: 'SQL函数案例', link: '/sqlfunction/home' },
+            { text: 'SQL错误中心', link: '/sqlerror/home' },
+            { text: '定时SQL案例', link: '/scheduledsql/home' },
+            { text: '查询案例', link: '/searchdemo/query/search_with_index' },
+            { text: '时序库查询案例', link: '/metrics/home' },
             { text: '可视化案例', link: '/visulization/home' },
-            { text: 'Data collection cases', link: '/dataaccess/home' },
-            { text: 'data transformation cases', link: '/dataprocessdemo/home' },
-            { text: 'Open source compatibility', link: '/oscompatibledemo/home' },
-            { text: 'CloudLen cases', link: '/cloudlen/home' },
-            { text: 'Demos for intelligent O&M cases', link: '/intelligentom/home' },
+            { text: '数据采集案例', link: '/dataaccess/home' },
+            { text: '加工案例', link: '/dataprocessdemo/home' },
+            { text: '开源兼容', link: '/oscompatibledemo/home' },
+            { text: '告警规则案例', link: '/alert/home' },
+            { text: 'CloudLen案例', link: '/cloudlen/home' },
+            { text: '智能运维案例', link: '/intelligentom/home' },
             { text: '审计与安全案例', link: '/billandsecurity/home' },
           ],
         },
@@ -131,7 +132,7 @@ function getCnNavs() {
 }
 
 function getEnNavs() {
-    const base = [
+  const base = [
     {
       text: 'Demo Center',
       activeMatch: `^/(sqldemo|sqlfunction|sqlerror|searchdemo|metrics|visulization|dataprocessdemo|oscompatibledemo|spldataprocessdemo)/`,
@@ -144,16 +145,14 @@ function getEnNavs() {
             { text: 'SQL error center', link: '/en/sqlerror/home' },
             { text: 'Scheduled SQL', link: '/en/scheduledsql/home' },
             { text: 'Query cases', link: '/en/searchdemo/query/search_with_index' },
-            { text: 'Metricstore query cases', link: '/en/metrics/home'},
+            { text: 'Metricstore query cases', link: '/en/metrics/home' },
             // { text: '可视化案例', link: '/en/visulization/home' },
-            { text: 'Data collection cases', link: '/en/dataaccess/home' },
+            { text: 'Data access cases', link: '/en/dataaccess/home' },
             { text: 'Data transformation cases', link: '/en/dataprocessdemo/home' },
             { text: 'Open source compatibility', link: '/en/oscompatibledemo/home' },
-            { text: 'Alert rule cases', link: '/en/alert/home' },
             { text: 'CloudLen cases', link: '/en/cloudlen/home' },
             { text: 'Demos for intelligent O&M cases', link: '/en/intelligentom/home' },
             // { text: '审计与安全案例', link: '/en/billandsecurity/home' },
-           
           ],
         },
       ],
@@ -180,11 +179,7 @@ function getEnNavs() {
         },
       ],
     },
- 
-
   ]
-
-
 
   return base
 }

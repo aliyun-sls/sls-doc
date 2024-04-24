@@ -5,7 +5,7 @@
 智能异常分析应用是一个可托管、高可用、可扩展的服务，主要提供智能巡检、文本分析和根因诊断三大能力。
 
 :::tip 智能异常分析
-[试用 Demo](/playground/demo.html?dest=/lognext/app/ids/public-demo-aiops%3Fresource=/overview){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/ids/public-demo-aiops%3Fresource=/overview){target="_blank"}
 :::
 
 ## 视频介绍

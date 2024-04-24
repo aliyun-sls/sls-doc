@@ -36,7 +36,7 @@ systemctl restart zabbix-server
 
 ## 步骤二：创建 Logtail 采集配置
 
-1. 登录[日志服务控制台](https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.29de2b96o6sz8B){:rel="noopener noreferrer" target="\_blank"}。
+1. 登录[日志服务控制台](https://sls.console.aliyun.com/?spm=a2c4g.11186623.0.0.29de2b96o6sz8B){target="_blank"}。
 2. 在接入数据区域，选择 JSON-文本日志。
 3. 选择目标 Project 和 Logstore，单击下一步。
 4. 创建机器组。

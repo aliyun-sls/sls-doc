@@ -63,7 +63,7 @@ host: www.ol.mock.com
 
 ## Fuzzy search
 
-- Query logs in which the value of the remote_user field is a string that starts with a [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVtb3RlX3VzZXI6IGEq&queryTimeType=6windo&extendsParams=true){target="_blank"}{target="_blank"}
+- Query logs in which the value of the remote_user field is a string that starts with a [Try in Playground](../../playground/logsearch.md?url=https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/&redirect=true&type=11&encode=base64&queryString=cmVtb3RlX3VzZXI6IGEq&queryTimeType=6windo&extendsParams=true){target="_blank"}
 
 ```sql
 remote_user: a*

@@ -131,7 +131,7 @@ spec:
 > .replicas 设置 1，不需要启动多个容器
 > .ALIYUN_LOGTAIL_USER_ID：填写阿里云账号 ID
 > .ALIYUN_LOGTAIL_USER_DEFINED_ID：填写自定义的机器组标识，本例以 logtail-state-machinegroup 为例
-> .user_config_file_path、docker_file_cache_path、check_point_filename、buffer_file_path 记录 logtail 持久化的信息。相关配置参考强烈建议阅读《[K8s 采集专题-稳定性：iLogtail 容器重启数据可靠性探讨](https://developer.aliyun.com/article/901257?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN){target="\_blank"}》。
+> .user_config_file_path、docker_file_cache_path、check_point_filename、buffer_file_path 记录 logtail 持久化的信息。相关配置参考强烈建议阅读《[K8s 采集专题-稳定性：iLogtail 容器重启数据可靠性探讨](https://developer.aliyun.com/article/901257?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN){target="_blank"}》。
 > .与业务容器公用 pvc：nas-pvc
 > .volumeMounts 包含业务容器的目录和 logtail 本身持久化信息的目录
 

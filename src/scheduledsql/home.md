@@ -1,7 +1,7 @@
 # 定时 SQL 使用案例
 
 :::tip 演示案例
-[试用 Demo](/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017){target="_blank"}
 :::
 
 ## 任务配置

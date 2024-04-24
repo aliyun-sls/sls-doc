@@ -98,7 +98,7 @@ IPV4 (?<![0-9])(?:(?:[0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5])[.](?:[0-1]?[0-9]{1,2}
 ### 步骤三：创建 Grok 采集配置
 
 根据样例需求，编辑采集配置文件。
-Grok 插件有丰富的可配置项，详细信息可以参考[链接](https://help.aliyun.com/document_detail/196154.html?spm=a2c4g.26937906.0.0.615f12c9SsVo9e#section-ucx-pqc-4wh){:rel="noopener noreferrer" target="\_blank"}。
+Grok 插件有丰富的可配置项，详细信息可以参考[链接](https://help.aliyun.com/document_detail/196154.html?spm=a2c4g.26937906.0.0.615f12c9SsVo9e#section-ucx-pqc-4wh){target="_blank"}。
 
 ```json
 {

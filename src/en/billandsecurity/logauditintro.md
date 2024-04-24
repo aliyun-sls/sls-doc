@@ -5,7 +5,7 @@
 SLS 提供即开集中的日志审计服务，日志审计服务在继承现有日志服务所有功能外，还支持多账户实时自动化、中心化采集云产品日志并进行审计，以及支持审计所需的存储、查询及信息汇总。
 
 :::tip 日志审计
-[试用 Demo](/playground/demo.html?dest=/lognext/app/audit/project/slsaudit-center-1819385687343877-cn-hangzhou/dashboard/internal-auditservice-overall_cn){:rel="noopener noreferrer" target="\_blank"}
+[Try Demo](/playground/demo.html?dest=/lognext/app/audit/project/slsaudit-center-1819385687343877-cn-hangzhou/dashboard/internal-auditservice-overall_cn){target="_blank"}
 :::
 
 ## 视频介绍

@@ -5,7 +5,7 @@
 全栈监控是日志服务提供的一站式 IT 系统监控方案，监控的目标包括主机监控、Kubernetes 监控、数据库监控、中间件监控等。
 
 :::tip Full-stack Monitoring
-[Trial Demo](/playground/demo.html?dest=/lognext/app/monitor/sls-mall/sls-mall%3Fresource=/fullmonitor/project/sls-mall/logstore/logstore/dashboardtemplate/fullstack-monitor-host-common-overview){target="\_blank"}
+[Trial Demo](/playground/demo.html?dest=/lognext/app/monitor/sls-mall/sls-mall%3Fresource=/fullmonitor/project/sls-mall/logstore/logstore/dashboardtemplate/fullstack-monitor-host-common-overview){target="_blank"}
 :::
 
 ## Benefits

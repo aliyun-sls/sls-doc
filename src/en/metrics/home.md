@@ -2,7 +2,7 @@
 
 ## Basic PromQL use cases
 
-Basic PromQL use cases(https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/sls-mall/metric/sls-mall-k8s-metrics)
+https://sls.aliyun.com/doc/playground/demo.html?dest=/lognext/project/sls-mall/metric/sls-mall-k8s-metrics
 
 ## How to use SQL queries to query data in a Metricstore
 

@@ -21,7 +21,7 @@
 ```
 
 :::tip 时序指标异常检测
-[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/eip-flow-monitor){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/eip-flow-monitor){target="_blank"}
 :::
 
 ### LogNER 模型能力
@@ -36,7 +36,7 @@
 ```
 
 :::tip 标准软件库 NER
-[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-logs){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-logs){target="_blank"}
 :::
 
 样例日志二：
@@ -49,7 +49,7 @@
 ```
 
 :::tip 标准软件库 NER
-[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-library-logs){:rel="noopener noreferrer" target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/project/maas-demo/logsearch/open-library-logs){target="_blank"}
 :::
 
 ## 功能优势
