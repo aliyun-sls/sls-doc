@@ -40,7 +40,7 @@ This topic describes the SQL syntax and various types of functions used in Simpl
 - [Estimate time series periodicity](./58.%E6%97%B6%E5%BA%8F%E5%91%A8%E6%9C%9F%E4%BC%B0%E8%AE%A1%E5%87%BD%E6%95%B0.md)
 - [Estimate the values for percentiles 0.5 and 0.9](./94.0.5%EF%BC%8C0.9%E4%BD%8D%E7%BD%AE%E4%BC%B0%E7%AE%97.md)
 
-# Functions
+## Functions
 
 ## General comparison functions
 
