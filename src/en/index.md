@@ -16,11 +16,11 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Query</p>
     <p class="next-steps-caption">Simple Log Service allows you to query billions to hundreds of billions of logs within seconds. You can use SQL syntax to perform statistical analysis on query results. Simple Log Service provides the scan feature that allows you to scan logs based on specified fields to return query results.</p>
   </a>
-  <a class="vt-box" href="/doc/en/sqldemo/home">
+  <a class="vt-box" href="/doc/en/sqldemo/home.html">
     <p class="next-steps-link">SQL-based analysis</p>
     <p class="next-steps-caption">Simple Log Service provides the SQL-based analysis feature. You can specify analytic statements to perform calculation or analyze statistics based on query results. To perform an analysis operation, you must configure indexes, and then specify an analytic statement together with a search statement. Simple Log Service also provides the Scheduled SQL and Dedicated SQL features.</p>
   </a>
-  <a class="vt-box" href="/doc/en/sqlfunction/home">
+  <a class="vt-box" href="/doc/en/sqlfunction/home.html">
     <p class="next-steps-link">SQL functions</p>
     <p class="next-steps-caption">Simple Log Service supports more than 10 operators, more than 10 machine learning functions, and more than 100 SQL functions.</p>
   </a>
