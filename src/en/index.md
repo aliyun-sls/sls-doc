@@ -5,7 +5,7 @@ Simple Log Service is a cloud-native observability and analytics platform that p
 :::tip SLS Playground Released!
 SLS Playground provides a read-only account that you can use to access the Simple Log Service console. You can use most features of Simple Log Service in demo mode. SLS Playground provides demos for various modules, including intelligent O&M applications, CloudLens applications, analysis on multiple types of logs, and visualization.
 
-<!-- [Try](/playground/demo.html){target="_blank"} -->
+[Try](/playground/demo.html){target="_blank"}
 
 :::
 
