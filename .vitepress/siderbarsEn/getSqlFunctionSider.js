@@ -9,120 +9,120 @@ function getSidebar() {
       items: [
         {
           text: 'group by',
-          link: '/en/sqlfunction/home#group-by语法',
+          link: '/en/sqlfunction/home#group-by',
         },
         {
           text: 'order by',
-          link: '/en/sqlfunction/home#order-by语法',
+          link: '/en/sqlfunction/home#order-by',
         },
         {
           text: 'case when and if',
-          link: '/en/sqlfunction/home#分支判断语法-case-when和if',
+          link: '/en/sqlfunction/home#case-when-and-if',
         },
         {
           text: 'having',
-          link: '/en/sqlfunction/home#having语法',
+          link: '/en/sqlfunction/home#having',
         },
         {
           text: 'join',
-          link: '/en/sqlfunction/home#join语法',
+          link: '/en/sqlfunction/home#join',
         },
         {
           text: 'Nested subquery',
-          link: '/en/sqlfunction/home#嵌套子查询语法',
+          link: '/en/sqlfunction/home#nested-subqueries',
         },
         {
           text: 'unnest',
-          link: '/en/sqlfunction/home#unnest语法',
+          link: '/en/sqlfunction/home#unnest',
         },
       ],
     },
     {
-      text: 'SQL syntax',
+      text: 'Functions',
       items: [
         {
           text: 'General comparison functions',
-          link: '/en/sqlfunction/home#通用比较函数',
+          link: '/en/sqlfunction/home#General-comparison-functions',
         },
         {
           text: 'General aggregate functions',
-          link: '/en/sqlfunction/home#通用聚合函数',
+          link: '/en/sqlfunction/home#General-aggregate-functions',
         },
         {
           text: 'Date and time functions',
-          link: '/en/sqlfunction/home#日期时间函数',
+          link: '/en/sqlfunction/home#Date-and-time-functions',
         },
         {
           text: 'String functions',
-          link: '/en/sqlfunction/home#字符串函数',
+          link: '/en/sqlfunction/home#String-functions',
         },
         {
           text: 'JSON functions',
-          link: '/en/sqlfunction/home#JSON函数',
+          link: '/en/sqlfunction/home#JSON-functions',
         },
         {
           text: 'Array functions',
-          link: '/en/sqlfunction/home#数组函数',
+          link: '/en/sqlfunction/home#Array-functions',
         },
         {
           text: 'Map functions',
-          link: '/en/sqlfunction/home#Map映射函数',
+          link: '/en/sqlfunction/home#Map-functions',
         },
         {
           text: 'Regular expression functions',
-          link: '/en/sqlfunction/home#正则式函数',
+          link: '/en/sqlfunction/home#Regular-expression-functions',
         },
         {
-          text: 'URL函URL functions数',
-          link: '/en/sqlfunction/home#url函数',
+          text: 'URL functions',
+          link: '/en/sqlfunction/home#URL-functions',
         },
         {
           text: 'Mathematical calculation functions',
-          link: '/en/sqlfunction/home#数学计算函数',
+          link: '/en/sqlfunction/home#Mathematical-calculation-functions',
         },
         {
           text: 'Approximate functions',
-          link: '/en/sqlfunction/home#估算函数',
+          link: '/en/sqlfunction/home#Approximate-functions',
         },
         {
           text: 'Interval-valued comparison functions and periodicity-valued comparison functions',
-          link: '/en/sqlfunction/home#同比环比函数',
+          link: '/en/sqlfunction/home#Interval-valued-comparison-functions-and- periodicity-valued-comparison-functions',
         },
         {
           text: 'Window functions',
-          link: '/en/sqlfunction/home#窗口函数',
+          link: '/en/sqlfunction/home#Window-functions',
         },
         {
           text: 'Bitwise functions',
-          link: '/en/sqlfunction/home#位运算函数',
+          link: '/en/sqlfunction/home#Bitwise-functions',
         },
         {
           text: 'Geospatial functions',
-          link: '/en/sqlfunction/home#空间几何函数',
+          link: '/en/sqlfunction/home#Geospatial-functions',
         },
         {
           text: 'IP geolocation functions',
-          link: '/en/sqlfunction/home#IP地理位置函数',
+          link: '/en/sqlfunction/home#IP-geolocation-functions',
         },
         {
           text: 'Security check functions',
-          link: '/en/sqlfunction/home#安全检测函数',
+          link: '/en/sqlfunction/home#Security-check-functions',
         },
         {
           text: 'Mobile number functions',
-          link: '/en/sqlfunction/home#电话号码函数',
+          link: '/en/sqlfunction/home#Mobile-number-functions',
         },
         {
           text: 'Time series clustering functions',
-          link: '/en/sqlfunction/home#时序聚类函数',
+          link: '/en/sqlfunction/home#Time-series-clustering-functions',
         },
         {
           text: 'Time series clustering functions',
-          link: '/en/sqlfunction/home#相关性分析函数',
+          link: '/en/sqlfunction/home#Time-series-clustering-functions',
         },
         {
           text: 'Smooth functions',
-          link: '/en/sqlfunction/home#平滑函数',
+          link: '/en/sqlfunction/home#Smooth-functions',
         },
       ],
     },

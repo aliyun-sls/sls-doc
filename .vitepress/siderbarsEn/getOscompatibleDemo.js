@@ -7,7 +7,7 @@ function getSidebar() {
     {
       text: 'Compatibility with Kafka',
       items: [
-        { text: 'Feature description for data consumption by using the Kafka protocol', link: '/en/oscompatibledemo/overview' },
+        // { text: 'Feature description for data consumption by using the Kafka protocol', link: '/en/oscompatibledemo/overview' },
         { text: 'Use Java to consume data', link: '/en/oscompatibledemo/java_kafka_consume' },
         {
           text: 'Use Confluent-Kafka-Go to consume data',

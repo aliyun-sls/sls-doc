@@ -17,7 +17,7 @@ function getSidebar() {
         },
         {
           text: 'Distribution of user agent requests by PV',
-          link: '/en/sqldemo/根据pv为user_agent进行排序展示',
+          link: '/en/sqldemo/根据pv为http_user_agent进行排序展示',
         },
         {
           text: 'Daily consumption and trend prediction for this month',
@@ -116,16 +116,16 @@ function getSidebar() {
         // ...sqldemoFiles,
       ],
     },
-    {
-      text: 'SLB log analysis',
-      items: [
-        {
-          text: 'SLB log analysis',
-          link: '/en/sqldemo/负载均衡（SLB）日志分析',
-        },
-        // ...sqldemoFiles,
-      ],
-    },
+    // {
+    //   text: 'SLB log analysis',
+    //   items: [
+    //     {
+    //       text: 'SLB log analysis',
+    //       link: '/en/sqldemo/负载均衡（SLB）日志分析',
+    //     },
+    //     // ...sqldemoFiles,
+    //   ],
+    // },
     {
       text: 'machine learning',
       items: [
