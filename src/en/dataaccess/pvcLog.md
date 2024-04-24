@@ -164,12 +164,10 @@ The following table describes the parameters.
 2. In the Projects section, click the name of the project.
 3. In the left-side navigation pane, choose Resource > Machine Group.
 4. On the Machine Group tab, choose More > Create Machine Group.
-   ![image.png](./img/6.1.png)
 
 > Create Machine Group
 
 - In the Create Machine Group panel, configure the parameters and click OK. The following figure shows the parameters.In the following example, a machine group named logtail-state-machinegroup is created, which corresponds to the value of the ${your_machine_group_user_defined_id} parameter in Step 2.The name of the created machine group must be consistent with the value of the ${your_machine_group_user_defined_id} parameter.
-  ![image.png](./img/6.2.png)
 
 ### Step 4: Create a Logtail collection configuration
 
@@ -177,7 +175,7 @@ The following table describes the parameters.
 2. Select a project and a Logstore. On the Logstore tab, click the Logstore and then click the + icon next to Data Collection. In the dialog box that appears, select Single Line - Text Log.
 3. Click Use Existing Machine Groups and select the machine group that you created in Step 3.Move the machine group from the Source Machine Group section to the Applied Server Groups section.
 4. In the Logtail Configuration step, set the Mode parameter to Simple Mode. By default, Docker File is turned off. Do not turn on Doker File. Set the Log Path parameter to the /var/log/nginx directory to which a Logtail container and a business container are mounted.
-   ![image.png](./img/6.3.png)
+  
 5. Click Next to complete the Logtail configuration creation.
 
 ### Step 5: Query the collected logs
@@ -185,14 +183,11 @@ The following table describes the parameters.
 1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com/?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN).
 2. Select the project and Logstore. On the Logstore tab, click the Search & Analysis icon to query the collected logs.
 
-![image.png](./img/6.4.png)
-
 ### Step 6: Set the topic generation method (optional)
 
 1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com/?spm=a2c4g.26937906.0.0.7bc357ea2m4uBN).
 2. Select the project and Logstore. On the Logstore tab, choose Data Collection > Logtail Configurations. On the page that appears, click the name of the Logtail configuration that you want to manage.
 
-![image.png](./img/6.5.png)
 
 3. On the Configuration Details tab, set the Topic Generation Mode parameter to File Path RegEx. Specify a regular expression in the Custom RegEx field based on your business requirements.
 
@@ -202,7 +197,6 @@ The following table describes the parameters.
 
 4. Query the collected logs. You can find that the tags are added to the relevant data.
 
-![image.png](./img/6.6.png)
 
 ## Frequently asked questions
 

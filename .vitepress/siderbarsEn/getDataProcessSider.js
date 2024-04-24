@@ -81,9 +81,9 @@ function getSidebar() {
         { text: 'Obtain data from an ApsaraDB RDS for MySQL database for data enrichment', link: '/en/dataprocessdemo/pull_rds_mysql_data.md' },
         { text: 'Use a resource function to obtain incremental data', link: '/en/dataprocessdemo/pull_data_from_resource_func.md' },
         { text: 'Use the e_dict_map and e_search_dict_map functions to enrich log data', link: '/en/dataprocessdemo/enrichment_data.md' },
-        { text: 'Pull data from a Hologres database for data enrichment', link: "dataprocessdemo/pull_data_from_hologres.md" },
-        { text: 'Use the e_table_map function to enrich HTTP response status codes', link: "dataprocessdemo/enrichment_http_data.md" },
-        { text: 'Filter VPC flow logs for Internet traffic logs', link: "dataprocessdemo/filter_vpc_stream.md"}
+        { text: 'Pull data from a Hologres database for data enrichment', link: "/en/dataprocessdemo/pull_data_from_hologres.md" },
+        { text: 'Use the e_table_map function to enrich HTTP response status codes', link: "/en/dataprocessdemo/enrichment_http_data.md" },
+        { text: 'Filter VPC flow logs for Internet traffic logs', link: "/en/dataprocessdemo/filter_vpc_stream.md"}
       ]
     },
     {

@@ -32,17 +32,13 @@ touch /etc/ilogtail/users/12****456
    > d.On the Machine Group tab, choose More > Create Machine Group.
    > e.In the Create Machine Group panel, configure the parameters and click OK. The following figure shows the parameters.
 
-   - In the Custom Identifier field, enter the custom identifier that you specified in Step 1.For more information about other parameters, see [Create a custom identifier-based machine group].(https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i11#concept-gyy-k3q-zdb){target="_blank"}。
-
-   ![image.png](./img/Acountlog2.png)
-
+   - In the Custom Identifier field, enter the custom identifier that you specified in Step 1.For more information about other parameters, see [Create a custom identifier-based machine group].(https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i11#concept-gyy-k3q-zdb){target="_blank"}.
 3. Check whether the heartbeat status of each server in the machine group is OK.
    > a.In the Machine Group list, click the name of the machine group that you created.。
    > b.On the Machine Group Configurations page, view the status of the machine group. You can view a list of ECS instances that use the same custom identifier. You can also view the heartbeat status of each ECS instance.。
 
-- If the heartbeat status of an ECS instance is OK, the ECS instance is connected to Simple Log Service.If the status is FAIL, see [How do I troubleshoot an error that is related to a Logtail machine group in a host environment?].(https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i11#concept-gyy-k3q-zdb){target="_blank"}。
+- If the heartbeat status of an ECS instance is OK, the ECS instance is connected to Simple Log Service.If the status is FAIL, see [How do I troubleshoot an error that is related to a Logtail machine group in a host environment?].(https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i11#concept-gyy-k3q-zdb){target="_blank"}.
 
-![image.png](./img/Acountlog3.png)
 
 ## Step 3: Collect logs
 
@@ -60,9 +56,8 @@ touch /etc/ilogtail/users/12****456
 - By default, you can use only one Logtail configuration to collect each log file.The collection process of Logtail in Alibaba Cloud Account B is not stopped. In this case, the Logtail configuration of Alibaba Cloud Account A cannot take effect. To ensure that the Logtail configuration of Alibaba Cloud Account A takes effect, you can use one of the following methods:
   > Stop the collection process in Alibaba Cloud Account B. To stop the collection process, log on to the Simple Log Service console by using Alibaba Cloud Account B and remove the original Logtail configuration from the machine group.For more information, see the [Apply Logtail configurations to a machine group] section of the "Manage machine groups" topic.(https://help.aliyun.com/zh/sls/user-guide/manage-machine-groups?spm=a2c4g.11186623.0.i0#section-gqq-rp1-ry){target="_blank"}。
   > Add compulsory collection settings to the Logtail configuration of Alibaba Cloud Account A.For more information, see [What do I do if I want to use multiple Logtail configurations to collect logs from a log file?](https://help.aliyun.com/zh/sls/user-guide/what-do-i-do-if-i-want-to-use-multiple-logtail-configurations-to-collect-logs-from-a-log-file?spm=a2c4g.11186623.0.i11#concept-2180900){target="_blank"}。
-- After you create the Logtail configuration, delete the original Logtail configuration of Alibaba Cloud Account B to prevent repeated collection of logs.For more information, see the [Delete Logtail configurations] section of the "Manage Logtail configurations for log collection" topic.(https://help.aliyun.com/zh/sls/user-guide/manage-logtail-configurations-for-log-collection?spm=a2c4g.11186623.0.i12#section-vgw-rm1-ry){target="_blank"}。
+- After you create the Logtail configuration, delete the original Logtail configuration of Alibaba Cloud Account B to prevent repeated collection of logs.For more information, see the [Delete Logtail configurations] section of the "Manage Logtail configurations for log collection" topic.(https://help.aliyun.com/zh/sls/user-guide/manage-logtail-configurations-for-log-collection?spm=a2c4g.11186623.0.i12#section-vgw-rm1-ry){target="_blank"}.
 
-  ![image.png](./img/Acountlog4.png)
 
 7. Preview data, configure indexes, and then click Next.
 

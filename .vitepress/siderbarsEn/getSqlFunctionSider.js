@@ -38,7 +38,7 @@ function getSidebar() {
       ],
     },
     {
-      text: 'SQL syntax',
+      text: 'Functions',
       items: [
         {
           text: 'General comparison functions',

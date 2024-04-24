@@ -28,13 +28,10 @@ Test log
 
 Parsing results
 
-![Parsing results](./img/enableTimeNano/1.png)
 
 #### Step 1: Configure advanced parameters for the log collection configuration
 
-Set the EnableTimestampNanosecond parameter to true in the advanced parameters.`"EnableTimestampNanosecond":true`。
-
-![image](./img/enableTimeNano/2.png)
+Set the EnableTimestampNanosecond parameter to true in the advanced parameters.`"EnableTimestampNanosecond":true`.
 
 ```json
 {
@@ -46,9 +43,6 @@ Set the EnableTimestampNanosecond parameter to true in the advanced parameters.`
 
 Configure a configuration to parse logs in delimiter mode.（processor_parse_delimiter_native）,For more information, see [Parsing in delimiter mode](https://help.aliyun.com/zh/sls/user-guide/separator-pattern-resolution)
 
-![image](./img/enableTimeNano/3.png)
-
-![image](./img/enableTimeNano/4.png)
 
 #### Step 3: Use the timestamp parsing plug-in to parse timestamps
 
@@ -57,7 +51,6 @@ You must configure a time format for the timestamp parsing plug-in. For example,
 %f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://www.alibabacloud.com/help/en/doc-detail/28980.html) section of the "Time formats" topic.
 For more information about the configuration of the plug-in, see [Time parsing](https://help.aliyun.com/zh/sls/user-guide/time-parsing).
 
-![image](./img/enableTimeNano/5.png)
 
 ### Scenario 2: Use the extended processor to process JSON data and parse timestamps in the time format supported by strptime
 
@@ -77,9 +70,7 @@ Raw logs:
 }
 ```
 
-Test log
 
-![Test log](./img/enableTimeNano/6.png)
 
 #### Step 1: Configure advanced parameters for the log collection configuration
 
@@ -89,9 +80,6 @@ Set the EnableTimestampNanosecond parameter to true in the advanced parameters.
 
 Configure a configuration to process JSON data. For more information, see [Expand JSON fields](https://help.aliyun.com/zh/sls/user-guide/expand-json-fields).
 
-![image](./img/enableTimeNano/7.png)
-
-![image](./img/enableTimeNano/8.png)
 
 #### Step 3: Use the timestamp parsing plug-in to parse timestamps in the time format supported by strptime
 
@@ -99,7 +87,6 @@ You must configure a time format for the timestamp parsing plug-in. For example,
 %f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://www.alibabacloud.com/help/en/doc-detail/28980.html) section of the "Time formats" topic.
 For more information about the configuration of the plug-in, see the [Time format supported by strptime](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-3sq-fik-1b7) section of the "Extract log time" topic.
 
-![image](./img/enableTimeNano/9.png)
 
 ### Scenario 3: Use the extended processor to process JSON data and parse timestamps in the time format supported by Go
 
@@ -117,7 +104,6 @@ For more information about the configuration of the plug-in, see the [Time forma
 }
 ```
 
-![image](./img/enableTimeNano/10.png)
 
 #### Step 1: Configure advanced parameters for the log collection configuration
 
@@ -159,7 +145,6 @@ const (
 
 For more information about the configuration of the plug-in, see the [Time format supported by Go](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-xxl-q69-w5q) section of the "Extract log time" topic.
 
-![image](./img/enableTimeNano/11.png)
 
 ## Stdout and Stderr Collection
 
@@ -169,11 +154,8 @@ This section describes how to parse timestamps in Stdout and Stderr Collection
 
 #### Log parsing results
 
-![image](./img/enableTimeNano/12.png)
-
 #### Step 1: Create a collection configuration to collect standard output logs from a Docker container
 
-![image](./img/enableTimeNano/13.png)
 
 #### Step 2: Configure advanced parameters for the log collection configuration
 
@@ -185,11 +167,8 @@ Set the enable_precise_timestamp parameter to true in the advanced configuration
 }
 ```
 
-![image](./img/enableTimeNano/14.png)
 
 #### Step 3: Use the timestamp parsing plug-in to parse timestamps in the time format supported by Go
-
-![image](./img/enableTimeNano/15.png)
 
 ### Scenario 2: Parse the nanosecond-precision timestamps of the JSON fields as log timestamps
 
@@ -209,7 +188,6 @@ Set the enable_precise_timestamp parameter to true in the advanced configuration
 
 The value of the asctime field is consistent with the log timestamp.
 
-![image](./img/enableTimeNano/16.png)
 
 #### Step 1: Create a collection configuration to collect standard output logs from a Docker container
 
@@ -221,8 +199,5 @@ The configuration is the same as that in Step 2 of Scenario 1.
 
 #### Step 3: Use the processor_json plug-in to parse JSON data.
 
-![image](./img/enableTimeNano/17.png)
-
 #### Step 4: Use the timestamp parsing plug-in to parse timestamps in the time format supported by strptime
 
-![image](./img/enableTimeNano/18.png)
