@@ -1,4 +1,4 @@
-# nginx 日志查看今日 PV 和昨日对比
+# nginx PVs of today and day-to-day comparison with yesterday from NGINX logs
 
 Use the count function to calculate the total page views (PVs) and then use the compare function to obtain the day-to-day comparison for PVs of today and yesterday.
 
@@ -24,15 +24,3 @@ FROM
       )
   )
 ```
-
-# 查询结果：
-
-![样例图片](/img/sqldemo/pvcompare.png)
-
-# 可视化展示
-
-![样例图片](/img/sqldemo/pvcomparechart.png)
-
-# 可视化配置
-
-![样例图片](/img/sqldemo/pvcomparechart.png)

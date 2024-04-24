@@ -2,7 +2,7 @@
 
 ## Features
 
-全栈可观测应用是日志服务提供的一站式 IT 系统可观测方案，包含 IT 系统监控、全链路 Trace、智能告警等功能。
+Full-stack Observability is a one-stop observability solution based on OpenTelemetry. Full-stack Observability allows you to import, aggregate, analyze, and visualize data from various monitoring data sources, such as IT system monitoring, Kubernetes monitoring, middleware monitoring, and Trace. You can also configure alert rules for the data.
 
 :::tip Full-stack Observability
 [Trial Demo](/playground/demo.html?dest=/lognext/app/observability/overview/sls-mall/sls-mall%3Fresource=/overview/sls-mall/explorer){:rel="noopener noreferrer" target="\_blank"}

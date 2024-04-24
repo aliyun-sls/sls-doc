@@ -27,10 +27,10 @@ SLS Playground provides a read-only account that you can use to access the Simpl
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/en/visulization/">
+  <!-- <a class="vt-box" href="/doc/en/visulization/">
     <p class="next-steps-link">Visualization</p>
     <p class="next-steps-caption">Simple Log Service allows you to visualize query and analysis results. Simple Log Service provides more than 10 types of charts, such as tables, line charts, column charts, and maps. You can customize dashboards based on charts. You can also perform embedded analysis and drill-down analysis.</p>
-  </a>
+  </a> -->
   <a class="vt-box" href="/doc/en/dataprocessdemo/">
     <p class="next-steps-link">Data transformation</p>
     <p class="next-steps-caption">Simple Log Service provides more than 200 built-in functions, more than 400 regular expressions, and flexible custom functions to filter, split, convert, enrich, and replicate data. This feature meets your business requirements for multiple scenarios, such as data distribution, data standardization, and data integration.</p>
@@ -39,13 +39,17 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Compatibility with open source services</p>
     <p class="next-steps-caption">Simple Log Service is compatible with multiple open source services. In this example, open source standards and APIs such as Kafka are used to access Simple Log Service.</p>
   </a>
-</div>
-
-<div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/en/dataaccess/">
+   <a class="vt-box" href="/doc/en/dataaccess/">
     <p class="next-steps-link">Data collection</p>
     <p class="next-steps-caption">Simple Log Service allows you to collect data from multiple sources, such as servers, applications, open source software, IoT devices, mobile devices, and Alibaba Cloud services. You can also collect data that is transferred over standard protocols.</p>
   </a>
+</div>
+
+<div class="vt-box-container next-steps margin-top-20">
+  <!-- <a class="vt-box" href="/doc/en/dataaccess/">
+    <p class="next-steps-link">Data collection</p>
+    <p class="next-steps-caption">Simple Log Service allows you to collect data from multiple sources, such as servers, applications, open source software, IoT devices, mobile devices, and Alibaba Cloud services. You can also collect data that is transferred over standard protocols.</p>
+  </a> -->
   <a class="vt-box" href="/doc/en/alert/">
     <p class="next-steps-link">Alerting</p>
     <p class="next-steps-caption">Simple Log Service allows you to configure alert rules for multiple resources, including data transformation jobs, data shipping jobs, Logtail configurations, and Scheduled SQL jobs.</p>
@@ -54,13 +58,14 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">CloudLens</p>
     <p class="next-steps-caption">Simple Log Service provides CloudLens applications.</p>
   </a>
-</div>
-
-<div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/en/sqlerror/">
+    <a class="vt-box" href="/doc/en/sqlerror/">
     <p class="next-steps-link">Error Center</p>
     <p class="next-steps-caption">Error Center lists the common errors that are reported by users. You can troubleshoot errors based on the corresponding error messages to diagnose and fix the errors.</p>
   </a>
+</div>
+
+<div class="vt-box-container next-steps margin-top-20">
+
   <a class="vt-box" href="/doc/en/scheduledsql/">
     <p class="next-steps-link">Scheduled SQL</p>
     <p class="next-steps-caption">Simple Log Service provides the Scheduled SQL feature.</p>
@@ -99,10 +104,10 @@ SLS Playground provides a read-only account that you can use to access the Simpl
     <p class="next-steps-link">Intelligent Anomaly Analysis</p>
     <p class="next-steps-caption">Simple Log Service provides the Intelligent Anomaly Analysis feature to implement time series anomaly detection, text pattern anomaly insight, and custom root cause analysis.</p>
   </a>
-   <a class="vt-box" href="/doc/en/intelligentom/maasintro">
+   <!-- <a class="vt-box" href="/doc/en/intelligentom/maasintro">
     <p class="next-steps-link">Basic modeling</p>
     <p class="next-steps-caption">Simple Log Service provides API-based model integration based on the characteristics of the following basic types of data: logs, metrics, and traces. This helps you meet your modeling requirements in high frequency scenarios.</p>
-  </a>
+  </a> -->
 </div>
 
 ## CloudLens Demo

@@ -1,4 +1,5 @@
-通过date_trunc函数将__time__对齐到小时（__time__为系统字段，日志采集的时间，默认为秒时间戳），用date_format函数将对齐的结果进行格式化，用group by将对齐的时间聚合，用sum函数计算出每小时流量合计 通过线图进行展示，X轴设置为time，左Y轴选择net_out和net_in
+Use the date_trunc function to truncate the value of the **time** field to hours. The **time** field is a system field that indicates the log collection time. The timestamps in seconds are used by default. Use the date_format function to format the aligned data, use the group by clause to aggregate the aligned time, and then use the sum function to calculate the total traffic per hour. The results are displayed in a line chart, in which the x-axis represents the time and the y-axis on the left represents the net_out and net_in fields.
+
 ```sql
 * |
 select
@@ -11,6 +12,3 @@ order by
   time
   10000
 ```
-Sample SQL query result
-![image.png](/img/src/sqldemo/nginx流入流出的流量统计/ea0739404dde8b4ac615c049286568b2455f6863428a71df92c437bce84f515c.png)
-

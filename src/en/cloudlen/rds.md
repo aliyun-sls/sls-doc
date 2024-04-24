@@ -1,7 +1,7 @@
 # Use CloudLens for RDS to collect and use logs
 
 :::tip CloudLens for RDS
-[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/rds){target="\_blank"}
+[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/rds){:rel="noopener noreferrer" target="\_blank"}
 :::
 
 ### Activation and collection

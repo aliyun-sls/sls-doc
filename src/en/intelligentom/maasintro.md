@@ -1,4 +1,4 @@
-# 日志服务 SLS – 基础模型能力
+# Simple Log Service: 基础模型能力
 
 ## Features
 

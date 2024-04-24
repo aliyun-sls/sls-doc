@@ -1,4 +1,5 @@
-Use the from_unixtime function to convert the value of the __time__ field into a timestamp, use the date_format function to format timestamps into time t in the hour-minute format, and then aggregate the data by time t. Use the count function to calculate the number of page views (PVs) per minute and use the results as Subquery 1. Use the compare function to query the results of Subquery 1 to obtain the arrays of PVs per minute and the ratio of PVs of today to PVs of yesterday and use the results as Subquery 2. Then, query the results of Subquery 2 to obtain the PVs of today and yesterday and the comparison ratio from the arrays. The results are displayed in separate columns in a line chart.
+Use the from_unixtime function to convert the value of the **time** field into a timestamp, use the date_format function to format timestamps into time t in the hour-minute format, and then aggregate the data by time t. Use the count function to calculate the number of page views (PVs) per minute and use the results as Subquery 1. Use the compare function to query the results of Subquery 1 to obtain the arrays of PVs per minute and the ratio of PVs of today to PVs of yesterday and use the results as Subquery 2. Then, query the results of Subquery 2 to obtain the PVs of today and yesterday and the comparison ratio from the arrays. The results are displayed in separate columns in a line chart.
+
 ```sql
 * |
 select
@@ -30,5 +31,3 @@ from(
       10000
   )
 ```
-Sample SQL query result
-![image.png](/img/src/sqldemo/nginx访问日志的PV趋势同比昨日/e2921500b60ea208cafee4f5b7e7c19fff55a2fca0c281b9f7577a45465b869f.png)

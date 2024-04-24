@@ -32,9 +32,9 @@
 | [Query the number of Tomcat error requests and the comparison with that of last hour](./tomcat错误请求数量以及与上一小时错误请求比较.md) | Calculate the number of Tomcat error requests and compare it with that of last hour.     |
 | [Query the top 10 URIs in Tomcat requests](./tomcat中请求数前十的uri展示.md)                                                             | Analyze top 10 URIs based on the number of Tomcat access requests.                       |
 | [Query the types and distribution of Tomcat clients](./查询访问tomcat的客户端分类及数量分布.md)                                          | Analyze and query the types and number of clients that access Tomcat.                    |
-| [Collect statistics on inbound and outbound Tomcat traffic](./tomcat流出流量统计.md)                                                     | 分析 tomcat 流出流量统计。                                                               |
+| [Collect statistics on inbound and outbound Tomcat traffic](./tomcat流出流量统计.md)                                                     | Collect statistics on inbound and outbound Tomcat traffic                                |
 | [Query the proportions of Tomcat error requests](./tomcat错误请求占比.md)                                                                | Analyze and query the types and number of clients that access Tomcat.                    |
-| Analyze the proportion of Tomcat error requests.(./将请求客户端分布在地图上展示.md)                                                      | Analyze the proportion of Tomcat error requests.                                         |
+| [Analyze the proportion of Tomcat error requests](./将请求客户端分布在地图上展示.md)                                                     | Analyze the proportion of Tomcat error requests.                                         |
 
 ## Alibaba Cloud CDN log analysis
 
@@ -42,11 +42,11 @@
 | -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | [Alibaba Cloud CDN log analysis](./CDN日志分析.md) | Analyze the access logs of Alibaba Cloud CDN to generate a variety of operational data reports and analyze user access behavior. |
 
-## SLB log analysis
+<!-- ## SLB log analysis
 
 | Case Name                                        | Description      |
 | ------------------------------------------------ | ---------------- |
-| [SLB log analysis](./负载均衡（SLB）日志分析.md) | SLB log analysis |
+| [SLB log analysis](./负载均衡（SLB）日志分析.md) | SLB log analysis | -->
 
 ## Aggregate function analysis
 

@@ -1,4 +1,5 @@
 Use the date_trunc function to truncate the log time to minutes, use the date_format function to extract the hours and minutes, use the group by clause to aggregate the data based on the formatted time and the status code to obtain the count value of each status code per minute. The results are displayed in a flow chart, in which the x-axis represents the time, the y-axis represents the count, and the aggregated column represents the status.
+
 ```sql
 * |
 select
@@ -13,6 +14,3 @@ ORDER by
 LIMIT
   1000
 ```
-Sample SQL query result
-![image.png](/img/src/sqldemo/tomcat请求状态及数量跟随时间顺序展示/ce87de16a8d615aaf441e3bdee84bdf6fc573a4d91e0c656745d36e7960f2e2b.png)
-
