@@ -3,8 +3,8 @@
 ::: Note
 
 - 每 5 分钟检测一次，检测过去 5 分钟内的数据。当同一 Project 在过去 5 分钟内出现的 Logtail 采集错误数量同比昨日增长率超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

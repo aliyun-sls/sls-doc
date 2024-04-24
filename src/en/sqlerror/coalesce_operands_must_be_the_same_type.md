@@ -1,15 +1,21 @@
-# All COALESCE operands must be the same type: *
+# All COALESCE operands must be the same type: \*
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > All COALESCE operands must be the same type: boolean
 
-## 错误描述
-COALESCE函数中的所有参数必须类型一致
+## Error description
 
-## 可能原因
-在COALESCE函数中，操作数必须具有相同的数据类型，否则会出现数据类型错误。在此错误中，操作数中至少有一个是布尔类型，而其他操作数则具有不同的数据类型，例如数字、字符串等。
+All parameters in the COALESCE function must be of the same type.
 
-## 解决方法
-请检查COALESCE函数中的每个操作数，并确保它们具有相同的数据类型。如果数据类型不同，请进行数据类型转换，以使它们具有相同的数据类型。可以使用CAST函数执行数据类型转换。
+## Cause
+
+In the COALESCE function, all operands must be of the same data type to prevent data type errors.The current error indicates that at least one of the operands is of the BOOLEAN type, which conflicts with other operands that may be numbers or strings.
+
+## Solution
+
+Make sure that all operands in the COALESCE function are of the same data type.If the operands are of different data types, convert the operands to the same data type.You can use the CAST function to perform data type conversion.

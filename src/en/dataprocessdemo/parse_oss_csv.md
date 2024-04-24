@@ -1,8 +1,8 @@
-# 从 OSS 获取 CSV 文件进行数据富化
+# Retrieve CSV files from OSS for data enrichment
 
-本文档介绍如何通过资源函数和映射富化函数从 OSS 中获取数据对日志数据进行富化。
+This topic describes how to use resource functions to pull data from Object Storage Service (OSS) and use mapping functions to map the data fields to data fields in Simple Log Service. This way, you can enrich log data in Simple Log Service.
 
-## 实践案例
+## Examples
 
 - Raw log entries
 
@@ -10,15 +10,15 @@
   account :  Sf24asc4ladDS
   ```
 
-- OSS CSV 文件数据
+- OSS CSV file data
 
-  | id  | account       | nickname   |
-  | --- | ------------- | ---------- |
-  | 1   | Sf24asc4ladDS | 多弗朗明哥 |
-  | 2   | Sf24asc4ladSA | 凯多       |
-  | 3   | Sf24asc4ladCD | 罗杰       |
+  | id  | account       | nickname |
+  | --- | ------------- | -------- |
+  | 1   | Sf24asc4ladDS | xiaoming |
+  | 2   | Sf24asc4ladSA | xiaohua  |
+  | 3   | Sf24asc4ladCD | xiaoc    |
 
-- Transformation rule 通过日志服务 Logstore 中的 account 字段和 OSS CSV 文件中的 account 字段进行匹配，只有 account 字段的值完全相同，才能匹配成功。匹配成功后，返回 OSS CSV 文件中的 nickname 字段和字段值，与 Logstore 中的数据拼接，生成新的数据。
+- Transformation rule. Simple Log Service maps the account field in the specified Logstore to the account field in the specified CSV file. If the value of the account field in the specified OSS bucket and Logstore equals each other, the two fields are matched.Then, the nickname field and field value in the CSV file are concatenated with the fields in the specified Logstore.
 
   ```python
   e_table_map(
@@ -34,19 +34,19 @@
     "account","nickname")
   ```
 
-  res_oss_file 函数重要字段 Note 如下表所示。
+  res_oss_file The following table describes the fields in the function.
 
-  | 字段     | Note                                                                                                                                                                                                                                                                                                                  |
-  | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | endpoint | OSS 访问域名，详情请参见[访问域名和数据中心](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.2.11.3ae33dc46CPRr6#concept-zt4-cvy-5db)。                                                                                                                                                          |
-  | ak_id    | 具备读 OSS 权限的 AccessKey ID。 出于安全考虑，建议配置为 res_local("AK_ID")，表示从高级参数配置中获取。高级参数配置 Procedure 请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.12.3ae33dc46CPRr6#task-1181217)。![](/img/dataprocessdemo/数据富化/高级参数设置2.png) |
-  | ak_key   | 具备读 OSS 权限的 AccessKey Secret。 出于安全考虑，建议配置为 res_local("AK_KEY")，表示从高级参数配置中获取。                                                                                                                                                                                                         |
-  | bucket   | 用于存储 CSV 文件的 OSS Bucket。                                                                                                                                                                                                                                                                                      |
-  | file     | 您已上传的 CSV 文件的名称。                                                                                                                                                                                                                                                                                           |
+  | filed    | Note                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+  | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | endpoint | The endpoint that is used to access the OSS bucket. For more information, see [Regions and endpoints](https://www.alibabacloud.com/help/en/doc-detail/31837.htm?spm=a2c4g.11186623.2.11.3ae33dc46CPRr6#concept-zt4-cvy-5db).。                                                                                                                                                                                                                                             |
+  | ak_id    | The AccessKey ID that has read permissions on OSS.For security concerns, we recommend that you set the value to res_local("AK_ID") in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.12.3ae33dc46CPRr6#task-1181217).![](/img/dataprocessdemo/数据富化/高级参数设置2.png) |
+  | ak_key   | The AccessKey secret that has read permissions on OSS. For security concerns, we recommend that you set the value to res_local("AK_KEY") in the Advanced Parameter Settings field.                                                                                                                                                                                                                                                                                         |
+  | bucket   | The OSS bucket that is used to store the CSV file.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | file     | The name of the uploaded CSV file.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 - Transformation result
 
   ```
   account :  Sf24asc4ladDS
-  nickname: 多弗朗明哥
+  nickname: xiaoming
   ```

@@ -110,7 +110,7 @@ Use the e_search_dict_map function to enrich log data
   )
   ```
 
-  If you want to use a dictionary to enrich your log data, you can create a dictionary by using braces ({}) or based on resources allocated to the task, Object Storage Service (OSS) resources, and tables. For more information, see [Build dictionaries](https://help.aliyun.com/document_detail/135224.htm?spm=a2c4g.11186623.0.0.7f753c11xuX1KY#section-6pi-yyp-s8b).
+  If you want to use a dictionary to enrich your log data, you can create a dictionary by using braces ({}) or based on resources allocated to the task, Object Storage Service (OSS) resources, and tables. For more information, see [Build dictionaries](https://www.alibabacloud.com/help/en/doc-detail/135224.htm?spm=a2c4g.11186623.0.0.7f753c11xuX1KY#section-6pi-yyp-s8b).
 
 - Transformation result
 

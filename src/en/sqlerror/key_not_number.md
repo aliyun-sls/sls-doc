@@ -1,19 +1,25 @@
-# key (*) is not config as numberic column
+# key (\*) is not config as numberic column
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
-> key (*HttpCode*) is not config as numberic column
 
-## 错误描述
-您当前查询中指定的列（如上述HttpCode）不是数值类型
+> key (_HttpCode_) is not config as numberic column
 
-## 可能原因
-- 该Logstore中列字段的类型未配置正确（如应该是数值类型，但却配置了文本类型）
-- 分析SQL中对文本列错误地使用了数值函数
+## Error description
 
-## 解决方法
-- 检查Logstore中列字段的类型是否符合预期（数值类型还是文本类型？）
-- 如果指定列确实应该是文本类型，检查SQL中是否用错了分析函数
+The column, such as HttpCode, specified in the current query is not of the NUMERIC type.
 
-> 内嵌cli提供用户自助查询
+## Cause
+
+- The type of the column is not correctly configured for the Logstore. For example, the type should be NUMERIC but is configured as TEXT.
+- A numeric function is incorrectly applied to the text columns in the SQL analysis statement.
+
+## Solution
+
+- Check whether the type (NUMERIC or TEXT) of the column in the Logstore is as expected.
+- If the specified column should be of the TEXT type, check whether the analysis function used in the SQL statement is correct.
+
+> SamplA built-in command line interface (CLI) is provided for you to perform self-service queries.e code:

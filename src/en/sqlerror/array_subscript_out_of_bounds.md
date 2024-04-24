@@ -1,15 +1,21 @@
 # Array subscript out of bounds
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Array subscript out of bounds
 
-## 错误描述
-数组下标越界。
+## Error description
 
-## 可能原因
-您使用数组时，正在尝试访问了一个超出数组范围的索引位置。例如，访问负数索引、超出数组长度的索引等。这可能是因为SQL中存在错误的逻辑或者数据输入错误。  
+The array subscript is out of bounds.
 
-## 解决方法
-SQL中数组索引位置从1开始计起，请检查SQL中数组的有效长度，然后检查数组索引位置的引用情况，并确保数组的下标没有超出范围。
+## Cause
+
+The index of an element that you want to access in an array is out of bounds.For example, the index is a negative number or exceeds the array length.This may be caused by incorrect SQL logic or a data input error.
+
+## Solution
+
+The array index in SQL starts from 1. Check the valid array length in SQL and the reference of the array index, and make sure that the array subscript is not out of bounds.

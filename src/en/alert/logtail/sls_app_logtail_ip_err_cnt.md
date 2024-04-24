@@ -3,8 +3,8 @@
 ::: Note
 
 - 每 5 分钟检测一次，检测过去 5 分钟的数据。5 分钟内，当同一 IP（Logtail 客户端）出现的错误次数超过设定阈值时，会触发告警。触发阈值可在规则参数中配置。
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

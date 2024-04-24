@@ -133,7 +133,7 @@ e_table_map(
 )
 ```
 
-You can obtain data from an ApsaraDB RDS for MySQL database over the internal network. For more information about VPC configurations, see the documentation at[https://help.aliyun.com/document_detail/162753.html](https://help.aliyun.com/document_detail/162753.html?spm=a2c4g.11186623.6.987.3e7249dbOZbV6w)
+You can obtain data from an ApsaraDB RDS for MySQL database over the internal network. For more information about VPC configurations, see the documentation at[https://www.alibabacloud.com/help/en/doc-detail/162753.html](https://www.alibabacloud.com/help/en/doc-detail/162753.html?spm=a2c4g.11186623.6.987.3e7249dbOZbV6w)
 
 Transformation result:
 

@@ -1,15 +1,21 @@
 # Multiple columns returned by subquery are not yet supported.
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Multiple columns returned by subquery are not yet supported. Found 2
 
-## 错误描述
-标量查询不支持返回多个列
+## Error description
 
-## 可能原因
-在子查询中SELECT了多个列
+Scalar queries are not allowed to return multiple columns.
 
-## 解决方法
-确保子查询只返回一个列或一个值，可以修改子查询或者修改主查询。另外，还可以尝试使用JOIN语句代替子查询来检索所需的数据。
+## Cause
+
+The system selects multiple columns in a subquery.
+
+## Solution
+
+Make sure that each subquery returns only one column or one value. You can modify the subquery or the main query.You can also replace the subquery with the JOIN statement to retrieve the required data.

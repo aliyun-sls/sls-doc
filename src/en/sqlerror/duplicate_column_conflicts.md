@@ -1,17 +1,23 @@
 # duplicate column conflicts
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > duplicate column conflicts, [columnName:*user_agent*, aliasName:] and [columnName:*request.user-agent*, aliasName:*user_agent*]
 
-## 错误描述
-您当前查询的logstore中索引字段别名发生冲突，SQL无法确定您想要分析的具体列
+## Error description
 
-## 可能原因
-- 该Logstore中某列名与某列的别名完全一样（如上述ErrorMessage中列user_agent与request.user-agent的别名完全一样，发生冲突）
+An index field alias conflict occurs in the Logstore that you query. The SQL system cannot determine the specific column that you want to analyze.
 
-## 解决方法
-- 检查您需要查询的目标Logstore的索引列字段，确保命名没有冲突
+## Cause
 
-> 内嵌cli提供用户自助查询
+- In the Logstore, the name of a column is the same as the alias of another column. For example, in the preceding error message, the name of the user_agent column is the same as the alias of the request.user-agent column, which causes a conflict.
+
+## Solution
+
+- Make sure that the name of each index field is unique in the Logstore that you query.
+
+> SamplA built-in command line interface (CLI) is provided for you to perform self-service queries.e code:

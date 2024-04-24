@@ -5,7 +5,7 @@
 :::tip SLS Playground 发布啦！！！
 SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 SLS 控制台只读账号，包含智能运维类 APP Demo、CloudLens APP Demo、多种日志分析 Demo，可视化 Demo 等等，尽情畅玩吧！
 
-[尝试](/playground/demo.html){target="\_blank"}
+[尝试](/playground/demo.html){:rel="noopener noreferrer" target="\_blank"}
 :::
 
 ## 案例中心介绍

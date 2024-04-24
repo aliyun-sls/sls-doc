@@ -151,7 +151,7 @@ Scenario 3：Performance analysis
     (__topic__: rds_slow_log and query_time > 1)| select *
 ```
 
-The preceding scenarios cover major elements in most database O&M scenarios: security, performance, and operations.You can combine the collected logs for more complex scenarios.通 You can use an SDK to call log query results and integrate them with your own O&M platform. You can also use the query, [dashboard],(https://help.aliyun.com/document_detail/59324.html?spm=a2c4g.347680.0.0.62183e06EZWVJv)、 and [alert] (https://help.aliyun.com/document_detail/207609.html?spm=a2c4g.209950.0.0.541e2e58j8ZRfl)features provided by Simple Log Service to use your database logs.
+The preceding scenarios cover major elements in most database O&M scenarios: security, performance, and operations.You can combine the collected logs for more complex scenarios.通 You can use an SDK to call log query results and integrate them with your own O&M platform. You can also use the query, [dashboard],(https://www.alibabacloud.com/help/en/doc-detail/59324.html?spm=a2c4g.347680.0.0.62183e06EZWVJv)、 and [alert] (https://www.alibabacloud.com/help/en/doc-detail/207609.html?spm=a2c4g.209950.0.0.541e2e58j8ZRfl)features provided by Simple Log Service to use your database logs.
 
 ### summary
 

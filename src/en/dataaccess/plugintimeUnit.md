@@ -118,7 +118,7 @@ Specify parameters for the plug-in and enable the high-precision timestamp parsi
 
 ### Step 3：Modify the name of the high-precision timestamp field or time precision (optional)
 
-If the default name of the high-precision timestamp field and the precision in milliseconds cannot meet your business requirements, you can configure optional parameters to modify the name of the high-precision timestamp field and the precision. For more information, see the [Time format supported by strptime](https://help.aliyun.com/document_detail/196161.html?spm=a2c4g.26937906.0.0.6c923b52v9rEdh#section-r4r-ukg-8b1) section of the "Extract log time" topic.
+If the default name of the high-precision timestamp field and the precision in milliseconds cannot meet your business requirements, you can configure optional parameters to modify the name of the high-precision timestamp field and the precision. For more information, see the [Time format supported by strptime](https://www.alibabacloud.com/help/en/doc-detail/196161.html?spm=a2c4g.26937906.0.0.6c923b52v9rEdh#section-r4r-ukg-8b1) section of the "Extract log time" topic.
 
 ### Solution verification
 

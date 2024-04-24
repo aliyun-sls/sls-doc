@@ -1,12 +1,12 @@
-# 从其他 Logstore 获取数据进行数据富化
+# Pull data from one Logstore to enrich log data in another Logstore
 
-本文档介绍如何通过资源函数从其他 Logstore 中获取信息来对数据进行富化。
+This topic describes how to use resource functions to pull data from one Logstore to enrich log data in another Logstore.
 
-## 数据加工
+## Data processing
 
-- 原始数据
+- Raw data
 
-  - 用于存储个人信息的 Logstore（user_logstore）
+  - that is used to store personal information Logstore（user_logstore）
 
   ```
   topic:xxx
@@ -23,7 +23,7 @@
   name:mary
   ```
 
-  - 用于存储入住信息的 Logstore（check-in_logstore）
+  - that is used to store check-in information Logstore（check-in_logstore）
 
   ```
   time:1567038284
@@ -49,15 +49,15 @@
   ```
 
 - Transformation rule
-  **Note** res_log_logstore_pull 函数支持设置时间范围，您可以设置一个时间区间，也可以只设置开始时间。
+  **Note** res_log_logstore_pull The function allows you to set a time range or a start time for data enrichment.
 
-  - 在 Transformation rule 中，设置 from_time=1567038284,to_time=1567038500，则表示只获取该时间范围内的 Logstore 数据。
+  - If you set a time range in the transformation rule, such as, from_time=1567038284 and to_time=1567038500, data that is received in the specified time range by Simple Log Service is pulled for data enrichment.
 
-  - 在 Transformation rule 中，设置 from_time="begin"，则表示持续获取 Logstore 数据。
+  - If you set a start time in the transformation rule, such as, from_time="begin", data that is received from the specified time by Simple Log Service is pulled for data enrichment.
 
-  res_log_logstore_pull 函数中的各个字段详情请参见[res_log_logstore_pull](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.2.6.4ba253beQxaPuJ#section-b3c-kth-p0t)。
+  res_log_logstore_pull For more information about the fields of the function, see[res_log_logstore_pull](https://www.alibabacloud.com/help/en/doc-detail/129401.htm?spm=a2c4g.11186623.2.6.4ba253beQxaPuJ#section-b3c-kth-p0t)。
 
-  - e_table_map 函数通过两个 Logstore 中相同的 cid 字段进行匹配，只有 cid 字段的值完全相同，才能匹配成功。匹配成功后，返回 Logstore（check-in_logstore）中的 room_number 字段和字段值，与 Logstore（check-in_logstore）中的数据拼接，生成新的数据。
+  - e_table_map Function. This function maps two log entries by using the cid field. If the value of the cid field in the two log entries equals each other, data mapping succeeds.The room_number field and field value are returned and concatenated with the log entry in the check-in_logstore Logstore.
 
   ```python
   e_table_map(
@@ -67,7 +67,7 @@
   	), "cid","room_number")
   ```
 
-  - e_search_table_map 函数使用 e_search_table_map 函数对 Logstore（check-in_logstore）和 Logstore（user_logstore）做搜索匹配，搜索 Logstore（check-in_logstore）中 cid 为 12346 的数据，返回该数据中的 room_number 字段和字段值，与 Logstore（user_logstore）中的数据拼接，生成新的数据。
+  - e_search_table_map Function. This e_search_table_map function searches for the cid field whose value is 12346 in the check-in_logstore Logstore, returns the room_number field and its value, and concatenates the field with these fields of the log entries in the user_logstore Logstore.
 
   ```python
   e_search_table_map(
@@ -80,7 +80,7 @@
 
 - Transformation result
 
-  - e_table_map 函数
+  - e_table_map Function
 
   ```
   topic:xxx
@@ -100,7 +100,7 @@
   room_number:3333
   ```
 
-  - e_search_table_map 函数
+  - e_search_table_map Function
 
   ```python
   topic:xxx
@@ -110,11 +110,11 @@
   room_number:2222
   ```
 
-## 设置黑白名单过滤数据
+## Configure a whitelist rule and a blacklist rule to filter data
 
-- 设置白名单
+- Configure a whitelist rule
 
-  - Transformation rule 通过 fetch_include_data 设置白名单，例如 fetch_include_data="room_number:1111"表示在获取数据过程中，只获取 room_number 值为 1111 的数据。
+  - Transformation rule. Use the fetch_include_data field to configure a whitelist rule. In this example, the fetch_include_data="room_number:1111" expression is included in the res_log_logstore_pull function. This expression indicates that only the log entries whose room_number field value is 1111 are pulled.
 
   ```python
   res_log_logstore_pull(endpoint, ak_id, ak_secret,
@@ -125,7 +125,7 @@
   	fetch_include_data="room_number:1111")
   ```
 
-  - 获取到的数据
+  - Retrieved data
 
   ```
   status: check in
@@ -138,9 +138,9 @@
   room_number:1111
   ```
 
-- 设置黑名单
+- Configure a blacklist rule
 
-  - Transformation rule 通过 fetch_exclude_data 设置黑名单，例如 fetch_exclude_data="room_number:1111"表示在获取数据过程中，丢弃 room_number 值为 1111 的数据。
+  - Transformation rule. Use the fetch_exclude_data field to configure a blacklist rule. In this example, the fetch_exclude_data="room_number:1111" expression is included in the res_log_logstore_pull function. This expression indicates that only the log entries whose room_number field value is 1111 are dropped.
 
   ```python
   res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
@@ -150,7 +150,7 @@
   	fetch_exclude_data="room_number:1111")
   ```
 
-  - 获取到的数据
+  - Retrieved data
 
   ```
   status:check in
@@ -163,9 +163,9 @@
   room_number:3333
   ```
 
-- 同时设置黑白名单
+- Configure a blacklist rule and a whitelist rule
 
-  - Transformation rule 同时设置黑白名单时，优先匹配黑名单，再匹配白名单。例如 fetch_exclude_data="time:1567038285",fetch_include_data="status:check in"表示在数据获取过程中，先匹配 time 值为 1567038285 的数据进行丢弃，再匹配 status 值为 check in 的数据进行获取。
+  - Transformation rule. If you configure a blacklist rule and a whitelist rule, the blacklist rule is applied first and then the whitelist rule.In this example, the fetch_exclude_data="time:1567038285",fetch_include_data="status:check in" expression is included in the res_log_logstore_pull function. This expression indicates that the log entries whose time field value is 1567038285 dropped first and then the log entries whose status field value is check in are pulled.
 
   ```python
   res_log_logstore_pull(endpoint, ak_id, ak_secret, project, logstore,
@@ -176,7 +176,7 @@
   	fetch_include_data="status:check in")
   ```
 
-  - 获取到的数据
+  - Retrieved data
 
   ```
   status:check in
@@ -193,17 +193,17 @@
   room_number:3333
   ```
 
-## 开启主键维护获取目标 Logstore 数据
+## Enable primary key maintenance to pull data from destination Logstores
 
-当您获取到数据，还没加工时，您希望删除已获取到数据，不再加工，您可以开启主键维护功能。例如：您要在名为 check-in_logstore 的 Logstore 中，获取已入住还未离开的客户入住信息，如果获取到的数据中包含 status:leave 表示客人已经离开，则开启主键维护功能不加工该数据。
+You can delete pulled data before you transform other data. To do this, you can enable the primary key maintenance feature.For example, you want to pull the check-in data of customers who have checked in but not checked out from the Logstore named check-in_logstore. If a pulled log entry of a customer includes the status:leave field, the customer has checked out. In this case, you can enable the primary key maintenance feature and the log entry is not transformed.
 
 **Note**
 
-- primary_keys 参数只支持设置单个字符串，且必须存在于 fields 字段中。
+- primary_keys You can set a single field as the value of the parameter. The field must exist in the fields field.
 
-- 开启主键维护功能时，待拉取数据的 Logstore 中只能存在一个 Shard。
+- Before you enable the primary key maintenance feature, make sure that the Logstore from which you want to pull data has only one shard.
 
-- 开启主键维护功能时，delete*data 字段必须不为 \_None* 。
+- If you enable the primary key maintenance feature, you cannot set the delete*data field to \_None*.
 
 - Transformation rule
 
@@ -217,7 +217,7 @@
   	delete_data="status:leave")
   ```
 
-- 获得数据 name 为 maki 的客人，最后的入住信息为 status:leave 表示已离开酒店，则不加工该客人的相关数据。
+- Retrieve data. The status:leave field in the preceding log entry indicates that the customer whose name is maki has checked out. Therefore, this log entry is not transformed.
   ```
   time:1567038284
   status:check in

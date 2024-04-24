@@ -3,8 +3,8 @@
 ::: Note
 
 - 每分钟检查一次，查询过去 2 分钟的日志。当存在公网登录事件时，告警触发。
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

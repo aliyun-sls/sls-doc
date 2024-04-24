@@ -18,7 +18,7 @@ CloudLens for SLS provides unified observability capabilities for cloud services
 |              | Monitored metric (free)     | Access traffic monitoring, access exception monitoring, and resource quota usage monitoring |
 |              | Billing log (free)          | Resource usage tracking                                                                     |
 
-For more information about the logs, see the following topic:[https://help.aliyun.com/document_detail/456901.html?spm=a2c4g.456864.0.0.e979723c8We7zA](https://help.aliyun.com/document_detail/456901.html?spm=a2c4g.456864.0.0.e979723c8We7zA)
+For more information about the logs, see the following topic:[https://www.alibabacloud.com/help/en/doc-detail/456901.html?spm=a2c4g.456864.0.0.e979723c8We7zA](https://www.alibabacloud.com/help/en/doc-detail/456901.html?spm=a2c4g.456864.0.0.e979723c8We7zA)
 
 # Usage scenarios
 

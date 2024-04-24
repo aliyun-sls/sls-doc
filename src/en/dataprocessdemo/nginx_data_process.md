@@ -1,8 +1,8 @@
-# Nginx 日志解析
+# Parse NGINX logs
 
 ## NginxRaw log entries
 
-通过阿里云极简模式采集了 Nginx 默认日志。默认的 nginx 日志 format 如下
+The default NGINX log is collected in simple mode of Alibaba Cloud.The following sample code shows the format of the default NGINX log.
 
 ```
 log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
@@ -10,41 +10,36 @@ log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
                       '"$http_user_agent" "$http_x_forwarded_for"';
 ```
 
-通过使用极简模式采集 Nginx 日志，样例如下：
+The following sample code shows an NGINX log collected in simple mode of Alibaba Cloud.
 ![](/img/dataprocessdemo/nginx-log.png)
 
-## 使用正则抽取基础字段
+## Use regular expressions to extract basic fields
 
 ```python
-# 用于将源字段里的内容，通过正则捕获组抽取出对应的字段
-e_regex("源字段", "正则或有命名捕获正则", "目标字段名或数组(可选)")
+e_regex("Source field", "Regular expression or regular expression with named capturing groups", "Destination field name or array (optional)")
 ```
 
 ```python
-# 通用字段抽取
 e_regex("content",'(?<remote_addr>[0-9:\.]*) - (?<remote_user>[a-zA-Z0-9\-_]*) \[(?<local_time>[a-zA-Z0-9\/ :\-\+]*)\] "(?<request>[^"]*)" (?<status>[0-9]*) (?<body_bytes_sent>[0-9\-]*) "(?<refer>[^"]*)" "(?<http_user_agent>[^"]*)"')
 ```
 
-通过正则抽取以后，可以看到日志的字段增加了 refer、remote_addr、remote_user、request 等字段。
+After a regular expression is used for field extraction, fields such as refer, remote_addr, remote_user, and request are added to the log.
 
 ![](/img/dataprocessdemo/nginx-step1.png)
 
-## 处理时间字段
+## Process a time field
 
-当前提取到的 localtime 不易读，我们把它解析成易读的格式，会用到的以下数据加工函数：
+The extracted value of the local_time field is not easy to read. If you want to parse the value of the local_time field into a value that is easy to read, you can use the following data transformation functions:
 
 ```python
-# 用于设置字段值
-e_set("字段名", "固定值或表达式函数")
+e_set("filed name", "Fixed value or expression function")
 
-# 将时间字符串解析为日期时间对象
-dt_strptime('值如v("字段名")', "格式化字符串")
+dt_strptime('A value such as v ("Field name")', "Formatted string")
 
-# 将日期时间对象按照指定格式转换为字符串
-dt_strftime(日期时间表达式, "格式化字符串")
+dt_strftime(Datetime expression, "Formatted string")
 ```
 
-实现思路，先通过 dt_strptime 将 local_time 的时间转化为日期时间对象，然后再通过 dt_strftime 将日期时间对象转化为标准的日期时间字符串。 针对 Nginx local_time 的转化，使用如下数据加工语句：
+If you want to parse the value of the local_time field into a value that is easy to read, convert the time string of the local_time field to a datetime object by using the dt_strptime function, and then convert the datetime object to a standard datetime string by using the dt_strftime function.
 
 ```python
 e_set(
@@ -59,29 +54,29 @@ e_set(
 )
 ```
 
-效果如下：
+The effect is as follows:
 
 ![](/img/dataprocessdemo/nginx-step2.png)
 
-## 解析 request uri
+## Analysis request uri
 
-可以看到 request 字段由 METHOD URI VERSION 组成，我们希望对 requst 字段进行抽取，获取到请求的 METHOD、URI 以及 VERSION，并且将请求 URI 中的请求的参数变成字段，方便后续进行查询。可以用以下函数来做实现
+The request field consists of request_method, request_uri, and http_version. If you want to extract the request field to obtain request_method, request_uri, and http_version, and want to convert the request parameters in the uniform resource identifier (URI) of the request to fields for subsequent queries,you can use the following functions:
 
 ```python
-# 使用正则将request uri抽取
-e_regex("源字段名", "正则或有命名捕获正则", "目标字段名或数组(可选)", mode="fill-auto")
 
-# 进行urldecode
-url_decoding('值如v("字段名")’)
+e_regex("Source field name", "Regular expression or regular expression with named capturing groups", "Destination field name or array (optional)", mode="fill-auto")
 
-# 设置字段值
-e_set("字段名", "固定值或表达式函数", ..., mode="overwrite")
 
-# 将request_uri中的key=value的组合抽取成字段 值的模式
-e_kv("源字段正则或列表", sep="=", prefix="")
+url_decoding('A value such as v ("Field name")’)
+
+
+e_set("filed name", "Fixed value or expression function", ..., mode="overwrite")
+
+
+e_kv("Regular expression for source fields or source field list", sep="=", prefix="")
 ```
 
-实现语句
+The following result is returned:
 
 ```python
 e_regex("request", "(?<request_method>[^\s]*) (?<request_uri>[^\s]*) (?<http_version>[^\s]*)")
@@ -89,37 +84,35 @@ e_set("request_uri", url_decoding(v("request_uri")))
 e_kv("request_uri", prefix="uri_")
 ```
 
-实现效果
+The following result is returned:
 
 ![](/img/dataprocessdemo/nginx-step3.png)
 
-## http code 状态码映射
+## http code status code mapping
 
-每一个 http 状态码都代表了不同的含义，下面是一份 http 状态码的映射表， 我们可以通过 e_table_map 函数来将状态码的信息扩展到我们的日志字段中，方便后续做统计分析。
+Each HTTP status code represents a different meaning. The following table describes the mappings of HTTP status codes. You can use the e_table_map function to extend the status code information to log fields for subsequent statistical analysis.
 
 ![](/img/dataprocessdemo/http-code.png)
 
-涉及到的数据加工函数如下：
+The following data transformation functions are used:
 
 ```python
-# 用来做字段富化，类似sql里join的功能
-e_table_map("表格如通过tab_parse_csv(...)解析得到的",
-            "源字段列表或映射列表如[('f1', 'f1_new'), ('f2', 'f2_new')]",
-            "目标字段列表")
 
-# 用来把csv文件解析成table对象
-tab_parse_csv(CSV文本数据, sep=',', quote='"')
+e_table_map("A table obtained by the tab_parse_csv(...) function",
+            "Source field list or mapping list, such as[('f1', 'f1_new'), ('f2', 'f2_new')]",
+            "Destination field list")
 
-# code的映射关系维度表是一个csv文件，存在oss上，使用res_oss_file
-res_oss_file(endpoint="OSS的endpoint", ak_id="OSS的AK_ID",
-             ak_key="OSS的AK_KEY", bucket="OSS的bucket", file="在OSS中存的文件地址",
-             change_detect_interval="定时更新时间,默认为0")
+tab_parse_csv(CSV Text data, sep=',', quote='"')
+
+res_oss_file(endpoint="OSS endpoint", ak_id="OSS AK_ID",
+             ak_key="OSS AK_KEY", bucket="OSS bucket", file="The OSS bucket to which the object is uploaded",
+             change_detect_interval="The time when data is regularly updated. Default value: 0.")
 ```
 
-实际使用到的 DSL 语句如下
+Execute the following domain-specific language (DSL) statement:
 
 ```python
-# http状态码映射
+
 e_table_map(
 	tab_parse_csv(
 		res_oss_file(
@@ -136,80 +129,72 @@ e_table_map(
 )
 ```
 
-映射后的效果
+The following result is returned:
 
 ![](/img/dataprocessdemo/nginx-step4.png)
 
-## 通过 UserAgent 判断客户端操作系统
+## Use the http_user_agent field to determine the operating system of a client
 
-我们想了解客户用的是什么 os 版本，可以通过 user agent 里的字段用正则匹配来判断，用到 dsl 语句
+You can execute a DSL statement and determine the operating system of the customer by using regular expression match of the http_user_agent field.
 
 ```python
-# 取某个字段的值
-v("字段名")
 
-# 获取ua相关信息
-ua_parse_all("带useragent信息的内容")
+v("field name")
 
-# 展开json字段, 因为ua_parse_all得到的是一个json对象，为了展开到一级字段使用e_json做展开
-# 模式有 simple、full、parent、root 参考https://help.aliyun.com/document_detail/125488.html#section-o7x-7rl-2qh
-e_json("源字段名", fmt="模式", sep="字段分隔符")
+ua_parse_all("Information with the user agent")
 
-# 丢弃临时产生的字段
-e_drop_fields("字段1", "字段2")
+e_json("Source field name", fmt="Mode", sep="Field delimiter")
+
+e_drop_fields("field1", "field2")
 ```
 
-实际用到的 dsl 语句
+Execute the following DSL statement:
 
 ```python
-# 通过User Agent解析获得客户端信息
+
 e_set("ua",ua_parse_all(v("http_user_agent")))
 e_json("ua", fmt='full',sep='_')
 e_drop_fields("ua",regex=False)
 ```
 
-加工效果
+The following result is returned:
 
 ![](/img/dataprocessdemo/nginx-step5.png)
 
-## 非 200 的日志投递到指定 logstore
+## Deliver logs whose HTTP status codes are not 200 to the specified
 
-可以使用 e_output 函数来做日志投递，用 regex_match 做字段匹配
+You can use the e_output function to deliver logs to the specified Logstore, and use the regex_match function to match a field value.
 
 ```python
-# 条件判断if
-e_if("条件1如e_match(...)", "操作1如e_regex(...)", "条件2", "操作2", ....)
 
-# 判断是否相等
-op_ne(v("字段名1"), v("字段名2"))
+e_if("Conditional 1:e_match(...)", "operation1: e_regex(...)", "Conditional2", "operation2", ....)
 
-# output发送到目标名称，目标名称在数据加工保存任务的时候配置对应的logstore信息
-e_output(name="指定的目标名称")
+op_ne(v("field 1"), v("field 2"))
+
+e_output(name="The name of the specified Logstore.")
 ```
 
-实现语句
+Execute the following DSL statement:
 
 ```python
-# 分发非200的日志
 e_if(
 	op_ne(v("http_code_alias"),"2xx"),
 	e_output(name="img/nginx-log-bad")
 )
 ```
 
-在预览里看到这个效果。（保存加工的时候，需要设置好对应 project、logstore 的 ak 信息
+The following result is returned.（When you save the data transformation job, you must set the project and the AccessKey pair of the Logstore.)
 
 ![](/img/dataprocessdemo/nginx-step6.png)
 
-## 完整的 DSL 代码以及上线流程
+## Complete DSL statement and job launch process
 
-好了，通过一步一步的开发调试，现得到完整的 DSL 代码如下
+After the development and debugging, the following complete DSL statement is returned:
 
 ```python
-# 通用字段抽取
+
 e_regex("content",'(?<remote_addr>[0-9:\.]*) - (?<remote_user>[a-zA-Z0-9\-_]*) \[(?<local_time>[a-zA-Z0-9\/ :\-]*)\] "(?<request>[^"]*)" (?<status>[0-9]*) (?<body_bytes_sent>[0-9\-]*) "(?<refer>[^"]*)" "(?<http_user_agent>[^"]*)"')
 
-# 设置localttime
 e_set(
 	"local_time",
 	dt_strftime(
@@ -221,12 +206,10 @@ e_set(
 	)
 )
 
-# uri字段抽取
 e_regex("request", "(?<request_method>[^\s]*) (?<request_uri>[^\s]*) (?<http_version>[^\s]*)")
 e_set("request_uri", url_decoding(v("request_uri")))
 e_kv("request_uri", prefix="uri_")
 
-# http状态码映射
 e_table_map(
 	tab_parse_csv(
 		res_oss_file(
@@ -242,24 +225,22 @@ e_table_map(
 	("category","http_code_category")]
 )
 
-# 通过User Agent解析获得客户端信息
 e_set("ua",ua_parse_all(v("http_user_agent")))
 e_json("ua", fmt='full',sep='_')
 e_drop_fields("ua",regex=False)
 
-# 分发非200的日志
 e_if(
 	op_ne(v("http_code_alias"),"2xx"),
 	e_coutput(name="img/nginx-log-bad")
 )
 ```
 
-在页面提交代码以后，保存数据加工
-配置目标 logstore 信息，默认走完加工逻辑的日志都会发送到第一个目标 logstore，我们在代码里指定了 e_output 到指定 logstore，因此还需要第二个目标，并且目标的名字和 e_output 里指定的目标名称一致。
+After the statement is submitted, click Save as Transformation Job.
+Configure the destination Logstores. By default, logs are sent to the first destination Logstore after the data transformation job is complete. You have specified a destination Logstore in the e_output function. Therefore, you must configure two destination Logstores. Make sure that the name of the second destination Logstore is the same as that specified in the e_output function.
 
 ![](/img/dataprocessdemo/nginx-step-done.png)
 
-保存完即完成上线，可以在数据处理-加工下看到该任务，点击进去可以看到加工延迟等信息。
+After the data transformation job is saved, the job is launched. Choose Data Processing > Data Transformation to view the data transformation job. Click the data transformation job to view the information such as the transformation latency.
 
 ![](/img/dataprocessdemo/nginx-dashboard.png)
 

@@ -1,15 +1,21 @@
-# time # is out of specified time range 
+# time # is out of specified time range
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
-> time 1682438400000 is out of specified time range 
 
-## 错误描述
-时间戳超出了指定的时间范围
+> time 1682438400000 is out of specified time range
 
-## 可能原因
-在SQL语句中使用了超出指定时间范围的时间戳，可能是由于数据录入错误或者数据类型不匹配导致的。
+## Error description
 
-## 解决方法
-检查时间戳是否正确，如果是由于数据类型不匹配导致的，可以尝试使用相关的数据类型转换函数将时间戳转换为正确的数据类型。
+The timestamp is out of the specified time range.
+
+## Cause
+
+The SQL statement uses a timestamp that is out of the specified time range. This may be caused by a data input error or data type mismatch.
+
+## Solution
+
+Check whether the timestamp is correct. If the invalid timestamp is caused by a data type mismatch, you can use the relevant data type conversion function to convert the timestamp to the correct data type.

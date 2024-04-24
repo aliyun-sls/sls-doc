@@ -26,7 +26,7 @@ Simple Log Service allows you to replicate data from a source Logstore to a dest
    | Authorization Method | The method that is used to authorize Simple Log Service to read data from and write data to the logstore-a Logstore of the target-a project. Example: Default Role. |
    | Time Range           | The time range for data transformation. All: transforms data in the source Logstore from the first log entry until the data transformation job is manually stopped. |
 
-For more information about parameter configurations, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.9.ec9b1353uPmG8o#task-1181217).
+For more information about parameter configurations, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.9.ec9b1353uPmG8o#task-1181217).
 
 7. Click **OK**.
 

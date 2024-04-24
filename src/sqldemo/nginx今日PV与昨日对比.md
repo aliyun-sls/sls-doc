@@ -1,10 +1,10 @@
-# nginx日志查看今日PV和昨日对比
+# nginx 日志查看今日 PV 和昨日对比
 
-先通过count函数计算总的pv，再用compare函数得出今日的pv与昨日的同比
+先通过 count 函数计算总的 pv，再用 compare 函数得出今日的 pv 与昨日的同比
 
-通过单值图进行展示，显示值为20.381Mil，对比值为-2%
+通过单值图进行展示，显示值为 20.381Mil，对比值为-2%
 
-[试用 Demo](./../playground/demo.md?dest=%2Flognext%2Fproject%2Fnginx-demo-log%2Flogsearch%2Fnginx-access-log%3Fencode%3Dbase64%26queryString%3DKiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ%3D%3D%26queryTimeType%3D6%26isShare%3Dtrue&maxWidth=true){target="_blank"}
+[试用 Demo](./../playground/demo.md?dest=%2Flognext%2Fproject%2Fnginx-demo-log%2Flogsearch%2Fnginx-access-log%3Fencode%3Dbase64%26queryString%3DKiB8IHNlbGVjdCBkaWZmIFsxXSBhcyB0b2RheSwgcm91bmQoKGRpZmYgWzNdIC0xLjApICogMTAwLCAyKSBhcyBncm93dGggRlJPTSAoIFNFTEVDVCBjb21wYXJlKHB2LCA4NjQwMCkgYXMgZGlmZiBGUk9NICggU0VMRUNUIENPVU5UKDEpIGFzIHB2IEZST00gbG9nICkgKQ%3D%3D%26queryTimeType%3D6%26isShare%3Dtrue&maxWidth=true){:rel="noopener noreferrer" target="\_blank"}
 
 ```SQL
 * |
@@ -36,4 +36,3 @@ FROM
 # 可视化配置
 
 ![样例图片](/img/sqldemo/pvcomparechart.png)
-

@@ -3,8 +3,8 @@
 ::: Note
 
 - Data is inspected at a 5-minute interval. If an empty node is scaled in, an alert is triggered:Unimplemented URL mode in a managed node pool（kubernetes nodde pool nlc delete node failed: Task.URL.Mode.Unimplemented）
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

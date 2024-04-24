@@ -5,6 +5,7 @@
 # Query logs by using SDK for Java
 
 ## Maven dependency
+
 ```
 <!-- https://mvnrepository.com/artifact/com.aliyun.openservices/aliyun-log -->
 <dependency>
@@ -45,6 +46,7 @@ public void doScan() throws LogException {
     System.out.println("totally scanned logs\t: " + totalCount);
 }
 ```
+
 Expected output:
 
 ```
@@ -66,6 +68,7 @@ Scan syntax：`{Index Search Query} | {Scan Query}`，logs with no contextual fi
 To obtain logs with contextual fields, you can use the following syntax: `{Index Search Query} | {Scan Query} | with_pack_meta`
 
 Sample contextual fields:：
+
 ```
 __pack_meta__: 3|MTY3MTExNTcxMDM2ODE3ODE3NQ==|518|73
 __tag__:__pack_id__: 7154B46F35F6D009-141
@@ -73,16 +76,16 @@ __tag__:__pack_id__: 7154B46F35F6D009-141
 
 Q：With contextual fields of a log, how do I query the previous and next logs of the log in a raw log file?
 
-A：see[GetContextLogs](https://help.aliyun.com/document_detail/152116.html)。
+A：see[GetContextLogs](https://www.alibabacloud.com/help/en/doc-detail/152116.html)。
 
 # SDK parameters
 
-| reverse | forward | offset | action |
-|---------|---------|--------|------|
-| false | true | 0 or the endOffset returned in the last response endOffset | Turns page from the smaller timestamp to the larger timestamp |
-| true | true | 0 or the endOffset returned in the last response endOffset | Turns page from the larger timestamp to the smaller timestamp |
-| false | false | The total number of logs hit by the index or the beginOffset returned in the last response beginOffset | Turns page from the larger timestamp to the smaller timestamp |
-| true | false | The total number of logs hit by the index or the beginOffset returned in the last response beginOffset | Turns page from the smaller timestamp to the larger timestamp |
+| reverse | forward | offset                                                                                                 | action                                                        |
+| ------- | ------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| false   | true    | 0 or the endOffset returned in the last response endOffset                                             | Turns page from the smaller timestamp to the larger timestamp |
+| true    | true    | 0 or the endOffset returned in the last response endOffset                                             | Turns page from the larger timestamp to the smaller timestamp |
+| false   | false   | The total number of logs hit by the index or the beginOffset returned in the last response beginOffset | Turns page from the larger timestamp to the smaller timestamp |
+| true    | false   | The total number of logs hit by the index or the beginOffset returned in the last response beginOffset | Turns page from the smaller timestamp to the larger timestamp |
 
 Q: How do I obtain the total number of logs hit by the index?
 

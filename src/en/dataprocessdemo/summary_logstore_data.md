@@ -1,21 +1,21 @@
-# 多源 Logstore 数据汇总
+# Aggregate data from multiple source Logstores
 
-日志服务支持对每一个源 Logstore 配置一个数据加工任务，实现多源 Logstore 数据汇总。本文介绍多源 Logstore 数据汇总的典型应用 Scenario 和对应的操作方法。
+Simple Log Service allows you to replicate data from a source Logstore to a destination Logstore. To replicate the data, you can create a data transformation job for the source Logstore.This topic describes how to replicate data from a source Logstore to a destination Logstore in a typical scenario.
 
-## 跨账号多源 Logstore 数据汇总
+## Aggregate data from multiple source Logstores
 
 - Raw log entries
 
-  - 账号 1 中的 Raw log entries，其 Project 地域位于英国（伦敦），Project 名称为 Project_1，Logstore 名称为 Logstore_1。
+  - The raw log entries are stored in a Logstore named Logstore_1 of a project named Project_1. The project belongs to Account 1 and resides in the UK (London) region.
 
   ```
-  "日志1"z
+  "log1"z
   request_id: 1
   http_host:  m1.abcd.com
   http_status:  200
   request_method:  GET
   request_uri:  /pic/icon.jpg
-  "日志2"
+  "log2"
   request_id: 2
   http_host:  m2.abcd.com
   http_status:  301
@@ -23,16 +23,16 @@
   request_uri:  /data/data.php
   ```
 
-  - 账号 2 中的日志，其 Project 地域为英国（伦敦），Project 名称为 Project_2，Logstore 名称为 Logstore_2。
+  - The raw log entries are stored in a Logstore named Logstore_2 of a project named Project_2. The project belongs to Account 2 and resides in the UK (London) region.
 
   ```
-  "日志1"
+  "log1"
   request_id: 3
   host:  m3.abcd.com
   status:  404
   request_method:  GET
   request_uri:  /category/abc/product_id
-  "日志2"
+  "log2"
   request_id: 4
   host:  m4.abcd.com
   status:  200
@@ -40,15 +40,15 @@
   request_uri:  /data/index.html
   ```
 
-- 加工目标
+- Transformation requirements
 
-  - 将账号 1 的 Logstore*1 和账号 2 的 Logstore_2 中所有`http_status`为 \_200* 的日志事件汇总到账号 3 的 Logstore_3 中。
+  - Aggregate the log entries whose `http_status` is 200 in the Logstore_1 Logstore of Account 1 and the Logstore_2 Logstore of Account 2 to the Logstore_3 Logstore of Account 3.
 
-  - 统一账号 1 的 Logstore_1 和账号 2 的 Logstore_2 中日志事件的字段名称。将`host`统一为`http_host`，`status`统一为`http_status`。
+  - Set the log field names in the Logstore_1 Logstore of Account 1 and the Logstore_2 Logstore of Account 2.Set the field name `host` to `http_host` and the field name `status` to
 
-- SLS DSL 规则
+- SLS DSL rules
 
-  - 在账号 1 的 Logstore_1 中配置如下 Transformation rule，并且在 **创建数据 Transformation rule** 面板中，配置目标名称为 target_logstore，Destination Project 为 Project_3，目标库为 Logstore_3，以及授权方式及相关信息。详细操作请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.4.6dfb6f4a6EWuGt#task-1181217)。
+  - Configure the following transformation rules for the Logstore_1 Logstore of Account 1. In the **Create Data Transformation Job** panel, set Destination Name to target_logstore, set Destination Project to Project_3, set Target Store to Logstore_3, and specify the authorization method.For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.4.6dfb6f4a6EWuGt#task-1181217).
 
   ```python
   e_if(
@@ -59,7 +59,7 @@
 
   ![](/img/dataprocessdemo/数据富化/存储目标.png)
 
-  - 在账号 2 的 Logstore_2 中配置如下 Transformation rule，参见账号 1 配置，并且在 **创建数据 Transformation rule** 面板中，配置目标名称为 target_logstore，Destination Project 为 Project_3，目标库为 Logstore_3，以及授权方式及相关信息。
+  - Configure the following transformation rules for the Logstore_2 Logstore of Account 2. In the **Create Data Transformation Job** panel, set Destination Name to target_logstore, set Destination Project to Project_3, set Target Store to Logstore_3, and specify the authorization method.
 
   ```python
   e_if(
@@ -71,15 +71,15 @@
   )
   ```
 
-- Transformation result 账号 3 中汇总的日志，其 Project 地域位于英国（伦敦），Project 名称为 _Project_3_ ，Logstore 名称为 _Logstore_3_ 。
+- Result. The following log entries are aggregated in the Logstore_3 Logstore of the Project_3 project that belongs to Account 3. The project resides in the UK (London) region.
   ```
-  "日志1"
+  "log1"
   request_id: 1
   http_host:  m1.abcd.com
   http_status:  200
   request_method:  GET
   request_uri:  /pic/icon.jpg
-  "日志2"
+  "log2"
   request_id: 4
   http_host:  m4.abcd.com
   http_status:  200

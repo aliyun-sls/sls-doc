@@ -1,17 +1,15 @@
-# 开源兼容总览
+# Open source compatibility overview
 
-## Kafka兼容
+## Compatibility with Kafka
 
-### [通过 Kafka 协议消费数据功能说明](./overview.md)
+### [Feature description for data consumption by using the Kafka protocol](./overview.md)
 
-### Kafka消费
+### Compatibility with Kafka
 
-
-| 示例名称                                                 | 描述                                  |
-|------------------------------------------------------|-------------------------------------|
-| [Java 消费示例](./java_kafka_consume.md)                 | 使用 Java Kafka Client 消费 SLS         |
-| [Confluent_Go 消费示例](./confluent_go_kafka_consume.md) | 使用 Confluent_Go Kafka Client 消费 SLS |
-| [Franz_Go 消费示例](./franz_go_kafka_consume.md)         | 使用 Franz_Go Kafka Client 消费 SLS     |
-| [Sarama_Go 消费示例](./sarama_go_kafka_consume.md)       | 使用 Sarama_Go Kafka Client 消费 SLS    |
-| [Python 消费示例](./franz_go_kafka_consume.md)           | 使用 Python Kafka Client 消费 SLS       |
-
+| Example Name                                                              | Description                                          |
+| ------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [Use Java to consume data](./java_kafka_consume.md)                       | Consume data by using the Kafka client for Java.     |
+| [Use confluent-kafka-go to consume data](./confluent_go_kafka_consume.md) | Consume data by using the confluent-kafka-go client. |
+| [Use Franz_Go to consume data](./franz_go_kafka_consume.md)               | Consume data by using the Franz_Go Kafka Client      |
+| [Use Sarama_Go to consume data](./sarama_go_kafka_consume.md)             | Consume data by using the Sarama_Go Kafka Client     |
+| [Use Python to consume data](./franz_go_kafka_consume.md)                 | Consume data by using the Python Kafka Client        |

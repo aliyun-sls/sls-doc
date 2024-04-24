@@ -1,17 +1,23 @@
 # logstore without index config
+
 **ErrorCode**
+
 > IndexConfigNotExist
 
 **ErrorMessage**
+
 > logstore without index config
 
-## 错误描述
-您当前正在使用SQL语法，而Logstore并没有配置索引，使用SQL必须至少配置任一索引。
+## Error description
 
-## 可能原因
-- 您当前查询的目标Logstore没有配置索引
+You are using the SQL syntax but no indexes are configured in the Logstore. At least one index must be configured in SQL.
 
-## 解决方法
-- 检查您需要查询的目标Logstore，并确定已开启索引配置（至少一列）
+## Cause
 
-> 内嵌cli提供用户自助查询
+- No indexes are configured for the Logstore that you query.
+
+## Solution
+
+- Make sure that an index is configured for at least one column in the Logstore.
+
+> SamplA built-in command line interface (CLI) is provided for you to perform self-service queries.e code:

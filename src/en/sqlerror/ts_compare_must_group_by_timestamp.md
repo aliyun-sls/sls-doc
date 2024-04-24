@@ -1,15 +1,21 @@
-# ts_compare must  gropu by timestamp,your grouping by type is :bigint
+# ts_compare must gropu by timestamp,your grouping by type is :bigint
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
-> ts_compare must  gropu by timestamp,your grouping by type is :bigint
 
-## 错误描述
-ts_compare函数必须按timestamp类型分组
+> ts_compare must gropu by timestamp,your grouping by type is :bigint
 
-## 可能原因
-您在SQL中使用ts_compare函数时，group by的列，可能是非timestamp类型的数值型或其他类型
+## Error description
 
-## 解决方法
-请确保ts_compare函数对应的group by列类型使用正确的timestamp类型，您可以使用from_unittime等函数将整型时间戳转换成timestamp类型。
+The ts_compare function must group data by timestamp.
+
+## Cause
+
+When you use the ts_compare function in SQL, the columns in the GROUP BY clause may be of the NUMERIC type or another type except TIMESTAMP.
+
+## Solution
+
+Make sure that the columns in the GROUP BY clause corresponding to the ts_compare function are of the TIMESTAMP type. You can use a function such as from_unittime to convert the columns from INTEGER to TIMESTAMP.

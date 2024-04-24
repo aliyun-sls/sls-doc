@@ -1,14 +1,14 @@
-# 转换 Log 为 Metric
+# Convert logs to metrics
 
-<table><tr><td bgcolor="#f8e5c5">本文中含有需要您注意的重要提示信息，忽略该信息可能对您的业务造成影响，请务必仔细阅读。</td></tr></table>
+<table><tr><td bgcolor="#f8e5c5">This topic provides important information about necessary usage notes. We recommend that you read this topic carefully before you delete an Alibaba Cloud account.</td></tr></table>
 
-如果您需要监控 Log 中某字段的指标变化趋势，可以使用日志服务数据加工函数 e_to_metric 将 Log 字段转换为 Metric，通过时序库查看该指标的变化趋势。本文以 Nginx 访问日志为例 Note 如何将 Log 转化为 Metric。
+If you want to monitor the metric change trend of a log field, you can use the e_to_metric function to convert the log field to a metric. Then, you can view the change trend of the metric in a Metricstore.
 
-## Scenario 描述
+## Scenarios
 
-某企业在华东 1（杭州）地域创建了名为 nginx-demo 的 Logstore，用于存储 Nginx 服务的访问日志。
+For example, you have created a Logstore named nginx-demo in the China (Hangzhou) region to store NGINX access logs.
 
-该企业需要监控后端服务器（Host）的每次请求耗时（request_time）和响应耗时（upstream_response_time）变化情况，并通过仪表盘展示变化趋势。
+You need to monitor the changes of the request time (request_time) and response time (upstream_response_time) of each backend server (host), and then visualize the change trend on a dashboard.
 
 ```
 body_bytes_sent:1750
@@ -27,76 +27,77 @@ time_local:11/Aug/2021:06:52:27
 upstream_response_time:0.66
 ```
 
-为实现以上需求，您需要将 Log 中 request_time 和 upstream_response_time 字段转换为 Metric，并打上 Host 标签。
+To meet the preceding requirements, you must convert the request_time and upstream_response_time fields in logs to metrics, and then add the host label to the metrics.
 
-## Step 一：创建时序库
+## Step 1: Create a Metricstore
 
-创建名称为 service-metric 的时序库，用于保存数据加工后的时序数据。
+Create a Metricstore named service-metric to store the time series data that is returned during data transformation.
 
 1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com/lognext/profile).
 2. In the Projects section, click the desired project.
-3. 在**时序存储 > 时序库**页签中，单击+图标。
-4. 在**创建 MetricStore**面板，配置如下参数，单击**确定**。
+3. In the left-side navigation pane, click **Metric Storage**. On the Metricstores tab, click the + icon.
+4. In the **Create Metricstore** panel, configure the following parameters and click **OK**.
 
-| **参数**             | **Note**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **MetricStore 名称** | MetricStore 名称在其所属 Project 内必须唯一，创建后不能修改。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| **永久保存**         | 打开**永久保存**开关后，日志服务将永久保存采集到的时序数据。<br><table><tr><td bgcolor="#d6e7f8">**Note** 通过 SDK 方式获取数据保存时间时，如果对应值为 3650 则表示永久保存。</td></tr></table>                                                                                                                                                                                                                                                                                                                                                                                     |
-| **数据保存时间**     | 日志服务采集的时序数据在 MetricStore 中的保存时间，单位为天，取值范围：15~3000。超过该时间后，时序数据会被删除。<br><table><tr><td bgcolor="#f6d8d0">**警告** 当日志保存时间达到您所设置的保存时间后，日志将被删除。</td></tr></table>仅在未打开**永久保存**开关时，需设置**数据保存时间**。<table><tr><td bgcolor="#f8e5c5">**重要** 缩短数据保存时间后，日志服务将在 1 小时内删除所有已超过保存时间的数据。但日志服务控制台首页的**存储量**（**日志**）将于次日更新。例如您原本的数据保存时间为 5 天，现修改为 1 天，则日志服务将在 1 小时内删除前 4 天的数据。</td></tr></table> |
-| **Shard 数目**       | 日志服务使用 Shard 读写数据。一个 Shard 提供的写入能力为 5 MB/s、500 次/s，读取能力为 10 MB/s、100 次/s。每个 MetricStore 中最多创建 10 个 Shard，每个 Project 中最多创建 200 个 Shard。更多信息，请参见[分区（Shard）](https://help.aliyun.com/document_detail/28976.htm?spm=a2c4g.11186623.0.0.1b424c78manSeS#concept-wnn-rqn-vdb)。                                                                                                                                                                                                                                              |
+| **parameter**             | **Note**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **MetricStore name**      | The name of the Metricstore. The name must be unique in the project to which the Metricstore belongs. After the Metricstore is created, you cannot change its name.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| **Permanent Storage**     | If you select **Permanent Storage**, Simple Log Service permanently stores the collected metrics.<br><table><tr><td bgcolor="#d6e7f8">**Note** If you query the data retention period by calling an SDK and the returned result is 3650, metrics are permanently stored.</td></tr></table>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **Data Retention Period** | The retention period of metrics in the Metricstore. Valid values: 15 to 3000. Unit: days.Metrics are automatically deleted after the specified retention period ends.<br><table><tr><td bgcolor="#f6d8d0">**Warning** If the retention period of a log reaches the data retention period that you specified for the Logstore, the log is deleted.</td></tr></table>You can configure the **Data Retention Period** parameter only if you do not select **Permanent Storage**.<table><tr><td bgcolor="#f8e5c5">**Important** If you shorten the data retention period, Simple Log Service deletes all expired metrics within 1 hour.The data volume that is displayed for **Storage Size(Log)** on the homepage of the Simple Log Service console is updated the next day.For example, if you change the value of the Data Retention Period parameter from 5 to 1, Simple Log Service deletes the metrics of the previous four days within 1 hour.</td></tr></table> |
 
-## Step 二：创建数据加工任务
+| **Shards** | The number of shards. Simple Log Service provides shards that allow you to read and write data.Each shard supports a write capacity of 5 MB/s and 500 writes/s and a read capacity of 10 MB/s and 100 reads/s.You can create up to 10 shards in each Metricstore. You can create up to 200 shards in each project.For more information, see [Shard](https://www.alibabacloud.com/help/en/doc-detail/28976.htm?spm=a2c4g.11186623.0.0.1b424c78manSeS#concept-wnn-rqn-vdb) |
 
-使用 e_to_metric 函数创建数据加工任务，并保存加工后数据到 Step 一创建的时序库。
+## Step 2: Create a data transformation job
+
+Use the e_to_metric function to create a data transformation job and store transformed data in the service-metric Metricstore that you created in Step 1.
 
 1. Go to the data transformation page.
    a. In the Projects section, click the desired project.
    b. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the desired Logstore.
    c. On the query and analysis page, click **Data Transformation**.
 2. In the upper-right corner of the page, specify a time range for the required log data.
-   请确保在**Raw log entries**页签中有 Log。
+   Make sure that log data exists on the **Raw Logs** tab.
 3. In the code editor, enter the following data transformation statement.
-   将 request_time 字段重命名为 RequestTime，upstream_response_time 字段重命名为 ResponseTime，并打上 host 标签。
+   Change the name of the request_time field to RequestTime, change the name of the upstream_response_time field to ResponseTime, and then add the host label.
    `python
 e_to_metric(
     names=[("request_time", "RequestTime"), ("upstream_response_time", "ResponseTime")],
     labels=[("host", "hostname")],
 )
 `
-   更多信息，请参见[e_to_metric](https://help.aliyun.com/document_detail/125484.htm?spm=a2c4g.11186623.0.0.1b421283FwBl0i#section-u7i-ymg-jzp)。
+   For more information, see[e_to_metric](https://www.alibabacloud.com/help/en/doc-detail/125484.htm?spm=a2c4g.11186623.0.0.1b421283FwBl0i#section-u7i-ymg-jzp)。
 4. Click **Preview Data**.
-   ![预览数据1](/img/dataprocessdemo/文本解析/预览数据1.png)
+   ![Preview data.1](/img/dataprocessdemo/文本解析/预览数据1.png)
 
 5. Create a data transformation job
    a. Click **Save as Transformation Job**.
-   b. 在**创建数据 Transformation rule**面板，配置如下信息，然后单击**确定**。
+   b. In the **Create Data Transformation Job** panel, configure the parameters and click **OK**. The following table describes the parameters.
 
-   | 参数                     | Note                                                                              |
-   | ------------------------ | --------------------------------------------------------------------------------- |
-   | **规则名称**             | The name of the data transformation job.例如 log2mectric。                        |
-   | **Authorization Method** | 选择**默认角色**读取源 Logstore 数据。                                            |
-   | **存储目标**             |
-   | **目标名称**             | 存储目标的名称。例如 log2mectric。                                                |
-   | **Destination Region**   | 选择 Destination Project 所在地域。例如华东 1（杭州）。                           |
-   | **Destination Project**  | 用于存储数据 Transformation result 的 Destination Project 名称。                  |
-   | **目标库**               | 用于存储数据 Transformation result 的目标 MetricStore 名称。例如 service-metric。 |
-   | **Authorization Method** | 选择**默认角色**将数据 Transformation result 写入目标时序库 service-metric。      |
-   | **加工范围**             |
-   | **时间范围**             | 时间范围选择**所有**。                                                            |
+   | parameter                              | Note                                                                                                 |
+   | -------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+   | **Job Name**                           | The name of the data transformation job.Example:log2mectric。                                        |
+   | **Authorization Method**               | Select **Default Role** to read data from the source Logstore.                                       |
+   | **Storage Destination**                |
+   | **Destination Name**                   | The name of the storage destination. log2mectric。                                                   |
+   | **Destination Region**                 | The region in which the destination project resides.。                                               |
+   | **Destination Project**                | The name of the project to which the destination Logstore belongs.                                   |
+   | **Target Store**                       | The name of the destination Metricstore to which transformed data is saved.Example: service-metric。 |
+   | **Authorization Method**               | Select **Default Role** to write transformed data to the destination service-metric Metricstore.     |
+   | **Time Range for Data Transformation** |
+   | **Time Range**                         | Select **All**.\*\*。                                                                                |
 
-   c. 在**创建结果**对话框，单击**确认**。
+   c. In the **Result** dialog box, click **Confirm**.
 
-以上 Step 配置完成后，日志服务开始将 Log 加工到目标时序库 service-metric。
+After you perform the preceding steps, Simple Log Service transforms the log data in the source Logstore and writes transformed data to the destination Metricstore.
 
-## Step 三：查询时序数据
+## Step 3: Query time series data
 
-1. 在左侧导航栏，选择**时序存储 > 时序库**。
-2. 在时序库页签下发，选择目标时序库 service-metric。
-3. 在页面右上角，单击**15 分钟（相对）**，设置查询和分析的时间范围。
-   您可以选择相对时间、整点时间和自定义时间范围。
-   **Note** 查询和分析结果相对于指定的时间范围来说，有 1min 以内的误差。
-4. 在**查询配置**页签中，在**Metrics**下拉列表中，选择对应的监控项 RequestTime 或 ReponseTime，单击**预览**。
-   - 每个 Host 的请求时间 RequestTime 变化趋势
+1. In the left-side navigation pane, click **Metric Storage**. The Metricstores page appears.
+2. On the Metricstore tab, select the destination Metricstore: service-metric
+3. In the upper-right corner of the page, click 15 Minutes(Relative) to specify a time range for the query and analysis.
+   You can select a relative time range or a time frame. You can also specify a custom time range.
+   **Note** The query and analysis results may contain time series data that is generated 1 minute earlier or later than the specified time range.
+4. On the **Query Statements** tab, select the RequestTime metric or the ReponseTime metric from the **Metrics** drop-down list and click **Preview**.
+   - The following figure shows the change trend of the RequestTime metric for each host.
      ![ReponseTime1](/img/dataprocessdemo/文本解析/预览数据2.jpg)
-   - 每个 Host 的响应时间 ReponseTime 变化趋势
+   - The following figure shows the change trend of the ReponseTime metric for each host.
      ![ReponseTime2](/img/dataprocessdemo/文本解析/预览数据3.jpg)

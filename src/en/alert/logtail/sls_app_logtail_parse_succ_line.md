@@ -3,8 +3,8 @@
 ::: Note
 
 - If the ratio of the number of rows that failed to be parsed by Logtail to the total number of rows within the last 5 minutes exceeds the specified threshold, an alert is triggered.
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

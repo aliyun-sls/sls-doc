@@ -14,10 +14,10 @@ NGINX logs record important information that can be used for website O&M. Simple
 The following table describes the solutions that you can use to enrich data.
 | solutions| Supported data volume |Incremental update |Batch update | Scenario |
 | -------| --------- |--------- |--------- |--------- |
-| [(Recommended) Enrich data based on a Logstore](https://help.aliyun.com/document_detail/299996.html#section-os8-4jd-yw6) | large number | Support |Support |A mapping table with large amounts of data and frequent update |
-| [Enrich data based on a MySQL table](https://help.aliyun.com/document_detail/299996.html#section-p5k-79r-f93) |large number |not Support| Support | The mapping table is frequently updated. |
-| [Enrich data based on an Object Storage Service (OSS) object](https://help.aliyun.com/document_detail/299996.html#section-tjl-x9k-bk7) | large number |not Supports |Supports | The mapping table is infrequently updated. |
-| [Enrich data based on embedded code](https://help.aliyun.com/document_detail/299996.html#section-aqj-zb3-s8i) | small | not Support | not Support | The mapping table contains typical HTTP response status codes. |
+| [(Recommended) Enrich data based on a Logstore](https://www.alibabacloud.com/help/en/doc-detail/299996.html#section-os8-4jd-yw6) | large number | Support |Support |A mapping table with large amounts of data and frequent update |
+| [Enrich data based on a MySQL table](https://www.alibabacloud.com/help/en/doc-detail/299996.html#section-p5k-79r-f93) |large number |not Support| Support | The mapping table is frequently updated. |
+| [Enrich data based on an Object Storage Service (OSS) object](https://www.alibabacloud.com/help/en/doc-detail/299996.html#section-tjl-x9k-bk7) | large number |not Supports |Supports | The mapping table is infrequently updated. |
+| [Enrich data based on embedded code](https://www.alibabacloud.com/help/en/doc-detail/299996.html#section-aqj-zb3-s8i) | small | not Support | not Support | The mapping table contains typical HTTP response status codes. |
 
 ### Solution 1：(Recommended) Enrich data based on a Logstore
 
@@ -32,11 +32,11 @@ The following table describes the solutions that you can use to enrich data.
    description:OK
    category:Success
    ```
-   For more information, see[SDK](https://help.aliyun.com/document_detail/29063.htm?spm=a2c4g.11186623.0.0.31272f7aJIawy8#reference-n3h-2sq-zdb)。
+   For more information, see[SDK](https://www.alibabacloud.com/help/en/doc-detail/29063.htm?spm=a2c4g.11186623.0.0.31272f7aJIawy8#reference-n3h-2sq-zdb)。
 2. Obtain the name and endpoint of the http_code Logstore and the required AccessKey pair. The obtained information is used to write a data transformation statement.
-   For more information about Simple Log Service endpoints and AccessKey pairs, see [Endpoints](https://help.aliyun.com/document_detail/29008.htm?spm=a2c4g.11186623.0.0.31273007p9ITXQ#reference-wgx-pwq-zdb) and [AccessKey pair](https://help.aliyun.com/document_detail/29009.htm?spm=a2c4g.11186623.0.0.3127229fi02lhe#reference-rh5-tfy-zdb).
+   For more information about Simple Log Service endpoints and AccessKey pairs, see [Endpoints](https://www.alibabacloud.com/help/en/doc-detail/29008.htm?spm=a2c4g.11186623.0.0.31273007p9ITXQ#reference-wgx-pwq-zdb) and [AccessKey pair](https://www.alibabacloud.com/help/en/doc-detail/29009.htm?spm=a2c4g.11186623.0.0.3127229fi02lhe#reference-rh5-tfy-zdb).
 3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
-   For more information, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+   For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
 4. In the code editor, enter the following data transformation statement.
    Read data from the http_code Logstore and use the e_table_map function to return the values of the matched fields.
    ```python
@@ -55,9 +55,9 @@ The following table describes the solutions that you can use to enrich data.
        ("category","http_code_category")]
    )
    ```
-   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
-   - The res_log_logstore_pull function pulls data from another Logstore when you transform data in a Logstore.For more information, see[res_log_logstore_pull](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.31275b1bqoJucc#section-b3c-kth-p0t)。
-   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see[e_table_map](https://help.aliyun.com/document_detail/125489.htm?spm=a2c4g.11186623.0.0.31273c11KZ5Xvb#section-s80-usp-myx)。
+   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+   - The res_log_logstore_pull function pulls data from another Logstore when you transform data in a Logstore.For more information, see[res_log_logstore_pull](https://www.alibabacloud.com/help/en/doc-detail/129401.htm?spm=a2c4g.11186623.0.0.31275b1bqoJucc#section-b3c-kth-p0t)。
+   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see[e_table_map](https://www.alibabacloud.com/help/en/doc-detail/125489.htm?spm=a2c4g.11186623.0.0.31273c11KZ5Xvb#section-s80-usp-myx)。
 5. Click **Preview Data**.
    Nginx After the raw log is enriched, new fields that are related to the HTTP response status code are included in the log.
    ```
@@ -80,7 +80,7 @@ The following table describes the solutions that you can use to enrich data.
    upstream_response_time:0.66
    ```
 6. Create a data transformation job
-   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+   For more information, see[Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 
 ### Solution 2：Enrich data based on a MySQL table
 
@@ -89,7 +89,7 @@ The following table describes the solutions that you can use to enrich data.
    ![ApsaraDB RDS for MySQL mapping table](/img/dataprocessdemo/数据富化/mysql映射表.png)
 2. Obtain the host address, username, password, database name, and table name of the ApsaraDB RDS for MySQL database. The obtained information is used to write a data transformation statement.
 3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
-   For more information, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+   For more information, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
 4. In the code editor, enter the following data transformation statement.
    Read data from the MySQL database and use the e_table_map function to return the values of the matched fields.
    ```python
@@ -133,16 +133,16 @@ The following table describes the solutions that you can use to enrich data.
    upstream_response_time:0.66
    ```
 6. Create a data transformation job
-   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+   For more information, see[Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 
 ### Solution 3：Enrich data based on an Object Storage Service (OSS) object
 
 1. Save HTTP response status codes to an object named http_code.csv and upload the object to
-   For more information, see[Upload objects](https://help.aliyun.com/document_detail/31848.html)。
+   For more information, see[Upload objects](https://www.alibabacloud.com/help/en/doc-detail/31848.html)。
 2. Obtain the name and endpoint of the OSS bucket to which the http_code.csv object is uploaded and the required AccessKey pair. The obtained information is used to write a data transformation statement.
-   For more information, see [Regions and endpoints](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.0.0.312748ed4WxWyr#concept-zt4-cvy-5db).
+   For more information, see [Regions and endpoints](https://www.alibabacloud.com/help/en/doc-detail/31837.htm?spm=a2c4g.11186623.0.0.312748ed4WxWyr#concept-zt4-cvy-5db).
 3. Go to the data transformation page of the nginx-demo Logstore that stores raw logs.
-   For more information, see [Create a data transformation job].(https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+   For more information, see [Create a data transformation job].(https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 4. In the code editor, enter the following data transformation statement.
    Read data from the OSS bucket and use the e_table_map function to return the values of the matched fields.
    ```python
@@ -163,10 +163,10 @@ The following table describes the solutions that you can use to enrich data.
      ("category","http_code_category")]
    )
    ```
-   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
-   - The res_oss_file function pulls data from an object in the specified OSS bucket. The data can be updated at regular intervals.For more information, see[res_oss_file](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.312760aenttgOU#section-mlb-osw-xzd).
-   - The tab_parse_csv function creates a table from a CSV file.For more information, see[tab_parse_csv](https://help.aliyun.com/document_detail/129400.htm?spm=a2c4g.11186623.0.0.7fe32f7a0jls5u#section-tsx-vav-cte)。
-   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see[e_table_map](https://help.aliyun.com/document_detail/125489.htm?spm=a2c4g.11186623.0.0.7fe34732cWFsCH#section-s80-usp-myx)。
+   **import** To ensure data security, we recommend that you specify an AccessKey pair in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217).
+   - The res_oss_file function pulls data from an object in the specified OSS bucket. The data can be updated at regular intervals.For more information, see[res_oss_file](https://www.alibabacloud.com/help/en/doc-detail/129401.htm?spm=a2c4g.11186623.0.0.312760aenttgOU#section-mlb-osw-xzd).
+   - The tab_parse_csv function creates a table from a CSV file.For more information, see[tab_parse_csv](https://www.alibabacloud.com/help/en/doc-detail/129400.htm?spm=a2c4g.11186623.0.0.7fe32f7a0jls5u#section-tsx-vav-cte)。
+   - The e_table_map function maps the value of an input field to a row in the specified table and returns a new field.For more information, see[e_table_map](https://www.alibabacloud.com/help/en/doc-detail/125489.htm?spm=a2c4g.11186623.0.0.7fe34732cWFsCH#section-s80-usp-myx)。
 5. Click **Preview Data**.
    Nginx After the raw log is enriched, new fields that are related to the HTTP response status code are included in the log.
    ```
@@ -189,13 +189,13 @@ The following table describes the solutions that you can use to enrich data.
    upstream_response_time:0.66
    ```
 6. Create a data transformation job
-   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+   For more information, see[Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 
 ### Solution 4：Enrich data based on embedded code
 
 1. Prepare a mapping table of HTTP response status codes in the CSV format.
 2. Go to raw log entries nginx-demo 的 Logstore，Go to the data transformation page.
-   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+   For more information, see[Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
 3. In the code editor, enter the following data transformation statement.
    Use the tab_parse_csv function to create a table from the CSV file and use the e_table_map function to return the values of the matched fields.
    ```python
@@ -234,4 +234,4 @@ The following table describes the solutions that you can use to enrich data.
    upstream_response_time:0.66
    ```
 5. Create a data transformation job
-   For more information, see[Create a data transformation job](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。
+   For more information, see[Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.0.0.31277972G58j2K#task-1181217)。

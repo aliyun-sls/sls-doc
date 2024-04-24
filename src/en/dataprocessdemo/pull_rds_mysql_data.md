@@ -1,30 +1,30 @@
-# 从 RDS MySQL 数据库获取数据进行数据富化
+# Obtain data from an ApsaraDB RDS for MySQL database for data enrichment
 
-日志服务数据加工功能支持从阿里云 RDS MySQL 数据库获取数据，结合数据 Transformation rule，进行数据富化。
+The data transformation feature of Simple Log Service allows you to obtain data from ApsaraDB RDS for MySQL databases and enrich the data based on data transformation rules.
 
 **Note**
 
-- RDS MySQL 实例与日志服务 Project 需处于同一地域，否则无法获取数据。
+- RDS MySQL The instance on which your ApsaraDB RDS for MySQL database is created must reside in the same region as your Simple Log Service project. Otherwise, you cannot obtain data from the database.
 
-- 如果您要使用 RDS 内网地址访问 RDS MySQL 数据库获取数据，进行数据富化，可参见[使用 RDS 内网地址访问 RDS MySQL 数据库](https://help.aliyun.com/document_detail/162753.htm?spm=a2c4g.11186623.0.0.6e4c385bQ7Qjb5#task-2479452)。
+- You can access and obtain data from an ApsaraDB RDS for MySQL database by using an internal endpoint of the instance on which the database is created. For more information, see [Obtain data from an ApsaraDB RDS for MySQL database over the internal network](https://www.alibabacloud.com/help/en/doc-detail/162753.htm?spm=a2c4g.11186623.0.0.6e4c385bQ7Qjb5#task-2479452).
 
-## 结合 e_table_map 函数进行数据富化
+## Use the e_search_map_table function to enrich data
 
-本示例介绍使用 e_table_map 函数和 res_rds_mysql 函数完成数据富化的方法。
+In this example, the e_search_map_table and res_rds_mysql functions are used to enrich data.
 
-- 原始数据
+- Raw data
 
-  - RDS MySQL 数据库表中的数据样例如下表所示。
+  - RDS MySQL Sample data records in a table of a database
 
-  | province | city | population | cid | eid   |
-  | -------- | ---- | ---------- | --- | ----- |
-  | 上海     | 上海 | 2000       | 1   | 00001 |
-  | 天津     | 天津 | 800        | 1   | 00002 |
-  | 北京     | 北京 | 4000       | 1   | 00003 |
-  | 河南     | 郑州 | 3000       | 2   | 00004 |
-  | 江苏     | 南京 | 1500       | 2   | 00005 |
+  | province | city      | population | cid | eid   |
+  | -------- | --------- | ---------- | --- | ----- |
+  | shanghai | shanghai  | 2000       | 1   | 00001 |
+  | tianjin  | tianjin   | 800        | 1   | 00002 |
+  | beijing  | beijing   | 4000       | 1   | 00003 |
+  | henan    | zhengzhou | 3000       | 2   | 00004 |
+  | jiangsu  | nanjing   | 1500       | 2   | 00005 |
 
-  - 日志服务 Logstore 中的日志样例如下所示。
+  - Sample log in a Logstore of Simple Log Service
 
     ```
     time:"1566379109"
@@ -49,11 +49,11 @@
     ```
 
 - Transformation rule
-  通过日志服务 Logstore 中的 cid 字段和 RDS MySQL 数据库表中 cid 字段进行匹配，只有 cid 字段的值完全相同，才能匹配成功。匹配成功后，返回 RDS MySQL 数据库表中的 province、city 和 population 字段和字段值，与 Logstore 中的数据拼接，生成新的数据。
+  Compare the sex field in the Logstore and the sex field in the Hologres database. Both fields match only when the sex values are the same.If both fields match, the value of the product_name field is pulled from the Hologres database and concatenated with the log data in the Logstore into new data.
   **Note**
 
-  - 日志字段的值和 RDS MySQL 数据库表字段的值进行等值匹配时，如果 RDS MySQL 数据库表字段存在多个相同的值（例如 RDS MySQL 数据库表有多个值为 1 的 cid 字段。），e_table_map 函数只获取匹配到的第一行数据。
-  - e_table_map 函数只支持单行匹配，如果您要实现多行匹配，将匹配到的数据组合成新的日志，可使用 e_search_table_map 函数，详情请参见[结合 e_search_map_table 函数进行数据富化](https://help.aliyun.com/document_detail/135243.html#section-e98-4bk-03e)。
+  - If multiple values of a field are matched in the table, the e_table_map function obtains only the first data record. In this example, the cid field in the table has multiple values of 1.
+  - e_table_map The e_table_map function supports only single-row matching. If you want to implement multi-row matching and combine the matched data into a new log, you can use the e_search_table_map function. For more information, see [Use the e_search_map_table function to enrich data](https://www.alibabacloud.com/help/en/doc-detail/135243.html#section-e98-4bk-03e).
     ```python
     e_table_map(
       res_rds_mysql(
@@ -69,7 +69,7 @@
     )
     ```
 
-  在 res_rds_mysql 函数中配置 RDS MySQL 数据库相关信息，详情请参见[res_rds_mysql](https://help.aliyun.com/document_detail/129401.htm?spm=a2c4g.11186623.0.0.6e4c34363VG5JI#section-49h-ufh-ptu)。
+For more information about how to configure an ApsaraDB RDS for MySQL database in the res_rds_mysql function, see [res_rds_mysql](https://www.alibabacloud.com/help/en/doc-detail/129401.htm?spm=a2c4g.11186623.0.0.6e4c34363VG5JI#section-49h-ufh-ptu).
 
 - Transformation result
 
@@ -78,42 +78,42 @@
   data:"test-one"
   cid:"1"
   eid:"00001"
-  province:"上海"
-  city:"上海"
+  province:"shanghai"
+  city:"shanghai"
   population:"2000"
 
   time:"1566379111"
   data:"test_second"
   cid:"1"
   eid:"12345"
-  province:"上海"
-  city:"上海"
+  province:"shanghai"
+  city:"shanghai"
   population:"2000"
 
   time:"1566379111"
   data:"test_three"
   cid:"2"
   eid:"12345"
-  province:"河南"
-  city:"郑州"
+  province:"henan"
+  city:"zhengzhou"
   population:"3000"
 
   time:"1566379113"
   data:"test_four"
   cid:"2"
   eid:"12345"
-  province:"河南"
-  city:"郑州"
+  province:"henan"
+  city:"zhengzhou"
   population:"3000"
   ```
 
-## 结合 e_search_map_table 函数进行数据富化
+## Use the e_search_map_table function to enrich data
 
-本示例介绍使用 e_search_map_table 函数和 res_rds_mysql 函数完成数据富化的方法。
+In this example, the e_search_map_table and res_rds_mysql functions are used to enrich data.
 
-- 原始数据
+- Raw data
 
-  - RDS MySQL 数据库表中的数据样例如下表所示。
+  - RDS MySQL Sample data records in a table of a database
 
   | content       | name   | age |
   | ------------- | ------ | --- |
@@ -121,7 +121,7 @@
   | province~=su$ | aliyun | 18  |
   | city:nanjing  | vicky  | 20  |
 
-  - 日志服务 Logstore 中的日志样例如下所示。
+  - Sample log in a Logstore of Simple Log Service
     ```
     time:1563436326
     data:123
@@ -130,14 +130,14 @@
     ```
 
 - Transformation rule
-  根据指定的 RDS MySQL 数据库表中的字段值（例如 content 字段的值）去匹配日志字段，其中指定的 RDS MySQL 数据库表中的字段值为 Key-Value 形式，Key 对应日志字段，Value 为正则表达式，对应日志字段的值。根据匹配结果，将相关字段和字段值与 Logstore 中的数据拼接，生成新的数据。
+  You can configure a transformation rule to match the values of the content field in the table against the log in the Logstore. The values are key-value pairs. A key corresponds to a field name in the log. A value corresponds to a field value in the log and is a regular expression.The system concatenates the related fields and field values in the table based on the matching result with the log to generate a new log.
   ```
   Note
-  1、在res_rds_mysql函数中配置RDS MySQL数据库相关信息，详情请参见res_rds_mysql。
-  2、content字段为RDS MySQL数据库表中的字段，使用该字段的值去匹配日志字段，支持正则匹配、完全匹配、模糊匹配等形式，具体匹配规则请参见e_search。
+  1、For more information about how to configure an ApsaraDB RDS for MySQL database in the res_rds_mysql function, seeres_rds_mysql。
+  2、The content field is included in the table. When the system matches the values of the field against the log, various matching modes are supported, such as regular expression match, exact match, and fuzzy match. For more information about matching rules, see。
   ```
-  - 单行匹配
-    匹配到 RDS MySQL 数据库表中一行数据就返回。
+  - Single-row matching
+    The system returns the transformation result when one data record in the table matches the log.
     ```python
     e_search_table_map(
       res_rds_mysql(
@@ -152,11 +152,11 @@
       "name"
     )
     ```
-  - 多行匹配
-    遍历 RDS MySQL 数据库表中的所有数据行，将匹配到的数据全部添加到指定字段中。
-    **Note** 语法中增加如下两个参数。
-    - multi_match=True：开启多行匹配。
-    - multi_join=","：匹配到多个值时使用逗号（,）进行组合。
+  - Multi-row matching
+    The system traverses all data records in the table and adds all matched data to the specified field.
+    **Note** The following parameter settings are required:
+    - multi_match=True：enables multi-row matching.
+    - multi_join=","：concatenates multiple matched values with commas (,).
       ```python
       e_search_table_map(
         res_rds_mysql(
@@ -174,8 +174,8 @@
       )
       ```
 - Transformation result
-  - 单行匹配
-    例如：匹配日志中字段值符合 n\*表达式的 city 字段，匹配成功后，返回 RDS MySQL 数据库表中的 name 字段和字段值，生成一条新的日志。
+  - Single-row matching
+    In this example, the system checks whether the value of the city field in the log matches the n\* expression. If the match is successful, the system returns the name field and field value for the matched data record in the table to generate a new log.
     ```
     time:1563436326
     data:123
@@ -183,8 +183,8 @@
     province:jiangsu
     name:aliyun
     ```
-  - 多行匹配
-    例如：匹配日志中字段值符合 n\*表达式的 city 字段，符合 su$表达式的 province 和是否包含 nanjing 的 city 字段。其中~=后面是正则表达式，冒号（:）表示是否包含该字段。匹配成功后，返回 RDS MySQL 数据库表中的 name 字段和对应的三个字段值，多个字段值用逗号（,），生成一条新的日志。
+  - Multi-row matching
+    In this example, the system checks whether the value of the city field in the log matches the n\* expression, whether the value of the province field in the log matches the su$ expression, and whether the value of the city field in the log includes nanjing.In this example, a regular expression is preceded by ~=. The colon (:) indicates whether the followed string is included.If the match is successful, the system returns the name field and three values of the field in the table, and concatenates the returned data with the log to generate a new log. The values are separated by commas (,).
     ```
     time:1563436326
     data:123

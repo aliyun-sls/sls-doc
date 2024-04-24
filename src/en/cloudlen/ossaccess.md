@@ -12,7 +12,7 @@
 
 2.  Simple Log Service automatically creates a dedicated project and a Logstore to store access logs of OSS buckets. The project is named in the oss-log-_Alibaba Cloud account ID_\-_region ID_ format. The Logstore is named oss-log-store.
 
-For more information about detailed log fields, see [OSS log field details\_Simple Log Service-Alibaba Cloud Help Center].(https://help.aliyun.com/document_detail/458773.html?spm=a2c4g.456011.0.0.5b6936cfRh5Exj#section-uzb-eoc-28t)
+For more information about detailed log fields, see [OSS log field details\_Simple Log Service-Alibaba Cloud Help Center].(https://www.alibabacloud.com/help/en/doc-detail/458773.html?spm=a2c4g.456011.0.0.5b6936cfRh5Exj#section-uzb-eoc-28t)
 
 3.  Use scheduled SQL statements to aggregate summary information from the raw access logs of buckets and write the information to the centralized project and Logstore.
 

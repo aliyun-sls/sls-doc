@@ -1,1 +1,1 @@
-# 批量更新定时 SQL
+# Update multiple scheduled SQL tasks

@@ -1,15 +1,21 @@
 # NULL values are not allowed on the probe side of SemiJoin operator. See the query plan for details.
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > NULL values are not allowed on the probe side of SemiJoin operator. See the query plan for details.
 
-## 错误描述
-NULL值不允许出现在半连接（SemiJoin）的探测端。
+## Error description
 
-## 可能原因
-在半连接中，探测端不能出现非NULL值，否则半连接无法正确执行。可能是查询运行时的probe表中某行记录或子查询返回了NULL值。
+Null values are not allowed on the probe side of the SemiJoin operator.
 
-## 解决方法
-请检查查询计划以确定哪个表返回了NULL值。如果涉及到子查询，请确保其子查询返回的结果集不包含 NULL 值。如果是外部表中的NULL值导致了问题，可以考虑使用 INNER JOIN 替代半连接，或使用 COALESCE 或 ISNULL函数来处理NULL值。
+## Cause
+
+In a semi-join, null values cannot appear on the probe side. Otherwise, the semi-join cannot be executed.The possible cause is that a null value is returned for a row record in the probe table or a subquery during the query.
+
+## Solution
+
+Check the query plan to determine the table that returns the null value.If the query plan involves subqueries, make sure that the result set returned by the subqueries does not contain a null value.If the error is caused by a null value in an external table, you can replace the semi-join with an inner-join, or use the COALESCE or ISNULL function to process the null value.

@@ -3,8 +3,8 @@
 ::: Note
 
 - If Logtail fails to transfer data in a Logstore because the quota exceeds the specified threshold within the last 5 minutes, an alert is triggered.Data of the last 5 minutes is inspected at a 5-minute interval.
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

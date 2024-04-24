@@ -1,15 +1,21 @@
-# Key-value delimiter must appear exactly once in each entry. Bad input: '*'
+# Key-value delimiter must appear exactly once in each entry. Bad input: '\*'
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Key-value delimiter must appear exactly once in each entry. Bad input: 'label_oxford_gaodun_c'
 
-## 错误描述
-每个条目中的键值分隔符必须出现一次。
+## Error description
 
-## 可能原因
-在输入中的某个键值对中，分隔符出现了不止一次，或者没有出现，导致系统无法解析该键值对。
+The key-value delimiter must appear only once in each entry.
 
-## 解决方法
-首先，请检查输入中的键值对格式是否正确，确保每个键值对中只有一个分隔符，并且分隔符两侧都有正确的键和值。如果问题依然存在，可以考虑使用更为严谨的数据格式或者查看相关文档寻求帮助。另外，也可以通过查看错误提示前后的代码上下文，尝试找到问题所在。如果问题依然存在，可以向SLS提工单寻求帮助。
+## Cause
+
+The delimiter appears more than once or does not appear in an input key-value pair. As a result, the system cannot parse the key-value pair.
+
+## Solution
+
+Check whether the format of the key-value pair is correct. Make sure that each key-value pair contains only one delimiter, and the key and value on both sides of the delimiter are correct.If the error persists, consider using a more rigorous data format or check the documentation for help.You can also troubleshoot the error by checking the code context before and after the error prompt. If the error persists, submit a ticket to Simple Log Service for assistance.

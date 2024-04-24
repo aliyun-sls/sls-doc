@@ -29,7 +29,7 @@
 1. 在仪表盘页面，单击编辑。
 2. 在编辑模式下，选择新建图表 > 线图 pro 图标。
 3. 设置查询分析，然后单击应用。
-   添加如下查询分析语句。更多信息，请参见[查询分析](https://help.aliyun.com/document_detail/339860.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#concept-2134122)。
+   添加如下查询分析语句。更多信息，请参见[查询分析](https://www.alibabacloud.com/help/en/doc-detail/339860.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#concept-2134122)。
 
    ```sql
    * | select __time__ - __time__ % 60 as time, count_if(region='cn-shanghai') AS count1, count_if(region='cn-hangzhou') AS count2 GROUP BY time order by time
@@ -41,7 +41,7 @@
    如下图所示，两个地域的请求数量相差较大，共用一个 Y 轴，导致图中上海地域的请求数变化趋势展示不清晰。此时您可以通过字段配置，在线图的右侧添加一个 Y 轴，其数量级适用于上海地域的请求数。
 
 4. 添加字段配置。
-   在字段配置页签中，针对 count1 列，添加一条 Y 轴。具体参数说明，请参见[字段配置](https://help.aliyun.com/document_detail/340721.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#section-f59-ql8-mzd)。
+   在字段配置页签中，针对 count1 列，添加一条 Y 轴。具体参数说明，请参见[字段配置](https://www.alibabacloud.com/help/en/doc-detail/340721.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#section-f59-ql8-mzd)。
    ![picture 3](/img/src/visulization/doubley/6a1246921eb8c13118f796035c8ec080c47e9a4b6ce95c6a570bd32e2a83864c.png)  
    设置完成后，该线图将有两个 Y 轴，并且两个 Y 轴的数量级不同，左侧 Y 轴适用于杭州地域的请求数，右侧 Y 轴适用于上海地域的请求数，如下图所示。
    ![picture 4](/img/src/visulization/doubley/78754be375ee62579e933a7859cb173048559d46a4a1110cd58eeab8aae70efe.png)
@@ -76,7 +76,7 @@
    ![picture 6](/img/src/visulization/doubley/41d158aeaa553aa98ac1da9d7245a3b36ebdedd185d28afe38123b9340f81fd4.png)
 
 4. 添加字段配置。
-   在字段配置页签中，针对查询分析 B 的结果，添加一条 Y 轴。具体参数说明，请参见[字段配置](https://help.aliyun.com/document_detail/340721.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#section-f59-ql8-mzd)。
+   在字段配置页签中，针对查询分析 B 的结果，添加一条 Y 轴。具体参数说明，请参见[字段配置](https://www.alibabacloud.com/help/en/doc-detail/340721.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#section-f59-ql8-mzd)。
    ![picture 7](/img/src/visulization/doubley/9420988ed93cb203a82018ac014e5b2e9952f3ede29c015c7e1a21efbf498f08.png)
    设置完成后，该线图将有两个 Y 轴，并且两个 Y 轴的数量级不同，左侧 Y 轴适用于成功请求的数量，右侧 Y 轴适用于展示失败请求的数量，如下图所示。
    ![picture 8](/img/src/visulization/doubley/0657862b2c6fc75b865b46f9e8b183893ab61ca8b4f4973fcdb2cbfd37791ed1.png)
@@ -117,7 +117,7 @@
    ![picture 10](/img/src/visulization/doubley/89d2ecde777375f950fd7adf2d78c0645c9bdd74bcb876f25076405c83b20026.png)
 
 4. 添加字段配置。
-   在字段配置页签中，完成如下配置，添加两条 Y 轴。具体参数说明，请参见[字段配置](https://help.aliyun.com/document_detail/340721.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#section-f59-ql8-mzd)。
+   在字段配置页签中，完成如下配置，添加两条 Y 轴。具体参数说明，请参见[字段配置](https://www.alibabacloud.com/help/en/doc-detail/340721.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#section-f59-ql8-mzd)。
 
    - 针对查询分析 B 的结果，添加一条 Y 轴。
    - 针对查询分析 C 的结果，添加一条 Y 轴。

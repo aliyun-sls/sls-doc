@@ -3,8 +3,9 @@
 ::: Note
 
 -If a cordon or uncordon event occurs on a node, an alert is triggered. Logs of the last 2 minutes are inspected at a 1-minute interval.
-- [Simple Log Service SDK reference](https://help.aliyun.com/document_detail/387421.html)
-- [Data structure of an alert rule](https://help.aliyun.com/document_detail/433029.htm)
+
+- [Simple Log Service SDK reference](https://www.alibabacloud.com/help/en/doc-detail/387421.html)
+- [Data structure of an alert rule](https://www.alibabacloud.com/help/en/doc-detail/433029.htm)
   :::
 
 ::: code-group

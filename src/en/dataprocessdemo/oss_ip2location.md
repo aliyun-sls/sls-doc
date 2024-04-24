@@ -1,18 +1,18 @@
-# 从 OSS 获取 IP2Location 库进行 IP 地址数据富化
+# Obtain the IP2Location library from OSS and enrich IP address data
 
-日志服务数据加工功能支持从 OSS 获取 IP2Location 库数据，对日志中的 IP 地址进行富化，补充 IP 地址所属的国家、省、市等信息。
+You can use the data transformation feature of Simple Log Service to obtain the IP2Location library from Object Storage Service (OSS) and use the library to identify the city, state, and country to which an IP address belongs.
 
-## 前提条件
+## Preconditions
 
-- 已创建访问密钥（AccessKey），用于访问 OSS Bucket，详情请参见[为 RAM 用户创建访问密钥](https://help.aliyun.com/document_detail/116401.htm?spm=a2c4g.11186623.2.5.4c87415aMxKjv2#task-188766)。
+- AccessKey pairs are created to access an OSS bucket. For more information, see [Create an AccessKey pair for a RAM user](https://www.alibabacloud.com/help/en/doc-detail/116401.htm?spm=a2c4g.11186623.2.5.4c87415aMxKjv2#task-188766).
 
-  推荐创建一个只读权限的 AccessKey，用于从 OSS 获取文件；一个只写权限的 AccessKey，用于上传文件到 OSS。授权策略详情请参见[RAM Policy 概述](https://help.aliyun.com/document_detail/100680.htm?spm=a2c4g.11186623.2.6.4c87415aMxKjv2#concept-y5r-5rm-2gb)。
+  We recommend that you create an AccessKey pair that has read-only permissions on the OSS bucket and an AccessKey pair that has write-only permissions on the OSS bucket. This way, you can use the first AccessKey pair to read data from the OSS bucket and use the second AccessKey pair to write data to the OSS bucket.For more information, see [RAM policies](https://www.alibabacloud.com/help/en/doc-detail/100680.htm?spm=a2c4g.11186623.2.6.4c87415aMxKjv2#concept-y5r-5rm-2gb).
 
-- 已从 IP2Location 官网下载 IP 地址文件，并上传到 OSS，详情请参见[上传文件](https://help.aliyun.com/document_detail/31886.htm?spm=a2c4g.11186623.2.7.4c87415aMxKjv2#concept-zx1-4p4-tdb)。
+- The IP2Location library is downloaded from the IPIP.NET website and uploaded to OSS. For more information, see [Upload an object](https://www.alibabacloud.com/help/en/doc-detail/31886.htm?spm=a2c4g.11186623.2.7.4c87415aMxKjv2#concept-zx1-4p4-tdb).
 
-  使用只写权限的 AccessKey 进行上传。
+  We recommend that you use an AccessKey pair that has write-only permissions on OSS to upload the library.
 
-## 实践案例
+## Examples
 
 - Raw log entries
 
@@ -39,16 +39,16 @@
   e_json("geo")
   ```
 
-  res_oss_file 函数重要字段 Note 如下表所示。
+  The following table describes the fields in the res_oss_file function.
 
-  | 字段     | Note                                                                                                                                                                                                                                                                                                                     |
-  | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-  | endpoint | OSS 访问域名，详情请参见[访问域名和数据中心](https://help.aliyun.com/document_detail/31837.htm?spm=a2c4g.11186623.2.11.4996415aKwzQM9#concept-zt4-cvy-5db)。                                                                                                                                                             |
-  | ak_id    | 具备只读 OSS 权限的 AccessKey ID。 出于安全考虑，建议配置为 res_local("AK_ID")，表示从高级参数配置中获取。高级参数配置 Procedure 请参见[创建数据加工任务](https://help.aliyun.com/document_detail/125615.htm?spm=a2c4g.11186623.2.12.4996415aKwzQM9#task-1181217)。![](/img/dataprocessdemo/IP地址相关/高级参数配置.png) |
-  | ak_key   | 具备只读 OSS 权限的 AccessKey Secret。 出于安全考虑，建议配置为 res_local("AK_KEY")表示从高级参数配置中获取。                                                                                                                                                                                                            |
-  | bucket   | 用于存储 IP 地址文件的 OSS Bucket。                                                                                                                                                                                                                                                                                      |
-  | file     | 您已上传的 IP 地址文件的名称。                                                                                                                                                                                                                                                                                           |
-  | format   | 使用 res_oss_file 函数从 OSS 获取 IP2Location 库数据时，文件输出格式需设置为 format='binary'。                                                                                                                                                                                                                           |
+  | field    | Note                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | endpoint | The endpoint that is used to access the OSS bucket. For more information, see [Regions and endpoints](https://www.alibabacloud.com/help/en/doc-detail/31837.htm?spm=a2c4g.11186623.2.11.4996415aKwzQM9#concept-zt4-cvy-5db)。                                                                                                                                                                                                                                                |
+  | ak_id    | The AccessKey ID that has read permissions on OSS. For security concerns, we recommend that you set the value to res_local("AK_ID") in the Advanced Parameter Settings field.For more information about how to configure the Advanced Parameter Settings field, see [Create a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/125615.htm?spm=a2c4g.11186623.2.12.4996415aKwzQM9#task-1181217).![](/img/dataprocessdemo/IP地址相关/高级参数配置.png) |
+  | ak_key   | The AccessKey secret that has read permissions on OSS.For security concerns, we recommend that you set the value to res_local("AK_KEY") in the Advanced Parameter Settings field.                                                                                                                                                                                                                                                                                            |
+  | bucket   | The OSS bucket used to store the IP address library.                                                                                                                                                                                                                                                                                                                                                                                                                         |
+  | file     | The name of the IP address library that you have uploaded.                                                                                                                                                                                                                                                                                                                                                                                                                   |
+  | format   | The format of the data obtained from the IP address library. Set the value to format='binary'。                                                                                                                                                                                                                                                                                                                                                                              |
 
 - Transformation result
 

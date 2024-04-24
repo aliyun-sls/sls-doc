@@ -1,15 +1,21 @@
 # Index must be greater than zero
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Index must be greater than zero
 
-## 错误描述
-索引位置从1开始
+## Error description
 
-## 可能原因
-您在SQL使用数组索引位置时，可能指定了无法的负值或者0。
+The index must start from 1.
 
-## 解决方法
-SQL数组索引位置从1开始计起。
+## Cause
+
+The array index that you specify in SQL may be a negative number or 0, which is invalid.
+
+## Solution
+
+Make sure that the array index in SQL starts from 1.

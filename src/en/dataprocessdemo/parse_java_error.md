@@ -1,44 +1,44 @@
-# 解析 Java 报错日志
+# Parse Java error logs
 
-在大数据、高并发 Scenario 下的 Java 应用中，通过有效方式分析 Java 报错日志并提供运维指导，能有效减轻产品运营维护成本。日志服务支持采集各云产品的 Java 报错日志，通过数据加工解析 Java 错误日志。
+In big data scenarios that require high concurrency, effective analysis of Java error logs can reduce the O&M costs of Java applications.You can use Simple Log Service to collect Java error logs from Alibaba Cloud services and use the data transformation feature to parse the collected logs.
 
-## 总体流程
+## The procedure consists of the following steps:
 
-通过 Logtail 采集应用 A 的报错日志到名称为 cloud_product_error_log 的 Logstore 中，然后再经过数据加工后投递到各自产品的 Logstore 中，最后对各个产品的错误日志做分析。总体流程如下：
-![总体流程1](/img/dataprocessdemo/文本解析/总体流程1.png)
+The error logs of Application A are collected by using Logtail and are stored in the cloud_product_error_log Logstore. Then, the error logs are transformed and the transformed logs are sent to the Logstore of each cloud service for error analysis.The procedure consists of the following steps:
+![Procedure 1](/img/dataprocessdemo/文本解析/总体流程1.png)
 
-1. 设计数据加工语句：数据加工分析，编写数据加工语句。
-2. 创建数据加工任务：根据产品不同，将日志分发至不同产品的错误分析 Logstore。
-3. 查询和分析数据：在各产品的错误分析 Logstore 中进行日志分析。
+1. Design a data transformation statement: In this step, analyze the transformation logic and write a transformation statement.
+2. Create a data transformation job: In this step, send logs to different Logstores of cloud services for error analysis.
+   3.Query and analyze data: In this step, analyze error logs in the Logstore of each cloud service.
 
-## Step 一：设计数据加工语句
+## Step 1: Design a data transformation statement
 
-### 加工流程
+### Transformation procedure
 
-为便于错误日志分析，需要：
+To analyze error logs in a convenient manner, you must complete the following operations:
 
-1. 提取 message 字段中的时间、错误码、状态码、产品信息、错误码信息、请求方法和出错行号。
-2. 将错误日志存储到各产品的 Logstore。
-   ![加工流程1](/img/dataprocessdemo/文本解析/加工流程1.png)
+1. Extract the log time, error code, status code, service name, error message, request method, and error line number from the message field.
+2. Send error logs to the Logstore of each cloud service.
+   ![Transformation procedure 1](/img/dataprocessdemo/文本解析/加工流程1.png)
 
-### 加工逻辑分析
+### Transformation logic
 
-分析 Raw log entries 字段中的时间、错误码、状态码、产品信息、错误码信息、请求方法和出错行号，为提取每种字段设计正则表达式。
-![加工逻辑分析](/img/dataprocessdemo/文本解析/加工逻辑分析.png)
+In this case, you must analyze the log time, error code, status code, service name, error message, request method, and error line number in the raw log field, and then design regular expressions for each field that you want to extract.
+![Transformation logic](/img/dataprocessdemo/文本解析/加工逻辑分析.png)
 
-### 语法详解
+### Grammar Explanation
 
-1. 使用 regex_match 函数匹配出此条日志中是否有 LogException。更多信息，请参见[regex_match](https://help.aliyun.com/document_detail/125411.htm?spm=a2c4g.11186623.0.0.400463baujwkqV#section-p5o-wsv-w8a)。
-2. 如果匹配上则按照解析 SLS 错误日志的规则进行处理；如果匹配上 OSSException 则按照解析 OSS 错误日志的规则进行处理。更多信息，请参见[e_switch](https://help.aliyun.com/document_detail/129393.htm?spm=a2c4g.11186623.0.0.400450eeasy38j#section-f1t-ukb-ilk)。
-3. 使用 e_regex 正则解析函数解析相应的错误日志。更多信息，请参见[e_regex](https://help.aliyun.com/document_detail/125488.htm?spm=a2c4g.11186623.0.0.40046327TTEjv8#section-1rn-crw-ur9)。
-4. 删除原字段 message 信息，并投递到相应产品的 Logstore。更多信息，请参见[e_drop_fields](https://help.aliyun.com/document_detail/125485.htm?spm=a2c4g.11186623.0.0.4004ac3aWDwCuN#section-q8m-zn8-uvj)和[e_output、e_coutput](https://help.aliyun.com/document_detail/125484.htm?spm=a2c4g.11186623.0.0.40044358BWfUrK#section-zi7-wtp-30c)。
-5. 更多信息，请参见[正则表达式-分组](https://help.aliyun.com/document_detail/129386.htm?spm=a2c4g.11186623.0.0.4004176fAP7mNI#section-r6z-2z2-97g)。
+1. Use the regex_match function to match logs that contain LogException.For more information, see [regex_match](https://www.alibabacloud.com/help/en/doc-detail/125411.htm?spm=a2c4g.11186623.0.0.400463baujwkqV#section-p5o-wsv-w8a).
+2. If a log contains LogException, the log is transformed based on the transformation rule of Simple Log Service error logs. If a log contains OSSException, the log is transformed based on the transformation rule of OSS error logs.For more information, see[e_switch](https://www.alibabacloud.com/help/en/doc-detail/129393.htm?spm=a2c4g.11186623.0.0.400450eeasy38j#section-f1t-ukb-ilk)。
+3. Use the e_regex function to parse error logs for each cloud service.For more information, see[e_regex](https://www.alibabacloud.com/help/en/doc-detail/125488.htm?spm=a2c4g.11186623.0.0.40046327TTEjv8#section-1rn-crw-ur9)。
+4. Delete the message field and send error logs to the Logstore of the corresponding cloud service.For more information, see[e_drop_fields](https://www.alibabacloud.com/help/en/doc-detail/125485.htm?spm=a2c4g.11186623.0.0.4004ac3aWDwCuN#section-q8m-zn8-uvj)和[e_output、e_coutput](https://www.alibabacloud.com/help/en/doc-detail/125484.htm?spm=a2c4g.11186623.0.0.40044358BWfUrK#section-zi7-wtp-30c).
+5. For more information, see the [Group section in Regular expressions](https://www.alibabacloud.com/help/en/doc-detail/129386.htm?spm=a2c4g.11186623.0.0.4004176fAP7mNI#section-r6z-2z2-97g).
 
-### 加工语法分析
+### Transformation statement syntax
 
-以使用正则表达式解析 SLS 错误日志为例，具体如下：
-![语法解析](/img/dataprocessdemo/文本解析/语法解析.png)
-具体的加工语法为：
+The following figure shows how to use regular expressions to parse a Simple Log Service error log.
+![Transformation statement syntax](/img/dataprocessdemo/文本解析/语法解析.png)
+The following example shows the specific syntax of a data transformation statement:：
 
 ```python
 e_switch(
@@ -63,14 +63,14 @@ e_switch(
 )
 ```
 
-## Step 二：创建数据加工任务
+## Step 2: Create a data transformation job
 
 1. Go to the data transformation page.
    a. In the Projects section, click the desired project.
-   b. 在**日志存储 > 日志库** 页签中，单击目标 Logstore。
+   b. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the desired Logstore.
    c. On the query and analysis page, click **Data Transformation**.
 2. In the upper-right corner of the page, specify a time range for the required log data.
-   请确保在**Raw log entries**页签中有 Log。
+   Make sure that log data exists on the **Raw Logs** tab.
 3. In the code editor, enter the following data transformation statement.
    ```python
    e_switch(
@@ -95,55 +95,55 @@ e_switch(
    )
    ```
 4. Click **Preview Data**.
-   ![预览数据](/img/dataprocessdemo/文本解析/预览数据.png)
+   ![Preview data](/img/dataprocessdemo/文本解析/预览数据.png)
 5. Create a data transformation job
    a. Click **Save as Transformation Job**.
-   b. 在**创建数据 Transformation rule**面板，配置如下信息，然后单击**确定**。
-   | 参数| Note |
+   b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**. The following table describes the parameters.
+   | parameter| Note |
    | -------| --------- |
-   | **规则名称** | The name of the data transformation job.例如 test。 |
-   | **Authorization Method** | 选择**默认角色**读取源 Logstore 数据。 |
-   | **存储目标** |
-   | **目标名称** | 存储目标的名称。例如 sls-error 和 oss-error。 |
-   | **Destination Region** | 选择 Destination Project 所在地域。 |
-   | **Destination Project** | 用于存储数据 Transformation result 的 Destination Project 名称。 |
-   | **目标库** | 用于存储数据 Transformation result 的目标 Logstore 名称。例如 sls-error 和 oss-error。 |
-   | **Authorization Method** | 选择**默认角色**将数据 Transformation result 写入目标日志库。 |
-   | **加工范围** |
-   | **时间范围** | 时间范围选择**所有**。 |
+   | **Job Name** | The name of the data transformation job.Example test。 |
+   | **Authorization Method** | Select **Default Role** to read data from the source Logstore. |
+   | **Storage Destination** |
+   | **Destination Name** | The name of the storage destination.Example sls-error and oss-error. |
+   | **Destination Region** | The region in which the destination project resides. |
+   | **Destination Project** | The name of the project to which the destination Logstore belongs. |
+   | **Target Store** | The name of the destination Logstore. |
+   | **Authorization Method** | Select **Default Role** to write transformation results to the destination Logstore. |
+   | **Time Range for Data Transformation** |
+   | **Time Range** | Select **All**. |
 
-   创建数据 Transformation rule 后，日志服务默认为每个加工任务创建一个仪表盘，您可以在仪表盘中查看数据加工任务运行指标。
-   ![运行指标](/img/dataprocessdemo/文本解析/运行指标.png)
-   通过**异常详情**图表，可以查到具体哪一条日志没有解析出来，然后再调整正则表达式。
+After you create a data transformation job, Simple Log Service creates a dashboard for the job by default. You can view the metrics of the job on the dashboard.
+![Metrics](/img/dataprocessdemo/文本解析/运行指标.png)
+On the **Exception detail** chart, you can view the logs that failed to be parsed, and then modify the regular expression.
 
-   - 如果解析 Log 失败，上报 WARNING 级别日志。该类报错不会影响到整个加工任务继续执行。
-   - 如果上报 ERROR 级别日志，则会影响到整个加工任务的继续执行。需要逐步查找定位问题，并修改正则表达式，直到加工任务能够成功解析各个不同类型的错误日志。
+- If a log fails to be parsed, you can specify the severity of the log as WARNING to report the log.
+- The data transformation job continues running.In this case, you must identify the cause of the error and modify the regular expression until the data transformation job can parse all required types of error logs.
 
-## Step 三：分析错误日志数据
+## Step 3：Step 3: Analyze error logs
 
-基于加工后的错误日志，可以进行错误日志数据分析。本文只对日志服务的 Java 错误日志做分析。
+After raw error logs are transformed, you can analyze the error logs.In this example, only the Java error logs of Simple Log Service are analyzed.
 
 1. In the Projects section, click the desired project.
 2. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the desired Logstore.
-3. 在搜索框中输入查询和分析语句。
-   - 统计每个调用方法出现错误的数量。
+3. Enter a query statement in the search box.
+   - To calculate the number of errors for each request method, execute the following query statement:
      ```
      * | SELECT COUNT(method) as m_ct, method GROUP BY method
      ```
-   - 统计 PutLogs 中哪一类的错误信息占比最大。
+   - To calculate the number of occurrences of each error message for the PutLogs API operation, execute the following query statement:
      ```
      * | SELECT error_message,COUNT(error_message) as ct_msg, method WHERE method LIKE 'PutLogs' GROUP BY error_message,method
      ```
-   - 统计各个错误码出现的错误次数。
+   - To calculate the number of occurrences for each error code, execute the following query statement:
      ```
      * | SELECT error_code,COUNT(error_code) as count_code GROUP BY error_code
      ```
-   - 设置报错时间轴，实时查看调用接口错误信息。
+   - To query the error information of each request method by log time, execute the following query statement:
      ```
      * | SELECT date_format(data_time, '%Y-%m-%d %H:%m:%s') as date_time,status,product_exception,error_line, error_message,method ORDER BY date_time desc
      ```
-4. 单击**15 分钟（相对）**，设置查询分析的时间范围。
-您可以设置相对时间、整点时间和自定义时间。
-<table><tr><td bgcolor="#d6e7f8"><b>Note</b> 查询结果有1 min以内的误差。</td></tr></table>
+4. Click **15 Minutes(Relative)** to specify a time range.
+You can select a relative time range or a time frame. You can also specify a custom time range.
+<table><tr><td bgcolor="#d6e7f8"><b>Note</b> The query results may contain logs that are generated 1 minute earlier or later than the specified time range.</td></tr></table>
 
-5. 单击**查询/分析**，查看查询分析结果。
+5. Click **Search & Analyze** to view the query and analysis results.

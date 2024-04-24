@@ -1,15 +1,21 @@
 # IN value and list items must be the same type: varchar
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > IN value and list items must be the same type: varchar
 
-## 错误描述
-SQL语句中存在语法错误，IN子句中的值和列表项必须是同一数据类型：varchar。
+## Error description
 
-## 可能原因
-在使用IN操作符进行查询时，提供的值和列表项数据类型不一致，例如值为varchar类型，列表项为整数类型。
+The SQL statement has a syntax error. The values in the IN clause and the list items must be of the same data type VARCHAR.
 
-## 解决方法
-确保IN操作符中提供的值和列表项数据类型一致。可以使用CAST或CONVERT函数将数据类型进行转换，或者将值和列表项都转换为相同的数据类型后再进行查询。另外，建议在写入日志时，对应的列字段应该使用相同的数据类型来避免类似的错误。
+## Cause
+
+When you use the IN operator to perform a query, the values in the IN clause and the list items are of different data types. For example, the values in the IN clause are of the VARCHAR type, whereas the list items are of an integer type.
+
+## Solution
+
+Make sure that the values in the IN clause and the list items are of the same data type.Before you perform a query, you can use the CAST or CONVERT function to convert data types, or convert the values in the IN clause and the list items to the same data type.In addition, we recommend that you use the same data type for each column written to logs to prevent similar errors.

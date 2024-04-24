@@ -375,7 +375,7 @@ class Sample:
         args: List[str],
     ) -> None:
         # Make sure that the following environment variables are configured for the runtime environment of the code: ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
-        # Project code leakage may lead to the leakage of the AccessKey pair. This exposes all resources within the current account to security risks. The following sample code uses environment variables to obtain an AccessKey pair. The sample code is for reference only. We recommend that you use Security Token Service (STS), which is more secure. For more information, see https://help.aliyun.com/document_detail/378659.html
+        # Project code leakage may lead to the leakage of the AccessKey pair. This exposes all resources within the current account to security risks. The following sample code uses environment variables to obtain an AccessKey pair. The sample code is for reference only. We recommend that you use Security Token Service (STS), which is more secure. For more information, see https://www.alibabacloud.com/help/en/doc-detail/378659.html
         ALIBABA_CLOUD_ACCESS_KEY_ID = ""
         ALIBABA_CLOUD_ACCESS_KEY_SECRET = ""
         client = Sample.create_client(ALIBABA_CLOUD_ACCESS_KEY_ID, ALIBABA_CLOUD_ACCESS_KEY_SECRET)
@@ -556,7 +556,7 @@ class Sample:
         args: List[str],
     ) -> None:
         # Make sure that the following environment variables are configured for the runtime environment of the code: ALIBABA_CLOUD_ACCESS_KEY_ID 和 ALIBABA_CLOUD_ACCESS_KEY_SECRET。
-        # Project code leakage may lead to the leakage of the AccessKey pair. This exposes all resources within the current account to security risks. The following sample code uses environment variables to obtain an AccessKey pair. The sample code is for reference only. We recommend that you use STS, which is more secure. For more information, see https://help.aliyun.com/document_detail/378659.html
+        # Project code leakage may lead to the leakage of the AccessKey pair. This exposes all resources within the current account to security risks. The following sample code uses environment variables to obtain an AccessKey pair. The sample code is for reference only. We recommend that you use STS, which is more secure. For more information, see https://www.alibabacloud.com/help/en/doc-detail/378659.html
         ALIBABA_CLOUD_ACCESS_KEY_ID = ""
         ALIBABA_CLOUD_ACCESS_KEY_SECRET = ""
         client = Sample.create_client(ALIBABA_CLOUD_ACCESS_KEY_ID, ALIBABA_CLOUD_ACCESS_KEY_SECRET)

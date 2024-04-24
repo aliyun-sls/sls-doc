@@ -54,7 +54,7 @@ Configure a configuration to parse logs in delimiter mode.（processor_parse_del
 
 You must configure a time format for the timestamp parsing plug-in. For example, if the time field parsed by the delimiter parsing plug-in is 2023.10.26-20.58.12.123456, the time conversion format must be set to
 %Y.%m.%d-%H.%M.%S.%f.`%f`
-%f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://help.aliyun.com/document_detail/28980.html) section of the "Time formats" topic.
+%f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://www.alibabacloud.com/help/en/doc-detail/28980.html) section of the "Time formats" topic.
 For more information about the configuration of the plug-in, see [Time parsing](https://help.aliyun.com/zh/sls/user-guide/time-parsing).
 
 ![image](./img/enableTimeNano/5.png)
@@ -96,7 +96,7 @@ Configure a configuration to process JSON data. For more information, see [Expan
 #### Step 3: Use the timestamp parsing plug-in to parse timestamps in the time format supported by strptime
 
 You must configure a time format for the timestamp parsing plug-in. For example, if the asctime field in the raw logs is 2022-04-29 21:37:40,251, the time conversion format must be set to %Y-%m-%d %H:%M:%S,%f.
-%f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://help.aliyun.com/document_detail/28980.html) section of the "Time formats" topic.
+%f indicates the fractional part of the second. The highest precision that is supported by the plug-in is the nanosecond.The time conversion format must be consistent with the format of timestamps in the raw logs. For more information, see the [Commonly used time formats in logs](https://www.alibabacloud.com/help/en/doc-detail/28980.html) section of the "Time formats" topic.
 For more information about the configuration of the plug-in, see the [Time format supported by strptime](https://help.aliyun.com/zh/sls/user-guide/extract-log-time#section-3sq-fik-1b7) section of the "Extract log time" topic.
 
 ![image](./img/enableTimeNano/9.png)

@@ -1,6 +1,6 @@
 # Filter flow logs that record Internet traffic
 
-Virtual Private Cloud (VPC) provides the flow log feature. For more information about how to enable the flow log feature, see [Enable a flow log](https://help.aliyun.com/document_detail/173648.html).
+Virtual Private Cloud (VPC) provides the flow log feature. For more information about how to enable the flow log feature, see [Enable a flow log](https://www.alibabacloud.com/help/en/doc-detail/173648.html).
 
 Each log records the specified 5-tuple of network traffic. If you want to obtain traffic in specified CIDR blocks, you can use the data transformation feature to filter the traffic.
 

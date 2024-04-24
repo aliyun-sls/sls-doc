@@ -1,12 +1,12 @@
-# 数据脱敏
+# Data masking
 
-数据脱敏可以有效地减少敏感数据在加工、传输、使用等环节中的暴露，降低敏感数据泄露的风险，保护用户权益。本文为您介绍日志服务数据加工过程中常见的脱敏 Scenario、对应的脱敏方法及示例。
+When you transform, transmit, or use data, you can configure data masking rules to reduce the exposure of sensitive data. This way, you can mitigate the risk of data breaches in an efficient manner.This topic describes how to use functions to mask sensitive data in various scenarios.
 
-## Scenario 1：手机号脱敏
+## Scenario 1: Mask mobile phone numbers
 
-- 脱敏方法日志中包含不希望被暴露的手机号，可采用正则表达式，运用 _regex_replace_ 函数脱敏。
+- Solution. To mask mobile phone numbers in log entries, you can use the _regex_replace_ function.
 
-- 示例
+- example
 
   - Raw log entries
 
@@ -14,7 +14,7 @@
     iphone: 13012345678
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(
@@ -31,11 +31,11 @@
     sec_iphone: 130****5678
     ```
 
-## Scenario 2：银行卡信息脱敏
+## Scenario 2: Mask bank card information
 
-- 脱敏方法日志中包含银行卡或者信用卡信息，可采用正则表达式，运用 _regex_replace_ 函数隐藏关键数据而脱敏。
+- Solution. To mask bank card information or credit card information in log entries, you can use the _regex_replace_ function.
 
-- 示例
+- example
 
   - Raw log entries
 
@@ -43,7 +43,7 @@
     content: bank number is 491648411333978312 and credit card number is 4916484113339780
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(
@@ -63,11 +63,11 @@
     bank_number: bank number is ****978312 and credit card number is ****9780
     ```
 
-## Scenario 3：邮箱地址脱敏
+## Scenario 3: Mask email addresses
 
-- 脱敏方法日志中包含邮箱信息，可采用正则表达式，运用 _regex_replace_ 函数脱敏。
+- Solution. To mask email addresses in log entries, you can use the _regex_replace_ function.
 
-- 示例
+- example
 
   - Raw log entries
 
@@ -75,7 +75,7 @@
     content: email is twiss2345@aliyun.com
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(
@@ -88,18 +88,18 @@
     )
     ```
 
-  - 处理后数据
+  - Processed data
 
     ```
     content: email is twiss2345@aliyun.com
     email_encrypt: email is ****@aliyun.com
     ```
 
-## Scenario 4：AK 脱敏
+## Scenario 4: Mask AccessKey pairs
 
-- 脱敏方法日志中包含 AccessKey 信息，可采用正则表达式，应用 _regex_replace_ 函数。
+- Solution. To mask AccessKey pairs in log entries, you can use the _regex_replace_ function.
 
-- 示例
+- Example
 
   - Raw log entries
 
@@ -107,7 +107,7 @@
     content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(
@@ -129,7 +129,7 @@
 
 - 脱敏方法日志中包含 IP 信息，可同时运用 _regex_replace_ 函数和 _grok_ 函数，对 IP 地址进行正则捕获后而脱敏。
 
-- 示例
+- Example
 
   - Raw log entries
 
@@ -137,7 +137,7 @@
     content: ip is 192.168.1.1
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(
@@ -157,11 +157,11 @@
     ip_encrypt: ip is ****
     ```
 
-## Scenario 6：身份证脱敏
+## Scenario 6: Mask ID card numbers
 
-- 脱敏方法日志中包含身份证信息，可同时运用 _regex_replace_ 函数和 _grok_ 函数，对身份证号进行正则捕获后而脱敏。
+- Solution. To capture and mask ID card numbers in log entries, you can use the _regex_replace_ function and the _Grok_ function.
 
-- 示例
+- Example
 
   - Raw log entries
 
@@ -169,7 +169,7 @@
     content: Id card is 11010519491231002X
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(
@@ -189,11 +189,11 @@
     id_encrypt: idcard is 110105****
     ```
 
-## Scenario 7：网址脱敏
+## Scenario 7: Mask URLs
 
-- 脱敏方法对日志内容中的网址做脱敏处理，并且将脱敏的数据转成明文格式，可运用 Base64 编码解码函数，对网址进行转码。
+- Solution. To mask URLs in log entries, you can convert the URLs to plaintext and then use Base64 encoding and decoding functions to transcode the URLs.
 
-- 示例
+- Example
 
   - Raw log entries
 
@@ -201,7 +201,7 @@
     url: https://www.aliyun.com/sls?logstore
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set("base64_url",base64_encoding(v("url")))
@@ -214,13 +214,13 @@
     base64_url: aHR0cHM6Ly93d3cuYWxpeXVuLmNvbS9zbHM/bG9nc3RvcmU=
     ```
 
-    **Note** 如果想对`base64_url`进行解码，可以使用`base64_decoding(v("base64_url"))`DSL 语法规则。
+    **Note** To decode the value of the `base64_url` field, you can use the `base64_decoding(v("base64_url"))` function.
 
-## Scenario 8：订单号脱敏
+## Scenario 8: Mask order numbers
 
-- 脱敏方法对日志内容中的订单号做脱敏处理，同时不希望其他人能够解码，可运用 MD5 编码函数，对订单号进行编码。
+- Solution. To mask order numbers in log entries and prevent other users from decoding the order numbers, you can use the MD5 encoding function to encode the order numbers.
 
-- 示例
+- Example
 
   - Raw log entries
 
@@ -228,7 +228,7 @@
     orderId: 15121412314
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set("md5_orderId",md5_encoding(v("orderId")))
@@ -241,11 +241,11 @@
     md5_orderId: 852751f9aa48303a5691b0d020e52a0a
     ```
 
-## Scenario 9：字符串脱敏
+## Scenario 9: Mask strings
 
-- 脱敏方法您希望日志中的关键字符串不被暴露，可通过 _str_translate_ 函数制订映射规则，对关键字符或字符串进行映射脱敏。
+- Solution. To mask key characters or strings in log entries, you can use the _str_translate_ function to configure mapping rules for the characters or strings.
 
-- 示例
+- Example
 
   - Raw log entries
 
@@ -253,7 +253,7 @@
     data: message level is info_
     ```
 
-  - DSL orchestration 规则
+  - DSL orchestration rule
 
     ```python
     e_set(

@@ -1,20 +1,28 @@
 # Left side of LIKE expression must evaluate to a varchar (actual: bigint)
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Left side of LIKE expression must evaluate to a varchar (actual: bigint)
 
-## 错误描述
-LIKE表达式左侧必须为varchar类型（实际为bigint）
+## Error description
 
-## 可能原因
-该错误通常发生在您尝试使用LIKE运算符比较bigint数据类型与varchar数据类型时。 LIKE运算符要求表达式的两侧具有相同的数据类型。
+The LIKE expression expects VARCHAR on the left side, but gets BIGINT instead.
 
-## 解决方法
-您可能需要使用CAST函数将bigint转换为varchar。  
-例如：
+## Cause
+
+Generally, this error occurs when you attempt to use the LIKE operator to compare data of the BIGINT and VARCHAR types.The LIKE operator requires that data on both sides of the expression is of the same type.
+
+## Solution
+
+You can use the CAST function to convert the data type from BIGINT to VARCHAR. 
+Sample code:
+
 ```SQL
 SELECT * FROM table WHERE CAST(bigint_column AS varchar) LIKE 'pattern'
 ```
-这将会把bigint_column转换为varchar，然后可以使用LIKE运算符将其与指定模式进行匹配。
+
+The sample code converts a BIGINT column to VARCHAR, and then uses the LIKE operator to match the data with the specified pattern.

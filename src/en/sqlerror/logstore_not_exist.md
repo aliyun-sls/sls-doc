@@ -1,19 +1,25 @@
-# logstore * does not exist
+# logstore \* does not exist
+
 **ErrorCode**
+
 > LogStoreNotExist
 
 **ErrorMessage**
-> logstore *internal-log* does not exist
 
-## 错误描述
-您当前查询的logstore在当前地域当前Project下不存在
+> logstore _internal-log_ does not exist
 
-## 可能原因
-- 该Logstore已被删除
-- 该Logstore本身就不存在，可能在其他Project下
-- 该Logstore本身就不存在，可能在其他Region下
+## Error description
 
-## 解决方法
-- 检查您需要查询的目标Logstore，并确定其存在
+The Logstore that you query does not exist in the current project in the current region.
 
-> 内嵌cli提供用户自助查询
+## Cause
+
+- The Logstore is deleted.
+- The Logstore does not exist or may exist in another project.
+- The Logstore does not exist or may exist in another region.
+
+## Solution
+
+- Make sure that the Logstore that you query exists.
+
+> SamplA built-in command line interface (CLI) is provided for you to perform self-service queries.e code:

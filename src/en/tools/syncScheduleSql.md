@@ -1,7 +1,9 @@
-# 同步定时 SQL
-以下脚本主要提供了一些辅助 定时SQL 到其它Project的功能脚本
+# Synchronize a scheduled SQL task
 
-## 配置文件说明
+This tool is used to synchronize a scheduled SQL task to another project.
+
+## Configuration file
+
 ```json
 [
   {
@@ -33,19 +35,22 @@
 ```
 
 target_schedule_sql_config
-+ 该字段用来描述，原始的 定时SQL 任务在的基本信息，其中 s_sql_job_name 一定要确认好，可以去SLS的控制台进行查看
+
+- This section specifies the basic information about the original scheduled SQL task. You can check the value of the s_sql_job_name field in the Simple Log Service console.
 
 newly_job_config
-+ 该字段主要用来说明，将上述 定时SQL 任务复制到哪个Project中
-+ description、displayName 这两个字段如果为空字符串，则使用原始的Job的相关字段进行填充
-+ fromTime、toTime 这两个字段主要用来设置，新创建的任务的开始时间和结束时间，如果设置的值 <= 0，则复用原始Job的时间区间
-+ source 该字段用来设置，新的Job创建在哪个Project中
-+ destination 该字段用来设置，新的Job中的SQL结果数据存储到哪个Logstore中。如果 destination 和 source 在相同的Region，则设置destination中的endpoint为私网地址，可以降低流量费用
-+ roleArn 这里的配置需要让用户在控制台上先确认，如果未进行授权的话，需要手动处理后，在进行配置
 
-## 示例代码
+- This section specifies the project to which the original scheduled SQL task is copied.
+- If the description and displayName fields are empty strings, the values of the two fields in the original scheduled SQL task are used.
+- The fromTime and toTime fields specify the start time and end time of a newly created task. If the values are less than or equal to 0, the time range in the original scheduled SQL task is used.
+- The source field specifies the project in which the new scheduled SQL task is created.
+- The destination field specifies the Logstore in which the SQL results of the new scheduled SQL task are to be stored.If the source and destination Logstores reside in the same region, set the endpoint field in the destination section to an internal endpoint to reduce data transfer costs.
+- You must check the value of the roleArn field in the console. If the relevant Resource Access Management (RAM) role is not authorized, authorize the RAM role before you specify this field.
+
+## Sample code
+
 ```python
-# -*- coding: utf-8 -*-
+
 import json
 import time
 
@@ -94,9 +99,9 @@ def make_schedule_sql_name() -> str:
 
 def create_schedule_sql(s_sql_config: dict):
     """
-    1. 仅拷贝原始的S-SQL中的Query部分的配置，在新建任务中，需要确认对应的开始和结束时间
-    2. 要判断下 source 和 destination 中的 logstore 是否在相同的Region，如果是相同的Region，则使用内网地址；
-       如果是不同Region则需要使用公网地址，但是公网地址会产生费用
+    1. Only the query configurations in the original scheduled SQL task are copied. In the new scheduled SQL task, you must confirm the start time and end time.
+    2. Check whether the source and destination Logstores resides in the same region. If yes, use an internal endpoint.
+       If not, use a public endpoint. Take note that you are charged data transfer costs if you use a public endpoint.
     """
 
     def make_scheduled_sql_schedule(origin_ssql_job: dict):

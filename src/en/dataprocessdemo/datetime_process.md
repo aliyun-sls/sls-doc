@@ -75,7 +75,7 @@ Three conversion scenarios and six conversion functions are described in the pre
 
 - Dedicated functions. Automatic conversion functions cannot meet your requirements in some scenarios.For example, automatic conversion functions such as `dt_parse` cannot parse date types in some custom formats. In this case, you must use the `dt_strptime` function.
 
-**Note** For more information, see [Date and time functions](https://help.aliyun.com/document_detail/125409.htm?spm=a2c4g.11186623.2.9.169c3cb8rqBjjU#concept-1130519) and [Conversion functions](https://help.aliyun.com/document_detail/125403.htm?spm=a2c4g.11186623.2.10.169c3cb8rqBjjU#concept-1130510).
+**Note** For more information, see [Date and time functions](https://www.alibabacloud.com/help/en/doc-detail/125409.htm?spm=a2c4g.11186623.2.9.169c3cb8rqBjjU#concept-1130519) and [Conversion functions](https://www.alibabacloud.com/help/en/doc-detail/125403.htm?spm=a2c4g.11186623.2.10.169c3cb8rqBjjU#concept-1130510).
 
 ## Perform conversions between a datetime object and a UNIX timestamp
 
@@ -161,7 +161,7 @@ Three conversion scenarios and six conversion functions are described in the pre
 
   - If no time zone is specified, the UTC+0 time zone is used as the default time zone.
 
-  - For more information about the values of the `tz=time zone string` parameter, see [Time zones](https://help.aliyun.com/document_detail/129390.htm?spm=a2c4g.11186623.2.11.169c3cb8rqBjjU#concept-1597620).
+  - For more information about the values of the `tz=time zone string` parameter, see [Time zones](https://www.alibabacloud.com/help/en/doc-detail/129390.htm?spm=a2c4g.11186623.2.11.169c3cb8rqBjjU#concept-1597620).
 
 - Scenario 2: Convert a datetime string with a time zone to a UNIX timestamp.You do not need to specify the time zone parameter if a datetime string contains a time zone, such as `2019-06-02 18:41:26+08:00`.
 
@@ -336,7 +336,7 @@ Three conversion scenarios and six conversion functions are described in the pre
 
   `year(s)`、`month(s)`、`day(s)`The parameters that end with (s) have two patterns. For example, year (s) can be `year` and `years`, and month (s) can be `month` and `months`.Take `year` and `years` as examples. If `year` is used in the syntax, the value of `year` replaces the value of year in raw log entries. If `years` is used in the syntax, the value of `years` is added to the value of year in raw log entries.You must use the `dt_add` function at the same time. This function allows you to add a value, subtract a value, or overwrite the value of a datetime.
 
-- The `weekday` parameter in the `dt_add` function is used together with the `dt_MO` and `dt_TU` parameters to offset the specified weekday.For more information, see[dt_MO](https://help.aliyun.com/document_detail/125409.htm?spm=a2c4g.11186623.2.12.169c3cb8rqBjjU#section-bm9-1dd-jnv).
+- The `weekday` parameter in the `dt_add` function is used together with the `dt_MO` and `dt_TU` parameters to offset the specified weekday.For more information, see[dt_MO](https://www.alibabacloud.com/help/en/doc-detail/125409.htm?spm=a2c4g.11186623.2.12.169c3cb8rqBjjU#section-bm9-1dd-jnv).
 
 - Scenario 1：Scenario 1: Offset a datetime by year and month.The following example shows how to offset a datetime by year and month.
 

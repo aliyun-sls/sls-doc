@@ -31,13 +31,13 @@ If you do not specify the **time** field in the data transformation statement, t
 
 ### Create indexes
 
-An index is an inverted storage structure that consists of keywords and logical pointers. The logical pointers can be used to refer to actual data. You can use an index to quickly locate data rows based on keywords. An index is similar to a data catalog.For more information, see [Create indexes](https://help.aliyun.com/document_detail/90732.html).
+An index is an inverted storage structure that consists of keywords and logical pointers. The logical pointers can be used to refer to actual data. You can use an index to quickly locate data rows based on keywords. An index is similar to a data catalog.For more information, see [Create indexes](https://www.alibabacloud.com/help/en/doc-detail/90732.html).
 
 ![](/img/dataprocessdemo/其他/未建索引报错.png)
 
 ### Reindex logs for a Logstore
 
-A new index of the destination Logstore takes effect only on data that is written to the Logstore after the index is created. If you create indexes for the destination Logstore after you create the data transformation job, you cannot query data that is written to the Logstore by the job before the indexes are created. In this case, you can reindex the data that has been written to the destination Logstore.For more information, see [Reindex logs for a Logstore](https://help.aliyun.com/document_detail/154965.htm?spm=a2c4g.11186623.0.0.3e0756097AnQYK#task-2424026).
+A new index of the destination Logstore takes effect only on data that is written to the Logstore after the index is created. If you create indexes for the destination Logstore after you create the data transformation job, you cannot query data that is written to the Logstore by the job before the indexes are created. In this case, you can reindex the data that has been written to the destination Logstore.For more information, see [Reindex logs for a Logstore](https://www.alibabacloud.com/help/en/doc-detail/154965.htm?spm=a2c4g.11186623.0.0.3e0756097AnQYK#task-2424026).
 
 ## Improve the efficiency of historical data transformation
 

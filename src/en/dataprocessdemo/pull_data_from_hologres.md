@@ -1,12 +1,12 @@
-## 从 Hologres 数据库获取数据进行富化
+## Pull data from a Hologres database for data enrichment
 
-本文介绍如何通过资源函数从 Hologres 数据库获取数据进行数据富化。
+This topic describes how to use resource functions to pull data from a Hologres database for data enrichment.
 
-# 使用 e_search_table_map 函数进行数据富化
+# Use the e_search_table_map function to enrich log data
 
-- 原始数据
+- Raw data
 
-  - Hologres 数据库表中的数据样例如下表所示。
+  - Hologres Sample data records in a table of a database
 
   | product_id | product_name | product_price | product_sales_number | sex  |
   | ---------- | ------------ | ------------- | -------------------- | ---- |
@@ -17,7 +17,7 @@
   | 1          | basketball   | 35            | 3658                 | boy  |
   | 4          | notebook     | 9             | 5427                 | girl |
 
-  - 日志服务 Logstore 中的日志样例如下所示。
+  - Sample log in a Logstore of Simple Log Service
 
     ```
     __source__:192.168.2.100
@@ -36,7 +36,7 @@
     ```
 
 - Transformation rule
-  通过日志服务 Logstore 中的 sex 字段和 Hologres 数据库表中 sex 字段进行匹配，只有 sex 字段的值相同时，才能匹配成功。匹配成功后，返回 Hologres 数据库表中 product_name，与 Logstore 中的数据拼接，生成新的数据。
+  Compare the sex field in the Logstore and the sex field in the Hologres database. Both fields match only when the sex values are the same.If both fields match, the value of the product_name field is pulled from the Hologres database and concatenated with the log data in the Logstore into new data.
   ```python
   e_search_table_map(
     res_rds_mysql(
@@ -54,7 +54,7 @@
     multi_join=","
   )
   ```
-  **Note** 为了访问 Hologres 实例的安全性和稳定性，建议通过 VPC 方式访问 Hologres 数据库。您可以在 Hologres 实例的网络配置中，获取 Hologres 数据库的 VPC 访问域名，将 address 配置为该值即可。
+  **Note** To ensure data security and network stability, we recommend that you access the Hologres database over a virtual private cloud (VPC).You can obtain the endpoint from the network configurations of the Hologres instance and use the endpoint to access a Hologres database over a VPC. After you obtain the endpoint, replace the value of the address field with the endpoint.
 - Transformation result
 
   ```

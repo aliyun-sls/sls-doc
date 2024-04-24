@@ -1,10 +1,10 @@
-# 构建字典与表格做数据富化
+# Build dictionaries and tables for data enrichment
 
-字典和表格是对数据进行富化时主要使用的两种数据结构，本文档主要介绍这两种数据结构的常见构建方式，并对比不同构建方式的优缺点。
+Dictionaries and tables are two major types of data structures used for data enrichment. This topic describes common methods for building dictionaries and tables and compares the advantages and disadvantages of different building methods.
 
-## 字典构建
+## Build dictionaries
 
-- 直接构建
+- Build a dictionary directly
 
   ```python
   e_dict_map(
@@ -14,7 +14,7 @@
   )
   ```
 
-- 从任务配置资源构建
+- Build a dictionary from data configuration items
 
   ```python
   e_dict_map(
@@ -24,13 +24,13 @@
   )
   ```
 
-  其中`http_code_map`是任务高级配置项，值为：
+  where, `http_code_map` is an advanced task configuration item. Its values are as follows:
 
   ```
     {"400": "error", "200": "ok", "*": "other"}
   ```
 
-- 从表格构建 使用`tab_to_dict`从表格构建。而表格的构建参见本文后面的表格构建。
+- Build a dictionary from a table. Use the tab_to_dict` function to build a dictionary from a table.Details on how to build a table are available in later part of this topic.
 
   ```python
   e_dict_map(
@@ -44,7 +44,7 @@
   )
   ```
 
-- 从字典函数构建
+- Build a dictionary by using the dct_make function
 
   ```python
   e_dict_map(
@@ -54,7 +54,7 @@
   )
   ```
 
-- 从其他表达式构建
+- Build a dictionary by using another expression
 
   ```python
   e_dict_map(
@@ -66,21 +66,21 @@
   )
   ```
 
-  此处从源日志的`http_code_map`字段中获取映射关系。
+  where, the data mappings are obtained from the `http_code_map` field in source logs.
 
-**不同字典构建方式对比**
+**The following table compares these dictionary building methods.**
 
-| 构建方式           | 优点                                                       | 缺点                                         |
-| ------------------ | ---------------------------------------------------------- | -------------------------------------------- |
-| 直接构建           | 直观、简单、方便。                                         | 如果内容较多，规则会相对冗长。且静态不灵活。 |
-| 从任务配置资源构建 | 内容较多且经常修改时推荐使用，易于维护。                   | 不易于扩展和跨任务复用，不支持自动刷新。     |
-| 从表格构建         | 高级 Scenario 下使用，维护机制更灵活。                     | 需要构建和维护对应的表格，过程相对繁琐。     |
-| 从字典函数构建     | 基于逻辑动态构建字典，特定 Scenario 下适用。               | 较为高级，不易于维护。                       |
-| 从其他表达式构建   | 从日志事件的字段中动态提取映射关系，特定 Scenario 下适用。 | 较为高级，不易于维护。                       |
+| Method                                                     | advantage                                                                                                                                                  | disadvantage                                                                                                                    |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Build a dictionary directly                                | This method is intuitive, simple, and easy to use.                                                                                                         | The rules will be lengthy if too much content is involved.                                                                      |
+| The rules will be lengthy if too much content is involved. | We recommend that you use this method if the dictionary contains a large amount of data and is frequently modified. This method features easy maintenance. | A dictionary built in this method is not scalable or reusable across tasks. In addition, it does not support automatic updates. |
+| Build a dictionary from a table                            | Featuring flexible maintenance, this method is used in advanced scenarios.                                                                                 | You need to build and maintain a table for building a dictionary, making the configuration process complex.                     |
+| Build a dictionary by using the dct_make function          | You can build a dictionary based on dynamic logic in specific scenarios.                                                                                   | This method is relatively advanced and difficult to maintain.                                                                   |
+| Build a dictionary by using another expression             | This method is used to dynamically extract data mappings from fields in log events. It applies in specific scenarios.                                      | This method is relatively advanced and difficult to maintain.                                                                   |
 
-## 表格构建
+## Build tables
 
-- 从文本构建
+- Build a table from a text file
 
   ```python
   e_table_map(
@@ -90,7 +90,7 @@
   )
   ```
 
-- 从任务配置资源构建
+- Build a dictionary from data configuration items
 
   ```python
   e_search_table_map(
@@ -102,7 +102,7 @@
   )
   ```
 
-  其中`table_info`是 Transformation rule 的任务配置项，值为：
+  where, `table_info` is a task configuration item in data transformation rules. Its values are as follows:
 
   ```
   content,name,age
@@ -110,7 +110,7 @@
   nanjing,Maki,18
   ```
 
-- 从 RDS 资源中构建
+- Build a table from an ApsaraDB for RDS database
 
   ```python
   e_table_map(
@@ -122,7 +122,7 @@
   )
   ```
 
-  RDS 表格`city`的内容为：
+  The `city` table in the ApsaraDB for RDS database contains the following information:
 
   ```
   content,name,age
@@ -130,7 +130,7 @@
   nanjing,Maki,18
   ```
 
-- 从其他 Logstore 资源构建
+- Build a table from another Logstore
 
   ```python
   e_table_map(
@@ -146,16 +146,16 @@
   )
   ```
 
-  对应 Logstore 中日志事件为：
+  The specified Logstore contains the following log events:
 
   ```
-  "日志1"
+  "log1"
   {
   "city": "shanghai",
   "name": "aliyun",
   "age": "10"
   }
-  "日志2"
+  "log2"
   {
   "city": "city:nanjing and data > 100",
   "name": "Maki",
@@ -163,11 +163,12 @@
   }
   ```
 
-**不同表格构建方式对比**
+**The following table compares these table building methods.**
 
-| 构建方式                 | 优点                                                                            | 缺点                                                   |
+| Method | Advantages |
+Disadvantages |
 | ------------------------ | ------------------------------------------------------------------------------- | ------------------------------------------------------ |
-| 从文本构建               | 直观、简单、方便。                                                              | 如果内容较多，规则会相对冗长。不易于维护、扩展和复用。 |
-| 从任务配置资源构建       | 内容较多且经常修改时推荐使用，易于维护。                                        | 不易于扩展和跨任务复用。不支持自动刷新。               |
-| 从 RDS 资源构建          | _ 内容较多且经常修改时推荐使用，易于维护。 _ 支持自动刷新。 \* 支持跨任务复用。 | 需要连接外部 RDS 资源，配置过程相对比较繁琐。          |
-| 从其他 Logstore 资源构建 | 支持实时读取，维护机制更灵活，高级 Scenario 下使用。                            | 需要连接其他 Logstore，配置过程相对比较繁琐。          |
+| Build a table from a text file | This method is intuitive, simple, and easy to use. | The rules will be lengthy if too much content is involved.A table built in this method is difficult to maintain, scale up, or reuse. |
+| Build a dictionary from data configuration items | We recommend that you use this method if the dictionary contains a large amount of data and is frequently modified. This method features easy maintenance. | A table built in this method is not scalable or reusable across tasks. |
+| Build a table from an ApsaraDB for RDS database |We recommend that you use this method if the dictionary contains a large amount of data and is frequently modified. This method features easy maintenance._ This method supports automatic updates._ This method supports automatic updates. | You need to connect to an external ApsaraDB for RDS database for building a table, making the configuration process complex. |
+| Build a table from another Logstore | This method is used to read data in real time. Featuring flexible maintenance, this method is used in advanced scenarios. | You need to connect to another Logstore for building a table, making the configuration process complex. |

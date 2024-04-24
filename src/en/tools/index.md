@@ -1,10 +1,9 @@
-# 常用工具
+# Common tools
 
-## 常用工具集合
+## Overview of common tools
 
-| 工具名称                             | 描述         |
-| ------------------------------------ | ------------ |
-| [同步索引配置](./syncIndexConfig.md) | 同步索引配置 |
-| [同步定时 SQL](./syncScheduleSql.md) | 同步定时 SQL |
-| [批量更新定时 SQL](./updateScheduleSqlConfig.md) | 批量更新定时 SQL |
-
+| Tool name                                                             | Description                           |
+| --------------------------------------------------------------------- | ------------------------------------- |
+| [Synchronizes index configurations.](./syncIndexConfig.md)            | Synchronizes index configurations.    |
+| [Synchronizes a scheduled SQL task.](./syncScheduleSql.md)            | Synchronizes a scheduled SQL task.    |
+| [Updates multiple scheduled SQL tasks.](./updateScheduleSqlConfig.md) | Updates multiple scheduled SQL tasks. |

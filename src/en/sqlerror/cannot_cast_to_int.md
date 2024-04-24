@@ -1,15 +1,21 @@
-# Can not cast '*' to INT
+# Can not cast '\*' to INT
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Can not cast 'name' to INT
 
-## 错误描述
-类型转换错误：无法转换'*'为INT类型。
+## Error description
 
-## 可能原因
-name列可能并非数值类型，而SQL中可能将该列作为INT类型使用。
+Type conversion error: The asterisk (\*) fails to be converted to the INT type.
 
-## 解决方法
-可以使用CAST函数将一个变量转换为另一个变量类型。
+## Cause
+
+An element in the name column may not be of the NUMERIC type, but this column may be used as the INT type in SQL.
+
+## Solution
+
+You can use the CAST function to convert a variable from one type to another.

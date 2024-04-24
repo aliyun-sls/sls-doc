@@ -28,7 +28,7 @@
 
 ### How am I charged for data transmission across regions?
 
-1.You are charged based on the size of compressed data during data transmission.For example, if the compression ratio is 10:1 and you need to transmit 10 MB of raw data, the size of the data after compression is 1 MB. This way, only 1 MB of data incurs fees. For more information about the billing methods, see [Billable items of pay-by-feature](https://help.aliyun.com/document_detail/173043.html).
+1.You are charged based on the size of compressed data during data transmission.For example, if the compression ratio is 10:1 and you need to transmit 10 MB of raw data, the size of the data after compression is 1 MB. This way, only 1 MB of data incurs fees. For more information about the billing methods, see [Billable items of pay-by-feature](https://www.alibabacloud.com/help/en/doc-detail/173043.html).
 
 ### How do I increase the data compression ratio?
 
@@ -44,7 +44,7 @@
 
 ![](/img/dataprocessdemo/dataflow9.png)
 
-DCDN Activate DCDN. Reference:[https://help.aliyun.com/document_detail/86819.html](https://help.aliyun.com/document_detail/86819.html?spm=a2c4g.11186623.6.587.2bd06330XCteoT)
+DCDN Activate DCDN. Reference:[https://www.alibabacloud.com/help/en/doc-detail/86819.html](https://www.alibabacloud.com/help/en/doc-detail/86819.html?spm=a2c4g.11186623.6.587.2bd06330XCteoT)
 
 DCDN After DCDN is configured, select DCDN Acceleration and click Connectivity Test of DCDN Acceleration in the Create Data Transformation Job panel.
 

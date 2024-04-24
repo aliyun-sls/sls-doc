@@ -1,28 +1,27 @@
-# 复制和分发数据
+# Replicate and distribute data
 
-日志服务支持对每一个源 Logstore 配置一个加工任务，实现数据复制后分发到不同 Logstore。本文介绍数据复制后分发到不同 Logstore 的典型 Scenario 和操作方法。
+Simple Log Service allows you to replicate data from a source Logstore to a destination Logstore. To replicate the data, you can create a data transformation job for the source Logstore.This topic describes how to replicate data from a source Logstore to a destination Logstore in a typical scenario.
 
 ## Scenario Note
 
-某数据分析公司需要将 Logstore 中的每一条数据进行复制，并根据内容分别分发到两个 Logstore。对此需求，可通过日志服务数据加工的复制和分发功能完成，包括使用 e_set 函数设置 tags 标签，并使用 e_split 函数按照 tags 标签将数据分裂，再使用 e_output 函数分发到不同 Logstore。其基本逻辑如下图所示。
+A data analytics company wants to replicate all log entries from a source Logstore and distribute the log entries to two destination Logstores.The replication and distribution features of Simple Log Service allow the company to use the e_set function to specify tags, use the e_split function to categorize the log entries based on the tags that you specify, and then use the e_output function to distribute each category of log entries to the destination Logstore that matches the tag for the category.The following figure shows the basic logic of the replication and distribution features.
 ![split](/img/dataprocessdemo/p228486.png)
-在操作前，确保您已完成如下操作。
 
-- 已完成 target-a、target-b 的性能评估和规划。例如评估 Shard 数量。更多信息，请参见[性能指南](https://help.aliyun.com/document_detail/135496.htm?spm=a2c4g.11186623.2.6.729765fdl9EAWW#concept-2055068)。
+- A project named target-a and a Logstore named logstore-a are created. A project named target-b and a Logstore named logstore-b are created.For example, evaluate the number of shards in each of these Logstores.For more information, see [Performance guide](https://www.alibabacloud.com/help/en/doc-detail/135496.htm?spm=a2c4g.11186623.2.6.729765fdl9EAWW#concept-2055068).
 
-- 已创建 target-a、logstore-a、target-b 和 logstore-b。更多信息，请参见[管理 Project](https://help.aliyun.com/document_detail/48984.htm?spm=a2c4g.11186623.2.7.729765fdl9EAWW#concept-mxk-414-vdb)和[管理 Logstore](https://help.aliyun.com/document_detail/48990.htm?spm=a2c4g.11186623.2.8.729765fdl9EAWW#concept-xkb-zh5-vdb)。
+- A project named target-a and a Logstore named logstore-a are created. A project named target-b and a Logstore named logstore-b are created.For more information, see [Manage a project](https://www.alibabacloud.com/help/en/doc-detail/48984.htm?spm=a2c4g.11186623.2.7.729765fdl9EAWW#concept-mxk-414-vdb) and [Manage a Logstore](https://www.alibabacloud.com/help/en/doc-detail/48990.htm?spm=a2c4g.11186623.2.8.729765fdl9EAWW#concept-xkb-zh5-vdb).
 
 ## Procedure
 
-1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com).[日志服务控制台](https://partners-intl.console.aliyun.com/#/sls)。
+1. Log on to the [Simple Log Service console](https://sls.console.aliyun.com).(https://partners-intl.console.aliyun.com/#/sls)。
 
-2. 在 **全部 Project** 区域，单击 Destination Project。
+2. In the **Projects** section, click Destination Project。
 
-3. 在 **日志存储** \> **日志库** 页签中，单击目标 Logstore。
+3. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click
 
-4. 在查询和分析页面的右上角单击 **数据加工** ，进入数据加工模式。
+4. In the upper-right corner of the query and analysis page, click **Data Transformation**.
 
-5. 在数据加工编辑框中输入如下加工语句。
+5. In the code editor, enter a data transformation statement.
 
    ```python
    e_set("tags","target-a","target-b")
@@ -32,59 +31,59 @@
    e_drop()
    ```
 
-   - 通过 e_set 函数为 Raw log entries 设置 target-a 和 target-b 标签。更多信息，请参见[e_set](https://help.aliyun.com/document_detail/125487.htm?spm=a2c4g.11186623.2.10.293765fdzgnMo1#section-7cr-8gz-by2)。
+   - Use the e_set function to specify target-a and target-b as tags for raw log entries.For more information, see[e_set](https://www.alibabacloud.com/help/en/doc-detail/125487.htm?spm=a2c4g.11186623.2.10.293765fdzgnMo1#section-7cr-8gz-by2).
 
-   - 通过 e_split 函数将日志数据进行分裂。更多信息，请参见[e_split](https://help.aliyun.com/document_detail/125484.htm?spm=a2c4g.11186623.2.11.293765fdzgnMo1#section-urg-dob-o79)。
+   - Use the e_split function to categorize raw log entries based on the tags that you specify.For more information, see[e_split](https://www.alibabacloud.com/help/en/doc-detail/125484.htm?spm=a2c4g.11186623.2.11.293765fdzgnMo1#section-urg-dob-o79)。
 
-   - 通过 e_output 函数将日志分发到 target-a 和 target-b。更多信息，请参见[e_output](https://help.aliyun.com/document_detail/0.htm?spm=a2c4g.11186623.2.12.293765fdzgnMo1#section-zi7-wtp-30c)。
+   - Use the e_output function to distribute the log entries that are categorized by the e_split function to the target-a and target-b storage destinations.For more information, see[e_output](https://www.alibabacloud.com/help/en/doc-detail/0.htm?spm=a2c4g.11186623.2.12.293765fdzgnMo1#section-zi7-wtp-30c)。
 
-   - e_drop()表示将不满足条件的日志丢弃，不进行分发。更多信息，请参见[e_drop](https://help.aliyun.com/document_detail/125484.htm?spm=a2c4g.11186623.2.13.293765fdzgnMo1#section-sn7-4pm-kly)。
+   - Use the e_drop() function to specify conditions. If a log entry does not meet the specified conditions, the log entry is dropped and is not distributed.For more information, see[e_drop](https://www.alibabacloud.com/help/en/doc-detail/125484.htm?spm=a2c4g.11186623.2.13.293765fdzgnMo1#section-sn7-4pm-kly).
 
-6. 单击 **预览数据** 。
+6. click **Preview data** 。
 
-   您可以看到 Raw log entries 已增加 tags 标签，并且 tags 为 target-a 的数据将被分发到 target-a，tags 为 target-b 的数据将被分发到 target-b。![](/img/dataprocessdemo/p228492.png)
+On the Transformation Results tab, the specified tags are added to raw log entries. The raw log entries with the target-a tag are distributed to the target-a storage destination, and the raw log entries with the target-b tag are distributed to the target-b storage destination.![](/img/dataprocessdemo/p228492.png)
 
 7. Click **Save as Transformation Job**
 
 8. In the **Create Data Transformation Job** panel, configure the following parameters.
 
-   1. 配置基本信息。
+   1. Configure the basic parameters.
 
-      | 参数                 | Note                                                         |
-      | -------------------- | ------------------------------------------------------------ |
-      | Job Name             | The name of the data transformation job.Example: test.       |
-      | Authorization Method | 授予日志服务读取源日志库中数据的权限。Example: Default Role. |
+      | parameter            | Note                                                                                                                 |
+      | -------------------- | -------------------------------------------------------------------------------------------------------------------- |
+      | Job Name             | The name of the data transformation job.Example: test.                                                               |
+      | Authorization Method | The method that is used to authorize Simple Log Service to read data from the source Logstore.Example: Default Role. |
 
-   2. 配置 target-a 存储目标。
+   2. Configure the parameters for the target-a storage destination.
 
-      | 参数                 | Note                                                      |
-      | -------------------- | --------------------------------------------------------- |
-      | Destination Name     | The name of the storage destination.输入 target-a。       |
-      | Destination Region   | Destination Project 所在地域。                            |
-      | Destination Project  | target-a 所属的 Project 名称。输入 target-a。             |
-      | Target Store         | Logstore 名称。输入 logstore-a。                          |
-      | Authorization Method | 授予日志服务读写 target-a 的权限。 Example: Default Role. |
+      | parameter            | Note                                                                                                                                                                |
+      | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | Destination Name     | The name of the storage destination.Example: target-a。                                                                                                             |
+      | Destination Region   | The region in which the destination project resides.                                                                                                                |
+      | Destination Project  | The name of the destination project.                                                                                                                                |
+      | Target Store         | The name of the destination Logstore.                                                                                                                               |
+      | Authorization Method | The method that is used to authorize Simple Log Service to read data from and write data to the logstore-a Logstore of the target-a project. Example: Default Role. |
 
-   3. 配置 target-b 存储目标。
+   3. target-b Storage Destination
 
-      | 参数                 | Note                                                                                                      |
-      | -------------------- | --------------------------------------------------------------------------------------------------------- |
-      | Destination Name     | The name of the storage destination.输入 target-b。                                                       |
-      | Destination Region   | The region in which the destination project resides.In this example, the China (Hangzhou) region is used. |
-      | Destination Project  | target-b 所属的 Project 名称。输入 target-b。                                                             |
-      | Target Store         | Logstore 名称。输入 logstore-b。                                                                          |
-      | Authorization Method | 授予日志服务读写 target-b 的权限。 Example: Default Role.                                                 |
+   | parameter            | Note                                                                                                              |
+   | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+   | Destination Name     | The name of the storage destination.输入 target-b。                                                               |
+   | Destination Region   | The region in which the destination project resides.In this example, the China (Hangzhou) region is used.         |
+   | Destination Project  |                                                                                                                   |
+   | Target Store         | Logstore name logstore-b。                                                                                        |
+   | Authorization Method | Authorizes Simple Log Service to read data from and write data to the logstore-b Logstore. Example: Default Role. |
 
-   4. 配置加工时间范围。
+   4. Specify a time range for data transformation.
 
-      | 参数     | Note                                                                      |
-      | -------- | ------------------------------------------------------------------------- |
-      | 时间范围 | 加工的时间范围。 选择所有，即表示对 Logstore 中的数据从开始时间持续加工。 |
+      | parameter  | Note                                                                                                                                                                 |
+      | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+      | Time Range | The time range for data transformation. If you select All, Simple Log Service transforms all data in the source Logstore from the start of the specified time range. |
 
 9. Click **OK**. 。
 
 ## Result
 
-- 打开 target-a 项目，在 **日志存储** \> **日志库** 页签中选择 logstore-a 日志库，您可以看到分发过来的数据。![](/img/dataprocessdemo/p228506.png)
+- In the Projects section, click the target-a project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the logstore-a Logstore. Then, you can view the log entries that are distributed to the logstore-a Logstore.![](/img/dataprocessdemo/p228506.png)
 
-- 打开 target-b 项目，在 **日志存储** \> **日志库** 页签中选择 logstore-b 日志库，您可以看到分发过来的数据。![](/img/dataprocessdemo/p228518.png)
+- In the Projects section, click the target-b project. In the left-side navigation pane, click **Log Storage**. On the Logstores page, click the logstore-b Logstore. Then, you can view the log entries that are distributed to the logstore-a Logstore.![](/img/dataprocessdemo/p228518.png)

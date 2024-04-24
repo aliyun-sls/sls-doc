@@ -1,26 +1,33 @@
 # Too many queued queries
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Too many queued queries
 
-## 错误描述
-您当前Project下的SQL并发请求超过并发上限（普通SQL15，增强SQL150）。
+## Error description
 
-## 原理解释
-*SLS SQL并发*
-SLS SQL并发配额是用户Project级别隔离，同一个Project中的多个SQL请求提交到SLS服务端，当SQL正在执行中，将占用一个SQL并发配额；当SQL执行完成，将归还本次分配的SQL并发配额。
-用户一个Project的SQL并发配额，执行普通SQL模式时为15，执行增强SQL模式时为150。
+The number of concurrent SQL requests in your current project exceeds the upper limit, which is 15 in standard SQL mode and 150 in enhanced SQL mode.
 
-## 可能原因
-- 您的并发请求数过高
-- 您单次请求SQL的延时较高
-- 您的业务代码中SQL请求异常重试逻辑导致的大量循环重试
+## Principle explanation
 
-## 解决方法
-- 降低请求量
-- 优化SQL，减低单次SQL的执行延时
-- 重试逻辑增加随机等待时间，避免无效重复的循环重试，导致额外并发请求压力的增加
+_SQL concurrency in Simple Log Service:_
+The SQL concurrency quota provided by Simple Log Service is exclusively used for a user project. Multiple SQL requests in the same project are submitted to the Simple Log Service server, and each ongoing SQL request occupies one unit of the SQL concurrency quota. When SQL execution is complete, the allocated unit of the SQL concurrency quota is reclaimed.
+The SQL concurrency quota of a user project is 15 in standard SQL mode and 150 in enhanced SQL mode.
 
-> 内嵌cli提供用户自助查询
+## Cause
+
+- The number of concurrent requests is too high.
+- The latency of a single SQL request is too high.
+- The retry logic for processing SQL request exceptions in your business code leads to many retry loops.
+
+## Solution
+
+- Reduce the number of requests.
+- Optimize the SQL statement to reduce the execution latency of a single SQL request.
+- Add a random waiting time to the retry logic to prevent invalid retry loops that can increase the pressure from concurrent requests.
+
+> SamplA built-in command line interface (CLI) is provided for you to perform self-service queries.e code:

@@ -1,20 +1,27 @@
 # Key not present in map
+
 **ErrorCode**
+
 > ParameterInvalid
 
 **ErrorMessage**
+
 > Key not present in map: cloud_region_id
 
-## 错误描述
-Map中不存在指定key
+## Error description
 
-## 可能原因
-您在SQL中使用了map类型，并指定了一个不存在的key
+The specified key does not exist in the map.
 
-## 解决方法
-- 检查map类型数据，确认您指定的key在map中存在
-- 如果map类型数据中有可能不存在该key，你可以使用try函数将map访问包裹，以忽略该错误  
-例如：
+## Cause
+
+You use a map in SQL, but the specified key does not exist.
+
+## Solution
+
+- Check the data of the map type and make sure that the specified key exists in the map.
+- If the key may not exist in the map, you can use the try function to wrap the map access to ignore the error.
+  Sample code:
+
 ```SQL
 SELECT try(map['name']) -- map是一个map类型列，如果该列中不存在名为'name'的key，则返回NULL
 ```

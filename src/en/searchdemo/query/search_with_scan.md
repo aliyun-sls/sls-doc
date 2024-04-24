@@ -1,8 +1,12 @@
 ## Scan Overview
-1. For more information about the scan-based query feature and operators, see [Scan-based query overview in Simple Log Service documentation](https://help.aliyun.com/document_detail/457238.html)
+
+1. For more information about the scan-based query feature and operators, see [Scan-based query overview in Simple Log Service documentation](https://www.alibabacloud.com/help/en/doc-detail/457238.html)
+
 ## Log Sample
-* Raw fields: the fields **marked with [R]**, which are suitable for scan-based query.
-* Index fields: the fields **marked with [I]**, which are suitable for index-based query and can greatly accelerate scan-based query.
+
+- Raw fields: the fields **marked with [R]**, which are suitable for scan-based query.
+- Index fields: the fields **marked with [I]**, which are suitable for index-based query and can greatly accelerate scan-based query.
+
 ```
 [I] __source__: 100.128.79.234
 [I] __topic__: nginx
@@ -29,47 +33,56 @@ Scan syntax：`{Index Search Query} | {Scan Query}`。
 
 ## Exact search
 
-* Search a regular field
+- Search a regular field
+
 ```sql
 ProjectName: project_12345 | where ErrorCode = 'WriteQuotaExceed'
 ```
+
 ```sql
 Status : 403 | where RequestId = '63896AED37D252561C6F9739'
 ```
 
-* Search the tag field
+- Search the tag field
+
 ```sql
 __topic__: nginx | where "__tag__:__path__" = '/data/app/access.LOG'
 ```
 
-* Perform a search in which the field name is not case-sensitive
+- Perform a search in which the field name is not case-sensitive
+
 ```sql
 __topic__: nginx | where lower(ErrorCode) != 'writequotaexceed'
 ```
 
-* Search any fields
+- Search any fields
+
 ```sql
 __topic__: nginx | where __line__ like '%WriteQuotaExceed%'
 ```
 
 ## Fuzzy search
 
-* Prefix search
+- Prefix search
+
 ```sql
 ProjectName: project_12345 | where Method like 'P%'
 ```
 
-* Suffix search
+- Suffix search
+
 ```sql
 ProjectName: project_12345 | where ErrorCode like '%Exceed'
 ```
 
-* like match
+- like match
+
 ```sql
 ProjectName: project_12345 | where UserAgent like '%Chrome%Safari%'
 ```
 
-* Regular expression match
+- Regular expression match
+
 ```sql
 # Start with logstore_ and end with a number
 ProjectName: project_12345 | where regexp_like(LogStore, 'logstore_\d+')
@@ -77,57 +90,70 @@ ProjectName: project_12345 | where regexp_like(LogStore, 'logstore_\d+')
 
 ## Comparison search
 
-* Alphabetical comparison
+- Alphabetical comparison
+
 ```sql
 Status:403 | where APIVersion < '0.6.0'
 ```
+
 ```sql
 Status:403 | where APIVersion > '0.6.0'
 ```
 
-* Numerical order comparison
+- Numerical order comparison
+
 ```sql
 Method:GetLogStoreLogs | where cast(Latency as bigint) > 5000
 ```
+
 ```sql
 Method:GetLogStoreLogs | where cast(Latency as bigint) < 500
 ```
+
 ## Boolean combination query
 
-* Query logs that contain the status code 4xx
+- Query logs that contain the status code 4xx
+
 ```sql
 __topic__: nginx | where Status >= '400' and Status <= '499'
 ```
 
-* Query logs in which the status code 4xx is returned for the Method field
+- Query logs in which the status code 4xx is returned for the Method field
+
 ```sql
 __topic__: nginx and __tag__:__path__: "/data/app/access.LOG" | where Status >= '400' and Status <= '499' and (Method = "PostLogStoreLogs" or Method = "WebTracking")
 ```
+
 ## Whether a field exists
 
-* Query logs that do not contain the ErrorMsg field
+- Query logs that do not contain the ErrorMsg field
+
 ```sql
 __topic__: nginx | where ErrorMsg is null
 ```
 
-* Query logs that contain the ErrorMsg field
+- Query logs that contain the ErrorMsg field
+
 ```sql
 __topic__: nginx | where ErrorMsg is not null
 ```
 
 ## Query after substring extraction
 
-* Use a regular expression function to extract substrings
+- Use a regular expression function to extract substrings
+
 ```sql
 # Query logs that contain Mozilla/5.0
 __topic__: nginx | where regexp_extract(UserAgent, 'Mozilla/([\d.]+)\s.+', 1) = '5.0'
 ```
 
-* Use a JSON function to extract substrings
+- Use a JSON function to extract substrings
+
 ```sql
 # Query logs in which the reason field of the ErrorMsg field is the string to be extracted
 __topic__: nginx | where json_extract_scalar(ErrorMsg, '$.reason') = 'Project write quota exceed'
 ```
 
 ## FAQ
+
 1. The string in the right operand of a where expression must be **enclosed in single quotation marks (')** instead of double quotation marks (").

@@ -1,11 +1,11 @@
 # 导入仪表盘最佳实践
 
-使用导入仪表盘功能，您可以轻松地复制仪表盘，省去重新构建和配置的时间和精力。同时，该功能确保仪表盘的一致性和准确性，提高数据分析的效率和准确性。导入功能支持同 project导入、跨 project导入 和 修改 logstore。
+使用导入仪表盘功能，您可以轻松地复制仪表盘，省去重新构建和配置的时间和精力。同时，该功能确保仪表盘的一致性和准确性，提高数据分析的效率和准确性。导入功能支持同 project 导入、跨 project 导入 和 修改 logstore。
 本文将通过具体场景为您介绍如何使用导入功能来复制仪表盘。
 
 ## 前提条件
 
-已创建源仪表盘。具体操作，请参见[创建仪表盘](https://help.aliyun.com/document_detail/59324.htm#concept-osm-1nq-zdb)。
+已创建源仪表盘。具体操作，请参见[创建仪表盘](https://www.alibabacloud.com/help/en/doc-detail/59324.htm#concept-osm-1nq-zdb)。
 
 ## 导入配置
 

@@ -26,11 +26,11 @@ If you want to use a RAM user that assumes the default role to create a data tra
 3. In the upper-right corner of the page, specify a time range for the required log data.
    Make sure that log data exists on the **Raw Logs** tab.
 4. In the code editor, enter the following data transformation statement.
-   For more information, see [Data processing syntax](https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584).(https://help.aliyun.com/document_detail/125439.htm?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT#concept-1130584)。
+   For more information, see [Data processing syntax](https://www.alibabacloud.com/help/en/doc-detail/125439.htm?spm=a2c4g.11186623.0.0.10b9708cbP33kd#concept-1130584).(https://www.alibabacloud.com/help/en/doc-detail/125439.htm?spm=a2c4g.11186623.0.0.3ecc1550YsaUQT#concept-1130584)。
 
 5. Preview data in advanced mode.
    a. Select **Quick**.
-   You can select Quick or Advanced.For more information, see [Preview mode overview].(https://help.aliyun.com/document_detail/175654.htm?spm=a2c4g.11186623.0.0.3ecc708czav3P0#task-2565077)。
+   You can select Quick or Advanced.For more information, see [Preview mode overview].(https://www.alibabacloud.com/help/en/doc-detail/175654.htm?spm=a2c4g.11186623.0.0.3ecc708czav3P0#task-2565077)。
    b. Click **Preview Data**.
    View the transformation results.
    _ If the data fails to be transformed because the syntax of the transformation statement or the permissions are invalid, troubleshoot the failure as prompted.
@@ -38,7 +38,7 @@ If you want to use a RAM user that assumes the default role to create a data tra
 6. Create a data transformation job.
    a. Click **Save as Transformation Job**.
    b.In the **Create Data Transformation Job** panel, configure the parameters and click **OK**.
-   For more information about parameter configurations, see [Get started with data transformation](https://help.aliyun.com/document_detail/140895.htm?spm=a2c4g.11186623.0.0.3ecc4b41qzBlx8#task-2316153).The following table describes the key parameters.
+   For more information about parameter configurations, see [Get started with data transformation](https://www.alibabacloud.com/help/en/doc-detail/140895.htm?spm=a2c4g.11186623.0.0.3ecc4b41qzBlx8#task-2316153).The following table describes the key parameters.
 
    ![data transformation job1](/img/dataprocessdemo/配置数据加工/数据加工作业1.png)
    | Key parameter| Note |
@@ -46,4 +46,4 @@ If you want to use a RAM user that assumes the default role to create a data tra
    | **Authorization Method** | Select **Default Role.**. |
    | **Authorization Method in Storage Destination** | Select **Default Role.**. |
 
-After the data transformation job is created and run, data can be transferred across the two Alibaba Cloud accounts.For more information, see [Manage a data transformation job](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.3ecc2b0dnrsMRZ#task-1580295)。
+After the data transformation job is created and run, data can be transferred across the two Alibaba Cloud accounts.For more information, see [Manage a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/128744.htm?spm=a2c4g.11186623.0.0.3ecc2b0dnrsMRZ#task-1580295)。

@@ -1,6 +1,9 @@
-# 同步索引配置
-以下示例程序主要将某个目标Logstore中的索引配置同步到其它Logstore中。
-## 对应的配置文件
+# Synchronize index configurations
+
+This tool is used to synchronize index configurations from a specific Logstore to one or more other Logstores.
+
+## Configuration file
+
 ```json
 {
   "target": {
@@ -18,18 +21,18 @@
 }
 ```
 
-以上配置内容中，
-+ target 部分对应的已经配置好索引的logstore的配置。其中endpoint最好设置为公网接入点。
-+ destination 部分对应的是一个数组，数组中的每个元素表示的是待覆盖索引配置的logstore的配置，其中endpoint表示这个logstore所在地域的公网接入点。
+In the preceding configuration file:
 
-## 相关代码
+- The target section specifies the configurations of the Logstore for which indexes are configured.We recommend that you set the endpoint field to a public endpoint.
+- The destination section is an array in which each element specifies the configurations of a Logstore whose index configurations are to be overwritten. The endpoint field specifies the public endpoint of the region in which the Logstore resides.
+
+## Code
+
 ```python
-# -*- coding: utf-8 -*-
 import json
 from aliyun.log import *
 
-# 具备访问以上配置文件中的Logstore的权限
-global_ak_id = ""  
+global_ak_id = ""
 global_ak_key = ""
 
 client_map = {}
@@ -52,7 +55,7 @@ def get_logstore_index(endpoint: str, project: str, logstore: str) -> IndexConfi
 
 def set_logstore_index(endpoint: str, project: str, logstore: str, target_index: IndexConfig):
     """
-    这里需要判断是否已经创建了Logstore的索引配置，如果没有创建索引配置，则直接创建，否则要进行更新索引配置
+    Check whether the Logstore index configurations are available. If not, create indexes. If yes, update the index configurations.
     """
     is_need_create_index = False
     sls_client = get_sls_client(endpoint)
@@ -83,7 +86,6 @@ def check_logstore_item(store_item: dict):
 
 
 if __name__ == "__main__":
-    # 主要设置对应配置文件的路径
     sync_store_config_path = "./sls_tools/sync_logstore_index_config.json"
     with open(sync_store_config_path, "r") as reader:
         sync_map = json.load(reader)

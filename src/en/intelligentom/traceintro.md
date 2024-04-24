@@ -1,14 +1,15 @@
 # Simple Log Service: Trace
 
 ## Features
+
 分布式链路追踪（Distributed Tracing，简称 Trace）可提供整个服务调用链路的调用关系、延迟、结果等信息，非常适用于云原生、分布式、微服务等涉及多个服务交互的系统。
 
 :::tip Trace
-[Trial Demo](/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer){target="_blank"}
+[Trial Demo](/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer){:rel="noopener noreferrer" target="\_blank"}
 :::
 
-
 ## Benefits
+
 - Multiple import methods: You can import trace data over multiple protocols such as OpenTelemetry, Jaeger, and Zipkin. You can import trace data in more than 10 programming languages. You can import trace data from multiple trace platforms. You can import trace data over the Internet, an Alibaba Cloud internal network, or a Global Accelerator (GA) network. An Alibaba Cloud internal network can be the classic network or a virtual private cloud (VPC).
 - Compliance with OpenTelemetry Trace 1.0.
 - High performance: You can import petabytes of data per day, extract and analyze relevant metrics, and sample all trace data in large-scale scenarios.
@@ -18,7 +19,5 @@
 - Multiple built-in artificial intelligence for IT operations (AIOps) algorithms: The application automatically analyzes the impact of trace data on performance and error rates. This helps developers identify the root causes of issues in complex environments.
 
 ## Core values
+
 - OpenTelemetry only defines data formats and generates, collects, and sends data. It does not provide features such as analysis, visualization, and alerting. The Trace application of Simple Log Service is implemented based on the OpenTelemetry protocol. You can use the application to collect trace data from OpenTelemetry and other platforms such as Jaeger, Zipkin, and SkyWalking. The application also provides features such as trace data import, storage, analysis, visualization, alerting, and AIOps.
-
-
-

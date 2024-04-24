@@ -1,10 +1,10 @@
-# 特定格式文本数据加工
+# Transform logs in specific text formats
 
-文档中的实践案例主要是根据实际工作中的工单需求产生。本文档将从工单需求，加工编排等方面介绍如何使用 LOG DSL orchestration 解决任务需求。
+The practice cases in this topic are based on the actual data transformation requirements submitted in tickets during daily work.This topic describes how to use LOG domain-specific language (DSL) orchestration to transform logs to meet the requirements.
 
-## Scenario：非标准 JSON 对象转 JSON 展开
+## Scenario: Convert non-standard JSON objects to JSON data and expand the objects
 
-需要对收集的 dict 数据进行二次嵌套展开操作。首先将 dict 数据转成 JSON 数据，再使用`e_json`函数进行展开即可。
+Assume that you want to perform secondary nesting on the collected dictionary data and expand the data.You can convert the dictionary data to JSON data and then use the `e_json` function to expand the data.
 
 - Raw log entries
 
@@ -26,7 +26,7 @@
 
 - LOG DSL orchestration
 
-  1. 将上述`content`数据转换成 JSON 格式数据。
+  1. Convert data in the `content` field to the JSON format.
 
      ```python
      e_set("content_json",str_replace(ct_str(v("content")),"'",'"'))
@@ -63,44 +63,44 @@
      }
      ```
 
-  2. 对经过处理后的标准化的`content_json`数据进行展开。例如要展开第一层只需要设定 JSON 中的`depth`参数为 _1_ 即可。
+  2. Expand the standardized `content_json` data generated after the preceding processing.Expand the standardized `content_json` data generated after the preceding processing.
 
      ```python
      e_json("content_json",depth=1,fmt='full')
      ```
 
-     展开的日志为：
+  The log after expanding is as follows:
 
-     ```
-     content_json.data-1.data-1:  {"aaa": "Mozilla", "bbb": "asde"}
-     content_json.data-2.data-2:  {"up_adde": "-", "up_host": "-"}
-     content_json.referer:  -
-     content_json.request:  GET /phpMyAdmin
-     content_json.status:  404
-     ```
+  ```
+  content_json.data-1.data-1:  {"aaa": "Mozilla", "bbb": "asde"}
+  content_json.data-2.data-2:  {"up_adde": "-", "up_host": "-"}
+  content_json.referer:  -
+  content_json.request:  GET /phpMyAdmin
+  content_json.status:  404
+  ```
 
-     如果`depth`设置为 _2_ ，则展开的日志为：
+setting the `depth` parameter to _2_, the following log is generated:
 
-     ```
-     content_json.data-1.aaa:  Mozilla
-     content_json.data-1.bbb:  asde
-     content_json.data-2.up_adde:  -
-     content_json.data-2.up_host:  -
-     content_json.referer:  -
-     content_json.request:  GET /phpMyAdmin
-     content_json.status:  404
-     ```
+```
+content_json.data-1.aaa:  Mozilla
+content_json.data-1.bbb:  asde
+content_json.data-2.up_adde:  -
+content_json.data-2.up_host:  -
+content_json.referer:  -
+content_json.request:  GET /phpMyAdmin
+content_json.status:  404
+```
 
-  3. 综上 LOG DSL 规则可以如以下形式：
-     ```python
-     e_set(
-     	"content_json",
-     	str_replace(ct_str(v("content")),"'",'"')
-     )
-     e_json("content_json",depth=2,fmt='full')
-     ```
+3. To sum up, use the following LOG DSL rules:
+   ```python
+   e_set(
+   	"content_json",
+   	str_replace(ct_str(v("content")),"'",'"')
+   )
+   e_json("content_json",depth=2,fmt='full')
+   ```
 
-- 加工后数据 加工后的数据是按照`depth`为 _2_ 处理的，具体形式如下：
+- Log after transformation. After the log is transformed by setting the `depth` parameter to _2_, the following log is generated:
 
   ```
   content:  {
@@ -138,9 +138,9 @@
   content_json.status:  404
   ```
 
-## 其他格式文本转 JSON 展开
+## Convert log data in other text formats to data in the JSON format and expand the data
 
-对一些非标准的 JSON 格式数据，如果进行展开可以通过组合规则的形式进行操作。
+To expand non-standard JSON data, you can flexibly combine rules.
 
 - Raw log entries
 
@@ -160,7 +160,7 @@
 
 - LOG DSL orchestration
 
-  1. 首先将日志格式转换为 JSON 形式，可以使用`str_logtash_config_normalize`函数进行转换，操作如下：
+  1. Convert the log data to data in the JSON format by using the `str_logtash_config_normalize` function.
 
      ```python
      e_set(
@@ -171,13 +171,13 @@
      )
      ```
 
-  2. 可以使用 JSON 函数进行展开操作，具体如下：
+  2. Use a JSON function to expand the data.
 
      ```python
      e_json("normalize_data",depth=1,fmt='full')
      ```
 
-  3. 综上 LOG DSL 规则可以如以下形式：
+  3. To sum up, use the following LOG DSL rules:
      ```python
      e_set(
      	"normalize_data",
@@ -192,7 +192,7 @@
      )
      ```
 
-- 加工后数据
+- Log after transformation.
   ```
   content : {
   "pod" => {
@@ -228,9 +228,9 @@
   normalize_data.pod.pod:  {"name": "crm-learning-follow-7bc48f8b6b-m6kgb"}
   ```
 
-## 部分文本特殊编码转换
+## Convert text written in special encoding formats
 
-在日常工作环境中，会遇到一些十六进制字符，需要对其解码才能正常阅读。可以使用`str_hex_escape_encode`函数对一些十六进制字符进行转义操作。
+Hexadecimal characters that are recorded in daily work need to be decoded before they can be read.Use the `str_hex_escape_encode` function to escape hexadecimal characters.
 
 - Raw log entries
 
@@ -244,17 +244,17 @@
   e_set("hex_encode",str_hex_escape_encode(v("content")))
   ```
 
-- 加工后数据
+- Log after transformation.
   ```
   content : "\xe4\xbd\xa0\xe5\xa5\xbd"
-  hex_encode : "你好"
+  hex_encode : "hello"
   ```
 
-## XML 字段展开
+## Expand XML fields
 
-在工作中会遇到各种类型数据，例如 xml 数据。如果要展开 xml 数据可以使用`xml_to_json`函数处理。
+You may encounter various types of data during your daily work, such as XML data.If you want to convert XML data to JSON data, you can use the `xml_to_json` function.
 
-- 测试日志
+- Test logs
 
   ```
   str : <?xmlversion="1.0"?>
@@ -288,7 +288,7 @@
   e_set("str_json",xml_to_json(v("str")))
   ```
 
-- 加工后的日志
+- Post processing logs
   ```
   str : <?xmlversion="1.0"?>
   <data>

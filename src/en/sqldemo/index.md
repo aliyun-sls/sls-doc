@@ -1,52 +1,55 @@
-# 查询分析案例概览
+# Overview of Query Analysis Cases
 
-## 通用聚合分析
-| 案例名称                                                                                                                                       | 描述                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [Query the global distribution of clients](./客户端PV全球分布.md) | 分析客户端PV全球分布。 |
-| [Query the classification and PV trend of request methods](./请求方法分类pv趋势.md) | 分析请求方法分类pv趋势。 |
-| [http_user_agent请求PV分布](./根据pv为http_user_agent进行排序展示.md) | 根据pv为http_user_agent进行排序分析。 |
-| [Query the daily consumption and trend prediction for this month](./本月每日消费及趋势预测.md) | 分析本月每日消费及趋势预测。 |
-| [Query the service consumption distribution of this month](./本月消费情况各产品的占比.md) | 分析本月消费情况各产品的占比。 |
-| [Query the consumption of yesterday and comparison to that of last month](./昨天的消费及与上月的同比.md) | 分析昨天的消费及与上月的同比。 |
+## General aggregation analysis
 
-## Nginx日志分析
+| Case Name                                                                                                | Description                                                   |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [Query the global distribution of clients](./客户端PV全球分布.md)                                        | Query the global distribution of clients                      |
+| [Query the classification and PV trend of request methods](./请求方法分类pv趋势.md)                      | Query the classification and PV trend of request methods      |
+| [Distribution of user agent requests by PV](./根据pv为http_user_agent进行排序展示.md)                    | Sort and analyze the number of PVs by user agent.             |
+| [Query the daily consumption and trend prediction for this month](./本月每日消费及趋势预测.md)           | Sort and analyze the number of PVs by user agent.             |
+| [Query the service consumption distribution of this month](./本月消费情况各产品的占比.md)                | Analyze the distribution of each service consumed this month. |
+| [Query the consumption of yesterday and comparison to that of last month](./昨天的消费及与上月的同比.md) | Analyze the distribution of each service consumed this month. |
 
-| 案例名称                                                                                                                                       | 描述                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [今日PV与昨日对比](./nginx%E4%BB%8A%E6%97%A5PV%E4%B8%8E%E6%98%A8%E6%97%A5%E5%AF%B9%E6%AF%94.md) | nginx 日志查看今日PV和昨日PV对比。 |
-| [Query the distribution of source IP addresses from NGINX logs](./nginx日志来源IP的分布.md) | 统计分析IP来源分布。 |
-| [Collect statistics on inbound and outbound NGINX traffic](./nginx流入流出的流量统计.md) | 统计nginx流入流出的流量统计。 |
-| [Query the top 10 addresses that access NGINX](./nginx访问前十的地址.md) | 统计nginx访问前十的地址。 |
-| [Predict PVs based on NGINX access logs](./nginx访问日志的PV预测.md) | 分析nginx访问日志的PV预测。 |
-| [Query the PV trend and day-to-day comparison from NGINX access logs](./nginx访问日志的PV趋势同比昨日.md) | 分析nginx访问日志的PV趋势同比昨日。 |
+## NGINX log analysis
 
-## Tomcat Web服务分析
-| 案例名称                                                                                                                                       | 描述                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [Analyze the trend of Tomcat request status](./tomcat%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90.md) | 分析 tomcat 不同请求状态数量随时间的变化趋势。 |
-| [tomcat请求状态及数量时间分布](./tomcat请求状态及数量跟随时间顺序展示.md) | 分析tomcat请求状态及数量跟随时间的趋势变化。 |
-| [tomcat访问的pv、uv时间分布](./展示tomcat访问的pv、uv随时间变化曲线.md) | 分析tomcat访问的pv、uv随时间变化曲线的趋势变化。 |
-| [Query the number of Tomcat error requests and the comparison with that of last hour](./tomcat错误请求数量以及与上一小时错误请求比较.md) | 分析tomcat错误请求数量以及与上一小时错误请求比较。 |
-| [Query the top 10 URIs in Tomcat requests](./tomcat中请求数前十的uri展示.md) | 分析tomcat中请求数前十的uri。 |
-| [Query the types and distribution of Tomcat clients](./查询访问tomcat的客户端分类及数量分布.md) | 分析查询访问tomcat的客户端分类及数量分布。 |
-| [Collect statistics on inbound and outbound Tomcat traffic](./tomcat流出流量统计.md) | 分析tomcat流出流量统计。 |
-| [Query the proportions of Tomcat error requests](./tomcat错误请求占比.md) | 分析tomcat错误请求占比。 |
-| [tomcat请求客户端分布](./将请求客户端分布在地图上展示.md) | 分析请求客户端分布。 |
+| Case Name                                                                                                                              | Description                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [Day-to-day comparison of PVs based on NGINX access logs](./nginx%E4%BB%8A%E6%97%A5PV%E4%B8%8E%E6%98%A8%E6%97%A5%E5%AF%B9%E6%AF%94.md) | Compare the PVs of today with those of yesterday based on NGINX access logs. |
+| [Query the distribution of source IP addresses from NGINX logs](./nginx日志来源IP的分布.md)                                            | Analyze the distribution of source IP addresses.                             |
+| [Collect statistics on inbound and outbound NGINX traffic](./nginx流入流出的流量统计.md)                                               | Analyze the distribution of source IP addresses.                             |
+| [Query the top 10 addresses that access NGINX](./nginx访问前十的地址.md)                                                               | Analyze top 10 addresses that access NGINX.                                  |
+| [Predict PVs based on NGINX access logs](./nginx访问日志的PV预测.md)                                                                   | Analyze the predicted PVs based on NGINX access logs.                        |
+| [Query the PV trend and day-to-day comparison from NGINX access logs](./nginx访问日志的PV趋势同比昨日.md)                              | Analyze the predicted PVs based on NGINX access logs.                        |
 
-## CDN日志分析
-| 案例名称                                                                                                                                       | 描述                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [CDN日志分析](./CDN日志分析.md) | 分析CDN访问日志数据，产生各种各样的运营数据报表、用户访问行为分析。 |
+## Tomcat web service analysis
 
-## 负载均衡（SLB）日志分析
-| 案例名称                                                                                                                                       | 描述                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [负载均衡（SLB）日志分析](./负载均衡（SLB）日志分析.md) | 分析SLB访问日志数据，产生各种各样的运营数据报表、用户访问行为分析。 |
+| Case Name                                                                                                                                | Description                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [Analyze the trend of Tomcat request status](./tomcat%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E8%B6%8B%E5%8A%BF%E5%88%86%E6%9E%90.md)        | Analyze the trend of the number of Tomcat access requests in different states over time. |
+| [Distribution of Tomcat access requests by status and quantity over time](./tomcat请求状态及数量跟随时间顺序展示.md)                     | Distribution of Tomcat access requests by status and quantity over time]                 |
+| [Trend of PVs and UVs for Tomcat access over time](./展示tomcat访问的pv、uv随时间变化曲线.md)                                            | Analyze the trend of the PVs and unique visitors (UVs) of Tomcat access over time.       |
+| [Query the number of Tomcat error requests and the comparison with that of last hour](./tomcat错误请求数量以及与上一小时错误请求比较.md) | Calculate the number of Tomcat error requests and compare it with that of last hour.     |
+| [Query the top 10 URIs in Tomcat requests](./tomcat中请求数前十的uri展示.md)                                                             | Analyze top 10 URIs based on the number of Tomcat access requests.                       |
+| [Query the types and distribution of Tomcat clients](./查询访问tomcat的客户端分类及数量分布.md)                                          | Analyze and query the types and number of clients that access Tomcat.                    |
+| [Collect statistics on inbound and outbound Tomcat traffic](./tomcat流出流量统计.md)                                                     | 分析 tomcat 流出流量统计。                                                               |
+| [Query the proportions of Tomcat error requests](./tomcat错误请求占比.md)                                                                | Analyze and query the types and number of clients that access Tomcat.                    |
+| Analyze the proportion of Tomcat error requests.(./将请求客户端分布在地图上展示.md)                                                      | Analyze the proportion of Tomcat error requests.                                         |
 
-## 聚合函数分析
-| 案例名称                                                                                                                                       | 描述                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [聚合函数分析](../sqlfunction/聚合函数.md) | 各种各样的聚合函数分析示例。 |
+## Alibaba Cloud CDN log analysis
 
+| Case Name                                          | Description                                                                                                                      |
+| -------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| [Alibaba Cloud CDN log analysis](./CDN日志分析.md) | Analyze the access logs of Alibaba Cloud CDN to generate a variety of operational data reports and analyze user access behavior. |
 
+## SLB log analysis
+
+| Case Name                                        | Description      |
+| ------------------------------------------------ | ---------------- |
+| [SLB log analysis](./负载均衡（SLB）日志分析.md) | SLB log analysis |
+
+## Aggregate function analysis
+
+| Case Name                                                 | Description                                                          |
+| --------------------------------------------------------- | -------------------------------------------------------------------- |
+| [Aggregate function analysis](../sqlfunction/聚合函数.md) | Describe a variety of aggregate function and give analysis examples. |

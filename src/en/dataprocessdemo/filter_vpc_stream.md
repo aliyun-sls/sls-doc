@@ -80,7 +80,7 @@ After you enable the flow log feature in the Virtual Private Cloud (VPC) console
 
 After creation, you can:
 
-- View the details and status of the data transformation job. You can also start, stop, modify, or delete the data transformation job.For more information, see [Manage a data transformation job](https://help.aliyun.com/document_detail/128744.htm?spm=a2c4g.11186623.0.0.7b002f7aJzc9c6#task-1580295).
+- View the details and status of the data transformation job. You can also start, stop, modify, or delete the data transformation job.For more information, see [Manage a data transformation job](https://www.alibabacloud.com/help/en/doc-detail/128744.htm?spm=a2c4g.11186623.0.0.7b002f7aJzc9c6#task-1580295).
 - Go to the Logstore of the storage destination to view the Internet traffic logs of the VPC flow logs.The Logstore stores only Internet traffic logs.
   For example, you can enter the following query statement to query and analyze Internet traffic by source city and destination city:
   ```python

@@ -154,7 +154,7 @@ The address of a proxy server must be in the \[Protocol://\[Username:Password@\]
 - Protocol: the communication protocol that is used between the current server in the corporate intranet and the proxy server. Valid values: http, https, and socks5. This field is optional.If you do not configure this field,http is used by default.
 - Username and Password: the username and password that are used to log on to the proxy server. These fields are optional.
 - Address: the IP address of the proxy server. This field is required.
-- Port: the listening port of the proxy server that is configured in the nginx.conf file. This field is optional.[3](https://help.aliyun.com/document_detail/217488.html?spm=a2c4g.28958.0.i1#step-jub-u3t-gto)。For more information, see [Step 5] in the "Configure a proxy server" section of this topic.If you do not configure this field, port 80 is used by default.
+- Port: the listening port of the proxy server that is configured in the nginx.conf file. This field is optional.[3](https://www.alibabacloud.com/help/en/doc-detail/217488.html?spm=a2c4g.28958.0.i1#step-jub-u3t-gto)。For more information, see [Step 5] in the "Configure a proxy server" section of this topic.If you do not configure this field, port 80 is used by default.
 
 If you do not want to send specific data from a server in the corporate intranet to the proxy server, you can add the NO_PROXY environment variable. The NO_PROXY environment variable specifies the addresses to which data can be sent without using the proxy server. Separate multiple addresses with commas (,). Supported formats:
 
