@@ -23,8 +23,7 @@
     "test": "npm run lint && npm run type",
     "dev": "vitepress",
     "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 vitepress build && npm run sitemap",
-    "serve": "vitepress serve .",
-    "build-alert": "node scripts/buildAlert.js"
+    "serve": "vitepress serve ."
   },
   "dependencies": {
     "@aliyun-sls/docsearch-js": "1.0.2",

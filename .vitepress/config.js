@@ -8,7 +8,6 @@ const getDataProcessSider = require('./siderbars/getDataProcessSider')
 const getSplDataProcessSider = require('./siderbars/getSplDataProcessSider')
 const getOscompatibleDemo = require('./siderbars/getOscompatibleDemo')
 const getVisulizationDemo = require('./siderbars/getVisulizationSider')
-const getAlertSider = require('./siderbars/getAlertSider')
 const getCloudlenSider = require('./siderbars/getCloudLenSider')
 const getDataAccessSider = require('./siderbars/getDataAccessSider')
 const getIntelligentOMSider = require('./siderbars/getIntelligentOMSider')
@@ -27,7 +26,6 @@ const getDataProcessSiderEn = require('./siderbarsEn/getDataProcessSider')
 const getSplDataProcessSiderEn = require('./siderbarsEn/getSplDataProcessSider')
 const getOscompatibleDemoEn = require('./siderbarsEn/getOscompatibleDemo')
 const getVisulizationDemoEn = require('./siderbarsEn/getVisulizationSider')
-const getAlertSiderEn = require('./siderbarsEn/getAlertSider')
 const getCloudlenSiderEn = require('./siderbarsEn/getCloudLenSider')
 const getDataAccessSiderEn = require('./siderbarsEn/getDataAccessSider')
 const getIntelligentOMSiderEn = require('./siderbarsEn/getIntelligentOMSider')
@@ -101,7 +99,6 @@ module.exports = (async () => {
             '/spldataprocessdemo/': getSplDataProcessSider(),
             '/oscompatibledemo': getOscompatibleDemo(),
             '/visulization': getVisulizationDemo(),
-            '/alert': getAlertSider(),
             '/cloudlen': getCloudlenSider(),
             '/dataaccess': getDataAccessSider(),
             '/intelligentom': getIntelligentOMSider(),
@@ -137,7 +134,6 @@ module.exports = (async () => {
             '/en/dataprocessdemo': getDataProcessSiderEn(),
             '/en/oscompatibledemo': getOscompatibleDemoEn(),
             '/en/visulization': getVisulizationDemoEn(),
-            '/en/alert': getAlertSiderEn(),
             '/en/cloudlen': getCloudlenSiderEn(),
             '/en/dataaccess': getDataAccessSiderEn(),
             '/en/intelligentom': getIntelligentOMSiderEn(),
