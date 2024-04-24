@@ -9,7 +9,6 @@ The number of files and folders that can be collected by a single Logtail instan
 > Total number of monitored directories and files for a single collection configuration: 100,000. The directories do not contain the directories in the blacklist specified in the Logtail configuration and the files contain the files that are not matched by the Logtail configuration.
 > Total number of monitored subdirectories and files in a single directory: 100,000. The directories contain the directories in the blacklist specified in the Logtail configuration and the files contain the files that are not matched by the Logtail configuration.
 
-![image.png](./img/4.1.png)
 
 > Therefore, you can use multiple Logtail instances to expand the collection capabilities based on the following method:
 > Divide the files to be collected into different folders.
@@ -146,20 +145,16 @@ taiye_1
 
 Create a custom identifier taiye_2 for Logtail2, create a custom identifier taiye_3 for Logtail3, and create a custom identifier taiye_4 for Logtail4. Then, create four machine groups in the Simple Log Service console.
 
-![image.png](./img/4.2.png)
 
 After the machine groups are created, check the status of each machine group. The heartbeat of each machine group is normal.
-![image.png](./img/4.3.png) 4.Configure the collection configuration for each Logtail instance.
-![image.png](./img/4.4.png)
+4.Configure the collection configuration for each Logtail instance.
 
 The preceding figure shows that the collection configuration named test_log1 only uses the taiye_1 machine group that contains only the Logtail1 instance. Only the /root/test_log/dir1 path is specified as the path from which logs are collected.Create collection configurations named test_log2, test_log3, and test_log4 in the same way.
 
 5. Verify the configuration effect.
    View the user_log_config.json file of each Logtail instance to check whether the collection configurations are correctly delivered.
-   ![image.png](./img/4.5.png)
 
 Query logs to check whether the logs of each instance are collected.
-![image.png](./img/4.6.png)
 
 ## Usage notes
 

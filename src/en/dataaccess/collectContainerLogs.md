@@ -15,7 +15,6 @@ This topic describes how to collect container logs from Container Service for Ku
 - Specify the ID of Alibaba Cloud Account A for the log-ali-uid parameter, and then obtain the value of the log-machine-group parameter, such as k8s-group-cc47\*\*\*\*54428. When you create a machine group, specify the value for the Custom Identifier parameter.
 - Separate multiple account IDs with commas (,). Example: 17\***\*397,12\*\***456.
 
-![image.png](./img/contnierlog2.png)
 
 3. Restart logtail-ds for the settings to take effect.
 
@@ -23,14 +22,10 @@ This topic describes how to collect container logs from Container Service for Ku
    > b.In the DaemonSets list, find logtail-ds and click Edit in the Actions column.
    > c.In the Environment Variable section, click Add.
    > d.Add a custom variable and specify an arbitrary key-value pair.
-
-   ![image.png](./img/contnierlog6.png)
-
 > e.Click Update.
 
 - On the details page of logtail-ds, check whether each container pod is in the Running state and whether the time when each pod is created is the same as the time when you update the settings.
 
-![image.png](./img/contnierlog3.png)
 
 # Step 2: Create a machine group
 
@@ -42,15 +37,12 @@ This topic describes how to collect container logs from Container Service for Ku
 
 - In the Custom Identifier field, enter the machine group identifier that you obtained in [Step 1: Configure the ID of an Alibaba Cloud account as a user identifier](./aliyunAcountlog.md).For more information about other parameters, see [Create a custom identifier-based machine group](https://help.aliyun.com/zh/sls/user-guide/create-a-custom-identifier-based-machine-group?spm=a2c4g.11186623.0.i1#concept-gyy-k3q-zdb){target="_blank"}.
 
-![image.png](./img/contnierlog4.png)
 
 6. Check whether the heartbeat status of each server in the machine group is OK.
 
    > a.In the Machine Group list, click the machine group.
    > b.On the Machine Group Configurations page, view the status of each ECS instance.
    > If the heartbeat status of an ECS instance is OK, the ECS instance is connected to Simple Log Service.If the status is FAIL, see [How do I troubleshoot an error that is related to a Logtail machine group in a host environment?].(https://help.aliyun.com/zh/sls/user-guide/troubleshoot-the-errors-related-to-logtail-machine-groups?spm=a2c4g.11186623.0.i2#concept-nfs-hs3-bfb){target="_blank"}。
-
-   ![image.png](./img/contnierlog5.png)
 
 ## Step 3: Create a Logtail configuration
 

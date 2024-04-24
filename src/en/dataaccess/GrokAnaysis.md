@@ -71,19 +71,18 @@ In this example, file logs are collected.The logs are stored in the /home/test-i
 ### Step 2: Create or select a machine group
 
 1. After you select a machine group, choose Data Collection > Logtail Configurations and click the + icon to collect data.
-   ![image.png](./img/7.1.png)
+
 2. In the Quick Data Import dialog box, select Single Line - Text Log.
-   ![image.png](./img/7.2.png)
+
 
 3. Create or select a machine group.
    > .If a machine group is available, click Use Existing Machine Groups in the Create Machine Group step.
    > .If no machine groups are available, perform the following steps to create a machine group. In this example, an ECS instance is used.On the ECS Instance tab, select an ECS instance and click Execute Now.
-   > ![image.png](./img/7.3.png)
 
 - After the installation is complete, click Complete Installation.
 
   > .Simple Log Service allows you to create IP address-based machine groups and custom identifier-based machine groups.
-  > ![image.png](./img/7.4.png)
+ 
 
   > .In the Create Machine Group step, specify a name for the machine group and click Next.
 
@@ -114,8 +113,6 @@ The Grok plug-in supports a variety of configuration items. For more information
 }
 ```
 
-![image.png](./img/7.5.png)
-
 Click Next to query logs.
 
 ### Step 4: Query the collected logs
@@ -129,8 +126,6 @@ echo '2022 Nov 1 "Hello World"' >> /home/test-ilogtail/test-log/processor-grok.l
 
 2. Log on to the Simple Log Service console.
 3. Select the project and the Logstore. On the Logstore tab, click the Search & Analysis icon to query the collected logs.A log entry is parsed into different fields.
-
-![image.png](./img/7.8.png)
 
 ## Advanced usage
 

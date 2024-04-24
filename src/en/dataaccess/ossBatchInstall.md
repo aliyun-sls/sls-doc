@@ -53,7 +53,6 @@ This topic describes how to install or update Logtail on multiple Elastic Comput
   - a.In the Basic Information step, retain the default parameter settings and click Next Step: Parameter Settings.
   - b.In the Parameter Settings step, configure the following parameters and click Next Step: OK.
 
-  * ![image.png](./img/oss1.png)
     Key parameters:
 
     - Overwrite: If you turn on Overwrite, the configurations of Logtail are overwritten if Logtail is already installed on your ECS instances.The following table describes the parameter.
@@ -72,7 +71,6 @@ This topic describes how to install or update Logtail on multiple Elastic Comput
 6. View the execution result.
 
 - In the Execution Steps and Results section, you can view the execution status of the Logtail installation command on each ECS instance.
-  ![image.png](./img/oss2.png)
 - You can obtain information such as the installation directory of Logtail on the output and Log tabs.
 
 Overwrite: If you turn on Overwrite, the configurations of Logtail are overwritten if Logtail is already installed on your ECS instances.The following table describes the parameter.
