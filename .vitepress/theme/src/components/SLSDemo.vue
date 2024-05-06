@@ -1,10 +1,15 @@
 <script lang="ts" setup>
 import URI from 'urijs'
 import { computed, ref, watchEffect } from 'vue'
-import { isDarkTheme, parseCommonQuery } from './utils'
+import { initLang, isDarkTheme, parseCommonQuery } from './utils'
 import { inBrowser, useData } from 'vitepress'
 
 const { lang } = useData()
+watchEffect(() => {
+  if (inBrowser) {
+    initLang(lang.value)
+  }
+})
 
 const params = computed(() => {
   const search = inBrowser ? window.location.search : ''

@@ -18,6 +18,14 @@ export function initTheme() {
   localStorage.setItem(storageKey, isDark ? 'dark' : 'light')
 }
 
+export function initLang(lang: string) {
+  const domain = '.aliyun.com'
+
+  if (lang == 'en' || lang == 'zh') {
+    Cookies.set('aliyun_lang', lang, { domain })
+  }
+}
+
 export function addHistoryListener() {
   window.addEventListener('message', (e) => {
     const v = e?.data

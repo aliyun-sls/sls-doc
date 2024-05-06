@@ -2,8 +2,14 @@
 import { computed, ref, watchEffect } from 'vue'
 import { inBrowser, useData } from 'vitepress'
 import URI from 'urijs'
+import { initLang } from './utils';
 
 const { lang } = useData()
+watchEffect(() => {
+  if (inBrowser) {
+    initLang(lang.value)
+  }
+})
 
 const params = computed(() => {
   const search = inBrowser ? window.location.search : ''
