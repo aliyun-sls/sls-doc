@@ -179,6 +179,50 @@ function getEnNavs() {
         },
       ],
     },
+    {
+      text: 'Links',
+      items: [
+        {
+          text: 'Playground',
+          items: [
+            {
+              text: 'SLS Playground',
+              link: 'https://sls.aliyun.com/doc/en/playground/demo.html',
+            },
+            {
+              text: 'ARMS Playground',
+              link: 'https://sls.aliyun.com/doc/en/playground/armsdemo.html',
+            },
+          ],
+        },
+        {
+          text: 'Console',
+          items: [
+            {
+              text: 'SLS',
+              link: 'https://sls.console.aliyun.com/',
+            },
+            {
+              text: 'ARMS',
+              link: 'https://arms.console.aliyun.com/',
+            },
+            {
+              text: 'CloudMonitor',
+              link: 'https://cloudmonitornext.console.aliyun.com/',
+            },
+          ],
+        },
+        {
+          text: 'Others',
+          items: [
+            {
+              text: 'Documents',
+              link: 'https://help.aliyun.com/document_detail/48869.html',
+            },
+          ],
+        },
+      ],
+    },
   ]
 
   return base
