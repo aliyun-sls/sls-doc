@@ -71,13 +71,34 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
   </a>
 </div>
+
+## ARMS Playground 案例
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/armsPlayground/home">
-    <p class="next-steps-link">ARMS Playground案例</p>
-    <p class="next-steps-caption">ARMS Playground案例包含4个分类：应用监控、调用链分析、用户体验监控、性能剖析</p>
+  <a class="vt-box" href="/doc/armsPlayAppMonitor/home">
+    <p class="next-steps-link">应用监控</p>
+      <p class="next-steps-caption">包含查询应用提供/依赖服务监控、查询应用实例资源监控、分析应用新增/突增异常、通过智能洞察自动诊断错慢根因。
+</p>
   </a>
- 
+    <a class="vt-box" href="/doc/armsPlayCallAnalysis/home">
+    <p class="next-steps-link">调用链分析</p>
+    <p class="next-steps-caption">包含调用链分析、端到端全链路追踪、通过错/慢调用链排查应用产生异常的原因、调用链采样配置最佳实践、通过调用链关联应用日志分析业务异常。
+</p>
+   </a>
+    <a class="vt-box" href="/doc/armsPlayUser/home">
+    <p class="next-steps-link">用户体验监控</p>
+    <p class="next-steps-caption">包含追踪用户会话操作轨迹、分析页面资源加载性能、查询客户端资源加载性能、追踪用户会话、分析页面功能访问量。</p>
+    </a>
+
 </div>
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/armsPlayPerformance/home" >
+    <p class="next-steps-link">性能剖析</p>
+     <p class="next-steps-caption">包含Java应用持续性能剖析、查询JVM监控、使用Arthas探索应用性能。
+</p>
+  </a>
+</div>
+
+
 
 ## 智能运维应用 Demo
 

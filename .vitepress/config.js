@@ -15,7 +15,10 @@ const getScheduledsqlSider = require('./siderbars/getScheduledsqlSider')
 const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 const getToolsSider = require('./siderbars/getToolsSider')
-const getArmsPlayGroundSider = require('./siderbars/getArmsPlayGroundSider')
+const getArmsPlayCallAnalysisSider = require('./siderbars/getArmsPlayCallAnalysisSider')
+const getArmsPlayMonitorSider = require('./siderbars/getArmsPlayMonitorSider')
+const getArmsPlayUserSider = require('./siderbars/getArmsPlayUserSider')
+const getArmsPlayPerformanceSider= require('./siderbars/getArmsPlayPerformanceSider')
 
 
 // 英文导航栏
@@ -108,7 +111,11 @@ module.exports = (async () => {
             '/billandsecurity': getBillandsecuritySider(),
             '/metrics': getMetricStoreSider(),
             '/tools': getToolsSider(),
-            '/armsPlayground': getArmsPlayGroundSider()
+            '/armsPlayAppMonitor':getArmsPlayMonitorSider(),
+            '/armsPlayCallAnalysis': getArmsPlayCallAnalysisSider(),
+             '/armsPlayUser': getArmsPlayUserSider(),
+            '/armsPlayPerformance': getArmsPlayPerformanceSider(),
+           
           },
 
           editLink: {
