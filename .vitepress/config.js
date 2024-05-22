@@ -111,10 +111,10 @@ module.exports = (async () => {
             '/billandsecurity': getBillandsecuritySider(),
             '/metrics': getMetricStoreSider(),
             '/tools': getToolsSider(),
-            '/armsPlayAppMonitor':getArmsPlayMonitorSider(),
-            '/armsPlayCallAnalysis': getArmsPlayCallAnalysisSider(),
-             '/armsPlayUser': getArmsPlayUserSider(),
-            '/armsPlayPerformance': getArmsPlayPerformanceSider(),
+            '/armsPlayground/appMonitor':getArmsPlayMonitorSider(),
+            '/armsPlayground/callAnalysis': getArmsPlayCallAnalysisSider(),
+            '/armsPlayground/user': getArmsPlayUserSider(),
+            '/armsPlayground/performance': getArmsPlayPerformanceSider(),
            
           },
 
