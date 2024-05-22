@@ -40,6 +40,8 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   </a>
 </div>
 
+
+
 <div class="vt-box-container next-steps margin-top-20">
   <a class="vt-box" href="/doc/dataaccess/home">
     <p class="next-steps-link">数据采集案例</p>
@@ -68,6 +70,13 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
     <p class="next-steps-link">智能运维</p>
     <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
   </a>
+</div>
+<div class="vt-box-container next-steps margin-top-20">
+  <a class="vt-box" href="/doc/armsPlayground/home">
+    <p class="next-steps-link">ARMS Playground案例</p>
+    <p class="next-steps-caption">ARMS Playground案例包含4个分类：应用监控、调用链分析、用户体验监控、性能剖析</p>
+  </a>
+ 
 </div>
 
 ## 智能运维应用 Demo

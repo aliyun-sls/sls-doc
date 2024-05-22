@@ -15,6 +15,8 @@ const getScheduledsqlSider = require('./siderbars/getScheduledsqlSider')
 const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 const getToolsSider = require('./siderbars/getToolsSider')
+const getArmsPlayGroundSider = require('./siderbars/getArmsPlayGroundSider')
+
 
 // 英文导航栏
 const getSqldemoSiderEn = require('./siderbarsEn/getSqldemoSider')
@@ -106,6 +108,7 @@ module.exports = (async () => {
             '/billandsecurity': getBillandsecuritySider(),
             '/metrics': getMetricStoreSider(),
             '/tools': getToolsSider(),
+            '/armsPlayground': getArmsPlayGroundSider()
           },
 
           editLink: {

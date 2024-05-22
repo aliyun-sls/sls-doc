@@ -21,6 +21,7 @@ function getCnNavs() {
             { text: 'CloudLen案例', link: '/cloudlen/home' },
             { text: '智能运维案例', link: '/intelligentom/home' },
             { text: '审计与安全案例', link: '/billandsecurity/home' },
+            { text: 'ARMS Playground案例', link: '/armsPlayground/home' },
           ],
         },
       ],
