@@ -73,8 +73,8 @@ module.exports = (async () => {
     base: '/doc',
     srcDir: 'src',
 
-    title: 'SLS',
-    description: 'SLS 案例中心',
+    title: '阿里云可观测',
+    description: '阿里云可观测案例中心',
 
     plugins: {
       sitemap: {
@@ -88,7 +88,7 @@ module.exports = (async () => {
       root: {
         label: '简体中文',
         lang: 'zh',
-        description: 'SLS 案例中心',
+        description: '阿里云可观测案例中心',
         themeConfig: {
           lastUpdatedText: '最近修改',
 

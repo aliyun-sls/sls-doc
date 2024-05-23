@@ -1,11 +1,17 @@
-# 日志服务
+# 阿里云可观测
 
-日志服务 SLS 是云原生观测与分析平台，为 Log、Metric、Trace 等数据提供大规模、低成本、实时的平台化服务。日志服务一站式提供数据采集、加工、查询与分析、可视化、告警、消费与投递等功能，全面提升您在研发、运维、运营、安全等场景的数字化能力。
+阿里云可观测团队，负责阿里集团百 PB 级别可观测产品（SLS、ARMS、云监控）。 我们立志于打造面向未来的实时、智能、大规模观测分析平台，以此构建智能运维（AIOps）、大数据安全、业务监控和分析等服务，加速数字化创新。
 
 :::tip SLS Playground 发布啦！！！
 SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 SLS 控制台只读账号，包含智能运维类 APP Demo、CloudLens APP Demo、多种日志分析 Demo，可视化 Demo 等等，尽情畅玩吧！
 
 [尝试](/playground/demo.html){target="_blank"}
+:::
+
+:::tip Arms Playground 发布啦！！！
+Arms Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控 Demo、用户体验监控 Demo 等等，欢迎体验吧！
+
+[尝试](/playground/armsdemo.html){target="_blank"}
 :::
 
 ## 案例中心介绍
@@ -72,7 +78,7 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
   </a>
 </div>
 
-## ARMS 案例
+## ARMS Demo
 <div class="vt-box-container next-steps margin-top-20">
   <a class="vt-box" href="/doc/arms/appMonitor/home">
     <p class="next-steps-link">应用监控</p>
