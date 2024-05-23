@@ -15,11 +15,10 @@ const getScheduledsqlSider = require('./siderbars/getScheduledsqlSider')
 const getBillandsecuritySider = require('./siderbars/getBillandsecuritySider')
 const getMetricStoreSider = require('./siderbars/getMetricStoreSider')
 const getToolsSider = require('./siderbars/getToolsSider')
-const getArmsPlayCallAnalysisSider = require('./siderbars/getArmsPlayCallAnalysisSider')
-const getArmsPlayMonitorSider = require('./siderbars/getArmsPlayMonitorSider')
-const getArmsPlayUserSider = require('./siderbars/getArmsPlayUserSider')
-const getArmsPlayPerformanceSider= require('./siderbars/getArmsPlayPerformanceSider')
-
+const getArmsCallAnalysisSider = require('./siderbars/getArmsCallAnalysisSider')
+const getArmsMonitorSider = require('./siderbars/getArmsMonitorSider')
+const getArmsUserSider = require('./siderbars/getArmsUserSider')
+const getArmsPerformanceSider = require('./siderbars/getArmsPerformanceSider')
 
 // 英文导航栏
 const getSqldemoSiderEn = require('./siderbarsEn/getSqldemoSider')
@@ -111,11 +110,10 @@ module.exports = (async () => {
             '/billandsecurity': getBillandsecuritySider(),
             '/metrics': getMetricStoreSider(),
             '/tools': getToolsSider(),
-            '/armsPlayground/appMonitor':getArmsPlayMonitorSider(),
-            '/armsPlayground/callAnalysis': getArmsPlayCallAnalysisSider(),
-            '/armsPlayground/user': getArmsPlayUserSider(),
-            '/armsPlayground/performance': getArmsPlayPerformanceSider(),
-           
+            '/arms/appMonitor': getArmsMonitorSider(),
+            '/arms/callAnalysis': getArmsCallAnalysisSider(),
+            '/arms/user': getArmsUserSider(),
+            '/arms/performance': getArmsPerformanceSider(),
           },
 
           editLink: {
