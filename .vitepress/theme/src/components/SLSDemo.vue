@@ -44,6 +44,11 @@ let dest = ref('')
 
 watchEffect(async () => {
   if (inBrowser) {
+    if (!params.value.dest.startsWith('/lognext')) {
+      console.error('dest is not start with /lognext')
+      return
+    }
+
     const response = await fetch(`https://new-share-sls-demo-mptiifapvo.cn-shanghai.fcapp.run`)
     const json = await response.json()
     if (json.success) {
