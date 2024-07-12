@@ -50,6 +50,12 @@ function getSidebar() {
       ]
     },
     {
+      text: '解析复杂日志中的字段',
+      items: [
+        { text: '解析复杂日志中的字段', link: '/spldataprocessdemo/parse_fields.md' },
+      ]
+    },
+    {
       text: '数据脱敏',
       items: [
         { text: '手机号脱敏', link: '/spldataprocessdemo/phone_number_desensitization.md' },
