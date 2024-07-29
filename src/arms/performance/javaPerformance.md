@@ -18,7 +18,3 @@
   - OpenJDK 17.0.5+
   - Oracle JDK 11.0.21+
   - Oracle JDK 17.0.9+
-
-## Demo 地址
-
-[https://armsnext4service.console.aliyun.com/tracing#/tracing/cn-hangzhou?appId=ckv8e2vzfj%407e393063f3fd6ad&tab=appDiagnosis&source=TRACE&sideFilters=%5B%5D](https://armsnext4service.console.aliyun.com/tracing#/tracing/cn-hangzhou?appId=ckv8e2vzfj%407e393063f3fd6ad&tab=appDiagnosis&source=TRACE&sideFilters=%5B%5D)

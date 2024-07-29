@@ -14,6 +14,3 @@
 
 - 已接入 ARMS 应用监控
 
-## Demo 地址
-
-[https://trace4service.console.aliyun.com/#/tracing/cn-hangzhou?appId=ckv8e2vzfj%40a71c26ffd651d46&tab=instanceMonitoring&source=XTRACE&xtraceType=trace](https://trace4service.console.aliyun.com/#/tracing/cn-hangzhou?appId=ckv8e2vzfj%40a71c26ffd651d46&tab=instanceMonitoring&source=XTRACE&xtraceType=trace)
