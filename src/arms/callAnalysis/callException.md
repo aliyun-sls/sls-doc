@@ -1,7 +1,7 @@
 # 通过错/慢调用链排查应用产生异常的原因
 
 :::tip 通过错/慢调用链排查应用产生异常的原因
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Ftracing%2FcallChains%2Fcn-hangzhou%3Ffilters%3DstatusCode%2521%253D%2522200%2522){target="_blank"}
+[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Ftracing%2FcallChains%2Fcn-hangzhou%3Ffilters%3Dattributes.http.status_code%253E399%26start%3D1721617152846%26end%3D1721703552846%26isLive%3Dtrue%26interval%3D86400000){target="_blank"}
 :::
 
 ## 使用场景

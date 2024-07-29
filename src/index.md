@@ -8,8 +8,8 @@ SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 
 [尝试](/playground/demo.html){target="_blank"}
 :::
 
-:::tip Arms Playground 发布啦！！！
-Arms Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控 Demo、用户体验监控 Demo 等等，欢迎体验吧！
+:::tip ARMS Playground 发布啦！！！
+ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控 Demo、用户体验监控 Demo 等等，欢迎体验！
 
 [尝试](/playground/armsdemo.html){target="_blank"}
 :::
