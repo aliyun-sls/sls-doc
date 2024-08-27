@@ -57,15 +57,7 @@
 ## 数据脱敏
 | 案例名称 | 描述 |
 | -- | -- |
-| [手机号脱敏](./phone_number_desensitization.md) | 使用字符串替换函数对手机号进行脱敏 |
-| [银行卡信息脱敏](./bank_card_desensitization.md) | 使用字符串替换函数对银行卡信息进行脱敏|
-| [邮箱地址脱敏](./email_desensitization.md) | 使用字符串替换函数对邮箱地址进行脱敏 |
-| [AK脱敏](./ak_desensitization.md) | 使用字符串替换函数对ip进行脱敏 |
-| [IP脱敏](./ip_desensitization.md) | 使用字符串替换函数对AK进行脱敏 |
-| [身份证脱敏](./id_card_desensitization.md) | 使用字符串替换函数对身份证进行脱敏 |
-| [网址脱敏](./net_address_desensitization.md) | 使用字符串替换函数对网址进行脱敏 |
-| [订单号脱敏](./order_id_desensitization.md) | 使用字符串替换函数对订单号进行脱敏 |
-
+| [数据脱敏](./phone_number_desensitization.md) | 使用正则表达式函数对关键信息进行脱敏 |
 
 ## 阿里云Flink SQL基于SPL实现
 
