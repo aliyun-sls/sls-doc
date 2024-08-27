@@ -49,7 +49,7 @@ function getSidebar() {
         { text: '解析Nginx日志', link: '/en/spldataprocessdemo/parse_nginx_log.md' },
       ]
     },
-    {
+        {
       text: '数据脱敏',
       items: [
         { text: '手机号脱敏', link: '/en/spldataprocessdemo/phone_number_desensitization.md' },
@@ -77,6 +77,8 @@ function getSidebar() {
         { text: '使用Java消费组基于SPL消费日志', link: '/en/spldataprocessdemo/java_consumer_group_sql_consumer.md' },
         { text: '使用Go SDK基于SPL消费', link: '/en/spldataprocessdemo/go_sdk_sql_consumer.md' },
         { text: '使用Go消费组基于SPL消费日志', link: '/en/spldataprocessdemo/go_consumer_group_sql_consumer.md' },
+        { text: '使用Python SDK基于SPL消费日志', link: '/en/spldataprocessdemo/python_sdk_spl_consumer.md' },
+        { text: '使用Python消费组基于SPL消费日志', link: '/en/spldataprocessdemo/python_consumer_group_sql_consumer.md' },
       ]
     },
   ]
