@@ -50,9 +50,9 @@ function getSidebar() {
       ]
     },
     {
-      text: '解析日志中的复杂字段',
+      text: '解析复杂日志中的字段',
       items: [
-        { text: '解析日志中的复杂字段', link: '/en/spldataprocessdemo/parse_fields.md' },
+        { text: '解析复杂日志中的字段', link: '/en/spldataprocessdemo/parse_fields.md' },
       ]
     },
     {
