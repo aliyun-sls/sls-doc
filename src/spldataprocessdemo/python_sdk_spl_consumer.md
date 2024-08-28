@@ -56,10 +56,11 @@
                 shard_id = shard.get('shardID')
                 res = client.pull_logs(project_name, logstore_name, shard_id, cursor_map.get(shard_id), log_group_count, query=query)
                 res.log_print()
-                cursor_map[shard_id] = res.next_cursor
-                if not res.log_count:
-                    # only for debug
+                if cursor_map[shard_id] == res.next_cursor: 
+                    # only for debug 
                     time.sleep(3)
+                else:
+                    cursor_map[shard_id] = res.next_cursor
 
 
     if __name__ == '__main__':
