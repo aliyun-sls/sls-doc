@@ -13,7 +13,7 @@
     ```shell
     pip install -U aliyun-log-python-sdk
     ```
-2. 在spl_consumer_demo目录下创建main.py文件。创建一个消费组并启动一个消费者线程，该消费者会从指定的Logstore中消费数据。其中AK、SK配置在环境变量中，Query字段填写SPL语句。
+2. 在spl_consumer_demo目录下创建main.py文件。创建一个消费组并启动一个消费者线程，该消费者会从指定的Logstore中消费数据。其中AK、SK配置在环境变量中，query字段填写SPL语句。
     ```python
     import os
     import time
@@ -101,7 +101,7 @@
         # 消费组名称。您无需提前创建，SDK会自动创建该消费组。
         consumer_group = 'consumer-group'
         consumer_name = "consumer-group-name"
-        query = ""
+        query = "* | where cast(cdn_in as bigint) > 70"
 
         # 在消费组中创建2个消费者消费数据。
         option = LogHubConfig(endpoint,
@@ -111,6 +111,7 @@
                               logstore,
                               consumer_group,
                               consumer_name,
+                              query=query,
                               cursor_position=CursorPosition.BEGIN_CURSOR,
                               heartbeat_interval=6,
                               data_fetch_interval=1)

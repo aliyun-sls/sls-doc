@@ -13,7 +13,7 @@
     ```shell
     pip install -U aliyun-log-python-sdk
     ```
-2. 在spl_demo目录下创建main.py文件。创建一个消费组并启动一个消费者线程，该消费者会从指定的Logstore中消费数据。其中AK、SK配置在环境变量中，Query字段填写SPL语句。
+2. 在spl_demo目录下创建main.py文件。创建一个消费组并启动一个消费者线程，该消费者会从指定的Logstore中消费数据。其中AK、SK配置在环境变量中，query字段填写SPL语句。
     ```python
     # encoding: utf-8
 
@@ -31,7 +31,7 @@
         project_name = 'aliyun-test-project'
         # Logstore名称。
         logstore_name = 'aliyun-test-logstore'
-
+        query = '* | where cast(cdn_in as bigint) > 70'
         init_cursor = 'end'
         log_group_count = 10
 
@@ -54,7 +54,7 @@
         while True:
             for shard in shards:
                 shard_id = shard.get('shardID')
-                res = client.pull_logs(project_name, logstore_name, shard_id, cursor_map.get(shard_id), log_group_count)
+                res = client.pull_logs(project_name, logstore_name, shard_id, cursor_map.get(shard_id), log_group_count, query=query)
                 res.log_print()
                 cursor_map[shard_id] = res.next_cursor
                 if not res.log_count:
