@@ -8,7 +8,7 @@
   * 强烈建议不要把AccessKey ID和AccessKey Secret保存到工程代码里，否则可能导致AccessKey泄露，威胁您账号下所有资源的安全。
 * 已安装SDK开发环境。具体操作，请参见[SDK参考](https://help.aliyun.com/zh/sls/developer-reference/overview-of-log-service-sdk#reference-n3h-2sq-zdb)。
 ## Python SDK基于SPL消费
-本示例中，并调用PullLog接口读取日志数据，完成使用Go SDK基于SPL消费日志数据的演示。关于日志服务SDK的更多信息，请参见[日志服务SDK参考](https://help.aliyun.com/zh/sls/developer-reference/overview-of-log-service-sdk#reference-n3h-2sq-zdb)。
+本示例中，并调用PullLog接口读取日志数据，完成使用Python SDK基于SPL消费日志数据的演示。关于日志服务SDK的更多信息，请参见[日志服务SDK参考](https://help.aliyun.com/zh/sls/developer-reference/overview-of-log-service-sdk#reference-n3h-2sq-zdb)。
 1. 创建项目目录spl_demo，在目录下安装日志服务SDK
     ```shell
     pip install -U aliyun-log-python-sdk
@@ -28,9 +28,9 @@
         access_key_id = os.environ.get('ALIBABA_CLOUD_ACCESS_KEY_ID', '')
         access_key = os.environ.get('ALIBABA_CLOUD_ACCESS_KEY_SECRET', '')
         # Project名称。
-        project_name = 'aliyun-test-project'
+        project_name = 'your_project'
         # Logstore名称。
-        logstore_name = 'aliyun-test-logstore'
+        logstore_name = 'your_logstore'
         query = '* | where cast(cdn_in as bigint) > 70'
         init_cursor = 'end'
         log_group_count = 10

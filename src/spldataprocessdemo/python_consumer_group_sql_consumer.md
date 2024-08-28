@@ -95,8 +95,8 @@
         access_key_id = os.environ.get('ALIBABA_CLOUD_ACCESS_KEY_ID', '')
         access_key = os.environ.get('ALIBABA_CLOUD_ACCESS_KEY_SECRET', '')
 
-        project = 'test-project'
-        logstore = 'test-nginx-log'
+        project = 'your_project'
+        logstore = 'your_logstore'
 
         # 消费组名称。您无需提前创建，SDK会自动创建该消费组。
         consumer_group = 'consumer-group'
