@@ -49,7 +49,13 @@ function getSidebar() {
         { text: '解析Nginx日志', link: '/en/spldataprocessdemo/parse_nginx_log.md' },
       ]
     },
-        {
+    {
+      text: '解析复杂日志中的字段',
+      items: [
+        { text: '解析复杂日志中的字段', link: '/en/spldataprocessdemo/parse_fields.md' },
+      ]
+    },
+    {
       text: '数据脱敏',
       items: [
         { text: '手机号脱敏', link: '/en/spldataprocessdemo/phone_number_desensitization.md' },

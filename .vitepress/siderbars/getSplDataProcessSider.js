@@ -50,16 +50,15 @@ function getSidebar() {
       ]
     },
     {
+      text: '解析复杂日志中的字段',
+      items: [
+        { text: '解析复杂日志中的字段', link: '/spldataprocessdemo/parse_fields.md' },
+      ]
+    },
+    {
       text: '数据脱敏',
       items: [
-        { text: '手机号脱敏', link: '/spldataprocessdemo/phone_number_desensitization.md' },
-        { text: '银行卡信息脱敏', link: '/spldataprocessdemo/bank_card_desensitization.md' },
-        { text: '邮箱地址脱敏', link: '/spldataprocessdemo/email_desensitization.md' },
-        { text: 'AK脱敏', link: '/spldataprocessdemo/ak_desensitization.md' },
-        { text: 'IP脱敏', link: '/spldataprocessdemo/ip_desensitization.md' },
-        { text: '身份证脱敏', link: '/spldataprocessdemo/id_card_desensitization.md' },
-        { text: '网址脱敏', link: '/spldataprocessdemo/net_address_desensitization.md' },
-        { text: '订单号脱敏', link: '/spldataprocessdemo/order_id_desensitization.md' }
+        { text: '数据脱敏', link: '/spldataprocessdemo/phone_number_desensitization.md' },
       ]
     },
     {
