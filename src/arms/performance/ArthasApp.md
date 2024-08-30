@@ -18,7 +18,3 @@ Arthas 是诊断 Java 应用线上问题的利器，利用字节码增强技术�
 
 - 已接入 ARMS 应用监控，且 ARMS Java Agent 版本为 v2.7.1.3 或以上
 - 在应用**自定义配置**页签的**Arthas 监控**区域，打开**Arthas 开关**
-
-## Demo 地址
-
-[https://armsnext4service.console.aliyun.com/tracing#/tracing/cn-hangzhou?appId=ckv8e2vzfj%407e393063f3fd6ad&tab=appDiagnosis-arthas&source=TRACE&sideFilters=%5B%5D](https://armsnext4service.console.aliyun.com/tracing#/tracing/cn-hangzhou?appId=ckv8e2vzfj%407e393063f3fd6ad&tab=appDiagnosis-arthas&source=TRACE&sideFilters=%5B%5D)
