@@ -83,6 +83,8 @@ function getSidebar() {
         { text: '使用Java消费组基于SPL消费日志', link: '/en/spldataprocessdemo/java_consumer_group_sql_consumer.md' },
         { text: '使用Go SDK基于SPL消费', link: '/en/spldataprocessdemo/go_sdk_sql_consumer.md' },
         { text: '使用Go消费组基于SPL消费日志', link: '/en/spldataprocessdemo/go_consumer_group_sql_consumer.md' },
+        { text: '使用Python SDK基于SPL消费日志', link: '/en/spldataprocessdemo/python_sdk_spl_consumer.md' },
+        { text: '使用Python消费组基于SPL消费日志', link: '/en/spldataprocessdemo/python_consumer_group_sql_consumer.md' },
       ]
     },
   ]

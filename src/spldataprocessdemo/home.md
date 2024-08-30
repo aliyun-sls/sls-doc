@@ -73,3 +73,5 @@
 | [使用Java消费组基于SPL消费日志](./java_consumer_group_sql_consumer.md) | 使用Java消费组基于SPL消费日志 |
 | [使用Go SDK基于SPL消费](./go_sdk_sql_consumer.md) | Go SDK基于SPL消费 |
 | [使用Go消费组基于SPL消费日志](./go_consumer_group_sql_consumer.md) | 使用Go消费组基于SPL消费日志 |
+| [使用Python SDK基于SPL消费日志](./python_sdk_spl_consumer.md) | 使用Python SDK基于SPL消费日志 |
+| [使用Python消费组基于SPL消费日志](./python_consumer_group_sql_consumer.md) | 使用Python消费组基于SPL消费日志 |
