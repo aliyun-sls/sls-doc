@@ -131,7 +131,7 @@ function getSidebar() {
       items: [
         {
           text: '在阿里云日志服务轻松落地您的AI模型服务',
-          link: '/sqldemo/在阿里云日志服务轻松落地您的AI模型服务',
+          link: '/sqldemo/deploy_aI_model_width_alilog_service',
         },
         {
           text: '实现大规模预测模型和服务',

@@ -584,7 +584,7 @@ group by disk_type
 
 |disk_type|disk_life_model|
 |--|--|
-|HDD-001|{"coefficients": ...}|
+|HDD-001|"{"coefficients": ...}"|
 |...|...|
 
 通过模型训练，可以把模型训练的结果保存到一个数据表中，比如disk_life_model_table，也可以是带with语句的通用表表达式(Common Table Expression)。然后我们就可以应用这个模型，对线上的磁盘的寿命进行预测了。使用阿里云日志服务的回归模型预测的方法如下面的SQL语句。
