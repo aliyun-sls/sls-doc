@@ -127,8 +127,12 @@ function getSidebar() {
       ],
     },
     {
-      text: '机器学习',
+      text: 'AI模型服务',
       items: [
+        {
+          text: '在阿里云日志服务轻松落地您的AI模型服务',
+          link: '/sqldemo/在阿里云日志服务轻松落地您的AI模型服务',
+        },
         {
           text: '实现大规模预测模型和服务',
           link: '/sqldemo/实现大规模预测模型和服务',
