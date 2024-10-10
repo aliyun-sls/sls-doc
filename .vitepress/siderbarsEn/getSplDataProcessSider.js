@@ -58,7 +58,7 @@ function getSidebar() {
     {
       text: '数据脱敏',
       items: [
-        { text: '数据脱敏', link: '/spldataprocessdemo/phone_number_desensitization.md' },
+        { text: '数据脱敏', link: '/en/spldataprocessdemo/phone_number_desensitization.md' },
       ]
     },
     {
