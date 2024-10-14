@@ -44,9 +44,10 @@ kafkaConsumer -> [虚拟Topic] -> 真实Logstore
 2. 下载kafka_admin_tool。
 
 ```
-# 仅支持在linux x86_64下执行
+# 仅支持在linux x86_64下执行 md5为 6c5535804de3963122269fa9265982e5
 wget https://sls-resource.oss-cn-shanghai.aliyuncs.com/tools/kafka_admin_tool
 ```
+* kafka_admin_tool 源码位置为 https://github.com/aliyun-sls/sls-doc/tree/main/src/oscompatibledemo/kafka-admin-tool
 
 3. 创建虚拟Topic
 ```
