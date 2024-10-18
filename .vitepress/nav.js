@@ -7,7 +7,7 @@ function getCnNavs() {
         {
           items: [
             { text: 'SQL分析案例', link: '/sqldemo/home' },
-            { text: 'SPL数据处理案例', link: '/spldataprocessdemo/home' },
+            { text: 'SPL案例（加工新版等）', link: '/spldataprocessdemo/home' },
             { text: 'SQL函数案例', link: '/sqlfunction/home' },
             { text: 'SQL错误中心', link: '/sqlerror/home' },
             { text: '定时SQL案例', link: '/scheduledsql/home' },
@@ -15,7 +15,7 @@ function getCnNavs() {
             { text: '时序库查询案例', link: '/metrics/home' },
             { text: '可视化案例', link: '/visulization/home' },
             { text: '数据采集案例', link: '/dataaccess/home' },
-            { text: '加工案例', link: '/dataprocessdemo/home' },
+            { text: '加工（旧版）案例', link: '/dataprocessdemo/home' },
             { text: '开源兼容', link: '/oscompatibledemo/home' },
             { text: '告警规则案例', link: '/alert/home' },
             { text: 'CloudLen案例', link: '/cloudlen/home' },

@@ -37,7 +37,7 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
     <p class="next-steps-caption">日志服务（SLS）支持查询与分析结果可视化，提供10多种统计图表，包括表格、线图、柱状图、地图等，并支持基于统计图表自定义仪表盘（支持外嵌与下钻分析）。</p>
   </a>
   <a class="vt-box" href="/doc/dataprocessdemo/home">
-    <p class="next-steps-link">加工案例</p>
+    <p class="next-steps-link">加工（旧版）案例</p>
     <p class="next-steps-caption">日志服务（SLS）提供200多个内置函数、400多个正则表达式、灵活的自定义函数，实现过滤、分裂、转换、富化、复制等效果，满足数据分派、规整、融合等场景。</p>
   </a>
   <a class="vt-box" href="/doc/oscompatibledemo/home">
@@ -54,7 +54,7 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
     <p class="next-steps-caption">日志服务支持采集服务器与应用、开源软件、物联网、移动端、标准协议、阿里云产品等多种来源的数据。</p>
   </a>
   <a class="vt-box" href="/doc/spldataprocessdemo/home">
-    <p class="next-steps-link">SPL数据处理案例</p>
+    <p class="next-steps-link">SPL案例（加工新版等）</p>
     <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
   </a>
   <a class="vt-box" href="/doc/cloudlen/home">

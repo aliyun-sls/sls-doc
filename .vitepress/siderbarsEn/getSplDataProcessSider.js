@@ -1,7 +1,7 @@
 function getSidebar() {
   return [
     {
-      text: 'SPL数据处理',
+      text: 'SPL案例（加工新版等）',
       items: [{ text: 'Case overview', link: '/en/spldataprocessdemo/home' }],
     },
     {
