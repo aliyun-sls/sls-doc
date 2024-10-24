@@ -70,13 +70,13 @@ host: www.ol.mock.com
 remote_user: a*
 ```
 
-- Query logs in which the value of the http_user_agent field contains a string that starts with mo and ends with la [Try in Playground](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mo*la){target="_blank"}{target="_blank"}
+- Query logs in which the value of the http_user_agent field contains a string that starts with mo and ends with la [Try in Playground](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mo*la){target="_blank"}
 
 ```sql
 http_user_agent: mo*la
 ```
 
-- Query logs in which the value of the http_user_agent field contains a string that starts with mozi, ends with la, and includes one character between mozi and la [Try in Playground](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mozi%3Fla){target="_blank"}{target="_blank"}
+- Query logs in which the value of the http_user_agent field contains a string that starts with mozi, ends with la, and includes one character between mozi and la [Try in Playground](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mozi%3Fla){target="_blank"}
 
 ```sql
 http_user_agent: mozi?la
