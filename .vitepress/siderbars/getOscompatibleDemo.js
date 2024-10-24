@@ -5,21 +5,15 @@ function getSidebar() {
       items: [{ text: '总览', link: '/oscompatibledemo/home' }],
     },
     {
-      text: 'Kafka 兼容',
+      text: 'Kafka SDK对接SLS',
       items: [
-        { text: '通过 Kafka 协议消费数据功能说明', link: '/oscompatibledemo/overview' },
-        { text: 'Java 消费示例', link: '/oscompatibledemo/java_kafka_consume' },
-        {
-          text: 'Confluent-Kafka-Go 消费示例',
-          link: '/oscompatibledemo/confluent_go_kafka_consume',
-        },
-        { text: 'Franz-Kafka-Go 消费示例', link: '/oscompatibledemo/franz_go_kafka_consume' },
-        { text: 'Python-Kafka 消费示例', link: '/oscompatibledemo/python_kafka_consume' },
-        {
-          text: 'Confluent-Kafka-C# 消费示例',
-          link: '/oscompatibledemo/confluent_dotnet_kafka_consume',
-        },
-        { text: 'Sarama-Kafka-Go 消费示例', link: '/oscompatibledemo/sarama_go_kafka_consume' },
+        { text: '功能说明', link: '/oscompatibledemo/kafka_overview' },
+        { text: '使用SPL过滤消费', link: '/oscompatibledemo/kafka_spl' },
+        { text: 'Java Kafka SDK', link: '/oscompatibledemo/kafka_java' },
+        { text: 'Confluent-Kafka-Go', link: '/oscompatibledemo/kafka_go' },
+        { text: 'Confluent-Kafka-Python', link: '/oscompatibledemo/kafka_python' },
+        // { text: 'Confluent-Kafka-C#', link: '/oscompatibledemo/kafka_c_sharp'},
+        // { text: 'Sarama-Kafka-Go示例', link: '/oscompatibledemo/sarama_go_kafka_consume' },
       ],
     },
   ]

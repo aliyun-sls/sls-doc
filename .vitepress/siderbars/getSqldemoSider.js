@@ -127,8 +127,20 @@ function getSidebar() {
       ],
     },
     {
-      text: '机器学习',
+      text: 'AI模型服务',
       items: [
+        {
+          text: '在阿里云日志服务轻松落地您的AI模型服务',
+          link: '/sqldemo/deploy_ai_model_with_alilog_service',
+        },
+        {
+          text: '阿里云日志服务的傻瓜式极易预测模型',
+          link: '/sqldemo/forecast',
+        },
+        {
+          text: '阿里云日志服务的多指标综合异常检测',
+          link: '/sqldemo/multi_metric_anomaly_detection',
+        },
         {
           text: '实现大规模预测模型和服务',
           link: '/sqldemo/实现大规模预测模型和服务',
