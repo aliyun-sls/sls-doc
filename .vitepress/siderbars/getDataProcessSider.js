@@ -1,7 +1,7 @@
 function getSidebar() {
   return [
     {
-      text: '数据加工案例',
+      text: '加工（旧版）案例',
       items: [{ text: '案例总览', link: '/dataprocessdemo/home' }],
     },
     {
