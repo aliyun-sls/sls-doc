@@ -11,11 +11,11 @@ Step2：专属仪表盘 默认生成2个仪表盘。
 ## 可视化分析
 ### SLB访问中心
 展示访问细节信息，包括：客户端PV分布、请求方法PV趋势、状态码PV趋势、top客户端、请求报文流量拓扑等内容。
-[试用Demo](https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/?redirect=true&type=18)
+[试用Demo](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log_nginx_dashboard_cn%3FisShare%3Dtrue){target="_blank"}
 
 ### SLB运营中心
 展示总体运营情况，包括PV、UV、请求成功率、请求报文流量、返回客户端流量等内容。
-[试用Demo](https://1340796328858956.cn-shanghai.fc.aliyuncs.com/2016-08-15/proxy/demo/newconsoledemo/?redirect=true&type=17)
+[试用Demo](/playground/demo.html?dest=/lognext/project/nginx-demo-log/dashboard/nginx-access-log-metrics_nginx_monitoring_cn%3FisShare%3Dtrue){target="_blank"}
 
 ## 日志字段详情
 | 字段 | 说明 |
