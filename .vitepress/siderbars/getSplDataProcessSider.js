@@ -62,6 +62,12 @@ function getSidebar() {
       ]
     },
     {
+      text: '事件判断',
+      items: [
+        { text: '事件判断', link: '/spldataprocessdemo/event_judgment.md' },
+      ]
+    },
+    {
       text: '阿里云Flink SQL基于SPL实现',
       items: [
         { text: '阿里云Flink SQL基于SPL实现行过滤', link: '/spldataprocessdemo/flink_spl_filter.md' },
