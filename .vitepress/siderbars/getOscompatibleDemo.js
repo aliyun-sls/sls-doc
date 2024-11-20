@@ -16,6 +16,12 @@ function getSidebar() {
         // { text: 'Sarama-Kafka-Go示例', link: '/oscompatibledemo/sarama_go_kafka_consume' },
       ],
     },
+    {
+      text: 'ES兼容',
+      items: [
+        { text: '最佳实践', link: '/oscompatibledemo/es_best_practice' },
+      ],
+    },
   ]
 }
 
