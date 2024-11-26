@@ -47,6 +47,8 @@
 | 案例名称 | 描述 |
 | -- | -- |
 | [解析Nginx日志 ](./parse_nginx_log.md) | 使用正则表达式函数解析Nginx访问日志 |
+| [解析非标准的Nginx日志 ](./parse_no_nginx_log.md) | 使用正则表达式函数解析非标准的Nginx访问日志 |
+
 
 ## 解析复杂日志中的字段 
 

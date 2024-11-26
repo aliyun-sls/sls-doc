@@ -47,6 +47,7 @@ function getSidebar() {
       text: '解析Nginx日志',
       items: [
         { text: '解析Nginx日志', link: '/en/spldataprocessdemo/parse_nginx_log.md' },
+        { text: '解析非标准的Nginx日志', link: '/en/spldataprocessdemo/parse_no_nginx_log.md' },
       ]
     },
     {
