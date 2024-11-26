@@ -21,26 +21,26 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
     <p class="next-steps-link">查询案例</p>
     <p class="next-steps-caption">日志服务（SLS）支持秒级查询十亿到千亿级别的日志数据，并支持使用SQL对查询结果进行统计分析，或者使用Scan功能对查询结果的指定字段进行扫描查询。</p>
   </a>
-  <a class="vt-box" href="/doc/sqldemo/home">
+  <a class="vt-box" href="/doc/sqldemo/home.html">
     <p class="next-steps-link">SQL分析案例</p>
     <p class="next-steps-caption">日志服务（SLS）基于 SQL 提供分析功能，分析语句可以对查询的结果进行计算或者统计，需结合查询语句一起使用并配置索引，并支持Scheduled SQL和SQL独享版。</p>
   </a>
-  <a class="vt-box" href="/doc/sqlfunction/home">
+  <a class="vt-box" href="/doc/sqlfunction/home.html">
     <p class="next-steps-link">SQL函数案例</p>
     <p class="next-steps-caption">日志服务（SLS）分析 SQL 提供10多种查询运算符、10多种机器学习函数、100多个SQL函数。</p>
   </a>
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/visulization/home">
+  <a class="vt-box" href="/doc/visulization/home.html">
     <p class="next-steps-link">可视化案例</p>
     <p class="next-steps-caption">日志服务（SLS）支持查询与分析结果可视化，提供10多种统计图表，包括表格、线图、柱状图、地图等，并支持基于统计图表自定义仪表盘（支持外嵌与下钻分析）。</p>
   </a>
-  <a class="vt-box" href="/doc/dataprocessdemo/home">
+  <a class="vt-box" href="/doc/dataprocessdemo/home.html">
     <p class="next-steps-link">加工（旧版）案例</p>
     <p class="next-steps-caption">日志服务（SLS）提供200多个内置函数、400多个正则表达式、灵活的自定义函数，实现过滤、分裂、转换、富化、复制等效果，满足数据分派、规整、融合等场景。</p>
   </a>
-  <a class="vt-box" href="/doc/oscompatibledemo/home">
+  <a class="vt-box" href="/doc/oscompatibledemo/home.html">
     <p class="next-steps-link">开源兼容</p>
     <p class="next-steps-caption">日志服务（SLS）提供了多种开源兼容的方案，本模块主要聚集介绍如何用开源的标准接口（Kafka等）访问SLS。</p>
   </a>
@@ -49,30 +49,30 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
 
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/dataaccess/home">
+  <a class="vt-box" href="/doc/dataaccess/home.html">
     <p class="next-steps-link">数据采集案例</p>
     <p class="next-steps-caption">日志服务支持采集服务器与应用、开源软件、物联网、移动端、标准协议、阿里云产品等多种来源的数据。</p>
   </a>
-  <a class="vt-box" href="/doc/spldataprocessdemo/home">
+  <a class="vt-box" href="/doc/spldataprocessdemo/home.html">
     <p class="next-steps-link">SPL案例（加工新版等）</p>
     <p class="next-steps-caption">日志服务SPL支持在实时消费、扫描查询和Logtail采集等日志服务场景中使用，本案例介绍SPL基本语法及在不同场景中的应用。</p>
   </a>
-  <a class="vt-box" href="/doc/cloudlen/home">
+  <a class="vt-box" href="/doc/cloudlen/home.html">
     <p class="next-steps-link">CloudLens 案例</p>
     <p class="next-steps-caption">日志服务（SLS）CloudLens 介绍与使用。</p>
   </a>
 </div>
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/sqlerror/home">
+  <a class="vt-box" href="/doc/sqlerror/home.html">
     <p class="next-steps-link">错误中心</p>
     <p class="next-steps-caption">罗列了已知的用户常见错误，旨在帮助用户根据请求错误提示，排查问题所在，自助诊断和修复问题。</p>
   </a>
-  <a class="vt-box" href="/doc/scheduledsql/home">
+  <a class="vt-box" href="/doc/scheduledsql/home.html">
     <p class="next-steps-link">定时SQL</p>
     <p class="next-steps-caption">日志服务（SLS）定时 SQL 使用案例</p>
   </a>
-  <a class="vt-box" href="/doc/intelligentom/home">
+  <a class="vt-box" href="/doc/intelligentom/home.html">
     <p class="next-steps-link">智能运维</p>
     <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
   </a>
@@ -80,24 +80,24 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
 
 ## ARMS Demo
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/arms/appMonitor/home">
+  <a class="vt-box" href="/doc/arms/appMonitor/home.html">
     <p class="next-steps-link">应用监控</p>
       <p class="next-steps-caption">包含查询应用提供/依赖服务监控、查询应用实例资源监控、分析应用新增/突增异常、通过智能洞察自动诊断错慢根因。
 </p>
   </a>
-    <a class="vt-box" href="/doc/arms/callAnalysis/home">
+    <a class="vt-box" href="/doc/arms/callAnalysis/home.html">
     <p class="next-steps-link">调用链分析</p>
     <p class="next-steps-caption">包含调用链分析、端到端全链路追踪、通过错/慢调用链排查应用产生异常的原因、调用链采样配置最佳实践、通过调用链关联应用日志分析业务异常。
 </p>
    </a>
-    <a class="vt-box" href="/doc/arms/user/home">
+    <a class="vt-box" href="/doc/arms/user/home.html">
     <p class="next-steps-link">用户体验监控</p>
     <p class="next-steps-caption">包含追踪用户会话操作轨迹、分析页面资源加载性能、查询客户端资源加载性能、追踪用户会话、分析页面功能访问量。</p>
     </a>
 
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/arms/performance/home" >
+  <a class="vt-box" href="/doc/arms/performance/home.html" >
     <p class="next-steps-link">性能剖析</p>
      <p class="next-steps-caption">包含Java应用持续性能剖析、查询JVM监控、使用Arthas探索应用性能。
 </p>
@@ -109,26 +109,26 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
 ## 智能运维应用 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/intelligentom/fullstackintro">
+  <a class="vt-box" href="/doc/intelligentom/fullstackintro.html">
     <p class="next-steps-link">全栈可观测</p>
     <p class="next-steps-caption">一站式IT系统可观测方案，包含IT系统监控、全链路Trace、智能告警等功能。本文介绍全栈可观测功能的相关信息。
 </p>
   </a>
-    <a class="vt-box" href="/doc/intelligentom/traceintro">
+    <a class="vt-box" href="/doc/intelligentom/traceintro.html">
     <p class="next-steps-link">Trace</p>
     <p class="next-steps-caption">日志服务提供基于原生OpenTelemetry协议的分布式链路追踪功能，支持各类Trace数据的接入、存储、分析、可视化、告警、人工智能运维等。</p>
   </a>
-    <a class="vt-box" href="/doc/intelligentom/fullstackintro">
+    <a class="vt-box" href="/doc/intelligentom/fullstackintro.html">
     <p class="next-steps-link">全栈监控</p>
     <p class="next-steps-caption">全栈监控应用是日志服务提供的一站式IT系统监控方案，监控的目标包括主机监控、Kubernetes监控、数据库监控、中间件监控等。</p>
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-    <a class="vt-box" href="/doc/intelligentom/anomalyanalysisintro">
+    <a class="vt-box" href="/doc/intelligentom/anomalyanalysisintro.html">
     <p class="next-steps-link">智能异常分析</p>
     <p class="next-steps-caption">智能时序异常发现、文本异常模式挖掘、自定义根因分析诊断平台。</p>
   </a>
-   <a class="vt-box" href="/doc/intelligentom/maasintro">
+   <a class="vt-box" href="/doc/intelligentom/maasintro.html">
     <p class="next-steps-link">基础模型能力</p>
     <p class="next-steps-caption">针对 Log、Metric、Trace 这三类基础数据的特点，以及围绕这三类数据的高频场景进行建模，提供 API 维度的模型能力集成</p>
   </a>
@@ -147,21 +147,21 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
     <p class="next-steps-link">CloudLens for ALB</p>
     <p class="next-steps-caption">应用型负载均衡日志中心</p>
   </a>
-  <a class="vt-box" href="/doc/cloudlen/slslenintro">
+  <a class="vt-box" href="/doc/cloudlen/slslenintro.html">
     <p class="next-steps-link">CloudLens for SLS</p>
     <p class="next-steps-caption">SLS 数据洞察</p>
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/cloudlen/ossintro">
+  <a class="vt-box" href="/doc/cloudlen/ossintro.html">
     <p class="next-steps-link">CloudLens for OSS</p>
     <p class="next-steps-caption">OSS 数据洞察</p>
   </a>
-   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/polardb" target="_blank">
+   <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/polardb.html" target="_blank">
     <p class="next-steps-link">CloudLens for PolarDB</p>
     <p class="next-steps-caption">PolarDB 数据洞察</p>
   </a>
-    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/rds" target="_blank">
+    <a class="vt-box" href="/doc/playground/demo.html?dest=/lognext/app/lens/rds.html" target="_blank">
     <p class="next-steps-link">CloudLens for RDS</p>
     <p class="next-steps-caption">RDS 数据洞察</p>
   </a>
@@ -181,11 +181,11 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
   </a>
 </div>
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/cloudlen/flowlogintro">
+  <a class="vt-box" href="/doc/cloudlen/flowlogintro.html">
     <p class="next-steps-link">Flowlog 日志中心</p>
     <p class="next-steps-caption">VPC Flowlog 日志分析APP</p>
   </a>
-    <a class="vt-box" href="/doc/cloudlen/ebsintro">
+    <a class="vt-box" href="/doc/cloudlen/ebsintro.html">
     <p class="next-steps-link">CloudLens for EBS</p>
     <p class="next-steps-caption">块存储数据洞察</p>
   </a>
@@ -194,11 +194,11 @@ CloudLens 基于日志服务构建统一的云产品可观测能力，通过日�
 ## 其他日志应用 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
-  <a class="vt-box" href="/doc/billandsecurity/costmanagerintro">
+  <a class="vt-box" href="/doc/billandsecurity/costmanagerintro.html">
     <p class="next-steps-link">成本管家</p>
     <p class="next-steps-caption">账单数据分析，云产品费用优化</p>
   </a>
-    <a class="vt-box" href="/doc/billandsecurity/logauditintro">
+    <a class="vt-box" href="/doc/billandsecurity/logauditintro.html">
     <p class="next-steps-link">日志审计服务</p>
     <p class="next-steps-caption">跨区域中心化存储、审计</p>
   </a>
