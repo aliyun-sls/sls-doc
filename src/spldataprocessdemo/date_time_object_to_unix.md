@@ -85,7 +85,7 @@ SLS SPL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
 
 
-* 场景一：使用to_unixtime转换函数，将日期时间对象或日期时间字符串转换为Unix时间戳。
+* 场景一：使用to_unixtime转换函数，将不带时区的日期时间对象或日期时间字符串转换为Unix时间戳。
 
   * 原始日志
 
@@ -107,7 +107,29 @@ SLS SPL语法中的日期时间处理主要涉及三种数据类型：日期时�
       time: 2023-09-21 10:59:37.055
       new_time:1695293977.055
       ```
-* 场景二：使用from_unixtime转换函数  ，将Unix时间戳转化带时区的timestamp类型的日期和时间。
+* 场景二：使用to_unixtime转换函数，将带时区的日期时间对象或日期时间字符串转换为Unix时间戳。
+
+  * 原始日志
+
+      ```
+      time: 2024-03-13_16:44:58.800+0800
+      ```
+
+
+  * SPL语句
+
+      ```python
+      * | extend new_time=replace(replace(time, '+0800', ''), '_', ' ') | extend new_time = cast(to_unixtime(cast(new_time as TIMESTAMP)) as bigint) - 28800
+      ```
+
+
+  * 查询和分析结果
+
+      ```
+      time:2024-03-13_16:44:58.800+0800
+      new_time:1710319499
+      ```
+* 场景三：使用from_unixtime转换函数  ，将Unix时间戳转化无时区的timestamp类型的日期和时间。
 
   * 原始日志
 
@@ -119,7 +141,7 @@ SLS SPL语法中的日期时间处理主要涉及三种数据类型：日期时�
   * SPL语句
 
       ```python
-      * | extend time=cast(time as DOUBLE) | extend new_time=from_unixtime(time)
+      * | extend new_time=from_unixtime(cast(time as DOUBLE))
       ```
 
 
@@ -127,6 +149,26 @@ SLS SPL语法中的日期时间处理主要涉及三种数据类型：日期时�
 
       ```
       time: 1695191402
-      new_time:2023-09-20T06:30:02.000
+      new_time:2023-09-20 06:30:02.000
+      ```
+* 场景四：使用from_unixtime转换函数  ，将Unix时间戳转化带时差的timestamp类型的日期和时间。
+  * 原始日志
+
+      ```
+      time:1695191402
       ```
 
+
+  * SPL语句
+
+    ```python
+    * | extend new_time=from_unixtime(cast(time as DOUBLE) + 28800)
+    ```
+
+
+  * 查询和分析结果
+
+      ```
+      time:1695191402
+      new_time:2023-09-20 14:30:02.000
+      ```
