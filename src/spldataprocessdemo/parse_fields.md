@@ -117,7 +117,7 @@
   | project-rename host=nodeName, time=eventTime, fullPath=path
   | extend host = split_part(host, '.', 1),module ='cpfs',fullPath = regexp_replace(fullPath,'(^.*)([\/]+$)','\1'),time=replace(replace(time, '+0800', ''), '_', ' ')
   | parse-regexp fullPath, '([^\\/]+$)' as subPath
-  | extend __time__ = cast(to_unixtime(cast(time as TIMESTAMP)) as bigint)- 28800
+  | extend __time__ = cast(to_unixtime(cast(time as TIMESTAMP)) as bigint) - 28800
   ```
 * 加工结果
   ```
@@ -131,4 +131,85 @@
   subPath:.efc_2251799814382581_2984197703087879309_1710319498445559_file1nas_file_0.txt
   time:2024-03-13 16:44:58.800
   __time__:1710319499
+  ```
+## 场景五：从多层包裹的json中提取出json字符串
+* 原始日志
+  ```
+  {
+  "__source__":"log_service",
+  "__topic__":"mse_test_access_log",
+  "authority":"go-micro.rrzu.com",
+  "bytes_received":"147",
+  "bytes_sent":"328",
+  "cluster_id":"gw-38019u2u9ndnkwdkjh",
+  "duration":"43",
+  "method":"POST",
+  "path":"/diversion/test",
+  "protocol":"HTTP/1.1",
+  "request_id":"681292f6-4aba-42df-8e75-ab426a620382",
+  "requested_server_name":"go-micro.ewewew.com",
+  "response_code":"200",
+  "response_flags":"-",
+  "route_name":"go-diversion-route-f732e980-9738279nex892u9e2m",
+  "start_time":"2024-11-13T04:01:23.770Z",
+  "trace_id":"2932eh2nein2",
+  "upstream_cluster":"outbound|2233||diversion-api-dd.go.ee.cluster.local",
+  "upstream_host":"172.16.9.225:2233",
+  "upstream_local_address":"100.10.0.0:12882",
+  "upstream_service_time":"42",
+  "upstream_transport_failure_reason":"-",
+  "user_agent":"GuzzleHttp/7",
+  "x_forwarded_for":"100.10.0.0:1000",
+  "downstream_local_address":"100.10.0.0:443",
+  "downstream_remote_address":"100.10.0.0:12767",
+  "request_headers":"{\"envoy.lua:request_body\":\"{\"experiment_uniq_id\":\"test_name_address_remind_ali\",\"distinct_id\":\"392839072\",\"terminal\":\"alipay.ipope\",\"version\":\"3.2.35\",\"model_type\":\"abtest\"}\",\"envoy.lua:request_headers\":\":authority=go-micro.ew.com, :path=/diversion/dede, :method=POST, :scheme=https, user-agent=GuzzleHttp/7, content-type=application/json, appid=diversion, timestamp=1731470483, sign=903h2oni2biy2y9en, content-length=147, x-forwarded-for=192.168.0.35, x-forwarded-proto=https, x-envoy-internal=true, x-dddd-original-host=go-micro.rrzu.com, x-request-id=23232d2-4aba-42df-8e75-4dr32ed, x-envoy-decorator-operation=diversion-api-def.go.svc.cluster.local:2233/diversion/(.*)((\/).*)?, \"}",
+  "response_headers":"{\"envoy.lua:response_body\":\"{\"status\":0,\"message\":\"OK\",\"data\":{\"experiment_id\":21,\"experiment_type\":1,\"experiment_uniqwqwq_id\":\"sf_real_name_address_remind_ali\",\"experiment_group_id\":100,\"experiment_group_name\":\"对照比\",\"experiment_group_type\":0,\"is_white\":0,\"param_id\":\"sws2wu91w1w1s1s\",\"param_type\":1,\"param_val\":\"2\",\"distinct_id\":\"42465147\"}}\",\"envoy.lua:response_headers\":\":status=200, access-control-allow-headers=Content-Type, Origin, X-CSRF-Token, Authorization, AccessToken, Token, Range, X-Requested-With, mini_version, terminal, access-control-allow-methods=GET,PUT,POST,DELETE,OPTIONS, content-type=application/json; charset=utf-8, traceparent=00-3902u2jej9d286e92h-2e3r4f4f4ff-00, vary=Origin, date=Wed, 13 Nov 2024 04:01:23 GMT, content-length=328, req-cost-time=43, req-arrive-time=1731470483770, resp-start-time=1731470483813, x-envoy-upstream-service-time=42, set-cookie=canary-route=\"fr4544t5t542\"; Max-Age=10; Path=/; HttpOnly, stage=prod, set-cookie=acw_tc=681292f6-4aba-42df-8e75-029j30jej3dn39hf3h9hnhfeuy47rhnfhf4;path=/;HttpOnly;Max-Age=1800, \"}"
+  }
+  ```
+* 解析需求
+  * 1：如果authority不为data-analysis.rrzu.com且不为data-behavior.rrzu.com则进行后续处理
+  * 2：将原日志中的authority、duration、user_agent、request_id、response_code、path、x_forwarded_for字段分别重命名为host、request_time、http_user_agent、req_id、status、url、x_forward_for。
+  * 3：从x_forward_for中解析出ip，从request_headers解析出request_body和request_header，从response_headers解析出response_data
+  * 4：最后删除request_headers、response_headers字段
+* 加工语句
+  ```python
+  * | where 'authority' != 'data-analysis.rrzu.com'  and 'authority' != 'data-behavior.rrzu.com' 
+  | project-rename host=authority,request_time=duration,http_user_agent=user_agent,req_id=request_id,status=response_code,url=path,x_forward_for=x_forwarded_for
+  | extend ip=regexp_extract(x_forward_for, '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}') 
+  | parse-regexp request_headers,'{"envoy.lua:request_body":"(.*?)"\,"envoy.lua:request_headers":"(.*?)"}' as request_body, request_header
+  | parse-regexp response_headers, '"envoy.lua:response_body":"({.*?})"' as response_data
+  | project-away request_headers,response_headers
+  ```
+* 加工结果
+  ```
+  __source__:log_service
+  __topic__:mse_test_access_log
+  bytes_received:147
+  bytes_sent:328
+  cluster_id:gw-38019u2u9ndnkwdkjh
+  downstream_local_address:100.10.0.0:443
+  downstream_remote_address:100.10.0.0:12767
+  host:go-micro.rrzu.com
+  http_user_agent:GuzzleHttp/7
+  ip:100.10.0.0
+  method:POST
+  protocol:HTTP/1.1
+  req_id:681292f6-4aba-42df-8e75-ab426a620382
+  request_body:{"experiment_uniq_id":"test_name_address_remind_ali","distinct_id":"392839072","terminal":"alipay.ipope","version":"3.2.35","model_type":"abtest"}
+  request_header::authority=go-micro.ew.com, :path=/diversion/dede, :method=POST, :scheme=https, user-agent=GuzzleHttp/7, content-type=application/json, appid=diversion, timestamp=1731470483, sign=903h2oni2biy2y9en, content-length=147, x-forwarded-for=192.168.0.35, x-forwarded-proto=https, x-envoy-internal=true, x-dddd-original-host=go-micro.rrzu.com, x-request-id=23232d2-4aba-42df-8e75-4dr32ed, x-envoy-decorator-operation=diversion-api-def.go.svc.cluster.local:2233/diversion/(.*)((/).*)?, 
+  request_time:43
+  requested_server_name:go-micro.ewewew.com
+  response_data:{"status":0,"message":"OK","data":{"experiment_id":21,"experiment_type":1,"experiment_uniqwqwq_id":"sf_real_name_address_remind_ali","experiment_group_id":100,"experiment_group_name":"对照比","experiment_group_type":0,"is_white":0,"param_id":"sws2wu91w1w1s1s","param_type":1,"param_val":"2","distinct_id":"42465147"}}
+  response_flags:-
+  route_name:go-diversion-route-f732e980-9738279nex892u9e2m
+  start_time:2024-11-13T04:01:23.770Z
+  status:200
+  trace_id:2932eh2nein2
+  upstream_cluster:outbound|2233||diversion-api-dd.go.ee.cluster.local
+  upstream_host:172.16.9.225:2233
+  upstream_local_address:100.10.0.0:12882
+  upstream_service_time:42
+  upstream_transport_failure_reason:-
+  url:/diversion/test
+  x_forward_for:100.10.0.0:1000
   ```
