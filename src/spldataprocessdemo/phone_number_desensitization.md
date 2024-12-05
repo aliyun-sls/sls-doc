@@ -10,7 +10,7 @@
     ```
     message:{"data":{"receivePhoneNo":"13812345678"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'receivePhoneNo":\s*"([\+86]*1[3-9]{1}\d{1})\d{4}(\d{4,11})','receivePhoneNo":"\1****\2')
     ```
@@ -24,7 +24,7 @@
     ```
     message:{"data":{"receivePhoneNo":"59092819"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'receivePhoneNo":\s*"(5|6|7|8|9)(\d{1})(\d{4})(\d{2})\"','receivePhoneNo":"\1\2****\4"')
     ```
@@ -38,7 +38,7 @@
     ```
     message:{"data":{"receivePhoneNo":"020928198"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message = regexp_replace(message, 'receivePhoneNo":\s*"(0[2-9])(\d{5,6})(\d{2})\"','receivePhoneNo":"\1******\3"')
     ```
@@ -53,7 +53,7 @@
   ```
   content: bank number is 491648411333978312 and credit card number is 4916484113339780
   ```
-* DSL编排规则
+* SPL编排规则
   ```python
   * | extend bank_number=regexp_replace(content, '([1-9]{1})(\d{11}|\d{13}|\d{14})(\d{4})', '****\3')
   ```
@@ -112,7 +112,7 @@
   ```
   content: ak id is rDhc9qxjhIhlBiyphP7buo5yg5h6Eq and ak key is XQr1EPtfnlZLYlQc
   ```
-* DSL编排规则
+* SPL编排规则
   ```python
   * | extend akid_encrypt=regexp_replace(content, '([a-zA-Z0-9]{4})(([a-zA-Z0-9]{26})|([a-zA-Z0-9]{12}))', '\1****')
   ```
@@ -127,7 +127,7 @@
   ```
   content: ip is 192.168.1.1
   ```
-* DSL编排规则
+* SPL编排规则
   ```python
   * | extend ip_encrypt=regexp_replace(content, '(\w+\s+\w+\s+)\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}', '\1****')
   ```
@@ -143,7 +143,7 @@
     ```
     content: Id card is 11010519491231002X
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend id_encrypt=regexp_replace(content, '([\d]{4})[\d]{11}([\d]{2}[\d|Xx])', '\1****')
     ```
@@ -157,7 +157,7 @@
     ```
     message:{"data":{"cardNumber":"410106171821090234","cardNumber":"E138123451","receivePhoneNo":"13812345678"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'cardNumber":\s*"([\d]{4})[\d]{11}([\d]{2}[\d|Xx])\"','cardNumber":"\1****\2"')
     ```
@@ -171,7 +171,7 @@
     ```
     message:{"data":{"cardNumber":"410106171821090234","cardNumber":"E138123451","receivePhoneNo":"13812345678"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'cardNumber":\s*"([G|E|H|M|P|B|D])\d{6}(\d{3})\"','cardNumber":"\1****\2"')
     ```
@@ -185,7 +185,7 @@
     ```
     message:{"data":{"cardNumber":"18210902","cardNumber":"E138123451","receivePhoneNo":"13812345678"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'cardNumber":\s*"([\d]{4})([\d]{4})\"','cardNumber":"****\2"')
     ```
@@ -199,7 +199,7 @@
     ```
     message:{"data":{"cardNumber":"18210902","cardNumber":"E138123451","receivePhoneNo":"13812345678"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'cardNumber":\s*"([A-Z])(\d{1})([\d]{6})([\d]{2})\"','cardNumber":"\1\2******\4"')
     ```
@@ -214,7 +214,7 @@
   ```
   url: https://www.aliyun.com/sls?logstore
   ```
-* DSL编排规则
+* SPL编排规则
   ```python
   * | extend encode_url=url_encode(url)
   ```
@@ -229,7 +229,7 @@
   ```
   orderId: 15121412314
   ```
-* DSL编排规则
+* SPL编排规则
   ```python
   * | extend md5_orderId=to_hex(md5(to_utf8(orderId)))
   ```
@@ -244,7 +244,7 @@
   ```
   message:{"data":{"address":"上海市徐汇区漕河泾开发区文景路90号"}}
   ```
-* DSL编排规则
+* SPL编排规则
   ```python
   * | extend message1 = regexp_replace(message, 'address":\s*"(.*(省|市|自治区|特别行政区|地区|县|区|市辖区))?(.*(区))(.*)\"','address":"\1\3**"')
   ```
@@ -260,7 +260,7 @@
     ```
     message:{"data":{"name":"卫小明"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'name":\s*"([\x{4e00}-\x{9fa5}])([\x{4e00}-\x{9fa5}])([\x{4e00}-\x{9fa5}])\"','name":"\1*\3"')
     ```
@@ -274,7 +274,7 @@
     ```
     message:{"data":{"name":"卫明"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'name":\s*"[\x{4e00}-\x{9fa5}]([\x{4e00}-\x{9fa5}])\"','name":"*\1"')
     ```
@@ -288,7 +288,7 @@
     ```
     message:{"data":{"name":"Sam Alice"}}
     ```
-  * DSL编排规则
+  * SPL编排规则
     ```python
     * | extend message1 = regexp_replace(message, 'name":\s*"([a-zA-Z])[a-zA-Z]+\s+([a-zA-Z])[a-zA-Z]+','name":"\1**** \2****"')
     ```
