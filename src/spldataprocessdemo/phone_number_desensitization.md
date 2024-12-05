@@ -12,12 +12,12 @@
     ```
   * DSL编排规则
     ```python
-    * | extend message1 = regexp_replace(message, 'receivePhoneNo":\s*"([\+86]*1[3-9]{1}\d{1})\d{4}(\d{4,11})','receivePhoneNo":"\1****\2"')
+    * | extend message1 = regexp_replace(message, 'receivePhoneNo":\s*"([\+86]*1[3-9]{1}\d{1})\d{4}(\d{4,11})','receivePhoneNo":"\1****\2')
     ```
   * 加工结果
     ```
     message:{"data":{"receivePhoneNo":"13812345678"}}
-    message1:{"data":{"receivePhoneNo":"138****5678""}}
+    message1:{"data":{"receivePhoneNo":"138****5678"}}
     ```
 * 子场景2：港澳地区展示手机号的前二位和后二位，中间隐藏。
   * 原始日志
