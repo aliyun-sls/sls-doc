@@ -1,4 +1,4 @@
-# 使用Python消费组基于SPL消费日志
+# 使用Python SDK基于SPL消费日志
 日志服务提供多语言SDK，且都支持日志服务消费接口。本文介绍通过Python消费组的方式，设置SPL语句来消费Logstore中的数据，通过消费组（ConsumerGroup）消费数据无需关注日志服务的实现细节及消费者之间的负载均衡、故障转移（Failover）等，只需要专注于业务逻辑。
 ## 前提条件
 * 已创建RAM用户并完成授权。具体操作，请参见[创建RAM用户并完成授权](https://help.aliyun.com/zh/sls/using-the-openapi-example#78541bf01a5df)。
