@@ -1,3 +1,5 @@
+ptn_delete.py
+```python
 import sys
 import json
 import requests
@@ -75,3 +77,4 @@ kibanaAuth = HTTPBasicAuth(kibanaUser, kibanaPassword)
 for indexPatternId in indexPatternIds:
     #print_with_time("start to delete index pattern %s" % indexPatternId)
     deleteKibanaIndexPattern(kibanaSpace, indexPatternId)
+```

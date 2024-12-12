@@ -2,15 +2,15 @@
 
 本文介绍在数据迁移到SLS后，如何将原来Kibana中的dashboard迁移到SLS对接的Kibana中
 
-# 操作思路
+# 思路
 
 ![](/img/oscompatibledemo/dashboard10.png)
 
 
 * 从旧的Kibana导出dashboard的export.ndjson文件
-* 新的Kibana中准备好index pattern
-* 把export.ndjson中的旧的index pattern id替换成新的Kibana index patter Id
-* 完成替换后，把export.ndjson导入到新的kibana
+* 把export.ndjson中的旧的index Pattern id替换成新的Kibana Index Patter Id
+* 完成替换后，把export.ndjson导入到新的Kibana中
+
 
 
 # Dashboard迁移演示
@@ -64,7 +64,7 @@ POST people/_bulk
 
 * 查看老的es中的Index Pattern的ID 
 
-准备好 kibana_config_1.json，然后使用  [ptn_list.py 点击下载](ptn_list.py) 来list Index Pattern
+准备好 kibana_config_1.json，然后使用  [ptn_list.py](ptn_list.py.md){target="_blank"}  来list Index Pattern
 ```
 {
     "url" : "http://xxx:5601",
@@ -75,7 +75,7 @@ POST people/_bulk
 ```
 执行
 ```
-➜  /tmp python ptn_list.py kibana_config_1.json
+➜  python ptn_list.py kibana_config_1.json
 f06fc2b0-b82d-11ef-88c6-15adf26175c7    people
 ```
 
@@ -87,12 +87,12 @@ f06fc2b0-b82d-11ef-88c6-15adf26175c7 这个就是旧的people这个index pattern
 
 * 在SLS对接的Kibana中找到新的Index Pattern的Id
 
-同样使用 [ptn_list.py 点击下载](ptn_list.py) 来list 新的Kibana中Index Pattern的ID
+同样使用 [ptn_list.py](ptn_list.py.md){target="_blank"} 来list 新的Kibana中Index Pattern的ID
 
 ```
 # 准备好kibana_config_2.json
 
-➜  /tmp python ptn_list.py kibana_config_2.json
+➜  python ptn_list.py kibana_config_2.json
 ef710470-b83a-11ef-bb2b-ad198b7b763d	etl.people
 ```
 
@@ -117,3 +117,7 @@ sed -i 's/f06fc2b0-b82d-11ef-88c6-15adf26175c7/ef710470-b83a-11ef-bb2b-ad198b7b7
 
 打开新的dashboard是否符合预期
 ![](/img/oscompatibledemo/dashboard9.png)
+
+
+### 注意事项
+* 老的ES中的字段 和 SLS中写入的字段需要一致，不然可能导致Dashboard迁移后打开报错（比如报字段不存在）

@@ -20,6 +20,7 @@ function getSidebar() {
       text: 'ES兼容',
       items: [
         { text: 'Kibana Dashboard迁移', link: '/oscompatibledemo/kibana_dashboard_transfer' },
+        { text: 'Kibana Index Pattern批量删除', link: '/oscompatibledemo/kibana_pattern_batch_delete' },
         { text: '最佳实践', link: '/oscompatibledemo/es_best_practice' },
       ],
     },
