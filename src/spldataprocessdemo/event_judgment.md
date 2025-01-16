@@ -24,7 +24,7 @@
     "body_bytes_sent":"1123"
   },{
   "http_host": "example.com",
-    "http_status": "404",
+    "http_status": "300",
     "request_method":"GET",
     "body_bytes_sent":"711"
   },{
