@@ -1,10 +1,10 @@
-# 如何设置表格单元格背景高亮
+# Highlight the background of table cells
 
-在仪表盘编辑模式，编辑当前表格，在字段配置的tab下：
-1. 点击**添加字段**，选择**A>path** 字段，点击**添加配置**，选择**标准配置>颜色方案**，再选择**阈值**
-2. 再次点击**添加配置**，选择**字段列设置>单元格显示方式**，选择**背景高亮**
-3. 再次点击**添加配置**，选择**阈值>阈值**，设置颜色
+In edit mode of a dashboard, edit the current table. On the **Field Configuration** tab, perform the following operations:
+1. Click **Add Field** and select **A > path**. Click **Add Configuration** and select **Standard Configurations > Color Scheme**. Then, select **Threshold**.
+2. Click **Add Configuration** again and select **Field/Column Settings > Cell Display Mode**. Then, select **Background Highlight**.
+3. Click **Add Configuration** again and select **Threshold > Threshold**. Then, click the circle icon to configure the color.
 ![图 4](/img/src/visulization/tablePro/cellHighlight/cellHighlight4.png)
 
-还可以点击**添加阈值**对某一个单元格的背景进行高亮，例如设置字符串等于/request/path-0/file-5，则表格中符合该条件的单元格背景进行高亮显示。
+You can also highlight the background of a table cell by clicking **Add Threshold**. For example, set the string to **/request/path-0/file-5**. After the configurations are saved, the background of the table cell that meets the condition is highlighted.
 ![图 5](/img/src/visulization/tablePro/cellHighlight/cellHighlight5.png)

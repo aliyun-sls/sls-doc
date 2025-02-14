@@ -1,4 +1,4 @@
-#### 如何配置一个刻度盘
+#### Configure a dial
 
-配置刻度盘在【通用配置】>【样式配置】选择 Dial
+On the **General Configurations** tab, click **Style Settings** and set the **Display Mode** parameter to **Dial**.
 ![图3](/img/src/visulization/calculate/calculate3.png)

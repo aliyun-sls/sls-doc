@@ -1,6 +1,6 @@
-### 如何配置堆叠直方图
+### Configure stacking for a histogram
 
-多个字段可以用堆叠的方式显示通过：【通用设置】>【直方图设置】中是否合成，选择【堆叠】
+If multiple fields are specified to generate a histogram, you can configure stacking for the histogram. To configure stacking for a histogram, click **Histogram Settings** on the **General Configurations** tab and set the **Merge Columns** parameter to **Stacked**.
 
-如图所示：
+The following figure shows the configurations.
 ![图3](/img/src/visulization/histogram/histogram3.png)

@@ -1,17 +1,17 @@
-### 统计图如何配置值和标题
+### Configure the title, displayed fields, and parameters in the Data Configuration section
 
 <br/>
 
-###### 1.配置标题：
+###### 1.Configure the title of a single value chart
 
-在【通用配置】>【基本配置】配置图表的标题。
+On the **General Configurations** tab, click **Basic Configurations**. In the **Basic Configurations** section, configure the **Title** parameter.
 
-###### 2.配置值：
+###### 2.Configure the parameters in the Data Configuration section
 
-在【数据配置】中配置值的展示模式（显示通过函数计算出的单个值或显示每个值）、计算的函数（选择一个函数计算出单个值）、布局方式。
+On the **General Configurations** tab, click **Data Configuration**. In the **Data Configuration** section, configure the **Display Mode**, **Function**, and **Layout** parameters. If you set the **Display Mode** parameter to **Calculation Result**, each single value chart displays the calculation result of a field that you specified in the query statement. If you set the **Display Mode** parameter to **All Values**, each single value chart displays a value of the field that you specified in the query statement. You can select a function to query statistics on the field that you specified in the query statement.
 
-##### 3.配置显示字段：
+##### 3.Configure displayed fields
 
-在【查询分析设置】里面配置，查询所要现实的字段，如图所示
+On the **General Configurations** tab, click **Search & Analysis Settings**. In the **Search & Analysis Settings** section, configure the **Displayed Fields** parameter. The following figure shows the configurations.
 
 ![图 3](/img/src/visulization/statistics/statistics3.png)

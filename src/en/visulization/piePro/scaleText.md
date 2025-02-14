@@ -1,7 +1,7 @@
-### 饼图刻度文本有哪些配置选项
+### Configure the scale text for a pie chart
 
-**饼图刻度文本的配置有：** 刻度文本格式、显示刻度文本（控制是否显示刻度文本）
+**Configurations of the scale text of a pie chart:** In the **Pie Chart Configurations** section, you can configure the **Scale Text Format** and **Show Scale Text** parameters. If you set the **Show Scale Text** parameter to **Yes**, the scale text of each slice in the pie chart is displayed. If you set the **Show Scale Text** parameter to **No**, the scale text of each slice in the pie chart is hidden.
 
-**刻度文本格式有：** 百分比、分类：百分比、分类：数值（百分比）三种格式
+**Scale Text Format:** You can set the **Scale Text Format** parameter to **Percentage**, **Category: Percentage**, or **Category:Numeric Value (Percentage)**.
 
-如图所示：![图2](/img/src/visulization/piePro/piePro2.png)
+The following figure shows the configurations.![图2](/img/src/visulization/piePro/piePro2.png)

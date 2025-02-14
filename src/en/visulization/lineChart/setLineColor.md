@@ -1,4 +1,4 @@
-# 如何为不同的线配置不同颜色
+# Configure the color for a line
 
-在仪表盘编辑模式，编辑当前线图，在**字段配置**tab下，点击**添加字段**，选择**A>pv**，点击**添加配置**，选择**标准配置>颜色方案**，选择**单色**，修改颜色
+In edit mode of a dashboard, edit the current line chart. On the **Field Configuration** tab, click **Add Field** and select **A > pv**. Click **Add Configuration** and select **Standard Configurations > Color Scheme**. Then, select **Solid** and change the color.
 ![图 2](/img/src/visulization/lineChart/setLineColor/setLineColor2.png)

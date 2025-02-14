@@ -1,15 +1,15 @@
-### 如何配置一个基本的柱状图
+### Configure a basic column chart
 
 <br/>
 
-##### 1.创建柱状图:
+##### 1.Create a column chart
 
-点击添加新图表,在右边配置栏中,选择【通用配置栏】>【图表类型】>【柱状图】
-默认是 Builtin(内置模式)，修改想要的配置然后点击确定保存。
-如图所示:
+In edit mode, click **Add** and then click **Add Chart**. On the **General Configurations** tab, click the **Column Chart Pro** icon in the **Chart Types** section.
+On the **Search & Analysis** tab, the default setting is **Builtin**. Modify the configurations and click **OK**.
+The following figure shows the configurations.
 ![图1](/img/src/visulization/barPro/barPro1.png)
 
-##### 2.配置柱状图的查询分析结果
+##### 2.Configure the query statement of the column chart
 
-查询数据配置：查询分析模块，选择数据来源，数据类型，然后添加查询分析语法，添加好后，点击右上角【应用】，就可以看到效果。如图所示
+On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**. The following figure shows the configurations.
 ![图2](/img/src/visulization/barPro/barPro2.png)

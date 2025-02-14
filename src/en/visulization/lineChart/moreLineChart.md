@@ -1,7 +1,7 @@
-# 如何配置两条或更多条的线图
+# Configure two or more lines for a line chart
 
-准备多个数据项，如下：
+Prepare the following data.
 ![图 2](/img/src/visulization/lineChart/moreLineChart/moreLineChart1.png)
 
-在仪表盘编辑模式，编辑当前线图,在**通用配置**tab下，点击**查询分析配置**，在**x轴字段**下，选择time，在**y轴字段**下，选择需要展示的字段来配置即可
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Axis X** and set the **Axis X Title** parameter to time. Click **Axis Y** and configure the **Axis Y Title** parameter.
 ![图 2](/img/src/visulization/lineChart/moreLineChart/moreLineChart2.png)

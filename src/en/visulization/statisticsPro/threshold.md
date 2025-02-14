@@ -1,7 +1,7 @@
-### 统计图如何配置阈值
+### Configure thresholds for a single value chart
 
-1.首先在【标准配置】里面【颜色方案】选择阈值
+1.On the **General Configurations** tab, click **Standard Configurations**. In the **Standard Configurations** section, set the **Color Scheme** parameter to **Threshold**.
 
-2.在【通用配置】>【阈值】选择阈值模式，然后添加阈值条件，如图所示：
+2.On the **General Configurations** tab, click **Threshold**. In the **Threshold** section, set the **Threshold Mode** parameter to **Absolute Value** or **Percentage**, and click **Add Threshold** to configure thresholds.
 
 ![图 6](/img/src/visulization/statistics/statistics6.png)

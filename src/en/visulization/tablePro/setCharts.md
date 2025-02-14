@@ -1,15 +1,15 @@
-# 如何在表格单元格中设置线图、面积图、柱状图
+# Display line charts, area charts, and column charts in table cells
 
-在仪表盘编辑模式，编辑当前表格，在字段配置的tab下，点击**添加字段**，选择**字段设置>单元格显示方式**，可选择：
+In edit mode of a dashboard, edit the current table. On the **Field Configuration** tab, click **Add Field** and select a field. Click **Add Configuration** and select **Field/Column Settings > Cell Display Mode**. Then, select **Line Chart**, **Area Chart**, or **Column Chart**.
 
-- **线图**
+- **Line Chart**
 
 ![图 2](/img/src/visulization/tablePro/setCharts/setCharts2.png) 
 
-- **面积图**
+- **Area Chart**
 
 ![图 3](/img/src/visulization/tablePro/setCharts/setCharts3.png) 
 
-- **柱状图**
+- **Column Chart**
 
 ![图 4](/img/src/visulization/tablePro/setCharts/setCharts4.png) 

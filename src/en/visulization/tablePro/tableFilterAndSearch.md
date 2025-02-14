@@ -1,4 +1,4 @@
-# 如何设置表格单元格的搜索和过滤功能
+# Configure searching and filtering of table cells
 
-在仪表盘编辑模式，编辑当前表格，在通用配置tab下，点击**字段列设置**，选择过滤和搜索相关的配置
+In edit mode of a dashboard, edit the current table. On the **General Configurations** tab, click **Field/Column Settings**. In the **Field/Column Settings** section, configure the parameters related to searching and filtering of table cells.
 ![图 2](/img/src/visulization/tablePro/tableFilterAndSearch/tableFilterAndSearch2.png) 

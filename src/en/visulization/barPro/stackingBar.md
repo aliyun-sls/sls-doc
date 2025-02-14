@@ -1,5 +1,4 @@
-### 如何配置堆叠柱状图
+### Configure stacking for a column chart
 
-对于多查询柱状图又可能会存在遮挡问题，所以我们可以采用堆叠的方式查看每条查询字段的查询数据。
-堆叠属性配置：【通用配置】>【y 轴】>【是否堆叠】，选择是就配置好了，如图所示
+If you use a column chart to display the results of multiple query statements, text in a column chart may be blocked. To resolve this issue, you can configure stacking for the column chart. To configure stacking for a column chart, click **Column Settings** on the **General Configurations** tab and set the **Stacking** parameter to **Yes**. The following figure shows the configurations.
 ![图4](/img/src/visulization/barPro/barPro4.png)

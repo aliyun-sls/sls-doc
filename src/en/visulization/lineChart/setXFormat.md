@@ -1,4 +1,4 @@
-# 线图如何配置 x 轴格式化
+# Display or hide the x-axis for a line chart
 
-在仪表盘编辑模式，编辑当前线图，在**通用配置**tab下，点击**x轴**，选择**格式化**
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Axis X**. In the **Axis X** section, configure the **Format** parameter.
 ![图 2](/img/src/visulization/lineChart/setXFormat/setXFormat2.png) 

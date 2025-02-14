@@ -1,6 +1,6 @@
-### 统计图布局方式
+### Configure the layout of a single value chart
 
-统计图的布局设置：【通用设置】>【数据配置】>【布局方式】
-统计图的布局方式有：自动、垂直、水平三种布局方式，垂直方式可以配置统计图的最小高度，水平方式可以配置统计图显示的最小宽度。如图所示：
+On the **General Configurations** tab, click **Data Configuration**. In the **Data Configuration** section, configure the **Layout** parameter.
+You can set the **Layout** parameter to **Automatic**, **Vertical**, or **Horizontal**. If you set the **Layout** parameter to **Vertical**, you can specify the minimum height for the single value chart. If you set the **Layout** parameter to **Horizontal**, you can specify the minimum width for the single value chart. The following figure shows the configurations.
 
 ![图4](/img/src/visulization/statistics/statistics4.jpg)

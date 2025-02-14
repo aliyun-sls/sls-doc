@@ -1,4 +1,4 @@
-# 线图如何配置 y 轴范围
+# Configure the y-axis range for a line chart
 
-在仪表盘编辑模式，编辑当前线图，在**通用配置**tab下，点击**y轴**，设置**最大值**和**最小值**
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Axis Y**. In the **Axis Y** section, configure the **Maximum Value** and **Minimum Value** parameters.
 ![图 1](/img/src/visulization/lineChart/setYRange/setYRange1.png) 

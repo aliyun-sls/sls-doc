@@ -1,12 +1,12 @@
-#### 流图分类数据限制说明
+#### Configure the maximum number of data entries for a flow chart
 
 <br/>
 
-##### 1.流图分类数据限制设置
+##### 1.Configure the maximum number of data entries for a flow chart
 
-图分类数据限制是在【通用设置】>【数据配置】>【流图分类数据限制】中配置修改。
+On the **General Configurations** tab, click **Data Configuration** and configure the **Maximum Categories** parameter.
 
-##### 2.分类数据限制说明
+##### 2.Description about the maximum number of data entries
 
-流图数据查询出来的数据量太大会出现卡顿的情况的，所以我们会设置最大分类数据，这样会按照设置数据，选择最大显示数据条数显示，如图所示
+If the amount of data queried for a flow chart is excessively large, stuttering may occur. To resolve this issue, you can configure the **Maximum Categories** parameter. After the **Maximum Categories** parameter is configured, the data is displayed based on the preset maximum number of data entries. The following figure shows the configurations.
 ![图2](/img/src/visulization/flowGraph/flow2.png)

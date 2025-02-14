@@ -14,8 +14,8 @@
 
 统计一天内 pv 总数，并直观看到 pv 变化趋势
 
-1. 在仪表盘页面，单击编辑。
-2. 在编辑模式下，选择新建图表 > 统计图 pro 图标。
+1. In the upper-right corner of the dashboard page, click **Edit**.
+2. 在编辑模式下，选择Create a flow chart> 统计图 pro 图标。
 3. 设置查询分析，然后单击应用。
    添加如下查询分析语句。更多信息，请参见[查询分析](https://www.alibabacloud.com/help/en/doc-detail/339860.htm?spm=a2c4g.11186623.0.0.56145b29B9NO9c#concept-2134122)。
 
@@ -37,5 +37,5 @@
 
 ![image.png](/img/src/visulization/singlewithMiniChart/a090f5f29e0b81fb096279fc6db2ee99f3d266ba6fa2d60a90776f2763ce4a60.png)
 
-7. 单击确定，保存统计图表。
-8. 单击保存，保存仪表盘。
+7. Click **OK** to save the line chart.
+8. Click **Save** to save the dashboard.

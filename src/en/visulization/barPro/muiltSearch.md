@@ -1,4 +1,4 @@
-### 如何配置多查询的柱状图
+### Use a column chart to display the results of multiple query statements
 
-配置多查询，可以在查询分析模块配置多个查询分析 sql ，在右边通用配置里面的查询分析配置里面可以配置每一个查询显示字段。如图所示
+Add multiple SQL query statements on the **Search & Analysis** tab, and configure multiple displayed fields in the **Query and Analysis Configurations** section of the **General Configurations** tab. The following figure shows the configurations.
 ![图2](/img/src/visulization/barPro/barPro3.png)

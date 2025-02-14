@@ -1,18 +1,17 @@
-### 如何配置一个基本的流图（分类线图）
+### Configure a basic flow chart (classification line chart)（分类线图）
 
 <br/>
 
-##### 1.新建图表
+##### 1.Create a flow chart
 
-点击添加新图表，进入到图表编辑页面，在右边配置栏中,选择【通用配置栏】>【图表类型】>【流图 Pro】
-默认是 Builtin(内置模式)
+In edit mode, click **Add** and then click **Add Chart**. On the **General Configurations** tab, click the **flow chart** icon in the **Chart Types** section. On the **Search & Analysis** tab, the default setting is **Builtin**.
 
-##### 2.配置柱状图的查询分析结果
+##### 2.Configure the query statement of the column chart
 
-查询数据配置：查询分析模块，选择数据来源，数据类型，然后添加查询分析语法。
+On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**.
 
-##### 3.流图类型
+##### 3.Configure the type of the flow chart
 
-在【通用配置】>【流图配置】> 【流图类型】选择你想要的显示类型
-如图所示
+On the **General Configurations** tab, click **Flow Chart Configurations** and configure the **Flow Chart Type** parameter.
+The following figure shows the configurations.
 ![图1](/img/src/visulization/flowGraph/flow1.png)

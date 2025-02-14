@@ -1,6 +1,5 @@
-### 统计图配置对比值
+### Configure a compared field for a single value chart
 
-统计图配置对比值是在【通用配置】>【查询分析设置】中，选择对比字段，可以配置对比描述，对比值的显示格式。
-如图所示：
+On the **General Configurations** tab, click **Search & Analysis Settings**. In the **Search & Analysis Settings** section, configure the **Displayed Fields**, **Compared Field**, **Comparison Result Description**, and **Compare Value Format** parameters. The following figure shows the configurations.
 
 ![图 5](/img/src/visulization/statistics/statistics5.png)

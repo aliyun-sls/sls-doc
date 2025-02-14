@@ -1,4 +1,4 @@
-#### 四. 计量图如何配置阈值
+#### 四. Configure thresholds of a bar gauge
 
-在【通用配置】>【阈值】添加阈值条件，如图所示
+On the **General Configurations** tab, click **Threshold** and configure thresholds, as shown in the following figure.
 ![图4](/img/src/visulization/calculate/calculate4.png)

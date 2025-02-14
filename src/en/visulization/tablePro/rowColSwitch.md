@@ -1,6 +1,6 @@
-# 表格如何支持行列转换
+# Configure data conversion from rows to columns for a table
 
-在仪表盘编辑模式，编辑当前表格，在数据转换tab下，点击**添加转换**，选择**行列转换**，选择数据源后，点击右上角的**应用**按钮
+In edit mode of a dashboard, edit the current table. On the **Data Conversion** tab, click **Add Conversion** and select **Transpose Rows and Columns**. Then, select a data source from the **Select Data Source** drop-down list and click **Apply**.
 ![图 2](/img/src/visulization/tablePro/rowColSwitch/rowColSwitch2.png)
 
 ![图 3](/img/src/visulization/tablePro/rowColSwitch/rowColSwitch3.png)

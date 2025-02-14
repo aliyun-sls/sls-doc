@@ -1,5 +1,5 @@
-### 饼图如何配置多查询
+### Use a pie chart to display the results of multiple query statements
 
-在查询分析模块添加多条查询，然后在查询分析配置配置每条查询的分类、组合显示字段、数值列等信息。
+On the **Search & Analysis** tab, add multiple SQL query statements. In the **Query and Analysis Configurations** section of the **General Configurations** tab, configure the parameters such as **Category**, **Combine Displayed Fields**, and **Value Column**.
 
 ![图4](/img/src/visulization/piePro/piePro4.png)

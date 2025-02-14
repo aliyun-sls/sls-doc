@@ -1,4 +1,4 @@
-# 如何设置表格行高
+# Configure the height of table rows
 
-在仪表盘编辑模式，编辑当前表格，在通用配置的tab下，点击**表格配置**，选择**等高**，输入行高值
+In edit mode of a dashboard, edit the current table. On the **General Configurations** tab, click **Table Configurations**. In the **Table Configurations** section, set the **Display Mode** parameter to **Contour**. Then, configure the **Row Height** parameter.
 ![图 2](/img/src/visulization/tablePro/lineHight/lineHight2.png) 

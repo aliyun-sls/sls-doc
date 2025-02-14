@@ -1,16 +1,15 @@
-#### 雷达图的重要配置项有哪些
+#### Configuration items of a radar chart
 
-**雷达图的重要配置有**：数值列、雷达图类型、显示刻度文本、点大小、线宽、颜色设置
+**Configuration items of a radar chart**: You can configure the **Value Column**, **Radar Chart Type**, **Show Scale Text**, **Point Size**, and **Line Width** parameters. You can also configure the color of a field.
 
-**数值列：**【通用配置】>【查询分析配置】>【数值列】中选择要显示的数值列
+**Value Column:** On the **General Configurations** tab, click **Query and Analysis Configurations**. In the **Query and Analysis Configurations** section, configure the **Value Column** parameter.
 
-**雷达图类型：** 雷达图类型有两种形式多边型和圆形，在【通用配置】>【雷达图配置】>【雷达图类型】选择想要的类型。
+**Radar Chart Type:** Polygonal and circular radar charts are supported. On the **General Configurations** tab, click **Radar Chart Configurations**. In the **Radar Chart Configurations** section, configure the **Radar Chart Type** parameter.
 
-**显示刻度：**【通用配置】>【雷达图配置】>【显示刻度文本】。
+**Show Scale Text:** On the **General Configurations** tab, click **Radar Chart Configurations**. In the **Radar Chart Configurations** section, configure the **Show Scale Text** parameter.
 
-**点大小和线宽：**【通用配置】>【图形配置】下面设置点大小和线宽。
+**Point Size and Line Width:** On the **General Configurations** tab, click **Chart Configurations**. In the **Chart Configurations** section, configure the **Point Size** and **Line Width** parameters.
 
-**颜色设置：** 在【字段配置】下，添加字段，然后给该字段添加配置，选择颜色方案，可以设置字段颜色。
-如图所示：
+**Color:** Click the **Field Configuration** tab. On the **Field Configuration** tab, click **Add Field** and select a field. Click **Add Configuration** and select **Standard Configurations > Color Scheme**. Then, select **Solid** and configure the color of the field.
 
 ![图 3](/img/src/visulization/radarPro/radar3.jpg)
