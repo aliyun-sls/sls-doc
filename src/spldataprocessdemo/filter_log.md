@@ -62,9 +62,9 @@
       test_string:  <function test1 at 0x1027401e0>
       server_protocol: 14861
       ```
-    * SPL语句：保留server_protocol为数字的字段。。
+    * SPL语句：保留server_protocol为数字的字段。
       ```python
-      * | where regexp_like(server_protocol, '\d+')
+      * | where regexp_like(server_protocol, '^\d+$')
       ```
     * 结果
       ```
