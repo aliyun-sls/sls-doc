@@ -1,8 +1,8 @@
-# ECS 账单分析案例介绍
+# Bill analysis cases
 
-## 使用前提
+## Prerequisite for use
 
-使用成本管家的前提需要开通成本管家。
+Cost Manager is activated.
 
 ## ECS 实例计费项概念
 

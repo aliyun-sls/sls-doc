@@ -14,8 +14,6 @@
 
 ## Preparation
 
-测试环境为 centos 7 环境为例子
-
 1. Install dotnet core sdk
    `yum install dotnet-sdk-3.1`
 2. Install dotnet `dotnet new console -n myconsumer -o /home/user/projects/myconsumer`

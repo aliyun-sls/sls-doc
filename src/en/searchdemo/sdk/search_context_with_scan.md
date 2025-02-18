@@ -1,6 +1,5 @@
 # Query logs in the console
 
-![](/img/searchdemo/scan_sdk_demo_on_web_console.jpg)
 
 # Query logs by using SDK for Java
 

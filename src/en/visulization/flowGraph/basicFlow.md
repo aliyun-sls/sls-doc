@@ -14,4 +14,4 @@ On the **Search & Analysis** tab, select a data source and a data type, add a qu
 
 On the **General Configurations** tab, click **Flow Chart Configurations** and configure the **Flow Chart Type** parameter.
 The following figure shows the configurations.
-![图1](/img/src/visulization/flowGraph/flow1.png)
+![图1](/img/src/en/visulization/flowGraph/flow1.png)

@@ -4,12 +4,12 @@ In edit mode of a dashboard, edit the current table. On the **Field Configuratio
 
 - **Line Chart**
 
-![图 2](/img/src/visulization/tablePro/setCharts/setCharts2.png) 
+![图 2](/img/src/en/visulization/tablePro/setCharts/setCharts.png) 
 
 - **Area Chart**
 
-![图 3](/img/src/visulization/tablePro/setCharts/setCharts3.png) 
+![图 3](/img/src/en/visulization/tablePro/setCharts/setCharts.png) 
 
 - **Column Chart**
 
-![图 4](/img/src/visulization/tablePro/setCharts/setCharts4.png) 
+![图 4](/img/src/en/visulization/tablePro/setCharts/setCharts.png) 

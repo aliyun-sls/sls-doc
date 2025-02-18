@@ -4,4 +4,4 @@
 
 **Scale Text Format:** You can set the **Scale Text Format** parameter to **Percentage**, **Category: Percentage**, or **Category:Numeric Value (Percentage)**.
 
-The following figure shows the configurations.![图2](/img/src/visulization/piePro/piePro2.png)
+The following figure shows the configurations.![图2](/img/src/en/visulization/piePro/piePro2.png)

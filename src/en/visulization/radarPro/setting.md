@@ -12,4 +12,4 @@
 
 **Color:** Click the **Field Configuration** tab. On the **Field Configuration** tab, click **Add Field** and select a field. Click **Add Configuration** and select **Standard Configurations > Color Scheme**. Then, select **Solid** and configure the color of the field.
 
-![图 3](/img/src/visulization/radarPro/radar3.jpg)
+![图 3](/img/src/en/visulization/radarPro/radar3.jpg)

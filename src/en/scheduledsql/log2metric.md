@@ -5,12 +5,12 @@ In this example, a Scheduled SQL job is created to calculate the amount of OSS r
 After the raw log data is processed, the aggregated data is smaller in size. This allows you to focus on information that requires more attention.
 ### Raw Log  
 [Source Logstore oss_source](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/logsearch/oss_source)
-<!-- ![image.png](/img/src/scheduledsql/log2log/b8845881b27e8d7e37088c0ee2332482fa8b19917a60275905398017bbc68624.png) -->
+<!-- ![image.png](/img/src/en/scheduledsql/log2log/b8845881b27e8d7e37088c0ee2332482fa8b19917a60275905398017bbc68624.png) -->
  Raw logs generated at scattered points in time contain many fields and are large in size.
 
 ### Processed logs
 [Destination Metricstore log2metric_metricstore](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/logsearch/log2log) 
-<!-- ![image.png](/img/src/scheduledsql/log2log/150032d15bb53c7eb22f2293850fe2551d7a7fd1d3b0c13b4ec61e3263ceeee9.png) -->
+<!-- ![image.png](/img/src/en/scheduledsql/log2log/150032d15bb53c7eb22f2293850fe2551d7a7fd1d3b0c13b4ec61e3263ceeee9.png) -->
  The raw log data is processed to calculate the amount of OSS response data (response_size) per minute. The time is rounded by minute. The aggregated data is smaller in size.
 
 ### SQL
@@ -23,11 +23,11 @@ Calculate the amount of OSS response data (response_size) per minute and round t
 ## Calculation configurations 
 [Modify a Scheduled SQL job](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/scheduledsql/sql-1690513925-248017)
  Click Edit Configurations. In the Modify Scheduled SQL panel, configure the parameters.
-<!-- ![image.png](/img/src/scheduledsql/log2log/e9a6533d91862de264157b9550f60857feef2ac81b8b115f5f40f179b0e9aa41.png) -->
+<!-- ![image.png](/img/src/en/scheduledsql/log2log/e9a6533d91862de264157b9550f60857feef2ac81b8b115f5f40f179b0e9aa41.png) -->
 
-![image-47.png](/img/src/scheduledsql/log2log/84ab887c63b788bcbd1ea91a3bd9c1c0b5befa546892fce4d5c75c40c7876bdb.png)
+![image-47.png](/img/src/en/scheduledsql/log2log/log2log01.png)
 
-<!-- ![image.png](/img/src/scheduledsql/log2log/89ad62a7d547be4b591a4537ef189b59adbdecaf42efdb6ca15e48f603594fcc.png) -->
+<!-- ![image.png](/img/src/en/scheduledsql/log2log/89ad62a7d547be4b591a4537ef189b59adbdecaf42efdb6ca15e48f603594fcc.png) -->
 Write Mode: If the source is a Logstore, you can select Import Data from Logstore to Logstore or Import Data from Logstore to Metricstore. In this example, Import Data from Logstore to Metricstore is selected.
 SQL Code: Write code to calculate the amount of OSS response data (response_size) per minute and round the time by minute.
 ```sql
@@ -47,8 +47,6 @@ For more information, see [Access data by using a custom role](https://help.aliy
 
 Click Next to go to the Scheduling Settings step.
 ## Scheduling configurations
-
-![image.png](/img/src/scheduledsql/metric2metric/d6d973c2dfdf672f8909a56888a55e11d13e7767de511029e0fa50a111ae436b.png)
 
 | Configuration item | Description |
 | --- | --- |
@@ -71,19 +69,19 @@ For more information about how to use an SDK to create a Scheduled SQL job, see 
 ## Job Management
 [Go to the Job Management page](https://sls.aliyun.com/doc/en/playground/demo.html?dest=/lognext/project/scheduled-sql-demo/overview)
 You can view the created Scheduled SQL jobs in the Simple Log Service console.
-![image-51.png](/img/src/scheduledsql/log2log/afe3c96717b14b387b7a857f297eae08636c2e6d0ef9c9dc206b1080ea82ba8f.png)
+
 On the details page of a Scheduled SQL job, you can view the instances of the job.
-![picture 2](/img/src/scheduledsql/log2metric/45e8772850df4f41c832afbd9f5d919380fd1862cf89758fe44bc7164aa11249.png)
+
 The information about each instance includes the SQL query range. If an instance fails due to reasons such as insufficient permissions or invalid SQL syntax, or the number of processed rows in the Processed Data Size column is 0, you can retry the instance. If the number of processed rows is 0, the source data is delayed or no data exists.
 ## Verify effects
 
 ### Compare the amount of logs
-<!-- ![image.png](/img/src/scheduledsql/log2log/d03f7f36c287c4cec6bea0ed943d6f19fe4f2c3daa9ead57bfde46023246ad53.png)
-![image.png](/img/src/scheduledsql/log2log/0d76e78dabfb7c1511642261456eb29a3c468c724cc5633145b5ac4114a1a88c.png) -->
+<!-- ![image.png](/img/src/en/scheduledsql/log2log/d03f7f36c287c4cec6bea0ed943d6f19fe4f2c3daa9ead57bfde46023246ad53.png)
+![image.png](/img/src/en/scheduledsql/log2log/0d76e78dabfb7c1511642261456eb29a3c468c724cc5633145b5ac4114a1a88c.png) -->
 The source Logstore processes 18,241 log entries per hour, which are 17.27MB in size.
 
-<!-- ![image.png](/img/src/scheduledsql/log2log/1487168ab72bf4bb31934cc2316bb3b66111c4c2342291a03e7db70a68a1cb88.png)
-![image.png](/img/src/scheduledsql/log2log/d3c80b92bf29c5c983aca0b20cde3c6494535de13d46c6a374838dd07c415183.png) -->
+<!-- ![image.png](/img/src/en/scheduledsql/log2log/1487168ab72bf4bb31934cc2316bb3b66111c4c2342291a03e7db70a68a1cb88.png)
+![image.png](/img/src/en/scheduledsql/log2log/d3c80b92bf29c5c983aca0b20cde3c6494535de13d46c6a374838dd07c415183.png) -->
 The destination Logstore processes 5,752 log entries per hour, which are 1.62 MB in size.
 ### Query the changes in the amount of OSS response data (response_size) in a bucket over time
 ```sql
@@ -93,4 +91,3 @@ The destination Logstore processes 5,752 log entries per hour, which are 1.62 MB
 
 In the destination Logstore log2log of the Scheduled SQL job, query the data of the bucket6877 bucket whose storage class is Archive in the previous 15 minutes, sort the queried data by time, and then display the changes in the amount of OSS response data (response_size) over time in a chart.
 
-![image-56.png](/img/src/scheduledsql/log2log/057a6ec94e89b85504381a670c1c8d16b4af16a4c0a04c5ecc32b5dac7284018.png)

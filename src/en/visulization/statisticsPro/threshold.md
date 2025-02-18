@@ -4,4 +4,4 @@
 
 2.On the **General Configurations** tab, click **Threshold**. In the **Threshold** section, set the **Threshold Mode** parameter to **Absolute Value** or **Percentage**, and click **Add Threshold** to configure thresholds.
 
-![图 6](/img/src/visulization/statistics/statistics6.png)
+![图 6](/img/src/en/visulization/statistics/statistics6.png)

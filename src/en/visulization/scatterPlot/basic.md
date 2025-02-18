@@ -5,4 +5,4 @@
 2.Configure the SQL query statement of the scatter chart.
 On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**.
 
-![图1](/img/src/visulization/scatterPlot/scatterPlot1.png)
+![图1](/img/src/en/visulization/scatterPlot/scatterPlot1.png)

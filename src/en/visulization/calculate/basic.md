@@ -6,4 +6,4 @@
 2.Configure the SQL query statement of the bar gauge.
 On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**.
 
-![图1](/img/src/visulization/calculate/calculate1.png)
+![图1](/img/src/en/visulization/calculate/calculate1.png)

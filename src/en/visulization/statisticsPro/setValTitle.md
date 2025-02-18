@@ -14,4 +14,4 @@ On the **General Configurations** tab, click **Data Configuration**. In the **Da
 
 On the **General Configurations** tab, click **Search & Analysis Settings**. In the **Search & Analysis Settings** section, configure the **Displayed Fields** parameter. The following figure shows the configurations.
 
-![图 3](/img/src/visulization/statistics/statistics3.png)
+![图 3](/img/src/en/visulization/statistics/statistics3.png)

@@ -4,4 +4,4 @@
 
 2.Configure the SQL query statement of the cross table.
 On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**. The following figure shows the configurations.
-![图1](/img/src/visulization/crossConnect/crossConnect1.png)
+![图1](/img/src/en/visulization/crossConnect/crossConnect1.png)

@@ -4,4 +4,4 @@
 
 2.Configure the SQL query statement of the single value chart.
 On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**.
-The following figure shows the configurations:![图1](/img/src/visulization/statistics/statistics1.png)
+The following figure shows the configurations:![图1](/img/src/en/visulization/statistics/statistics1.png)
