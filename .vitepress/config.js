@@ -70,7 +70,7 @@ module.exports = (async () => {
       },
     },
     ignoreDeadLinks: true,
-    base: '/doc',
+    base: '/doc/',
     srcDir: 'src',
 
     title: '阿里云可观测',
