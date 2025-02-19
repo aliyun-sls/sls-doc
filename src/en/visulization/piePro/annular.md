@@ -1,6 +1,6 @@
-### 如何配置一个环形图
+### Configure a donut chart
 
-环形图只需要在【通用配置】>【饼图配置】里面饼图类型选择【环图】
-如图所示：
+On the **General Configurations** tab, click the **Pie ChartPro** icon in the **Chart Types** section. Click **Pie Chart Configurations**. In the **Pie Chart Configurations** section, set the **Pie Chart Type** parameter to **Donut Chart**.
+The following figure shows the configurations.
 
-![图3](/img/src/visulization/piePro/piePro3.jpg)
+![图3](/img/src/en/visulization/piePro/piePro3.jpg)

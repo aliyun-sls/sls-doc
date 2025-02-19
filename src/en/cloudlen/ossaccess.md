@@ -124,7 +124,6 @@ Sample 2：
 
 Real-time uplink and downlink bandwidth statistics by carrier and source province
 
-![image](/img/src/cloudlen/ossaccess/cea68ae0d3c4f4c8620f3b8a6783b1afbec6614a814503d30b260ac8f81646e4.png)
 
 ### User request rate analysis
 
@@ -136,7 +135,6 @@ Time series chart of user request rate and request rate distribution by file obj
 
 Request latency distribution by source identity
 
-![image](/img/src/cloudlen/ossaccess/51b6566dfe1e8a83793f0c858d0b489ccf31a328e23e5963004dd6f2f99c5ddf.png)
 
 ### Monitor panes—sample SQL statements
 

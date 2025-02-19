@@ -1,5 +1,4 @@
-# 线图如何配置阈值
+# Configure the threshold for a line chart
 
-在仪表盘编辑模式，编辑当前线图，在通用配置tab下，点击阈值，设置上下界线、颜色和透明度，配置完成，保存仪表盘。
-如下是针对数值上下浮动50后，阈值的设置结果：
-![image.png](/img/src/visulization/lineChart/setThreshold/setThreshold1.png)
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Threshold**. In the **Threshold** section, configure the following parameters: **Upper Boundary**, **Lower Boundary**, **Boundary Fill Color**, and **Boundary Fill Color Opacity**. Click **OK**, and then click **Save**. The following figure shows the threshold configurations after the value fluctuates by 50.
+![image.png](/img/src/en/visulization/lineChart/setThreshold/setThreshold1.png)

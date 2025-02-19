@@ -1,9 +1,9 @@
-### 交互事件打开仪表盘如何设置新的变量
+### Add a variable for an Open Dashboard interaction occurrence
 
-1.在交互事件里面配置打开仪表盘的时候，在仪表盘配置信息面板，配置过滤语句，点击添加变量，选择变量面板里面的变量，如图所示：
+1.On the **Interaction Occurrences** tab, click **Add Field** and select a field. Then, click **Add Event** and select **Open Dashboard**. In the **Open Dashboard** dialog box, configure the **Filter Statement** parameter, click **Add Variable**, select a variable, and then click **OK**. The following figure shows the configurations.
 
-![图7](/img/src/visulization/interactionEvent/event7.png)
+![图7](/img/src/en/visulization/interactionEvent/event7.png)
 
-2.确定保存后，点击自定义事件，跳转到该仪表盘图表就直接用该变量过滤了。如图所示：
+2.On the page that appears, save the configurations. On the page that appears, click a column in the chart. The chart shows **Open Dashboard**. Click **Open Dashboard**. The dashboard page is displayed, and the variable that you configure is used to filter data, as shown in the following figure.
 
-![图8](/img/src/visulization/interactionEvent/event8.png)
+![图8](/img/src/en/visulization/interactionEvent/event8.png)

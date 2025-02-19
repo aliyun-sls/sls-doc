@@ -8,29 +8,21 @@
 
 Step 1: Log on to the [Simple Log Service console].(https://sls.console.aliyun.com/lognext/profile)On the Cloud Service Lens tab in the Log Application section, find the [CloudLens for RDS] (https://sls.console.aliyun.com/lognext/app/lens/rds?resource=/common-data-access)application and click the application. On the page that appears, click Enable to activate CloudLens for RDS.
 
-![image](/img/src/cloudlen/rds/580bc0bafc43a58ee74c1c3074a1ceb7d3271d13207660181e369ee68c299e80.png)
+![image](/img/src/en/cloudlen/rds/rds01.png)
 
-![image](/img/src/cloudlen/rds/0ae707f0151bd992f4f42011f0279bee7b0238d7d30e8797f7dbce9d7dd8e4af.png)
 
 Step 2: Purchase an ApsaraDB RDS instance in the [ApsaraDB RDS console]. (https://rdsnext.console.aliyun.com/rdsList/cn-hangzhou/basic)Skip this step if an ApsaraDB RDS instance is available.
 
 Step 3: CloudLens for RDS automatically synchronizes your ApsaraDB RDS instance information.
 
-![image](/img/src/cloudlen/rds/4efe7a95a7f5aeb6640c28d43a872af2b03ed20cff725639e77f47228734ed3e.png)
+![image](/img/src/en/cloudlen/rds/rds02.png)
 
 Step 4: Enable log collection for the ApsaraDB RDS instance.
 
 When you enable audit log collection, you can specify a custom project or Logstore.
 
-![image](/img/src/cloudlen/rds/7cbf611d0e08d33622acf5e24bd7e729c0d18207f1df1f213d26dc789d78c01a.png)
-
 Other logs have fixed project and Logstore names, which cannot be modified.
-
-![image](/img/src/cloudlen/rds/db1148419d0b8a45a216c0dccb82faa0d67b7911e662fe6be570152db8de70d7.png)
-
 You can also enable automatic collection for multiple instances with specific attributes such as the region, instance name, or engine type at a time.
-
-![image](/img/src/cloudlen/rds/b13d0c4931288887f770f9b64dbf308310be9857d3189a2bdadb3a9f93cefee8.png)
 
 Regardless of the method used, CloudLens for RDS automatically collects logs of the specified log types for the instances after log collection is enabled.
 
@@ -58,7 +50,7 @@ Audit log
 
 Slow query logs
 
-| Fields        | 解释                                                                                 |
+| Fields        | Description                                                                                 |
 | ------------- | ------------------------------------------------------------------------------------ |
 | \_\_topic\_\_ | The topic of the log：Default value  rds_error_log,pg The engine is rds_error_log_pg |
 | db_name       | The database name                                                                    |

@@ -1,4 +1,4 @@
-# 线图如何开启/关闭 x 轴
+# Display or hide the x-axis for a line chart
 
-在仪表盘编辑模式，编辑当前线图，在通用配置tab下，点击**x轴**，点击**显示x轴**
-![图 2](/img/src/visulization/lineChart/setXShow/setXShow2.png)
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Axis X**. In the **Axis X** section, turn on or off **Display Axis X**.
+![图 2](/img/src/en/visulization/lineChart/setXShow/setXShow2.png)

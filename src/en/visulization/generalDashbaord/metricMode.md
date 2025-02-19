@@ -1,36 +1,36 @@
-# 时序模式的理解方式
+# Time series mode
 
-时序模式用于展示一组或多组数据在一个连续时间段上的变化情况，并且支持合并多个查询分析结果，更加直观、详细地展示查询分析结果的变化趋势。
+You can use the time series mode to display the changes of one or more sets of data over a continuous period of time. You can also use the mode to merge the results of multiple query statements. This way, the trend of query and analysis results can be displayed in a more detailed manner.
 
-## 前提条件
+## Prerequisites
 
-目前，只有线图Pro版本和流图Pro版本支持时序模式。
+Only line charts (Pro) and flow charts (Pro) support the time series mode.
 
-## 基本概念
+## Concept
 
-时序模式用于展示一组或多组数据在一个连续时间段上的变化情况，并且支持合并多个查询分析结果，更加直观、详细地展示查询分析结果的变化趋势。
+You can use the time series mode to display the changes of one or more sets of data over a continuous period of time. You can also use the mode to merge the results of multiple query statements. This way, the trend of query and analysis results can be displayed in a more detailed manner.
 
-__time__字段是日志服务中每条日志默认自带的属性，表示写入日志到日志服务时，指定的日志时间。__time__字段为Unix时间戳格式，单位为秒。您可以通过__time__字段构建时序模式的统计图表，避免复杂的时间函数操作。
+The __time__ field is the default attribute of each log in Simple Log Service. The field specifies the point in time at which a log is written to Simple Log Service. The point in time also refers to the log time. The __time__ field is in the UNIX timestamp format with seconds as the unit. You can use the __time__ field to create charts in time series mode. This frees you from complex time functions.
 
-非时序模式和时序模式的主要区别如下：
+The following list describes the differences between the time series mode and a non-time series mode:
 
-- 时序模式
-  1. 系统会自动优化时间跨度并且使时间分布均匀。
-  2. X轴中以mm:ss格式展示时间，信息提示框中以YYYY-MM-DD hh:mm:ss格式展示时间。
-  3. 支持添加多个查询分析。
+- Time series mode
+  1. The system automatically optimizes the time span for a more uniform time distribution.
+  2. In the x-axis, the time is displayed in the mm:ss format. In tooltips, the time is displayed in the YYYY-MM-DD hh:mm:ss format.
+  3. You can add multiple query statements.
 
-- 非时序模式
-  1. X轴中的时间分布跨度大。
-  2. X轴和信息提示框中以Unix时间戳格式展示时间。如果您要转换格式，需要在查询和分析语句中使用时间函数进行转换。
-  3. 只支持添加一个查询分析。
+- Non-time series mode
+  1. The x-axis shows a longer time span.
+  2. In the x-axis and tooltips, the time is displayed in the UNIX timestamp format. If you want to convert the format, you must include a time function in the query statement.
+  3. You can add only one query statement. 
 
-## 优势
+## Benefits
 
-- X轴上显示的时间分布更均匀，更能体现指标随时间的变化趋势。
-- X轴上显示的时间会自动根据时间跨度进行优化，更能展示查询分析结果的细节。
-- 通过mm:ss格式显示X轴上的时间，更加直观的展示时间跨度和详细的时间点。
-- 支持添加多个查询分析，并支持合并多个查询分析结果。
+- The x-axis shows a more uniform time distribution to reflect the trends of metrics in an effective manner.
+- The system automatically optimizes the time span in the x-axis. This way, more details of query and analysis results are displayed.
+- The time in the x-axis is displayed in the mm:ss format, which makes the time span and points in time easier to read.
+- You can add multiple query statements and merge the results of the statements.
 
-## 使用限制
+## Limits
 
-X轴的时间字段需为Unix时间戳格式（单位：秒）或者为一种标准的时间格式，例如UTC时间（2022-02-03T22:30:05+08:00）或者能解析出年、月、日、时、分、秒的时间（YYYY/MM/DD hh:mm:ss，可带时区）。
+The time field that is used for the x-axis must be in the UNIX timestamp format with seconds as the unit or in a standard time format. In a standard time format, the time field follows the UTC time standard, such as 2022-02-03T22:30:05+08:00, or the time field can be parsed into a time value that contains the year, month, day, hour, minute, and second information, such as in the YYYY/MM/DD hh:mm:ss format. In this format, a time zone is allowed.

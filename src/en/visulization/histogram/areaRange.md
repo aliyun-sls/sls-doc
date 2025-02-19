@@ -1,10 +1,10 @@
-### 如何限制直方图区间的范围和数量
+### Limit the range of a histogram and the number of bars
 
-直方图的区间范围和数量是通过【通用配置】>【直方图设置】
+To limit the range of a histogram and the number of bars, go to the **General Configurations** tab and click **Histogram Settings**.
 
-**区间范围：**通过起始位置和结束位置确定直方图的区间范围。
+**Limit the range of a histogram:** Configure the **Starting Position** and **End Position** parameters to determine the range of a histogram.
 
-**数量：**区间范围确定好后，设置直方图坐标单位大小，直方图的数量就等于区间范围大小除以坐标单位大小。
+**Limit the number of bars:** After the range of a histogram is determined, configure the **Coordinate Scale** parameter. The number of bars is calculated by dividing the range of a histogram by the value of the **Coordinate Scale** parameter.
 
-如图所示
-![图2](/img/src/visulization/histogram/histogram2.png)
+The following figure shows the configurations.
+![图2](/img/src/en/visulization/histogram/histogram2.png)

@@ -1,9 +1,9 @@
-### 如何在交互事件中控制打开日志库的查询时间
+### Control the query time of an Open Logstore interaction occurrence
 
-1.在交互事件里面配置打开日志库的时候，在打开日志库配置信息面板，选择【时间范围】，如图所示：
+1.On the **Interaction Occurrences** tab, click **Add Field** and select a field. Then, click **Add Event** and select **Open Logstore**. In the **Open Logstore** dialog box, configure the **Time Range** parameter,The following figure shows the configurations.
 
-![图9](/img/src/visulization/interactionEvent/event9.png)
+![图9](/img/src/en/visulization/interactionEvent/event9.png)
 
-2.确定保存后，点击自定义事件，跳转到该日志库，该日志库就使用配置的时间范围查询了，如图所示：
+2.Save the configurations. On the page that appears, click a column in the chart. The chart shows **Open Logstore**. Click **Open Logstore**. The Logstore page is displayed, and the query time that you configure is used to query data, as shown in the following figure.
 
-![图10](/img/src/visulization/interactionEvent/event10.png)
+![图10](/img/src/en/visulization/interactionEvent/event10.png)

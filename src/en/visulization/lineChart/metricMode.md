@@ -1,4 +1,4 @@
-# 如何开启时序模式线图
+# Configure the time series mode for a line chart
 
-仪表盘编辑模式下，编辑线图， 打开 **时序模式**，然后点击 **确定 > 保存** 即可。
-![图 1](/img/src/visulization/lineChart/metricMode/metricMode1.png)
+In edit mode of a dashboard, edit the current line chart. Turn on **Time Series Mode**, click **OK**, and then click **Save**.
+![图 1](/img/src/en/visulization/lineChart/metricMode/metricMode1.png)

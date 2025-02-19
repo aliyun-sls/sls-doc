@@ -13,19 +13,19 @@ CDN访问日志分析支持在CDN控制台一键开启实时日志推送功能�
 ## 可视化分析
 ### CDN热门资源
 统计访问最大域名、URI、各省、运营商下载数据量、速度等信息。帮助您了解业务详情，获取热门的访问地区、资源。您也可 以从热门数据了解到您的运营活动效果是否正常，热点时间内的流量、下载的上涨是否符合预期需求，帮助您及时调整运营策略。
-[试用Demo](https://sls4service.console.aliyun.com/lognext/project/simulator-cdn-demo/dashboard/cdn_popular_resources_cn_cdn-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
+[试用Demo](https://sls.console.aliyun.com/lognext/project/cdn-demo-log/dashboard/cdn_popular_resources_cn_cdn-access-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
 
 ### CDN基础数据
 统计健康度、缓存命中率、下载速度、延时分布等信息。帮助您了解CDN网络的访问性能，通过该数据您可以快速了解CDN整体的服务质量以及终端客户的访问效率，同时也可以根据突发的异常情况及时进行处理。
-[试用Demo](https://sls4service.console.aliyun.com/lognext/project/simulator-cdn-demo/dashboard/cdn_basic_cn_cdn-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
+[试用Demo](https://sls.console.aliyun.com/lognext/project/cdn-demo-log/dashboard/cdn_basic_cn_cdn-access-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
 
 ### CDN错误分析
 统计错误最多的域名、URI、错误来源分布等信息。帮助您在加速域名访问出现异常时，快速定位是由于CDN服务本身出现的访问问题，例如源站访问出现故障，节点不可用等，还是由于终端用户的网络故障或地域特性等问题。
-[试用Demo](https://sls4service.console.aliyun.com/lognext/project/simulator-cdn-demo/dashboard/cdn_error_detect_cn_cdn-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
+[试用Demo](https://sls.console.aliyun.com/lognext/project/cdn-demo-log/dashboard/cdn_error_detect_cn_cdn-access-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
 
 ### CDN用户分析
 统计用户访问信息，例如访问次数最高的用户等。帮助您更好的了解用户构成，包括用户的热门访问省份、热门终端、热门用户等。
-[试用Demo](https://sls4service.console.aliyun.com/lognext/project/simulator-cdn-demo/dashboard/cdn_user_analyze_cn_cdn-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
+[试用Demo](https://sls.console.aliyun.com/lognext/project/cdn-demo-log/dashboard/cdn_user_analyze_cn_cdn-access-log?isShare=true&readOnly=true&hideTopbar=true&hideSidebar=true&hiddenAppBread=true&hiddenPSql=true&hiddenEtl=true)
 
 ## CDN实时日志字段详情
 | 字段 | 说明 |

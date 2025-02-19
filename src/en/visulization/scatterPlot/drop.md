@@ -1,6 +1,5 @@
-### 如何动态设置散点图中点的大小
+### Configure the sizes of points in a scatter chart
 
-该功能再【通用配置】>【查询分析配置】下【点大小列】选择要设置点大小的字段
-如图所示：
+On the **General Configurations** tab, click **Query and Analysis Configurations**. In the **Query and Analysis Configurations** section, configure the **Point Size Column** parameter. The following figure shows the configurations.
 
-![图 3](/img/src/visulization/scatterPlot/scatterPlot3.png)
+![图 3](/img/src/en/visulization/scatterPlot/scatterPlot3.png)

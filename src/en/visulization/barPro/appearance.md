@@ -1,26 +1,24 @@
-### 柱状图外观有哪些配置项
+### Configure the appearance of a column chart
 
-柱状图的外观可以对：颜色、方向、宽度、字体大小等方面的配置
+The following appearance items of a column chart can be configured: color, direction, width, and font size.
 
-##### 1. 颜色设置：
+##### 1. Color Scheme
 
-【通用配置】>【标准化配置】>【颜色方案】，选择想要的颜色
+On the **General Configurations** tab, click **Standard Configurations** and find **Color Scheme** to set the color.
 
-如果是多字段柱状可以在字段配置中选择字段配置中，配置该字段的颜色方案。如图所示
-![图6](/img/src/visulization/barPro/barPro6.png)
+If multiple fields are specified to generate a column chart, you can configure the color scheme of a field on the **Field Configuration** tab.
+![图6](/img/src/en/visulization/barPro/barPro6.png)
 
-##### 2.柱状可配置属性
+##### 2.Parameters in the Column Settings section
+On the **Column Settings** section of the **General Configurations** tab, you can configure the following parameters: **Direction**, **Group Width**, **Column Width**, **Rotation Angle (°)**, **Display Value**, **Axis Value Position**, **Value Font Size**, **Transparency**, and **Gradient Mode**.
+![图7](/img/src/en/visulization/barPro/barPro7.png)
 
-柱状的可配置显示属性:方向、宽度、转动角度(°)、显示值、标签位置、值字体大小、透明度、渐变方式
-这几个属性都在【通用配置】> 【柱设置】
-![图7](/img/src/visulization/barPro/barPro7.png)
+##### 3.Parameters in the Legend Configurations section
 
-##### 3.图例配置
+On the **Legend Configurations** section of the **General Configurations** tab, you can configure the following parameters: **Display Legend**, **Legend Position**, and **Maximum Width (Height)%**.
 
-图例配置可以配置是否显示图例，图例位置，最大宽度，如图所示
+![图8](/img/src/en/visulization/barPro/barPro8.png)
 
-![图8](/img/src/visulization/barPro/barPro8.png)
+##### 4.Parameters in the Axis X and Axis Y sections
 
-##### 4.x,y 轴显示的配置，如图所示
-
-![图9](/img/src/visulization/barPro/barPro9.png)
+![图9](/img/src/en/visulization/barPro/barPro9.png)

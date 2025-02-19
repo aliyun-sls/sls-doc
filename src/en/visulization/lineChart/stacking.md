@@ -1,4 +1,4 @@
-# 线图如何开启堆叠模式
+# Configure stacking for a line chart
 
-在仪表盘编辑模式，编辑当前线图，在**通用配置**tab下，点击**y轴**，选择**是否堆叠**
-![图 1](/img/src/visulization/lineChart/stacking/stacking1.png) 
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Axis Y**. In the **Axis Y** section, configure the **Stacking** parameter.
+![图 1](/img/src/en/visulization/lineChart/stacking/stacking1.png) 

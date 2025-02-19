@@ -1,18 +1,18 @@
-# 审计与安全
+# Audit and security
 
-## 审计与安全快速介绍
+## Audit and security overview
 
-| 名称                                  | 描述             |
+| Name                                  | Description            |
 | ------------------------------------- | ---------------- |
-| [日志审计介绍](./logauditintro.md)    | 日志审计快速介绍 |
-| [成本管家介绍](./costmanagerintro.md) | 成本管家快速介绍 |
+| [The overview of Log Audit Service](./logauditintro.md)    | The overview of Log Audit Service. |
+| [The overview of Cost Manager.](./costmanagerintro.md) | The overview of Cost Manager. |
 
-## 成本管家介绍
+## Cost Manager overview
 
-| 名称                                    | 描述                 |
+| Name                                    | Description                |
 | --------------------------------------- | -------------------- |
-| [账单自定义分析案例](./billAnalysis.md) | 账单自定义分析案例   |
-| [账单自定义告警案例](./billAlert.md)    | 账单自定义告警案例   |
-| [SLS 账单分析案例介绍](./billSls.md)    | SLS 账单分析案例介绍 |
-| [OSS 账单分析案例介绍](./billOss.md)    | OSS 账单分析案例介绍 |
-| [ECS 账单分析案例介绍](./billEcs.md)    | ECS 账单分析案例介绍 |
+| [Custom bill analysis cases](./billAnalysis.md) | Custom bill analysis cases   |
+| [Custom bill alert cases](./billAlert.md)    | Custom bill alert cases   |
+| [SLS Bill analysis cases](./billSls.md)    | SLS Bill analysis cases |
+| [OSS Bill analysis cases](./billOss.md)    | OSS Bill analysis cases |
+| [ECS Bill analysis cases](./billEcs.md)    | ECS Bill analysis cases |

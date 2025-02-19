@@ -1,7 +1,7 @@
-# 如何在表格中使用值映射
+# Configure value mappings for a table
 
-1.在仪表盘编辑模式，编辑当前表格，在通用配置tab下，点击**值映射**，点击**添加值映射**，添加映射条件，选择值，填入映射的值
-![image.png](/img/src/visulization/tablePro/valueMapping/valueMapping1.png)
+1.In edit mode of a dashboard, edit the current table. On the **General Configurations** tab, click **Value Mapping**, and then click **Add Value Mapping**. In the **Value Mapping** dialog box, click **Add** and select **Value**. Then, configure related parameters.
+![image.png](/img/src/en/visulization/tablePro/valueMapping/valueMapping1.png)
 
-2.点击确认，配置完成，保存仪表盘配置即可
-![image.png](/img/src/visulization/tablePro/valueMapping/valueMapping2.png)
+2.Click **OK**. Then, save the dashboard configurations.
+![image.png](/img/src/en/visulization/tablePro/valueMapping/valueMapping2.png)

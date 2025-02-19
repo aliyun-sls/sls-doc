@@ -60,10 +60,11 @@ This topic describes how to install or update Logtail on multiple Elastic Comput
       Important If your ECS instances run a Windows operating system and you want to update Logtail that is installed on the ECS instances, only the original configurations of Logtail can be overwritten. The Overwrite parameter does not take effect.
       :::
 
-    | Overwrite LogAgent | install                                                                                     | uninstall                                                                                                                                              |
-    | ------------------ | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-    | On LogAgent        | Uninstall Logtail and install the latest version.                                           | Uninstall Logtail and install the latest version.                                                                                                      | Uninstall Logtail |
-    | Off LogAgent       | The system returns a message indicating that Logtail already exists and is not overwritten. | Retain the original configurations of Logtail and install the latest version. After Logtail is installed, collect logs based on the previous progress. | Uninstall Logtail |
+    | Overwrite LogAgent | install                                                                                     | uninstall   |
+    | -------------- | -------------------- | -------------------- |                                                            
+    | On LogAgent  | Uninstall Logtail and install the latest version.    | Uninstall Logtail and install the latest version.      | 
+     |Uninstall Logtail | Off LogAgent | The system returns a message indicating that Logtail already exists and is not overwritten. | 
+     | Retain the original configurations of Logtail and install the latest version. After Logtail is installed, collect logs based on the previous progress. | Uninstall Logtail |
 
     - TargetInstance: Select your ECS instances.For more information, see [Install Logtail on ECS instances](https://help.aliyun.com/zh/sls/user-guide/install-logtail-on-ecs-instances?spm=a2c4g.11186623.0.i3#table-pf1-ty1-5qj){target="_blank"}.
 

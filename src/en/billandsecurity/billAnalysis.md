@@ -1,67 +1,67 @@
-# 账单自定义分析案例
+# Custom bill analysis cases
 
-## 使用前提
+## Prerequisite for use
 
-使用成本管家的前提需要开通成本管家。
+Cost Manager is activated.
 
-## 账单数据字段说明
+## The billing cycle.
 
-| **字段**                  | **说明**                                                                                                                       | **样例**               |
+| **Field**                  | **Description**                                                                                                                       | **Sample**               |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
-| BillingDate               | 账期                                                                                                                           | 2022-11-06             |
-| BillingItem               | 计费项                                                                                                                         | PUT 及其他类型请求次数 |
-| BillingType               | 计费方式                                                                                                                       | 其它                   |
-| CostUnit                  | 财务单元                                                                                                                       | 未分配                 |
-| Currency                  | 币种                                                                                                                           | CNY                    |
-| DeductedByCashCoupons     | 优惠券抵扣                                                                                                                     | 0.0                    |
-| DeductedByCoupons         | 代金券优惠金额                                                                                                                 | 0.0                    |
-| DeductedByPrepaidCard     | 储值卡抵扣                                                                                                                     | 0.0                    |
-| DeductedByResourcePackage | 资源包抵扣                                                                                                                     | 0                      |
-| InstanceConfig            | 实例详细配置                                                                                                                   | 无                     |
-| InstanceID                | 实例 ID                                                                                                                        | me-east-1%3Bstandard   |
-| InstanceSpec              | 实例规格                                                                                                                       | 无                     |
-| InternetIP                | 公网 IP 地址                                                                                                                   | 无                     |
-| IntranetIP                | 内网 IP 地址                                                                                                                   | 无                     |
-| InvoiceDiscount           | 优惠金额                                                                                                                       | 0.001                  |
-| Item                      | 账单类型。包括 （1）SubscriptionOrder：预付费订单。（2）PayAsYouGoBill：后付费账单。（3）Refund：退款。（4）Adjustment：调账。 | PayAsYouGoBill         |
-| ListPrice                 | 单价                                                                                                                           | 1.020000               |
-| ListPriceUnit             | 单价单位                                                                                                                       | 元/万次                |
-| NickName                  | 实例昵称                                                                                                                       | test                   |
-| OutstandingAmount         | 未结清金额                                                                                                                     | 0.0                    |
+| BillingDate               | The billing cycle.                                                                                                                           | 2022-11-06             |
+| Billing Item               | Billing Items                                                                                                                        | Number of PUT and other requests |
+| BillingType               | The billing method.                                                                                                                      | other                   |
+| CostUnit                  | The cost center.                                                                                                                       | Not allocated                 |
+| Currency                  | The currency.                                                                                                                           | CNY                    |
+| DeductedByCashCoupons     | The fee that is offset by using coupons.                                                                                                                     | 0.0                    |
+| DeductedByCoupons         | The fee that is offset by using vouchers.                                                                                                                 | 0.0                    |
+| DeductedByPrepaidCard     | The fee that is offset by using stored-value cards.                                                                                                                    | 0.0                    |
+| DeductedByResourcePackage | The fee that is offset by using resource plans.                                                                                                                     | 0                      |
+| InstanceConfig            | The configurations of the instance.                                                                                                                   | none                     |
+| Instance ID                |  ID                                                                                                                        | me-east-1%3Bstandard   |
+| InstanceSpec              | nstance Type                                                                                                                      | none                  |
+| InternetIP                | The public IP address.                                                                                                                  | none                     |
+| IntranetIP                | The internal IP address.                                                                                                                  | none                   |
+| InvoiceDiscount           | The discount amount.                                                                                                                     | 0.001                  |
+| Item                      | The type of the bill, which includes the subscription order, pay-as-you-go bill, refund bill, and adjustment bill. The unit price. | PayAsYouGoBill         |
+| ListPrice                 | price                                                                                                                          | 1.020000               |
+| ListPriceUnit             | The unit.                                                                                                                       | CNY/10,000 times               |
+| NickName                  | The alias of the instance.                                                                                                                      | test                   |
+| OutstandingAmount         | The unsettled amount.                                                                                                                     | 0.0                    |
 | OwnerID                   | Account ID                                                                                                                     | 12\*\*\*3212           |
-| PaymentAmount             | 现金支付                                                                                                                       | 0.0                    |
-| PretaxAmount              | 应付金额                                                                                                                       | 0.0                    |
-| PretaxGrossAmount         | 原始金额                                                                                                                       | 0.005                  |
-| ProductCode               | 产品代码                                                                                                                       | oss                    |
-| ProductDetail             | 产品明细                                                                                                                       | 对象存储 OSS           |
-| ProductName               | 产品名称                                                                                                                       | 对象存储               |
-| ProductType               | 产品类型                                                                                                                       | 无                     |
-| Region                    | 地域                                                                                                                           | 上海                   |
-| ResourceGroup             | 资源组                                                                                                                         | 无                     |
-| ServicePeriod             | 服务周期                                                                                                                       | 10800                  |
+| PaymentAmount             | The fee that is paid in cash.                                                                                                                      | 0.0                    |
+| PretaxAmount              | The payable amount.                                                                                                                      | 0.0                    |
+| PretaxGrossAmount         | The original amount.                                                                                                                      | 0.005                  |
+| ProductCode               | The service code.                                                                                                                       | oss                    |
+| ProductDetail             | The service details.                                                                                                                      | OSS           |
+| ProductName               | The service name.                                                                                                         instance            | Object Storage             |
+| ProductType               | The service type.                                                                                                                       | none                    |
+| Region                    | region                                                                                                                           | shanghai                   |
+| ResourceGroup             | The resource group.                                                                                                                         | none                     |
+| ServicePeriod             | The validity period.                                                                                                                       | 10800                  |
 
-| SubscriptionType | 订阅类型。包括：
+| SubscriptionType | The subscription type. Valid values:
 
-- Subscription：预付费。
-- PayAsYouGo：后付费。
+- Subscription：Subscription
+- PayAsYouGo：Pay-as-you-go
   | PayAsYouGo |
-  | Tag | 标签 | 无 |
-  | Usage | 使用量 | 0.005000 |
-  | UsageUnit | 使用量单位 | 万次 |
-  | Zone | 可用区 | cn-shanghai-b |
+  | Tag | The tag | none |
+  | Usage | The usage | 0.005000 |
+  | UsageUnit | The usage unit | The unit |
+  | Zone | The zone | cn-shanghai-b |
 
-## 基础语法
+## Basic syntax
 
-新版成本管家以外表形式关联到 Logstore，查询时需要通过查询外表来查询账单数据。
+The dedicated Tablestore table of the new Cost Manager is associated with the dedicated Logstore of Cost Manager as an external table. You can query billing data only by using the external table.
 
-- 查询语句只能为星号（_） ，即竖线（|）前面只能为星号（_）。
-- 分析语句中的外表名称固定为 instance_bill，需统一将查询条件添加在 where 子句中。
+- Search statement: Only an asterisk (*) can be specified before a vertical bar (|).
+- Analytic statement: The name of the dedicated external table is instance_bill. All search conditions must be specified in a WHERE clause.
 
 ```sql
 * | select xxx from instance_bill where xxx group by xxx limit xxx
 ```
 
-例如查询 SLS 产品每日消费金额，查询语句如下所示。
+The following sample query statement is executed to query the daily expenses of Simple Log Service:
 
 ```sql
 * |
@@ -75,11 +75,11 @@ group by
   day
 ```
 
-## 示例 1：聚合查询
+## Example 1：Query aggregated data
 
-例如：获取 SLS 总的账单费用。
+The following example shows how to obtain the total amount of expenses of Simple Log Service.
 
-- 查询和分析语句
+- Query statement
 
 ```sql
 * |
@@ -90,15 +90,15 @@ where
   productcode = 'sls'
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692341696081-411901b3-8977-4c8f-bba7-810a91b35ff2.png#clientId=uf6657e90-1ef8-4&from=paste&id=udadcf13d&originHeight=160&originWidth=1444&originalType=url&ratio=2&rotation=0&showTitle=false&size=12884&status=done&style=none&taskId=u172c5153-299c-4f1c-a8b7-d6ec664a9ed&title=)
 
-## 示例 2：分组查询
+## Example 2：Query billing data by group
 
-例如：查询不同产品的账单费用。
+The following example shows how to query the bills of different services.
 
-- 查询和分析语句
+- Query statement
 
 ```sql
 * |
@@ -110,22 +110,22 @@ group by
   productcode
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692341696365-4e6370d6-0dac-4e6d-b69a-accad7beb8b3.png#clientId=uf6657e90-1ef8-4&from=paste&id=uc48aed10&originHeight=380&originWidth=1432&originalType=url&ratio=2&rotation=0&showTitle=false&size=35844&status=done&style=none&taskId=uad1d0b54-9024-4777-aad9-e9fda5b0e26&title=)
 
-## 示例 3：同比环比分析
+## Example 3：Example 2
 
-例如：按照产品，与上月进行同比分析。
+The following example shows how to compare the expenses of the current month with the expenses of the previous month by service.
 
-- 查询和分析语句
+- Query statement
 
 ```sql
 * |
 SELECT
-  diff [1] AS "本月费用",
-  diff [2] AS "上月费用",
-  diff [3] * 100 -100 as "同比增加%"
+  diff [1] AS "Expenses of this month",
+  diff [2] AS "Expenses of the previous month",
+  diff [3] * 100 -100 as "Increased by%"
 FROM (
     SELECT
       compare(amount, 604800) as diff
@@ -137,22 +137,22 @@ FROM (
   )
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692341696352-ec04d2e4-1cc9-4ddf-8d81-d2992d28d3ec.png#clientId=uf6657e90-1ef8-4&from=paste&id=u96302229&originHeight=160&originWidth=1432&originalType=url&ratio=2&rotation=0&showTitle=false&size=22431&status=done&style=none&taskId=u670cd69b-6256-47e4-b195-01af4139c36&title=)
 
-## 示例 4：分析产品计费项信息
+## Example 4：Analyze the billable items of a service
 
-例如：查询 SLS 产品每个计费项的消费金额与用量。
+The following example shows how to query the expenses and usage of each billable item in Simple Log Service.
 
-- 查询和分析语句
+- Query statement
 
 ```sql
 * |
 SELECT
   BillingItem,
-  sum(PretaxAmount) AS "消费",
-  sum(Usage) as "用量"
+  sum(PretaxAmount) AS "consumption",
+  sum(Usage) as "usage"
 FROM  instance_bill
 where
   productcode = 'sls'
@@ -160,19 +160,19 @@ GROUP by
   BillingItem
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692341696353-a36d9c12-665e-4c59-819d-5e7475a7bdff.png#clientId=uf6657e90-1ef8-4&from=paste&id=u7180aa6f&originHeight=306&originWidth=1432&originalType=url&ratio=2&rotation=0&showTitle=false&size=45857&status=done&style=none&taskId=u608be063-0c6c-4f3c-a7a4-af5866ad3f3&title=)
 
-## 示例 5：按天统计计费项用量趋势
+## Example 5: Query the usage trend of billable items by day
 
 ```sql
 * |
 SELECT
 	date_trunc('day', __time__) as t,
   BillingItem,
-  sum(PretaxAmount) AS "消费",
-  sum(Usage) as "用量"
+  sum(PretaxAmount) AS "Consumption",
+  sum(Usage) as "Usage"
 FROM  instance_bill
 where
   productcode = 'sls'
@@ -183,21 +183,21 @@ ORDER by
 	t
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692342074141-32813ffd-1d36-4de7-be6a-0006545a110e.png#clientId=uf6657e90-1ef8-4&from=paste&height=815&id=u5e3fd12c&originHeight=1630&originWidth=3726&originalType=binary&ratio=2&rotation=0&showTitle=false&size=2564242&status=done&style=none&taskId=uec960ed8-b16b-4676-b8cd-29819e23eea&title=&width=1863)
 
-## 示例 6：统计产品实例费用
+## Example  6：Query the expenses of each instance
 
-例如：查询 SLS 产品每个实例的消费金额。
+The following example shows how to query the expenses of each instance in Simple Log Service.
 
-- 查询和分析语句
+- Query statement
 
 ```sql
 * |
 SELECT
   InstanceID,
-  sum(PretaxAmount) AS "消费"
+  sum(PretaxAmount) AS "Consumption"
 FROM  instance_bill
 where
   productcode = 'sls'
@@ -205,18 +205,18 @@ GROUP by
   InstanceID
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692341696367-752b8567-997f-47a9-8505-e3bedb9a7e1b.png#clientId=uf6657e90-1ef8-4&from=paste&id=u91f0ea4a&originHeight=394&originWidth=1438&originalType=url&ratio=2&rotation=0&showTitle=false&size=44429&status=done&style=none&taskId=u75ca8eae-3e80-45fa-bfb5-a3512e7b44d&title=)
 
-## 实例 7：按天统计产品实例费用趋势
+## Example 7：Query the expense trend of instances by day
 
 ```sql
 * |
 SELECT
 	date_trunc('day', __time__) as t,
   InstanceID,
-  sum(PretaxAmount) AS "消费"
+  sum(PretaxAmount) AS "Consumption"
 FROM  instance_bill
 where
   productcode = 'sls'
@@ -227,16 +227,16 @@ ORDER by
 	t
 ```
 
-- 查询和分析结果
+- Query and analysis result
 
 ![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2023/png/24957466/1692342174999-b240bd2b-4568-4915-95ed-f82ab02bcf46.png#clientId=uf6657e90-1ef8-4&from=paste&height=771&id=u99b6328c&originHeight=1542&originWidth=3718&originalType=binary&ratio=2&rotation=0&showTitle=false&size=2306412&status=done&style=none&taskId=ub25be937-9b5d-4df7-add0-aa2a01436f7&title=&width=1859)
 
-## 示例 8：外表联合查询
+## Example 8： Query billing data by joining external tables
 
-例如：联合查询账单数据与您自定义的外表数据。
-样例中外表为 instance_name_table，您需要修改为实际关联的外部数据源。
+The following example shows how to query billing data by joining the instance_bill table with a custom external table.
+In this example, the name of the external table is instance_name_table. You must replace it with the actual external table that is associated with Simple Log Service.
 
-- 查询和分析语句
+- Query statement
 
 ```sql
 * | with t1 as (

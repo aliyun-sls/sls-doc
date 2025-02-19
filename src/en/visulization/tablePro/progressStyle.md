@@ -1,23 +1,22 @@
-# 如何设置表格单元格进度条样式（普通、LCD、渐变）
+# Configure the progress bar type of table cells
 
-在仪表盘编辑模式，编辑当前表格，在字段配置的tab下：
-1. 点击**添加字段**，选择**A>path**字段，点击**添加配置**，选择**标准配置>颜色方案**，选择**阈值**
-2. 再次点击**添加配置**，选择**字段列设置>单元格显示方式**，可有三种进度条样式选择
+In edit mode of a dashboard, edit the current table. On the **Field Configuration** tab, perform the following operations:
+1. Click **Add Field** and select **A > path**. Click **Add Configuration** and select **Standard Configurations > Color Scheme**. Then, select **Threshold**.
+2. Click **Add Configuration** again and select **Field/Column Settings > Cell Display Mode**. Then, select one of the following progress bar types.
+- **Progress Bar**
 
-- **进度条**
+![图 3](/img/src/en/visulization/tablePro/progressStyle/progressStyle3.png) 
 
-![图 3](/img/src/visulization/tablePro/progressStyle/progressStyle3.png) 
+- **LCD Progress Bar**
 
-- **LCD进度条**
+![图 4](/img/src/en/visulization/tablePro/progressStyle/progressStyle4.png) 
 
-![图 4](/img/src/visulization/tablePro/progressStyle/progressStyle4.png) 
+- **LCD Progress Bar**
 
-- **渐变进度条**
+![图 5](/img/src/en/visulization/tablePro/progressStyle/progressStyle5.png) 
 
-![图 5](/img/src/visulization/tablePro/progressStyle/progressStyle5.png) 
+3. Click **Add Configuration** again and select **Threshold > Threshold**. Then, click the circle icon to configure the color.
+![图 6](/img/src/en/visulization/tablePro/progressStyle/progressStyle6.png) 
 
-3. 再次点击**添加配置**，选择**阈值>阈值**，可设置颜色
-![图 6](/img/src/visulization/tablePro/progressStyle/progressStyle6.png) 
-
-还可以点击**添加阈值**来过滤内容
-![图 7](/img/src/visulization/tablePro/progressStyle/progressStyle7.png) 
+You can also click **Add Threshold** to filter data.
+![图 7](/img/src/en/visulization/tablePro/progressStyle/progressStyle7.png) 

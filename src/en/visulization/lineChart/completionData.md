@@ -1,5 +1,5 @@
-# 如何开启数据补全及其效果
+# Turn on Data Completion
 
-在仪表盘编辑模式，编辑当前线图，在**字段配置**tab下，点击**数据配置**，打开**数据补全**，调整**补全窗口**参数来设置补全的时间间隔，设置**补全值**。补全窗口最小值为10。
+In edit mode of a dashboard, edit the current line chart. On the **General Configurations** tab, click **Data Configuration**. In the **Data Configuration** section, turn on **Data Completion** and configure the **Completion Window** **Text-substituted Value** parameters. The minimum value of the **Completion Window** parameter is 10.
 
-![图 1](/img/src/visulization/lineChart/completionData/completionData1.png) 
+![图 1](/img/src/en/visulization/lineChart/completionData/completionData1.png) 

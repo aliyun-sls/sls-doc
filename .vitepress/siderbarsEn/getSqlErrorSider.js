@@ -45,10 +45,10 @@ function getSidebar() {
           text: 'AccessKeyId is disabled',
           link: '/en/sqlerror/accesskeyid_disabled',
         },
-        {
-          text: 'AccessKeyId not found',
-          link: '/en/sqlerror/accesskeyid_not_found',
-        },
+        // {
+        //   text: 'AccessKeyId not found',
+        //   link: '/en/sqlerror/accesskeyid_not_found',
+        // },
         {
           text: 'The security token you provided has expired',
           link: '/en/sqlerror/token_expired',

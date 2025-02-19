@@ -1,14 +1,13 @@
-### 图表如何配置交互事件打开日志库
+### Configure an Open Logstore interaction occurrence
 
-1.打开图表编辑页面，点击【交互事件】，添加字段，然后点击【添加事件】选择打开日志库，如图所示
+1.Go to the chart editing page and click the **Interaction Occurrences** tab. On the **Interaction Occurrences** tab, click **Add Field** and select a field. Then, click **Add Event** and select **Open Logstore**. The following figure shows the configurations.
 
-![图1](/img/src/visulization/interactionEvent/event1.png)
+![图1](/img/src/en/visulization/interactionEvent/event1.png)
 
-2.配置所要打开的日志库信息，配置好后点击确定，保存图表。
+2.In the **Open Logstore** dialog box, configure related parameters and click **OK**. On the page that appears, save the configurations.
 
-![图2](/img/src/visulization/interactionEvent/event2.png)
+![图2](/img/src/en/visulization/interactionEvent/event2.png)
 
-3.保存后，点击配置的字段数据，就有自定义事件【打开日志库】，点击该事件就会跳转到日志库页面。
-如图所示：
+3.On the page that appears, click a column in the chart. The chart shows **Open Logstore**. Click **Open Logstore**. The Logstore page is displayed.
 
-![图3](/img/src/visulization/interactionEvent/event3.png)
+![图3](/img/src/en/visulization/interactionEvent/event3.png)
