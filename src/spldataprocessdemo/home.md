@@ -47,6 +47,8 @@
 | 案例名称 | 描述 |
 | -- | -- |
 | [解析Nginx日志 ](./parse_nginx_log.md) | 使用正则表达式函数解析Nginx访问日志 |
+| [解析非标准的Nginx日志 ](./parse_no_nginx_log.md) | 使用正则表达式函数解析非标准的Nginx访问日志 |
+
 
 ## 解析复杂日志中的字段 
 
@@ -58,6 +60,11 @@
 | 案例名称 | 描述 |
 | -- | -- |
 | [数据脱敏](./phone_number_desensitization.md) | 使用正则表达式函数对关键信息进行脱敏 |
+
+## 事件判断
+| 案例名称 | 描述 |
+| -- | -- |
+| [事件判断](./event_judgment.md) | 使用条件语句对不同日志进行判断 |
 
 ## 阿里云Flink SQL基于SPL实现
 

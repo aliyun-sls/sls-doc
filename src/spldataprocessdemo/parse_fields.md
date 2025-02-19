@@ -66,3 +66,150 @@
     submitChannel:12
     systemDate:2024-04-22
     ```
+## 场景三：从json字符串过滤日志并提取出指定字段
+* 原始日志
+  ```
+  {"__LEVEL__":"INFO","__THREAD__":"73539","__FILE__":"nas/test/tasks/tt_task.cpp","__LINE__":"424","Vers":"100","VolumeId":"djkaywiqhiwql","Method":"HPSFRename","TaskStatus":"0","NasStatus":"0","Operation":"rename","Totallatency":"1412","TimePoints":"[ phase_receive:9 alloc_qos_token:2 qos_queue:1 taa_proc:21 storage_schedule:5 storage_proc:19090 taa_post:46 done_schedule:5 taaio_done:4]","StorageSchedule":"5","StorageProc":"1317","ExpandMsg":"(7:1(us),)","TraceId":"","RequestId":"903J3JO3J","SourceIp":"10.10.10.10","SessionId":"200_3298309203802","Priority":"0","QosTenant":"QosTenant(idx:0,gen:3)","microtime":"1731392376869111","WorkerIdx":"7","QosDelay":"2","ChannelType":"TCP","client_unique":"930290392","client_pid":"2779589","client_uid":"0","client_gid":"0","client_pidname":"MockPidName","client_hostname":"92EH92EIO0I2UO2","client_mountname":"82y9he92y92h2ejo20232","client_localmount":"/var/run/aa/bindroot/testroot","client_arrive_time":"1731392376867903","Name":"/var/run/aa/bindroot/bindroot-604c/motr.csv.temp","DstName":"mots.csv","FilePath":"","DstFilePath":"","DstDeleted":"0","ResIno":"930230283","User":"0937089203013","ConnId":"48370","SourcePort":"9058","Vip":"10.10.10.10","TunnelId":"9988","microtime_0":"1731392376869109","__pack_meta__":"83|38H2OIH2HE2DEU232YW==|363|287","__topic__":"","__source__":"16.72.37.72","__tag__:__hostname__":"c96l020901.cloud.na322","__tag__:__path__":"/apsara/FileServer/log/test_access.LOG","__tag__:__user_defined_id__":"cn-wulanchabu-c-tenant-5","__tag__:__pack_id__":"5D389283922966585F-0","__tag__:__receive_time__":"1731392378","__time__":"1731392376"}
+  ```
+* 解析需求
+  * 1：保留Operation字段值为remove或rename的日志，不符合的丢弃。
+  * 2：只保留字段Name, VolumeId, Operation并且分别重命名为fullPath、fsName、event，并把__tag__:__hostname__字段中的第一位id提取出来设为host的字段值。
+  * 3：新增字段module，值为fileserver。
+  * 4：将__time__转成时间对象赋值给新字段time。
+  * 5：从fullPath的值中提取出文件名，赋值给subPath字段。
+* 加工语句
+  ```python
+  * | where Operation = 'remove' or Operation = 'rename' 
+  | project Name, VolumeId, "__tag__:__hostname__", __time__, Operation 
+  | project-rename fullPath=Name, fsName=VolumeId, host="__tag__:__hostname__", event=Operation 
+  | extend host = split_part(host, '.', 1),module = 'fileserver'
+  | extend fullPath = regexp_replace(fullPath,'(^.*)([\/]+$)','\1')
+  | parse-regexp fullPath, '([^\\/]+$)' as subPath
+  | extend time=from_unixtime(cast(__time__ as DOUBLE) + 28800)
+  ```
+* 加工结果
+  ```
+  event:rename
+  fsName:djkaywiqhiwql
+  fullPath:/var/run/aa/bindroot/bindroot-604c/motr.csv.temp
+  host:c96l020901
+  module:fileserver
+  subPath:motr.csv.temp
+  time:2024-11-12 14:19:36.000
+  ```
+## 场景四：根据条件过滤日志并提取出指定字段
+* 原始日志
+  ```
+  {"minReadOffset":"","minWriteOffset":"","clientUserId":"0","maxWriteOffset":"","cookie":"1","fileSetID":"2","linkCount":"1","openFlags":"0","ctime":"2024-03-13_16:44:58.423+0800","clientGroupId":"0","accessMode":"","uyt":"","mask":"0x200","nfsIp":"","bytesRead":"","maxReadOffset":"","inode":"892323","fileSize":"8187382","poolName":"system","processId":"56271","bytesWritten":"","xattrs":"","TE_JSON":"0.0.3","clusterName":"cpfe-test_test-2.cn-wulanchabu.cpfe.aliyuncs.com","fsName":"39434034nwkeowuoup","ownerUserId":"0","atime":"2024-03-13_16:44:58.073+0800","subEvent":"NONE","wd":"1","event":"IN_DELETE","eventTime":"2024-03-13_16:44:58.800+0800","permissions":"200100600","path":"/cpfe/370l64h5u6zjy8buacw/root@10.30.42.19/1710249292/.efc_2251799814382581_2984197703087879309_1710319498445559_file1nas_file_0.txt/","nodeName":"x77g11119_ext.cloud.na132","ownerGroupId":"0","mtime":"2024-03-13_16:44:58.423+0800","__pack_meta__":"0|EJIWOUE02U29HEE8220YOHDW==|1|0","__topic__":"","__source__":"16.40.20.10","__tag__:__receive_time__":"1710319498","__time__":"1710319498","__time_ns_part__":"800"}
+ 
+  ```
+* 解析需求
+  * 1：保留event字段值不含IN_MOVED_TO且path字段值不含.mmSharedTmpDir得日志，其余的丢弃。
+  * 2：只保留日志中的字段nodeName、processId、 path、inode、fsName、eventTime、event，并将字段eventTime、path分别重命名为time、fullPath。
+  * 3：从nodeName中提取出前缀的id部分，赋给字段host，nodeName字段丢弃；去除fullPath值末尾的斜杠并提取出文件路径，赋值给subPath字段。
+  * 4：新增字段module，值为cpfs。
+  * 5：把带时区的time字段转成不带时区的时间对象，并赋值当前的__time__
+* 加工语句
+  ```python
+  * | where event not like '%IN_MOVED_TO%' and path not like '%.mmSharedTmpDir%'  
+  | project nodeName, processId, path, inode, fsName, eventTime, event
+  | extend nodeName=replace(nodeName, '_ext', '')
+  | project-rename host=nodeName, time=eventTime, fullPath=path
+  | extend host = split_part(host, '.', 1),module ='cpfs',fullPath = regexp_replace(fullPath,'(^.*)([\/]+$)','\1'),time=replace(replace(time, '+0800', ''), '_', ' ')
+  | parse-regexp fullPath, '([^\\/]+$)' as subPath
+  | extend __time__ = cast(to_unixtime(cast(time as TIMESTAMP)) as bigint) - 28800
+  ```
+* 加工结果
+  ```
+  event:IN_DELETE
+  fsName:39434034nwkeowuoup
+  fullPath:/cpfe/370l64h5u6zjy8buacw/root@10.30.42.19/1710249292/.efc_2251799814382581_2984197703087879309_1710319498445559_file1nas_file_0.txt
+  host:x77g11119
+  inode:892323
+  module:cpfs
+  processId:56271
+  subPath:.efc_2251799814382581_2984197703087879309_1710319498445559_file1nas_file_0.txt
+  time:2024-03-13 16:44:58.800
+  __time__:1710319499
+  ```
+## 场景五：从多层包裹的json中提取出json字符串
+* 原始日志
+  ```
+  {
+  "__source__":"log_service",
+  "__topic__":"mse_test_access_log",
+  "authority":"go-micro.rrzu.com",
+  "bytes_received":"147",
+  "bytes_sent":"328",
+  "cluster_id":"gw-38019u2u9ndnkwdkjh",
+  "duration":"43",
+  "method":"POST",
+  "path":"/diversion/test",
+  "protocol":"HTTP/1.1",
+  "request_id":"681292f6-4aba-42df-8e75-ab426a620382",
+  "requested_server_name":"go-micro.ewewew.com",
+  "response_code":"200",
+  "response_flags":"-",
+  "route_name":"go-diversion-route-f732e980-9738279nex892u9e2m",
+  "start_time":"2024-11-13T04:01:23.770Z",
+  "trace_id":"2932eh2nein2",
+  "upstream_cluster":"outbound|2233||diversion-api-dd.go.ee.cluster.local",
+  "upstream_host":"172.16.9.225:2233",
+  "upstream_local_address":"100.10.0.0:12882",
+  "upstream_service_time":"42",
+  "upstream_transport_failure_reason":"-",
+  "user_agent":"GuzzleHttp/7",
+  "x_forwarded_for":"100.10.0.0:1000",
+  "downstream_local_address":"100.10.0.0:443",
+  "downstream_remote_address":"100.10.0.0:12767",
+  "request_headers":"{\"envoy.lua:request_body\":\"{\"experiment_uniq_id\":\"test_name_address_remind_ali\",\"distinct_id\":\"392839072\",\"terminal\":\"alipay.ipope\",\"version\":\"3.2.35\",\"model_type\":\"abtest\"}\",\"envoy.lua:request_headers\":\":authority=go-micro.ew.com, :path=/diversion/dede, :method=POST, :scheme=https, user-agent=GuzzleHttp/7, content-type=application/json, appid=diversion, timestamp=1731470483, sign=903h2oni2biy2y9en, content-length=147, x-forwarded-for=192.168.0.35, x-forwarded-proto=https, x-envoy-internal=true, x-dddd-original-host=go-micro.rrzu.com, x-request-id=23232d2-4aba-42df-8e75-4dr32ed, x-envoy-decorator-operation=diversion-api-def.go.svc.cluster.local:2233/diversion/(.*)((\/).*)?, \"}",
+  "response_headers":"{\"envoy.lua:response_body\":\"{\"status\":0,\"message\":\"OK\",\"data\":{\"experiment_id\":21,\"experiment_type\":1,\"experiment_uniqwqwq_id\":\"sf_real_name_address_remind_ali\",\"experiment_group_id\":100,\"experiment_group_name\":\"对照比\",\"experiment_group_type\":0,\"is_white\":0,\"param_id\":\"sws2wu91w1w1s1s\",\"param_type\":1,\"param_val\":\"2\",\"distinct_id\":\"42465147\"}}\",\"envoy.lua:response_headers\":\":status=200, access-control-allow-headers=Content-Type, Origin, X-CSRF-Token, Authorization, AccessToken, Token, Range, X-Requested-With, mini_version, terminal, access-control-allow-methods=GET,PUT,POST,DELETE,OPTIONS, content-type=application/json; charset=utf-8, traceparent=00-3902u2jej9d286e92h-2e3r4f4f4ff-00, vary=Origin, date=Wed, 13 Nov 2024 04:01:23 GMT, content-length=328, req-cost-time=43, req-arrive-time=1731470483770, resp-start-time=1731470483813, x-envoy-upstream-service-time=42, set-cookie=canary-route=\"fr4544t5t542\"; Max-Age=10; Path=/; HttpOnly, stage=prod, set-cookie=acw_tc=681292f6-4aba-42df-8e75-029j30jej3dn39hf3h9hnhfeuy47rhnfhf4;path=/;HttpOnly;Max-Age=1800, \"}"
+  }
+  ```
+* 解析需求
+  * 1：如果authority不为data-analysis.rrzu.com且不为data-behavior.rrzu.com则进行后续处理
+  * 2：将原日志中的authority、duration、user_agent、request_id、response_code、path、x_forwarded_for字段分别重命名为host、request_time、http_user_agent、req_id、status、url、x_forward_for。
+  * 3：从x_forward_for中解析出ip，从request_headers解析出request_body和request_header，从response_headers解析出response_data
+  * 4：最后删除request_headers、response_headers字段
+* 加工语句
+  ```python
+  * | where 'authority' != 'data-analysis.rrzu.com'  and 'authority' != 'data-behavior.rrzu.com' 
+  | project-rename host=authority,request_time=duration,http_user_agent=user_agent,req_id=request_id,status=response_code,url=path,x_forward_for=x_forwarded_for
+  | extend ip=regexp_extract(x_forward_for, '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}') 
+  | parse-regexp request_headers,'{"envoy.lua:request_body":"(.*?)"\,"envoy.lua:request_headers":"(.*?)"}' as request_body, request_header
+  | parse-regexp response_headers, '"envoy.lua:response_body":"({.*?})"' as response_data
+  | project-away request_headers,response_headers
+  ```
+* 加工结果
+  ```
+  __source__:log_service
+  __topic__:mse_test_access_log
+  bytes_received:147
+  bytes_sent:328
+  cluster_id:gw-38019u2u9ndnkwdkjh
+  downstream_local_address:100.10.0.0:443
+  downstream_remote_address:100.10.0.0:12767
+  host:go-micro.rrzu.com
+  http_user_agent:GuzzleHttp/7
+  ip:100.10.0.0
+  method:POST
+  protocol:HTTP/1.1
+  req_id:681292f6-4aba-42df-8e75-ab426a620382
+  request_body:{"experiment_uniq_id":"test_name_address_remind_ali","distinct_id":"392839072","terminal":"alipay.ipope","version":"3.2.35","model_type":"abtest"}
+  request_header::authority=go-micro.ew.com, :path=/diversion/dede, :method=POST, :scheme=https, user-agent=GuzzleHttp/7, content-type=application/json, appid=diversion, timestamp=1731470483, sign=903h2oni2biy2y9en, content-length=147, x-forwarded-for=192.168.0.35, x-forwarded-proto=https, x-envoy-internal=true, x-dddd-original-host=go-micro.rrzu.com, x-request-id=23232d2-4aba-42df-8e75-4dr32ed, x-envoy-decorator-operation=diversion-api-def.go.svc.cluster.local:2233/diversion/(.*)((/).*)?, 
+  request_time:43
+  requested_server_name:go-micro.ewewew.com
+  response_data:{"status":0,"message":"OK","data":{"experiment_id":21,"experiment_type":1,"experiment_uniqwqwq_id":"sf_real_name_address_remind_ali","experiment_group_id":100,"experiment_group_name":"对照比","experiment_group_type":0,"is_white":0,"param_id":"sws2wu91w1w1s1s","param_type":1,"param_val":"2","distinct_id":"42465147"}}
+  response_flags:-
+  route_name:go-diversion-route-f732e980-9738279nex892u9e2m
+  start_time:2024-11-13T04:01:23.770Z
+  status:200
+  trace_id:2932eh2nein2
+  upstream_cluster:outbound|2233||diversion-api-dd.go.ee.cluster.local
+  upstream_host:172.16.9.225:2233
+  upstream_local_address:100.10.0.0:12882
+  upstream_service_time:42
+  upstream_transport_failure_reason:-
+  url:/diversion/test
+  x_forward_for:100.10.0.0:1000
+  ```
