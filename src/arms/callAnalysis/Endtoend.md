@@ -1,7 +1,7 @@
 # 端到端全链路追踪
 
 :::tip 端到端全链路追踪
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Ftracing%2FcallChains%2Fcn-hangzhou){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Ftracing%2FcallChains%2Fcn-hangzhou){target="_blank"}
 :::
 
 ## 使用场景

@@ -1,7 +1,7 @@
 # 基于 RDS lens 的日志采集和应用
 
 :::tip CloudLens for RDS
-[试用 Demo](/playground/demo.html?dest=/lognext/app/lens/rds){target="_blank"}
+[试用 Demo](/doc/playground/demo.html?dest=/lognext/app/lens/rds){target="_blank"}
 :::
 
 ### 背景

@@ -1,7 +1,7 @@
 # 查询应用提供/依赖服务监控
 
 :::tip 监控
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Ftrace4service.console.aliyun.com%2F%23%2Ftracing%2Fcn-hangzhou%3FappId%3Dckv8e2vzfj%2540a71c26ffd651d46%26tab%3DprovisionService%26source%3DXTRACE%26xtraceType%3Dtrace){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Ftrace4service.console.aliyun.com%2F%23%2Ftracing%2Fcn-hangzhou%3FappId%3Dckv8e2vzfj%2540a71c26ffd651d46%26tab%3DprovisionService%26source%3DXTRACE%26xtraceType%3Dtrace){target="_blank"}
 :::
 
 ## 使用场景

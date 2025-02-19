@@ -1,7 +1,7 @@
 # 使用 Arthas 探索应用性能
 
 :::tip 使用 Arthas 探索应用性能
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farmsnext4service.console.aliyun.com%2Ftracing%23%2Ftracing%2Fcn-hangzhou%3FappId%3Dckv8e2vzfj%25407e393063f3fd6ad%26tab%3DappDiagnosis-arthas%26source%3DTRACE%26sideFilters%3D%255B%255D){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Farmsnext4service.console.aliyun.com%2Ftracing%23%2Ftracing%2Fcn-hangzhou%3FappId%3Dckv8e2vzfj%25407e393063f3fd6ad%26tab%3DappDiagnosis-arthas%26source%3DTRACE%26sideFilters%3D%255B%255D){target="_blank"}
 :::
 
 ## 使用场景

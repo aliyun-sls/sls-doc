@@ -1,7 +1,7 @@
 # 快速统计因故障造成用户影响面
 
 :::tip 快速统计因故障造成用户影响面
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Frum%2Fapp%2Fcn-hangzhou%2Fckv8e2vzfj%40b688a844b49f67f%3Ftab%3DexceptionStatistics%26appType%3Dweb%26from%3Dnow-3h%26to%3Dnow%26refresh%3Doff){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Frum%2Fapp%2Fcn-hangzhou%2Fckv8e2vzfj%40b688a844b49f67f%3Ftab%3DexceptionStatistics%26appType%3Dweb%26from%3Dnow-3h%26to%3Dnow%26refresh%3Doff){target="_blank"}
 :::
 
 ## 使用场景

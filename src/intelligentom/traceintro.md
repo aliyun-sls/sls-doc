@@ -5,7 +5,7 @@
 分布式链路追踪（Distributed Tracing，简称 Trace）可提供整个服务调用链路的调用关系、延迟、结果等信息，非常适用于云原生、分布式、微服务等涉及多个服务交互的系统。
 
 :::tip Trace 服务
-[试用 Demo](/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer){target="_blank"}
+[试用 Demo](/doc/playground/demo.html?dest=/lognext/trace/sls-mall/sls-mall%3Fresource=/trace/sls-mall/explorer){target="_blank"}
 :::
 
 ## 视频介绍

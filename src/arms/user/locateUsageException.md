@@ -1,7 +1,7 @@
 # 定位某用户产品使用异常
 
 :::tip 定位某用户产品使用异常
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Frum%2Fapp%2Fcn-hangzhou%2Fckv8e2vzfj%40b688a844b49f67f%3Ftab%3DsessionTrace%26appType%3Dweb%26from%3Dnow-3h%26to%3Dnow%26refresh%3Doff){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Farms4service.console.aliyun.com%2F%23%2Frum%2Fapp%2Fcn-hangzhou%2Fckv8e2vzfj%40b688a844b49f67f%3Ftab%3DsessionTrace%26appType%3Dweb%26from%3Dnow-3h%26to%3Dnow%26refresh%3Doff){target="_blank"}
 :::
 
 ## 使用场景

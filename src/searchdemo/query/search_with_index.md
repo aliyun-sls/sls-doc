@@ -33,32 +33,32 @@
 注：未注明分词的默认分词符为 __, '";=()[]{}?@&<>/:\n\t\r__
 
 ## 普通查询
-* 查询404的状态码 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dstatus%3A404){target="_blank"}
+* 查询404的状态码 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dstatus%3A404){target="_blank"}
 ```sql
 status: 404
 ```
-* 查询upstream_response_time大于0.5ms的日志 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dupstream_response_time%20%3E%200.5){target="_blank"}
+* 查询upstream_response_time大于0.5ms的日志 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dupstream_response_time%20%3E%200.5){target="_blank"}
 ```sql
 upstream_response_time > 0.5
 ```
-* 查询request_time处于50-100ms的日志 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Drequest_time%20in%20%5B50%20100%5D){target="_blank"}
+* 查询request_time处于50-100ms的日志 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Drequest_time%20in%20%5B50%20100%5D){target="_blank"}
 ```sql
 request_time in [50 100]
 ```
-* 查询特定的host [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhost%3A%20www.ol.mock.com){target="_blank"}
+* 查询特定的host [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhost%3A%20www.ol.mock.com){target="_blank"}
 ```sql
 host: www.ol.mock.com
 ```
 ## 模糊查询
-* 查询remote_user以a开头的字符串 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dremote_user%3A%20a*){target="_blank"}
+* 查询remote_user以a开头的字符串 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dremote_user%3A%20a*){target="_blank"}
 ```sql
 remote_user: a*
 ```
-* 查询http_user_agent中含有mo开头la结尾的词 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mo*la){target="_blank"}
+* 查询http_user_agent中含有mo开头la结尾的词 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mo*la){target="_blank"}
 ```sql
 http_user_agent: mo*la
 ```
-* 查询http_user_agent中包含以mozi开头，以la结尾，中间还有一个字符的词的日志 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mozi%3Fla){target="_blank"}
+* 查询http_user_agent中包含以mozi开头，以la结尾，中间还有一个字符的词的日志 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dhttp_user_agent%3A%20mozi%3Fla){target="_blank"}
 ```sql
 http_user_agent: mozi?la
 ```
@@ -70,7 +70,7 @@ http_user_agent: mozi?la
 time_local: 22/Dec
 ```
 所以可以更换为下面的查询语句
-* 查询所有本地时间为12月22日的日志 [Playground中试试](/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dtime_local%3A%20%23%2203%3A03%22){target="_blank"}
+* 查询所有本地时间为12月22日的日志 [Playground中试试](/doc/playground/demo.html?dest=/lognext/project/nginx-demo-log/logsearch/nginx-access-log%3FslsRegion%3Dcn-shanghai%26isShare%3Dtrue%26queryString%3Dtime_local%3A%20%23%2203%3A03%22){target="_blank"}
 ```
 time_local: #"22/Dec"
 ```

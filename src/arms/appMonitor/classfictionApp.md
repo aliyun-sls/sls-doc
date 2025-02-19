@@ -1,7 +1,7 @@
 # 分析应用新增/突增异常
 
 :::tip 分析应用新增/突增异常
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Ftrace4service.console.aliyun.com%2F%23%2FsceneAnalysis%2Fcn-hangzhou%2FexceptionAnalysis){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Ftrace4service.console.aliyun.com%2F%23%2FsceneAnalysis%2Fcn-hangzhou%2FexceptionAnalysis){target="_blank"}
 :::
 
 ## 使用场景

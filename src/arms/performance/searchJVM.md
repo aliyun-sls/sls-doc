@@ -1,7 +1,7 @@
 # 查询 JVM 监控
 
 :::tip 查询 JVM 监控
-[试用 Demo](/playground/armsdemo.html?dest=https%3A%2F%2Farmsnext4service.console.aliyun.com%2Ftracing%23%2FserviceDetail%3FappId%3Dckv8e2vzfj%25407e393063f3fd6ad%26tab%3Darms-instance-jvm%26source%3DTRACE%26preTab%3DinstanceMonitoring%26regionId%3Dcn-hangzhou%26hostName%3D10.0.0.45){target="_blank"}
+[试用 Demo](/doc/playground/armsdemo.html?dest=https%3A%2F%2Farmsnext4service.console.aliyun.com%2Ftracing%23%2FserviceDetail%3FappId%3Dckv8e2vzfj%25407e393063f3fd6ad%26tab%3Darms-instance-jvm%26source%3DTRACE%26preTab%3DinstanceMonitoring%26regionId%3Dcn-hangzhou%26hostName%3D10.0.0.45){target="_blank"}
 :::
 
 ## 使用场景
