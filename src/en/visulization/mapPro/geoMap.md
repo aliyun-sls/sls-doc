@@ -10,6 +10,6 @@ In this example, in the **Query and Analysis Configurations** section, the **Lat
 
 - **Latitude,Longitude**: The **Latitude,Longitude** parameter is required if you set the **Data Type** parameter to **Latitude,Longitude**.
 
-## Configuration result
-![图 31](/img/src/en/visulization/mapPro/geoMap/geoMap01.png)
+<!-- ## Configuration result
+![图 31](/img/src/en/visulization/mapPro/geoMap/geoMap01.png) -->
 

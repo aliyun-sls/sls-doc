@@ -19,7 +19,7 @@ Valid values of the **Data Type** parameter:
 ## Configuration result
 In this example, in the **Query and Analysis Configurations** section, the **Latitude,Longitude** parameter is set to **address** and the **Value Column** parameter is set to **count**.
 
-## Configuration result
-![image.png](/img/src/en/visulization/mapPro/heatMap/worldMap01.png)
+<!-- ## Configuration result
+![image.png](/img/src/en/visulization/mapPro/heatMap/worldMap01.png) -->
 
 

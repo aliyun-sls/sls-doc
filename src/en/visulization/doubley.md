@@ -9,8 +9,8 @@ When two or more lines need to be drawn in a line chart (Pro), the lines share t
 1. y-axis ID
    ![picture 14](/img/src/en/visulization/doubley/420e1bbbcebd9cac4e51a097564a47014287b17c710bc57ae3348bce444a3a93.png)
 
-2. y-axis direction
-   ![picture 15](/img/src/en/visulization/doubley/4aad2607ecd8998eb2d97fa2cf21f31d2b380749d925f2c68a54dc17a2e5fd7d.png)
+<!-- 2. y-axis direction
+   ![picture 15](/img/src/en/visulization/doubley/4aad2607ecd8998eb2d97fa2cf21f31d2b380749d925f2c68a54dc17a2e5fd7d.png) -->
 
 3. Format in Standard Configurations
    ![picture 16](/img/src/en/visulization/doubley/4fad047e0e526b452d4d9eaec1f8264788999f3cb54281260cccf2ac424a86ae.png)
