@@ -1,5 +1,5 @@
-# 如何配置 markdown 图表
-1.点击添加新图表,在右边配置栏中,选择【通用配置栏】>【图表类型】>【Markdownpro】<br/>
+# Configure a Markdown chart
+1.In edit mode, click **Add** and then click **Add Chart**. On the **General Configurations** tab, click the **Markdown Pro** icon in the **Chart Types** section.<br/>
 
-2.在面板的左侧输入相应的 markdown 语法，右侧即可同步看到输出
-![image.png](/img/src/visulization/markdownPro/madrkdownBasic/c44a568c64a6bec17683ece5915ea864f8df88fe218cc8c18e14d72dc41a8f9a.png)
+2.Enter the Markdown code on the left side of the panel. The result is simultaneously displayed on the right side.
+![image.png](/img/src/en/visulization/markdownPro/madrkdownBasic/madrkdownBasic.png)

@@ -1,7 +1,7 @@
-# 如何使用表格的阈值功能
+# Use the threshold feature of a table
 
-阈值功能常用于对表格中的内容添加颜色样式。在仪表盘编辑模式，编辑当前表格，使用如下：
-1. 在字段配置的tab下，点击**添加字段**，选择**A>pv**，点击**添加配置**，选择**字段列设置>单元格显示方式**
-2. 再次点击**添加配置**，选择**标准配置>颜色方案**
-3. 再次点击**添加配置**，选择**阈值>阈值**，点击**添加阈值**，可选择判断条件，输入阈值后，就可以看到显示内容
-![image.png](/img/src/visulization/tablePro/threshold/threshold1.png)
+The threshold feature of a table is used to add the color for text in a table. In edit mode of a dashboard, edit the current table. To use the threshold feature, perform the following operations:
+1. On the **Field Configuration** tab, click **Add Field** and select **A > pv**. Click **Add Configuration** and select **Field/Column Settings > Cell Display Mode**.
+2. Click **Add Configuration** again and select **Standard Configurations > Color Scheme**.
+3. Click **Add Configuration** again and select **Threshold > Threshold**. Click **Add Threshold**, select a judgment condition, enter a threshold, and then save the configurations. The query result is displayed.
+![image.png](/img/src/en/visulization/tablePro/threshold/threshold1.png)

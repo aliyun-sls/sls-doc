@@ -1,10 +1,9 @@
-### 如何配置一个直方图
+### Configure a histogram
 
-1.点击添加新图表,在右边配置栏中,选择【通用配置栏】>【图表类型】>【直方图】
-默认是 Builtin(内置模式)
+1.In edit mode, click **Add** and then click **Add Chart**. On the **General Configurations** tab, click the **Bar Gauge Pro** icon in the **Chart Types** section. On the **Search & Analysis** tab, the default setting is **Builtin**.
 
-2.**配置直方图的 sql 查询结果**
-查询数据配置：查询分析模块，选择数据来源，数据类型，然后添加查询分析语法。
-如图所示：
+2.Configure the SQL query statement of the bar gauge.
+On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**.
+The following figure shows the configurations.
 
-![图1](/img/src/visulization/histogram/histogram1.png)
+![图1](/img/src/en/visulization/histogram/histogram1.png)

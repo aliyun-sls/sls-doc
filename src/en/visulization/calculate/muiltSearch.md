@@ -1,5 +1,5 @@
-#### 计量图如何配置多查询
+#### Use a bar gauge to display the results of multiple query statements
 
-配置多条查询，只需要在仪表盘图表下方的查询分析下面添加多条查询分析，然后在【查询分析设置】里面配置多查询显示的字段。
-如图所示：
-![图2](/img/src/visulization/calculate/calculate2.jpg)
+Add multiple SQL query statements on the **Search & Analysis** tab, and configure multiple displayed fields in the **Query and Analysis** Configurations section of the **General Configurations** tab.
+The following figure shows the configurations.
+![图2](/img/src/en/visulization/calculate/calculate2.jpg)

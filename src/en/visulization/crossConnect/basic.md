@@ -1,9 +1,7 @@
-#### 如何配置一个交叉表 Pro
+#### Configure a cross table (Pro)
 
-1.点击添加新图表,在右边配置栏中,选择【通用配置栏】>【图表类型】>【交叉表】
-默认是 Builtin(内置模式)
+1.In edit mode, click **Add** and then click **Add Chart**. On the **General Configurations** tab, click the **Cross Table** icon in the **Chart Types** section. On the **Search & Analysis** tab, the default setting is **Builtin**.
 
-2.配置交叉图表的 sql 查询结果
-**查询数据配置：**查询分析模块，选择数据来源，数据类型，然后添加查询分析语法。
-如图所示:
-![图1](/img/src/visulization/crossConnect/crossConnect1.png)
+2.Configure the SQL query statement of the cross table.
+On the **Search & Analysis** tab, select a data source and a data type, add a query statement, and then click **Apply**. The following figure shows the configurations.
+![图1](/img/src/en/visulization/crossConnect/crossConnect1.png)

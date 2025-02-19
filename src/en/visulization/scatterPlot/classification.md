@@ -1,5 +1,5 @@
-### 散点图如何支持分类
+### Configure classification for a scatter chart
 
-散点图是通过设置分类列，来支持分类。具体操作：【通用配置】>【查询分析配置】下选择分类列。如果选择分类列后，就只支持单个 y 轴。如图所示：
+To support scatter chart classification, perform the following operations: On the **General Configurations** tab, click **Query and Analysis Configurations**. In the **Query and Analysis Configurations** section, configure the **Category Column** parameter. If you select a field in **Category Column**, you can specify only one field for the y-axis. The following figure shows the configurations.
 
-![图 2](/img/src/visulization/scatterPlot/scatterPlot2.png)
+![图 2](/img/src/en/visulization/scatterPlot/scatterPlot2.png)

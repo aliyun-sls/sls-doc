@@ -1,7 +1,7 @@
-# 如何配置一个基本线图
+# Configure a basic line chart
 
-仪表盘编辑模式下，点击 **添加 > 添加新图表**， 在 **通用配置 > 图表类型** 下选择 **线图Pro**，然后点击 **确定 > 保存** 即可。
+In edit mode of a dashboard, click **Add** and then click **Add Chart**. On the **General Configurations** tab, click the **Line Chart Pro** icon in the **Chart Types** section. Click **OK**, and then click **Save**.
 
-![图 1](/img/src/visulization/lineChart/baseChart/baseChart1.png)
+![图 1](/img/src/en/visulization/lineChart/baseChart/baseChart1.png)
 
-![图 2](/img/src/visulization/lineChart/baseChart/baseChart2.png)
+![图 2](/img/src/en/visulization/lineChart/baseChart/baseChart2.png)

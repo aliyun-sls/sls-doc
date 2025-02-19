@@ -1,10 +1,10 @@
-# 如何控制表格列的宽度
+# Change the width of table columns
 
-在仪表盘编辑模式，编辑当前表格：
-- 统一修改每一列的宽度：在**通用配置**tab下，点击**字段列配置**，输入列宽值
+In edit mode of a dashboard, edit the current table.
+- Change the width of all table columns: On the **General Configurations** tab, click **Field/Column Settings**. In the **Field/Column Settings** section, configure the **Column Width** parameter.
 
-![图 2](/img/src/visulization/tablePro/setColWidth/setColWidth2.png)
+![图 2](/img/src/en/visulization/tablePro/setColWidth/setColWidth2.png)
 
-- 修改某一列的宽度：在**字段配置**tab下，点击**添加字段**，选择字段后，添加配置**选择字段列设置>列宽**，设置列宽值
+- Change the width of a table column: On the **Field Configuration** tab, click **Add Field** and select a field. Click **Add Configuration**, select **Field/Column Settings > Column Width**, and then set the width of the table column.
 
-![图 3](/img/src/visulization/tablePro/setColWidth/setColWidth3.png)
+![图 3](/img/src/en/visulization/tablePro/setColWidth/setColWidth3.png)

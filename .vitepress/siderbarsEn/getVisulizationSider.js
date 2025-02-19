@@ -1,456 +1,456 @@
 function getSidebar() {
   return [
     {
-      text: '可视化案例',
+      text: 'Visualization',
       items: [{ text: 'Case overview', link: '/visulization/home' }],
     },
     // 文件路径 '/visulization/generalDashbaord/xxxx.md'
     {
-      text: '仪表盘通用案例',
+      text: 'Dashboard',
       items: [
-        { text: '如何添加多Y轴线图', link: '/visulization/generalDashbaord/doubley.md', description: '线图支持双Y轴以及多Y轴' },
-        { text: '如何配置一个带有迷你图的单值图', link: '/visulization/generalDashbaord/singleWithMiniChart.md', description: "统计图支持配置迷你图" },
-        { text: '过滤器最佳实践', link: '/visulization/generalDashbaord/filter.md', description:'过滤器最佳实践' },
+        { text: 'Create a line chart with multiple y-axes', link: '/visulization/generalDashbaord/doubley.md', description: 'Create a line chart with multiple y-axes' },
+        // { text: '如何配置一个带有迷你图的单值图', link: '/visulization/generalDashbaord/singleWithMiniChart.md', description: "统计图支持配置迷你图" },
+        { text: 'Add a filter to a dashboard', link: '/visulization/generalDashbaord/filter.md', description:'Add a filter to a dashboard' },
         {
-          text: '导入仪表盘最佳实践',
-          link: '/visulization/generalDashbaord/importOtherProjectDashboard.md', description: '跨project导入仪表盘',
+          text: 'Import a dashboard',
+          link: '/visulization/generalDashbaord/importOtherProjectDashboard.md', description: 'Import a dashboard across projects',
         },
         {
-          text: '时序模式的理解方式',
+          text: 'Time series mode',
           link: '/visulization/generalDashbaord/metricMode.md',
         },
         {
-          text: '什么是字段配置',
+          text: 'Configure the parameters on the Field Configuration tab',
           link: '/visulization/generalDashbaord/fieldConfig.md',
         },
         {
-          text: '如何配置格式化',
+          text: 'Configure the display format of numeric values',
           link: '/visulization/generalDashbaord/fieldFormat.md',
         },
         {
-          text: '如何配置单位',
+          text: 'Configure the unit of a field',
           link: '/visulization/generalDashbaord/unitConfig.md',
         },
         {
-          text: '如何定制图例点击的效果',
+          text: 'Configure the data display effect of a legend item',
           link: '/visulization/generalDashbaord/legendClick.md',
         },
         {
-          text: '如何自定义 Tooltip 显示内容',
+          text: 'Configure the parameters in the Tooltip Configurations section',
           link: '/visulization/generalDashbaord/tooltip.md',
         },
         {
-          text: '图例如何实现排序及其效果',
+          text: 'Configure sorting of legend items',
           link: '/visulization/generalDashbaord/legendSortOrder.md',
         },
       ],
     },
     // 文件路径 '/visulization/tablePro/xxxx.md'
     {
-      text: '表格Pro案例',
+      text: 'Table (Pro)',
       items: [
         {
-          text: '如何配置一个基础表格',
+          text: 'Configure a basic table',
           link: '/visulization/tablePro/baseTablePro.md',
         },
         {
-          text: '如何配置多查询语句的表格',
+          text: 'Use a table to display the results of multiple query statements',
           link: '/visulization/tablePro/multipleQuery.md',
         },
         {
-          text: '如何通过数据转换将多个表格 join 在同一个表格中',
+          text: 'Join multiple tables into one table by using data conversion',
           link: '/visulization/tablePro/tableJoin.md',
         },
         {
-          text: '如何配置表格行高',
+          text: 'Configure the height of table rows',
           link: '/visulization/tablePro/lineHight.md',
         },
         {
-          text: '如何设置表格默认的排序字段',
+          text: 'Configure sorting for a table',
           link: '/visulization/tablePro/setSortField.md',
         },
         {
-          text: '如何设置表格单元格文本高亮',
+          text: 'Highlight the text in table cells',
           link: '/visulization/tablePro/textHighlight.md',
         },
         {
-          text: '如何设置表格单元格背景高亮',
+          text: 'Highlight the background of table cells',
           link: '/visulization/tablePro/cellHighlight.md',
         },
         {
-          text: '如何设置表格单元格整行背景高亮',
+          text: 'Highlight the background of a whole row of table cells',
           link: '/visulization/tablePro/lineHighlight.md',
         },
         {
-          text: '如何设置表格单元格进度条样式',
+          text: 'Configure the progress bar type of table cells',
           link: '/visulization/tablePro/progressStyle.md',
         },
         {
-          text: '如何在表格单元格中设置线图、面积图、柱状图',
+          text: 'Display line charts, area charts, and column charts in table cells',
           link: '/visulization/tablePro/setCharts.md',
         },
         {
-          text: '表格如何支持行列转换',
+          text: 'Configure data conversion from rows to columns for a table',
           link: '/visulization/tablePro/rowColSwitch.md',
         },
         {
-          text: '如何控制表格列的宽度',
+          text: 'Change the width of table columns',
           link: '/visulization/tablePro/setColWidth.md',
         },
         {
-          text: '如何设置表格单元格的搜索和过滤功能',
+          text: 'Configure searching and filtering of table cells',
           link: '/visulization/tablePro/tableFilterAndSearch.md',
         },
         {
-          text: '如何使用表格的阈值功能',
+          text: 'Use the threshold feature of a table',
           link: '/visulization/tablePro/threshold.md',
         },
         {
-          text: '如何在表格中使用变量替换',
+          text: 'Configure variable replacement for a table',
           link: '/visulization/tablePro/varReplace.md',
         },
         {
-          text: '如何在表格中使用值映射',
+          text: 'Configure value mappings for a table',
           link: '/visulization/tablePro/valueMapping.md',
         },
       ],
     },
     // 文件路径 '/visulization/linePro/xxxx.md'
     {
-      text: '线图Pro案例',
+      text: 'Line chart (Pro)',
       items: [
         {
-          text: '如何配置一个基本线图',
+          text: 'Configure a basic line chart',
           link: '/visulization/lineChart/baseChart.md',
         },
         {
-          text: '如何开启时序模式线图',
+          text: 'Configure the time series mode for a line chart',
           link: '/visulization/lineChart/metricMode.md',
         },
         {
-          text: '如何配置两条或更多条的线图',
+          text: 'Configure two or more lines for a line chart',
           link: '/visulization/lineChart/moreLineChart.md',
         },
         {
-          text: '如何给不同的线设置显示名',
+          text: 'Configure the display name (alias) for a line',
           link: '/visulization/lineChart/setAlias.md',
         },
         {
-          text: '如何为不同的线配置不同颜色',
+          text: 'Configure the color for a line',
           link: '/visulization/lineChart/setLineColor.md',
         },
         {
-          text: 'x轴时间范围、数据时间范围与查询时间范围之间的关系',
+          text: 'Relationships among the x-axis time range, data time range, and query time range',
           link: '/visulization/lineChart/timeRange.md',
         },
         {
-          text: '线图如何配置x轴格式化',
+          text: 'Configure the x-axis format for a line chart',
           link: '/visulization/lineChart/setXFormat.md',
         },
         {
-          text: '线图如何开启/关闭x轴',
+          text: 'Display or hide the x-axis for a line chart',
           link: '/visulization/lineChart/setXShow.md',
         },
         {
-          text: '线图如何开启/关闭y轴',
+          text: 'Display or hide the y-axis for a line chart',
           link: '/visulization/lineChart/setYShow.md',
         },
         {
-          text: '线图如何配置y轴范围',
+          text: 'Configure the y-axis range for a line chart',
           link: '/visulization/lineChart/setYRange.md',
         },
         {
-          text: '线图如何开启堆叠模式',
+          text: 'Configure stacking for a line chart',
           link: '/visulization/lineChart/stacking.md',
         },
+        // {
+        //   text: '如何配置一组数据为线图，另一组数据为柱状图',
+        //   link: '/visulization/lineChart/lineAndHistogramCharts.md',
+        // },
         {
-          text: '如何配置一组数据为线图，另一组数据为柱状图',
-          link: '/visulization/lineChart/lineAndHistogramCharts.md',
-        },
-        {
-          text: '线图如何配置阈值',
+          text: 'Configure the threshold for a line chart',
           link: '/visulization/lineChart/setThreshold.md',
         },
         {
-          text: '如何开启数据补全及其效果',
+          text: 'Turn on Data Completion',
           link: '/visulization/lineChart/completionData.md',
         },
       ],
     },
     // 文件路径 '/visulization/barPro/xxxx.md'
     {
-      text: '柱状图Pro案例',
+      text: 'Column chart (Pro)',
       items: [
         {
-          text: '如何配置一个基本的柱状图',
+          text: 'Configure a basic column chart',
           link: '/visulization/barPro/createBar.md',
         },
         {
-          text: '如何配置多查询的柱状图',
+          text: 'Use a column chart to display the results of multiple query statements',
           link: '/visulization/barPro/muiltSearch.md',
         },
         {
-          text: '如何配置堆叠柱状图',
+          text: 'Configure stacking for a column chart',
           link: '/visulization/barPro/stackingBar.md',
         },
         {
-          text: '柱状图外观有哪些配置项',
+          text: 'Configure the appearance of a column chart',
           link: '/visulization/barPro/appearance.md',
         },
         {
-          text: '柱状图标签如何配置在柱子内部显示',
+          text: 'Display labels inside a column chart',
           link: '/visulization/barPro/insideTag.md',
         },
       ],
     },
     // 文件路径 '/visulization/aggPro/xxxx.md'
     {
-      text: '流图Pro案例',
+      text: 'Flow chart (Pro)',
       items: [
         {
-          text: '如何配置一个基本的流图',
+          text: 'Configure a basic flow chart (classification line chart)',
           link: '/visulization/flowGraph/basicFlow.md',
         },
         {
-          text: '流图分类数据限制说明',
+          text: 'Configure the maximum number of data entries for a flow chart',
           link: '/visulization/flowGraph/dataLimit.md',
         },
       ],
     },
     // 文件路径 '/visulization/statPro/xxxx.md'
     {
-      text: '统计图Pro案例',
+      text: 'Single value chart (Pro)',
       items: [
         {
-          text: '如何配置一个基本的统计图（单值图）',
+          text: 'Configure a single value chart',
           link: '/visulization/statisticsPro/basic.md',
         },
         {
-          text: '如何配置多查询的统计图',
+          text: 'Use a single value chart to display the results of multiple query statements',
           link: '/visulization/statisticsPro/muiltSearch.md',
         },
         {
-          text: '统计图如何配置值和标题',
+          text: 'Configure the title, displayed fields, and parameters in the Data Configuration section',
           link: '/visulization/statisticsPro/setValTitle.md',
         },
         {
-          text: '统计图有哪些布局方式',
+          text: 'Layouts',
           link: '/visulization/statisticsPro/layoutMode.md',
         },
+        // {
+        //   text: '统计图如何配置对比值',
+        //   link: '/visulization/statisticsPro/contrastValue.md',
+        // },
         {
-          text: '统计图如何配置对比值',
-          link: '/visulization/statisticsPro/contrastValue.md',
-        },
-        {
-          text: '统计图如何配置阈值',
+          text: 'Configure thresholds for a single value chart',
           link: '/visulization/statisticsPro/threshold.md',
         },
         {
-          text: '统计图如何配置趋势图',
+          text: 'Configure a trend chart for a single value chart',
           link: '/visulization/statisticsPro/TrendChart.md',
         },
       ],
     },
     // 文件路径 '/visulization/burgePro/xxxx.md'
     {
-      text: '计量图Pro案例',
+      text: 'Bar gauge (Pro)',
       items: [
         {
-          text: '如何配置一个基本的计量图',
+          text: 'Configure a basic bar gauge',
           link: '/visulization/calculate/basic.md',
         },
         {
-          text: '计量图如何配置多查询',
+          text: 'Use a bar gauge to display the results of multiple query statements',
           link: '/visulization/calculate/muiltSearch.md',
         },
         {
-          text: '如何配置一个刻度盘',
+          text: 'Configure a dial',
           link: '/visulization/calculate/scale.md',
         },
         {
-          text: '计量图如何配置阈值',
+          text: 'Configure thresholds of a bar gauge',
           link: '/visulization/calculate/threshold.md',
         },
       ],
     },
     // 文件路径 '/visulization/pipePro/xxxx.md'
     {
-      text: '饼图Pro案例',
+      text: 'Pie chart (Pro)',
       items: [
         {
-          text: '如何配置一个饼图',
+          text: 'Configure a pie chart',
           link: '/visulization/piePro/basic.md',
         },
         {
-          text: '饼图刻度文本有哪些配置选项',
+          text: 'Configure the scale text for a pie chart',
           link: '/visulization/piePro/scaleText.md',
         },
         {
-          text: '如何配置一个环形图',
+          text: 'Configure a donut chart',
           link: '/visulization/piePro/annular.md',
         },
         {
-          text: '饼图如何配置多查询',
+          text: 'Use a pie chart to display the results of multiple query statements',
           link: '/visulization/piePro/muiltSearch.md',
         },
       ],
     },
     // 文件路径 '/visulization/histogram/xxxx.md'
     {
-      text: '直方图Pro案例',
+      text: 'Histogram (Pro)',
       items: [
         {
-          text: '如何配置一个直方图',
+          text: 'Configure a histogram',
           link: '/visulization/histogram/basic.md',
         },
         {
-          text: '如何限制直方图区间的范围和数量',
+          text: 'Limit the range of a histogram and the number of bars',
           link: '/visulization/histogram/areaRange.md',
         },
         {
-          text: '如何配置堆叠直方图',
+          text: 'Configure stacking for a histogram',
           link: '/visulization/histogram/stacking.md',
         },
       ],
     },
     // 文件路径 '/visulization/radar/xxxx.md'
     {
-      text: '雷达图Pro案例',
+      text: 'Radar chart (Pro)',
       items: [
         {
-          text: '如何配置一个基本的雷达图',
+          text: 'Configure a basic radar chart',
           link: '/visulization/radarPro/basic.md',
         },
         {
-          text: '雷达图的重要配置项有哪些',
+          text: 'Configure the SQL query statement of the radar chart.',
           link: '/visulization/radarPro/setting.md',
         },
         {
-          text: '如何配置多查询合并的雷达图',
+          text: 'Combine multiple queries for a radar chart',
           link: '/visulization/radarPro/combineSearch.md',
         },
       ],
     },
     // 文件路径 '/visulization/crossTable/xxxx.md'
     {
-      text: '交叉表Pro案例',
+      text: 'Cross table (Pro)',
       items: [
         {
-          text: '如何配置一个交叉表Pro',
+          text: 'Configure the SQL query statement of the cross table.',
           link: '/visulization/crossConnect/basic.md',
         },
         {
-          text: '如何配置多聚合字段的交叉表',
+          text: 'Configure multiple aggregate fields for a cross table',
           link: '/visulization/crossConnect/polymerization.md',
         },
       ],
     },
     // 文件路径 '/visulization/scatter/xxxx.md'
     {
-      text: '散点图Pro案例',
+      text: 'Scatter chart (Pro)',
       items: [
         {
-          text: '如何配置一个散点图',
+          text: 'Configure a scatter chart',
           link: '/visulization/scatterPlot/basic.md',
         },
         {
-          text: '散点图如何支持分类',
+          text: 'Configure classification for a scatter chart',
           link: '/visulization/scatterPlot/classification.md',
         },
         {
-          text: '如何动态设置散点图中点的大小',
+          text: 'Configure the sizes of points in a scatter chart',
           link: '/visulization/scatterPlot/drop.md',
         },
         {
-          text: '散点图如何设置阈值',
+          text: 'Configure thresholds for a scatter chart',
           link: '/visulization/scatterPlot/threshold.md',
         },
       ],
     },
     // 文件路径 '/visulization/topology/xxxx.md'
     {
-      text: '拓扑图Pro案例',
+      text: 'Topology (Pro)',
       items: [
         {
-          text: '如何配置一个拓扑图',
+          text: 'Configure a topology',
           link: '/visulization/topology/basicTopology.md',
         },
         {
-          text: '拓扑图如何设置连线指标',
+          text: 'Configure edge metrics for a topology',
           link: '/visulization/topology/topologyLineOptions.md',
         },
         {
-          text: '拓扑图如何配置节点指标',
+          text: 'Configure node metrics for a topology',
           link: '/visulization/topology/topologyNodeOptions.md',
         },
         {
-          text: '拓扑图如何配置节点的展示形式',
+          text: 'Configure the type of nodes in a topology',
           link: '/visulization/topology/topologyNodeType.md',
         },
         {
-          text: '拓扑图支持哪些布局方式',
+          text: 'Configure the layout of a single value chart',
           link: '/visulization/topology/topologyLayout.md',
         },
       ],
     },
     // 文件路径 '/visulization/markdownPro/xxxx.md'
     {
-      text: 'MarkdownPro案例',
+      text: 'Markdown chart (Pro)',
       items: [
         {
-          text: '如何配置 markdown 图表',
+          text: 'Configure a Markdown chart',
           link: '/visulization/markdownPro/markdownBasic.md',
         },
         {
-          text: '如何在 markdown 图表中使用查询结果',
+          text: 'Apply query results to a Markdown chart',
           link: '/visulization/markdownPro/markdownWithQuery.md',
         },
       ],
     },
     // 文件路径 '/visulization/mapPro/xxxx.md'
     {
-      text: '地图Pro案例',
+      text: 'Maps (Pro)',
       items: [
         {
-          text: '如何配置中国地图',
+          text: 'Configure the map of China',
           link: '/visulization/mapPro/chinaMap.md',
         },
         {
-          text: '如何配置世界地图',
+          text: 'Configure the world map',
           link: '/visulization/mapPro/worldMap.md',
         },
         {
-          text: '如何配置高德地图',
+          text: 'Configure AMAP',
           link: '/visulization/mapPro/geoMap.md',
         },
         {
-          text: '如何配置热力图',
+          text: 'Configure a heat map',
           link: '/visulization/mapPro/heatMap.md',
         },
       ],
     },
     // 文件路径 '/visulization/drilldown/xxxx.md'
     {
-      text: '交互事件案例',
+      text: 'Interaction occurrence',
       items: [
         {
-          text: '图表如何配置交互事件打开日志库',
+          text: 'Configure an Open Logstore interaction occurrence',
           link: '/visulization/interactionEvents/openLog.md',
         },
         {
-          text: '图表如何配置交互事件打开仪表盘',
+          text: 'Configure an Open Dashboard interaction occurrence',
           link: '/visulization/interactionEvents/openDashboard.md',
         },
         {
-          text: '交互事件打开仪表盘如何设置新的变量',
+          text: 'Add a variable for an Open Dashboard interaction occurrence',
           link: '/visulization/interactionEvents/settingVariable.md',
         },
         {
-          text: '如何在交互事件中控制打开日志库的查询时间',
+          text: 'Control the query time of an Open Logstore interaction occurrence',
           link: '/visulization/interactionEvents/checkTime.md',
         },
         {
-          text: '如何在交互事件中打开 trace 详情',
+          text: 'Configure an Open Trace Details interaction occurrence',
           link: '/visulization/interactionEvents/openTraceDetail.md',
         },
       ],
