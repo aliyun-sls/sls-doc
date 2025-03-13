@@ -12,7 +12,7 @@
 | 案例名称 | 描述 |
 | -- | -- |
 | [过滤日志](./filter_log.md) | 使用SPL语句过滤数据 |
-| [为日志空缺字段赋值](./assign_values_to_log.md) | 使用SSPL语句为日志空缺字段赋值 |
+| [为日志空缺字段赋值](./assign_values_to_log.md) | 使用SPL语句为日志空缺字段赋值 |
 | [删除和重命名字段](./delete_rename_fields.md) | 使用SPL语句删除和重命名字段 |
 | [转换日志参数类型 ](./conversion_log_parameter_types.md) | 使用SPL语句转换日志参数类型 |
 | [为日志不存在的字段填充默认值](./set_default_values_to_log.md) | SPL语句为日志不存在的字段填充默认值 |
