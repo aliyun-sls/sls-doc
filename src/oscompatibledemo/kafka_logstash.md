@@ -6,13 +6,17 @@ Logstash可以通过Kafka协议上报数据到SLS，部分Logstash指定了较�
 
 ## 处理方案
 
-1. 下载新的jks证书（里面包含了GlobalSign R1、R3以及后续新的根证书）
-替换掉原来 `/etc/client-root.truststore.jks` 下
+1. 下载新的jks证书（里面包含了GlobalSign R1、R3以及后续新的根证书），替换掉原来 `/etc/client-root.truststore.jks` 下
 
-新的jks证书下载地址： [jks下载地址](https://sls-kproxy.oss-cn-hangzhou.aliyuncs.com/client-root.truststore.jks) md5: bbe0c4523637f489fa7664b881f32978
+新的jks证书下载地址： [点击下载jks证书](https://sls-kproxy.oss-cn-hangzhou.aliyuncs.com/client-root.truststore.jks) 
+
+证书的md5为: `bbe0c4523637f489fa7664b881f32978`
+证书的密码为 `123456`
+
 
 2. 更新配置
 
+注意对应的路径和密码
 ```
     ssl_truststore_location => "/etc/client-root.truststore.jks"
     ssl_truststore_password => "123456"
