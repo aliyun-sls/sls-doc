@@ -9,9 +9,11 @@ function getSidebar() {
       items: [
         { text: '功能说明', link: '/oscompatibledemo/kafka_overview' },
         { text: '使用SPL过滤消费', link: '/oscompatibledemo/kafka_spl' },
-        { text: 'Java Kafka SDK', link: '/oscompatibledemo/kafka_java' },
+        { text: 'Java Kafka(消费和上报)', link: '/oscompatibledemo/kafka_java' },
         { text: 'Confluent-Kafka-Go', link: '/oscompatibledemo/kafka_go' },
         { text: 'Confluent-Kafka-Python', link: '/oscompatibledemo/kafka_python' },
+        { text: 'Logstash证书更新', link: '/oscompatibledemo/kafka_logstash' },
+
         // { text: 'Confluent-Kafka-C#', link: '/oscompatibledemo/kafka_c_sharp'},
         // { text: 'Sarama-Kafka-Go示例', link: '/oscompatibledemo/sarama_go_kafka_consume' },
       ],
