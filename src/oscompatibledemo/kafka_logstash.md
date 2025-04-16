@@ -1,10 +1,34 @@
 
 ## 起因
-Logstash可以通过Kafka协议上报数据到SLS，部分Logstash指定了较旧的服务端根证书。
+原Logstash 通过 Kafka 协议向 SLS 报送数据使用的jks文件将在服务端证书更新后失效。为了避免上报数据收到影响，现有两个解决方案：
 
-现服务端根证书有更新，需要对logstash中引用的jks证书做更新。
+* 推荐方案1：删除 jks 配置（需 Logstash 版本 7.10.1 或更高）
+* 替代方案2：更新 jks 到新的服务端证书
 
-## 处理方案
+如果当前使用 Logstash 低于版本 7.10.1，且不便升级，则应采用方案2。
+
+## 方案1. 删除jks证书配置(需Logstash版本>=7.10.1)
+
+**前提**
+* 确保 Logstash 版本高于或等于 7.10.1。如果低于此版本，需要升级。
+
+**步骤**
+
+删除logstash pipeline配置中的这两项配置
+
+* ssl_truststore_location 
+* ssl_truststore_password
+
+
+![delete_logstash_cert_cfg](/img/oscompatibledemo/delete_logstash_cert_cfg.jpg)
+
+删除后重启logstash即生效，然后到sls上观察logstore对应写入流量是否正常
+
+## 方案2 更新jks证书
+
+如果您的logstash版本低于7.10.1，且不方便更新logstash版本，可以使用这个方案。
+
+**步骤**
 
 1. 下载新的jks证书（里面包含了GlobalSign R1、R3以及后续新的根证书），替换掉原来 `/etc/client-root.truststore.jks` 下
 
@@ -30,9 +54,9 @@ output {
     topic_id => "SLS_LOGSTORE"
     bootstrap_servers => "SLS_KAFKA_ENDPOINT"
     security_protocol => "SASL_SSL"
-    ssl_truststore_location => "/etc/client-root.truststore.jks"
+    ssl_truststore_location => "/etc/client-root.truststore.jks" #这个对应更新后的jks路径
     ssl_truststore_password => "123456"
-    sasl_jaas_config => "org.apache.kafka.common.security.plain.PlainLoginModule required username='SLS_PROJECT' password='SLS_PASSWORD';"
+    sasl_jaas_config => "org.apache.kafka.common.security.plain.PlainLoginModule required username='SLS_PROJECT' password='AKId#AKSec';"
     sasl_mechanism => "PLAIN"
     codec => "json"
     client_id => "kafka-logstash"
@@ -40,7 +64,7 @@ output {
 }
 ```
 
-重启logstash生效
+重启logstash生效，然后到sls上观察logstore对应写入流量是否正常
 
 ## FAQ
 
@@ -82,21 +106,4 @@ done
 
 ```
 keytool -list -keystore client-root.truststore.jks
-```
-
-正确输入如下
-
-```
-root-r1.crt, Apr 15, 2025, trustedCertEntry,
-Certificate fingerprint (SHA-256): EB:D4:10:40:E4:BB:3E:C7:42:C9:E3:81:D3:1E:F2:A4:1A:48:B6:68:5C:96:E7:CE:F3:C1:DF:6C:D4:33:1C:99
-root-r3.crt, Apr 15, 2025, trustedCertEntry,
-Certificate fingerprint (SHA-256): CB:B5:22:D7:B7:F1:27:AD:6A:01:13:86:5B:DF:1C:D4:10:2E:7D:07:59:AF:63:5A:7C:F4:72:0D:C9:63:C5:3B
-root-r5.crt, Apr 15, 2025, trustedCertEntry,
-Certificate fingerprint (SHA-256): 17:9F:BC:14:8A:3D:D0:0F:D2:4E:A1:34:58:CC:43:BF:A7:F5:9C:81:82:D7:83:A5:13:F6:EB:EC:10:0C:89:24
-root-r6.crt, Apr 15, 2025, trustedCertEntry,
-Certificate fingerprint (SHA-256): 2C:AB:EA:FE:37:D0:6C:A2:2A:BA:73:91:C0:03:3D:25:98:29:52:C4:53:64:73:49:76:3A:3A:B5:AD:6C:CF:69
-roote46.crt, Apr 15, 2025, trustedCertEntry,
-Certificate fingerprint (SHA-256): CB:B9:C4:4D:84:B8:04:3E:10:50:EA:31:A6:9F:51:49:55:D7:BF:D2:E2:C6:B4:93:01:01:9A:D6:1D:9F:50:58
-rootr46.crt, Apr 15, 2025, trustedCertEntry,
-Certificate fingerprint (SHA-256): 4F:A3:12:6D:8D:3A:11:D1:C4:85:5A:4F:80:7C:BA:D6:CF:91:9D:3A:5A:88:B0:3B:EA:2C:63:72:D9:3C:40:C9
 ```
