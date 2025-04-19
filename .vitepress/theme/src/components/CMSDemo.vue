@@ -17,7 +17,7 @@ const params = computed(() => {
 
   if (queries == null || queries.dest == null) {
     return {
-      dest: '/next',
+      dest: '/next/region/cn-heyuan/workspace/o11y-demo-cn-heyuan/app/entity/explorer',
       theme: 'default',
       maxWidth: false,
     }
@@ -49,7 +49,7 @@ watchEffect(async () => {
       return
     }
 
-    const response = await fetch(`https://cmsdemo-sls-demo-dussgynyta.cn-shanghai.fcapp.run`)
+    const response = await fetch(`https://cmsdemo-sls-demo-dussgynyta.cn-shanghai.fcapp.run?dest=${params.value.dest}`)
     const json = await response.json()
     if (json.success) {
       dest.value = json.data.url
