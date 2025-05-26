@@ -84,7 +84,7 @@
 :::
 
 ### diff_log_patterns
-
+该函数用于比较两组日志在日志模板上的差异，通过日志的文本特征和机器学习算法进行聚类分析与模板差异对比，识别变化显著的日志模板，常应用于日志异常发现等场景。
 
 :::tip 日志模式差异分析
 [试用 Demo](https://sls.console.aliyun.com/lognext/project/ml-spl-demo/dashboard/dashboard-1747965715426-625078){target="_blank"}
