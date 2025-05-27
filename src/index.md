@@ -74,7 +74,7 @@ ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控
   </a>
   <a class="vt-box" href="/doc/intelligentom/home.html">
     <p class="next-steps-link">智能运维</p>
-    <p class="next-steps-caption">日志服务（SLS）智能运维 APP 使用案例</p>
+    <p class="next-steps-caption">日志服务（SLS）智能运维/AIOps/机器学习/GenAI使用案例</p>
   </a>
 </div>
 
