@@ -112,7 +112,7 @@ services:
       - ELASTICSEARCH_PASSWORD=${ES_PASSWORD}
       - XPACK_MONITORING_UI_CONTAINER_ELASTICSEARCH_ENABLED=true
     ports:
-      - "5602:5601"
+      - "5601:5601"
 
   # 这个服务组件是可选的，作用是自动创建kibana index pattern
   index-patterner:
