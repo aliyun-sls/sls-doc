@@ -17,7 +17,7 @@ const params = computed(() => {
 
   if (queries == null || queries.dest == null) {
     return {
-      dest: '/next/region/cn-heyuan/workspace/o11y-demo-cn-heyuan/app/entity/explorer',
+      dest: '/next/region/cn-hangzhou/workspace/o11y-demo-cn-hangzhou/app/entity/explorer',
       theme: 'default',
       maxWidth: false,
     }

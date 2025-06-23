@@ -2,13 +2,20 @@
 
 阿里云可观测团队，负责阿里集团百 PB 级别可观测产品（SLS、ARMS、云监控）。 我们立志于打造面向未来的实时、智能、大规模观测分析平台，以此构建智能运维（AIOps）、大数据安全、业务监控和分析等服务，加速数字化创新。
 
-:::tip SLS Playground 发布啦！！！
+:::tip 云监控 2.0 Playground
+阿里云云监控2.0是融合日志服务SLS、云监控CMS、应用实时监控服务ARMS等产品后全新升级的一站式可观测平台，提供基于指标、链路、日志、事件的统一观测图谱，结合可视化和告警能力，实现从基础设施到应用层的全链路、端到端的统一观测，帮助快速发现并解决潜在问题，提高运维效率。
+
+
+[尝试](/doc/playground/cmsdemo.html){target="_blank"}
+:::
+
+:::tip SLS Playground
 SLS Playground 包含了 SLS 大部分功能的演示 demo，是一个完整的 SLS 控制台只读账号，包含智能运维类 APP Demo、CloudLens APP Demo、多种日志分析 Demo，可视化 Demo 等等，尽情畅玩吧！
 
 [尝试](/doc/playground/demo.html){target="_blank"}
 :::
 
-:::tip ARMS Playground 发布啦！！！
+:::tip ARMS Playground
 ARMS Playground 包含了应用监控 Demo、调用链分析 Demo、性能监控 Demo、用户体验监控 Demo 等等，欢迎体验！
 
 [尝试](/doc/playground/armsdemo.html){target="_blank"}
