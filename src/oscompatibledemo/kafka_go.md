@@ -20,6 +20,76 @@
 | heartbeat.interval.ms | 规定客户端和服务端之间心跳检测间隔时间,heartbeat.interval.ms 越小,**客户端和服务端之间的心跳检测越频繁**,但也会导致更多的网络流量.建议**5000ms**|
 | auto.offset.reset| auto.offset.reset 消费起始点位 常用的二个值是**latest** 和**earliest**，其中earliest 从历史最早点位开始消费，latest从最新点位开始消费，默认是**latest**|
 
+## 包依赖安装
+
+```shell
+go get -u gopkg.in/confluentinc/confluent-kafka-go.v1/kafka
+```
+
+## 写入示例
+
+```go
+package main
+
+import (
+    "fmt"
+    "os"
+    "gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+)
+
+func main() {
+    // 配置信息
+    project := "etl-dev"
+    logstore := "testlog"
+    parseJson := true // 是否要把json字段第一层展开为logstore字段
+
+    // 从环境变量获取认证信息
+    accessKeyID := os.Getenv("SLS_ACCESS_KEY_ID")
+    accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
+    endpoint := "cn-huhehaote.log.aliyuncs.com"
+    port := "10012"
+
+    hosts := project + "." + endpoint + ":" + port
+    topic := logstore
+    if parseJson {
+        topic = topic + ".json"
+    }
+
+    // 创建 Kafka 配置
+    config := &kafka.ConfigMap{
+        "bootstrap.servers":  hosts,
+        "security.protocol": "SASL_SSL",
+        "sasl.mechanisms":   "PLAIN",
+        "sasl.username":     project,
+        "sasl.password":     accessKeyID + "#" + accessKeySecret,
+        "enable.idempotence": false,
+    }
+
+    // 创建生产者
+    producer, err := kafka.NewProducer(config)
+    if err != nil {
+        fmt.Printf("Failed to create producer: %v\n", err)
+        return
+    }
+    defer producer.Close()
+
+    // 发送消息
+    content := "{\"msg\": \"Hello World\"}"
+    err = producer.Produce(&kafka.Message{
+        TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
+        Value:         []byte(content),
+    }, nil)
+
+    if err != nil {
+        fmt.Printf("Failed to produce message: %v\n", err)
+        return
+    }
+
+    // 等待所有消息发送完成
+    producer.Flush(5 * 1000)
+}
+```
+
 ## 消费示例
 ```go
 package main
@@ -78,3 +148,6 @@ func getKafkaConsumer(project string, endpoint string, port string, accessKeyID 
     return consumer
 }
 ```
+
+
+

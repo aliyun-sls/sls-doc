@@ -8,3 +8,4 @@
 | [Trace 服务介绍](./traceintro.md) | Trace 服务快速介绍 |
 | [智能异常分析介绍](./anomalyanalysisintro.md) | 智能异常分析快速介绍 |
 | [基础模型服务介绍](./maasintro.md) | 智能异常分析快速介绍 |
+| [SPL/SQL里的机器学习算子](./splmloperators.md) | SPL/SQL里的机器学习算子 |

@@ -5,6 +5,7 @@ function getSidebar() {
       items: [
         { text: '索引搜索', link: '/searchdemo/query/search_with_index' },
         { text: '使用 SPL 搜索', link: '/searchdemo/query/search_with_spl' },
+        { text: '向量搜索', link: '/searchdemo/query/search_with_vector' },
       ],
     },
     {
