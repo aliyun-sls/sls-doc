@@ -60,6 +60,6 @@ kubectl create namespace sls-kibana
 * 执行安装命令
 ```
 helm install sls-kibana \
- https://sls-kproxy.oss-cn-hangzhou.aliyuncs.com/sls-kibana-1.5.5.tgz \
+ https://sls-kproxy.oss-cn-hangzhou.aliyuncs.com/sls-kibana-1.5.8.tgz \
   -f values.yaml --namespace sls-kibana
 ```

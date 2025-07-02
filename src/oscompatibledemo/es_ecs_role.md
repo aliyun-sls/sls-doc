@@ -2,7 +2,8 @@
 * 一台 ECS 实例 内存为8G及以上。Docker版本为1.18及以上。
 * 设置好ecs role 参考[连接](https://help.aliyun.com/zh/ecs/user-guide/attach-an-instance-ram-role-to-an-ecs-instance), 注意需要授权好这个角色访问sls
 
-## 编辑.env文件
+
+## 部署流程
 
 1. 在服务器执行以下命令，创建一个名为sls-kibana的新目录，在sls-kibana目录下创建一个名为data子目录。更改data目录的权限，确保Elasticsearch容器具有对该目录的读、写和执行权限。
 
