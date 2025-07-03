@@ -9,3 +9,4 @@
 | [智能异常分析介绍](./anomalyanalysisintro.md) | 智能异常分析快速介绍 |
 | [基础模型服务介绍](./maasintro.md) | 智能异常分析快速介绍 |
 | [SPL/SQL里的机器学习算子](./splmloperators.md) | SPL/SQL里的机器学习算子 |
+| [使用SPL进行时序预测](./aiops_series_regression.md) | 使用SPL进行时序预测 |
