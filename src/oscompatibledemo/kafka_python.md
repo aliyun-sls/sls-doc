@@ -25,6 +25,61 @@
 pip install confluent-kafka
 ```
 
+## 上报示例
+
+```python
+import os
+from confluent_kafka import Producer
+
+def delivery_report(err, msg):
+    """ Called once for each message produced to indicate delivery result.
+        Triggered by poll() or flush(). """
+    if err is not None:
+        print('Message delivery failed: {}'.format(err))
+    else:
+        print('Message delivered to {} [{}] at offset {}'.format(msg.topic(), msg.partition(), msg.offset()))
+
+def main():
+    project = "etl-shanghai-b"
+    logstore = "testlog"
+    parse_json = False
+
+    # Get credentials from environment variables
+    access_key_id = os.getenv("SLS_ACCESS_KEY_ID")
+    access_key_secret = os.getenv("SLS_ACCESS_KEY_SECRET")
+    endpoint = "cn-shanghai.log.aliyuncs.com"
+    port = "10012"
+
+    hosts = f"{project}.{endpoint}:{port}"
+    topic = logstore
+    if parse_json:
+        topic = topic + ".json"
+
+    # Configure Kafka producer
+    conf = {
+        'bootstrap.servers': hosts,
+        'security.protocol': 'sasl_ssl',
+        'sasl.mechanisms': 'PLAIN',
+        'sasl.username': project,
+        'sasl.password': f"{access_key_id}#{access_key_secret}",
+        'enable.idempotence': False,
+    }
+
+    # Create producer instance
+    producer = Producer(conf)
+
+    # Send message
+    content = "{\"msg\": \"Hello World\"}"
+    producer.produce(topic, content.encode('utf-8'), callback=delivery_report)
+
+    # Wait for any outstanding messages to be delivered and delivery report
+    # callbacks to be triggered.
+    producer.flush()
+
+if __name__ == '__main__':
+    main()
+```
+
 ## 消费示例
 
 ```python

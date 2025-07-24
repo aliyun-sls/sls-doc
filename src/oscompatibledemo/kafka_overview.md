@@ -11,6 +11,8 @@
 * 针对Kafka官方SDK做过测试，对Kafka非官方SDK不保证兼容性
 * 不支持事物，写入和消费只能保证At-least-once
 * 一个Logstore最多支持被15个消费组消费
+* 单个消费组里的Topic数了不能超过50个
+* Kafka消费延迟只能通过[CloudLens For SLS](https://sls.console.aliyun.com/lognext/app/lens/sls) 来查看
 * 为保证日志传输安全性，目前仅支持SASL_SSL连接协议。
 * 只支持顺序消费，不支持区间消费
 * 用Kafka兼容消费的时候，单Loggroup中log数目不能超过10W，超过部分会被自动截断

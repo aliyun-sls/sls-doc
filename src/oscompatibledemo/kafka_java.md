@@ -34,6 +34,7 @@
 package org.example;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -44,16 +45,16 @@ public class KafkaProduceExample {
     public static void main(String[] args) {
         //配置信息。
         Properties props = new Properties();
-        String project = "etl-dev";
+        String project = "etl-shanghai-b";
         String logstore = "testlog";
         // 如果希望produce的内容被json解析展开，则设置为true
-        boolean parseJson = true;
+        boolean parseJson = false;
         // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
         // 此处以把AccessKey 和 AccessKeySecret 保存在环境变量为例说明。您可以根据业务需要，保存到配置文件里。
         // 强烈建议不要把 AccessKey 和 AccessKeySecret 保存到代码里，会存在密钥泄漏风险
         String accessKeyID = System.getenv("SLS_ACCESS_KEY_ID");
         String accessKeySecret = System.getenv("SLS_ACCESS_KEY_SECRET");
-        String endpoint = "cn-huhehaote.log.aliyuncs.com"; // 根据实际project所在的endpoint配置
+        String endpoint = "cn-shanghai.log.aliyuncs.com"; // 根据实际project所在的endpoint配置
         String port = "10012"; // 公网用10012，私网用10011
 
         String hosts = project + "." + endpoint + ":" + port;
@@ -62,17 +63,15 @@ public class KafkaProduceExample {
             topic = topic + ".json";
         }
 
-        props.put("bootstrap.servers", hosts);
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, hosts);
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put("security.protocol", "sasl_ssl");
         props.put("sasl.mechanism", "PLAIN");
         props.put("sasl.jaas.config",
                 "org.apache.kafka.common.security.plain.PlainLoginModule required username=\"" +
                         project + "\" password=\"" + accessKeyID + "#" + accessKeySecret + "\";");
-        props.put("enable.idempotence", "false"); // SLS的Kafka写入接口不支持事务
-
-        //设置数据key和value的序列化处理类。
-        props.put("key.serializer", StringSerializer.class);
-        props.put("value.serializer", StringSerializer.class);
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "false");
 
         //创建生产者实例。
         KafkaProducer<String,String> producer = new KafkaProducer<>(props);
@@ -80,9 +79,19 @@ public class KafkaProduceExample {
         //发送记录
         for(int i=0;i<1;i++){
             String content = "{\"msg\": \"Hello World\"}";
-            ProducerRecord record = new ProducerRecord<String, String>(topic, content);
-            producer.send(record);
+            ProducerRecord<String, String> record = new ProducerRecord<>(topic, content);
+            producer.send(record, (metadata, exception) -> {
+                if (exception != null) {
+                    System.err.println("ERROR: Failed to send message: " + exception.getMessage());
+                    exception.printStackTrace();
+                } else {
+                    System.out.println("Message sent successfully to topic: " + metadata.topic() +
+                                     ", partition: " + metadata.partition() +
+                                     ", offset: " + metadata.offset());
+                }
+            });
         }
+
         producer.close();
     }
 }

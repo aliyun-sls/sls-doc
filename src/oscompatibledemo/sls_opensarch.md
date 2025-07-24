@@ -78,7 +78,7 @@ services:
       '
 
   kproxy:
-    image: sls-registry.cn-hangzhou.cr.aliyuncs.com/kproxy/kproxy:opensearch
+    image: sls-registry.cn-hangzhou.cr.aliyuncs.com/kproxy/kproxy:2.1.5
     environment:
       - ES_ENDPOINT=https://opensearch:9200
 
@@ -145,7 +145,7 @@ services:
 
   # 这个服务组件是可选的，作用是自动创建kibana index pattern
   index-patterner:
-    image: sls-registry.cn-hangzhou.cr.aliyuncs.com/kproxy/kproxy:opensearch
+    image: sls-registry.cn-hangzhou.cr.aliyuncs.com/kproxy/kproxy:2.1.5
     command: /usr/bin/python3 -u /workspace/create_index_pattern.py
     depends_on:
       - opensearch-dashboards

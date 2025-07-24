@@ -32,61 +32,81 @@ go get -u gopkg.in/confluentinc/confluent-kafka-go.v1/kafka
 package main
 
 import (
-    "fmt"
-    "os"
-    "gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func main() {
-    // 配置信息
-    project := "etl-dev"
-    logstore := "testlog"
-    parseJson := true // 是否要把json字段第一层展开为logstore字段
+	project := "etl-shanghai-b"
+	logstore := "testlog"
+	parseJson := false
 
-    // 从环境变量获取认证信息
-    accessKeyID := os.Getenv("SLS_ACCESS_KEY_ID")
-    accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
-    endpoint := "cn-huhehaote.log.aliyuncs.com"
-    port := "10012"
+	// Get credentials from environment variables
+	accessKeyID := os.Getenv("SLS_ACCESS_KEY_ID")
+	accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
+	endpoint := "cn-shanghai.log.aliyuncs.com"
+	port := "10012"
 
-    hosts := project + "." + endpoint + ":" + port
-    topic := logstore
-    if parseJson {
-        topic = topic + ".json"
-    }
+	hosts := fmt.Sprintf("%s.%s:%s", project, endpoint, port)
+	topic := logstore
+	if parseJson {
+		topic = topic + ".json"
+	}
 
-    // 创建 Kafka 配置
-    config := &kafka.ConfigMap{
-        "bootstrap.servers":  hosts,
-        "security.protocol": "SASL_SSL",
-        "sasl.mechanisms":   "PLAIN",
-        "sasl.username":     project,
-        "sasl.password":     accessKeyID + "#" + accessKeySecret,
-        "enable.idempotence": false,
-    }
+	// Configure Kafka producer
+	config := &kafka.ConfigMap{
+		"bootstrap.servers":  hosts,
+		"security.protocol":  "sasl_ssl",
+		"sasl.mechanisms":    "PLAIN",
+		"sasl.username":      project,
+		"sasl.password":      accessKeyID + "#" + accessKeySecret,
+		"enable.idempotence": false,
+	}
 
-    // 创建生产者
-    producer, err := kafka.NewProducer(config)
-    if err != nil {
-        fmt.Printf("Failed to create producer: %v\n", err)
-        return
-    }
-    defer producer.Close()
+	// Create producer instance
+	producer, err := kafka.NewProducer(config)
+	if err != nil {
+		log.Fatalf("Failed to create producer: %v", err)
+	}
+	defer producer.Close()
 
-    // 发送消息
-    content := "{\"msg\": \"Hello World\"}"
-    err = producer.Produce(&kafka.Message{
-        TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
-        Value:         []byte(content),
-    }, nil)
+	// 批量发送消息
+	messages := []string{
+		"{\"msg\": \"Hello World 1\"}",
+		"{\"msg\": \"Hello World 2\"}",
+		"{\"msg\": \"Hello World 3\"}",
+	}
 
-    if err != nil {
-        fmt.Printf("Failed to produce message: %v\n", err)
-        return
-    }
+	for _, content := range messages {
+		err := producer.Produce(&kafka.Message{
+			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
+			Value:          []byte(content),
+		}, nil)
 
-    // 等待所有消息发送完成
-    producer.Flush(5 * 1000)
+		if err != nil {
+			log.Printf("Failed to produce message: %v", err)
+		}
+	}
+
+	// 启用一个go routine 监听producer发送是否成功或者失败
+	go func() {
+		for e := range producer.Events() {
+			switch ev := e.(type) {
+			case *kafka.Message:
+				if ev.TopicPartition.Error != nil {
+					fmt.Printf("Delivery failed: %v\n", ev.TopicPartition.Error)
+				} else {
+					fmt.Printf("Delivered message to topic %s [%d] at offset %v\n",
+						*ev.TopicPartition.Topic, ev.TopicPartition.Partition, ev.TopicPartition.Offset)
+				}
+			}
+		}
+	}()
+
+	producer.Flush(5 * 1000)
 }
 ```
 
