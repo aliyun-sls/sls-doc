@@ -28,6 +28,8 @@ pip install confluent-kafka
 ## 上报示例
 
 ```python
+#!/bin/env python3
+import time
 import os
 from confluent_kafka import Producer
 
@@ -48,7 +50,7 @@ def main():
     access_key_id = os.getenv("SLS_ACCESS_KEY_ID")
     access_key_secret = os.getenv("SLS_ACCESS_KEY_SECRET")
     endpoint = "cn-shanghai.log.aliyuncs.com"
-    port = "10012"
+    port = "10012" # 公网用10012，私网用10011
 
     hosts = f"{project}.{endpoint}:{port}"
     topic = logstore
@@ -70,7 +72,10 @@ def main():
 
     # Send message
     content = "{\"msg\": \"Hello World\"}"
-    producer.produce(topic, content.encode('utf-8'), callback=delivery_report)
+    producer.produce(topic=topic,
+                     value=content.encode('utf-8'),
+                     #timestamp=int(time.time() * 1000),  # (可选) 设置record时间戳， 单位毫秒
+                     callback=delivery_report)
 
     # Wait for any outstanding messages to be delivered and delivery report
     # callbacks to be triggered.
@@ -83,41 +88,37 @@ if __name__ == '__main__':
 ## 消费示例
 
 ```python
+#!/bin/env python3
 import sys
 import os
 
 from confluent_kafka import Consumer, KafkaError, KafkaException
 
-endpoint = "cn-huhehaote.log.aliyuncs.com"
-"""
-阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-此处以把AccessKey和AccessKeySecret保存在环境变量为例说明。您可以根据业务需要，保存到配置文件里。
-强烈建议不要把AccessKey和AccessKeySecret保存到代码里，会存在密钥泄漏风险。
-"""
+endpoint = "cn-shanghai.log.aliyuncs.com"
 accessKeyId = os.getenv("SLS_ACCESS_KEY_ID")
 accessKeySecret = os.getenv("SLS_ACCESS_KEY_SECRET")
-project = "etl-dev"
-logstore = "test"
-port = "10012"
+project = "etl-shanghai-b"
+logstore = "testlog"
+port = "10012" #公网用10012，私网用10011
 groupId = "kafka-test"
 
 kafkaEndpoint = "{}.{}:{}".format(project, endpoint, port)
 
-groupId = "kafka-test2112"
+groupId = "kafka-test"
 
 c = Consumer({
         "bootstrap.servers":       kafkaEndpoint,
-                "sasl.mechanism":          "PLAIN",
-                "security.protocol":       "sasl_ssl",
-                "sasl.username":           project,
-                "sasl.password":           "%s#%s" % (accessKeyId, accessKeySecret),
-                "group.id":                groupId,
-                "enable.auto.commit":      "true",
-                "auto.commit.interval.ms": 30000,
-                "session.timeout.ms":      120000,
-                "auto.offset.reset":       "latest",
-                "max.poll.interval.ms":    130000,
-                "heartbeat.interval.ms":   5000,
+        "sasl.mechanism":          "PLAIN",
+        "security.protocol":       "sasl_ssl",
+        "sasl.username":           project,
+        "sasl.password":           "%s#%s" % (accessKeyId, accessKeySecret),
+        "group.id":                groupId,
+        "enable.auto.commit":      "true",
+        "auto.commit.interval.ms": 30000,
+        "session.timeout.ms":      120000,
+        "auto.offset.reset":       "latest",
+        "max.poll.interval.ms":    130000,
+        "heartbeat.interval.ms":   5000,
 })
 
 
@@ -132,7 +133,10 @@ while True:
         print("Consumer error: {}".format(msg.error()))
         continue
 
-    print('Received message: {}'.format(msg.value().decode('utf-8')))
+    print('Received message: (timestamp: {}, key: {}, value: {}'.format(
+        msg.timestamp(),
+        msg.key().decode('utf-8'),
+        msg.value().decode('utf-8')))
 
 c.close()
 ```

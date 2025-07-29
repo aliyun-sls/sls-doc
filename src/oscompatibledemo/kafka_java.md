@@ -79,6 +79,10 @@ public class KafkaProduceExample {
         //发送记录
         for(int i=0;i<1;i++){
             String content = "{\"msg\": \"Hello World\"}";
+            // 如果有需要可以用下面的方式设置消息的时间戳
+            // long timestamp = System.currentTimeMillis();
+            // ProducerRecord<String, String> record = new ProducerRecord<>(topic, null, timestamp, null, content);
+
             ProducerRecord<String, String> record = new ProducerRecord<>(topic, content);
             producer.send(record, (metadata, exception) -> {
                 if (exception != null) {
@@ -87,7 +91,8 @@ public class KafkaProduceExample {
                 } else {
                     System.out.println("Message sent successfully to topic: " + metadata.topic() +
                                      ", partition: " + metadata.partition() +
-                                     ", offset: " + metadata.offset());
+                                     ", offset: " + metadata.offset() +
+                                     ", timestamp: " + metadata.timestamp());
                 }
             });
         }
@@ -99,7 +104,9 @@ public class KafkaProduceExample {
 
 ## 消费示例
 ```java
-/** 使用标准Kafka SDK消费SLS的日志数据 */
+
+package org.example;
+
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -108,21 +115,21 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class KafkaConsumerGroupTest {
+public class KafkaConsumeExample {
 
     public static void consume() {
         Properties props = new Properties();
-        String project = "etl-dev";
-        String logstore = "test";
+        String project = "etl-shanghai-b";
+        String logstore = "testlog";
         // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
         // 此处以把AccessKey 和 AccessKeySecret 保存在环境变量为例说明。您可以根据业务需要，保存到配置文件里。
         // 强烈建议不要把 AccessKey 和 AccessKeySecret 保存到代码里，会存在密钥泄漏风险
         String accessKeyID = System.getenv("SLS_ACCESS_KEY_ID");
         String accessKeySecret = System.getenv("SLS_ACCESS_KEY_SECRET");
         String groupId = "kafka-test";
-        String endpoint = "cn-hangzhou.log.aliyuncs.com";
-        String port = "10012";
-       
+        String endpoint = "cn-shanghai.log.aliyuncs.com"; // 根据实际project所在的endpoint配置
+        String port = "10012"; // 公网用10012，私网用10011
+
         String hosts = project + "." + endpoint + ":" + port;
         props.put("bootstrap.servers", hosts);
         props.put("security.protocol", "sasl_ssl");
@@ -142,18 +149,18 @@ public class KafkaConsumerGroupTest {
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
-          // 创建Kafka消费者实例
+        // 创建Kafka消费者实例
         KafkaConsumer<String,String> consumer =  new KafkaConsumer<>(props);
         consumer.subscribe(Collections.singletonList(logstore));
         while(true) {
             ConsumerRecords<String, String> records = consumer.poll(Duration.ofSeconds(10000));
             for (ConsumerRecord<String, String> record : records) {
-                System.out.println("Received message: (" + record.key() + ", " + record.value() + ") at offset " + record.offset());
+                System.out.println("Received  message: (timestamp: " + + record.timestamp() + ", key: " + record.key() + ", value: " + record.value() + ") at offset " + record.offset());
             }
         }
     }
     public static void main(String[] args){
-       consume();
+        consume();
     }
 }
 ```

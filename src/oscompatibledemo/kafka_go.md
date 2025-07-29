@@ -35,6 +35,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+//	"time"
 
 	"github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -48,7 +49,7 @@ func main() {
 	accessKeyID := os.Getenv("SLS_ACCESS_KEY_ID")
 	accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
 	endpoint := "cn-shanghai.log.aliyuncs.com"
-	port := "10012"
+	port := "10012" // 公网用10012，私网用10011
 
 	hosts := fmt.Sprintf("%s.%s:%s", project, endpoint, port)
 	topic := logstore
@@ -84,6 +85,7 @@ func main() {
 		err := producer.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 			Value:          []byte(content),
+			//Timestamp:      time.Now(), // 如有需要可以设置时间
 		}, nil)
 
 		if err != nil {
@@ -116,56 +118,53 @@ package main
 
 import (
     "fmt"
-  "os"
+    "os"
     "github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
 func main() {
-    endpoint := "cn-hangzhou.log.aliyuncs.com"
-  // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-  // 此处以把AccessKey和AccessKeySecret保存在环境变量为例说明。您可以根据业务需要，保存到配置文件里。
-  // 强烈建议不要把AccessKey和AccessKeySecret保存到代码里，会存在密钥泄漏风险。
+    endpoint := "cn-shanghai.log.aliyuncs.com"
     accessKeyID := os.Getenv("SLS_ACCESS_KEY_ID")
     accessKeySecret := os.Getenv("SLS_ACCESS_KEY_SECRET")
-    project := "project"
-    logstore := "logstore"
-    port := "10012"
+    project := "etl-shanghai-b"
+    logstore := "testlog"
+    port := "10012" // 公网用10012，私网用10011
+    consumerGroupName := "kafka-test"
 
-  // 获取Kafka消费者实例
-    consumer := getKafkaConsumer(project, endpoint, port, accessKeyID, accessKeySecret)
-    consumer.SubscribeTopics([]string{logstore}, nil)
-    for {
-    msg, err := consumer.ReadMessage(-1)
-    if err == nil {
-    fmt.Printf("Message on %s: %s\n", msg.TopicPartition, string(msg.Value))
-    } else {
-    fmt.Printf("Consumer error: %v (%v)\n", err, msg)
-    }
-    }
-    consumer.Close()
-}
-
-func getKafkaConsumer(project string, endpoint string, port string, accessKeyID string, accessKeySecret string) *kafka.Consumer {
     var kafkaConf = &kafka.ConfigMap{
-    "bootstrap.servers":       fmt.Sprintf("%s.%s:%s", project, endpoint, port),
-    "sasl.mechanism":          "PLAIN",
-    "security.protocol":       "sasl_ssl",
-    "sasl.username":           project,
-    "sasl.password":           fmt.Sprintf("%s#%s", accessKeyID, accessKeySecret),
-    "group.id":                "kafka-test",
-    "enable.auto.commit":      "true",
-    "auto.commit.interval.ms": 30000,
-    "session.timeout.ms":      120000,
-    "auto.offset.reset":       "latest",
-    "max.poll.interval.ms":    130000,
-    "heartbeat.interval.ms":   5000,
+        "bootstrap.servers":       fmt.Sprintf("%s.%s:%s", project, endpoint, port),
+        "sasl.mechanism":          "PLAIN",
+        "security.protocol":       "sasl_ssl",
+        "sasl.username":           project,
+        "sasl.password":           fmt.Sprintf("%s#%s", accessKeyID, accessKeySecret),
+        "group.id":                consumerGroupName,
+        "enable.auto.commit":      "true",
+        "auto.commit.interval.ms": 30000,
+        "session.timeout.ms":      120000,
+        "auto.offset.reset":       "latest",
+        "max.poll.interval.ms":    130000,
+        "heartbeat.interval.ms":   5000,
     }
     consumer, err := kafka.NewConsumer(kafkaConf)
     if err != nil {
-    panic(err)
+        panic(err)
     }
     fmt.Print("init kafka consumer success\n")
-    return consumer
+    consumer.SubscribeTopics([]string{logstore}, nil)
+    for {
+        msg, err := consumer.ReadMessage(-1)
+        if err == nil {
+            key := ""
+            if msg.Key != nil {
+                key = string(msg.Key)
+            }
+            fmt.Printf("Message on %s: key=%s, value=%s, timestamp=%v\n",
+                msg.TopicPartition, key, string(msg.Value), msg.Timestamp)
+        } else {
+            fmt.Printf("Consumer error: %v (%v)\n", err, msg)
+        }
+    }
+    consumer.Close()
 }
 ```
 
