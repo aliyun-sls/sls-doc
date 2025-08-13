@@ -31,6 +31,7 @@ function getSidebar() {
           text: 'Kibana Index Pattern批量删除',
           link: '/oscompatibledemo/kibana_pattern_batch_delete',
         },
+        { text: '使用ES SDK操作SLS', link: '/oscompatibledemo/es_sdk_sls' },
         { text: '最佳实践', link: '/oscompatibledemo/es_best_practice' },
         { text: 'FAQ', link: '/oscompatibledemo/es_faq' },
       ],
