@@ -4,6 +4,10 @@ import { computed, ref, watchEffect } from 'vue'
 import { initLang, isDarkTheme, parseCommonQuery } from './utils'
 import { inBrowser, useData } from 'vitepress'
 
+const props = defineProps(['workspace', 'region'])
+const workspace = props.workspace ?? 'o11y-demo-cn-hongkong'
+const region = props.region ?? 'cn-hongkong'
+
 const { lang } = useData()
 watchEffect(() => {
   if (inBrowser) {
@@ -17,7 +21,7 @@ const params = computed(() => {
 
   if (queries == null || queries.dest == null) {
     return {
-      dest: '/next/region/cn-hangzhou/workspace/o11y-demo-cn-hangzhou/app/entity/explorer',
+      dest: `/next/region/${region}/workspace/${workspace}/app/entity/explorer`,
       theme: 'default',
       maxWidth: false,
     }
