@@ -32,6 +32,7 @@ function getSidebar() {
           link: '/oscompatibledemo/kibana_pattern_batch_delete',
         },
         { text: '使用ES SDK操作SLS', link: '/oscompatibledemo/es_sdk_sls' },
+        { text: '部署Kibana同时访问云上ES和SLS', link: '/oscompatibledemo/cloud_es_with_sls_kibana' },
         { text: '最佳实践', link: '/oscompatibledemo/es_best_practice' },
         { text: 'FAQ', link: '/oscompatibledemo/es_faq' },
       ],
