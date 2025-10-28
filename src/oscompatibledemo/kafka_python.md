@@ -22,7 +22,7 @@
 
 ### 依赖说明
 ```shell
-pip install confluent-kafka
+pip install confluent-kafka --only-binary=:all: --prefer-binary
 ```
 
 ## 上报示例
@@ -133,9 +133,12 @@ while True:
         print("Consumer error: {}".format(msg.error()))
         continue
 
+    msgKey = ""
+    if msg.key():
+        msgKey = msg.key().decode('utf-8')
     print('Received message: (timestamp: {}, key: {}, value: {}'.format(
         msg.timestamp(),
-        msg.key().decode('utf-8'),
+        msgKey,
         msg.value().decode('utf-8')))
 
 c.close()
