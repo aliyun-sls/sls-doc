@@ -9,6 +9,7 @@ function getSidebar() {
       items: [
         { text: '功能说明', link: '/oscompatibledemo/kafka_overview' },
         { text: '查看消费延迟', link: '/oscompatibledemo/kafka_consume_monitor' },
+        { text: '消费组操作', link: '/oscompatibledemo/kafka_consumer_group_op' },
         { text: '使用SPL过滤消费', link: '/oscompatibledemo/kafka_spl' },
         { text: 'Java Kafka(消费和上报)', link: '/oscompatibledemo/kafka_java' },
         { text: 'Confluent-Kafka-Go', link: '/oscompatibledemo/kafka_go' },
