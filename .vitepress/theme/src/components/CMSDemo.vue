@@ -5,7 +5,7 @@ import { initLang, isDarkTheme, parseCommonQuery } from './utils'
 import { inBrowser, useData } from 'vitepress'
 
 const props = defineProps(['workspace', 'region'])
-const workspace = props.workspace ?? 'o11y-demo-cn-hongkong'
+const workspace = props.workspace ?? 'default-cms-1819385687343877-cn-hongkong'
 const region = props.region ?? 'cn-hongkong'
 
 const { lang } = useData()
@@ -52,8 +52,14 @@ watchEffect(async () => {
       console.error('dest is not start with /next')
       return
     }
+    console.log(params.value.dest)
+    const target = params.value.dest.includes('?')
+      ? encodeURIComponent(params.value.dest)
+      : params.value.dest
 
-    const response = await fetch(`https://cmsdemo-sls-demo-dussgynyta.cn-shanghai.fcapp.run?dest=${params.value.dest}`)
+    const response = await fetch(
+      `https://cmsdemo-sls-demo-dussgynyta.cn-shanghai.fcapp.run?dest=${target}`
+    )
     const json = await response.json()
     if (json.success) {
       dest.value = json.data.url
