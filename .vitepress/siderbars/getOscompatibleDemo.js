@@ -24,7 +24,8 @@ function getSidebar() {
       text: 'ES兼容',
       items: [
         { text: '对接Kibana', link: '/oscompatibledemo/sls_kibana' },
-        { text: '对接OpenSearch', link: '/oscompatibledemo/sls_opensarch' },
+        { text: '对接OpenSearch', link: '/oscompatibledemo/sls_opensearch' },
+        { text: '对接OpenSearch+Keycloak', link: '/oscompatibledemo/sls_opensearch_keycloak ' },
         { text: 'Kibana+ECS角色方式访问SLS', link: '/oscompatibledemo/es_ecs_role' },
         { text: '多云场景下部署SLS-Kibana', link: '/oscompatibledemo/es_kibana_helm' },
         { text: 'Kibana Dashboard迁移', link: '/oscompatibledemo/kibana_dashboard_transfer' },
