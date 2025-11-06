@@ -1,5 +1,3 @@
-ptn_list.py
-```python
 import sys
 import json
 import requests
@@ -93,5 +91,3 @@ existsPatterns = getKibanaExsitIndexPatterns(kibanaSpace)
 
 for name, id in existsPatterns.items():
     print("%s\t%s" %(id, name))
-
-```

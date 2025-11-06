@@ -7,7 +7,7 @@
 
 ## List出需要删除的Index Pattern
 
-准备好 kibana_config.json，然后使用  [ptn_list.py](ptn_list.py.md){target="_blank"} 来list Index Pattern
+准备好 kibana_config.json，然后使用  [ptn_list.py](https://raw.githubusercontent.com/aliyun-sls/sls-doc/refs/heads/main/src/oscompatibledemo/ptn_list.py){target="_blank"} 来list Index Pattern
 ```
 {
     "url" : "http://xxx:5601",
@@ -36,7 +36,7 @@
 
 **注意，Index Pattern删除后对应的Dashboard等都会无法使用，请确保这些Index Pattern是没有用的。**
 
-使用  [ptn_delete.py](ptn_delete.py.md){target="_blank"} 删除 Index Pattern
+使用  [ptn_delete.py](https://raw.githubusercontent.com/aliyun-sls/sls-doc/refs/heads/main/src/oscompatibledemo/ptn_delete.py){target="_blank"} 删除 Index Pattern
 
 
 ```
