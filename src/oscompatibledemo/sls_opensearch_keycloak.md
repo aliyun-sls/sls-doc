@@ -15,6 +15,8 @@
 
 # 部署示范
 
+注意，下面的演示是keycloak没有启用https，请在正式环境启用https
+
 下载已经制作好的docker compose文件，并解压
 ```
 wget https://sls-kproxy.oss-cn-hangzhou.aliyuncs.com/opensearch-keycloak-kproxy.tar.gz
