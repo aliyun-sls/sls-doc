@@ -30,12 +30,14 @@ function getSidebar() {
         { text: 'Kibana+ECS角色方式访问SLS', link: '/oscompatibledemo/es_ecs_role' },
         { text: '多云场景下部署SLS-Kibana', link: '/oscompatibledemo/es_kibana_helm' },
         { text: 'Kibana Dashboard迁移', link: '/oscompatibledemo/kibana_dashboard_transfer' },
+        { text: 'Kibana 对接ScanIndex', link: '/oscompatibledemo/es_scan_index' },
+
         {
           text: 'Kibana Index Pattern批量删除',
           link: '/oscompatibledemo/kibana_pattern_batch_delete',
         },
         { text: '使用ES SDK操作SLS', link: '/oscompatibledemo/es_sdk_sls' },
-        { text: '部署Kibana同时访问云上ES和SLS', link: '/oscompatibledemo/cloud_es_with_sls_kibana' },
+        { text: '部署Kibana访问云上ES和SLS', link: '/oscompatibledemo/cloud_es_with_sls_kibana' },
         { text: '最佳实践', link: '/oscompatibledemo/es_best_practice' },
         { text: 'FAQ', link: '/oscompatibledemo/es_faq' },
       ],

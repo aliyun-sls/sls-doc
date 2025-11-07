@@ -64,7 +64,7 @@ POST people/_bulk
 
 * 查看老的es中的Index Pattern的ID 
 
-准备好 kibana_config_1.json，然后使用  [ptn_list.py](ptn_list.py.md){target="_blank"}  来list Index Pattern
+准备好 kibana_config_1.json，然后使用  [ptn_list.py](https://raw.githubusercontent.com/aliyun-sls/sls-doc/refs/heads/main/src/oscompatibledemo/ptn_list.py){target="_blank"}  来list Index Pattern
 ```
 {
     "url" : "http://xxx:5601",
@@ -87,7 +87,7 @@ f06fc2b0-b82d-11ef-88c6-15adf26175c7 这个就是旧的people这个index pattern
 
 * 在SLS对接的Kibana中找到新的Index Pattern的Id
 
-同样使用 [ptn_list.py](ptn_list.py.md){target="_blank"} 来list 新的Kibana中Index Pattern的ID
+同样使用 [ptn_list.py](https://raw.githubusercontent.com/aliyun-sls/sls-doc/refs/heads/main/src/oscompatibledemo/ptn_list.py){target="_blank"} 来list 新的Kibana中Index Pattern的ID
 
 ```
 # 准备好kibana_config_2.json
