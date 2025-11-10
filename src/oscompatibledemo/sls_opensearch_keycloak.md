@@ -50,6 +50,12 @@ TEST_USER_NAME='test_user_name'
 TEST_USER_PASSWORD='test_user_password'
 ```
 
+* 准备好data目录
+```
+mkdir data
+chmod 777 data
+```
+
 * 执行 `prepare.sh`
 ```
 bash prepare.sh
@@ -146,8 +152,36 @@ docker compose ps
 ```
 
 ## 部署SSO-Keycloak
+新建一个目录
+```
+mkdir sso-keycloak
+cd sso-keycloak
+```
 
-新启动的SSO KeyCloak的Docker Compose参考
+创建 `master-realm.json` 内容如下
+
+```
+{
+  "realm": "master",
+  "enabled": true,
+  "sslRequired": "none"
+}
+```
+
+创建文件 `keycloak-entrypoint.sh` 内容如下
+
+```
+#!/bin/bash
+set -e
+
+# Import realms with overwrite strategy
+/opt/keycloak/bin/kc.sh import --file=/tmp/master-realm.json --override=true
+
+# Start Keycloak with HTTP enabled and HTTPS strict mode disabled
+exec /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --hostname-strict-https=true
+```
+
+docker-compose.yaml文件如下
 ```
 services:
 
@@ -158,8 +192,9 @@ services:
       - KEYCLOAK_ADMIN_PASSWORD=<修改为真实密码>
       - KC_PROXY=edge                  # keycloak外有代理的情况下 设上这个
     volumes:
-      - ./master-realm.json:/tmp/master-realm.json # 对应文件从最上面的tar.gz中拷贝出来
-      - ./keycloak-entrypoint.sh:/tmp/keycloak-entrypoint.sh # 对应文件从最上面的tar.gz中拷贝出来
+      - ./master-realm.json:/tmp/master-realm.json
+      - ./keycloak-entrypoint.sh:/tmp/keycloak-entrypoint.sh
+    entrypoint: ["/tmp/keycloak-entrypoint.sh"]
     ports:
       - 8081:8080
 ```
