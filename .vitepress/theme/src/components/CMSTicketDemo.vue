@@ -34,9 +34,11 @@ const tip = ref(
   isShare
     ? ''
     : lang.value === 'en'
-    ? 'The current data is for demonstration purposes only, please do not use it for production.'
-    : '当前为演示数据，请勿用于生产'
+    ? 'This is a demo environment. For production, please visit: '
+    : '当前为演示环境，云监控 2.0 生产地址为：'
 )
+
+const productionUrl = 'https://cmsnext.console.aliyun.com'
 
 let dest = ref('')
 
@@ -64,7 +66,9 @@ watchEffect(async () => {
   <div class="container">
     <iframe v-if="dest !== ''" :src="dest" :class="{ frame: true, 'max-width': params.maxWidth }">
     </iframe>
-    <div class="tip">{{ tip }}</div>
+    <div class="tip" v-if="tip">
+      {{ tip }}<a :href="productionUrl" target="_blank">{{ productionUrl }}</a>
+    </div>
   </div>
 </template>
 
@@ -82,8 +86,18 @@ watchEffect(async () => {
   width: 100%;
   text-align: center;
   padding: 10px 16px;
-  pointer-events: none;
   font-size: 18px;
+  pointer-events: none;
+}
+
+.tip a {
+  color: #1890ff;
+  text-decoration: underline;
+  pointer-events: auto;
+}
+
+.tip a:hover {
+  color: #40a9ff;
 }
 
 .frame {
