@@ -26,16 +26,37 @@ export function initLang(lang: string) {
   }
 }
 
+const TRUSTED_ORIGINS = [
+  'https://sls.console.aliyun.com',
+  'https://cmsnext.console.aliyun.com',
+  'https://sls.console.alibabacloud.com',
+  'https://arms.console.alibabacloud.com',
+]
+
+function isSafeUrl(url: string): boolean {
+  try {
+    const parsed = new URL(url, window.location.origin)
+    return ['http:', 'https:'].includes(parsed.protocol)
+  } catch {
+    return false
+  }
+}
+
 export function addHistoryListener() {
   window.addEventListener('message', (e) => {
+    if (!TRUSTED_ORIGINS.includes(e.origin) && e.origin !== window.location.origin) {
+      return
+    }
+
     const v = e?.data
     if (v === 'historyback') {
       window.history.back()
     } else if (v === 'historyforward') {
       window.history.forward()
     } else if (v && v.action && v.action === 'pushState') {
-      // window.history.pushState(null, '', v.href)
-      window.location = v.href
+      if (typeof v.href === 'string' && isSafeUrl(v.href)) {
+        window.location = v.href
+      }
     }
   })
 }
