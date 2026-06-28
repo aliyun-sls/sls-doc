@@ -1,3 +1,15 @@
+---
+sidebar: false
+---
+
+<div class="ai-coding-tabs">
+  <a href="/doc/ai_coding/playground.html">Token 指标大盘</a>
+  <a href="/doc/ai_coding/playground.html">优化报告</a>
+  <a href="/doc/ai_coding/playground.html">Token 效率评估器</a>
+  <a href="/doc/ai_coding/playground.html">评估结果洞察</a>
+  <a class="active" href="/doc/ai_coding/token_efficiency.html">技术文章</a>
+</div>
+
 # AI Coding Token 效率分析：从大盘指标到自动优化
 
 > 数据源：阿里云日志服务（SLS）+ AgentLoop 评估与经验挖掘
@@ -229,3 +241,41 @@ AgentLoop 要做的事情也比较明确：把账算清楚，把浪费机制评�
 ::: tip 在线体验
 前往 [Token 效率分析 Playground](/doc/ai_coding/playground.html) 查看实时指标大盘、评估器和评估结果洞察。
 :::
+
+<style>
+.ai-coding-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 0 16px;
+  background: #fafafa;
+  margin: -24px -24px 24px -24px;
+}
+.ai-coding-tabs a {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+.ai-coding-tabs a:hover {
+  color: #1677ff;
+}
+.ai-coding-tabs a.active {
+  color: #1677ff;
+  border-bottom-color: #1677ff;
+  font-weight: 500;
+}
+.dark .ai-coding-tabs {
+  background: var(--vt-c-bg-soft);
+  border-bottom-color: var(--vt-c-divider);
+}
+.dark .ai-coding-tabs a {
+  color: #aaa;
+}
+.dark .ai-coding-tabs a:hover,
+.dark .ai-coding-tabs a.active {
+  color: #1677ff;
+}
+</style>

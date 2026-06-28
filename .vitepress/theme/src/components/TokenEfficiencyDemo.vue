@@ -9,11 +9,13 @@ const agentLoopDemoService = 'https://agentloop-demo-ytovjpywyc.cn-shanghai.fcap
 const serviceConsoleOrigin = 'https://agentloop4service.console.aliyun.com'
 
 const slsDest = '/lognext/project/proj-xtrace-ee483ec157740929c4cb92d4ff85f-cn-hongkong/dashboard/ai-coding-agent-token-eval-xtrace-20260626'
+const reportDest = '/lognext/project/agentloop-c260254f99d705a28d1309acb0e53fda/dashboard/agentloop-evaluation-analysis-report-5m'
 const evaluatorDest = '/agentloop/region/cn-hongkong/agentspace/al-playground-cn-hongkong/app/evaluator'
 const explorerDest = '/agentloop/region/cn-hongkong/agentspace/al-playground-cn-hongkong/app/explorer?q=task_name%3Atoken%E6%95%88%E7%8E%87%E8%AF%84%E4%BC%B0'
 
 const tabs = [
   { key: 'dashboard', label: 'Token 指标大盘' },
+  { key: 'report', label: '优化报告' },
   { key: 'evaluator', label: 'Token 效率评估器' },
   { key: 'explorer', label: '评估结果洞察' },
   { key: 'article', label: '技术文章', href: '/doc/ai_coding/token_efficiency.html' },
@@ -58,6 +60,7 @@ function replaceDestinationOrigin(loginUrl: string) {
 }
 
 const slsUrl = ref('')
+const reportUrl = ref('')
 const evaluatorUrl = ref('')
 const explorerUrl = ref('')
 
@@ -69,7 +72,9 @@ watchEffect(async () => {
   const slsResponse = await fetch(slsDemoService)
   const slsJson = await slsResponse.json()
   if (slsJson.success) {
-    slsUrl.value = `https://sls.console.aliyun.com${slsDest}?sls_ticket=${slsJson.data.ticket}&theme=${theme}`
+    const ticket = slsJson.data.ticket
+    slsUrl.value = `https://sls.console.aliyun.com${slsDest}?sls_ticket=${ticket}&theme=${theme}`
+    reportUrl.value = `https://sls.console.aliyun.com${reportDest}?sls_ticket=${ticket}&theme=${theme}`
   }
 
   const evalTarget = encodeURIComponent(evaluatorDest)
@@ -90,6 +95,7 @@ watchEffect(async () => {
 const currentUrl = computed(() => {
   switch (activeTab.value) {
     case 'dashboard': return slsUrl.value
+    case 'report': return reportUrl.value
     case 'evaluator': return evaluatorUrl.value
     case 'explorer': return explorerUrl.value
     default: return ''
