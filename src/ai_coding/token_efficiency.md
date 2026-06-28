@@ -4,9 +4,9 @@ sidebar: false
 
 <div class="ai-coding-tabs">
   <a href="/doc/ai_coding/playground.html">Token 指标大盘</a>
-  <a href="/doc/ai_coding/playground.html">优化报告</a>
   <a href="/doc/ai_coding/playground.html">Token 效率评估器</a>
   <a href="/doc/ai_coding/playground.html">评估结果洞察</a>
+  <a href="/doc/ai_coding/playground.html">优化报告</a>
   <a class="active" href="/doc/ai_coding/token_efficiency.html">技术文章</a>
 </div>
 
