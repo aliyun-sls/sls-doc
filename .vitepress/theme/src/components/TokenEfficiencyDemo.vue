@@ -15,9 +15,9 @@ const explorerDest = '/agentloop/region/cn-hongkong/agentspace/al-playground-cn-
 
 const tabs = [
   { key: 'dashboard', label: 'Token 指标大盘' },
-  { key: 'report', label: '优化报告' },
   { key: 'evaluator', label: 'Token 效率评估器' },
   { key: 'explorer', label: '评估结果洞察' },
+  { key: 'report', label: '优化报告' },
   { key: 'article', label: '技术文章', href: '/doc/ai_coding/token_efficiency.html' },
 ]
 
