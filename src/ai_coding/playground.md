@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Token 效率分析
+sidebar: false
 footer: false
 ---
 
