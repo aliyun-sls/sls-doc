@@ -1697,7 +1697,7 @@ html.dark .redesign-chart {
 <style>
 /* SLS-STAROPS CANONICAL CSS START */
 /* === SLS-STAROPS CANONICAL TOPBAR + SIDEBAR (aligned to live master) === */
-/* Master: https://sls.aliyun.com/doc/starops/practices/skill-authoring/article.html */
+/* Master: /doc/starops/practices/skill-authoring/article.html */
 
 /* --- Topbar (navy header, 56px sticky) --- */
 html body.sls-starops-article header.sls-starops-topbar {
@@ -1851,24 +1851,6 @@ html body.sls-starops-article aside.VPSidebar {
   border-radius: 4px;
 }
 /* Badge */
-.VPSidebar [data-starops-badge]::after {
-  content: attr(data-starops-badge);
-  display: inline-block;
-  margin-left: 6px;
-  padding: 1px 6px;
-  font-size: 10px;
-  font-weight: 600;
-  color: rgba(68, 100, 240, 0.85);
-  background: rgba(68, 100, 240, 0.08);
-  border-radius: 4px;
-  vertical-align: middle;
-  line-height: 14px;
-}
-.VPSidebar [data-starops-badge="DRAFT"]::after {
-  color: rgba(180, 100, 30, 0.9);
-  background: rgba(240, 170, 70, 0.12);
-}
-
 /* Reserve space for fixed sidebar */
 body.sls-starops-article .VPContent.has-sidebar {
   padding-left: 240px;
@@ -1940,23 +1922,23 @@ body.sls-starops-article figcaption {
 .viz-analysis sup { font-size: 11px; }
 .viz-analysis a.ref-link { color: var(--vp-c-brand-1, #3451b2); text-decoration: none; }
 </style></head>
-
+<body class="sls-starops-article">
 <div class="Layout sls-starops-article">
 
 <!-- SLS-STAROPS CANONICAL BLOCK START -->
 <header class="sls-starops-topbar sls-starops-topbar--article"><div class="sls-starops-topbar__inner"><a class="sls-starops-topbar__brand" href="rca_benchmark_results.html"><span class="sls-starops-topbar__mark"></span><span>STAROps 实践</span></a><div class="sls-starops-topbar__crumb"><a href="rca_benchmark_dataset.html">案例中心</a><span class="sep">/</span><a href="rca_benchmark_results.html">STAROps</a><span class="sep">/</span><span>基准评测</span><span class="sep">/</span><span>评测结果</span></div><a class="sls-starops-topbar__cta" href="rca_benchmark_results.html">← 返回评测结果</a></div></header>
 
-<aside class="VPSidebar"><div class="curtain"></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1"><span class="visually-hidden" id="sidebar-aria-label"> 侧边栏导航 </span><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">语义上手</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/onboarding/effective-prompts/article.html"><p class="text">与 STAROps 有效对话</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/umodel-metric-entity/article.html"><p class="text">UModel 使用指南</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0 has-active"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">基准评测</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="rca_benchmark_dataset.html"><p class="text">评测基准</p></a></div></div><div class="VPSidebarItem level-1 is-link is-active has-active"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="rca_benchmark_results.html"><p class="text">评测结果</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="cases_compare.html"><p class="text">评测案例</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">告警追因</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/alert-rca-flow/article.html" data-starops-badge="DRAFT"><p class="text">告警 RCA 全链路分析</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">主动巡检</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/rds-inspection-via-script/article.html" data-starops-badge="PUBLISHED v1.0"><p class="text">RDS 周期性自动巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/capacity-risk-prediction/article.html"><p class="text">饱和度评估与风险预测</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/log-insight-pattern/article.html"><p class="text">日志模式定时巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/business-reliability-flow/article.html" data-starops-badge="DRAFT"><p class="text">业务服务可靠性巡检</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">经验固化</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-authoring/article.html" data-starops-badge="DRAFT"><p class="text">编写 STAROps 运维 Skill</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-script-deterministic/article.html" data-starops-badge="DRAFT"><p class="text">编写 Skill 确定性脚本</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/mcp-integration/article.html"><p class="text">接入外部 MCP 工具</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">协作闭环</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/dingtalk-integration/article.html"><p class="text">集成钉钉 IM 通道</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/devops-code-to-runtime/article.html"><p class="text">DevOps 跨域追因建模</p></a></div></div></div></section></div></nav></aside>
+<aside class="VPSidebar"><div class="curtain"></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1"><span class="visually-hidden" id="sidebar-aria-label"> 侧边栏导航 </span><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">语义上手</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/onboarding/effective-prompts/article.html"><p class="text">与 STAROps 有效对话</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/umodel-metric-entity/article.html"><p class="text">UModel 使用指南</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0 has-active"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">基准评测</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="rca_benchmark_dataset.html"><p class="text">评测基准</p></a></div></div><div class="VPSidebarItem level-1 is-link is-active has-active"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="rca_benchmark_results.html"><p class="text">评测结果</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="cases_compare.html"><p class="text">评测案例</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">告警追因</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/alert-rca-flow/article.html"><p class="text">告警 RCA 全链路分析</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">主动巡检</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/rds-inspection-via-script/article.html"><p class="text">RDS 周期性自动巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/capacity-risk-prediction/article.html"><p class="text">饱和度评估与风险预测</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/log-insight-pattern/article.html"><p class="text">日志模式定时巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/business-reliability-flow/article.html"><p class="text">业务服务可靠性巡检</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">经验固化</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-authoring/article.html"><p class="text">编写 STAROps 运维 Skill</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-script-deterministic/article.html"><p class="text">编写 Skill 确定性脚本</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/mcp-integration/article.html"><p class="text">接入外部 MCP 工具</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">协作闭环</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/dingtalk-integration/article.html"><p class="text">集成钉钉 IM 通道</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/devops-code-to-runtime/article.html"><p class="text">DevOps 跨域追因建模</p></a></div></div></div></section></div></nav></aside>
 <!-- SLS-STAROPS CANONICAL BLOCK END -->
 
 
 
-</div>
+<div class="VPContent has-sidebar">
 <div class="VPDoc has-sidebar has-aside">
-</div>
+<div class="container">
 <div class="content">
-</div>
-
+<div class="content-container">
+<main class="main">
 
 <div class="vp-doc">
 <h1 id="starops-rca-pingce-jieguo">RCA Agent 评测：开源方案与 STAROps 的同一评测集对比<a class="header-anchor" href="#starops-rca-pingce-jieguo" aria-label="Permalink to RCA Agent 评测:开源方案与 STAROps 的同一评测集对比">​</a></h1>
@@ -1980,13 +1962,13 @@ body.sls-starops-article figcaption {
 <figure class="viz-fig viz-v1" aria-label="Fig 1-1 RCA evaluation storyline">
   <div class="viz-lab">图 1-1 · RCA 评测的全文主线</div>
   <svg viewBox="0 0 960 360" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" font-family="'Bricolage Grotesque','Noto Serif SC',sans-serif">
-    <defs><marker id="fig11arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#99a0ab"></path></marker></defs>
+    <defs><marker id="fig11arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#99a0ab"/></marker></defs>
     <text x="42" y="42" fill="#99a0ab" font-family="'Space Mono',monospace" font-size="11" letter-spacing="2">DIAGNOSTIC LINE</text>
     <text x="42" y="82" fill="#1b1b1f" font-family="'Fraunces','Noto Serif SC',serif" font-size="34" font-weight="700">诊断主线</text>
     <text x="42" y="112" fill="#476582" font-size="15">对象识别 · 定因路径 · 结论复核</text>
-    <g transform="translate(40,150)"><rect x="0" y="0" width="230" height="58" rx="6" fill="#f6f8fb" stroke="#e2e2e3"></rect><text x="20" y="18" fill="#3451b2" font-family="'Space Mono',monospace" font-size="11" font-weight="700">ENTITY</text><text x="20" y="47" fill="#1b1b1f" font-size="15" font-weight="600">对象识别不稳定</text><line x1="246" y1="29" x2="328" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"></line><rect x="350" y="0" width="230" height="58" rx="6" fill="#ffffff" stroke="#cdd4e0"></rect><text x="370" y="24" fill="#1b1b1f" font-size="15" font-weight="700">UModel</text><text x="370" y="44" fill="#476582" font-size="13">统一实体、关系与查询入口</text><line x1="596" y1="29" x2="678" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"></line><rect x="700" y="0" width="220" height="58" rx="6" fill="#0f172a"></rect><text x="720" y="24" fill="#ffffff" font-size="15" font-weight="700">对象更稳定</text><text x="720" y="44" fill="#bccaef" font-size="13">减少跨源命名漂移</text></g>
-    <g transform="translate(40,225)"><rect x="0" y="0" width="230" height="58" rx="6" fill="#f6f8fb" stroke="#e2e2e3"></rect><text x="20" y="18" fill="#3451b2" font-family="'Space Mono',monospace" font-size="11" font-weight="700">FAULT / PROCESS</text><text x="20" y="47" fill="#1b1b1f" font-size="15" font-weight="600">定因路径不稳定</text><line x1="246" y1="29" x2="328" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"></line><rect x="350" y="0" width="230" height="58" rx="6" fill="#ffffff" stroke="#cdd4e0"></rect><text x="370" y="24" fill="#1b1b1f" font-size="15" font-weight="700">多阶段管道</text><text x="370" y="44" fill="#476582" font-size="13">按阶段选择工具和证据</text><line x1="596" y1="29" x2="678" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"></line><rect x="700" y="0" width="220" height="58" rx="6" fill="#0f172a"></rect><text x="720" y="24" fill="#ffffff" font-size="15" font-weight="700">调查更可控</text><text x="720" y="44" fill="#bccaef" font-size="13">路径影响定因与过程</text></g>
-    <g transform="translate(40,300)"><rect x="0" y="0" width="230" height="58" rx="6" fill="#f6f8fb" stroke="#e2e2e3"></rect><text x="20" y="18" fill="#3451b2" font-family="'Space Mono',monospace" font-size="11" font-weight="700">QUALITY</text><text x="20" y="47" fill="#1b1b1f" font-size="15" font-weight="600">结论缺少校验</text><line x1="246" y1="29" x2="328" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"></line><rect x="350" y="0" width="230" height="58" rx="6" fill="#ffffff" stroke="#cdd4e0"></rect><text x="370" y="24" fill="#1b1b1f" font-size="15" font-weight="700">结论复核</text><text x="370" y="44" fill="#476582" font-size="13">检查定因与证据</text><line x1="596" y1="29" x2="678" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"></line><rect x="700" y="0" width="220" height="58" rx="6" fill="#0f172a"></rect><text x="720" y="24" fill="#ffffff" font-size="15" font-weight="700">结论更可审计</text><text x="720" y="44" fill="#bccaef" font-size="13">定因与证据一起约束</text></g>
+    <g transform="translate(40,150)"><rect x="0" y="0" width="230" height="58" rx="6" fill="#f6f8fb" stroke="#e2e2e3"/><text x="20" y="18" fill="#3451b2" font-family="'Space Mono',monospace" font-size="11" font-weight="700">ENTITY</text><text x="20" y="47" fill="#1b1b1f" font-size="15" font-weight="600">对象识别不稳定</text><line x1="246" y1="29" x2="328" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"/><rect x="350" y="0" width="230" height="58" rx="6" fill="#ffffff" stroke="#cdd4e0"/><text x="370" y="24" fill="#1b1b1f" font-size="15" font-weight="700">UModel</text><text x="370" y="44" fill="#476582" font-size="13">统一实体、关系与查询入口</text><line x1="596" y1="29" x2="678" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"/><rect x="700" y="0" width="220" height="58" rx="6" fill="#0f172a"/><text x="720" y="24" fill="#ffffff" font-size="15" font-weight="700">对象更稳定</text><text x="720" y="44" fill="#bccaef" font-size="13">减少跨源命名漂移</text></g>
+    <g transform="translate(40,225)"><rect x="0" y="0" width="230" height="58" rx="6" fill="#f6f8fb" stroke="#e2e2e3"/><text x="20" y="18" fill="#3451b2" font-family="'Space Mono',monospace" font-size="11" font-weight="700">FAULT / PROCESS</text><text x="20" y="47" fill="#1b1b1f" font-size="15" font-weight="600">定因路径不稳定</text><line x1="246" y1="29" x2="328" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"/><rect x="350" y="0" width="230" height="58" rx="6" fill="#ffffff" stroke="#cdd4e0"/><text x="370" y="24" fill="#1b1b1f" font-size="15" font-weight="700">多阶段管道</text><text x="370" y="44" fill="#476582" font-size="13">按阶段选择工具和证据</text><line x1="596" y1="29" x2="678" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"/><rect x="700" y="0" width="220" height="58" rx="6" fill="#0f172a"/><text x="720" y="24" fill="#ffffff" font-size="15" font-weight="700">调查更可控</text><text x="720" y="44" fill="#bccaef" font-size="13">路径影响定因与过程</text></g>
+    <g transform="translate(40,300)"><rect x="0" y="0" width="230" height="58" rx="6" fill="#f6f8fb" stroke="#e2e2e3"/><text x="20" y="18" fill="#3451b2" font-family="'Space Mono',monospace" font-size="11" font-weight="700">QUALITY</text><text x="20" y="47" fill="#1b1b1f" font-size="15" font-weight="600">结论缺少校验</text><line x1="246" y1="29" x2="328" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"/><rect x="350" y="0" width="230" height="58" rx="6" fill="#ffffff" stroke="#cdd4e0"/><text x="370" y="24" fill="#1b1b1f" font-size="15" font-weight="700">结论复核</text><text x="370" y="44" fill="#476582" font-size="13">检查定因与证据</text><line x1="596" y1="29" x2="678" y2="29" stroke="#cdd4e0" marker-end="url(#fig11arrow)"/><rect x="700" y="0" width="220" height="58" rx="6" fill="#0f172a"/><text x="720" y="24" fill="#ffffff" font-size="15" font-weight="700">结论更可审计</text><text x="720" y="44" fill="#bccaef" font-size="13">定因与证据一起约束</text></g>
   </svg>
   <div class="viz-sub">全文按 RCA 的三条主线展开：先确定调查对象，再沿证据路径判断原因，最后复核结论是否有证据支撑。后文先看开源 Agent在这些环节上的实测差距，再说明 STAROps 如何用 UModel、多阶段管道和结论复核分别处理。</div>
 </figure>
@@ -2034,14 +2016,14 @@ body.sls-starops-article figcaption {
   <svg viewBox="0 0 960 380" preserveAspectRatio="xMidYMid meet">
     <defs>
       <radialGradient id="v3hubGlow" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stop-color="#3451b2" stop-opacity="0.35"></stop>
-        <stop offset="55%" stop-color="#3451b2" stop-opacity="0.10"></stop>
-        <stop offset="100%" stop-color="#3451b2" stop-opacity="0"></stop>
+        <stop offset="0%" stop-color="#3451b2" stop-opacity="0.35"/>
+        <stop offset="55%" stop-color="#3451b2" stop-opacity="0.10"/>
+        <stop offset="100%" stop-color="#3451b2" stop-opacity="0"/>
       </radialGradient>
       <linearGradient id="v3ribbon" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.25"></stop>
-        <stop offset="55%" stop-color="#7a8aa8" stop-opacity="0.55"></stop>
-        <stop offset="100%" stop-color="#3451b2" stop-opacity="0.9"></stop>
+        <stop offset="0%" stop-color="#94a3b8" stop-opacity="0.25"/>
+        <stop offset="55%" stop-color="#7a8aa8" stop-opacity="0.55"/>
+        <stop offset="100%" stop-color="#3451b2" stop-opacity="0.9"/>
       </linearGradient>
     </defs>
 
@@ -2050,44 +2032,44 @@ body.sls-starops-article figcaption {
       <text x="40" y="34">SIX  DATA  WORLDS</text>
       <text x="800" y="34" text-anchor="middle">UMODEL</text>
     </g>
-    <line x1="40" y1="44" x2="280" y2="44" stroke="#cdd4e0" stroke-width="0.6"></line>
-    <line x1="720" y1="44" x2="880" y2="44" stroke="#cdd4e0" stroke-width="0.6"></line>
+    <line x1="40" y1="44" x2="280" y2="44" stroke="#cdd4e0" stroke-width="0.6"/>
+    <line x1="720" y1="44" x2="880" y2="44" stroke="#cdd4e0" stroke-width="0.6"/>
 
     <!-- 6 vertically stacked source tracks (left column) -->
     <g font-family="Space Mono, monospace">
       <!-- SLS LOG -->
       <g transform="translate(40,62)">
-        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"></rect>
+        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"/>
         <text x="12" y="16" font-size="8" letter-spacing="0.12em" fill="#3451b2" font-weight="600">SLS  LOG</text>
         <text x="12" y="34" font-size="12" fill="#1b1b1f">pod-cart-7d4f8b-xj2c</text>
       </g>
       <!-- ARMS APM -->
       <g transform="translate(40,114)">
-        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"></rect>
+        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"/>
         <text x="12" y="16" font-size="8" letter-spacing="0.12em" fill="#3451b2" font-weight="600">ARMS  APM</text>
         <text x="12" y="34" font-size="12" fill="#1b1b1f">service.shop.cart</text>
       </g>
       <!-- CMS METRIC -->
       <g transform="translate(40,166)">
-        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"></rect>
+        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"/>
         <text x="12" y="16" font-size="8" letter-spacing="0.12em" fill="#3451b2" font-weight="600">CMS  METRIC</text>
         <text x="12" y="34" font-size="12" fill="#1b1b1f">i-bp1...cart-host</text>
       </g>
       <!-- PROMETHEUS -->
       <g transform="translate(40,218)">
-        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"></rect>
+        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"/>
         <text x="12" y="16" font-size="8" letter-spacing="0.12em" fill="#3451b2" font-weight="600">PROMETHEUS</text>
         <text x="12" y="34" font-size="12" fill="#1b1b1f">kube_cart_5xx</text>
       </g>
       <!-- OTEL TRACE -->
       <g transform="translate(40,270)">
-        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"></rect>
+        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"/>
         <text x="12" y="16" font-size="8" letter-spacing="0.12em" fill="#3451b2" font-weight="600">OTEL  TRACE</text>
         <text x="12" y="34" font-size="12" fill="#1b1b1f">cart.checkout.span</text>
       </g>
       <!-- CMDB -->
       <g transform="translate(40,322)">
-        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"></rect>
+        <rect width="240" height="44" rx="4" fill="#ffffff" stroke="#cdd4e0" stroke-width="1"/>
         <text x="12" y="16" font-size="8" letter-spacing="0.12em" fill="#3451b2" font-weight="600">CMDB  RESOURCE</text>
         <text x="12" y="34" font-size="12" fill="#1b1b1f">cart-svc-prd-001</text>
       </g>
@@ -2095,12 +2077,12 @@ body.sls-starops-article figcaption {
 
     <!-- convergence ribbons: from right edge of each track (x=280) to hub center (x=800,y=190) -->
     <g fill="none" stroke="url(#v3ribbon)" stroke-width="1.5" opacity="0.7">
-      <path d="M 280,84  C 460,84  600,190  800,190"></path>
-      <path d="M 280,136 C 470,136  610,190  800,190"></path>
-      <path d="M 280,188 C 500,188  640,190  800,190"></path>
-      <path d="M 280,240 C 500,240  640,200  800,190"></path>
-      <path d="M 280,292 C 470,292  610,210  800,190"></path>
-      <path d="M 280,344 C 460,344  600,220  800,190"></path>
+      <path d="M 280,84  C 460,84  600,190  800,190"/>
+      <path d="M 280,136 C 470,136  610,190  800,190"/>
+      <path d="M 280,188 C 500,188  640,190  800,190"/>
+      <path d="M 280,240 C 500,240  640,200  800,190"/>
+      <path d="M 280,292 C 470,292  610,210  800,190"/>
+      <path d="M 280,344 C 460,344  600,220  800,190"/>
     </g>
 
     <!-- friction labels along ribbons (subtle amber, not dominant) -->
@@ -2111,15 +2093,15 @@ body.sls-starops-article figcaption {
     </g>
 
     <!-- UModel hub: glow + canonical card + 4 attribute dots -->
-    <circle cx="800" cy="190" r="92" fill="url(#v3hubGlow)"></circle>
-    <circle cx="800" cy="190" r="62" fill="none" stroke="#3451b2" stroke-width="0.5" opacity="0.35"></circle>
+    <circle cx="800" cy="190" r="92" fill="url(#v3hubGlow)"/>
+    <circle cx="800" cy="190" r="62" fill="none" stroke="#3451b2" stroke-width="0.5" opacity="0.35"/>
 
     <!-- 4 attribute satellite dots (1 entity, N attributes) -->
     <g fill="#3451b2">
-      <circle cx="800" cy="118" r="2.5"></circle>
-      <circle cx="872" cy="190" r="2.5"></circle>
-      <circle cx="800" cy="262" r="2.5"></circle>
-      <circle cx="728" cy="190" r="2.5"></circle>
+      <circle cx="800" cy="118" r="2.5"/>
+      <circle cx="872" cy="190" r="2.5"/>
+      <circle cx="800" cy="262" r="2.5"/>
+      <circle cx="728" cy="190" r="2.5"/>
     </g>
     <g font-family="Space Mono, monospace" font-size="8" fill="#94a3b8" letter-spacing="0.08em">
       <text x="800" y="110" text-anchor="middle">attr</text>
@@ -2129,7 +2111,7 @@ body.sls-starops-article figcaption {
     </g>
 
     <!-- canonical entity card -->
-    <rect x="720" y="160" width="160" height="60" rx="8" fill="#0f172a"></rect>
+    <rect x="720" y="160" width="160" height="60" rx="8" fill="#0f172a"/>
     <text x="800" y="188" text-anchor="middle" font-family="Fraunces, serif" font-size="22" font-weight="700" fill="#ffffff">Service · cart</text>
     <text x="800" y="206" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" fill="#94a3b8" letter-spacing="0.14em">CANONICAL  ENTITY</text>
   </svg>
@@ -2157,7 +2139,7 @@ body.sls-starops-article figcaption {
   <svg viewBox="0 0 960 300" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <marker id="fig23arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-        <path d="M0,0 L10,5 L0,10 z" fill="#99a0ab"></path>
+        <path d="M0,0 L10,5 L0,10 z" fill="#99a0ab"/>
       </marker>
     </defs>
     <g font-family="Space Mono, monospace" font-size="10" letter-spacing="0.12em" fill="#94a3b8">
@@ -2165,22 +2147,22 @@ body.sls-starops-article figcaption {
       <text x="392" y="38">REVIEW SIGNALS</text>
       <text x="742" y="38">DECISION</text>
     </g>
-    <rect x="50" y="72" width="230" height="150" rx="8" fill="#f6f7fb" stroke="#cdd4e0"></rect>
+    <rect x="50" y="72" width="230" height="150" rx="8" fill="#f6f7fb" stroke="#cdd4e0"/>
     <text x="74" y="106" font-family="Fraunces, 'Noto Serif SC', serif" font-size="22" font-weight="700" fill="#1b1b1f">RCA 结论</text>
     <text x="74" y="136" font-family="Bricolage Grotesque, sans-serif" font-size="13" fill="#476582">根因对象</text>
     <text x="74" y="160" font-family="Bricolage Grotesque, sans-serif" font-size="13" fill="#476582">故障类型</text>
     <text x="74" y="184" font-family="Bricolage Grotesque, sans-serif" font-size="13" fill="#476582">证据摘要</text>
-    <line x1="300" y1="147" x2="370" y2="147" stroke="#cdd4e0" stroke-width="1.4" marker-end="url(#fig23arrow)"></line>
+    <line x1="300" y1="147" x2="370" y2="147" stroke="#cdd4e0" stroke-width="1.4" marker-end="url(#fig23arrow)"/>
     <g font-family="Bricolage Grotesque, sans-serif">
-      <rect x="390" y="64" width="220" height="44" rx="6" fill="#ffffff" stroke="#cdd4e0"></rect>
+      <rect x="390" y="64" width="220" height="44" rx="6" fill="#ffffff" stroke="#cdd4e0"/>
       <text x="414" y="92" font-size="14" font-weight="700" fill="#1b1b1f">拓扑顺序核查</text>
-      <rect x="390" y="122" width="220" height="44" rx="6" fill="#ffffff" stroke="#cdd4e0"></rect>
+      <rect x="390" y="122" width="220" height="44" rx="6" fill="#ffffff" stroke="#cdd4e0"/>
       <text x="414" y="150" font-size="14" font-weight="700" fill="#1b1b1f">Trace 深度分析</text>
-      <rect x="390" y="180" width="220" height="44" rx="6" fill="#ffffff" stroke="#cdd4e0"></rect>
+      <rect x="390" y="180" width="220" height="44" rx="6" fill="#ffffff" stroke="#cdd4e0"/>
       <text x="414" y="208" font-size="14" font-weight="700" fill="#1b1b1f">深因追溯</text>
     </g>
-    <line x1="632" y1="147" x2="704" y2="147" stroke="#cdd4e0" stroke-width="1.4" marker-end="url(#fig23arrow)"></line>
-    <rect x="725" y="82" width="190" height="130" rx="10" fill="#0f172a"></rect>
+    <line x1="632" y1="147" x2="704" y2="147" stroke="#cdd4e0" stroke-width="1.4" marker-end="url(#fig23arrow)"/>
+    <rect x="725" y="82" width="190" height="130" rx="10" fill="#0f172a"/>
     <text x="820" y="122" text-anchor="middle" font-family="Fraunces, 'Noto Serif SC', serif" font-size="24" font-weight="700" fill="#ffffff">可复核结论</text>
     <text x="820" y="154" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="13" fill="#bccaef">进入处置 / 继续调查</text>
     <text x="820" y="180" text-anchor="middle" font-family="Space Mono, monospace" font-size="10" letter-spacing="0.1em" fill="#94a3b8">CONFIDENCE SIGNAL</text>
@@ -2221,11 +2203,11 @@ body.sls-starops-article figcaption {
     </g>
     <!-- O bars: scale 200..400 = 0..60. width = O/60 * 200 -->
     <g fill="#3451b2">
-      <rect x="200" y="50" width="162.5" height="18"></rect>
-      <rect x="200" y="98" width="150.3" height="18"></rect>
-      <rect x="200" y="146" width="148.0" height="18"></rect>
-      <rect x="200" y="194" width="96.0" height="18"></rect>
-      <rect x="200" y="242" width="77.1" height="18"></rect>
+      <rect x="200" y="50" width="162.5" height="18"/>
+      <rect x="200" y="98" width="150.3" height="18"/>
+      <rect x="200" y="146" width="148.0" height="18"/>
+      <rect x="200" y="194" width="96.0" height="18"/>
+      <rect x="200" y="242" width="77.1" height="18"/>
     </g>
     <g font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">
       <text x="368" y="63">48.74</text>
@@ -2236,11 +2218,11 @@ body.sls-starops-article figcaption {
     </g>
     <!-- E bars: 420..560, width = E*140 -->
     <g fill="#476582">
-      <rect x="420" y="50" width="79.4" height="18"></rect>
-      <rect x="420" y="98" width="81.6" height="18"></rect>
-      <rect x="420" y="146" width="79.4" height="18"></rect>
-      <rect x="420" y="194" width="32.6" height="18"></rect>
-      <rect x="420" y="242" width="14.0" height="18"></rect>
+      <rect x="420" y="50" width="79.4" height="18"/>
+      <rect x="420" y="98" width="81.6" height="18"/>
+      <rect x="420" y="146" width="79.4" height="18"/>
+      <rect x="420" y="194" width="32.6" height="18"/>
+      <rect x="420" y="242" width="14.0" height="18"/>
     </g>
     <g font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">
       <text x="505" y="63">0.567</text>
@@ -2251,11 +2233,11 @@ body.sls-starops-article figcaption {
     </g>
     <!-- F bars: 585..725, width = F*140 -->
     <g fill="#99a0ab">
-      <rect x="585" y="50" width="39.2" height="18"></rect>
-      <rect x="585" y="98" width="22.1" height="18"></rect>
-      <rect x="585" y="146" width="22.4" height="18"></rect>
-      <rect x="585" y="194" width="20.3" height="18"></rect>
-      <rect x="585" y="242" width="23.4" height="18"></rect>
+      <rect x="585" y="50" width="39.2" height="18"/>
+      <rect x="585" y="98" width="22.1" height="18"/>
+      <rect x="585" y="146" width="22.4" height="18"/>
+      <rect x="585" y="194" width="20.3" height="18"/>
+      <rect x="585" y="242" width="23.4" height="18"/>
     </g>
     <g font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">
       <text x="630" y="63">0.280</text>
@@ -2266,11 +2248,11 @@ body.sls-starops-article figcaption {
     </g>
     <!-- P bars: 755..880, width = P*125 -->
     <g fill="#cdd4e0">
-      <rect x="755" y="50" width="75.1" height="18"></rect>
-      <rect x="755" y="98" width="72.9" height="18"></rect>
-      <rect x="755" y="146" width="73.9" height="18"></rect>
-      <rect x="755" y="194" width="68.6" height="18"></rect>
-      <rect x="755" y="242" width="66.4" height="18"></rect>
+      <rect x="755" y="50" width="75.1" height="18"/>
+      <rect x="755" y="98" width="72.9" height="18"/>
+      <rect x="755" y="146" width="73.9" height="18"/>
+      <rect x="755" y="194" width="68.6" height="18"/>
+      <rect x="755" y="242" width="66.4" height="18"/>
     </g>
     <g font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">
       <text x="836" y="63">0.601</text>
@@ -2296,7 +2278,7 @@ body.sls-starops-article figcaption {
       <text x="520" y="22" text-anchor="middle">35</text>
       <text x="820" y="22" text-anchor="middle">50</text>
     </g>
-    <line x1="220" y1="30" x2="820" y2="30" stroke="#e2e2e3"></line>
+    <line x1="220" y1="30" x2="820" y2="30" stroke="#e2e2e3"/>
     <g font-family="Bricolage Grotesque, sans-serif" font-size="12" fill="#1b1b1f">
       <text x="210" y="62" text-anchor="end">ReAct</text>
       <text x="210" y="104" text-anchor="end">OpenClaw</text>
@@ -2305,40 +2287,40 @@ body.sls-starops-article figcaption {
       <text x="210" y="230" text-anchor="end">Plan-and-Execute</text>
       <text x="210" y="272" text-anchor="end" font-weight="700">5 个框架汇总</text>
     </g>
-    <line x1="336" y1="62" x2="794.8" y2="62" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="336" cy="62" r="5" fill="#99a0ab"></circle>
-    <circle cx="794.8" cy="62" r="5" fill="#3451b2"></circle>
+    <line x1="336" y1="62" x2="794.8" y2="62" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="336" cy="62" r="5" fill="#99a0ab"/>
+    <circle cx="794.8" cy="62" r="5" fill="#3451b2"/>
     <text x="328" y="66" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">25.80</text>
     <text x="828" y="66" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+89%</text>
-    <line x1="269.6" y1="104" x2="708.0" y2="104" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="269.6" cy="104" r="5" fill="#99a0ab"></circle>
-    <circle cx="708.0" cy="104" r="5" fill="#3451b2"></circle>
+    <line x1="269.6" y1="104" x2="708.0" y2="104" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="269.6" cy="104" r="5" fill="#99a0ab"/>
+    <circle cx="708.0" cy="104" r="5" fill="#3451b2"/>
     <text x="262" y="108" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">22.48</text>
     <text x="828" y="108" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+98%</text>
-    <line x1="361.2" y1="146" x2="721.6" y2="146" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="361.2" cy="146" r="5" fill="#99a0ab"></circle>
-    <circle cx="721.6" cy="146" r="5" fill="#3451b2"></circle>
+    <line x1="361.2" y1="146" x2="721.6" y2="146" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="361.2" cy="146" r="5" fill="#99a0ab"/>
+    <circle cx="721.6" cy="146" r="5" fill="#3451b2"/>
     <text x="353" y="150" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">27.06</text>
     <text x="828" y="150" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+67%</text>
-    <line x1="338.4" y1="188" x2="396.2" y2="188" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="338.4" cy="188" r="5" fill="#99a0ab"></circle>
-    <circle cx="396.2" cy="188" r="5" fill="#3451b2"></circle>
+    <line x1="338.4" y1="188" x2="396.2" y2="188" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="338.4" cy="188" r="5" fill="#99a0ab"/>
+    <circle cx="396.2" cy="188" r="5" fill="#3451b2"/>
     <text x="330" y="192" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">25.92</text>
     <text x="828" y="192" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">跨域增益</text>
-    <line x1="282.6" y1="230" x2="327.4" y2="230" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="282.6" cy="230" r="5" fill="#3451b2"></circle>
-    <circle cx="327.4" cy="230" r="5" fill="#99a0ab"></circle>
+    <line x1="282.6" y1="230" x2="327.4" y2="230" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="282.6" cy="230" r="5" fill="#3451b2"/>
+    <circle cx="327.4" cy="230" r="5" fill="#99a0ab"/>
     <text x="335" y="234" font-family="Space Mono, monospace" font-size="10" fill="#476582">25.37</text>
     <text x="828" y="234" font-family="Space Mono, monospace" font-size="10" fill="#d97706" font-weight="700">−9%</text>
-    <line x1="325.8" y1="272" x2="574.8" y2="272" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="325.8" cy="272" r="6" fill="#99a0ab"></circle>
-    <circle cx="574.8" cy="272" r="6" fill="#3451b2"></circle>
+    <line x1="325.8" y1="272" x2="574.8" y2="272" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="325.8" cy="272" r="6" fill="#99a0ab"/>
+    <circle cx="574.8" cy="272" r="6" fill="#3451b2"/>
     <text x="317" y="276" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582" font-weight="700">25.29</text>
     <text x="828" y="276" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+49%</text>
     <g font-family="Space Mono, monospace" font-size="9" fill="#476582">
-      <circle cx="240" cy="302" r="4" fill="#99a0ab"></circle>
+      <circle cx="240" cy="302" r="4" fill="#99a0ab"/>
       <text x="250" y="305">IaaS</text>
-      <circle cx="295" cy="302" r="4" fill="#3451b2"></circle>
+      <circle cx="295" cy="302" r="4" fill="#3451b2"/>
       <text x="305" y="305">PaaS</text>
     </g>
   </svg>
@@ -3221,7 +3203,7 @@ window.addEventListener('load', __schedule);
   <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" font-family="'Bricolage Grotesque', 'Noto Serif SC', sans-serif">
     <defs>
       <marker id="arrow40" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#99a0ab"></path>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#99a0ab"/>
       </marker>
     </defs>
 
@@ -3231,43 +3213,43 @@ window.addEventListener('load', __schedule);
     <text x="750" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">组件</text>
 
     <!-- Row 1: 实体一致性 -->
-    <rect x="20" y="60" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="60" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="92" text-anchor="middle" fill="#213547" font-size="15" font-weight="600">实体一致性不足</text>
     <text x="130" y="113" text-anchor="middle" fill="#476582" font-size="13">跨源对象难统一</text>
 
-    <line x1="248" y1="98" x2="612" y2="98" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow40)"></line>
+    <line x1="248" y1="98" x2="612" y2="98" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow40)"/>
     <text x="430" y="90" text-anchor="middle" fill="#476582" font-size="12">统一实体 ID · 关系图谱 · 6 类数据域</text>
 
-    <rect x="620" y="60" width="220" height="76" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="60" width="220" height="76" rx="6" fill="#3451b2"/>
     <text x="730" y="92" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">UModel 知识图谱</text>
     <text x="730" y="113" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">§ 4.2</text>
 
     <!-- Row 2: 调查路径 -->
-    <rect x="20" y="155" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="155" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="187" text-anchor="middle" fill="#213547" font-size="15" font-weight="600">调查路径不稳定</text>
     <text x="130" y="208" text-anchor="middle" fill="#476582" font-size="13">证据收集易偏移</text>
 
-    <line x1="248" y1="193" x2="612" y2="193" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow40)"></line>
+    <line x1="248" y1="193" x2="612" y2="193" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow40)"/>
     <text x="430" y="185" text-anchor="middle" fill="#476582" font-size="12">拓扑遍历 · 必检清单 · 路径手册</text>
 
-    <rect x="620" y="155" width="220" height="76" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="155" width="220" height="76" rx="6" fill="#3451b2"/>
     <text x="730" y="187" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">多阶段管道</text>
     <text x="730" y="208" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">§ 4.3</text>
 
     <!-- Row 3: 结论可信度 -->
-    <rect x="20" y="250" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="250" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="282" text-anchor="middle" fill="#213547" font-size="15" font-weight="600">结论可信度不足</text>
     <text x="130" y="303" text-anchor="middle" fill="#476582" font-size="13">输出缺少独立复核</text>
 
-    <line x1="248" y1="288" x2="612" y2="288" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow40)"></line>
+    <line x1="248" y1="288" x2="612" y2="288" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow40)"/>
     <text x="430" y="280" text-anchor="middle" fill="#476582" font-size="12">拓扑顺序 · Trace 深度 · 规范结论</text>
 
-    <rect x="620" y="250" width="220" height="76" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="250" width="220" height="76" rx="6" fill="#3451b2"/>
     <text x="730" y="282" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">结论复核</text>
     <text x="730" y="303" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">§ 4.4</text>
 
     <!-- Bottom tether: UModel 同时供给管道 (dashed) -->
-    <path d="M 730 138 C 730 165, 540 200, 600 193" stroke="#cdd4e0" stroke-width="1" stroke-dasharray="3 3" fill="none"></path>
+    <path d="M 730 138 C 730 165, 540 200, 600 193" stroke="#cdd4e0" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
     <text x="490" y="350" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="1">UModel 同时为多阶段管道提供实体与路径检索基础</text>
   </svg>
   <div class="viz-sub">图 4-0 给出三类能力缺口与三个组件的对应关系。UModel 处理实体一致性，同时为多阶段管道提供路径检索基础；结论复核位于输出端，用于判断诊断结果是否具备进入处置或复盘的证据条件。</div>
@@ -3286,7 +3268,7 @@ window.addEventListener('load', __schedule);
 <div class="summary">在固定 Agent Agent Framework与 LLM 模型的对照条件下，5 个开源框架汇总后的综合分由 IaaS 工具入口的 25.29 提升至 PaaS 工具入口的 37.74，绝对提升 12.45，相对提升 49%(详见 <a href="#sec-3">第三章</a> 图 3-2)。上述提升的工程根源在于实体命名歧义在工具层被提前消化，Agent 围绕同一对象的重复查询大幅减少，调查路径在调用源头即可获得稳定的实体锚点。本节成果由 <a href="#sec-5">第五章</a>同 评测集 同 评分器 对比进一步支撑。</div>
 <figure class="viz-fig umodel-hero" aria-label="Hero 3 — UModel knowledge graph">
   <div class="viz-lab">图 4-1 · UModel 调查图谱 · U-SPL 一行查询 vs 传统 PromQL 多步拼接</div>
-  <img src="assets/umodel_investigation_graph.jpg" alt="UModel investigation graph: U-SPL vs traditional PromQL" style="width:100%;height:auto;display:block;border:1px solid var(--sls-doc-border);border-radius:8px;">
+  <img src="assets/umodel_investigation_graph.jpg" alt="UModel investigation graph: U-SPL vs traditional PromQL" style="width:100%;height:auto;display:block;border:1px solid var(--sls-doc-border);border-radius:8px;"/>
   <div class="viz-sub">左侧展示 UModel 将 service、k8s pod、node、host、database 等对象通过变更链路、基础设施关系和依赖关系连接起来，使 Agent 可以沿实体关系扩展调查范围。右侧对比同一类指标查询的两种实现：U-SPL 通过一行 entity-call 获取 golden metrics；传统 PromQL 需要查找指标库、编写查询、反向映射 label 并统一输出，跨系统拼接步骤更多，维护成本更高。</div>
 </figure>
 </div>
@@ -3305,34 +3287,34 @@ window.addEventListener('load', __schedule);
   <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" font-family="'Bricolage Grotesque', 'Noto Serif SC', sans-serif">
     <defs>
       <marker id="arrow42" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#99a0ab"></path>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#99a0ab"/>
       </marker>
     </defs>
     <text x="130" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">关注问题</text>
     <text x="440" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">机制要点</text>
     <text x="750" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">层</text>
-    <rect x="20" y="60" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="60" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="92" text-anchor="middle" fill="#213547" font-size="15" font-weight="600">查哪里</text>
     <text x="130" y="113" text-anchor="middle" fill="#476582" font-size="13">嫌疑实体范围</text>
-    <line x1="248" y1="98" x2="612" y2="98" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow42)"></line>
+    <line x1="248" y1="98" x2="612" y2="98" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow42)"/>
     <text x="430" y="90" text-anchor="middle" fill="#476582" font-size="12">沿拓扑深度优先扩展</text>
-    <rect x="620" y="60" width="220" height="76" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="60" width="220" height="76" rx="6" fill="#3451b2"/>
     <text x="730" y="92" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">拓扑遍历</text>
     <text x="730" y="113" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">基础设施 → 实例</text>
-    <rect x="20" y="155" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="155" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="187" text-anchor="middle" fill="#213547" font-size="15" font-weight="600">查什么</text>
     <text x="130" y="208" text-anchor="middle" fill="#476582" font-size="13">每类实体的核查维度</text>
-    <line x1="248" y1="193" x2="612" y2="193" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow42)"></line>
+    <line x1="248" y1="193" x2="612" y2="193" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow42)"/>
     <text x="430" y="185" text-anchor="middle" fill="#476582" font-size="12">强制核查不可跳过</text>
-    <rect x="620" y="155" width="220" height="76" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="155" width="220" height="76" rx="6" fill="#3451b2"/>
     <text x="730" y="187" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">必检清单</text>
     <text x="730" y="208" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">指标 · 调用链 · 事件</text>
-    <rect x="20" y="250" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="250" width="220" height="76" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="282" text-anchor="middle" fill="#213547" font-size="15" font-weight="600">怎么查</text>
     <text x="130" y="303" text-anchor="middle" fill="#476582" font-size="13">针对征兆引导顺序</text>
-    <line x1="248" y1="288" x2="612" y2="288" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow42)"></line>
+    <line x1="248" y1="288" x2="612" y2="288" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow42)"/>
     <text x="430" y="280" text-anchor="middle" fill="#476582" font-size="12">入口 · 机制 · 依赖三类手册</text>
-    <rect x="620" y="250" width="220" height="76" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="250" width="220" height="76" rx="6" fill="#3451b2"/>
     <text x="730" y="282" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">路径手册</text>
     <text x="730" y="303" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">沉淀专家排查经验</text>
     <text x="440" y="358" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="1">三层在同一轮迭代叠加，直到证据闭环且复核通过</text>
@@ -3406,42 +3388,42 @@ window.addEventListener('load', __schedule);
   <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" font-family="'Bricolage Grotesque', 'Noto Serif SC', sans-serif">
     <defs>
       <marker id="arrow43" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-        <path d="M 0 0 L 10 5 L 0 10 z" fill="#99a0ab"></path>
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#99a0ab"/>
       </marker>
     </defs>
     <text x="130" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">告警征兆</text>
     <text x="440" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">复核要求</text>
     <text x="750" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">检查环节</text>
-    <rect x="20" y="60" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="60" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="85" text-anchor="middle" fill="#213547" font-size="14" font-weight="600">任何告警</text>
     <text x="130" y="103" text-anchor="middle" fill="#476582" font-size="12">进入复核</text>
-    <line x1="248" y1="90" x2="612" y2="90" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"></line>
+    <line x1="248" y1="90" x2="612" y2="90" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"/>
     <text x="430" y="82" text-anchor="middle" fill="#476582" font-size="12">先拓扑后调用链，顺序不能颠倒</text>
-    <rect x="620" y="60" width="220" height="60" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="60" width="220" height="60" rx="6" fill="#3451b2"/>
     <text x="730" y="85" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600">拓扑顺序</text>
     <text x="730" y="103" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">建图 → 读链</text>
-    <rect x="20" y="135" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="135" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="160" text-anchor="middle" fill="#213547" font-size="14" font-weight="600">异常调用链</text>
     <text x="130" y="178" text-anchor="middle" fill="#476582" font-size="12">表象需深查</text>
-    <line x1="248" y1="165" x2="612" y2="165" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"></line>
+    <line x1="248" y1="165" x2="612" y2="165" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"/>
     <text x="430" y="157" text-anchor="middle" fill="#476582" font-size="12">异常 vs 正常、异常 vs 基线 对比</text>
-    <rect x="620" y="135" width="220" height="60" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="135" width="220" height="60" rx="6" fill="#3451b2"/>
     <text x="730" y="160" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600">Trace 深度分析</text>
     <text x="730" y="178" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">属性差 · 时段差</text>
-    <rect x="20" y="210" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="210" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="235" text-anchor="middle" fill="#213547" font-size="14" font-weight="600">流量下跌</text>
     <text x="130" y="253" text-anchor="middle" fill="#476582" font-size="12">自身却健康</text>
-    <line x1="248" y1="240" x2="612" y2="240" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"></line>
+    <line x1="248" y1="240" x2="612" y2="240" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"/>
     <text x="430" y="232" text-anchor="middle" fill="#476582" font-size="12">追溯主要丢量上游</text>
-    <rect x="620" y="210" width="220" height="60" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="210" width="220" height="60" rx="6" fill="#3451b2"/>
     <text x="730" y="235" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600">上游归因</text>
     <text x="730" y="253" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">扇入分析</text>
-    <rect x="20" y="285" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="20" y="285" width="220" height="60" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="130" y="310" text-anchor="middle" fill="#213547" font-size="14" font-weight="600">Pod 重启 / 探针失败</text>
     <text x="130" y="328" text-anchor="middle" fill="#476582" font-size="12">表象不是结论</text>
-    <line x1="248" y1="315" x2="612" y2="315" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"></line>
+    <line x1="248" y1="315" x2="612" y2="315" stroke="#cdd4e0" stroke-width="1" marker-end="url(#arrow43)"/>
     <text x="430" y="307" text-anchor="middle" fill="#476582" font-size="12">逐层向下追真实根因</text>
-    <rect x="620" y="285" width="220" height="60" rx="6" fill="#3451b2"></rect>
+    <rect x="620" y="285" width="220" height="60" rx="6" fill="#3451b2"/>
     <text x="730" y="310" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="600">深因追溯</text>
     <text x="730" y="328" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">工作负载 · 探针</text>
     <text x="440" y="368" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="1">五道环节均为强制，Agent 不能绕过，最终输出需有机制证据支撑</text>
@@ -3457,17 +3439,17 @@ window.addEventListener('load', __schedule);
   <svg viewBox="0 0 880 380" xmlns="http://www.w3.org/2000/svg" font-family="'Bricolage Grotesque', 'Noto Serif SC', sans-serif">
     <text x="130" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">原则</text>
     <text x="610" y="36" text-anchor="middle" fill="#99a0ab" font-family="'Space Mono', monospace" font-size="10" letter-spacing="2">含义</text>
-    <rect x="20" y="60" width="220" height="120" rx="6" fill="#3451b2"></rect>
+    <rect x="20" y="60" width="220" height="120" rx="6" fill="#3451b2"/>
     <text x="130" y="100" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">① 只用已有证据</text>
     <text x="130" y="124" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">不臆测</text>
-    <rect x="260" y="60" width="600" height="120" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="260" y="60" width="600" height="120" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="280" y="92" fill="#213547" font-size="13" font-weight="600">所有判断基于已完成的观测结果。</text>
     <text x="280" y="115" fill="#476582" font-size="12.5">查询失败 / 超时 / 空数据 = 证据不足。</text>
     <text x="280" y="138" fill="#476582" font-size="12.5">空结果既不能用来支撑，也不能用来反驳任何判断。</text>
-    <rect x="20" y="200" width="220" height="120" rx="6" fill="#3451b2"></rect>
+    <rect x="20" y="200" width="220" height="120" rx="6" fill="#3451b2"/>
     <text x="130" y="240" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="600">② 相关 ≠ 因果</text>
     <text x="130" y="264" text-anchor="middle" fill="#bccaef" font-family="'Space Mono', monospace" font-size="11">三重验证</text>
-    <rect x="260" y="200" width="600" height="120" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"></rect>
+    <rect x="260" y="200" width="600" height="120" rx="6" fill="#f6f6f7" stroke="#e2e2e3" stroke-width="1"/>
     <text x="280" y="232" fill="#213547" font-size="13" font-weight="600">机制断言需要时序先行、机制闭合、传播对齐三重验证。</text>
     <text x="280" y="255" fill="#476582" font-size="12.5">仅凭指标同步上升不能直接下结论。</text>
     <text x="280" y="278" fill="#476582" font-size="12.5">证据三件套：故障实体 · 症状量化 · 因果链路，缺一不可。</text>
@@ -3754,7 +3736,7 @@ window.addEventListener('load', __schedule);
 
   <svg viewBox="0 0 880 420" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
     <g font-family="Space Mono, monospace" font-size="10" fill="#99a0ab">
-      <line x1="220" y1="370" x2="760" y2="370" stroke="#e2e2e3" stroke-width="1"></line>
+      <line x1="220" y1="370" x2="760" y2="370" stroke="#e2e2e3" stroke-width="1"/>
       <g text-anchor="middle">
         <text x="220" y="386">0</text>
         <text x="328" y="386">20</text>
@@ -3764,10 +3746,10 @@ window.addEventListener('load', __schedule);
         <text x="760" y="386">100</text>
       </g>
       <g stroke="#e2e2e3" stroke-width="1">
-        <line x1="328" y1="20" x2="328" y2="370" stroke-dasharray="2 4"></line>
-        <line x1="436" y1="20" x2="436" y2="370" stroke-dasharray="2 4"></line>
-        <line x1="544" y1="20" x2="544" y2="370" stroke-dasharray="2 4"></line>
-        <line x1="652" y1="20" x2="652" y2="370" stroke-dasharray="2 4"></line>
+        <line x1="328" y1="20" x2="328" y2="370" stroke-dasharray="2 4"/>
+        <line x1="436" y1="20" x2="436" y2="370" stroke-dasharray="2 4"/>
+        <line x1="544" y1="20" x2="544" y2="370" stroke-dasharray="2 4"/>
+        <line x1="652" y1="20" x2="652" y2="370" stroke-dasharray="2 4"/>
       </g>
       <text x="490" y="410" text-anchor="middle" font-size="10" fill="#476582" letter-spacing="1">综合分 O · 0 – 100</text>
     </g>
@@ -3775,87 +3757,87 @@ window.addEventListener('load', __schedule);
       <!-- F010 slowSQL : opencl 16.78, st 96.00, Δ +79.2 -->
       <g transform="translate(0,30)">
         <text x="210" y="4" text-anchor="end">F010 · slowSQL</text>
-        <line x1="310.6" y1="0" x2="738.4" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="310.6" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="738.4" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="310.6" y1="0" x2="738.4" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="310.6" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="738.4" cy="0" r="6" fill="#3451b2"/>
         <text x="750" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+79.2</text>
       </g>
       <!-- F026 nodeCpuHigh : opencl 13.78, st 70.78, Δ +57.0 -->
       <g transform="translate(0,63)">
         <text x="210" y="4" text-anchor="end">F026 · nodeCpuHigh</text>
-        <line x1="294.4" y1="0" x2="602.2" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="294.4" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="602.2" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="294.4" y1="0" x2="602.2" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="294.4" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="602.2" cy="0" r="6" fill="#3451b2"/>
         <text x="614" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+57.0</text>
       </g>
       <!-- F036 replicaScaleDown : opencl 41.26, st 76.17, Δ +34.9 -->
       <g transform="translate(0,96)">
         <text x="210" y="4" text-anchor="end">F036 · replicaScaleDown</text>
-        <line x1="442.8" y1="0" x2="631.3" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="442.8" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="631.3" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="442.8" y1="0" x2="631.3" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="442.8" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="631.3" cy="0" r="6" fill="#3451b2"/>
         <text x="643" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+34.9</text>
       </g>
       <!-- F014 httpError5xx : opencl 50.00, st 81.33, Δ +31.3 -->
       <g transform="translate(0,129)">
         <text x="210" y="4" text-anchor="end">F014 · httpError5xx</text>
-        <line x1="490" y1="0" x2="659.2" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="490" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="659.2" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="490" y1="0" x2="659.2" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="490" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="659.2" cy="0" r="6" fill="#3451b2"/>
         <text x="671" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+31.3</text>
       </g>
       <!-- F023 nullPointerException : opencl 64.58, st 88.44, Δ +23.9 -->
       <g transform="translate(0,162)">
         <text x="210" y="4" text-anchor="end">F023 · nullPointerException</text>
-        <line x1="568.7" y1="0" x2="697.6" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="568.7" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="697.6" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="568.7" y1="0" x2="697.6" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="568.7" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="697.6" cy="0" r="6" fill="#3451b2"/>
         <text x="709" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+23.9</text>
       </g>
       <!-- F029 redisUnavailable : opencl 62.78, st 84.78, Δ +22.0 -->
       <g transform="translate(0,195)">
         <text x="210" y="4" text-anchor="end">F029 · redisUnavailable</text>
-        <line x1="559" y1="0" x2="677.8" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="559" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="677.8" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="559" y1="0" x2="677.8" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="559" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="677.8" cy="0" r="6" fill="#3451b2"/>
         <text x="689" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+22.0</text>
       </g>
       <!-- F007 memoryPressure : opencl 67.22, st 80.67, Δ +13.4 -->
       <g transform="translate(0,228)">
         <text x="210" y="4" text-anchor="end">F007 · memoryPressure</text>
-        <line x1="583" y1="0" x2="655.6" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="583" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="655.6" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="583" y1="0" x2="655.6" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="583" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="655.6" cy="0" r="6" fill="#3451b2"/>
         <text x="667" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+13.4</text>
       </g>
       <!-- F034 cpuFullLoad : opencl 62.17, st 64.94, Δ +2.8 -->
       <g transform="translate(0,261)">
         <text x="210" y="4" text-anchor="end">F034 · cpuFullLoad</text>
-        <line x1="555.7" y1="0" x2="570.7" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="555.7" cy="0" r="6" fill="#99a0ab"></circle>
-        <circle cx="570.7" cy="0" r="6" fill="#3451b2"></circle>
+        <line x1="555.7" y1="0" x2="570.7" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="555.7" cy="0" r="6" fill="#99a0ab"/>
+        <circle cx="570.7" cy="0" r="6" fill="#3451b2"/>
         <text x="582" y="4" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+2.8</text>
       </g>
       <!-- F006 trafficSurge : opencl 47.33, st 43.78, Δ −3.6 -->
       <g transform="translate(0,294)">
         <text x="210" y="4" text-anchor="end">F006 · trafficSurge</text>
-        <line x1="456.4" y1="0" x2="475.6" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="456.4" cy="0" r="6" fill="#3451b2"></circle>
-        <circle cx="475.6" cy="0" r="6" fill="#99a0ab"></circle>
+        <line x1="456.4" y1="0" x2="475.6" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="456.4" cy="0" r="6" fill="#3451b2"/>
+        <circle cx="475.6" cy="0" r="6" fill="#99a0ab"/>
         <text x="487" y="4" font-family="Space Mono, monospace" font-size="11" fill="#d97706" font-weight="700">−3.6</text>
       </g>
       <!-- F016 rateLimiting : opencl 84.33, st 65.44, Δ −18.9 -->
       <g transform="translate(0,327)">
         <text x="210" y="4" text-anchor="end">F016 · rateLimiting</text>
-        <line x1="573.4" y1="0" x2="675.4" y2="0" stroke="#cdd4e0" stroke-width="2"></line>
-        <circle cx="573.4" cy="0" r="6" fill="#3451b2"></circle>
-        <circle cx="675.4" cy="0" r="6" fill="#99a0ab"></circle>
+        <line x1="573.4" y1="0" x2="675.4" y2="0" stroke="#cdd4e0" stroke-width="2"/>
+        <circle cx="573.4" cy="0" r="6" fill="#3451b2"/>
+        <circle cx="675.4" cy="0" r="6" fill="#99a0ab"/>
         <text x="687" y="4" font-family="Space Mono, monospace" font-size="11" fill="#d97706" font-weight="700">−18.9</text>
       </g>
     </g>
     <g font-family="Space Mono, monospace" font-size="10" fill="#476582">
-      <circle cx="220" cy="14" r="5" fill="#99a0ab"></circle><text x="232" y="18" letter-spacing="1">OpenClaw + DeepSeek-V4-Pro</text>
-      <circle cx="450" cy="14" r="5" fill="#3451b2"></circle><text x="462" y="18" letter-spacing="1">STAROps</text>
+      <circle cx="220" cy="14" r="5" fill="#99a0ab"/><text x="232" y="18" letter-spacing="1">OpenClaw + DeepSeek-V4-Pro</text>
+      <circle cx="450" cy="14" r="5" fill="#3451b2"/><text x="462" y="18" letter-spacing="1">STAROps</text>
     </g>
   </svg>
   <div class="viz-analysis">结果解读：差距在故障类型之间并不均匀。slowSQL、nodeCpuHigh 等需要跨服务依赖证据组合的场景，与 Eadro<sup><a href="#ref-6" class="ref-link">[6]</a></sup> 对微服务故障难度的观察方向相近，也更能体现实体关系和调查路径约束的作用。trafficSurge / cpuFullLoad 接近持平，可能与 QPS 突增、CPU 100% 等强症状信号较易识别有关。rateLimiting 中 STAROps 低于对照组，提示限流类故障仍需要补充外部策略、上游状态和边界观测信号。</div>
@@ -3873,34 +3855,34 @@ window.addEventListener('load', __schedule);
       <text x="520" y="22" text-anchor="middle">0.5</text>
       <text x="820" y="22" text-anchor="middle">1.0</text>
     </g>
-    <line x1="220" y1="30" x2="820" y2="30" stroke="#e2e2e3"></line>
+    <line x1="220" y1="30" x2="820" y2="30" stroke="#e2e2e3"/>
     <g font-family="Bricolage Grotesque, sans-serif" font-size="12" fill="#1b1b1f">
       <text x="210" y="68" text-anchor="end">实体定位</text>
       <text x="210" y="128" text-anchor="end">故障类型</text>
       <text x="210" y="188" text-anchor="end">调查过程</text>
     </g>
     <!-- entity: STAROps 0.900, opencl 0.528 -->
-    <rect x="220" y="50" width="540" height="14" fill="#3451b2"></rect>
-    <rect x="220" y="66" width="316.8" height="14" fill="#99a0ab"></rect>
+    <rect x="220" y="50" width="540" height="14" fill="#3451b2"/>
+    <rect x="220" y="66" width="316.8" height="14" fill="#99a0ab"/>
     <text x="764" y="61" font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">0.900</text>
     <text x="541" y="77" font-family="Space Mono, monospace" font-size="10" fill="#476582">0.528</text>
     <text x="828" y="76" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+0.372</text>
     <!-- fault: STAROps 0.580, opencl 0.333 -->
-    <rect x="220" y="110" width="348" height="14" fill="#3451b2"></rect>
-    <rect x="220" y="126" width="199.8" height="14" fill="#99a0ab"></rect>
+    <rect x="220" y="110" width="348" height="14" fill="#3451b2"/>
+    <rect x="220" y="126" width="199.8" height="14" fill="#99a0ab"/>
     <text x="572" y="121" font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">0.580</text>
     <text x="424" y="137" font-family="Space Mono, monospace" font-size="10" fill="#476582">0.333</text>
     <text x="828" y="136" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+0.247</text>
     <!-- process: STAROps 0.750, opencl 0.698 -->
-    <rect x="220" y="170" width="450" height="14" fill="#3451b2"></rect>
-    <rect x="220" y="186" width="418.8" height="14" fill="#99a0ab"></rect>
+    <rect x="220" y="170" width="450" height="14" fill="#3451b2"/>
+    <rect x="220" y="186" width="418.8" height="14" fill="#99a0ab"/>
     <text x="674" y="181" font-family="Space Mono, monospace" font-size="10" fill="#1b1b1f">0.750</text>
     <text x="643" y="197" font-family="Space Mono, monospace" font-size="10" fill="#476582">0.698</text>
     <text x="828" y="196" font-family="Space Mono, monospace" font-size="11" fill="#3451b2" font-weight="700">+0.052</text>
     <g font-family="Space Mono, monospace" font-size="9" fill="#476582">
-      <rect x="510" y="208" width="12" height="6" fill="#3451b2"></rect>
+      <rect x="510" y="208" width="12" height="6" fill="#3451b2"/>
       <text x="526" y="214">STAROps</text>
-      <rect x="680" y="208" width="12" height="6" fill="#99a0ab"></rect>
+      <rect x="680" y="208" width="12" height="6" fill="#99a0ab"/>
       <text x="696" y="214">OpenClaw + DeepSeek-V4-Pro</text>
     </g>
   </svg>
@@ -3916,7 +3898,7 @@ window.addEventListener('load', __schedule);
       <text x="520" y="22" text-anchor="middle">65</text>
       <text x="820" y="22" text-anchor="middle">100</text>
     </g>
-    <line x1="220" y1="30" x2="820" y2="30" stroke="#e2e2e3"></line>
+    <line x1="220" y1="30" x2="820" y2="30" stroke="#e2e2e3"/>
     <g font-family="Bricolage Grotesque, sans-serif" font-size="12" fill="#1b1b1f">
       <text x="210" y="62" text-anchor="end">数据库</text>
       <text x="210" y="102" text-anchor="end">节点</text>
@@ -3926,39 +3908,39 @@ window.addEventListener('load', __schedule);
     </g>
     <!-- helper x = 220 + (v-30)*8.571 -->
     <!-- 数据库 opencl 39.78→x=303.49; STAROps 90.39→x=737.32. Δ+50.61 -->
-    <line x1="303.49" y1="62" x2="737.32" y2="62" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="303.49" cy="62" r="5" fill="#99a0ab"></circle>
-    <circle cx="737.32" cy="62" r="5" fill="#3451b2"></circle>
+    <line x1="303.49" y1="62" x2="737.32" y2="62" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="303.49" cy="62" r="5" fill="#99a0ab"/>
+    <circle cx="737.32" cy="62" r="5" fill="#3451b2"/>
     <text x="296" y="66" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">39.8</text>
     <text x="828" y="66" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+50.6</text>
     <!-- 节点 opencl 37.97→x=288.00; STAROps 67.86→x=544.13. Δ+29.89 -->
-    <line x1="288.00" y1="102" x2="544.13" y2="102" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="288.00" cy="102" r="5" fill="#99a0ab"></circle>
-    <circle cx="544.13" cy="102" r="5" fill="#3451b2"></circle>
+    <line x1="288.00" y1="102" x2="544.13" y2="102" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="288.00" cy="102" r="5" fill="#99a0ab"/>
+    <circle cx="544.13" cy="102" r="5" fill="#3451b2"/>
     <text x="280" y="106" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">38.0</text>
     <text x="828" y="106" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+29.9</text>
     <!-- 代码 opencl 57.29→x=453.69; STAROps 84.89→x=690.21. Δ+27.60 -->
-    <line x1="453.69" y1="142" x2="690.21" y2="142" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="453.69" cy="142" r="5" fill="#99a0ab"></circle>
-    <circle cx="690.21" cy="142" r="5" fill="#3451b2"></circle>
+    <line x1="453.69" y1="142" x2="690.21" y2="142" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="453.69" cy="142" r="5" fill="#99a0ab"/>
+    <circle cx="690.21" cy="142" r="5" fill="#3451b2"/>
     <text x="446" y="146" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">57.3</text>
     <text x="828" y="146" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+27.6</text>
     <!-- 资源 opencl 54.24→x=427.81; STAROps 78.42→x=635.03. Δ+24.18 -->
-    <line x1="427.81" y1="182" x2="635.03" y2="182" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="427.81" cy="182" r="5" fill="#99a0ab"></circle>
-    <circle cx="635.03" cy="182" r="5" fill="#3451b2"></circle>
+    <line x1="427.81" y1="182" x2="635.03" y2="182" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="427.81" cy="182" r="5" fill="#99a0ab"/>
+    <circle cx="635.03" cy="182" r="5" fill="#3451b2"/>
     <text x="420" y="186" text-anchor="end" font-family="Space Mono, monospace" font-size="10" fill="#476582">54.2</text>
     <text x="828" y="186" font-family="Space Mono, monospace" font-size="10" fill="#3451b2" font-weight="700">+24.2</text>
     <!-- 流量 opencl 65.83→x=526.78; STAROps 54.61→x=430.81 (reverse) -->
-    <line x1="430.81" y1="222" x2="526.78" y2="222" stroke="#cdd4e0" stroke-width="2"></line>
-    <circle cx="430.81" cy="222" r="5" fill="#3451b2"></circle>
-    <circle cx="526.78" cy="222" r="5" fill="#99a0ab"></circle>
+    <line x1="430.81" y1="222" x2="526.78" y2="222" stroke="#cdd4e0" stroke-width="2"/>
+    <circle cx="430.81" cy="222" r="5" fill="#3451b2"/>
+    <circle cx="526.78" cy="222" r="5" fill="#99a0ab"/>
     <text x="534" y="226" font-family="Space Mono, monospace" font-size="10" fill="#476582">65.8</text>
     <text x="828" y="226" font-family="Space Mono, monospace" font-size="10" fill="#d97706" font-weight="700">−11.2</text>
     <g font-family="Space Mono, monospace" font-size="9" fill="#476582">
-      <circle cx="320" cy="248" r="4" fill="#99a0ab"></circle>
+      <circle cx="320" cy="248" r="4" fill="#99a0ab"/>
       <text x="330" y="251">OpenClaw + DeepSeek-V4-Pro</text>
-      <circle cx="540" cy="248" r="4" fill="#3451b2"></circle>
+      <circle cx="540" cy="248" r="4" fill="#3451b2"/>
       <text x="550" y="251">STAROps</text>
     </g>
   </svg>
@@ -4282,9 +4264,9 @@ if (window.ChartAnnotation) Chart.register(window.ChartAnnotation);
 
 </div>
 
-
+</main>
 </div>
-<!-- /content -->
+</div><!-- /content -->
 
 <div class="aside">
   <div class="aside-container">
@@ -4333,9 +4315,9 @@ if (window.ChartAnnotation) Chart.register(window.ChartAnnotation);
   </div>
 </div><!-- /aside -->
 
-<!-- /container -->
-<!-- /VPDoc -->
-<!-- /VPContent -->
+</div><!-- /container -->
+</div><!-- /VPDoc -->
+</div><!-- /VPContent -->
 
 <div class="tt" id="tt"></div>
 
@@ -4448,10 +4430,8 @@ if (window.ChartAnnotation) Chart.register(window.ChartAnnotation);
 })();
 </script>
 
-
-
-
-<style id="STAROPS_CASE_TREE_ASSETS">
+</div>
+<style id="STAROPS_BENCHMARK_SIDEBAR_ASSETS">
 body.sls-starops-article .VPSidebar .group {
   padding: 0 !important;
 }
@@ -4476,7 +4456,9 @@ body.sls-starops-article .VPSidebar .VPSidebarItem.level-0 > .item > h2.text {
   font-size: 13px !important;
   letter-spacing: 0 !important;
   line-height: 20px !important;
+  margin: 0 !important;
   min-width: 0;
+  padding: 4px 0 !important;
 }
 body.sls-starops-article .VPSidebar .VPSidebarItem.level-0 > .item::after {
   content: none !important;
@@ -4629,8 +4611,23 @@ body.sls-starops-article .VPSidebar .nav-sub-item.active {
   color: rgb(68, 100, 240) !important;
   font-weight: 600 !important;
 }
+@media (max-width: 960px) {
+  html body.sls-starops-article aside.VPSidebar {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+  html body.sls-starops-article .VPContent,
+  html body.sls-starops-article .VPContent.has-sidebar,
+  html body.sls-starops-article .VPDoc.has-sidebar {
+    padding-left: 0 !important;
+  }
+  html body.sls-starops-article .VPDoc > .container > .content {
+    margin-left: 0 !important;
+  }
+}
 </style>
-<script id="STAROPS_CASE_TREE_SCRIPT">
+<script id="STAROPS_BENCHMARK_SIDEBAR_SCRIPT">
 (function() {
   function initStaropsSidebarFold() {
     var sections = document.querySelectorAll('.VPSidebar .VPSidebarItem.level-0');
@@ -4700,4 +4697,6 @@ body.sls-starops-article .VPSidebar .nav-sub-item.active {
     initAll();
   }
 })();
-</script></html>
+</script>
+</body>
+</html>
