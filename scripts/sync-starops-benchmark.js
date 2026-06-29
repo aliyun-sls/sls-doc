@@ -12,7 +12,7 @@ const manifestFile = path.join(targetDir, 'sync-manifest.json')
 
 const sidebarOrder = ['语义上手', '基准评测', '告警追因', '主动巡检', '经验固化', '协作闭环']
 
-const caseTreeCss = `
+const benchmarkSidebarCss = `
 body.sls-starops-article .VPSidebar .group {
   padding: 0 !important;
 }
@@ -37,7 +37,9 @@ body.sls-starops-article .VPSidebar .VPSidebarItem.level-0 > .item > h2.text {
   font-size: 13px !important;
   letter-spacing: 0 !important;
   line-height: 20px !important;
+  margin: 0 !important;
   min-width: 0;
+  padding: 4px 0 !important;
 }
 body.sls-starops-article .VPSidebar .VPSidebarItem.level-0 > .item::after {
   content: none !important;
@@ -190,9 +192,24 @@ body.sls-starops-article .VPSidebar .nav-sub-item.active {
   color: rgb(68, 100, 240) !important;
   font-weight: 600 !important;
 }
+@media (max-width: 960px) {
+  html body.sls-starops-article aside.VPSidebar {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+  html body.sls-starops-article .VPContent,
+  html body.sls-starops-article .VPContent.has-sidebar,
+  html body.sls-starops-article .VPDoc.has-sidebar {
+    padding-left: 0 !important;
+  }
+  html body.sls-starops-article .VPDoc > .container > .content {
+    margin-left: 0 !important;
+  }
+}
 `.trim()
 
-const caseTreeScript = `
+const benchmarkSidebarScript = `
 (function() {
   function initStaropsSidebarFold() {
     var sections = document.querySelectorAll('.VPSidebar .VPSidebarItem.level-0');
@@ -333,10 +350,61 @@ function caseFileMap(groups) {
   return new Map(groups.flatMap((group) => group.items.map((item) => [item.originalFile, item.file])))
 }
 
-function reorderBenchmarkSidebar(root) {
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function findElementEnd(html, tagName, start) {
+  const tagRe = new RegExp(`<\\/?${tagName}\\b[^>]*>`, 'gi')
+  tagRe.lastIndex = start
+  let depth = 0
+  let match
+  while ((match = tagRe.exec(html))) {
+    if (match[0].startsWith('</')) {
+      depth -= 1
+    } else {
+      depth += 1
+    }
+    if (depth === 0) return tagRe.lastIndex
+  }
+  return -1
+}
+
+function findElementByClassBounds(html, tagName, className) {
+  const tagRe = new RegExp(`<${tagName}\\b[^>]*class=(["'])[^"']*\\b${escapeRegExp(className)}\\b[^"']*\\1[^>]*>`, 'i')
+  const match = html.match(tagRe)
+  if (!match || match.index == null) return null
+  const end = findElementEnd(html, tagName, match.index)
+  return end === -1 ? null : [match.index, end]
+}
+
+function ensureStaropsBodyClass(html) {
+  if (/<body\b/i.test(html)) {
+    return html.replace(/<body\b([^>]*)>/i, (tag, attrs) => {
+      const classMatch = attrs.match(/\bclass=(["'])(.*?)\1/i)
+      if (!classMatch) return `<body${attrs} class="sls-starops-article">`
+      if (` ${classMatch[2]} `.includes(' sls-starops-article ')) return tag
+      return `<body${attrs.replace(classMatch[0], `class="${`${classMatch[2]} sls-starops-article`.trim()}"`)}>`
+    })
+  }
+
+  if (/<\/head>/i.test(html) && /<\/html>\s*$/i.test(html)) {
+    return html
+      .replace(/<\/head>/i, '</head>\n<body class="sls-starops-article">')
+      .replace(/<\/html>\s*$/i, '</body>\n</html>')
+  }
+
+  return html
+}
+
+function reorderBenchmarkSidebarFragment(root) {
   const sidebar = root.querySelector('aside.VPSidebar')
   const nav = sidebar?.querySelector('nav')
   if (!nav) return
+
+  sidebar.querySelectorAll('[data-starops-badge]').forEach((node) => {
+    node.removeAttribute('data-starops-badge')
+  })
 
   const children = nav.childNodes
   const groups = childElements(nav)
@@ -363,20 +431,28 @@ function reorderBenchmarkSidebar(root) {
   nav.set_content(`${before}${orderedGroups.map(String).join('')}${after}`)
 }
 
-function rewriteDocLinks(root) {
-  root.querySelectorAll('a[href]').forEach((link) => {
-    const href = link.getAttribute('href')
-    if (href?.startsWith('https://sls.aliyun.com/doc/')) {
-      link.setAttribute('href', href.replace('https://sls.aliyun.com/doc/', '/doc/'))
-    }
-  })
+function reorderBenchmarkSidebar(html) {
+  const bounds = findElementByClassBounds(html, 'aside', 'VPSidebar')
+  if (!bounds) return html
+  const [start, end] = bounds
+  const root = parseHtml(html.slice(start, end))
+  reorderBenchmarkSidebarFragment(root)
+  return html.slice(0, start) + root.toString() + html.slice(end)
+}
+
+function rewriteDocLinks(html) {
+  return html.replace(/https:\/\/sls\.aliyun\.com\/doc\//g, '/doc/')
+}
+
+function stripStaropsSidebarBadgeCss(html) {
+  return html.replace(
+    /(?:body\.sls-starops-article\s+)?\.VPSidebar\s+\[data-starops-badge(?:=(["'])[^"']*\1)?\]::after\s*\{[\s\S]*?\}\s*/g,
+    ''
+  )
 }
 
 function rewriteHtml(html) {
-  const root = parseHtml(html)
-  reorderBenchmarkSidebar(root)
-  rewriteDocLinks(root)
-  return root.toString()
+  return stripStaropsSidebarBadgeCss(rewriteDocLinks(reorderBenchmarkSidebar(ensureStaropsBodyClass(html))))
 }
 
 function cleanCaseFilename(originalFile, caseIndex) {
@@ -387,7 +463,11 @@ function cleanCaseFilename(originalFile, caseIndex) {
 }
 
 function extractCaseTree(casesHtml) {
-  const root = parseHtml(casesHtml)
+  const treeBounds = findElementByClassBounds(casesHtml, 'div', 'nav-sub-tree')
+  if (!treeBounds) {
+    throw new Error('Cannot find nav-sub-tree in cases_compare.html')
+  }
+  const root = parseHtml(casesHtml.slice(treeBounds[0], treeBounds[1]))
   const tree = root.querySelector('.nav-sub-tree')
   if (!tree) {
     throw new Error('Cannot find nav-sub-tree in cases_compare.html')
@@ -422,15 +502,13 @@ function extractCaseTree(casesHtml) {
   return groups
 }
 
-function rewriteCaseLinks(root, groups) {
+function rewriteCaseLinks(html, groups) {
   const aliases = caseFileMap(groups)
-  root.querySelectorAll('a[href]').forEach((link) => {
-    const href = link.getAttribute('href')
-    const cleanFile = aliases.get(fileFromHref(href))
-    if (cleanFile) {
-      link.setAttribute('href', cleanFile)
-    }
-  })
+  let next = html
+  for (const [originalFile, cleanFile] of aliases) {
+    next = next.replace(new RegExp(`(href=(["'])[^"']*)${escapeRegExp(originalFile)}`, 'g'), `$1${cleanFile}`)
+  }
+  return next
 }
 
 function buildCaseTreeHtml(groups, currentFile) {
@@ -454,25 +532,26 @@ function buildCaseTreeHtml(groups, currentFile) {
   return `<div class="nav-sub-tree" data-starops-case-tree>${groupHtml}</div>`
 }
 
-function replaceCaseTree(root, groups, currentFile) {
-  const tree = root.querySelector('.nav-sub-tree')
-  if (!tree) return
-  tree.replaceWith(parseHtml(buildCaseTreeHtml(groups, currentFile)).firstChild)
+function replaceCaseTree(html, groups, currentFile) {
+  const treeBounds = findElementByClassBounds(html, 'div', 'nav-sub-tree')
+  if (!treeBounds) return html
+  return html.slice(0, treeBounds[0]) + buildCaseTreeHtml(groups, currentFile) + html.slice(treeBounds[1])
 }
 
-function removeGeneratedCaseTreeAssets(root) {
-  root.querySelectorAll('#STAROPS_CASE_TREE_ASSETS, #STAROPS_CASE_TREE_SCRIPT').forEach((node) => {
-    node.remove()
-  })
+function removeGeneratedBenchmarkAssets(html) {
+  return html
+    .replace(/<style\b[^>]*id=(["'])STAROPS_CASE_TREE_ASSETS\1[^>]*>[\s\S]*?<\/style>\s*/g, '')
+    .replace(/<script\b[^>]*id=(["'])STAROPS_CASE_TREE_SCRIPT\1[^>]*>[\s\S]*?<\/script>\s*/g, '')
+    .replace(/<style\b[^>]*id=(["'])STAROPS_BENCHMARK_SIDEBAR_ASSETS\1[^>]*>[\s\S]*?<\/style>\s*/g, '')
+    .replace(/<script\b[^>]*id=(["'])STAROPS_BENCHMARK_SIDEBAR_SCRIPT\1[^>]*>[\s\S]*?<\/script>\s*/g, '')
 }
 
-function injectCaseTreeAssets(root) {
-  removeGeneratedCaseTreeAssets(root)
-  const mount = root.querySelector('body') || root.querySelector('html') || root
-  mount.insertAdjacentHTML(
-    'beforeend',
-    `<style id="STAROPS_CASE_TREE_ASSETS">\n${caseTreeCss}\n</style>\n<script id="STAROPS_CASE_TREE_SCRIPT">\n${caseTreeScript}\n</script>`
-  )
+function injectBenchmarkAssets(html) {
+  const assets = `<style id="STAROPS_BENCHMARK_SIDEBAR_ASSETS">\n${benchmarkSidebarCss}\n</style>\n<script id="STAROPS_BENCHMARK_SIDEBAR_SCRIPT">\n${benchmarkSidebarScript}\n</script>`
+  const next = removeGeneratedBenchmarkAssets(html)
+  if (/<\/body>/i.test(next)) return next.replace(/<\/body>/i, `${assets}\n</body>`)
+  if (/<\/html>/i.test(next)) return next.replace(/<\/html>/i, `${assets}\n</html>`)
+  return `${next}\n${assets}`
 }
 
 function normalizeCopiedCaseTrees(groups) {
@@ -481,12 +560,11 @@ function normalizeCopiedCaseTrees(groups) {
   const aliasMap = caseFileMap(groups)
   for (const file of files) {
     const filePath = path.join(targetDir, file)
-    const root = parseHtml(fs.readFileSync(filePath, 'utf8'))
-    rewriteCaseLinks(root, groups)
-    replaceCaseTree(root, groups, file)
-    injectCaseTreeAssets(root)
-
-    const html = root.toString()
+    const html = injectBenchmarkAssets(
+      stripStaropsSidebarBadgeCss(
+        replaceCaseTree(rewriteCaseLinks(ensureStaropsBodyClass(fs.readFileSync(filePath, 'utf8')), groups), groups, file)
+      )
+    )
     fs.writeFileSync(filePath, html, 'utf8')
 
     const cleanFile = aliasMap.get(file)
