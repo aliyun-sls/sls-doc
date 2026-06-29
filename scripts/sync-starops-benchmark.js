@@ -11,6 +11,9 @@ const sidebarFile = path.join(repoRoot, '.vitepress/siderbars/staropsBenchmarkIt
 const manifestFile = path.join(targetDir, 'sync-manifest.json')
 
 const sidebarOrder = ['语义上手', '基准评测', '告警追因', '主动巡检', '经验固化', '协作闭环']
+const staropsHomeHref = '/doc/starops/starops.html'
+const benchmarkHomeHref = `${staropsHomeHref}#benchmark`
+const benchmarkDocBase = '/doc/starops/benchmark/rca/'
 
 const benchmarkSidebarCss = `
 body.sls-starops-article .VPSidebar .group {
@@ -342,6 +345,10 @@ function escapeHtml(value) {
   })
 }
 
+function benchmarkDocHref(file) {
+  return `${benchmarkDocBase}${file}`
+}
+
 function fileFromHref(href) {
   return path.basename(String(href || '').split('#')[0].split('?')[0])
 }
@@ -444,6 +451,20 @@ function rewriteDocLinks(html) {
   return html.replace(/https:\/\/sls\.aliyun\.com\/doc\//g, '/doc/')
 }
 
+function rewriteBenchmarkRelativeLinks(html) {
+  return html.replace(
+    /(href=(["']))(?:\.\/)?((?:rca_benchmark_dataset|rca_benchmark_results|cases_compare|case_[^"'/?#]+)\.html)(#[^"']*)?/g,
+    (_, prefix, _quote, file, hash = '') => `${prefix}${benchmarkDocHref(file)}${hash}`
+  )
+}
+
+function normalizeBenchmarkLabels(html) {
+  return html.replace(
+    /(<a\b[^>]*href=(["'])\/doc\/starops\/benchmark\/rca\/cases_compare\.html\2[^>]*>)案例中心(<\/a>)/g,
+    '$1评测案例$3'
+  )
+}
+
 function stripStaropsSidebarBadgeCss(html) {
   return html.replace(
     /(?:body\.sls-starops-article\s+)?\.VPSidebar\s+\[data-starops-badge(?:=(["'])[^"']*\1)?\]::after\s*\{[\s\S]*?\}\s*/g,
@@ -451,8 +472,102 @@ function stripStaropsSidebarBadgeCss(html) {
   )
 }
 
-function rewriteHtml(html) {
-  return stripStaropsSidebarBadgeCss(rewriteDocLinks(reorderBenchmarkSidebar(ensureStaropsBodyClass(html))))
+function topbarCurrentLabel(header, fileName) {
+  const fixedLabels = {
+    'rca_benchmark_dataset.html': '评测基准',
+    'rca_benchmark_results.html': '评测结果',
+    'cases_compare.html': '评测案例',
+  }
+  if (fixedLabels[fileName]) return fixedLabels[fileName]
+
+  const crumb = header.querySelector('.sls-starops-topbar__crumb')
+  const crumbLabel = crumb
+    ?.querySelectorAll('span')
+    .filter((node) => !hasClass(node, 'sep'))
+    .map(normalizedText)
+    .filter(Boolean)
+    .pop()
+  if (crumbLabel) return crumbLabel
+
+  const title = header.querySelector('title')
+  return title ? normalizedText(title) : '评测案例'
+}
+
+function topbarConfig(fileName, header) {
+  const isCasePage = /^case_[^/]+\.html$/.test(fileName)
+  const currentLabel = topbarCurrentLabel(header, fileName)
+  const crumbs = [
+    { text: 'STAROps', href: staropsHomeHref },
+    { text: '基准评测', href: benchmarkHomeHref },
+  ]
+
+  if (isCasePage) {
+    crumbs.push({ text: '评测案例', href: benchmarkDocHref('cases_compare.html') }, { text: currentLabel })
+    return {
+      crumbs,
+      ctaHref: benchmarkDocHref('cases_compare.html'),
+      ctaText: '← 返回评测案例',
+    }
+  }
+
+  crumbs.push({ text: currentLabel })
+  if (fileName === 'cases_compare.html') {
+    return {
+      crumbs,
+      ctaHref: benchmarkDocHref('rca_benchmark_results.html'),
+      ctaText: '← 返回评测结果',
+    }
+  }
+
+  return {
+    crumbs,
+    ctaHref: benchmarkHomeHref,
+    ctaText: '← 返回 STAROps',
+  }
+}
+
+function buildTopbar(headerClass, config) {
+  const crumbHtml = config.crumbs
+    .map((crumb, index) => {
+      const sep = index === 0 ? '' : '<span class="sep">/</span>'
+      const item = crumb.href
+        ? `<a href="${escapeHtml(crumb.href)}">${escapeHtml(crumb.text)}</a>`
+        : `<span>${escapeHtml(crumb.text)}</span>`
+      return `${sep}${item}`
+    })
+    .join('')
+  return `<header class="${escapeHtml(headerClass)}">
+<div class="sls-starops-topbar__inner">
+<a class="sls-starops-topbar__brand" href="${escapeHtml(staropsHomeHref)}">
+<span class="sls-starops-topbar__mark"></span>
+<span>STAROps 实践</span>
+</a>
+<div class="sls-starops-topbar__crumb">${crumbHtml}</div>
+<a class="sls-starops-topbar__cta" href="${escapeHtml(config.ctaHref)}">${escapeHtml(config.ctaText)}</a>
+</div>
+</header>`
+}
+
+function normalizeStaropsTopbar(html, fileName) {
+  const bounds = findElementByClassBounds(html, 'header', 'sls-starops-topbar')
+  if (!bounds) return html
+  const root = parseHtml(html.slice(bounds[0], bounds[1]))
+  const header = root.querySelector('header.sls-starops-topbar') || root.querySelector('header')
+  if (!header) return html
+
+  const headerClass = header.getAttribute('class') || 'sls-starops-topbar sls-starops-topbar--article'
+  const normalized = buildTopbar(headerClass, topbarConfig(fileName, header))
+  return html.slice(0, bounds[0]) + normalized + html.slice(bounds[1])
+}
+
+function rewriteHtml(html, fileName) {
+  return stripStaropsSidebarBadgeCss(
+    normalizeBenchmarkLabels(
+      rewriteBenchmarkRelativeLinks(
+        normalizeStaropsTopbar(rewriteDocLinks(reorderBenchmarkSidebar(ensureStaropsBodyClass(html))), fileName)
+      )
+    )
+  )
 }
 
 function cleanCaseFilename(originalFile, caseIndex) {
@@ -523,7 +638,7 @@ function buildCaseTreeHtml(groups, currentFile) {
       const items = group.items
         .map((item) => {
           const active = item.file === currentCleanFile ? ' active' : ''
-          return `<a class="nav-sub-item${active}" href="${escapeHtml(item.file)}">${escapeHtml(item.text)}</a>`
+          return `<a class="nav-sub-item${active}" href="${escapeHtml(benchmarkDocHref(item.file))}">${escapeHtml(item.text)}</a>`
         })
         .join('')
       return `<div class="nav-sub-group" data-open="${openAttr}"><button class="nav-sub-group-title" type="button" aria-expanded="${openAttr}" aria-controls="${controlId}"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">${escapeHtml(group.group)}</span><span class="nav-sub-count">${group.items.length}</span></button><div class="nav-sub-group-items" id="${controlId}"${hiddenAttr}>${items}</div></div>`
@@ -562,7 +677,15 @@ function normalizeCopiedCaseTrees(groups) {
     const filePath = path.join(targetDir, file)
     const html = injectBenchmarkAssets(
       stripStaropsSidebarBadgeCss(
-        replaceCaseTree(rewriteCaseLinks(ensureStaropsBodyClass(fs.readFileSync(filePath, 'utf8')), groups), groups, file)
+        normalizeBenchmarkLabels(
+          rewriteBenchmarkRelativeLinks(
+            replaceCaseTree(
+              rewriteCaseLinks(normalizeStaropsTopbar(ensureStaropsBodyClass(fs.readFileSync(filePath, 'utf8')), file), groups),
+              groups,
+              file
+            )
+          )
+        )
       )
     )
     fs.writeFileSync(filePath, html, 'utf8')
@@ -638,7 +761,7 @@ function main() {
   for (const file of htmlFiles) {
     const src = path.join(sourceDir, file)
     const dest = path.join(targetDir, file)
-    fs.writeFileSync(dest, rewriteHtml(fs.readFileSync(src, 'utf8')), 'utf8')
+    fs.writeFileSync(dest, rewriteHtml(fs.readFileSync(src, 'utf8'), file), 'utf8')
   }
 
   const svgCount = copyDir(path.join(sourceDir, 'svg_recolored'), path.join(targetDir, 'svg_recolored'))
