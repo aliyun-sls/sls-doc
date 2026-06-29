@@ -1,0 +1,80 @@
+<svg width="1920" height="840" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .weight-num { font: 700 20px "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .tier       { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+  <marker id="arrPass" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#3E8E5F"/>
+  </marker>
+  <marker id="arrFail" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#C03A28"/>
+  </marker>
+</defs>
+<rect width="960" height="420" fill="#fff"/>
+<text x="40" y="32" class="fig-title">RCA-Bench 三要素</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<defs><clipPath id="cell-fig1-0"><rect x="40" y="70" width="240" height="270" rx="6"/></clipPath></defs>
+<rect x="40" y="70" width="240" height="270" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="40" y="70" width="240" height="6" fill="#4464f0" clip-path="url(#cell-fig1-0)"/>
+<text x="60" y="100" class="cell-title">运行环境</text>
+<text x="60" y="118" class="cell-en">Environment</text>
+<line x1="58" y1="130" x2="262" y2="130" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="60" y="152" class="body-sm" fill="#1A2233">在线运行系统或可交互快照</text>
+<text x="60" y="174" class="body-sm" fill="#1A2233">K8s 上的微服务应用</text>
+<text x="60" y="196" class="body-sm" fill="#1A2233">多源观测信号</text>
+<text x="60" y="218" class="body-sm" fill="#1A2233">（Metrics / Logs / Traces / Alerts /</text>
+<text x="60" y="240" class="body-sm" fill="#1A2233"> Topology / K8s Events / Profiling）</text>
+<text x="60" y="262" class="body-sm" fill="#1A2233">UModel 实体归一</text>
+<text x="60" y="284" class="body-sm" fill="#1A2233">持续背景流量</text>
+<defs><clipPath id="cell-fig1-1"><rect x="360" y="70" width="240" height="270" rx="6"/></clipPath></defs>
+<rect x="360" y="70" width="240" height="270" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="360" y="70" width="240" height="6" fill="#4464f0" clip-path="url(#cell-fig1-1)"/>
+<text x="380" y="100" class="cell-title">基准数据集</text>
+<text x="380" y="118" class="cell-en">Benchmark Dataset</text>
+<line x1="378" y1="130" x2="582" y2="130" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="380" y="152" class="body-sm" fill="#1A2233">结构化基线真值</text>
+<text x="380" y="174" class="body-sm" fill="#1A2233">含有类型因果链</text>
+<text x="380" y="196" class="body-sm" fill="#1A2233">多大类故障目录</text>
+<text x="380" y="218" class="body-sm" fill="#1A2233">L1 至 L4 难度分级</text>
+<text x="380" y="240" class="body-sm" fill="#1A2233">混淆对设计</text>
+<text x="380" y="262" class="body-sm" fill="#1A2233">结构化用例结构</text>
+<text x="380" y="284" class="body-sm" fill="#1A2233">质量门禁 GSTO</text>
+<defs><clipPath id="cell-fig1-2"><rect x="680" y="70" width="240" height="270" rx="6"/></clipPath></defs>
+<rect x="680" y="70" width="240" height="270" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="680" y="70" width="240" height="6" fill="#4464f0" clip-path="url(#cell-fig1-2)"/>
+<text x="700" y="100" class="cell-title">评估协议</text>
+<text x="700" y="118" class="cell-en">Evaluation Protocol</text>
+<line x1="698" y1="130" x2="902" y2="130" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="700" y="152" class="body-sm" fill="#1A2233">从 Agent 输出到评分的规则</text>
+<text x="700" y="174" class="body-sm" fill="#1A2233">三维评分：</text>
+<text x="700" y="196" class="body-sm" fill="#1A2233">  定因 + 定界 + 过程</text>
+<text x="700" y="218" class="body-sm" fill="#1A2233">综合分 MainScore</text>
+<text x="700" y="240" class="body-sm" fill="#1A2233">防作弊合规门禁</text>
+<text x="700" y="262" class="body-sm" fill="#1A2233">回放 + 实时双轨</text>
+<line x1="280" y1="205" x2="358" y2="205" stroke="#5E6B82" stroke-width="1.4" marker-end="url(#arrGray)"/>
+<text x="319" y="199" text-anchor="middle" class="body-sm">注入</text>
+<line x1="600" y1="205" x2="678" y2="205" stroke="#5E6B82" stroke-width="1.4" marker-end="url(#arrGray)"/>
+<text x="639" y="199" text-anchor="middle" class="body-sm">基线真值接入</text>
+<path d="M 800,340 Q 800,365 770,365 L 190,365 Q 160,365 160,340" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrGray)"/>
+<text x="480" y="362" text-anchor="middle" class="annot">覆盖反馈驱动扩展</text>
+<line x1="40" y1="395" x2="68" y2="395" stroke="#5E6B82" stroke-width="1.4" marker-end="url(#arrGray)"/>
+<text x="74" y="399" class="body-sm">主数据流</text>
+<line x1="170" y1="395" x2="198" y2="395" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3"/>
+<text x="204" y="399" class="body-sm">反馈</text>
+</svg>

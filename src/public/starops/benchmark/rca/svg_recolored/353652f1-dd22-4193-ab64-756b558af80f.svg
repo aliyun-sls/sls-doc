@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1360" viewBox="0 0 960 680">
+<style>
+  .ti{font:700 19px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .subti{font:13px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .sec-h{font:700 13.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+  .card-name{font:700 12.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .kpi-big{font:700 24px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .kpi-mid{font:700 15px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .kpi-lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .body{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .body-sm{font:10.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:10.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .pill-orange{font:700 11px "PingFang SC","Helvetica Neue",sans-serif;fill:#4464f0}
+  .pill-ink{font:700 11px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="960" height="680" fill="#FFFFFF"/>
+
+<!-- Header band -->
+<rect x="0" y="0" width="960" height="68" fill="#4464f0"/>
+<text x="30" y="35" class="ti" style="fill:#FFFFFF">RCA-Bench 白皮书 Highlights</text>
+<text x="30" y="56" class="subti" style="fill:#FFFFFF;opacity:0.92">面向 RCA Agent 的可比较、可复现、可审计评估方法学 · 当前实例化数据集 RCA-100</text>
+
+<!-- Section 1: 三要素 + 双轨 -->
+<text x="30" y="98" class="card-name">三要素框架 + Inner / Outer 双轨架构</text>
+<rect x="30" y="108" width="290" height="48" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+<text x="44" y="128" class="card-name" style="fill:#4464f0">运行环境</text>
+<text x="44" y="146" class="body">被测系统 + 双层调制流量 + 七类遥测信号</text>
+<rect x="335" y="108" width="290" height="48" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+<text x="349" y="128" class="card-name" style="fill:#4464f0">数据集（故障样本集合）</text>
+<text x="349" y="146" class="body">结构化基线真值 + UModel 拓扑</text>
+<rect x="640" y="108" width="290" height="48" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+<text x="654" y="128" class="card-name" style="fill:#4464f0">评估协议</text>
+<text x="654" y="146" class="body">三维输出契约 + 四子项评分 + 比例量化</text>
+
+<!-- Section 2: RCA-100 KPI strip -->
+<rect x="30" y="178" width="900" height="26" rx="4" fill="#1A2233"/>
+<text x="44" y="196" class="sec-h">RCA-100 数据集</text>
+<text x="900" y="196" text-anchor="end" class="lbl" style="fill:#FFFFFF;opacity:0.7">summary.json v1.0</text>
+
+<g>
+  <rect x="30" y="214" width="170" height="80" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="115" y="246" text-anchor="middle" class="kpi-big">103</text>
+  <text x="115" y="266" text-anchor="middle" class="kpi-lbl">故障用例</text>
+  <text x="115" y="283" text-anchor="middle" class="lbl">含 30 用例分层 panel</text>
+
+  <rect x="210" y="214" width="170" height="80" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="295" y="246" text-anchor="middle" class="kpi-big">28 类</text>
+  <text x="295" y="266" text-anchor="middle" class="kpi-lbl">故障类型（6 大类）</text>
+  <text x="295" y="283" text-anchor="middle" class="lbl">应用 / 依赖 / 基础设施 / 平台 等</text>
+
+  <rect x="390" y="214" width="170" height="80" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="475" y="246" text-anchor="middle" class="kpi-big">21 / 4</text>
+  <text x="475" y="266" text-anchor="middle" class="kpi-lbl">UModel 实体 / 关系类型</text>
+  <text x="475" y="283" text-anchor="middle" class="lbl">单用例中位 227 实体 / 258 边</text>
+
+  <rect x="570" y="214" width="170" height="80" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="655" y="246" text-anchor="middle" class="kpi-big">3.46 GB</text>
+  <text x="655" y="266" text-anchor="middle" class="kpi-lbl">5 类可观测原始数据</text>
+  <text x="655" y="283" text-anchor="middle" class="lbl">113,660,093 条观测记录</text>
+
+  <rect x="750" y="214" width="180" height="80" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="840" y="246" text-anchor="middle" class="kpi-big">C0 → C3</text>
+  <text x="840" y="266" text-anchor="middle" class="kpi-lbl">链位置编码</text>
+  <text x="840" y="283" text-anchor="middle" class="lbl">cause · prop. · impact · symptom</text>
+</g>
+
+<!-- Section 3: 四项核心设计 -->
+<rect x="30" y="316" width="900" height="26" rx="4" fill="#1A2233"/>
+<text x="44" y="334" class="sec-h">四项核心设计</text>
+<text x="900" y="334" text-anchor="end" class="lbl" style="fill:#FFFFFF;opacity:0.7">回应 §2.3 五项系统性缺口 + 一项治理层延伸缺口</text>
+
+<g>
+  <rect x="30" y="352" width="220" height="92" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+  <rect x="30" y="352" width="50" height="22" rx="3" fill="#4464f0"/>
+  <text x="55" y="368" text-anchor="middle" class="pill-ink">设计一</text>
+  <text x="92" y="368" class="card-name">评估维度分解</text>
+  <text x="44" y="392" class="body-sm">权重 [0.4, 0.3, 0.3]</text>
+  <text x="44" y="410" class="body-sm">Boundary · Cause · Process 三维独立</text>
+  <text x="44" y="432" class="pill-orange">保留部分得分粒度</text>
+
+  <rect x="260" y="352" width="220" height="92" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+  <rect x="260" y="352" width="50" height="22" rx="3" fill="#4464f0"/>
+  <text x="285" y="368" text-anchor="middle" class="pill-ink">设计二</text>
+  <text x="322" y="368" class="card-name">因果链 + UModel</text>
+  <text x="274" y="392" class="body-sm">四类字段 + C0-C3 链位置编码</text>
+  <text x="274" y="410" class="body-sm">21 类实体跨域归一为单一主键</text>
+  <text x="274" y="432" class="pill-orange">图距离取代字符串匹配</text>
+
+  <rect x="490" y="352" width="220" height="92" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+  <rect x="490" y="352" width="50" height="22" rx="3" fill="#4464f0"/>
+  <text x="515" y="368" text-anchor="middle" class="pill-ink">设计三</text>
+  <text x="552" y="368" class="card-name">82 / 18 评判比例量化</text>
+  <text x="504" y="392" class="body-sm">82% 确定性规则 · 18% LLM 评判</text>
+  <text x="504" y="410" class="body-sm">LLM 仅处理 Directionality + Grounding</text>
+  <text x="504" y="432" class="pill-orange">比例显式公开 · 跨版本可声明</text>
+
+  <rect x="720" y="352" width="210" height="92" rx="6" fill="#FFFFFF" stroke="#4464f0"/>
+  <rect x="720" y="352" width="50" height="22" rx="3" fill="#4464f0"/>
+  <text x="745" y="368" text-anchor="middle" class="pill-ink">设计四</text>
+  <text x="782" y="368" class="card-name">多智能体审核门禁</text>
+  <text x="734" y="392" class="body-sm">N=3 跨厂商 LLM 独立审核</text>
+  <text x="734" y="410" class="body-sm">共识投票方可入冻结数据集</text>
+  <text x="734" y="432" class="pill-orange">回应单点标注偏差</text>
+</g>
+
+<!-- Section 4: 实测核心结论 -->
+<rect x="30" y="466" width="900" height="26" rx="4" fill="#1A2233"/>
+<text x="44" y="484" class="sec-h">实测核心结论（第 6 章）</text>
+<text x="900" y="484" text-anchor="end" class="lbl" style="fill:#FFFFFF;opacity:0.7">RCA-100 v1 · 30 用例 stratified panel</text>
+
+<g>
+  <rect x="30" y="502" width="170" height="100" rx="6" fill="#eef2ff" stroke="#4464f0"/>
+  <text x="42" y="522" class="card-name" style="fill:#4464f0">辨别力跨度</text>
+  <text x="115" y="552" text-anchor="middle" class="kpi-mid">10.07 / 5.25 / 13.36</text>
+  <text x="115" y="572" text-anchor="middle" class="kpi-lbl">配置 / 模型 / 工程路径</text>
+  <text x="115" y="590" text-anchor="middle" class="lbl">单位：综合分 · §6.1</text>
+
+  <rect x="210" y="502" width="170" height="100" rx="6" fill="#eef2ff" stroke="#4464f0"/>
+  <text x="222" y="522" class="card-name" style="fill:#4464f0">UModel 命中率</text>
+  <text x="295" y="555" text-anchor="middle" class="kpi-big">66.7%</text>
+  <text x="295" y="572" text-anchor="middle" class="kpi-lbl">vs Levenshtein 6.7%</text>
+  <text x="295" y="590" text-anchor="middle" class="lbl">60 百分点优势 · §6.3</text>
+
+  <rect x="390" y="502" width="170" height="100" rx="6" fill="#eef2ff" stroke="#4464f0"/>
+  <text x="402" y="522" class="card-name" style="fill:#4464f0">三维正交性</text>
+  <text x="475" y="552" text-anchor="middle" class="kpi-mid">0.268 / 0.414 / 0.437</text>
+  <text x="475" y="572" text-anchor="middle" class="kpi-lbl">三对 Pearson 相关系数</text>
+  <text x="475" y="590" text-anchor="middle" class="lbl">全部低于 0.7 阈值 · §6.2</text>
+
+  <rect x="570" y="502" width="170" height="100" rx="6" fill="#eef2ff" stroke="#4464f0"/>
+  <text x="582" y="522" class="card-name" style="fill:#4464f0">LLM 评判方差</text>
+  <text x="655" y="555" text-anchor="middle" class="kpi-big">8.6%</text>
+  <text x="655" y="572" text-anchor="middle" class="kpi-lbl">σ_intra / σ_total</text>
+  <text x="655" y="590" text-anchor="middle" class="lbl">低于 15% 安全线 · §6.4</text>
+
+  <rect x="750" y="502" width="180" height="100" rx="6" fill="#eef2ff" stroke="#4464f0"/>
+  <text x="762" y="522" class="card-name" style="fill:#4464f0">多智能体审核一致率</text>
+  <text x="840" y="555" text-anchor="middle" class="kpi-big">93.3%</text>
+  <text x="840" y="572" text-anchor="middle" class="kpi-lbl">vs SRE 人工审核（n=30）</text>
+  <text x="840" y="590" text-anchor="middle" class="lbl">L2 / L3 100% · §6.5</text>
+</g>
+
+<!-- Section 5: 真实场景支撑 -->
+<rect x="30" y="618" width="900" height="26" rx="4" fill="#1A2233"/>
+<text x="44" y="636" class="sec-h">真实场景支撑（RCA-100 数据集发布之前）</text>
+
+<g>
+  <rect x="30" y="654" width="450" height="20" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="42" y="668" class="card-name">2025 阿里云天池云原生根因定位大赛</text>
+  <text x="468" y="668" text-anchor="end" class="pill-orange">5000+ 队伍 · 高校与企业</text>
+
+  <rect x="490" y="654" width="440" height="20" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+  <text x="502" y="668" class="card-name">国家重点研发项目 · 可观测数据智能方向</text>
+  <text x="918" y="668" text-anchor="end" class="pill-orange">多家高校与合作伙伴 · 集成验证</text>
+</g>
+</svg>

@@ -1,0 +1,95 @@
+<svg width="2560" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .col-hdr    { font: 700 11px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .row-hdr    { font: 11px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+  <marker id="arrBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#4464f0"/></marker>
+</defs>
+<rect width="1280" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">SWE-bench 对照框架下的五项系统性缺口 + 一项治理层延伸</text>
+<line x1="40" y1="42" x2="1240" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<defs><clipPath id="cell-fig16-0"><rect x="40" y="70" width="380" height="200" rx="6"/></clipPath></defs><rect x="40" y="70" width="380" height="200" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="40" y="70" width="380" height="6" fill="#4464f0" clip-path="url(#cell-fig16-0)"/>
+<circle cx="62" cy="100" r="14" fill="#4464f0"/>
+<text x="62" y="105" text-anchor="middle" font-size="13" font-weight="700" style="fill:#fff">1</text>
+<text x="84" y="104" class="cell-title">评分协议透明度</text>
+<rect x="55" y="125" width="350" height="60" rx="4" fill="#F8FAFC" stroke="#C03A28" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="62" y="142" class="body-sm" font-weight="700" fill="#C03A28">同代缺口</text>
+<text x="62" y="160" class="body-sm" fill="#1A2233">LLM 评判比例</text>
+<text x="62" y="174" class="body-sm" fill="#1A2233">多数基准未量化</text>
+<rect x="55" y="195" width="350" height="60" rx="4" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="62" y="212" class="body-sm" font-weight="700" fill="#4464f0">RCA-Bench 回应</text>
+<text x="62" y="230" class="body-sm" fill="#1A2233">RCA-Bench 显式 82/18</text>
+<defs><clipPath id="cell-fig16-1"><rect x="440" y="70" width="380" height="200" rx="6"/></clipPath></defs><rect x="440" y="70" width="380" height="200" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="440" y="70" width="380" height="6" fill="#4464f0" clip-path="url(#cell-fig16-1)"/>
+<circle cx="462" cy="100" r="14" fill="#4464f0"/>
+<text x="462" y="105" text-anchor="middle" font-size="13" font-weight="700" style="fill:#fff">2</text>
+<text x="484" y="104" class="cell-title">标注深度</text>
+<rect x="455" y="125" width="350" height="60" rx="4" fill="#F8FAFC" stroke="#C03A28" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="462" y="142" class="body-sm" font-weight="700" fill="#C03A28">同代缺口</text>
+<text x="462" y="160" class="body-sm" fill="#1A2233">多数仅类型/实体</text>
+<text x="462" y="174" class="body-sm" fill="#1A2233">缺因果链 + 检查点</text>
+<rect x="455" y="195" width="350" height="60" rx="4" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="462" y="212" class="body-sm" font-weight="700" fill="#4464f0">RCA-Bench 回应</text>
+<text x="462" y="230" class="body-sm" fill="#1A2233">4 层 + C0-C3 链位置编码</text>
+<defs><clipPath id="cell-fig16-2"><rect x="840" y="70" width="380" height="200" rx="6"/></clipPath></defs><rect x="840" y="70" width="380" height="200" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="840" y="70" width="380" height="6" fill="#4464f0" clip-path="url(#cell-fig16-2)"/>
+<circle cx="862" cy="100" r="14" fill="#4464f0"/>
+<text x="862" y="105" text-anchor="middle" font-size="13" font-weight="700" style="fill:#fff">3</text>
+<text x="884" y="104" class="cell-title">任务定义统一</text>
+<rect x="855" y="125" width="350" height="60" rx="4" fill="#F8FAFC" stroke="#C03A28" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="862" y="142" class="body-sm" font-weight="700" fill="#C03A28">同代缺口</text>
+<text x="862" y="160" class="body-sm" fill="#1A2233">部分基准任务定义混杂</text>
+<text x="862" y="174" class="body-sm" fill="#1A2233">benchmark 任务 vs 排序</text>
+<rect x="855" y="195" width="350" height="60" rx="4" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="862" y="212" class="body-sm" font-weight="700" fill="#4464f0">RCA-Bench 回应</text>
+<text x="862" y="230" class="body-sm" fill="#1A2233">三维独立分解</text>
+<text x="862" y="244" class="body-sm" fill="#1A2233">（定因/定界/过程）</text>
+<defs><clipPath id="cell-fig16-3"><rect x="40" y="290" width="380" height="200" rx="6"/></clipPath></defs><rect x="40" y="290" width="380" height="200" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="40" y="290" width="380" height="6" fill="#4464f0" clip-path="url(#cell-fig16-3)"/>
+<circle cx="62" cy="320" r="14" fill="#4464f0"/>
+<text x="62" y="325" text-anchor="middle" font-size="13" font-weight="700" style="fill:#fff">4</text>
+<text x="84" y="324" class="cell-title">基线真值标注成本</text>
+<rect x="55" y="345" width="350" height="60" rx="4" fill="#F8FAFC" stroke="#C03A28" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="62" y="362" class="body-sm" font-weight="700" fill="#C03A28">同代缺口</text>
+<text x="62" y="380" class="body-sm" fill="#1A2233">专家人天级</text>
+<text x="62" y="394" class="body-sm" fill="#1A2233">单点偏差不可控</text>
+<rect x="55" y="415" width="350" height="60" rx="4" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="62" y="432" class="body-sm" font-weight="700" fill="#4464f0">RCA-Bench 回应</text>
+<text x="62" y="450" class="body-sm" fill="#1A2233">多智能体审核 N=3</text>
+<text x="62" y="464" class="body-sm" fill="#1A2233">+ SRE 兜底</text>
+<defs><clipPath id="cell-fig16-4"><rect x="440" y="290" width="380" height="200" rx="6"/></clipPath></defs><rect x="440" y="290" width="380" height="200" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="440" y="290" width="380" height="6" fill="#4464f0" clip-path="url(#cell-fig16-4)"/>
+<circle cx="462" cy="320" r="14" fill="#4464f0"/>
+<text x="462" y="325" text-anchor="middle" font-size="13" font-weight="700" style="fill:#fff">5</text>
+<text x="484" y="324" class="cell-title">训练资源</text>
+<rect x="455" y="345" width="350" height="60" rx="4" fill="#F8FAFC" stroke="#C03A28" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="462" y="362" class="body-sm" font-weight="700" fill="#C03A28">同代缺口</text>
+<text x="462" y="380" class="body-sm" fill="#1A2233">多数不可生成训练数据</text>
+<rect x="455" y="415" width="350" height="60" rx="4" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="462" y="432" class="body-sm" font-weight="700" fill="#4464f0">RCA-Bench 回应</text>
+<text x="462" y="450" class="body-sm" fill="#1A2233">冻结快照 + GT 即</text>
+<text x="462" y="464" class="body-sm" fill="#1A2233">奖励信号 (§7.3.5)</text>
+<defs><clipPath id="cell-fig16-5"><rect x="840" y="290" width="380" height="200" rx="6"/></clipPath></defs><rect x="840" y="290" width="380" height="200" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="840" y="290" width="380" height="6" fill="#4464f0" clip-path="url(#cell-fig16-5)"/>
+<circle cx="862" cy="320" r="14" fill="#4464f0"/>
+<text x="862" y="325" text-anchor="middle" font-size="13" font-weight="700" style="fill:#fff">6</text>
+<text x="884" y="324" class="cell-title">评测门槛</text>
+<rect x="855" y="345" width="350" height="60" rx="4" fill="#F8FAFC" stroke="#C03A28" stroke-width="1" stroke-dasharray="3,2"/>
+<text x="862" y="362" class="body-sm" font-weight="700" fill="#C03A28">同代缺口</text>
+<text x="862" y="380" class="body-sm" fill="#1A2233">需自建运行环境/</text>
+<text x="862" y="394" class="body-sm" fill="#1A2233">云资源/标注流程</text>
+<rect x="855" y="415" width="350" height="60" rx="4" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="862" y="432" class="body-sm" font-weight="700" fill="#4464f0">RCA-Bench 回应</text>
+<text x="862" y="450" class="body-sm" fill="#1A2233">本地可拉取</text>
+<text x="862" y="464" class="body-sm" fill="#1A2233">+ release notes</text>
+<text x="40" y="510" class="fig-caption">前 5 项为 SWE-bench 框架直接归并的系统性缺口；第 6 项「评测门槛」为治理层延伸缺口。每项左下为同代基准共性问题，右下为 RCA-Bench 的回应。</text>
+</svg>

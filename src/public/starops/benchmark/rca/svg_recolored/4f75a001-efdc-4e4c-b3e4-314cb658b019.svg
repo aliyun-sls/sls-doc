@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="820" viewBox="0 0 760 410">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="410" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">Cause Score：五个匹配等级</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="56" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="6" height="56" fill="#3E8E5F"/>
+<text x="40" y="77" class="code" style="font-weight:700;fill:#3E8E5F">EXACT</text>
+<rect x="220" y="67" width="284" height="14" rx="3" fill="#3E8E5F" opacity="0.85"/>
+<text x="512" y="79" class="h" style="fill:#3E8E5F">1.00</text>
+<text x="40" y="97" class="m">Agent 精确命中基线真值的 fault_id</text>
+<text x="735" y="77" text-anchor="end" class="lbl">理想情况</text>
+<rect x="20" y="119" width="720" height="56" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="119" width="6" height="56" fill="#4464f0"/>
+<text x="40" y="141" class="code" style="font-weight:700;fill:#4464f0">CAUSAL_1HOP</text>
+<rect x="220" y="131" width="242" height="14" rx="3" fill="#4464f0" opacity="0.85"/>
+<text x="470" y="143" class="h" style="fill:#4464f0">0.85</text>
+<text x="40" y="161" class="m">命中的故障类型与基线真值存在一跳因果关系</text>
+<text x="735" y="141" text-anchor="end" class="lbl">例："下游超时"，基线"慢 SQL"</text>
+<rect x="20" y="183" width="720" height="56" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="183" width="6" height="56" fill="#C76A1F"/>
+<text x="40" y="205" class="code" style="font-weight:700;fill:#C76A1F">CONFUSION_SIBLING</text>
+<rect x="220" y="195" width="200" height="14" rx="3" fill="#C76A1F" opacity="0.85"/>
+<text x="428" y="207" class="h" style="fill:#C76A1F">0.70</text>
+<text x="40" y="225" class="m">命中基线真值的混淆兄弟</text>
+<text x="735" y="205" text-anchor="end" class="lbl">例："OOM Kill"，基线"内存泄漏"</text>
+<rect x="20" y="247" width="720" height="56" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="247" width="6" height="56" fill="#5E6B82"/>
+<text x="40" y="269" class="code" style="font-weight:700;fill:#5E6B82">CLUSTER</text>
+<rect x="220" y="259" width="144" height="14" rx="3" fill="#5E6B82" opacity="0.85"/>
+<text x="372" y="271" class="h" style="fill:#5E6B82">0.50</text>
+<text x="40" y="289" class="m">同一故障簇但非精确、非一跳、非混淆</text>
+<text x="735" y="269" text-anchor="end" class="lbl">同大类但具体机理不同</text>
+<rect x="20" y="311" width="720" height="56" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="311" width="6" height="56" fill="#C03A28"/>
+<text x="40" y="333" class="code" style="font-weight:700;fill:#C03A28">UNRELATED</text>
+<rect x="220" y="323" width="4" height="14" rx="3" fill="#C03A28" opacity="0.85"/>
+<text x="232" y="335" class="h" style="fill:#C03A28">0.00</text>
+<text x="40" y="353" class="m">与基线真值无任何结构关系</text>
+<text x="735" y="333" text-anchor="end" class="lbl">完全判错</text>
+<text x="20" y="395" class="cap">分值随匹配语义衰减：EXACT 1.00 → UNRELATED 0.00；CAUSAL_1HOP / SIBLING / CLUSTER 三档为部分得分区间。</text>
+</svg>

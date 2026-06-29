@@ -1,0 +1,67 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+  <marker id="arrPass" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#3E8E5F"/></marker>
+  <marker id="arrWarn" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#C76A1F"/></marker>
+</defs>
+<rect width="960" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">多智能体审核（N=3 跨厂商共识 + SRE 兜底）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#4464f0">3</text>
+<text x="60" y="103" class="summary-lbl">独立 LLM 评审</text>
+<text x="220" y="85" class="summary-big" style="fill:#4464f0">≥ 2/3</text>
+<text x="220" y="103" class="summary-lbl">共识投票阈值</text>
+<text x="420" y="85" class="summary-big" style="fill:#3E8E5F">~93%</text>
+<text x="420" y="103" class="summary-lbl">自动入库率</text>
+<text x="620" y="85" class="summary-big" style="fill:#C76A1F">~7%</text>
+<text x="620" y="103" class="summary-lbl">转 SRE 复核</text>
+<line x1="40" y1="120" x2="920" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="50" y="230" width="130" height="70" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1"/>
+<text x="115.0" y="260" text-anchor="middle" class="label">候选用例</text>
+<text x="115.0" y="280" text-anchor="middle" class="body-sm">通过 GSTO 后</text>
+<defs><clipPath id="cell-fig25-j0"><rect x="300" y="180" width="200" height="60" rx="6"/></clipPath></defs><rect x="300" y="180" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="300" y="180" width="200" height="6" fill="#4464f0" clip-path="url(#cell-fig25-j0)"/>
+<text x="400.0" y="208" text-anchor="middle" class="cell-title">Judge A · GPT-4 类</text>
+<text x="400.0" y="227" text-anchor="middle" class="body-sm">独立打分</text>
+<defs><clipPath id="cell-fig25-j1"><rect x="300" y="258" width="200" height="60" rx="6"/></clipPath></defs><rect x="300" y="258" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="300" y="258" width="200" height="6" fill="#4464f0" clip-path="url(#cell-fig25-j1)"/>
+<text x="400.0" y="286" text-anchor="middle" class="cell-title">Judge B · Claude 类</text>
+<text x="400.0" y="305" text-anchor="middle" class="body-sm">独立打分</text>
+<defs><clipPath id="cell-fig25-j2"><rect x="300" y="336" width="200" height="60" rx="6"/></clipPath></defs><rect x="300" y="336" width="200" height="60" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="300" y="336" width="200" height="6" fill="#4464f0" clip-path="url(#cell-fig25-j2)"/>
+<text x="400.0" y="364" text-anchor="middle" class="cell-title">Judge C · 通义千问类</text>
+<text x="400.0" y="383" text-anchor="middle" class="body-sm">独立打分</text>
+<path d="M 180,265 C 240,265 240,210 300,210" fill="none" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<path d="M 180,265 C 240,265 240,288 300,288" fill="none" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<path d="M 180,265 C 240,265 240,366 300,366" fill="none" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<defs><clipPath id="cell-fig25-vote"><rect x="580" y="220" width="200" height="90" rx="6"/></clipPath></defs><rect x="580" y="220" width="200" height="90" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="580" y="220" width="200" height="6" fill="#4464f0" clip-path="url(#cell-fig25-vote)"/>
+<text x="680.0" y="250" text-anchor="middle" class="cell-title">共识投票</text>
+<text x="680.0" y="272" text-anchor="middle" class="body-sm">≥ 2/3 模型同意 → 通过</text>
+<text x="680.0" y="290" text-anchor="middle" class="body-sm">否则进入复核队列</text>
+<path d="M 500,210 C 540,210 540,265 580,265" fill="none" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<path d="M 500,288 C 540,288 540,265 580,265" fill="none" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<path d="M 500,366 C 540,366 540,265 580,265" fill="none" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<rect x="790" y="200" width="110" height="70" rx="6" fill="#ECFDF5" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="845.0" y="225" text-anchor="middle" class="label" style="fill:#3E8E5F">自动入库</text>
+<text x="845.0" y="245" text-anchor="middle" class="body-sm">~93%</text>
+<text x="845.0" y="260" text-anchor="middle" class="annot">候选直入评估池</text>
+<path d="M 780,265 C 800,265 800,235 790,235" fill="none" stroke="#3E8E5F" stroke-width="1.4" marker-end="url(#arrPass)"/>
+<rect x="790" y="292" width="110" height="70" rx="6" fill="#FFFFFF" stroke="#C76A1F" stroke-width="1.2" stroke-dasharray="4,2"/>
+<text x="845.0" y="317" text-anchor="middle" class="label" style="fill:#C76A1F">SRE 兜底</text>
+<text x="845.0" y="337" text-anchor="middle" class="body-sm">~7%</text>
+<text x="845.0" y="352" text-anchor="middle" class="annot">共识不达 / 存疑</text>
+<path d="M 780,265 C 800,265 800,327 790,327" fill="none" stroke="#C76A1F" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arrWarn)"/>
+<text x="40" y="475" class="fig-caption">N=3 跨厂商组合压低 self-enhancement bias，可参照 RewardBench 与 MT-bench 同代实测增益（详见 §6.5）。</text>
+<text x="40" y="493" class="fig-caption">SRE 兜底承担难分案例的"人在回路"职责，每批新入库样本另随机抽检 15-20% 复核。</text>
+</svg>

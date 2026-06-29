@@ -1,18 +1,28 @@
+const getStaropsBenchmarkItems = require('./staropsBenchmarkItems')
+
 function getSidebar() {
   return [
     {
       text: '语义上手',
+      collapsed: true,
       items: [
         { text: '与 STAROps 有效对话', link: '/starops/onboarding/effective-prompts/article' },
         { text: 'UModel 使用指南', link: '/starops/practices/umodel-metric-entity/article' },
       ],
     },
     {
+      text: '基准评测',
+      collapsed: true,
+      items: getStaropsBenchmarkItems(),
+    },
+    {
       text: '告警追因',
+      collapsed: true,
       items: [{ text: '告警 RCA：用 Skill 固化历史 Runbook', link: '/starops/practices/alert-rca-flow/article' }],
     },
     {
       text: '主动巡检',
+      collapsed: true,
       items: [
         { text: 'RDS 周期性自动巡检', link: '/starops/practices/rds-inspection-via-script/article' },
         { text: '饱和度评估与风险预测', link: '/starops/practices/capacity-risk-prediction/article' },
@@ -22,6 +32,7 @@ function getSidebar() {
     },
     {
       text: '经验固化',
+      collapsed: true,
       items: [
         { text: '编写 STAROps 运维 Skill', link: '/starops/practices/skill-authoring/article' },
         { text: '编写 Skill 确定性脚本', link: '/starops/practices/skill-script-deterministic/article' },
@@ -30,6 +41,7 @@ function getSidebar() {
     },
     {
       text: '协作闭环',
+      collapsed: true,
       items: [
         { text: '集成钉钉 IM 通道', link: '/starops/practices/dingtalk-integration/article' },
         { text: 'DevOps 跨域追因建模', link: '/starops/practices/devops-code-to-runtime/article' },

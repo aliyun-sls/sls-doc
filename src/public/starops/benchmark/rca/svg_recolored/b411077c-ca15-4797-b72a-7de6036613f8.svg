@@ -1,0 +1,82 @@
+<svg width="1920" height="1040" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .card-name  { font: 700 16px Menlo, Consolas, monospace; fill: #1A2233; }
+  .card-unit  { font: 11px "PingFang SC", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .num-big    { font: 700 22px "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .num-mid    { font: 700 13px Menlo, Consolas, monospace; fill: #1A2233; }
+  .num-small  { font: 11px Menlo, Consolas, monospace; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .fig-caption{ font: 11.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<rect width="960" height="520" fill="#fff"/>
+<text x="40" y="32" class="fig-title">RCA-100 v1 可观测原始数据分布（按数据类型独立计量）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#4464f0">103</text>
+<text x="60" y="103" class="summary-lbl">用例数</text>
+<text x="240" y="85" class="summary-big" style="fill:#4464f0">6</text>
+<text x="240" y="103" class="summary-lbl">数据类型</text>
+<text x="420" y="85" class="summary-big" style="fill:#4464f0">3.46</text>
+<text x="420" y="103" class="summary-lbl">总数据量 (GB)</text>
+<text x="620" y="85" class="summary-big" style="fill:#4464f0">~98%</text>
+<text x="620" y="103" class="summary-lbl">traces + logs 字节占比</text>
+<line x1="40" y1="120" x2="920" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<defs><clipPath id="cell-fig26-0"><rect x="30" y="145" width="290" height="170" rx="6"/></clipPath></defs><rect x="30" y="145" width="290" height="170" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="30" y="145" width="290" height="6" fill="#4464f0" clip-path="url(#cell-fig26-0)"/>
+<text x="48" y="175" class="card-name">logs</text>
+<text x="48" y="193" class="card-unit">日志 · 应用日志、系统日志</text>
+<line x1="48" y1="203" x2="302" y2="203" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="48" y="237" class="num-big">0.80</text>
+<text x="48" y="254" class="card-unit">GB · 23.4% 总体量</text>
+<text x="302" y="237" text-anchor="end" class="num-big">53.6M</text>
+<text x="302" y="254" text-anchor="end" class="card-unit">行 (lines)</text>
+<text x="48" y="283" class="num-small">平均 8.0 MB / case</text>
+<defs><clipPath id="cell-fig26-1"><rect x="336" y="145" width="290" height="170" rx="6"/></clipPath></defs><rect x="336" y="145" width="290" height="170" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="336" y="145" width="290" height="6" fill="#4464f0" clip-path="url(#cell-fig26-1)"/>
+<text x="354" y="175" class="card-name">traces</text>
+<text x="354" y="193" class="card-unit">APM · 调用链 span 单位</text>
+<line x1="354" y1="203" x2="608" y2="203" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="354" y="237" class="num-big">2.56</text>
+<text x="354" y="254" class="card-unit">GB · 75.1% 总体量</text>
+<text x="608" y="237" text-anchor="end" class="num-big">51.1M</text>
+<text x="608" y="254" text-anchor="end" class="card-unit">段 (spans)</text>
+<text x="354" y="283" class="num-small">平均 25.5 MB / case</text>
+<defs><clipPath id="cell-fig26-2"><rect x="642" y="145" width="290" height="170" rx="6"/></clipPath></defs><rect x="642" y="145" width="290" height="170" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="642" y="145" width="290" height="6" fill="#4464f0" clip-path="url(#cell-fig26-2)"/>
+<text x="660" y="175" class="card-name">metrics</text>
+<text x="660" y="193" class="card-unit">时序 · 指标采样点</text>
+<line x1="660" y1="203" x2="914" y2="203" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="660" y="237" class="num-big">33</text>
+<text x="660" y="254" class="card-unit">MB · 0.98% 总体量</text>
+<text x="914" y="237" text-anchor="end" class="num-big">8.9M</text>
+<text x="914" y="254" text-anchor="end" class="card-unit">点 (samples)</text>
+<text x="660" y="283" class="num-small">平均 0.32 MB / case</text>
+<defs><clipPath id="cell-fig26-3"><rect x="30" y="333" width="290" height="170" rx="6"/></clipPath></defs><rect x="30" y="333" width="290" height="170" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="30" y="333" width="290" height="6" fill="#4464f0" clip-path="url(#cell-fig26-3)"/>
+<text x="48" y="363" class="card-name">events</text>
+<text x="48" y="381" class="card-unit">事件 · k8s events 等离散事件</text>
+<line x1="48" y1="391" x2="302" y2="391" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="48" y="425" class="num-big">2.0</text>
+<text x="48" y="442" class="card-unit">MB · 0.05% 总体量</text>
+<text x="302" y="425" text-anchor="end" class="num-big">22.8K</text>
+<text x="302" y="442" text-anchor="end" class="card-unit">条 (events)</text>
+<text x="48" y="471" class="num-small">平均 20 KB / case</text>
+<defs><clipPath id="cell-fig26-4"><rect x="336" y="333" width="290" height="170" rx="6"/></clipPath></defs><rect x="336" y="333" width="290" height="170" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="336" y="333" width="290" height="6" fill="#4464f0" clip-path="url(#cell-fig26-4)"/>
+<text x="354" y="363" class="card-name">alerts</text>
+<text x="354" y="381" class="card-unit">告警 · 告警触发记录</text>
+<line x1="354" y1="391" x2="608" y2="391" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="354" y="425" class="num-big">1.0</text>
+<text x="354" y="442" class="card-unit">MB · 0.03% 总体量</text>
+<text x="608" y="425" text-anchor="end" class="num-big">3.1K</text>
+<text x="608" y="442" text-anchor="end" class="card-unit">条 (alerts)</text>
+<text x="354" y="471" class="num-small">平均 10 KB / case</text>
+<defs><clipPath id="cell-fig26-5"><rect x="642" y="333" width="290" height="170" rx="6"/></clipPath></defs><rect x="642" y="333" width="290" height="170" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="642" y="333" width="290" height="6" fill="#4464f0" clip-path="url(#cell-fig26-5)"/>
+<text x="660" y="363" class="card-name">topology</text>
+<text x="660" y="381" class="card-unit">拓扑 · 单用例一份服务拓扑图</text>
+<line x1="660" y1="391" x2="914" y2="391" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="660" y="425" class="num-big">18</text>
+<text x="660" y="442" class="card-unit">MB · 0.54% 总体量</text>
+<text x="914" y="425" text-anchor="end" class="num-big">103</text>
+<text x="914" y="442" text-anchor="end" class="card-unit">份 (JSON 快照)</text>
+<text x="660" y="471" class="num-small">平均 0.18 MB / case</text>
+</svg>

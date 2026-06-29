@@ -1,0 +1,88 @@
+<svg width="2400" height="840" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .col-hdr    { font: 700 11px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+  <marker id="arrFail" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#C03A28"/></marker>
+</defs>
+<rect width="1200" height="420" fill="#fff"/>
+<text x="40" y="32" class="fig-title">附录 C 五类 RCA 评估资产全景对照（按发布形态分类）</text>
+<line x1="40" y1="42" x2="1160" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<defs><clipPath id="cell-fig23-0"><rect x="40" y="70" width="220" height="230" rx="6"/></clipPath></defs><rect x="40" y="70" width="220" height="230" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="40" y="70" width="220" height="6" fill="#4464f0" clip-path="url(#cell-fig23-0)"/>
+<text x="55" y="100" class="cell-title">LLM Agent 评估基准</text>
+<text x="55" y="116" class="cell-en">Class A</text>
+<text x="55" y="145" class="annot">4 套同代基准对照见 §2.2.2 + fig15</text>
+<line x1="55" y1="165" x2="245" y2="165" stroke="#D1D5DB" stroke-width="0.5"/>
+<circle cx="62" cy="181" r="2" fill="#4464f0"/>
+<text x="70" y="185" class="body-sm" fill="#1A2233">AIOpsLab (MSR)</text>
+<circle cx="62" cy="203" r="2" fill="#4464f0"/>
+<text x="70" y="207" class="body-sm" fill="#1A2233">OpenRCA (MS+THU)</text>
+<circle cx="62" cy="225" r="2" fill="#4464f0"/>
+<text x="70" y="229" class="body-sm" fill="#1A2233">Cloud-OpsBench (SYSU+CUHK)</text>
+<circle cx="62" cy="247" r="2" fill="#4464f0"/>
+<text x="70" y="251" class="body-sm" fill="#1A2233">AnoMod (UH)</text>
+<defs><clipPath id="cell-fig23-1"><rect x="272" y="70" width="220" height="230" rx="6"/></clipPath></defs><rect x="272" y="70" width="220" height="230" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="272" y="70" width="220" height="6" fill="#4464f0" clip-path="url(#cell-fig23-1)"/>
+<text x="287" y="100" class="cell-title">静态 RCA 评估数据集</text>
+<text x="287" y="116" class="cell-en">Class B</text>
+<text x="287" y="145" class="annot">工业界 RCA 实践与基准评估的不对称</text>
+<line x1="287" y1="165" x2="477" y2="165" stroke="#D1D5DB" stroke-width="0.5"/>
+<circle cx="294" cy="181" r="2" fill="#4464f0"/>
+<text x="302" y="185" class="body-sm" fill="#1A2233">Eadro (2023)</text>
+<circle cx="294" cy="203" r="2" fill="#4464f0"/>
+<text x="302" y="207" class="body-sm" fill="#1A2233">AIOps Challenge 2020</text>
+<circle cx="294" cy="225" r="2" fill="#4464f0"/>
+<text x="302" y="229" class="body-sm" fill="#1A2233">MicroSS</text>
+<circle cx="294" cy="247" r="2" fill="#4464f0"/>
+<text x="302" y="251" class="body-sm" fill="#1A2233">PetShop</text>
+<defs><clipPath id="cell-fig23-2"><rect x="504" y="70" width="220" height="230" rx="6"/></clipPath></defs><rect x="504" y="70" width="220" height="230" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="504" y="70" width="220" height="6" fill="#4464f0" clip-path="url(#cell-fig23-2)"/>
+<text x="519" y="100" class="cell-title">算法基准</text>
+<text x="519" y="116" class="cell-en">Class C</text>
+<text x="519" y="145" class="annot">面向单算法对照与可复现性</text>
+<line x1="519" y1="165" x2="709" y2="165" stroke="#D1D5DB" stroke-width="0.5"/>
+<circle cx="526" cy="181" r="2" fill="#4464f0"/>
+<text x="534" y="185" class="body-sm" fill="#1A2233">BARO</text>
+<circle cx="526" cy="203" r="2" fill="#4464f0"/>
+<text x="534" y="207" class="body-sm" fill="#1A2233">RUN</text>
+<circle cx="526" cy="225" r="2" fill="#4464f0"/>
+<text x="534" y="229" class="body-sm" fill="#1A2233">CausalRCA</text>
+<circle cx="526" cy="247" r="2" fill="#4464f0"/>
+<text x="534" y="251" class="body-sm" fill="#1A2233">MicroRank</text>
+<defs><clipPath id="cell-fig23-3"><rect x="736" y="70" width="220" height="230" rx="6"/></clipPath></defs><rect x="736" y="70" width="220" height="230" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="736" y="70" width="220" height="6" fill="#4464f0" clip-path="url(#cell-fig23-3)"/>
+<text x="751" y="100" class="cell-title">工业竞赛</text>
+<text x="751" y="116" class="cell-en">Class D</text>
+<text x="751" y="145" class="annot">阿里云 / Sysu / Tencent</text>
+<line x1="751" y1="165" x2="941" y2="165" stroke="#D1D5DB" stroke-width="0.5"/>
+<circle cx="758" cy="181" r="2" fill="#4464f0"/>
+<text x="766" y="185" class="body-sm" fill="#1A2233">CCF AIOps Challenge</text>
+<circle cx="758" cy="203" r="2" fill="#4464f0"/>
+<text x="766" y="207" class="body-sm" fill="#1A2233">AIOps Challenge 2018-2024</text>
+<circle cx="758" cy="225" r="2" fill="#4464f0"/>
+<text x="766" y="229" class="body-sm" fill="#1A2233">阿里云 RCA Challenge</text>
+<defs><clipPath id="cell-fig23-4"><rect x="968" y="70" width="220" height="230" rx="6"/></clipPath></defs><rect x="968" y="70" width="220" height="230" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="968" y="70" width="220" height="6" fill="#4464f0" clip-path="url(#cell-fig23-4)"/>
+<text x="983" y="100" class="cell-title">微服务测试床</text>
+<text x="983" y="116" class="cell-en">Class E</text>
+<text x="983" y="145" class="annot">环境搭建与故障注入工具</text>
+<line x1="983" y1="165" x2="1173" y2="165" stroke="#D1D5DB" stroke-width="0.5"/>
+<circle cx="990" cy="181" r="2" fill="#4464f0"/>
+<text x="998" y="185" class="body-sm" fill="#1A2233">DeathStarBench</text>
+<circle cx="990" cy="203" r="2" fill="#4464f0"/>
+<text x="998" y="207" class="body-sm" fill="#1A2233">OpenTelemetry Demo</text>
+<circle cx="990" cy="225" r="2" fill="#4464f0"/>
+<text x="998" y="229" class="body-sm" fill="#1A2233">Sock Shop</text>
+<circle cx="990" cy="247" r="2" fill="#4464f0"/>
+<text x="998" y="251" class="body-sm" fill="#1A2233">Bookinfo</text>
+<text x="40" y="380" class="fig-caption">5 类资产覆盖：LLM Agent 评估、静态 RCA 数据集、单算法基准、工业竞赛、微服务测试床。RCA-Bench 主对照面为 Class A 同代 LLM Agent 基准。</text>
+<text x="40" y="400" class="fig-caption">扩展对照（Class B-E）按 7 维更广覆盖。完整 24 个条目清单见 §附录 C。</text>
+</svg>

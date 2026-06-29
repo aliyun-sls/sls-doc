@@ -1,0 +1,92 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .layer-tag  { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+  <marker id="arrFail" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#C03A28"/>
+  </marker>
+  <marker id="arrPass" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#3E8E5F"/>
+  </marker>
+</defs>
+<rect width="960" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">评估管线：结构化匹配优先，LLM 评判兜底</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<rect x="60" y="70" width="200" height="105" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1.2"/>
+<text x="160" y="93" text-anchor="middle" class="label">Agent 输出</text>
+<text x="160" y="115" text-anchor="middle" class="body-sm">自然语言报告</text>
+<text x="160" y="131" text-anchor="middle" class="body-sm">或结构化 JSON</text>
+<text x="160" y="155" text-anchor="middle" class="annot">"根因是 inventory 的慢查询…"</text>
+<line x1="260" y1="122" x2="310" y2="122" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<defs><clipPath id="cell-fig14-norm"><rect x="320" y="70" width="220" height="105" rx="6"/></clipPath></defs><rect x="320" y="70" width="220" height="105" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="320" y="70" width="220" height="6" fill="#4464f0" clip-path="url(#cell-fig14-norm)"/>
+<text x="430" y="93" text-anchor="middle" class="label">归一化提取</text>
+<text x="430" y="115" text-anchor="middle" class="body-sm">规则提取（正则 / 关键词 / 模板）</text>
+<text x="430" y="131" text-anchor="middle" class="body-sm">+ LLM 辅助提取（兜底）</text>
+<line x1="340" y1="142" x2="520" y2="142" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="430" y="160" text-anchor="middle" class="body-sm">一致性校验 → 低置信度进入复核</text>
+<line x1="540" y1="122" x2="590" y2="122" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<rect x="600" y="70" width="220" height="105" rx="6" fill="#FFFFFF" stroke="#1A2233" stroke-width="1.2"/>
+<text x="710" y="93" text-anchor="middle" class="label">结构化字段</text>
+<text x="710" y="115" text-anchor="middle" class="mono-sm">fault_id: F010-slowSQL</text>
+<text x="710" y="131" text-anchor="middle" class="mono-sm">entity_id: inventory-svc</text>
+<text x="710" y="147" text-anchor="middle" class="mono-sm">causal_chain: [P0→P1→P2]</text>
+<text x="710" y="163" text-anchor="middle" class="mono-sm">evidence_hits: [P0, P1]</text>
+<line x1="710" y1="175" x2="710" y2="195" stroke="#1A2233" stroke-width="1.2"/>
+<line x1="710" y1="195" x2="480" y2="195" stroke="#1A2233" stroke-width="1.2"/>
+<line x1="480" y1="195" x2="480" y2="215" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<rect x="60" y="220" width="580" height="180" rx="8" fill="#ECFDF5" stroke="#3E8E5F" stroke-width="1.2" stroke-dasharray="6,3" opacity="0.55"/>
+<text x="75" y="240" class="label" fill="#3E8E5F">确定性规则引擎</text>
+<rect x="555" y="230" width="80" height="20" rx="10" fill="#3E8E5F"/>
+<text x="595" y="244" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">无 LLM</text>
+<defs><clipPath id="cell-fig14-cause"><rect x="85" y="260" width="250" height="55" rx="6"/></clipPath></defs><rect x="85" y="260" width="250" height="55" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="85" y="260" width="250" height="6" fill="#4464f0" clip-path="url(#cell-fig14-cause)"/>
+<text x="210" y="282" text-anchor="middle" class="label">定因评分 Cause Score</text>
+<text x="210" y="302" text-anchor="middle" class="body-sm">故障类型拓扑上的图距离匹配</text>
+<defs><clipPath id="cell-fig14-boundary"><rect x="365" y="260" width="250" height="55" rx="6"/></clipPath></defs><rect x="365" y="260" width="250" height="55" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="365" y="260" width="250" height="6" fill="#4464f0" clip-path="url(#cell-fig14-boundary)"/>
+<text x="490" y="282" text-anchor="middle" class="label">定界评分 Boundary Score</text>
+<text x="490" y="302" text-anchor="middle" class="body-sm">实体传播拓扑上的 BFS 距离</text>
+<defs><clipPath id="cell-fig14-cov"><rect x="85" y="335" width="250" height="50" rx="6"/></clipPath></defs><rect x="85" y="335" width="250" height="50" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="85" y="335" width="250" height="6" fill="#4464f0" clip-path="url(#cell-fig14-cov)"/>
+<text x="210" y="357" text-anchor="middle" class="label">过程 · Coverage</text>
+<text x="210" y="373" text-anchor="middle" class="body-sm">检查点命中率规则计算</text>
+<rect x="660" y="220" width="260" height="180" rx="8" fill="#eef2ff" stroke="#C76A1F" stroke-width="1.2" stroke-dasharray="6,3" opacity="0.55"/>
+<text x="675" y="240" class="label" fill="#C76A1F">LLM Judge 辅助</text>
+<rect x="835" y="230" width="80" height="20" rx="10" fill="#C76A1F"/>
+<text x="875" y="244" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">需 LLM</text>
+<defs><clipPath id="cell-fig14-dir"><rect x="685" y="260" width="210" height="55" rx="6"/></clipPath></defs><rect x="685" y="260" width="210" height="55" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="685" y="260" width="210" height="6" fill="#4464f0" clip-path="url(#cell-fig14-dir)"/>
+<text x="790" y="282" text-anchor="middle" class="label">过程 · Directionality</text>
+<text x="790" y="302" text-anchor="middle" class="body-sm">因果推理方向判断</text>
+<defs><clipPath id="cell-fig14-grd"><rect x="685" y="335" width="210" height="50" rx="6"/></clipPath></defs><rect x="685" y="335" width="210" height="50" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="685" y="335" width="210" height="6" fill="#4464f0" clip-path="url(#cell-fig14-grd)"/>
+<text x="790" y="357" text-anchor="middle" class="label">过程 · Grounding</text>
+<text x="790" y="373" text-anchor="middle" class="body-sm">证据支撑度语义判断</text>
+<line x1="210" y1="315" x2="210" y2="425" stroke="#3E8E5F" stroke-width="1.4"/>
+<line x1="490" y1="315" x2="490" y2="425" stroke="#3E8E5F" stroke-width="1.4"/>
+<line x1="210" y1="385" x2="210" y2="425" stroke="#3E8E5F" stroke-width="1.4"/>
+<line x1="790" y1="315" x2="790" y2="425" stroke="#C76A1F" stroke-width="1.4"/>
+<line x1="790" y1="385" x2="790" y2="425" stroke="#C76A1F" stroke-width="1.4"/>
+<text x="210" y="420" text-anchor="middle" class="tier" fill="#3E8E5F">0.3</text>
+<text x="490" y="420" text-anchor="middle" class="tier" fill="#3E8E5F">0.4</text>
+<text x="680" y="420" text-anchor="middle" class="tier" fill="#C76A1F">0.3（部分）</text>
+<line x1="210" y1="425" x2="790" y2="425" stroke="#1A2233" stroke-width="1.2"/>
+<line x1="480" y1="425" x2="480" y2="450" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<rect x="230" y="455" width="500" height="40" rx="6" fill="#F8FAFC" stroke="#1A2233" stroke-width="1.2"/>
+<text x="480" y="480" text-anchor="middle" class="formula">MainScore = 0.4 · Boundary + 0.3 · Cause + 0.3 · Process</text>
+<text x="40" y="515" class="fig-caption">绿色区域：约 70% 评分权重由确定性规则覆盖，结果完全可复现。橙色区域：约 30% 权重中的部分</text>
+<text x="40" y="532" class="fig-caption">子维度依赖 LLM 评判，是当前需要持续优化的方向。归一化提取是整条管线的质量瓶颈。</text>
+</svg>

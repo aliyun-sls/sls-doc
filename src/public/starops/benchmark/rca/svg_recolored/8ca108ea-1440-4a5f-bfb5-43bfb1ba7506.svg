@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="640" viewBox="0 0 760 320">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="320" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">UModel 实体的核心字段定义</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="50" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="6" height="50" fill="#4464f0"/>
+<text x="40" y="77" class="code" style="font-weight:700">entity_id</text>
+<rect x="200" y="65" width="60" height="20" rx="3" fill="#F8FAFC" stroke="#D1D5DB"/>
+<text x="230" y="79" text-anchor="middle" class="code">string</text>
+<text x="280" y="77" class="m">跨域唯一主键，哈希生成</text>
+<rect x="670" y="70" width="60" height="20" rx="10" fill="#eef2ff"/>
+<text x="700" y="84" text-anchor="middle" class="lbl" style="fill:#4464f0">主键</text>
+<rect x="20" y="113" width="720" height="50" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="113" width="6" height="50" fill="#4464f0"/>
+<text x="40" y="135" class="code" style="font-weight:700">entity_name</text>
+<rect x="200" y="123" width="60" height="20" rx="3" fill="#F8FAFC" stroke="#D1D5DB"/>
+<text x="230" y="137" text-anchor="middle" class="code">string</text>
+<text x="280" y="135" class="m">人类可读名称，仅用于展示</text>
+<rect x="670" y="128" width="60" height="20" rx="10" fill="#eef2ff"/>
+<text x="700" y="142" text-anchor="middle" class="lbl" style="fill:#4464f0">展示</text>
+<rect x="20" y="171" width="720" height="50" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="171" width="6" height="50" fill="#4464f0"/>
+<text x="40" y="193" class="code" style="font-weight:700">entity_type</text>
+<rect x="200" y="181" width="60" height="20" rx="3" fill="#F8FAFC" stroke="#D1D5DB"/>
+<text x="230" y="195" text-anchor="middle" class="code">string</text>
+<text x="280" y="193" class="m">实体类型，带域前缀</text>
+<text x="280" y="209" class="m">例：apm.Service、k8s.Pod、cloud.node</text>
+<rect x="670" y="186" width="60" height="20" rx="10" fill="#eef2ff"/>
+<text x="700" y="200" text-anchor="middle" class="lbl" style="fill:#4464f0">类型</text>
+<rect x="20" y="229" width="720" height="50" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="229" width="6" height="50" fill="#4464f0"/>
+<text x="40" y="251" class="code" style="font-weight:700">entity_domain</text>
+<rect x="200" y="239" width="60" height="20" rx="3" fill="#F8FAFC" stroke="#D1D5DB"/>
+<text x="230" y="253" text-anchor="middle" class="code">enum</text>
+<text x="280" y="251" class="m">所属域，例如 APM、Kubernetes、Cloud</text>
+<rect x="670" y="244" width="60" height="20" rx="10" fill="#eef2ff"/>
+<text x="700" y="258" text-anchor="middle" class="lbl" style="fill:#4464f0">域</text>
+<text x="20" y="305" class="cap">entity_id 是跨域归一的核心 — 同一物理对象在 APM / K8s / Cloud 三域下指向同一主键。</text>
+</svg>

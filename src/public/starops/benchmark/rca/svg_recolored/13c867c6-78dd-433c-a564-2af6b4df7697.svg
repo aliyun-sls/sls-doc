@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="860" viewBox="0 0 760 430">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="430" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">四项核心设计在整体架构中的落点分布</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="78" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="6" height="78" fill="#4464f0"/>
+<text x="40" y="77" class="h">设计一：评估维度分解</text>
+<rect x="280" y="73" width="180" height="22" rx="11" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="370" y="88" text-anchor="middle" class="h2" style="fill:#4464f0">评估协议层</text>
+<text x="480" y="77" class="m">输出契约的三维结构化字段</text>
+<text x="480" y="93" class="m">(§5.1, §5.2)</text>
+<rect x="20" y="141" width="720" height="78" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="141" width="6" height="78" fill="#4464f0"/>
+<text x="40" y="163" class="h">设计二：因果链基线真值与</text>
+<text x="40" y="179" class="h">UModel 跨域归一</text>
+<rect x="280" y="159" width="180" height="22" rx="11" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="370" y="174" text-anchor="middle" class="h2" style="fill:#4464f0">数据集层 + 评估协议层</text>
+<text x="480" y="163" class="m">因果链在数据集层定义 (§4.2.1)</text>
+<text x="480" y="179" class="m">UModel 归一在评估协议层使用 (§5.2.2)</text>
+<rect x="20" y="227" width="720" height="78" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="227" width="6" height="78" fill="#4464f0"/>
+<text x="40" y="249" class="h">设计三：图距离确定性评分</text>
+<text x="40" y="265" class="h">+ LLM 评判比例量化</text>
+<rect x="280" y="245" width="180" height="22" rx="11" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="370" y="260" text-anchor="middle" class="h2" style="fill:#4464f0">评估协议层</text>
+<text x="480" y="249" class="m">依赖设计二的两张拓扑图</text>
+<text x="480" y="265" class="m">(§5.3)</text>
+<rect x="20" y="313" width="720" height="78" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="313" width="6" height="78" fill="#4464f0"/>
+<text x="40" y="335" class="h">设计四：多智能体审核</text>
+<text x="40" y="351" class="h">质量门禁</text>
+<rect x="280" y="331" width="180" height="22" rx="11" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="370" y="346" text-anchor="middle" class="h2" style="fill:#4464f0">数据集层</text>
+<text x="480" y="335" class="m">基线真值入库前的质量门禁</text>
+<text x="480" y="351" class="m">(§4.3)</text>
+<text x="20" y="415" class="cap">四项核心设计在三层组件上的归属一目了然，跨层关联以右侧引用标明。</text>
+</svg>

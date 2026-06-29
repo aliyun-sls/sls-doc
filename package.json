@@ -55,6 +55,7 @@
     "debug": "^4.4.3",
     "markdown-it-container": "^3.0.0",
     "mermaid": "^11.15.0",
+    "node-html-parser": "^6.1.13",
     "prettier": "^2.7.1",
     "typescript": "^4.8.2",
     "vitepress": "^1.6.3",

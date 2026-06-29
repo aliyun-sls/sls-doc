@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="760" viewBox="0 0 720 380">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 22px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:11px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="720" height="380" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">Task Input：Agent 启动时的四类初始上下文</text>
+<line x1="20" y1="38" x2="720" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="330" height="130" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="20" y="55" width="330" height="6" fill="#4464f0" rx="6"/>
+<text x="38" y="85" class="h">初始告警</text>
+<text x="38" y="110" class="code">alert_title</text>
+<text x="38" y="126" class="code">alert_entity</text>
+<text x="38" y="142" class="code">alert_timestamp</text>
+<text x="38" y="170" class="m">诊断起点：Agent 收到的第一条告警</text>
+<rect x="370" y="55" width="330" height="130" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="370" y="55" width="330" height="6" fill="#4464f0" rx="6"/>
+<text x="388" y="85" class="h">观测窗口</text>
+<text x="388" y="110" class="code">observation_window_start</text>
+<text x="388" y="126" class="code">observation_window_end</text>
+<text x="388" y="170" class="m">Agent 可查询数据的时间范围</text>
+<rect x="20" y="200" width="330" height="130" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="20" y="200" width="330" height="6" fill="#4464f0" rx="6"/>
+<text x="38" y="230" class="h">实体拓扑</text>
+<text x="38" y="255" class="code">service-dependency graph</text>
+<text x="38" y="271" class="code">deployment relation</text>
+<text x="38" y="315" class="m">Agent 可查询的系统结构信息</text>
+<rect x="370" y="200" width="330" height="130" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="370" y="200" width="330" height="6" fill="#4464f0" rx="6"/>
+<text x="388" y="230" class="h">可观测接口</text>
+<text x="388" y="255" class="code">Metrics / Logs / Traces</text>
+<text x="388" y="271" class="code">events query APIs</text>
+<text x="388" y="315" class="m">Agent 通过工具调用主动获取数据</text>
+<text x="20" y="360" class="cap">四项约束：字段集与字段语义在冻结快照内不变；未列入的接口视为禁用；输出契约见图 5-2；禁用信息显式列举（详见 §5.1.4）。</text>
+</svg>

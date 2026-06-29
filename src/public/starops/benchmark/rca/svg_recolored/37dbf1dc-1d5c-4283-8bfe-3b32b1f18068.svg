@@ -1,0 +1,150 @@
+<svg width="1920" height="1740" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 870">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .layer-tag  { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+</defs>
+<rect width="960" height="870" fill="#fff"/>
+<text x="40" y="32" class="fig-title">难度分级矩阵 L1-L4（二维分桶）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<text x="30" y="320" text-anchor="middle" class="label" transform="rotate(-90, 30, 320)">诊断复杂度  y</text>
+<text x="55" y="320" text-anchor="middle" class="annot" transform="rotate(-90, 55, 320)">越高 = 需要的信号源越多</text>
+<text x="440" y="600" text-anchor="middle" class="label">传播复杂度  x</text>
+<text x="440" y="615" text-anchor="middle" class="annot">越高 = 根因到告警的距离越远</text>
+<rect x="140" y="80" width="150" height="120" fill="#4464f0" fill-opacity="0.35"/>
+<text x="215" y="148" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L3</text>
+<rect x="290" y="80" width="150" height="120" fill="#4464f0" fill-opacity="0.35"/>
+<text x="365" y="148" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L3</text>
+<rect x="440" y="80" width="150" height="120" fill="#4464f0" fill-opacity="0.35"/>
+<text x="515" y="148" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L3</text>
+<rect x="590" y="80" width="150" height="120" fill="#C03A28"/>
+<text x="665" y="148" text-anchor="middle" font-size="22" font-weight="700" fill="#fff">L4</text>
+<rect x="140" y="200" width="150" height="120" fill="#eef2ff"/>
+<text x="215" y="268" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L2</text>
+<rect x="290" y="200" width="150" height="120" fill="#eef2ff"/>
+<text x="365" y="268" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L2</text>
+<rect x="440" y="200" width="150" height="120" fill="#eef2ff"/>
+<text x="515" y="268" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L2</text>
+<rect x="590" y="200" width="150" height="120" fill="#4464f0" fill-opacity="0.35"/>
+<text x="665" y="268" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L3</text>
+<rect x="140" y="320" width="150" height="120" fill="#FFFFFF"/>
+<text x="215" y="388" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L1</text>
+<rect x="290" y="320" width="150" height="120" fill="#FFFFFF"/>
+<text x="365" y="388" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L1</text>
+<rect x="440" y="320" width="150" height="120" fill="#eef2ff"/>
+<text x="515" y="388" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L2</text>
+<rect x="590" y="320" width="150" height="120" fill="#4464f0" fill-opacity="0.35"/>
+<text x="665" y="388" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L3</text>
+<rect x="140" y="440" width="150" height="120" fill="#FFFFFF"/>
+<text x="215" y="508" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L1</text>
+<rect x="290" y="440" width="150" height="120" fill="#FFFFFF"/>
+<text x="365" y="508" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L1</text>
+<rect x="440" y="440" width="150" height="120" fill="#eef2ff"/>
+<text x="515" y="508" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L2</text>
+<rect x="590" y="440" width="150" height="120" fill="#4464f0" fill-opacity="0.35"/>
+<text x="665" y="508" text-anchor="middle" font-size="22" font-weight="700" fill="#1A2233">L3</text>
+<line x1="290" y1="80" x2="290" y2="560" stroke="#D1D5DB" stroke-width="0.6"/>
+<line x1="440" y1="80" x2="440" y2="560" stroke="#D1D5DB" stroke-width="0.6"/>
+<line x1="590" y1="80" x2="590" y2="560" stroke="#D1D5DB" stroke-width="0.6"/>
+<line x1="140" y1="200" x2="740" y2="200" stroke="#D1D5DB" stroke-width="0.6"/>
+<line x1="140" y1="320" x2="740" y2="320" stroke="#D1D5DB" stroke-width="0.6"/>
+<line x1="140" y1="440" x2="740" y2="440" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="140" y="80" width="600" height="480" fill="none" stroke="#1A2233" stroke-width="1.2"/>
+<line x1="215" y1="560" x2="215" y2="566" stroke="#1A2233" stroke-width="0.6"/>
+<text x="215" y="578" text-anchor="middle" class="tier">0</text>
+<line x1="365" y1="560" x2="365" y2="566" stroke="#1A2233" stroke-width="0.6"/>
+<text x="365" y="578" text-anchor="middle" class="tier">1</text>
+<line x1="515" y1="560" x2="515" y2="566" stroke="#1A2233" stroke-width="0.6"/>
+<text x="515" y="578" text-anchor="middle" class="tier">2</text>
+<line x1="665" y1="560" x2="665" y2="566" stroke="#1A2233" stroke-width="0.6"/>
+<text x="665" y="578" text-anchor="middle" class="tier">3</text>
+<line x1="134" y1="500" x2="140" y2="500" stroke="#1A2233" stroke-width="0.6"/>
+<text x="128" y="504" text-anchor="end" class="tier">0</text>
+<line x1="134" y1="380" x2="140" y2="380" stroke="#1A2233" stroke-width="0.6"/>
+<text x="128" y="384" text-anchor="end" class="tier">1</text>
+<line x1="134" y1="260" x2="140" y2="260" stroke="#1A2233" stroke-width="0.6"/>
+<text x="128" y="264" text-anchor="end" class="tier">2</text>
+<line x1="134" y1="140" x2="140" y2="140" stroke="#1A2233" stroke-width="0.6"/>
+<text x="128" y="144" text-anchor="end" class="tier">3</text>
+<line x1="170" y1="530" x2="710" y2="110" stroke="#C03A28" stroke-width="1.2" stroke-dasharray="4,2" marker-end="url(#arrGray)"/>
+<text x="720" y="100" text-anchor="end" class="annot" fill="#C03A28">更难</text>
+<circle cx="350" cy="468" r="11" fill="#fff" stroke="#1A2233" stroke-width="1.2"/>
+<text x="350" y="472" text-anchor="middle" class="tier">(a)</text>
+<circle cx="350" cy="348" r="11" fill="#fff" stroke="#1A2233" stroke-width="1.2"/>
+<text x="350" y="352" text-anchor="middle" class="tier">(b)</text>
+<circle cx="380" cy="108" r="11" fill="#fff" stroke="#1A2233" stroke-width="1.2"/>
+<text x="380" y="112" text-anchor="middle" class="tier">(c)</text>
+<circle cx="665" cy="150" r="11" fill="#fff" stroke="#1A2233" stroke-width="1.2"/>
+<text x="665" y="154" text-anchor="middle" class="tier">(d)</text>
+<text x="40" y="635" class="label">B. 代表性样本</text>
+<line x1="40" y1="640" x2="920" y2="640" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="55" y="657" text-anchor="middle" class="body" font-weight="700">编号</text>
+<text x="110" y="657" text-anchor="start" class="body" font-weight="700">fault_id</text>
+<text x="315" y="657" text-anchor="middle" class="body" font-weight="700">x</text>
+<text x="360" y="657" text-anchor="middle" class="body" font-weight="700">y</text>
+<text x="400" y="657" text-anchor="start" class="body" font-weight="700">传播证据</text>
+<text x="660" y="657" text-anchor="start" class="body" font-weight="700">诊断证据</text>
+<text x="895" y="657" text-anchor="middle" class="body" font-weight="700">桶</text>
+<line x1="40" y1="662" x2="920" y2="662" stroke="#1A2233" stroke-width="0.6"/>
+<rect x="40" y="663" width="880" height="20" fill="#F8FAFC"/>
+<text x="62" y="677" text-anchor="middle" class="body-sm">(a)</text>
+<text x="110" y="677" class="mono-sm">F004-trafficHotspot</text>
+<text x="315" y="677" text-anchor="middle" class="body-sm">1</text>
+<text x="360" y="677" text-anchor="middle" class="body-sm">0</text>
+<text x="400" y="677" class="body-sm">1 跳, 2 服务</text>
+<text x="660" y="677" class="body-sm">1 类指标, 4 检查点</text>
+<text x="900" y="677" text-anchor="middle" class="body-sm" font-weight="700">L1</text>
+<text x="62" y="699" text-anchor="middle" class="body-sm">(b)</text>
+<text x="110" y="699" class="mono-sm">F010-slowSQL</text>
+<text x="315" y="699" text-anchor="middle" class="body-sm">1</text>
+<text x="360" y="699" text-anchor="middle" class="body-sm">1</text>
+<text x="400" y="699" class="body-sm">1 跳, 2 服务</text>
+<text x="660" y="699" class="body-sm">指标 + trace（SQL span）, 4 检查点</text>
+<text x="900" y="699" text-anchor="middle" class="body-sm" font-weight="700">L1</text>
+<rect x="40" y="707" width="880" height="20" fill="#F8FAFC"/>
+<text x="62" y="721" text-anchor="middle" class="body-sm">(c)</text>
+<text x="110" y="721" class="mono-sm">F002-threadExhaustion</text>
+<text x="315" y="721" text-anchor="middle" class="body-sm">1</text>
+<text x="360" y="721" text-anchor="middle" class="body-sm">3</text>
+<text x="400" y="721" class="body-sm">1 跳, 低信号</text>
+<text x="660" y="721" class="body-sm">3 类信号, 6 检查点</text>
+<text x="900" y="721" text-anchor="middle" class="body-sm" font-weight="700">L3</text>
+<text x="62" y="743" text-anchor="middle" class="body-sm">(d)</text>
+<text x="110" y="743" class="mono-sm">F009-cacheBreakdown</text>
+<text x="315" y="743" text-anchor="middle" class="body-sm">3</text>
+<text x="360" y="743" text-anchor="middle" class="body-sm">3</text>
+<text x="400" y="743" class="body-sm">2 跳, 4 服务</text>
+<text x="660" y="743" class="body-sm">3 类以上信号, 7 检查点</text>
+<text x="900" y="743" text-anchor="middle" class="body-sm" font-weight="700">L4</text>
+<text x="40" y="785" class="label">C. 当前分布</text>
+<line x1="40" y1="790" x2="920" y2="790" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="60" y="813" class="body" font-weight="700">L1</text>
+<rect x="90" y="803" width="16" height="14" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="114" y="813" class="body-sm">~10%</text>
+<text x="280" y="813" class="body" font-weight="700">L2</text>
+<rect x="310" y="803" width="63" height="14" fill="#eef2ff" stroke="none" stroke-width="0.6"/>
+<text x="381" y="813" class="body-sm">~40%</text>
+<text x="500" y="813" class="body" font-weight="700">L3</text>
+<rect x="530" y="803" width="71" height="14" fill="#4464f0" fill-opacity="0.35" stroke="none" stroke-width="0.6"/>
+<text x="609" y="813" class="body-sm">~45%</text>
+<text x="720" y="813" class="body" font-weight="700">L4</text>
+<rect x="750" y="803" width="8" height="14" fill="#C03A28" stroke="none" stroke-width="0.6"/>
+<text x="766" y="813" class="body-sm">~5%</text>
+<rect x="40" y="830" width="440" height="45" rx="4" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="50" y="844" class="body-sm" font-weight="700">分级规则</text>
+<text x="50" y="846" class="mono-sm">L1: x ≤ 1 ∧ y ≤ 1     L2: x ≤ 2 ∧ y ≤ 2 (排除 L1)</text>
+<text x="50" y="862" class="mono-sm">L4: x ≥ 3 ∧ y ≥ 3     L3: 其余</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="640" viewBox="0 0 720 320">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="720" height="320" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">数据集形态层面的三类已识别局限</text>
+<line x1="20" y1="38" x2="700" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<rect x="20" y="55" width="220" height="210" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="220" height="6" fill="#C76A1F" rx="6"/>
+<text x="35" y="88" class="h">单故障为主</text>
+<text x="35" y="115" class="m">多故障并发未系统覆盖；</text>
+<text x="35" y="133" class="m">级联故障与连锁告警</text>
+<text x="35" y="151" class="m">是生产环境中的常见</text>
+<text x="35" y="169" class="m">事故形态。</text>
+<text x="35" y="248" class="lbl">演进路径 → §7.3.4</text>
+
+<rect x="250" y="55" width="220" height="210" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="250" y="55" width="220" height="6" fill="#C76A1F" rx="6"/>
+<text x="265" y="88" class="h">基准与生产存在差距</text>
+<text x="265" y="115" class="m">当前被测系统含 40 余</text>
+<text x="265" y="133" class="m">个可观测实例（§3.4）；</text>
+<text x="265" y="151" class="m">服务规模、流量量级、</text>
+<text x="265" y="169" class="m">背景噪声密度均低于</text>
+<text x="265" y="187" class="m">大型生产环境。</text>
+<text x="265" y="248" class="lbl">演进路径 → §7.3.1</text>
+
+<rect x="480" y="55" width="220" height="210" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="480" y="55" width="220" height="6" fill="#C76A1F" rx="6"/>
+<text x="495" y="88" class="h">长尾故障不足</text>
+<text x="495" y="115" class="m">中间件版本兼容性、</text>
+<text x="495" y="133" class="m">跨 Region、跨集群一致</text>
+<text x="495" y="151" class="m">性等覆盖不足；该类</text>
+<text x="495" y="169" class="m">故障在生产事故中占比</text>
+<text x="495" y="187" class="m">可观，注入工具难以</text>
+<text x="495" y="205" class="m">系统重现。</text>
+<text x="495" y="248" class="lbl">演进路径 → §7.3.2</text>
+
+<text x="20" y="293" class="cap">共同成因：注入驱动路径的天然边界 — 受注入工具能力上限与基准环境相对生产环境</text>
+<text x="20" y="309" class="cap">的差距双重约束（详见 §7.3.1）。</text>
+</svg>

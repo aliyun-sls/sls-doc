@@ -1,0 +1,104 @@
+<svg width="2400" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+</defs>
+<rect width="1200" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">RCA-100 v1 基线真值结构四维分布</text>
+<line x1="40" y1="42" x2="1160" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#4464f0">4</text>
+<text x="60" y="103" class="summary-lbl">结构维度</text>
+<text x="220" y="85" class="summary-big" style="fill:#4464f0">103</text>
+<text x="220" y="103" class="summary-lbl">用例总数</text>
+<text x="420" y="85" class="summary-big" style="fill:#4464f0">3.2</text>
+<text x="420" y="103" class="summary-lbl">平均链深 C0→C3</text>
+<text x="620" y="85" class="summary-big" style="fill:#4464f0">227</text>
+<text x="620" y="103" class="summary-lbl">单用例中位实体数</text>
+<line x1="40" y1="120" x2="1160" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<defs><clipPath id="p-fig33-a"><rect x="40" y="155" width="540" height="180" rx="6"/></clipPath></defs><rect x="40" y="155" width="540" height="180" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="40" y="155" width="540" height="6" fill="#4464f0" clip-path="url(#p-fig33-a)"/>
+<text x="55" y="180" class="cell-title">A. 因果链深度分布</text>
+<text x="55" y="197" class="cell-en">C0 → C3 链长，按 case 计数</text>
+<rect x="150" y="277.0" width="50" height="33.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="175.0" y="273.0" text-anchor="middle" class="tier" fill="#4464f0">22</text>
+<text x="175.0" y="324" text-anchor="middle" class="body-sm"> 2 步</text>
+<rect x="225" y="233.5" width="50" height="76.5" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="250.0" y="229.5" text-anchor="middle" class="tier" fill="#4464f0">51</text>
+<text x="250.0" y="324" text-anchor="middle" class="body-sm"> 3 步</text>
+<rect x="300" y="274.0" width="50" height="36.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="325.0" y="270.0" text-anchor="middle" class="tier" fill="#4464f0">24</text>
+<text x="325.0" y="324" text-anchor="middle" class="body-sm"> 4 步</text>
+<rect x="375" y="301.0" width="50" height="9.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="400.0" y="297.0" text-anchor="middle" class="tier" fill="#4464f0">6</text>
+<text x="400.0" y="324" text-anchor="middle" class="body-sm"> 5+步</text>
+<line x1="140" y1="310" x2="450" y2="310" stroke="#1A2233" stroke-width="0.5"/>
+<defs><clipPath id="p-fig33-b"><rect x="620" y="155" width="540" height="180" rx="6"/></clipPath></defs><rect x="620" y="155" width="540" height="180" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="620" y="155" width="540" height="6" fill="#4464f0" clip-path="url(#p-fig33-b)"/>
+<text x="635" y="180" class="cell-title">B. 单用例实体数分布</text>
+<text x="635" y="197" class="cell-en">直方图，分桶 50 实体</text>
+<rect x="700" y="274.0" width="60" height="36.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="730.0" y="270.0" text-anchor="middle" class="tier" fill="#4464f0">18</text>
+<text x="730.0" y="324" text-anchor="middle" class="annot">100-150</text>
+<rect x="780" y="246.0" width="60" height="64.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="810.0" y="242.0" text-anchor="middle" class="tier" fill="#4464f0">32</text>
+<text x="810.0" y="324" text-anchor="middle" class="annot">150-200</text>
+<rect x="860" y="234.0" width="60" height="76.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="890.0" y="230.0" text-anchor="middle" class="tier" fill="#4464f0">38</text>
+<text x="890.0" y="324" text-anchor="middle" class="annot">200-250</text>
+<rect x="940" y="288.0" width="60" height="22.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="970.0" y="284.0" text-anchor="middle" class="tier" fill="#4464f0">11</text>
+<text x="970.0" y="324" text-anchor="middle" class="annot">250-300</text>
+<rect x="1020" y="302.0" width="60" height="8.0" rx="2" fill="#4464f0" fill-opacity="0.55"/>
+<text x="1050.0" y="298.0" text-anchor="middle" class="tier" fill="#4464f0">4</text>
+<text x="1050.0" y="324" text-anchor="middle" class="annot">300+</text>
+<line x1="690" y1="310" x2="1100" y2="310" stroke="#1A2233" stroke-width="0.5"/>
+<text x="1145" y="215" text-anchor="end" class="annot" fill="#4464f0">中位 227</text>
+<defs><clipPath id="p-fig33-c"><rect x="40" y="355" width="540" height="180" rx="6"/></clipPath></defs><rect x="40" y="355" width="540" height="180" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="40" y="355" width="540" height="6" fill="#4464f0" clip-path="url(#p-fig33-c)"/>
+<text x="55" y="380" class="cell-title">C. 检查点覆盖率（按优先级）</text>
+<text x="55" y="397" class="cell-en">P0-P3 检查点在 103 case 上的命中率</text>
+<text x="178" y="431" text-anchor="end" class="body-sm">P0 根因信号</text>
+<rect x="190" y="422" width="307.2" height="12" rx="2" fill="#4464f0" fill-opacity="0.8999999999999999"/>
+<text x="503.2" y="431" class="tier" fill="#4464f0">96%</text>
+<text x="535" y="431" class="annot">w=1.00</text>
+<text x="178" y="455" text-anchor="end" class="body-sm">P1 传播信号</text>
+<rect x="190" y="446" width="281.6" height="12" rx="2" fill="#4464f0" fill-opacity="0.75"/>
+<text x="477.6" y="455" class="tier" fill="#4464f0">88%</text>
+<text x="535" y="455" class="annot">w=0.75</text>
+<text x="178" y="479" text-anchor="end" class="body-sm">P2 影响信号</text>
+<rect x="190" y="470" width="230.4" height="12" rx="2" fill="#4464f0" fill-opacity="0.6"/>
+<text x="426.4" y="479" class="tier" fill="#4464f0">72%</text>
+<text x="535" y="479" class="annot">w=0.50</text>
+<text x="178" y="503" text-anchor="end" class="body-sm">P3 表象信号</text>
+<rect x="190" y="494" width="176.0" height="12" rx="2" fill="#4464f0" fill-opacity="0.44999999999999996"/>
+<text x="372.0" y="503" class="tier" fill="#4464f0">55%</text>
+<text x="535" y="503" class="annot">w=0.25</text>
+<defs><clipPath id="p-fig33-d"><rect x="620" y="355" width="540" height="180" rx="6"/></clipPath></defs><rect x="620" y="355" width="540" height="180" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="620" y="355" width="540" height="6" fill="#4464f0" clip-path="url(#p-fig33-d)"/>
+<text x="635" y="380" class="cell-title">D. 用例难度分布 L1-L4</text>
+<text x="635" y="397" class="cell-en">传播复杂度 × 诊断复杂度 二维分桶</text>
+<text x="708" y="436" text-anchor="end" class="body-sm">L1 易</text>
+<rect x="720" y="427" width="95.0" height="12" rx="2" fill="#4464f0" fill-opacity="0.30"/>
+<text x="821.0" y="436" class="tier" fill="#4464f0">10 (10%)</text>
+<text x="708" y="460" text-anchor="end" class="body-sm">L2 中</text>
+<rect x="720" y="451" width="380.0" height="12" rx="2" fill="#4464f0" fill-opacity="0.50"/>
+<text x="1106.0" y="460" class="tier" fill="#4464f0">41 (40%)</text>
+<text x="708" y="484" text-anchor="end" class="body-sm">L3 难</text>
+<rect x="720" y="475" width="380.0" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="1106" y="484" class="tier" fill="#4464f0">46 (45%)</text>
+<text x="708" y="508" text-anchor="end" class="body-sm">L4 极难</text>
+<rect x="720" y="499" width="47.5" height="12" rx="2" fill="#4464f0" fill-opacity="0.90"/>
+<text x="773.5" y="508" class="tier" fill="#4464f0">6 (5%)</text>
+<text x="1145" y="520" text-anchor="end" class="annot">主战场：L2 + L3 ≈ 85%</text>
+<text x="40" y="525" class="fig-caption">面板 A-D 分别量化基线真值结构在因果链深度、单用例实体规模、检查点优先级覆盖率与用例难度四维上的分布。详细字段定义见 §4.2 与 §4.4.4。</text>
+</svg>

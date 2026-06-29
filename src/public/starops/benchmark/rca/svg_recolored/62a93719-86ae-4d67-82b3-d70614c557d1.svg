@@ -1,0 +1,75 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .col-hdr    { font: 700 12px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .role-name  { font: 700 13px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .role-id    { font: 11px Menlo, Consolas, monospace; fill: #5E6B82; }
+  .body-sm    { font: 11px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .pct        { font: 700 14px Menlo, Consolas, monospace; fill: #4464f0; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .fig-caption{ font: 11.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<rect width="960" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">业务角色配置（双层调制 · 6 角色 × 5 字段）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#4464f0">6</text>
+<text x="60" y="103" class="summary-lbl">业务角色</text>
+<text x="240" y="85" class="summary-big" style="fill:#4464f0">4 + 2</text>
+<text x="240" y="103" class="summary-lbl">电商主链 + 跨行业</text>
+<text x="420" y="85" class="summary-big" style="fill:#3E8E5F">100%</text>
+<text x="420" y="103" class="summary-lbl">基线占比总和</text>
+<text x="620" y="85" class="summary-big" style="fill:#4464f0">一周</text>
+<text x="620" y="103" class="summary-lbl">完整流量节律覆盖</text>
+<line x1="40" y1="120" x2="920" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="50" y="158" class="col-hdr">业务角色</text>
+<text x="175" y="158" class="col-hdr">配置标识</text>
+<text x="315" y="158" class="col-hdr">典型入口</text>
+<text x="490" y="158" class="col-hdr">基线占比</text>
+<text x="600" y="158" class="col-hdr">占比条</text>
+<text x="710" y="158" class="col-hdr">一周流量特征</text>
+<line x1="40" y1="166" x2="920" y2="166" stroke="#1A2233" stroke-width="1"/>
+<rect x="40" y="170" width="880" height="48" fill="#F8FAFC"/>
+<text x="50" y="188" class="role-name">浏览用户</text>
+<text x="175" y="188" class="role-id">BrowsingUser</text>
+<text x="315" y="188" class="body-sm">首页、搜索、推荐、广告</text>
+<text x="580" y="188" text-anchor="end" class="pct">40%</text>
+<rect x="600" y="176" width="85.0" height="14" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="710" y="188" class="body-sm">日内节律；周末傍晚峰更高</text>
+<text x="50" y="238" class="role-name">购物用户</text>
+<text x="175" y="238" class="role-id">ShoppingUser</text>
+<text x="315" y="238" class="body-sm">加购、下单、支付</text>
+<text x="580" y="238" text-anchor="end" class="pct">25%</text>
+<rect x="600" y="226" width="53.1" height="14" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="710" y="238" class="body-sm">周五晚与周六下午大促秒杀</text>
+<rect x="40" y="270" width="880" height="48" fill="#F8FAFC"/>
+<text x="50" y="288" class="role-name">售后用户</text>
+<text x="175" y="288" class="role-id">AfterSalesUser</text>
+<text x="315" y="288" class="body-sm">订单查询、退款、优惠券</text>
+<text x="580" y="288" text-anchor="end" class="pct">10%</text>
+<rect x="600" y="276" width="21.2" height="14" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="710" y="288" class="body-sm">工单滞后于下单</text>
+<text x="50" y="338" class="role-name">社区用户</text>
+<text x="175" y="338" class="role-id">CommunityUser</text>
+<text x="315" y="338" class="body-sm">评价、收藏、会员</text>
+<text x="580" y="338" text-anchor="end" class="pct">10%</text>
+<rect x="600" y="326" width="21.2" height="14" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="710" y="338" class="body-sm">全周扁平 18-22%，波动较小</text>
+<rect x="40" y="370" width="880" height="48" fill="#F8FAFC"/>
+<text x="50" y="388" class="role-name">4S 店用户</text>
+<text x="175" y="388" class="role-id">AutoDealerUser</text>
+<text x="315" y="388" class="body-sm">库存、试驾、保险</text>
+<text x="580" y="388" text-anchor="end" class="pct">10%</text>
+<rect x="600" y="376" width="21.2" height="14" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="710" y="388" class="body-sm">周一至周六营业，周日闭店</text>
+<text x="50" y="438" class="role-name">金融用户</text>
+<text x="175" y="438" class="role-id">FinanceUser</text>
+<text x="315" y="438" class="body-sm">征信、KYC、贷款</text>
+<text x="580" y="438" text-anchor="end" class="pct">5%</text>
+<rect x="600" y="426" width="10.6" height="14" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="710" y="438" class="body-sm">工作日开盘与收盘两次批脉冲</text>
+<line x1="40" y1="488" x2="920" y2="488" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="40" y="513" class="fig-caption">前 4 角色（浏览 / 购物 / 售后 / 社区）对应电商主链 85% 流量；4S 店与金融为跨行业扩展，引入串行链路与批处理窗口。</text>
+<text x="40" y="531" class="fig-caption">配置标识对应 Locust UserClass 名，详见 §3.5.1 双层调制策略与图 3-3 一周流量节律。</text>
+</svg>

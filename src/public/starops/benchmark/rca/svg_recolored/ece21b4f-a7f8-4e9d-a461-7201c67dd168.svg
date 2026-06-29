@@ -1,0 +1,79 @@
+<svg width="1920" height="800" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .layer-tag  { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+</defs>
+<rect width="960" height="400" fill="#fff"/>
+<text x="40" y="30" class="fig-title">采样与覆盖热力图：故障机理 × 系统层级</text>
+<line x1="40" y1="40" x2="920" y2="40" stroke="#1A2233" stroke-width="0.6"/>
+<text x="235" y="62" text-anchor="middle" class="body" font-weight="700">应用故障</text>
+<text x="355" y="62" text-anchor="middle" class="body" font-weight="700">依赖服务</text>
+<text x="475" y="62" text-anchor="middle" class="body" font-weight="700">基础设施</text>
+<text x="595" y="62" text-anchor="middle" class="body" font-weight="700">流量与外部</text>
+<text x="715" y="62" text-anchor="middle" class="body" font-weight="700">变更发布</text>
+<text x="835" y="62" text-anchor="middle" class="body" font-weight="700">K8s 平台</text>
+<text x="167" y="95" text-anchor="end" class="body">应用 / 进程</text>
+<text x="167" y="137" text-anchor="end" class="body">微服务依赖</text>
+<text x="167" y="179" text-anchor="end" class="body">K8s / 容器</text>
+<text x="167" y="221" text-anchor="end" class="body">主机 / 云资源</text>
+<text x="167" y="263" text-anchor="end" class="body">LLM / Agent 运行时</text>
+<rect x="175" y="70" width="120" height="42" fill="#4464f0" fill-opacity="0.70" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="295" y="70" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="415" y="70" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="535" y="70" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="655" y="70" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="775" y="70" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="175" y="112" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="295" y="112" width="120" height="42" fill="#4464f0" fill-opacity="0.70" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="415" y="112" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="535" y="112" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="655" y="112" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="775" y="112" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="175" y="154" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="295" y="154" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="415" y="154" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="535" y="154" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="655" y="154" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="775" y="154" width="120" height="42" fill="#4464f0" fill-opacity="0.70" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="175" y="196" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="295" y="196" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="415" y="196" width="120" height="42" fill="#4464f0" fill-opacity="0.70" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="535" y="196" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="655" y="196" width="120" height="42" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="775" y="196" width="120" height="42" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="175" y="238" width="120" height="42" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="295" y="238" width="120" height="42" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="415" y="238" width="120" height="42" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="535" y="238" width="120" height="42" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="655" y="238" width="120" height="42" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="775" y="238" width="120" height="42" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="175" y="70" width="720" height="210" fill="none" stroke="#1A2233" stroke-width="1.2"/>
+<line x1="915" y1="85" x2="915" y2="265" stroke="#5E6B82" stroke-width="1.2" stroke-dasharray="4,3"/>
+<text x="930" y="175" text-anchor="middle" transform="rotate(90,930,175)" class="annot">样本密度对齐线上故障分布（成熟度缺口为辅）</text>
+<rect x="175" y="297" width="14" height="14" fill="#4464f0" fill-opacity="0.70" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="195" y="308" class="body-sm">高密度（重点压测）</text>
+<rect x="335" y="297" width="14" height="14" fill="#4464f0" fill-opacity="0.35" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="355" y="308" class="body-sm">中密度</text>
+<rect x="455" y="297" width="14" height="14" fill="#4464f0" fill-opacity="0.10" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="475" y="308" class="body-sm">低密度</text>
+<rect x="575" y="297" width="14" height="14" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="595" y="308" class="body-sm">规划中 · 待补充（覆盖盲区）</text>
+<rect x="175" y="330" width="720" height="36" rx="4" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="185" y="345" class="body-sm">阅读方式：行 = 系统层级（应用 → 云资源 → LLM 运行时），列 = 故障机理（6 大类，对应正文目录表）。</text>
+<text x="185" y="360" class="body-sm">单元格越深样本越密集；密度以线上故障分布为主、成熟度缺口为辅。整行空白＝覆盖盲区，是后续扩展方向。</text>
+<text x="480" y="390" text-anchor="middle" class="fig-caption">采样与覆盖热力图：故障机理 × 系统层级。颜色 = 样本密度（线上分布为主，成熟度缺口为辅），非分类轴。</text>
+</svg>

@@ -1,0 +1,58 @@
+<svg width="1920" height="640" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 320">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .layer-tag  { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+</defs>
+<rect width="960" height="320" fill="#fff"/>
+<text x="40" y="32" class="fig-title">因果传播链示例（F010-slowSQL）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<defs><clipPath id="cell-fig3-0"><rect x="70" y="70" width="195" height="130" rx="6"/></clipPath></defs><rect x="70" y="70" width="195" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="70" y="70" width="195" height="6" fill="#4464f0" clip-path="url(#cell-fig3-0)"/>
+<circle cx="92" cy="99" r="14" fill="#4464f0"/>
+<text x="92" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">C0</text>
+<text x="112" y="103" class="cell-en">cause</text>
+<text x="167.5" y="130" text-anchor="middle" class="label">MySQL 慢查询</text>
+<text x="167.5" y="155" text-anchor="middle" class="annot">慢查询延迟 &gt; 3s</text>
+<text x="167.5" y="180" text-anchor="middle" class="body-sm">根因信号</text>
+<line x1="265" y1="135" x2="282" y2="135" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<defs><clipPath id="cell-fig3-1"><rect x="283" y="70" width="195" height="130" rx="6"/></clipPath></defs><rect x="283" y="70" width="195" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="283" y="70" width="195" height="6" fill="#4464f0" clip-path="url(#cell-fig3-1)"/>
+<circle cx="305" cy="99" r="14" fill="#4464f0"/>
+<text x="305" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">C1</text>
+<text x="325" y="103" class="cell-en">propagation</text>
+<text x="380.5" y="130" text-anchor="middle" class="label">调用方延迟激增</text>
+<text x="380.5" y="155" text-anchor="middle" class="annot">Inventory P99 &gt; 5s</text>
+<text x="380.5" y="180" text-anchor="middle" class="body-sm">直接影响</text>
+<line x1="478" y1="135" x2="495" y2="135" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<defs><clipPath id="cell-fig3-2"><rect x="496" y="70" width="195" height="130" rx="6"/></clipPath></defs><rect x="496" y="70" width="195" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="496" y="70" width="195" height="6" fill="#4464f0" clip-path="url(#cell-fig3-2)"/>
+<circle cx="518" cy="99" r="14" fill="#4464f0"/>
+<text x="518" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">C2</text>
+<text x="538" y="103" class="cell-en">impact</text>
+<text x="593.5" y="130" text-anchor="middle" class="label">上游错误率升高</text>
+<text x="593.5" y="155" text-anchor="middle" class="annot">Checkout 5xx &gt; 10%</text>
+<text x="593.5" y="180" text-anchor="middle" class="body-sm">级联影响</text>
+<line x1="691" y1="135" x2="708" y2="135" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<defs><clipPath id="cell-fig3-3"><rect x="709" y="70" width="195" height="130" rx="6"/></clipPath></defs><rect x="709" y="70" width="195" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="709" y="70" width="195" height="6" fill="#4464f0" clip-path="url(#cell-fig3-3)"/>
+<circle cx="731" cy="99" r="14" fill="#4464f0"/>
+<text x="731" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">C3</text>
+<text x="751" y="103" class="cell-en">symptom</text>
+<text x="806.5" y="130" text-anchor="middle" class="label">Frontend 超时</text>
+<text x="806.5" y="155" text-anchor="middle" class="annot">用户可见 504 错误</text>
+<text x="806.5" y="180" text-anchor="middle" class="body-sm">远端表象</text>
+<text x="40" y="232" class="label">链位置 C0-C3 映射到过程评分优先级 P0-P3</text>
+<text x="40" y="252" class="mono-sm">C0 → P0 = 1.00 （根因信号）   C1 → P1 = 0.75 （直接影响）   C2 → P2 = 0.50 （级联影响）   C3 → P3 = 0.25 （远端表象）</text>
+<text x="40" y="275" class="mono-sm">Coverage = ∑ⱼ wⱼ · cⱼ / ∑ⱼ wⱼ ，其中 cⱼ ∈ {0.0, 0.5, 1.0}</text>
+<text x="40" y="304" class="fig-caption">节点带链位置 (C0-C3) 与类型标签 (cause / propagation / impact / symptom)。链位置定义基线真值结构；P0-P3 是其在过程评分 Coverage 子维度的优先级权重。</text>
+</svg>

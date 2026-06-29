@@ -1,0 +1,60 @@
+<svg width="1920" height="960" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .num-mean   { font: 700 13px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+</defs>
+<rect width="960" height="480" fill="#fff"/>
+<text x="40" y="32" class="fig-title">综合分 MainScore 评判比例量化（82% 规则 + 18% LLM）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#3E8E5F">82%</text>
+<text x="60" y="103" class="summary-lbl">规则评分权重</text>
+<text x="240" y="85" class="summary-big" style="fill:#C76A1F">18%</text>
+<text x="240" y="103" class="summary-lbl">LLM 评判权重</text>
+<text x="420" y="85" class="summary-big" style="fill:#4464f0">0.40</text>
+<text x="420" y="103" class="summary-lbl">Boundary（纯规则）</text>
+<text x="620" y="85" class="summary-big" style="fill:#4464f0">0.30</text>
+<text x="620" y="103" class="summary-lbl">Cause（纯规则）</text>
+<line x1="40" y1="120" x2="920" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<path d="M 250.0 170.0 A 110 110 0 1 1 150.5 233.2 L 186.7 250.2 A 70 70 0 1 0 250.0 210.0 Z" fill="#4464f0" fill-opacity="0.70"/>
+<path d="M 150.5 233.2 A 110 110 0 0 1 250.0 170.0 L 250.0 210.0 A 70 70 0 0 0 186.7 250.2 Z" fill="#C76A1F" fill-opacity="0.70"/>
+<text x="250" y="276" text-anchor="middle" class="summary-big" style="fill:#1A2233; font-size: 24px">82/18</text>
+<text x="250" y="296" text-anchor="middle" class="body-sm">权重分布</text>
+<text x="420" y="158" class="body-sm" font-weight="700">子项 ｜ 权重 ｜ 评分类型</text>
+<line x1="420" y1="162" x2="900" y2="162" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="420" y="180" class="label">Boundary (定界)</text>
+<text x="420" y="194" class="annot">规则评分</text>
+<rect x="620" y="172" width="184" height="16" rx="2" fill="#3E8E5F" fill-opacity="0.60"/>
+<text x="812.0" y="184" class="num-mean" style="fill:#3E8E5F">0.40</text>
+<text x="420" y="218" class="label">Cause (定因)</text>
+<text x="420" y="232" class="annot">规则评分</text>
+<rect x="620" y="210" width="138" height="16" rx="2" fill="#3E8E5F" fill-opacity="0.60"/>
+<text x="766.0" y="222" class="num-mean" style="fill:#3E8E5F">0.30</text>
+<text x="420" y="256" class="label">Process · Coverage</text>
+<text x="420" y="270" class="annot">规则评分</text>
+<rect x="620" y="248" width="55" height="16" rx="2" fill="#3E8E5F" fill-opacity="0.60"/>
+<text x="683.2" y="260" class="num-mean" style="fill:#3E8E5F">0.12</text>
+<text x="420" y="294" class="label">Process · Direction</text>
+<text x="420" y="308" class="annot">LLM 评判</text>
+<rect x="620" y="286" width="41" height="16" rx="2" fill="#C76A1F" fill-opacity="0.60"/>
+<text x="669.4" y="298" class="num-mean" style="fill:#C76A1F">0.09</text>
+<text x="420" y="332" class="label">Process · Grounding</text>
+<text x="420" y="346" class="annot">LLM 评判</text>
+<rect x="620" y="324" width="41" height="16" rx="2" fill="#C76A1F" fill-opacity="0.60"/>
+<text x="669.4" y="336" class="num-mean" style="fill:#C76A1F">0.09</text>
+<text x="40" y="425" class="fig-caption">综合分由 0.4·Boundary + 0.3·Cause + 0.3·Process 加权合成。规则评分（绿）覆盖 Boundary + Cause + Process 中的 Coverage 子项，</text>
+<text x="40" y="442" class="fig-caption">合计 0.40 + 0.30 + 0.12 = 0.82；LLM 评判（橙）覆盖 Process 中的 Directionality + Grounding 子项，合计 0.09 + 0.09 = 0.18。</text>
+</svg>

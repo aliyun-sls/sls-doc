@@ -1,0 +1,199 @@
+{
+  "sourceDir": "/Users/zhangcheng/workspace/ai/articles/rca",
+  "targetDir": "/Users/zhangcheng/workspace/sls-doc/src/public/starops/benchmark/rca",
+  "sourceHtmlFiles": 43,
+  "htmlFiles": 83,
+  "caseFiles": 40,
+  "cleanCaseFiles": 40,
+  "caseGroups": [
+    {
+      "group": "节点/基础设施",
+      "count": 4
+    },
+    {
+      "group": "资源耗尽",
+      "count": 12
+    },
+    {
+      "group": "流量/调度",
+      "count": 12
+    },
+    {
+      "group": "数据库/缓存",
+      "count": 6
+    },
+    {
+      "group": "代码/应用",
+      "count": 5
+    },
+    {
+      "group": "网络",
+      "count": 1
+    }
+  ],
+  "caseAliases": [
+    {
+      "originalFile": "case_F001-nodeDown.uf5oafbn2t329cj1d6ail2fvq4.html",
+      "file": "case_04_F001-nodeDown.html"
+    },
+    {
+      "originalFile": "case_F002-threadExhaustion.5k1ekuc4cl4o90bd2a951s60j7.html",
+      "file": "case_12_F002-threadExhaustion.html"
+    },
+    {
+      "originalFile": "case_F002-threadExhaustion.lpu9t9479p3tl48bo1f2k2ij47.html",
+      "file": "case_13_F002-threadExhaustion.html"
+    },
+    {
+      "originalFile": "case_F004-trafficHotspot.g7vlfpapc96g9anmcgqqdh31f6.html",
+      "file": "case_24_F004-trafficHotspot.html"
+    },
+    {
+      "originalFile": "case_F004-trafficHotspot.uf9ic1go4h56j2psfh5pj7dcs2.html",
+      "file": "case_25_F004-trafficHotspot.html"
+    },
+    {
+      "originalFile": "case_F006-trafficSurge.ovgua8cqb16nha833nb5khaau0.html",
+      "file": "case_26_F006-trafficSurge.html"
+    },
+    {
+      "originalFile": "case_F006-trafficSurge.p49s40jn055vde1btue9mht2n6.html",
+      "file": "case_20_F006-trafficSurge.html"
+    },
+    {
+      "originalFile": "case_F006-trafficSurge.vf1ebgt9i15u10qdcn2k63lhb0.html",
+      "file": "case_21_F006-trafficSurge.html"
+    },
+    {
+      "originalFile": "case_F007-memoryPressure.eu5vqogil96kucd7f2fqdvk2u6.html",
+      "file": "case_08_F007-memoryPressure.html"
+    },
+    {
+      "originalFile": "case_F007-memoryPressure.nkucnv79s905l7f5b3t8na9c06.html",
+      "file": "case_06_F007-memoryPressure.html"
+    },
+    {
+      "originalFile": "case_F007-memoryPressure.vu6ntkp4m93i1ducnu5ca2vsd7.html",
+      "file": "case_07_F007-memoryPressure.html"
+    },
+    {
+      "originalFile": "case_F010-slowSQL.j8t8t2c40l62dc0eo9v5qujn11.html",
+      "file": "case_31_F010-slowSQL.html"
+    },
+    {
+      "originalFile": "case_F010-slowSQL.kiemsm0qjt31baobujicov4du6.html",
+      "file": "case_34_F010-slowSQL.html"
+    },
+    {
+      "originalFile": "case_F010-slowSQL.m3v5eoepdp43n5im8uu6tt3a13.html",
+      "file": "case_32_F010-slowSQL.html"
+    },
+    {
+      "originalFile": "case_F011-codeDefect.uulsklscpd0qp1ki3cgckaocu4.html",
+      "file": "case_37_F011-codeDefect.html"
+    },
+    {
+      "originalFile": "case_F014-httpError5xx.5lkvkp8dvl1jt9mhu7pdlbfu41.html",
+      "file": "case_38_F014-httpError5xx.html"
+    },
+    {
+      "originalFile": "case_F014-httpError5xx.cufthm4pqd2iv9dpfa82khsbu5.html",
+      "file": "case_39_F014-httpError5xx.html"
+    },
+    {
+      "originalFile": "case_F016-rateLimiting.17shfgdjg116pctvgva24kei15.html",
+      "file": "case_17_F016-rateLimiting.html"
+    },
+    {
+      "originalFile": "case_F016-rateLimiting.teocb7gcld15n8e4bgn1805qa0.html",
+      "file": "case_18_F016-rateLimiting.html"
+    },
+    {
+      "originalFile": "case_F018-dbNetworkLatency.j7asi6aild6v32la8jheplmoq6.html",
+      "file": "case_33_F018-dbNetworkLatency.html"
+    },
+    {
+      "originalFile": "case_F020-loadBalancerFailure.3dsc3sjp0d43hbqbpplddhk957.html",
+      "file": "case_28_F020-loadBalancerFailure.html"
+    },
+    {
+      "originalFile": "case_F020-loadBalancerFailure.oqt4u9elvt0i34vo6l0hf4i5g7.html",
+      "file": "case_27_F020-loadBalancerFailure.html"
+    },
+    {
+      "originalFile": "case_F022-fullGC.7uuudgkftd1jl685qe4muq9hk3.html",
+      "file": "case_05_F022-fullGC.html"
+    },
+    {
+      "originalFile": "case_F022-fullGC.gegkv5bqm53j5c3pjdd7m8oei2.html",
+      "file": "case_09_F022-fullGC.html"
+    },
+    {
+      "originalFile": "case_F023-nullPointerException.d9fjfmcuot5vfajaumu8vovn71.html",
+      "file": "case_35_F023-nullPointerException.html"
+    },
+    {
+      "originalFile": "case_F023-nullPointerException.ipcdea6ta162ddfpiefuekdkk6.html",
+      "file": "case_36_F023-nullPointerException.html"
+    },
+    {
+      "originalFile": "case_F026-nodeCpuHigh.9p1d8mg7i978b8pci7ng31piu6.html",
+      "file": "case_02_F026-nodeCpuHigh.html"
+    },
+    {
+      "originalFile": "case_F026-nodeCpuHigh.a4bqhupoit7gned05itgi0siv4.html",
+      "file": "case_03_F026-nodeCpuHigh.html"
+    },
+    {
+      "originalFile": "case_F026-nodeCpuHigh.mc4bf4bdm5203588dneo5j9ou4.html",
+      "file": "case_01_F026-nodeCpuHigh.html"
+    },
+    {
+      "originalFile": "case_F029-redisUnavailable.19bok8kdil08h1uu6nvab2f4b3.html",
+      "file": "case_30_F029-redisUnavailable.html"
+    },
+    {
+      "originalFile": "case_F029-redisUnavailable.o26tu5l0ch3435imhpkmoen6a5.html",
+      "file": "case_29_F029-redisUnavailable.html"
+    },
+    {
+      "originalFile": "case_F034-cpuFullLoad.4931qeaftd5f57d25em6lvuqu3.html",
+      "file": "case_14_F034-cpuFullLoad.html"
+    },
+    {
+      "originalFile": "case_F034-cpuFullLoad.97d75vvvup7an925m6gf9oil10.html",
+      "file": "case_15_F034-cpuFullLoad.html"
+    },
+    {
+      "originalFile": "case_F034-cpuFullLoad.g49n545ill2nj61114ggd6muu7.html",
+      "file": "case_11_F034-cpuFullLoad.html"
+    },
+    {
+      "originalFile": "case_F034-cpuFullLoad.tohqu35hu15u99junipqtdmn15.html",
+      "file": "case_10_F034-cpuFullLoad.html"
+    },
+    {
+      "originalFile": "case_F036-replicaScaleDown.du0mcti0ch2ed8uh57a9bulib0.html",
+      "file": "case_23_F036-replicaScaleDown.html"
+    },
+    {
+      "originalFile": "case_F036-replicaScaleDown.tht1u6gu7l0af4uk2oclppopt7.html",
+      "file": "case_22_F036-replicaScaleDown.html"
+    },
+    {
+      "originalFile": "case_F039-resourceLimitMisconfig.pb4qu5i6dp3f9bcscapmn74l85.html",
+      "file": "case_16_F039-resourceLimitMisconfig.html"
+    },
+    {
+      "originalFile": "case_F050-podCrashLoop.japc44icfp60nbl881fllehs27.html",
+      "file": "case_19_F050-podCrashLoop.html"
+    },
+    {
+      "originalFile": "case_F057-dnsResolutionFailure.uaobum57mt5i15b1ja53soe203.html",
+      "file": "case_40_F057-dnsResolutionFailure.html"
+    }
+  ],
+  "svgFiles": 51,
+  "assetFiles": 1,
+  "generatedAt": "2026-06-29T03:23:03.122Z"
+}
