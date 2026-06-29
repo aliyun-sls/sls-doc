@@ -1,0 +1,80 @@
+<svg width="1920" height="680" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 340">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .weight-num { font: 700 20px "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .tier       { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+  <marker id="arrPass" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#3E8E5F"/>
+  </marker>
+  <marker id="arrFail" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#C03A28"/>
+  </marker>
+</defs>
+<rect width="960" height="340" fill="#fff"/>
+<text x="40" y="32" class="fig-title">评估用例生命周期</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<defs><clipPath id="cell-fig2-0"><rect x="60" y="90" width="125" height="110" rx="6"/></clipPath></defs>
+<rect x="60" y="90" width="125" height="110" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="60" y="90" width="125" height="6" fill="#4464f0" clip-path="url(#cell-fig2-0)"/>
+<text x="72" y="118" font-size="11" fill="#888">阶段 1</text>
+<text x="122.5" y="152" text-anchor="middle" class="label">环境预检</text>
+<text x="122.5" y="172" text-anchor="middle" class="cell-en">Pre-check</text>
+<line x1="185" y1="145" x2="202" y2="145" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<defs><clipPath id="cell-fig2-1"><rect x="203" y="90" width="125" height="110" rx="6"/></clipPath></defs>
+<rect x="203" y="90" width="125" height="110" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="203" y="90" width="125" height="6" fill="#4464f0" clip-path="url(#cell-fig2-1)"/>
+<text x="215" y="118" font-size="11" fill="#888">阶段 2</text>
+<text x="265.5" y="152" text-anchor="middle" class="label">故障注入</text>
+<text x="265.5" y="172" text-anchor="middle" class="cell-en">Injection</text>
+<line x1="328" y1="145" x2="345" y2="145" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<defs><clipPath id="cell-fig2-2"><rect x="346" y="90" width="125" height="110" rx="6"/></clipPath></defs>
+<rect x="346" y="90" width="125" height="110" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="346" y="90" width="125" height="6" fill="#4464f0" clip-path="url(#cell-fig2-2)"/>
+<text x="358" y="118" font-size="11" fill="#888">阶段 3</text>
+<text x="408.5" y="152" text-anchor="middle" class="label">信号传播</text>
+<text x="408.5" y="172" text-anchor="middle" class="cell-en">Signal Propagation</text>
+<line x1="471" y1="145" x2="488" y2="145" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<defs><clipPath id="cell-fig2-3"><rect x="489" y="90" width="125" height="110" rx="6"/></clipPath></defs>
+<rect x="489" y="90" width="125" height="110" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="489" y="90" width="125" height="6" fill="#4464f0" clip-path="url(#cell-fig2-3)"/>
+<text x="501" y="118" font-size="11" fill="#888">阶段 4</text>
+<text x="551.5" y="152" text-anchor="middle" class="label">Agent 评估</text>
+<text x="551.5" y="172" text-anchor="middle" class="cell-en">Agent RCA Evaluation</text>
+<line x1="614" y1="145" x2="631" y2="145" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<defs><clipPath id="cell-fig2-4"><rect x="632" y="90" width="125" height="110" rx="6"/></clipPath></defs>
+<rect x="632" y="90" width="125" height="110" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="632" y="90" width="125" height="6" fill="#4464f0" clip-path="url(#cell-fig2-4)"/>
+<text x="644" y="118" font-size="11" fill="#888">阶段 5</text>
+<text x="694.5" y="152" text-anchor="middle" class="label">环境恢复</text>
+<text x="694.5" y="172" text-anchor="middle" class="cell-en">Recovery</text>
+<line x1="757" y1="145" x2="774" y2="145" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<defs><clipPath id="cell-fig2-5"><rect x="775" y="90" width="125" height="110" rx="6"/></clipPath></defs>
+<rect x="775" y="90" width="125" height="110" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="775" y="90" width="125" height="6" fill="#4464f0" clip-path="url(#cell-fig2-5)"/>
+<text x="787" y="118" font-size="11" fill="#888">阶段 6</text>
+<text x="837.5" y="152" text-anchor="middle" class="label">稳态验证</text>
+<text x="837.5" y="172" text-anchor="middle" class="cell-en">Steady-state</text>
+<path d="M 838,200 L 838,240 Q 838,260 818,260 L 142,260 Q 122,260 122,240 L 122,200" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#arrGray)"/>
+<rect x="430" y="250" width="100" height="18" fill="#fff"/>
+<text x="480" y="262" text-anchor="middle" class="annot">下一用例循环</text>
+<text x="40" y="296" class="label">关键约束</text>
+<text x="40" y="314" class="body-sm">1. 自动记录实际受影响实体（非注入计划目标）</text>
+<text x="40" y="329" class="body-sm">2. 恢复须通过稳态基线后方可启动下一 run</text>
+<text x="450" y="314" class="body-sm">3. 幂等保护：禁止并发执行同一注入计划</text>
+</svg>

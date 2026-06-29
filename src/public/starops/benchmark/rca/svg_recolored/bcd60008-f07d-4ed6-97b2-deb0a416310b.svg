@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="920" viewBox="0 0 720 460">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 17px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .big2{font:700 17px "PingFang SC","Helvetica Neue",sans-serif;fill:#4464f0}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="720" height="460" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">RCA Agent 评估的三层动机：能力测算落后于部署速度</text>
+<line x1="20" y1="38" x2="700" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<rect x="20" y="55" width="220" height="120" rx="6" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="35" y="78" class="h">工具碎片化</text>
+<text x="35" y="103" class="big">5–10 套观测系统</text>
+<text x="35" y="135" class="m">看板 / 日志 / 调用链 /</text>
+<text x="35" y="151" class="m">变更 / 容量中心反复切换</text>
+
+<rect x="250" y="55" width="220" height="120" rx="6" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="265" y="78" class="h">传播链跨域</text>
+<text x="265" y="103" class="big2">应用 / 容器 / 云资源</text>
+<text x="265" y="135" class="m">微服务化与多云部署</text>
+<text x="265" y="151" class="m">放大单一系统能力上限</text>
+
+<rect x="480" y="55" width="220" height="120" rx="6" fill="#eef2ff" stroke="#4464f0" stroke-width="1.2"/>
+<text x="495" y="78" class="h">缺少能力量化</text>
+<text x="495" y="103" class="big">OpenRCA 最强 34.9%</text>
+<text x="495" y="135" class="m">Agent 落后于产品落地速度</text>
+<text x="495" y="151" class="m">基准方法学未跟上</text>
+
+<path d="M 360 185 L 360 215" stroke="#1A2233" stroke-width="1.5" marker-end="url(#a)"/>
+<defs><marker id="a" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0,10 3.5,0 7" fill="#1A2233"/></marker></defs>
+
+<rect x="170" y="220" width="380" height="55" rx="6" fill="#FFFFFF" stroke="#1A2233" stroke-width="1.5"/>
+<text x="360" y="245" text-anchor="middle" class="h" style="fill:#4464f0">RCA-Bench 方法学回应</text>
+<text x="360" y="265" text-anchor="middle" class="m">可比较 · 可复现 · 可审计的 RCA Agent 评估基准</text>
+
+<rect x="20" y="295" width="220" height="120" rx="6" fill="#ECFDF5" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="35" y="318" class="h">故障目录</text>
+<text x="35" y="343" class="big2" style="fill:#3E8E5F">6 大类 / 28 类故障</text>
+<text x="35" y="375" class="m">起源于生产 RCA</text>
+<text x="35" y="391" class="m">沉淀经方法学整理</text>
+
+<rect x="250" y="295" width="220" height="120" rx="6" fill="#ECFDF5" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="265" y="318" class="h">UModel</text>
+<text x="265" y="343" class="big2" style="fill:#3E8E5F">跨域实体归一</text>
+<text x="265" y="375" class="m">应用 / 容器 / 云资源</text>
+<text x="265" y="391" class="m">实体在统一模型中可寻址</text>
+
+<rect x="480" y="295" width="220" height="120" rx="6" fill="#ECFDF5" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="495" y="318" class="h">多智能体审核</text>
+<text x="495" y="343" class="big2" style="fill:#3E8E5F">GSTO 自动 + 人工</text>
+<text x="495" y="375" class="m">基线真值经四层质量门</text>
+<text x="495" y="391" class="m">+ N=3 审核共识</text>
+
+<text x="20" y="435" class="cap">起源于阿里云 AIOps 团队内部 RCA 系统建设：含 5 至 10 套工具切换的工程痛点 / 跨域传播链 /</text>
+<text x="20" y="450" class="cap">能力测算缺失 → 整理为对外可参考的评估方法学。</text>
+</svg>

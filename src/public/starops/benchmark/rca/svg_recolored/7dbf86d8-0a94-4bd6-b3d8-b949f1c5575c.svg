@@ -1,0 +1,69 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .label      { font: 700 13px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .num-mean   { font: 700 14px Menlo, Consolas, monospace; fill: #1A2233; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .fig-caption{ font: 11.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<rect width="960" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">LLM 评判子项方差 σ（评分尺度 0-100，跨多次 run 标准差）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#4464f0">3</text>
+<text x="60" y="103" class="summary-lbl">评判子项</text>
+<text x="240" y="85" class="summary-big" style="fill:#4464f0">9.60</text>
+<text x="240" y="103" class="summary-lbl">最大方差 σ_max</text>
+<text x="420" y="85" class="summary-big" style="fill:#4464f0">6.33</text>
+<text x="420" y="103" class="summary-lbl">平均方差 σ_avg</text>
+<text x="620" y="85" class="summary-big" style="fill:#3E8E5F">≤ 10</text>
+<text x="620" y="103" class="summary-lbl">可接受方差阈值</text>
+<line x1="40" y1="120" x2="920" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<line x1="290" y1="175" x2="720" y2="175" stroke="#1A2233" stroke-width="0.8"/>
+<line x1="290.0" y1="171" x2="290.0" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="290.0" y="167" text-anchor="middle" class="tier">0</text>
+<line x1="361.66666666666663" y1="171" x2="361.66666666666663" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="361.66666666666663" y="167" text-anchor="middle" class="tier">2</text>
+<line x1="433.3333333333333" y1="171" x2="433.3333333333333" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="433.3333333333333" y="167" text-anchor="middle" class="tier">4</text>
+<line x1="505.0" y1="171" x2="505.0" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="505.0" y="167" text-anchor="middle" class="tier">6</text>
+<line x1="576.6666666666666" y1="171" x2="576.6666666666666" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="576.6666666666666" y="167" text-anchor="middle" class="tier">8</text>
+<line x1="648.3333333333334" y1="171" x2="648.3333333333334" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="648.3333333333334" y="167" text-anchor="middle" class="tier">10</text>
+<line x1="720.0" y1="171" x2="720.0" y2="175" stroke="#1A2233" stroke-width="0.6"/>
+<text x="720.0" y="167" text-anchor="middle" class="tier">12</text>
+<text x="505.0" y="153" text-anchor="middle" class="label">标准差 σ（评分尺度 0-100）</text>
+<text x="278" y="205" text-anchor="end" class="body-sm" font-weight="700">评判子项</text>
+<text x="735" y="205" class="body-sm" font-weight="700">σ 值</text>
+<text x="805" y="205" class="body-sm" font-weight="700">所属维度</text>
+<line x1="40" y1="213" x2="920" y2="213" stroke="#D1D5DB" stroke-width="0.5"/>
+<line x1="648.3333333333334" y1="218" x2="648.3333333333334" y2="398" stroke="#3E8E5F" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="653.3333333333334" y="231" class="annot" style="fill:#3E8E5F">阈值 σ ≤ 10</text>
+<text x="278" y="240" text-anchor="end" class="label">因果矛盾</text>
+<text x="278" y="256" text-anchor="end" class="mono-sm">causal_contradiction</text>
+<rect x="290" y="236" width="153.4" height="20" rx="3" fill="#4464f0" fill-opacity="0.70"/>
+<text x="435.3666666666667" y="250" text-anchor="end" class="tier" style="fill:#fff">4.28</text>
+<text x="735" y="250" class="num-mean">4.28</text>
+<text x="805" y="250" class="body-sm">方向性</text>
+<text x="278" y="305" text-anchor="end" class="label">逻辑跳跃</text>
+<text x="278" y="321" text-anchor="end" class="mono-sm">logic_jump</text>
+<rect x="290" y="301" width="183.1" height="20" rx="3" fill="#4464f0" fill-opacity="0.70"/>
+<text x="465.10833333333335" y="315" text-anchor="end" class="tier" style="fill:#fff">5.11</text>
+<text x="735" y="315" class="num-mean">5.11</text>
+<text x="805" y="315" class="body-sm">方向性</text>
+<text x="278" y="370" text-anchor="end" class="label">证据空缺</text>
+<text x="278" y="386" text-anchor="end" class="mono-sm">evidence_gap</text>
+<rect x="290" y="366" width="344.0" height="20" rx="3" fill="#4464f0" fill-opacity="0.70"/>
+<text x="626.0" y="380" text-anchor="end" class="tier" style="fill:#fff">9.60</text>
+<text x="735" y="380" class="num-mean">9.60</text>
+<text x="805" y="380" class="body-sm">证据支撑度</text>
+<text x="40" y="423" class="fig-caption">3 个 LLM 评判子项跨多次独立 run 的分数标准差（隶属 Process 维度的方向性与证据支撑度两个父维度）。</text>
+<text x="40" y="441" class="fig-caption">causal_contradiction (4.28) 与 logic_jump (5.11) 均在 σ ≤ 10 阈值内；evidence_gap (9.60) 逼近阈值上限，是稳定性最弱子项。</text>
+<text x="40" y="459" class="fig-caption">综合 σ_avg = 6.33（&lt; 综合分 100 的 7%），整体方差可控。演进方向见 §7.3.3。</text>
+</svg>

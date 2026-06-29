@@ -1,0 +1,74 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+</defs>
+<rect width="960" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">定因评分：故障类型图距离匹配</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<text x="40" y="68" class="label">A. 故障类型距离图（节选）</text>
+<rect x="278.0" y="130" width="144" height="38" rx="6" fill="#4464f0" stroke="#4464f0" stroke-width="1.4"/>
+<text x="350" y="154" text-anchor="middle" class="body" font-weight="700" style="fill:#fff">GT: slowSQL</text>
+<text x="350" y="124" text-anchor="middle" class="tier" fill="#4464f0">EXACT → 1.00</text>
+<rect x="68.0" y="130" width="144" height="38" rx="6" fill="#FFFFFF" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="140" y="154" text-anchor="middle" class="body" fill="#1A2233" font-weight="400">downstreamTimeout</text>
+<text x="140" y="124" text-anchor="middle" class="tier" fill="#3E8E5F">CAUSAL_1HOP → 0.85</text>
+<rect x="518.0" y="130" width="144" height="38" rx="6" fill="#FFFFFF" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="590" y="154" text-anchor="middle" class="body" fill="#1A2233" font-weight="400">dbNetworkLatency</text>
+<text x="590" y="124" text-anchor="middle" class="tier" fill="#3E8E5F">CAUSAL_1HOP → 0.85</text>
+<rect x="278.0" y="230" width="144" height="38" rx="6" fill="#FFFFFF" stroke="#5E6B82" stroke-width="1.2"/>
+<text x="350" y="254" text-anchor="middle" class="body" fill="#1A2233" font-weight="400">cacheBreakdown</text>
+<text x="350" y="224" text-anchor="middle" class="tier" fill="#5E6B82">CONFUSION_SIBLING → 0.70</text>
+<rect x="518.0" y="230" width="144" height="38" rx="6" fill="#FFFFFF" stroke="#5E6B82" stroke-width="1.2"/>
+<text x="590" y="254" text-anchor="middle" class="body" fill="#1A2233" font-weight="400">redisUnavailable</text>
+<text x="590" y="224" text-anchor="middle" class="tier" fill="#5E6B82">CLUSTER → 0.50</text>
+<rect x="748.0" y="130" width="144" height="38" rx="6" fill="#FFFFFF" stroke="#C03A28" stroke-width="1.2"/>
+<text x="820" y="154" text-anchor="middle" class="body" fill="#1A2233" font-weight="400">memoryLeak</text>
+<text x="820" y="124" text-anchor="middle" class="tier" fill="#C03A28">UNRELATED → 0.00</text>
+<line x1="278" y1="149" x2="212" y2="149" stroke="#3E8E5F" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<text x="245" y="144" text-anchor="middle" class="annot" fill="#3E8E5F">causal</text>
+<line x1="422" y1="149" x2="518" y2="149" stroke="#3E8E5F" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<text x="470" y="144" text-anchor="middle" class="annot" fill="#3E8E5F">causal</text>
+<line x1="350" y1="168" x2="350" y2="230" stroke="#5E6B82" stroke-width="1.2" stroke-dasharray="4,3"/>
+<text x="388" y="200" class="annot" fill="#5E6B82">confusion</text>
+<line x1="422" y1="168" x2="540" y2="230" stroke="#5E6B82" stroke-width="1.2" stroke-dasharray="3,3"/>
+<text x="500" y="194" class="annot" fill="#5E6B82">cluster</text>
+<text x="700" y="149" class="annot" fill="#C03A28">无连边</text>
+<line x1="40" y1="290" x2="920" y2="290" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="40" y="315" class="label">B. 多候选排名折扣</text>
+<text x="80" y="350" class="body-sm" font-weight="700" fill="#1A2233">排名 Rank</text>
+<text x="220" y="350" class="body-sm" font-weight="700" fill="#1A2233">折扣 Discount</text>
+<text x="380" y="350" class="body-sm" font-weight="700" fill="#1A2233">公式 Formula</text>
+<line x1="60" y1="357" x2="560" y2="357" stroke="#D1D5DB" stroke-width="0.6"/>
+<rect x="60" y="359" width="500" height="20" fill="#F8FAFC"/>
+<text x="80" y="373" class="formula">1</text>
+<text x="220" y="373" class="formula">1.00</text>
+<text x="380" y="373" class="formula">1 / log₂(1+1) = 1.00</text>
+<text x="80" y="395" class="formula">2</text>
+<text x="220" y="395" class="formula">0.63</text>
+<text x="380" y="395" class="formula">1 / log₂(2+1) ≈ 0.63</text>
+<rect x="60" y="403" width="500" height="20" fill="#F8FAFC"/>
+<text x="80" y="417" class="formula">3</text>
+<text x="220" y="417" class="formula">0.50</text>
+<text x="380" y="417" class="formula">1 / log₂(3+1) = 0.50</text>
+<rect x="60" y="430" width="500" height="36" rx="6" fill="#F8FAFC" stroke="#4464f0" stroke-width="1.2"/>
+<text x="310" y="453" text-anchor="middle" class="formula" fill="#4464f0">S_cause = max(candidates) { match_score × discount(rank) }</text>
+<text x="40" y="495" class="fig-caption">面板 A：故障类型构成有向图，含因果、混淆、簇三类边。Agent 输出与基线真值按最近的关系类型匹配。</text>
+<text x="40" y="513" class="fig-caption">面板 B：Agent 提交多个候选时按排名折扣，最终定因综合分取所有候选中的最大值。</text>
+</svg>

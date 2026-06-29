@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="960" viewBox="0 0 760 480">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .card-tag{font:700 11px "Helvetica Neue",sans-serif;fill:#FFFFFF}
+  .card-name{font:700 13.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .body{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .big{font:700 18px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .pill{font:700 10.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#4464f0}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="760" height="480" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">RCA-Bench 四项核心设计概览</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<!-- Card 1: 评估维度分解 -->
+<rect x="20" y="55" width="355" height="200" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="58" height="22" rx="3" fill="#4464f0"/>
+<text x="49" y="71" text-anchor="middle" class="card-tag">设计一</text>
+<text x="90" y="71" class="card-name">评估维度分解</text>
+<text x="35" y="98" class="body">三维独立度量 · 彼此正交 · 显式权重</text>
+
+<!-- 3 weight bars -->
+<g font-family="'PingFang SC',sans-serif" font-size="11" fill="#1A2233">
+  <text x="35" y="124" class="code">Boundary</text>
+  <rect x="100" y="115" width="180" height="14" rx="2" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+  <rect x="100" y="115" width="180" height="14" rx="2" fill="#4464f0" fill-opacity="1.0"/>
+  <text x="290" y="125" class="big">0.4</text>
+
+  <text x="35" y="151" class="code">Cause</text>
+  <rect x="100" y="142" width="135" height="14" rx="2" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+  <rect x="100" y="142" width="135" height="14" rx="2" fill="#4464f0" fill-opacity="0.75"/>
+  <text x="245" y="152" class="big">0.3</text>
+
+  <text x="35" y="178" class="code">Process</text>
+  <rect x="100" y="169" width="135" height="14" rx="2" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.6"/>
+  <rect x="100" y="169" width="135" height="14" rx="2" fill="#4464f0" fill-opacity="0.75"/>
+  <text x="245" y="179" class="big">0.3</text>
+</g>
+<text x="35" y="210" class="body">保留部分正确诊断的中间得分粒度</text>
+<text x="35" y="226" class="lbl">vs 同代基准（AIOpsLab、Cloud-OpsBench）单维通过率</text>
+<text x="35" y="247" class="pill">回应：任务定义缺口 + 主动观测难点</text>
+
+<!-- Card 2: 因果链 + UModel -->
+<rect x="385" y="55" width="355" height="200" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="385" y="55" width="58" height="22" rx="3" fill="#4464f0"/>
+<text x="414" y="71" text-anchor="middle" class="card-tag">设计二</text>
+<text x="455" y="71" class="card-name">因果链 + UModel</text>
+<text x="400" y="98" class="body">图距离评分取代字符串匹配</text>
+
+<!-- C0→C3 chain -->
+<g font-family="'PingFang SC',sans-serif" font-size="10.5">
+  <rect x="400" y="115" width="60" height="22" rx="11" fill="#4464f0" fill-opacity="1.0"/>
+  <text x="430" y="130" text-anchor="middle" fill="#FFFFFF" font-weight="700">C0 根因</text>
+  <rect x="465" y="115" width="60" height="22" rx="11" fill="#4464f0" fill-opacity="0.7"/>
+  <text x="495" y="130" text-anchor="middle" fill="#FFFFFF" font-weight="700">C1 传播</text>
+  <rect x="530" y="115" width="60" height="22" rx="11" fill="#4464f0" fill-opacity="0.5"/>
+  <text x="560" y="130" text-anchor="middle" fill="#FFFFFF" font-weight="700">C2 影响</text>
+  <rect x="595" y="115" width="60" height="22" rx="11" fill="#4464f0" fill-opacity="0.3"/>
+  <text x="625" y="130" text-anchor="middle" fill="#1A2233" font-weight="700">C3 表象</text>
+</g>
+
+<!-- UM stats -->
+<rect x="400" y="150" width="155" height="56" rx="4" fill="#FFFFFF" stroke="#4464f0" stroke-width="0.8"/>
+<text x="408" y="165" class="lbl">UModel</text>
+<text x="408" y="184" class="big">21 类实体</text>
+<text x="408" y="200" class="lbl">4 类关系</text>
+
+<rect x="570" y="150" width="155" height="56" rx="4" fill="#FFFFFF" stroke="#4464f0" stroke-width="0.8"/>
+<text x="578" y="165" class="lbl">单用例中位规模</text>
+<text x="578" y="184" class="big">227 / 258</text>
+<text x="578" y="200" class="lbl">实体 / 边</text>
+
+<text x="400" y="226" class="lbl">跨域命名差异不再主导评分公平性</text>
+<text x="400" y="247" class="pill">回应：标注深度 + 传播链隐蔽 + 实体标识割裂</text>
+
+<!-- Card 3: 82/18 评判比例 -->
+<rect x="20" y="270" width="355" height="200" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="270" width="58" height="22" rx="3" fill="#4464f0"/>
+<text x="49" y="286" text-anchor="middle" class="card-tag">设计三</text>
+<text x="90" y="286" class="card-name">图距离评分 + LLM 评判比例量化</text>
+<text x="35" y="313" class="body">四个评分子项按 LLM 评判比例显式公开</text>
+
+<!-- 82/18 horizontal bar -->
+<rect x="35" y="330" width="320" height="34" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="35" y="330" width="262" height="34" fill="#4464f0" fill-opacity="1.0"/>
+<rect x="297" y="330" width="58" height="34" fill="#4464f0" fill-opacity="0.35"/>
+<text x="166" y="352" text-anchor="middle" class="big" style="fill:#FFFFFF">约 82%</text>
+<text x="326" y="352" text-anchor="middle" class="big">约 18%</text>
+
+<text x="35" y="383" class="lbl">确定性规则评分（图距离 + 命中率）</text>
+<text x="35" y="397" class="code">Cause 五档 · Boundary 七档 · Coverage</text>
+
+<text x="35" y="418" class="lbl">LLM 评判（语义子维度）</text>
+<text x="35" y="432" class="code">Directionality · Grounding</text>
+
+<text x="35" y="462" class="pill">回应：评分协议缺口（比例可随规则化突破调整）</text>
+
+<!-- Card 4: 多智能体审核 -->
+<rect x="385" y="270" width="355" height="200" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="385" y="270" width="58" height="22" rx="3" fill="#4464f0"/>
+<text x="414" y="286" text-anchor="middle" class="card-tag">设计四</text>
+<text x="455" y="286" class="card-name">多智能体审核质量门禁</text>
+<text x="400" y="313" class="body">N=3 跨厂商 LLM 独立审核与共识投票</text>
+
+<!-- 3 LLM → consensus -->
+<g>
+  <rect x="400" y="330" width="55" height="28" rx="4" fill="#FFFFFF" stroke="#4464f0"/>
+  <text x="427" y="349" text-anchor="middle" class="code">LLM A</text>
+  <rect x="463" y="330" width="55" height="28" rx="4" fill="#FFFFFF" stroke="#4464f0"/>
+  <text x="490" y="349" text-anchor="middle" class="code">LLM B</text>
+  <rect x="526" y="330" width="55" height="28" rx="4" fill="#FFFFFF" stroke="#4464f0"/>
+  <text x="553" y="349" text-anchor="middle" class="code">LLM C</text>
+  <path d="M 490 360 L 490 378" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arr)"/>
+  <rect x="430" y="380" width="120" height="26" rx="13" fill="#eef2ff" stroke="#4464f0"/>
+  <text x="490" y="397" text-anchor="middle" class="card-name" style="fill:#4464f0">共识投票入库</text>
+</g>
+<defs><marker id="arr" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#5E6B82"/></marker></defs>
+
+<text x="595" y="358" class="lbl">实测一致率</text>
+<text x="595" y="382" class="big">93.3%</text>
+<text x="595" y="398" class="lbl">vs SRE 人工审核</text>
+
+<text x="400" y="430" class="lbl">机器学习评估领域多 LLM 共识机制先例：</text>
+<text x="400" y="446" class="code">RewardBench [6]</text>
+<text x="400" y="462" class="pill">回应：数据集治理层延伸缺口</text>
+</svg>

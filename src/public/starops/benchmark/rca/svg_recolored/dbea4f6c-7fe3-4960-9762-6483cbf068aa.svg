@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="640" viewBox="0 0 760 320">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="320" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">多智能体审核 vs SRE 人工审核：一致率实测 (n=30)</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="34" fill="#4464f0"/>
+<text x="50" y="77" class="hdr">难度</text>
+<text x="180" y="77" class="hdr">审核数</text>
+<text x="290" y="77" class="hdr">通过</text>
+<text x="400" y="77" class="hdr">退回</text>
+<text x="530" y="77" class="hdr">通过率</text>
+<rect x="20" y="89" width="720" height="46" fill="#FFFFFF" stroke="#D1D5DB"/>
+<text x="50" y="117" class="h" style="fill:#C76A1F;font-weight:700">L4</text>
+<text x="180" y="117" class="b">8</text>
+<text x="290" y="117" class="b" style="fill:#3E8E5F">6</text>
+<text x="400" y="117" class="b" style="fill:#C03A28">2</text>
+<rect x="530" y="104" width="105" height="18" rx="3" fill="#C76A1F" opacity="0.7"/>
+<text x="641" y="117" class="h2" style="fill:#C76A1F">75.0%</text>
+<rect x="20" y="137" width="720" height="46" fill="#F8FAFC" stroke="#D1D5DB"/>
+<text x="50" y="165" class="h" style="fill:#3E8E5F;font-weight:700">L3</text>
+<text x="180" y="165" class="b">14</text>
+<text x="290" y="165" class="b" style="fill:#3E8E5F">14</text>
+<text x="400" y="165" class="b" style="fill:#888">0</text>
+<rect x="530" y="152" width="140" height="18" rx="3" fill="#3E8E5F" opacity="0.7"/>
+<text x="676" y="165" class="h2" style="fill:#3E8E5F">100.0%</text>
+<rect x="20" y="185" width="720" height="46" fill="#FFFFFF" stroke="#D1D5DB"/>
+<text x="50" y="213" class="h" style="fill:#3E8E5F;font-weight:700">L2</text>
+<text x="180" y="213" class="b">8</text>
+<text x="290" y="213" class="b" style="fill:#3E8E5F">8</text>
+<text x="400" y="213" class="b" style="fill:#888">0</text>
+<rect x="530" y="200" width="140" height="18" rx="3" fill="#3E8E5F" opacity="0.7"/>
+<text x="676" y="213" class="h2" style="fill:#3E8E5F">100.0%</text>
+<rect x="20" y="233" width="720" height="46" fill="#eef2ff" stroke="#D1D5DB"/>
+<text x="50" y="261" class="h" style="fill:#4464f0;font-weight:700">合计</text>
+<text x="180" y="261" class="b">30</text>
+<text x="290" y="261" class="b" style="fill:#3E8E5F">28</text>
+<text x="400" y="261" class="b" style="fill:#C03A28">2</text>
+<rect x="530" y="248" width="130" height="18" rx="3" fill="#4464f0" opacity="0.7"/>
+<text x="666" y="261" class="h2" style="fill:#4464f0">93.3%</text>
+<text x="20" y="305" class="cap">L2/L3 一致率 100%；L4 高难度场景一致率 75% — 整体 93.3% 验证多智能体审核可作为基线真值质量门禁。</text>
+</svg>

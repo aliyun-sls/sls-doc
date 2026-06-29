@@ -1,0 +1,75 @@
+<svg width="1920" height="1160" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 11px Menlo, Consolas, monospace; fill: #5E6B82; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .summary-big{ font: 700 28px "Helvetica Neue", Arial, sans-serif; fill: #4464f0; }
+  .summary-lbl{ font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<rect width="960" height="580" fill="#fff"/>
+<text x="40" y="32" class="fig-title">三维评分正交性：Pearson 相关系数矩阵（n=103）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="60" y="85" class="summary-big" style="fill:#4464f0">0.34</text>
+<text x="60" y="103" class="summary-lbl">最大非对角相关</text>
+<text x="240" y="85" class="summary-big" style="fill:#4464f0">0.28</text>
+<text x="240" y="103" class="summary-lbl">平均非对角相关</text>
+<text x="420" y="85" class="summary-big" style="fill:#3E8E5F">&lt; 0.4</text>
+<text x="420" y="103" class="summary-lbl">弱相关阈值</text>
+<text x="620" y="85" class="summary-big" style="fill:#3E8E5F">3/3</text>
+<text x="620" y="103" class="summary-lbl">三维相互独立</text>
+<line x1="40" y1="120" x2="920" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="247.5" y="188" text-anchor="middle" class="label">Cause</text>
+<text x="342.5" y="188" text-anchor="middle" class="label">Boundary</text>
+<text x="437.5" y="188" text-anchor="middle" class="label">Process</text>
+<text x="188" y="252.5" text-anchor="end" class="label">Cause</text>
+<text x="188" y="347.5" text-anchor="end" class="label">Boundary</text>
+<text x="188" y="442.5" text-anchor="end" class="label">Process</text>
+<rect x="200" y="200" width="95" height="95" fill="#4464f0" fill-opacity="1.00" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="247.5" y="253.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#fff">1.00</text>
+<rect x="295" y="200" width="95" height="95" fill="#4464f0" fill-opacity="0.28" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="342.5" y="253.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#1A2233">0.28</text>
+<rect x="390" y="200" width="95" height="95" fill="#4464f0" fill-opacity="0.34" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="437.5" y="253.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#1A2233">0.34</text>
+<rect x="200" y="295" width="95" height="95" fill="#4464f0" fill-opacity="0.28" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="247.5" y="348.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#1A2233">0.28</text>
+<rect x="295" y="295" width="95" height="95" fill="#4464f0" fill-opacity="1.00" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="342.5" y="348.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#fff">1.00</text>
+<rect x="390" y="295" width="95" height="95" fill="#4464f0" fill-opacity="0.22" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="437.5" y="348.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#1A2233">0.22</text>
+<rect x="200" y="390" width="95" height="95" fill="#4464f0" fill-opacity="0.34" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="247.5" y="443.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#1A2233">0.34</text>
+<rect x="295" y="390" width="95" height="95" fill="#4464f0" fill-opacity="0.22" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="342.5" y="443.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#1A2233">0.22</text>
+<rect x="390" y="390" width="95" height="95" fill="#4464f0" fill-opacity="1.00" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="437.5" y="443.5" text-anchor="middle" font-size="18" font-weight="700" style="fill:#fff">1.00</text>
+<rect x="600" y="200" width="320" height="285" rx="6" fill="#eef2ff" stroke="#4464f0" stroke-width="1"/>
+<text x="618" y="228" class="cell-title" style="fill:#4464f0">解读</text>
+<text x="618" y="262" class="body">所有非对角相关系数均 &lt; 0.4</text>
+<text x="618" y="280" class="body">（弱相关阈值），三维度可视为</text>
+<text x="618" y="298" class="body">相互独立。</text>
+<text x="618" y="330" class="body-sm">Cause 正确不蕴含 Boundary 正确；</text>
+<text x="618" y="348" class="body-sm">Boundary 正确不蕴含 Process 合理。</text>
+<line x1="618" y1="370" x2="902" y2="370" stroke="#4464f0" stroke-width="0.5" stroke-dasharray="3,2" opacity="0.4"/>
+<text x="618" y="393" class="body-sm" font-weight="700" style="fill:#4464f0">结论</text>
+<text x="618" y="415" class="body-sm">三维评分分解是必要的，</text>
+<text x="618" y="433" class="body-sm">不可被任一单维度替代。</text>
+<text x="618" y="460" class="annot">详见 §6.2.2 实验结果。</text>
+<text x="200" y="515" class="body-sm" font-weight="700">相关性强度</text>
+<rect x="300" y="503" width="30" height="16" fill="#4464f0" fill-opacity="0.00" stroke="#D1D5DB" stroke-width="0.4"/>
+<text x="315.0" y="530" text-anchor="middle" class="tier">0.0</text>
+<rect x="352" y="503" width="30" height="16" fill="#4464f0" fill-opacity="0.25" stroke="#D1D5DB" stroke-width="0.4"/>
+<text x="367.0" y="530" text-anchor="middle" class="tier">0.25</text>
+<rect x="404" y="503" width="30" height="16" fill="#4464f0" fill-opacity="0.50" stroke="#D1D5DB" stroke-width="0.4"/>
+<text x="419.0" y="530" text-anchor="middle" class="tier">0.5</text>
+<rect x="456" y="503" width="30" height="16" fill="#4464f0" fill-opacity="0.75" stroke="#D1D5DB" stroke-width="0.4"/>
+<text x="471.0" y="530" text-anchor="middle" class="tier">0.75</text>
+<rect x="508" y="503" width="30" height="16" fill="#4464f0" fill-opacity="1.00" stroke="#D1D5DB" stroke-width="0.4"/>
+<text x="523.0" y="530" text-anchor="middle" class="tier">1.0</text>
+<text x="40" y="545" class="fig-caption">基于 RCA-100 v1 全量 103 用例 × 6 LLM 评测的综合分跨维度 Pearson 相关分析。</text>
+<text x="40" y="563" class="fig-caption">若任一非对角值 ≥ 0.4，说明对应两维度信息冗余，可考虑合并；当前 3 维均独立。</text>
+</svg>

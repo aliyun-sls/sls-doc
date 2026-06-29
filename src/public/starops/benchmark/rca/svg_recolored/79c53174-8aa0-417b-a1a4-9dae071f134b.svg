@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="820" viewBox="0 0 760 410">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="410" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">难度分级 L1 至 L4 的定义</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="68" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="80" height="68" rx="4" fill="#3E8E5F"/>
+<text x="60" y="99" text-anchor="middle" class="hdr" style="font-size:24px;font-weight:700">L1</text>
+<text x="120" y="75" class="h2" style="fill:#3E8E5F">短链与少检查，易判定</text>
+<text x="120" y="95" class="code">x ≤ 1 且 y ≤ 1</text>
+<text x="120" y="113" class="m">典型场景：单服务 NPE</text>
+<rect x="20" y="133" width="720" height="68" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="133" width="80" height="68" rx="4" fill="#4464f0"/>
+<text x="60" y="177" text-anchor="middle" class="hdr" style="font-size:24px;font-weight:700">L2</text>
+<text x="120" y="153" class="h2" style="fill:#4464f0">两侧均中等</text>
+<text x="120" y="173" class="code">x ≤ 2 且 y ≤ 2，且不属于 L1</text>
+<text x="120" y="191" class="m">典型场景：两跳传播 + 单类信号确认</text>
+<rect x="20" y="211" width="720" height="68" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="211" width="80" height="68" rx="4" fill="#C76A1F"/>
+<text x="60" y="255" text-anchor="middle" class="hdr" style="font-size:24px;font-weight:700">L3</text>
+<text x="120" y="231" class="h2" style="fill:#C76A1F">一侧偏重</text>
+<text x="120" y="251" class="code">不属于 L1、L2、L4 的其他情况</text>
+<text x="120" y="269" class="m">典型场景：长链短查 / 短链长查 两类典型</text>
+<rect x="20" y="289" width="720" height="68" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="289" width="80" height="68" rx="4" fill="#C03A28"/>
+<text x="60" y="333" text-anchor="middle" class="hdr" style="font-size:24px;font-weight:700">L4</text>
+<text x="120" y="309" class="h2" style="fill:#C03A28">长链与高负担，难判定</text>
+<text x="120" y="329" class="code">x ≥ 3 且 y ≥ 3</text>
+<text x="120" y="347" class="m">典型场景：跨域多跳 + 多源稀疏信号</text>
+<text x="20" y="395" class="cap">x = 因果链长度；y = 检查点信号负担。L1 → L4 难度单调递增，对应 §B 节给出的二维框架。</text>
+</svg>

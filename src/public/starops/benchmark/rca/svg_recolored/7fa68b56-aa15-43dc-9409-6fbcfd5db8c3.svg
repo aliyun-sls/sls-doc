@@ -1,0 +1,97 @@
+<svg width="1920" height="1080" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+</defs>
+<rect width="960" height="540" fill="#fff"/>
+<text x="40" y="32" class="fig-title">定界评分：拓扑距离分级</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<text x="40" y="68" class="label">A. 实体匹配分级（UModel 拓扑）</text>
+<circle cx="240" cy="230" r="175" fill="#4464f0" fill-opacity="0.10" stroke="#4464f0" stroke-width="0.6"/>
+<circle cx="240" cy="230" r="140" fill="#4464f0" fill-opacity="0.20" stroke="#4464f0" stroke-width="0.6"/>
+<circle cx="240" cy="230" r="105" fill="#4464f0" fill-opacity="0.35" stroke="#4464f0" stroke-width="0.6"/>
+<circle cx="240" cy="230" r="70" fill="#4464f0" fill-opacity="0.55" stroke="#4464f0" stroke-width="0.6"/>
+<circle cx="240" cy="230" r="42" fill="#4464f0" fill-opacity="0.70" stroke="#4464f0" stroke-width="0.6"/>
+<circle cx="240" cy="230" r="16" fill="#4464f0" stroke="#4464f0" stroke-width="1.2"/>
+<text x="240" y="234" text-anchor="middle" class="label" style="fill:#fff">GT</text>
+<text x="240" y="258" text-anchor="middle" class="tier" fill="#4464f0">EXACT 1.00</text>
+<text x="340" y="100" class="tier" fill="#4464f0">TOPO_3HOP</text>
+<text x="340" y="113" class="tier" fill="#4464f0">0.20</text>
+<text x="320" y="128" class="tier" fill="#4464f0">TOPO_2HOP</text>
+<text x="320" y="141" class="tier" fill="#4464f0">0.30</text>
+<text x="295" y="156" class="tier" fill="#4464f0">TOPO_1HOP</text>
+<text x="295" y="169" class="tier" fill="#4464f0">0.45</text>
+<text x="275" y="184" class="tier" fill="#4464f0">HOST</text>
+<text x="275" y="197" class="tier" fill="#4464f0">0.65</text>
+<text x="262" y="208" class="tier" fill="#4464f0">RUNTIME</text>
+<text x="262" y="221" class="tier" fill="#4464f0">0.80</text>
+<line x1="540" y1="58" x2="540" y2="430" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="560" y="68" class="label">B. 实体匹配流水线（5 步）</text>
+<rect x="560" y="90" width="340" height="36" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<circle cx="580" cy="108.0" r="11" fill="#4464f0"/>
+<text x="580" y="112.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">1</text>
+<text x="602" y="112.0" class="body" fill="#1A2233">精确 token 匹配</text>
+<line x1="730.0" y1="126" x2="730.0" y2="134" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<rect x="560" y="134" width="340" height="36" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<circle cx="580" cy="152.0" r="11" fill="#4464f0"/>
+<text x="580" y="156.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">2</text>
+<text x="602" y="156.0" class="body" fill="#1A2233">规则归一化</text>
+<line x1="730.0" y1="170" x2="730.0" y2="178" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<rect x="560" y="178" width="340" height="36" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<circle cx="580" cy="196.0" r="11" fill="#4464f0"/>
+<text x="580" y="200.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">3</text>
+<text x="602" y="200.0" class="body" fill="#1A2233">别名映射</text>
+<line x1="730.0" y1="214" x2="730.0" y2="222" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<rect x="560" y="222" width="340" height="36" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<circle cx="580" cy="240.0" r="11" fill="#4464f0"/>
+<text x="580" y="244.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">4</text>
+<text x="602" y="244.0" class="body" fill="#1A2233">UModel 主键查找</text>
+<line x1="730.0" y1="258" x2="730.0" y2="266" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<rect x="560" y="266" width="340" height="36" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<circle cx="580" cy="284.0" r="11" fill="#4464f0"/>
+<text x="580" y="288.0" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5</text>
+<text x="602" y="288.0" class="body" fill="#1A2233">拓扑 BFS 距离</text>
+<text x="910" y="130" class="annot">未命中</text>
+<text x="910" y="144" class="annot">逐级回退</text>
+<rect x="560" y="305" width="340" height="40" rx="6" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="1.2"/>
+<text x="572" y="323" class="body-sm">每一步均记录到评估 trace，便于审计与复现</text>
+<text x="572" y="338" class="body-sm">命中即停，未命中下落到下一步</text>
+<text x="40" y="380" class="label">C. 得分衰减（非线性）</text>
+<rect x="60" y="400.0" width="50" height="60.0" rx="2" fill="#4464f0"/>
+<text x="85.0" y="395.0" text-anchor="middle" class="tier" fill="#4464f0">1.00</text>
+<text x="85.0" y="475" text-anchor="middle" class="body-sm">EXACT</text>
+<rect x="128" y="412.0" width="50" height="48.0" rx="2" fill="#4464f0"/>
+<text x="153.0" y="407.0" text-anchor="middle" class="tier" fill="#4464f0">0.80</text>
+<text x="153.0" y="475" text-anchor="middle" class="body-sm">RUNTIME</text>
+<rect x="196" y="421.0" width="50" height="39.0" rx="2" fill="#4464f0"/>
+<text x="221.0" y="416.0" text-anchor="middle" class="tier" fill="#4464f0">0.65</text>
+<text x="221.0" y="475" text-anchor="middle" class="body-sm">HOST</text>
+<rect x="264" y="433.0" width="50" height="27.0" rx="2" fill="#4464f0"/>
+<text x="289.0" y="428.0" text-anchor="middle" class="tier" fill="#4464f0">0.45</text>
+<text x="289.0" y="475" text-anchor="middle" class="body-sm">TOPO_1H</text>
+<rect x="332" y="442.0" width="50" height="18.0" rx="2" fill="#4464f0"/>
+<text x="357.0" y="437.0" text-anchor="middle" class="tier" fill="#4464f0">0.30</text>
+<text x="357.0" y="475" text-anchor="middle" class="body-sm">TOPO_2H</text>
+<rect x="400" y="448.0" width="50" height="12.0" rx="2" fill="#4464f0"/>
+<text x="425.0" y="443.0" text-anchor="middle" class="tier" fill="#4464f0">0.20</text>
+<text x="425.0" y="475" text-anchor="middle" class="body-sm">TOPO_3H</text>
+<line x1="50" y1="460" x2="468" y2="460" stroke="#1A2233" stroke-width="0.6"/>
+<text x="40" y="505" class="fig-caption">面板 A：同心圆显示定界评分随拓扑距离衰减。面板 B：5 步匹配流水线按确定性顺序执行。</text>
+<text x="40" y="523" class="fig-caption">面板 C：得分在 HOST 之后陡降，反映 runtime 等价匹配与精确匹配的工程价值接近。</text>
+</svg>

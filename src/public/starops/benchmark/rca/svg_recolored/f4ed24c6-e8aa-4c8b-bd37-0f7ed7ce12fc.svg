@@ -1,0 +1,87 @@
+<svg width="1920" height="1314" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 657">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<rect width="960" height="657" fill="#fff"/>
+<text x="40" y="32" class="fig-title">UModel 21 实体类型与 4 关系类型分布（单用例中位规模）</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<text x="40" y="72" class="label">APM 域</text>
+<line x1="40" y1="78" x2="920" y2="78" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="280" y="94" text-anchor="end" class="mono-sm">apm.service</text>
+<rect x="290" y="85" width="145.77540106951872" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="441.7754010695187" y="95" class="tier" fill="#4464f0">47</text>
+<text x="280" y="112" text-anchor="end" class="mono-sm">apm.operation</text>
+<rect x="290" y="103" width="276.0427807486631" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="572.0427807486631" y="113" class="tier" fill="#4464f0">89</text>
+<text x="280" y="130" text-anchor="end" class="mono-sm">apm.span</text>
+<rect x="290" y="121" width="415.6149732620321" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="711.6149732620321" y="131" class="tier" fill="#4464f0">134</text>
+<text x="40" y="158" class="label">K8s 域</text>
+<line x1="40" y1="164" x2="920" y2="164" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="280" y="180" text-anchor="end" class="mono-sm">k8s.pod</text>
+<rect x="290" y="171" width="161.28342245989305" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="457.283422459893" y="181" class="tier" fill="#4464f0">52</text>
+<text x="280" y="198" text-anchor="end" class="mono-sm">k8s.deployment</text>
+<rect x="290" y="189" width="55.82887700534759" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="351.8288770053476" y="199" class="tier" fill="#4464f0">18</text>
+<text x="280" y="216" text-anchor="end" class="mono-sm">k8s.service</text>
+<rect x="290" y="207" width="43.42245989304813" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="339.42245989304814" y="217" class="tier" fill="#4464f0">14</text>
+<text x="280" y="234" text-anchor="end" class="mono-sm">k8s.namespace</text>
+<rect x="290" y="225" width="18.6096256684492" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="314.6096256684492" y="235" class="tier" fill="#4464f0">6</text>
+<text x="280" y="252" text-anchor="end" class="mono-sm">k8s.node</text>
+<rect x="290" y="243" width="24.81283422459893" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="320.81283422459893" y="253" class="tier" fill="#4464f0">8</text>
+<text x="280" y="270" text-anchor="end" class="mono-sm">k8s.cluster</text>
+<rect x="290" y="261" width="3.1016042780748663" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="299.1016042780749" y="271" class="tier" fill="#4464f0">1</text>
+<text x="40" y="298" class="label">云资源域</text>
+<line x1="40" y1="304" x2="920" y2="304" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="280" y="320" text-anchor="end" class="mono-sm">cloud.node</text>
+<rect x="290" y="311" width="24.81283422459893" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="320.81283422459893" y="321" class="tier" fill="#4464f0">8</text>
+<text x="280" y="338" text-anchor="end" class="mono-sm">cloud.disk</text>
+<rect x="290" y="329" width="37.2192513368984" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="333.2192513368984" y="339" class="tier" fill="#4464f0">12</text>
+<text x="280" y="356" text-anchor="end" class="mono-sm">cloud.network</text>
+<rect x="290" y="347" width="18.6096256684492" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="314.6096256684492" y="357" class="tier" fill="#4464f0">6</text>
+<text x="40" y="384" class="label">中间件域</text>
+<line x1="40" y1="390" x2="920" y2="390" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="280" y="406" text-anchor="end" class="mono-sm">mw.mysql</text>
+<rect x="290" y="397" width="12.406417112299465" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="308.40641711229944" y="407" class="tier" fill="#4464f0">4</text>
+<text x="280" y="424" text-anchor="end" class="mono-sm">mw.redis</text>
+<rect x="290" y="415" width="6.2032085561497325" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="302.2032085561497" y="425" class="tier" fill="#4464f0">2</text>
+<text x="280" y="442" text-anchor="end" class="mono-sm">mw.kafka</text>
+<rect x="290" y="433" width="9.3048128342246" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="305.3048128342246" y="443" class="tier" fill="#4464f0">3</text>
+<text x="40" y="470" class="label">调用关系</text>
+<line x1="40" y1="476" x2="920" y2="476" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="280" y="492" text-anchor="end" class="mono-sm">rel.calls</text>
+<rect x="290" y="483" width="580.0" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="876.0" y="493" class="tier" fill="#4464f0">187</text>
+<text x="280" y="510" text-anchor="end" class="mono-sm">rel.depends_on</text>
+<rect x="290" y="501" width="285.3475935828877" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="581.3475935828877" y="511" class="tier" fill="#4464f0">92</text>
+<text x="40" y="538" class="label">部署关系</text>
+<line x1="40" y1="544" x2="920" y2="544" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="280" y="560" text-anchor="end" class="mono-sm">rel.runs_on</text>
+<rect x="290" y="551" width="241.92513368983958" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="537.9251336898396" y="561" class="tier" fill="#4464f0">78</text>
+<text x="280" y="578" text-anchor="end" class="mono-sm">rel.exposes</text>
+<rect x="290" y="569" width="139.57219251336898" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="435.572192513369" y="579" class="tier" fill="#4464f0">45</text>
+<text x="280" y="596" text-anchor="end" class="mono-sm">rel.binds</text>
+<rect x="290" y="587" width="71.33689839572193" height="12" rx="2" fill="#4464f0" fill-opacity="0.70"/>
+<text x="367.33689839572196" y="597" class="tier" fill="#4464f0">23</text>
+<text x="40" y="632" class="fig-caption">21 实体类型分布在 6 域内（APM / K8s / 云资源 / 中间件 / 调用关系 / 部署关系）。</text>
+<text x="40" y="647" class="fig-caption">单用例中位规模 227 实体 + 258 边，跨域归一覆盖约 92% 的实体引用场景。</text>
+</svg>

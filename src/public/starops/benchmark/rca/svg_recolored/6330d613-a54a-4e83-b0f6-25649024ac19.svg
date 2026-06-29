@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="920" viewBox="0 0 760 460">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="460" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">Agent 可见的七类遥测信号与诊断价值</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="46" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="83" text-anchor="middle" class="hdr">Metrics</text>
+<text x="155" y="75" class="b">QPS / Latency / ErrorRate / CPU / Memory / GC / IO</text>
+<text x="155" y="92" class="m">→ 判断异常趋势和资源状态</text>
+<rect x="20" y="107" width="720" height="46" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="107" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="135" text-anchor="middle" class="hdr">Logs</text>
+<text x="155" y="127" class="b">应用日志 / 错误日志 / 结构化日志</text>
+<text x="155" y="144" class="m">→ 查找异常语义和错误上下文</text>
+<rect x="20" y="159" width="720" height="46" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="159" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="187" text-anchor="middle" class="hdr">Traces</text>
+<text x="155" y="179" class="b">OTEL 调用链 / 慢调用 / 异常 span</text>
+<text x="155" y="196" class="m">→ 定位传播路径和调用瓶颈</text>
+<rect x="20" y="211" width="720" height="46" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="211" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="239" text-anchor="middle" class="hdr">Alerts</text>
+<text x="155" y="231" class="b">告警事件 / 阈值触发 / 异常检测告警</text>
+<text x="155" y="248" class="m">→ 提供故障入口点和异常摘要</text>
+<rect x="20" y="263" width="720" height="46" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="263" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="291" text-anchor="middle" class="hdr">Topology</text>
+<text x="155" y="283" class="b">服务依赖图 / 实体关系</text>
+<text x="155" y="300" class="m">→ 判断传播路径和影响面</text>
+<rect x="20" y="315" width="720" height="46" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="315" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="343" text-anchor="middle" class="hdr">Kubernetes Events</text>
+<text x="155" y="335" class="b">Pod 事件 / 调度事件 / 资源事件</text>
+<text x="155" y="352" class="m">→ 判断平台层异常和变更</text>
+<rect x="20" y="367" width="720" height="46" rx="4" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="367" width="120" height="46" rx="4" fill="#4464f0"/>
+<text x="80" y="395" text-anchor="middle" class="hdr">Profiling</text>
+<text x="155" y="387" class="b">线程栈 / 内存分配 / CPU 火焰图</text>
+<text x="155" y="404" class="m">→ 深度定位应用内部瓶颈</text>
+<text x="20" y="445" class="cap">七类信号覆盖 Metrics / Logs / Traces / Alerts / Topology / K8s Events / Profiling — 单一信号无法承担完整诊断职责。</text>
+</svg>

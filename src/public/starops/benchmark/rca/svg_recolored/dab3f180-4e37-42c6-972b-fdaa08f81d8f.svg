@@ -1,0 +1,78 @@
+<svg width="1920" height="1040" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .mono-sm    { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+  .col-hdr    { font: 700 11px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+  .row-hdr    { font: 11px "PingFang SC", Arial, sans-serif; fill: #1A2233; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/></marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/></marker>
+  <marker id="arrBlue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><polygon points="0 0, 9 4.5, 0 9" fill="#4464f0"/></marker>
+</defs>
+<rect width="960" height="520" fill="#fff"/>
+<text x="40" y="32" class="fig-title">CaseProfile 七字段结构化 schema</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.8"/>
+<rect x="380" y="70" width="200" height="50" rx="6" fill="#4464f0" stroke="#4464f0" stroke-width="1.4"/>
+<text x="480" y="92" text-anchor="middle" class="cell-title" style="fill:#fff">CaseProfile</text>
+<text x="480" y="108" text-anchor="middle" class="cell-en" style="fill:#fff">v1 用例 schema</text>
+<rect x="60" y="160" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="60" y="160" width="5" height="65" fill="#4464f0"/>
+<text x="78" y="182" class="mono-sm" font-weight="700" fill="#1A2233">fault_id</text>
+<text x="78" y="198" class="mono-sm" fill="#5E6B82">: string</text>
+<text x="78" y="216" class="body-sm">故障 ID（F010-slowSQL 等）</text>
+<line x1="270" y1="160" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="520" y="160" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="520" y="160" width="5" height="65" fill="#4464f0"/>
+<text x="538" y="182" class="mono-sm" font-weight="700" fill="#1A2233">root_cause_entities</text>
+<text x="538" y="198" class="mono-sm" fill="#5E6B82">: list[entity_id]</text>
+<text x="538" y="216" class="body-sm">根因实体集合</text>
+<line x1="730" y1="160" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="60" y="240" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="60" y="240" width="5" height="65" fill="#4464f0"/>
+<text x="78" y="262" class="mono-sm" font-weight="700" fill="#1A2233">causal_chain</text>
+<text x="78" y="278" class="mono-sm" fill="#5E6B82">: list[node]</text>
+<text x="78" y="296" class="body-sm">因果链（C0→C1→C2→C3）</text>
+<line x1="270" y1="240" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="520" y="240" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="520" y="240" width="5" height="65" fill="#4464f0"/>
+<text x="538" y="262" class="mono-sm" font-weight="700" fill="#1A2233">evidence_checkpoints</text>
+<text x="538" y="278" class="mono-sm" fill="#5E6B82">: list[checkpoint]</text>
+<text x="538" y="296" class="body-sm">证据检查点（P0-P3 优先级）</text>
+<line x1="730" y1="240" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="60" y="320" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="60" y="320" width="5" height="65" fill="#4464f0"/>
+<text x="78" y="342" class="mono-sm" font-weight="700" fill="#1A2233">observation_window</text>
+<text x="78" y="358" class="mono-sm" fill="#5E6B82">: time range</text>
+<text x="78" y="376" class="body-sm">观测窗口（start, end）</text>
+<line x1="270" y1="320" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="520" y="320" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="520" y="320" width="5" height="65" fill="#4464f0"/>
+<text x="538" y="342" class="mono-sm" font-weight="700" fill="#1A2233">alert_*</text>
+<text x="538" y="358" class="mono-sm" fill="#5E6B82">: alert metadata</text>
+<text x="538" y="376" class="body-sm">告警元数据（实体、时刻、原文）</text>
+<line x1="730" y1="320" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="60" y="400" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="60" y="400" width="5" height="65" fill="#4464f0"/>
+<text x="78" y="422" class="mono-sm" font-weight="700" fill="#1A2233">queries</text>
+<text x="78" y="438" class="mono-sm" fill="#5E6B82">: list[query]</text>
+<text x="78" y="456" class="body-sm">可调用查询接口集合</text>
+<line x1="270" y1="400" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<rect x="520" y="400" width="420" height="65" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="520" y="400" width="5" height="65" fill="#4464f0"/>
+<text x="538" y="422" class="mono-sm" font-weight="700" fill="#1A2233">metadata</text>
+<text x="538" y="438" class="mono-sm" fill="#5E6B82">: dict</text>
+<text x="538" y="456" class="body-sm">难度分级、数据集版本、调用流水标识</text>
+<line x1="730" y1="400" x2="480" y2="120" stroke="#D1D5DB" stroke-width="0.5"/>
+<text x="40" y="495" class="fig-caption">CaseProfile 七字段位于扁平 schema 与 trajectory schema 之间：既保留 cause / boundary / process 三维独立字段，</text>
+<text x="40" y="510" class="fig-caption">又通过 evidence_checkpoints 字段承担过程查证的可度量基础。schema 变更视为 breaking change 须显式声明。</text>
+</svg>

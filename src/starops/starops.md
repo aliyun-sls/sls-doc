@@ -11,13 +11,14 @@ pageClass: sls-starops-home
     </div>
     <p class="sls-starops-hero__eyebrow">STAROps Best Practices</p>
     <h1>Agentic Ops<br /><em>最佳实践</em></h1>
-    <p class="sls-starops-hero__lede">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖语义上手、告警追因、主动巡检、经验固化和协作闭环。</p>
+    <p class="sls-starops-hero__lede">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖语义上手、基准评测、告警追因、主动巡检、经验固化和协作闭环。</p>
     <div class="sls-starops-hero__actions">
       <a class="sls-starops-btn sls-starops-btn--primary" href="https://starops.console.aliyun.com" target="_blank">进入 STAROps 控制台</a>
       <a class="sls-starops-btn sls-starops-btn--ghost" href="/doc/playground/staropsdemo.html" target="_blank">体验 Playground</a>
     </div>
     <div class="sls-starops-hero__signals" aria-label="实践主题">
       <span>UModel</span>
+      <span>基准评测</span>
       <span>告警 RCA</span>
       <span>主动巡检</span>
       <span>容量预测</span>
@@ -33,6 +34,11 @@ pageClass: sls-starops-home
     <h2>语义上手</h2>
     <p>掌握提问范式和 UModel 语义能力，让数字员工按实体、指标、拓扑和日志理解系统。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
+  </a>
+  <a class="sls-starops-scene-card" href="#benchmark" data-tone="violet">
+    <h2>基准评测</h2>
+    <p>用同一 RCA Benchmark 对比 ReAct、OpenClaw 与 STAROps，覆盖评测基准、评测结果和 40 个诊断案例。</p>
+    <span class="sls-starops-scene-card__cta">查看评测</span>
   </a>
   <a class="sls-starops-scene-card" href="#rca" data-tone="cyan">
     <h2>告警追因</h2>
@@ -72,6 +78,31 @@ pageClass: sls-starops-home
       <h3 class="sls-starops-card__title">UModel 使用指南</h3>
       <p class="sls-starops-card__desc">基于 UModel 语义层让 Agent 走显式语义而非靠猜，8 组正反例覆盖指标、拓扑、日志、链路、事件。</p>
       <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+  </div>
+</section>
+
+<section class="sls-starops-section" id="benchmark">
+  <div class="sls-starops-section__head">
+    <div class="sls-starops-section__title-wrap">
+      <h2 class="sls-starops-section__title">基准评测</h2>
+    </div>
+  </div>
+  <div class="sls-starops-grid sls-starops-grid--three">
+    <a class="sls-starops-card" href="/doc/starops/benchmark/rca/rca_benchmark_dataset.html" target="_self">
+      <h3 class="sls-starops-card__title">评测基准</h3>
+      <p class="sls-starops-card__desc">RCA Benchmark 的数据集设计、UModel 观测语义、评分协议和复现实验说明。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/benchmark/rca/rca_benchmark_results.html" target="_self">
+      <h3 class="sls-starops-card__title">评测结果</h3>
+      <p class="sls-starops-card__desc">多框架、多模型横向对照，展示 STAROps RCA 在同一评测集上的诊断表现。</p>
+      <span class="sls-starops-card__cta">查看结果</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/benchmark/rca/cases_compare.html" target="_self">
+      <h3 class="sls-starops-card__title">评测案例</h3>
+      <p class="sls-starops-card__desc">40 个故障案例按 6 类展开，逐例对照 ReAct、OpenClaw 与 STAROps 的排查路径。</p>
+      <span class="sls-starops-card__cta">查看案例</span>
     </a>
   </div>
 </section>

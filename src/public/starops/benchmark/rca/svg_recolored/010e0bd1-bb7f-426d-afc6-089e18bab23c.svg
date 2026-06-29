@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="720" viewBox="0 0 760 360">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="360" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">结构化基线真值的四层定义</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="720" height="60" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="6" height="60" fill="#4464f0"/>
+<text x="40" y="77" class="h">根因类型</text>
+<text x="40" y="97" class="code">root cause type</text>
+<text x="220" y="89" class="m">故障类型，如 slowSQL、memoryLeak</text>
+<rect x="520" y="70" width="200" height="30" rx="15" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="620" y="89" text-anchor="middle" class="h2" style="fill:#4464f0">支撑定因评分</text>
+<rect x="20" y="123" width="720" height="60" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="123" width="6" height="60" fill="#4464f0"/>
+<text x="40" y="145" class="h">根因实体</text>
+<text x="40" y="165" class="code">root cause entity</text>
+<text x="220" y="157" class="m">UModel 归一化后的根因实体</text>
+<rect x="520" y="138" width="200" height="30" rx="15" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="620" y="157" text-anchor="middle" class="h2" style="fill:#4464f0">支撑定界评分</text>
+<rect x="20" y="191" width="720" height="60" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="191" width="6" height="60" fill="#4464f0"/>
+<text x="40" y="213" class="h">因果链</text>
+<text x="40" y="233" class="code">causal chain</text>
+<text x="220" y="225" class="m">从根因到表象的传播路径</text>
+<rect x="520" y="206" width="200" height="30" rx="15" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="620" y="225" text-anchor="middle" class="h2" style="fill:#4464f0">支撑过程评分</text>
+<rect x="20" y="259" width="720" height="60" rx="4" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="259" width="6" height="60" fill="#4464f0"/>
+<text x="40" y="281" class="h">证据检查点</text>
+<text x="40" y="301" class="code">evidence checkpoints</text>
+<text x="220" y="293" class="m">关键证据信号清单</text>
+<rect x="520" y="274" width="200" height="30" rx="15" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="620" y="293" text-anchor="middle" class="h2" style="fill:#4464f0">判断 Agent 是否真正完成查证</text>
+<text x="20" y="345" class="cap">四层定义直接映射到三维评分：根因类型 → Cause；根因实体 → Boundary；因果链 + 检查点 → Process。</text>
+</svg>

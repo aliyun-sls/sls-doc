@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="680" viewBox="0 0 760 340">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 22px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="760" height="340" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">Process Score：三个子维度与权重</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<rect x="20" y="55" width="230" height="240" rx="6" fill="#FFFFFF" stroke="#4464f0" stroke-width="1.2"/>
+<rect x="20" y="55" width="230" height="40" rx="6" fill="#eef2ff"/>
+<text x="135" y="79" text-anchor="middle" class="h" style="fill:#4464f0">Coverage</text>
+<text x="135" y="130" text-anchor="middle" class="big">40%</text>
+<text x="135" y="150" text-anchor="middle" class="lbl">权重</text>
+<line x1="50" y1="170" x2="220" y2="170" stroke="#D1D5DB"/>
+<text x="135" y="193" text-anchor="middle" class="h2">度量</text>
+<text x="135" y="213" text-anchor="middle" class="m">关键检查点覆盖率</text>
+<text x="135" y="245" text-anchor="middle" class="h2">设计意图</text>
+<text x="135" y="265" text-anchor="middle" class="lbl">Agent 是否查看了</text>
+<text x="135" y="281" text-anchor="middle" class="lbl">因果链上的关键证据</text>
+
+<rect x="265" y="55" width="230" height="240" rx="6" fill="#FFFFFF" stroke="#4464f0" stroke-width="1.2"/>
+<rect x="265" y="55" width="230" height="40" rx="6" fill="#eef2ff"/>
+<text x="380" y="79" text-anchor="middle" class="h" style="fill:#4464f0">Directionality</text>
+<text x="380" y="130" text-anchor="middle" class="big">30%</text>
+<text x="380" y="150" text-anchor="middle" class="lbl">权重</text>
+<line x1="295" y1="170" x2="465" y2="170" stroke="#D1D5DB"/>
+<text x="380" y="193" text-anchor="middle" class="h2">度量</text>
+<text x="380" y="213" text-anchor="middle" class="m">因果推理方向合理性</text>
+<text x="380" y="245" text-anchor="middle" class="h2">设计意图</text>
+<text x="380" y="263" text-anchor="middle" class="lbl">Agent 推理是否体现</text>
+<text x="380" y="277" text-anchor="middle" class="lbl">从症状向根因的追溯意图</text>
+<text x="380" y="291" text-anchor="middle" class="lbl">而非倒果为因</text>
+
+<rect x="510" y="55" width="230" height="240" rx="6" fill="#FFFFFF" stroke="#4464f0" stroke-width="1.2"/>
+<rect x="510" y="55" width="230" height="40" rx="6" fill="#eef2ff"/>
+<text x="625" y="79" text-anchor="middle" class="h" style="fill:#4464f0">Grounding</text>
+<text x="625" y="130" text-anchor="middle" class="big">30%</text>
+<text x="625" y="150" text-anchor="middle" class="lbl">权重</text>
+<line x1="540" y1="170" x2="710" y2="170" stroke="#D1D5DB"/>
+<text x="625" y="193" text-anchor="middle" class="h2">度量</text>
+<text x="625" y="213" text-anchor="middle" class="m">结论的证据支撑度</text>
+<text x="625" y="245" text-anchor="middle" class="h2">设计意图</text>
+<text x="625" y="265" text-anchor="middle" class="lbl">关键 claim 是否有</text>
+<text x="625" y="281" text-anchor="middle" class="lbl">直接观测证据支撑</text>
+
+<text x="20" y="325" class="cap">Coverage 主导（40%）— 反映对因果链关键证据的查证；Directionality 与 Grounding 各 30%，约束推理方向与证据支撑度。</text>
+</svg>

@@ -1,0 +1,87 @@
+<svg width="1920" height="1160" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 580">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .tier       { font: 700 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+</defs>
+<rect width="960" height="580" fill="#fff"/>
+<text x="40" y="32" class="fig-title">过程评分：三个子维度</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<defs><clipPath id="cell-fig12-0"><rect x="40" y="60" width="280" height="360" rx="6"/></clipPath></defs><rect x="40" y="60" width="280" height="360" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="40" y="60" width="280" height="6" fill="#4464f0" clip-path="url(#cell-fig12-0)"/>
+<text x="60" y="92" class="cell-title" fill="#4464f0">Coverage</text>
+<text x="60" y="110" class="cell-en">覆盖率 · 40%</text>
+<text x="60" y="135" class="body-sm">证据检查点命中率</text>
+<text x="60" y="151" class="body-sm">按 P0-P3 优先级加权</text>
+<defs><clipPath id="cell-fig12-1"><rect x="340" y="60" width="280" height="360" rx="6"/></clipPath></defs><rect x="340" y="60" width="280" height="360" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="340" y="60" width="280" height="6" fill="#4464f0" clip-path="url(#cell-fig12-1)"/>
+<text x="360" y="92" class="cell-title" fill="#4464f0">Directionality</text>
+<text x="360" y="110" class="cell-en">方向性 · 30%</text>
+<text x="360" y="135" class="body-sm">因果方向正确性</text>
+<text x="360" y="151" class="body-sm">表象 → 根因（正确）</text>
+<defs><clipPath id="cell-fig12-2"><rect x="640" y="60" width="280" height="360" rx="6"/></clipPath></defs><rect x="640" y="60" width="280" height="360" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/><rect x="640" y="60" width="280" height="6" fill="#4464f0" clip-path="url(#cell-fig12-2)"/>
+<text x="660" y="92" class="cell-title" fill="#4464f0">Grounding</text>
+<text x="660" y="110" class="cell-en">证据支撑度 · 30%</text>
+<text x="660" y="135" class="body-sm">每个关键断言须有</text>
+<text x="660" y="151" class="body-sm">可观测证据支撑</text>
+<text x="60" y="180" class="body-sm" fill="#1A2233">P0 根因信号</text>
+<rect x="60" y="186" width="200" height="13" rx="3" fill="#4464f0" fill-opacity="0.70"/>
+<text x="270" y="197" class="tier" fill="#4464f0">w=1.00</text>
+<text x="60" y="218" class="body-sm" fill="#1A2233">P1 传播信号</text>
+<rect x="60" y="224" width="150" height="13" rx="3" fill="#4464f0" fill-opacity="0.55"/>
+<text x="220" y="235" class="tier" fill="#4464f0">w=0.75</text>
+<text x="60" y="256" class="body-sm" fill="#1A2233">P2 影响信号</text>
+<rect x="60" y="262" width="100" height="13" rx="3" fill="#4464f0" fill-opacity="0.35"/>
+<text x="170" y="273" class="tier" fill="#4464f0">w=0.50</text>
+<text x="60" y="294" class="body-sm" fill="#1A2233">P3 表象信号</text>
+<rect x="60" y="300" width="50" height="13" rx="3" fill="#4464f0" fill-opacity="0.20"/>
+<text x="120" y="311" class="tier" fill="#4464f0">w=0.25</text>
+<rect x="50" y="378" width="260" height="28" rx="6" fill="#F8FAFC" stroke="#4464f0" stroke-width="1.2"/>
+<text x="180" y="396" text-anchor="middle" class="formula" font-size="10" fill="#4464f0">Coverage = ∑ hit_i·w_i / ∑ w_i</text>
+<rect x="355" y="180" width="250" height="50" rx="6" fill="#FFFFFF" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="365" y="200" class="body" fill="#1A2233">表象 → 传播 → 根因</text>
+<text x="365" y="218" class="tier" fill="#3E8E5F">方向正确 ✓</text>
+<rect x="355" y="240" width="250" height="50" rx="6" fill="#FFFFFF" stroke="#C03A28" stroke-width="1.2"/>
+<text x="365" y="260" class="body" fill="#1A2233">根因 → 传播 → 表象</text>
+<text x="365" y="278" class="tier" fill="#C03A28">方向反转 ✗</text>
+<text x="360" y="315" class="body-sm">阻断"先猜后凑"模式：</text>
+<text x="360" y="330" class="body-sm">Agent 不能先假设根因，</text>
+<text x="360" y="345" class="body-sm">再单向找证据验证。</text>
+<rect x="350" y="378" width="260" height="28" rx="6" fill="#F8FAFC" stroke="#4464f0" stroke-width="1.2"/>
+<text x="480" y="396" text-anchor="middle" class="formula" font-size="10" fill="#4464f0">Direction = [T(s) &lt; T(p) &lt; T(c)]</text>
+<rect x="655" y="180" width="250" height="50" rx="6" fill="#FFFFFF" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="665" y="197" class="body-sm" fill="#1A2233">Claim: MySQL 延迟过高</text>
+<text x="665" y="211" class="body-sm">Evidence: 指标查询结果</text>
+<text x="665" y="225" class="tier" fill="#3E8E5F">✓ grounded</text>
+<rect x="655" y="240" width="250" height="50" rx="6" fill="#FFFFFF" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="665" y="257" class="body-sm" fill="#1A2233">Claim: Checkout 超时</text>
+<text x="665" y="271" class="body-sm">Evidence: trace 慢 span</text>
+<text x="665" y="285" class="tier" fill="#3E8E5F">✓ grounded</text>
+<rect x="655" y="300" width="250" height="50" rx="6" fill="#FFFFFF" stroke="#C03A28" stroke-width="1.2"/>
+<text x="665" y="317" class="body-sm" fill="#1A2233">Claim: 配置错误</text>
+<text x="665" y="331" class="body-sm">Evidence:（未观测到）</text>
+<text x="665" y="345" class="tier" fill="#C03A28">✗ ungrounded</text>
+<rect x="650" y="378" width="260" height="28" rx="6" fill="#F8FAFC" stroke="#4464f0" stroke-width="1.2"/>
+<text x="780" y="396" text-anchor="middle" class="formula" font-size="10" fill="#4464f0">Grounding = |grounded| / |claims|</text>
+<rect x="200" y="450" width="560" height="38" rx="6" fill="#F8FAFC" stroke="#1A2233" stroke-width="1.2"/>
+<text x="480" y="476" text-anchor="middle" class="formula">S_process = 0.40 · Coverage + 0.30 · Directionality + 0.30 · Grounding</text>
+
+<text x="40" y="506" class="annot">符号约定：hit_i 为第 i 个检查点是否命中（0 或 1），w_i 为其优先级权重；T(·) 为 trace 观测时刻；</text>
+<text x="40" y="520" class="annot">s / p / c 分别为表象 / 传播 / 根因节点；| · | 为集合元素数；[ · ] 为 Iverson 括号（条件成立取 1 否则取 0）。</text>
+<text x="40" y="520" class="fig-caption">三个子维度共同描述「Agent 是怎么得出结论的」。Coverage 由规则计算；</text>
+<text x="40" y="538" class="fig-caption">Directionality 与 Grounding 当前由 LLM 评判辅助，存在一致性风险须持续监控。</text>
+<text x="40" y="556" class="fig-caption">权重为当前设计选择，可按评估目标调整。</text>
+</svg>

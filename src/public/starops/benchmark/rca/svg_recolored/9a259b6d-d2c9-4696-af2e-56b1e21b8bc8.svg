@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="800" viewBox="0 0 760 400">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .view-h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+  .h{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:10.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .um-code{font:11px Menlo,Consolas,monospace;fill:#1A2233}
+  .um-annot{font:10.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .step{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+</style>
+<defs>
+  <marker id="ar" markerWidth="9" markerHeight="7" refX="9" refY="3.5" orient="auto">
+    <polygon points="0 0,9 3.5,0 7" fill="#5E6B82"/>
+  </marker>
+</defs>
+<rect width="760" height="400" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">同一实体在 Kubernetes、APM、CMDB 三视图下的 UModel 归一化</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<!-- Top: 3 source views (ORANGE opacity gradient — single-color palette discipline) -->
+<rect x="20" y="55" width="220" height="125" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="20" y="55" width="220" height="30" rx="6" fill="#4464f0" fill-opacity="0.95"/>
+<text x="130" y="74" text-anchor="middle" class="view-h">Kubernetes 视图</text>
+<text x="35" y="105" class="h">资源类型</text>
+<text x="35" y="123" class="code">k8s.Deployment</text>
+<text x="35" y="140" class="code">k8s.Pod</text>
+<text x="35" y="160" class="lbl">实例 ID 示例</text>
+<text x="35" y="174" class="code">name=inventory</text>
+
+<rect x="270" y="55" width="220" height="125" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="270" y="55" width="220" height="30" rx="6" fill="#4464f0" fill-opacity="0.75"/>
+<text x="380" y="74" text-anchor="middle" class="view-h">APM 视图</text>
+<text x="285" y="105" class="h">资源类型</text>
+<text x="285" y="123" class="code">apm.Service</text>
+<text x="285" y="160" class="lbl">实例 ID 示例</text>
+<text x="285" y="174" class="code">service=Inventory-Service</text>
+
+<rect x="520" y="55" width="220" height="125" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1"/>
+<rect x="520" y="55" width="220" height="30" rx="6" fill="#4464f0" fill-opacity="0.50"/>
+<text x="630" y="74" text-anchor="middle" class="view-h">CMDB 视图</text>
+<text x="535" y="105" class="h">资源类型</text>
+<text x="535" y="123" class="code">cmdb.Application</text>
+<text x="535" y="160" class="lbl">实例 ID 示例</text>
+<text x="535" y="174" class="code">ci_id=CI-12345</text>
+
+<!-- Convergence arrows -->
+<path d="M 130 183 L 310 215" stroke="#5E6B82" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+<path d="M 380 183 L 380 215" stroke="#5E6B82" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+<path d="M 630 183 L 450 215" stroke="#5E6B82" stroke-width="1.2" fill="none" marker-end="url(#ar)"/>
+
+<!-- 五步归一 pill (widened, no overflow) -->
+<rect x="100" y="222" width="560" height="26" rx="13" fill="#eef2ff" stroke="#4464f0" stroke-width="0.8"/>
+<text x="380" y="239" text-anchor="middle" class="step">五步归一算法：类型对齐 → 命名抽取 → 跨域映射 → 主键生成 → 拓扑校验（详见 §4.2.2）</text>
+
+<!-- UM unified entity result -->
+<rect x="100" y="262" width="560" height="100" rx="8" fill="#FFFFFF" stroke="#1A2233" stroke-width="1.5"/>
+<rect x="100" y="262" width="560" height="28" rx="8" fill="#1A2233"/>
+<text x="380" y="281" text-anchor="middle" class="view-h">UModel 归一后的统一实体</text>
+
+<text x="115" y="308" class="um-code">entity_id      :  hash(apm.Service:Inventory-Service) = a1b2c3d4</text>
+<text x="115" y="324" class="um-code">entity_name    :  Inventory-Service</text>
+<text x="115" y="340" class="um-code">entity_type    :  apm.Service</text>
+<text x="115" y="356" class="um-code">entity_domain  :  APM</text>
+<text x="345" y="340" class="um-annot">canonical type — 跨域映射后的规范化类型</text>
+<text x="345" y="356" class="um-annot">规范化域 — K8s / CMDB 视图合并至 APM</text>
+
+<text x="20" y="388" class="cap">三视图同指一个业务对象但 ID 表示完全不同；五步归一将其映射到同一 entity_id，使评分函数可做主键比对与拓扑距离计算，不依赖字符串相似度。</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="860" viewBox="0 0 760 430">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="760" height="430" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">评估协议在三个辨别力维度上的实测差距</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<!-- Row 1: 配置敏感度 -->
+<text x="20" y="68" class="h" style="fill:#4464f0">配置敏感度</text>
+<text x="20" y="86" class="m">对照：16 配置组合 (qwen3.6-plus 同模型)</text>
+<text x="180" y="105" class="lbl">综合分差距 (56.85 ← 46.78)</text>
+<rect x="180" y="112" width="380" height="22" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="180" y="112" width="255" height="22" fill="#4464f0"/>
+<text x="443" y="128" class="h" style="fill:#4464f0">10.07 分</text>
+<text x="20" y="156" class="m">协议能稳定区分配置层面的能力差异</text>
+
+<!-- Row 2: 模型敏感度 -->
+<text x="20" y="190" class="h" style="fill:#4464f0">模型敏感度</text>
+<text x="20" y="208" class="m">对照：deepseek-v4-pro vs qwen3.6-plus</text>
+<text x="180" y="227" class="lbl">综合分差距 (62.10 ← 56.85)</text>
+<rect x="180" y="234" width="380" height="22" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="180" y="234" width="133" height="22" fill="#4464f0"/>
+<text x="321" y="250" class="h" style="fill:#4464f0">5.25 分</text>
+<text x="20" y="278" class="m">协议能捕获模型升级的边际能力差异</text>
+
+<!-- Row 3: 工程路径敏感度 -->
+<text x="20" y="312" class="h" style="fill:#4464f0">工程路径敏感度</text>
+<text x="20" y="330" class="m">对照：调优配置上限 vs 默认开源</text>
+<text x="180" y="349" class="lbl">综合分差距 (62.10 ← 48.74)</text>
+<rect x="180" y="356" width="380" height="22" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="180" y="356" width="338" height="22" fill="#4464f0"/>
+<text x="510" y="372" text-anchor="end" class="h" style="fill:#FFFFFF">13.36 分</text>
+<text x="20" y="400" class="m">区分工程路径与基础模型对最终诊断能力的复合贡献</text>
+
+<text x="20" y="422" class="cap">三个辨别力维度的综合分差距（10.07 / 5.25 / 13.36）实测验证了评估协议的区分能力。</text>
+</svg>

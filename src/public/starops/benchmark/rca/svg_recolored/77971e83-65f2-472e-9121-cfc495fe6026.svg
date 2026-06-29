@@ -1,0 +1,89 @@
+<svg width="1920" height="1200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600">
+<style>
+  .fig-title  { font: 700 17px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-title { font: 700 14px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .cell-en    { font: 11px "Helvetica Neue", Arial, sans-serif; fill: #888; }
+  .label      { font: 700 13px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body       { font: 12px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .body-sm    { font: 11px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .weight-num { font: 700 20px "Helvetica Neue", Arial, sans-serif; fill: #1A2233; }
+  .tier       { font: 11px Menlo, Consolas, monospace; fill: #1A2233; }
+  .formula    { font: 12px Menlo, Consolas, monospace; fill: #1A2233; }
+  .fig-caption{ font: 11.5px "PingFang SC", "Helvetica Neue", Arial, sans-serif; fill: #5E6B82; }
+  .annot      { font: italic 10.5px "PingFang SC", Arial, sans-serif; fill: #5E6B82; }
+</style>
+<defs>
+  <marker id="arrInk" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#1A2233"/>
+  </marker>
+  <marker id="arrGray" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#5E6B82"/>
+  </marker>
+  <marker id="arrPass" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#3E8E5F"/>
+  </marker>
+  <marker id="arrFail" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+    <polygon points="0 0, 9 4.5, 0 9" fill="#C03A28"/>
+  </marker>
+</defs>
+<rect width="960" height="600" fill="#fff"/>
+<text x="40" y="32" class="fig-title">三维评分体系总览</text>
+<line x1="40" y1="42" x2="920" y2="42" stroke="#1A2233" stroke-width="0.6"/>
+<defs><clipPath id="cell-fig6-0"><rect x="40" y="60" width="380" height="130" rx="6"/></clipPath></defs>
+<rect x="40" y="60" width="380" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="40" y="60" width="6" height="130" fill="#4464f0" clip-path="url(#cell-fig6-0)"/>
+<text x="68" y="132.0" class="weight-num">0.4</text>
+<text x="118" y="92" class="cell-title">定因评分</text>
+<text x="180" y="92" class="cell-en">Cause Score</text>
+<text x="118" y="114" class="annot">故障类型是否命中正确</text>
+<text x="118" y="140" class="tier">EXACT → 1.00</text>
+<text x="118" y="158" class="tier">CAUSAL_1HOP → 0.85</text>
+<text x="118" y="176" class="tier">CLUSTER → 0.50</text>
+<defs><clipPath id="cell-fig6-1"><rect x="40" y="208" width="380" height="130" rx="6"/></clipPath></defs>
+<rect x="40" y="208" width="380" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="40" y="208" width="6" height="130" fill="#4464f0" clip-path="url(#cell-fig6-1)"/>
+<text x="68" y="280.0" class="weight-num">0.3</text>
+<text x="118" y="240" class="cell-title">定界评分</text>
+<text x="180" y="240" class="cell-en">Boundary Score</text>
+<text x="118" y="262" class="annot">根因实体定位是否精准</text>
+<text x="118" y="288" class="tier">EXACT_ENTITY → 1.00</text>
+<text x="118" y="306" class="tier">SAME_RUNTIME → 0.80</text>
+<text x="118" y="324" class="tier">TOPO_1HOP → 0.45</text>
+<defs><clipPath id="cell-fig6-2"><rect x="40" y="356" width="380" height="130" rx="6"/></clipPath></defs>
+<rect x="40" y="356" width="380" height="130" rx="6" fill="#FFFFFF" stroke="#D1D5DB" stroke-width="1.2"/>
+<rect x="40" y="356" width="6" height="130" fill="#4464f0" clip-path="url(#cell-fig6-2)"/>
+<text x="68" y="428.0" class="weight-num">0.3</text>
+<text x="118" y="388" class="cell-title">过程评分</text>
+<text x="180" y="388" class="cell-en">Process Score</text>
+<text x="118" y="410" class="annot">证据是否有支撑且方向正确</text>
+<text x="118" y="436" class="tier">Coverage 覆盖率（检查点）</text>
+<text x="118" y="454" class="tier">Directionality 方向性</text>
+<text x="118" y="472" class="tier">Grounding 证据支撑度</text>
+<line x1="420" y1="125" x2="478" y2="273" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<line x1="420" y1="273" x2="478" y2="273" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<line x1="420" y1="421" x2="478" y2="273" stroke="#5E6B82" stroke-width="1.2" marker-end="url(#arrGray)"/>
+<rect x="478" y="228" width="170" height="90" rx="6" fill="#FFFFFF" stroke="#1A2233" stroke-width="1.2"/>
+<text x="563.0" y="254" text-anchor="middle" class="cell-title">MainScore</text>
+<text x="563.0" y="280" text-anchor="middle" class="formula">0.4·C + 0.3·B + 0.3·P</text>
+<text x="563.0" y="300" text-anchor="middle" class="body-sm">取值范围 [0, 1]</text>
+<line x1="648" y1="273" x2="700" y2="273" stroke="#1A2233" stroke-width="1.4" marker-end="url(#arrInk)"/>
+<rect x="700" y="248" width="120" height="50" rx="25" fill="#FFFFFF" stroke="#1A2233" stroke-width="1.2"/>
+<text x="760" y="279" text-anchor="middle" class="label">合规门禁</text>
+<line x1="820" y1="273" x2="868" y2="273" stroke="#3E8E5F" stroke-width="1.4" marker-end="url(#arrPass)"/>
+<text x="844" y="266" text-anchor="middle" class="body-sm" fill="#3E8E5F">通过</text>
+<rect x="870" y="260" width="40" height="26" rx="4" fill="#FFFFFF" stroke="#3E8E5F" stroke-width="1.2"/>
+<text x="890" y="277" text-anchor="middle" font-size="11" font-weight="700" fill="#3E8E5F">进榜</text>
+<line x1="800" y1="298" x2="820" y2="333" stroke="#4464f0" stroke-width="1.2" stroke-dasharray="3,2"/>
+<text x="824" y="331" class="body-sm" fill="#C76A1F">存疑</text>
+<text x="824" y="346" class="body-sm" fill="#C76A1F">人工复核</text>
+<line x1="760" y1="298" x2="760" y2="343" stroke="#C03A28" stroke-width="1.2" marker-end="url(#arrFail)"/>
+<text x="760" y="357" text-anchor="middle" class="body-sm" fill="#C03A28">泄漏</text>
+<text x="760" y="372" text-anchor="middle" class="body-sm" fill="#C03A28">评分 0，剔除</text>
+<line x1="40" y1="505" x2="920" y2="475" stroke="#D1D5DB" stroke-width="0.6"/>
+<text x="40" y="525" class="label">设计原则</text>
+<text x="40" y="545" class="body-sm">1. 先离散分级再连续打分，映射版本化</text>
+<text x="500" y="545" class="body-sm">3. 确定性优先，规则在前 LLM 评判在后</text>
+<text x="40" y="562" class="body-sm">2. 正确性与成本分离，效率指标进副榜</text>
+<text x="500" y="562" class="body-sm">4. 版本冻结，每次发布权重与分级一并冻结</text>
+<text x="40" y="583" class="fig-caption">评分自左向右进行：三个维度先汇总为 MainScore，再由合规门禁判定是否进入公开榜单。</text>
+</svg>

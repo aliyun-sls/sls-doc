@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="600" viewBox="0 0 760 300">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="760" height="300" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">UModel 实体归一 vs Levenshtein 字符串匹配 (n=30 用例)</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<!-- Row 1: UModel 66.7% — solid orange (emphasized) -->
+<text x="20" y="90" class="h">UModel 五步归一</text>
+<rect x="20" y="104" width="500" height="32" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="104" width="333" height="32" fill="#4464f0" fill-opacity="1.0"/>
+<text x="363" y="128" class="big">66.7%</text>
+<text x="363" y="158" class="lbl">实体匹配率 (E ≥ 0.5) — 20 / 30</text>
+
+<!-- Row 2: Levenshtein 6.7% — faded orange (de-emphasized) -->
+<text x="20" y="190" class="h">Levenshtein 字符串匹配 (阈值 ≤ 0.3)</text>
+<rect x="20" y="204" width="500" height="32" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="204" width="33" height="32" fill="#4464f0" fill-opacity="0.35"/>
+<text x="63" y="228" class="big" style="fill:#1A2233">6.7%</text>
+<text x="63" y="258" class="lbl">实体匹配率 (E ≥ 0.5) — 约 2 / 30</text>
+
+<text x="20" y="285" class="cap">归一化提升幅度约 10 倍 — 跨域归一是评分公平性的核心环节；字符串匹配在跨域命名差异下系统性失灵。</text>
+</svg>

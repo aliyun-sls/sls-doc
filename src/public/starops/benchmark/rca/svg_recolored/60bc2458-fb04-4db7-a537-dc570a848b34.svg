@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="700" viewBox="0 0 760 350">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .ax{font:10.5px "Helvetica Neue",sans-serif;fill:#888}
+  .val{font:700 13px "Helvetica Neue",sans-serif;fill:#FFFFFF}
+  .ref{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .pill{font:700 11px "PingFang SC","Helvetica Neue",sans-serif}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+</style>
+<rect width="760" height="350" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">单维消融后 Agent 排序相对三维完整排序的 Kendall τ</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<!-- Axis area: x 180→660 maps τ 0.0→1.0 (480 px per unit) -->
+<!-- 0.85 line at x = 180 + 0.85*480 = 588 -->
+
+<!-- Reference line: τ = 0.85 失真线 (use INK black dashed, no red) -->
+<line x1="588" y1="60" x2="588" y2="290" stroke="#1A2233" stroke-width="1.2" stroke-dasharray="5,3"/>
+<text x="588" y="56" text-anchor="middle" class="ref">0.85 失真线</text>
+
+<!-- Row 1: 去除 process (τ = 0.968) — uncrossed → ORANGE 0.35 opacity (de-emphasized) -->
+<text x="20" y="85" class="h">去除 process</text>
+<text x="20" y="103" class="m">对应 τ vs 完整排序</text>
+<rect x="180" y="80" width="464.6" height="28" rx="3" fill="#4464f0" fill-opacity="0.35"/>
+<text x="635" y="99" text-anchor="end" class="val" style="fill:#1A2233">0.968</text>
+<rect x="680" y="83" width="60" height="22" rx="11" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.8"/>
+<text x="710" y="98" text-anchor="middle" class="pill" style="fill:#888">未跨过</text>
+
+<!-- Row 2: 去除 cause (τ = 0.937) — uncrossed → ORANGE 0.35 -->
+<text x="20" y="150" class="h">去除 cause</text>
+<text x="20" y="168" class="m">对应 τ vs 完整排序</text>
+<rect x="180" y="145" width="449.8" height="28" rx="3" fill="#4464f0" fill-opacity="0.35"/>
+<text x="620" y="164" text-anchor="end" class="val" style="fill:#1A2233">0.937</text>
+<rect x="680" y="148" width="60" height="22" rx="11" fill="#F8FAFC" stroke="#D1D5DB" stroke-width="0.8"/>
+<text x="710" y="163" text-anchor="middle" class="pill" style="fill:#888">未跨过</text>
+
+<!-- Row 3: 去除 boundary (τ = 0.836) — crossed → ORANGE solid (emphasized) -->
+<text x="20" y="215" class="h">去除 boundary</text>
+<text x="20" y="233" class="m">对应 τ vs 完整排序</text>
+<rect x="180" y="210" width="401.3" height="28" rx="3" fill="#4464f0" fill-opacity="1.0"/>
+<text x="572" y="229" text-anchor="end" class="val" style="fill:#FFFFFF">0.836</text>
+<rect x="680" y="213" width="60" height="22" rx="11" fill="#eef2ff" stroke="#4464f0" stroke-width="1"/>
+<text x="710" y="228" text-anchor="middle" class="pill" style="fill:#4464f0">跨过 ✓</text>
+
+<!-- X-axis -->
+<line x1="180" y1="290" x2="660" y2="290" stroke="#1A2233" stroke-width="1"/>
+<g>
+  <line x1="180" y1="290" x2="180" y2="294" stroke="#888"/>
+  <text x="180" y="308" text-anchor="middle" class="ax">0.0</text>
+  <line x1="300" y1="290" x2="300" y2="294" stroke="#888"/>
+  <text x="300" y="308" text-anchor="middle" class="ax">0.25</text>
+  <line x1="420" y1="290" x2="420" y2="294" stroke="#888"/>
+  <text x="420" y="308" text-anchor="middle" class="ax">0.50</text>
+  <line x1="540" y1="290" x2="540" y2="294" stroke="#888"/>
+  <text x="540" y="308" text-anchor="middle" class="ax">0.75</text>
+  <line x1="660" y1="290" x2="660" y2="294" stroke="#888"/>
+  <text x="660" y="308" text-anchor="middle" class="ax">1.00</text>
+</g>
+<text x="420" y="328" text-anchor="middle" class="lbl">Kendall τ（值越低 → 排序失真越大 → 该维度判别贡献越不可替代）</text>
+
+<text x="20" y="345" class="cap">boundary 消融跨过 0.85 失真线（必要性判据成立）；cause 与 process 在 n=28 cell 上未跨过失真线，扩大 cell 后稳定性待复验。</text>
+</svg>

@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="720" viewBox="0 0 760 360">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="360" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">不同链位置命中样本的三维评分均值对照 (n=30 用例)</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+
+<!-- Header row -->
+<rect x="20" y="55" width="720" height="34" fill="#4464f0"/>
+<text x="35" y="77" class="hdr">命中位置</text>
+<text x="200" y="77" class="hdr">n</text>
+<text x="280" y="77" class="hdr">mean Process</text>
+<text x="430" y="77" class="hdr">mean Entity</text>
+<text x="580" y="77" class="hdr">综合分</text>
+
+<!-- Row C0 (best) — solid orange -->
+<rect x="20" y="89" width="720" height="74" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="89" width="6" height="74" fill="#4464f0" fill-opacity="1.0"/>
+<text x="40" y="129" class="h" style="fill:#4464f0">C0 根因</text>
+<text x="200" y="129" class="big">14</text>
+<rect x="280" y="119" width="94" height="14" fill="#4464f0" fill-opacity="1.0"/>
+<text x="280" y="113" class="lbl">Process</text>
+<text x="379" y="131" class="h2">0.786</text>
+<rect x="430" y="119" width="120" height="14" fill="#4464f0" fill-opacity="1.0"/>
+<text x="430" y="113" class="lbl">Entity</text>
+<text x="555" y="131" class="h2">1.000</text>
+<text x="580" y="129" class="big">71.93</text>
+
+<!-- Row C1 (mid) — 0.6 opacity -->
+<rect x="20" y="165" width="720" height="74" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="165" width="6" height="74" fill="#4464f0" fill-opacity="0.6"/>
+<text x="40" y="205" class="h" style="fill:#1A2233">C1 传播节点</text>
+<text x="200" y="205" class="big" style="fill:#1A2233">4</text>
+<rect x="280" y="195" width="72" height="14" fill="#4464f0" fill-opacity="0.6"/>
+<text x="280" y="189" class="lbl">Process</text>
+<text x="357" y="207" class="h2">0.600</text>
+<rect x="430" y="195" width="30" height="14" fill="#4464f0" fill-opacity="0.6"/>
+<text x="430" y="189" class="lbl">Entity</text>
+<text x="465" y="207" class="h2">0.250</text>
+<text x="580" y="205" class="big" style="fill:#1A2233">35.50</text>
+
+<!-- Row miss (worst) — 0.3 opacity -->
+<rect x="20" y="241" width="720" height="74" fill="#FFFFFF" stroke="#D1D5DB"/>
+<rect x="20" y="241" width="6" height="74" fill="#4464f0" fill-opacity="0.3"/>
+<text x="40" y="281" class="h" style="fill:#888">miss</text>
+<text x="200" y="281" class="big" style="fill:#888">12</text>
+<rect x="280" y="271" width="75" height="14" fill="#4464f0" fill-opacity="0.3"/>
+<text x="280" y="265" class="lbl">Process</text>
+<text x="360" y="283" class="h2">0.633</text>
+<rect x="430" y="271" width="50" height="14" fill="#4464f0" fill-opacity="0.3"/>
+<text x="430" y="265" class="lbl">Entity</text>
+<text x="485" y="283" class="h2">0.417</text>
+<text x="580" y="281" class="big" style="fill:#888">42.42</text>
+
+<text x="20" y="345" class="cap">C0 根因命中样本（n=14）综合分 71.93 显著高于 C1（35.50）与 miss（42.42）— 链位置直接驱动综合分。</text>
+</svg>

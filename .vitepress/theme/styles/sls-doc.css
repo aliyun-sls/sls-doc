@@ -1847,7 +1847,7 @@
   margin: -110px auto 0;
   padding: 0 24px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -2369,25 +2369,75 @@
   padding-right: 16px;
 }
 
+.sls-starops-article .VPSidebar .group {
+  padding-top: 0;
+}
+
 .sls-starops-article .VPSidebarItem .item {
   margin: 0;
 }
 
+.sls-starops-article .VPSidebarItem.level-0 {
+  padding-bottom: 8px;
+}
+
+.sls-starops-article .VPSidebarItem.level-0.collapsed {
+  padding-bottom: 5px;
+}
+
 .sls-starops-article .VPSidebarItem.level-0 > .item {
-  padding: 0 6px 8px;
+  align-items: center;
+  border-radius: 6px;
+  min-height: 32px;
+  padding: 4px 6px;
+}
+
+.sls-starops-article .VPSidebarItem.level-0 > .item:hover {
+  background: rgba(68, 100, 240, .04);
 }
 
 .sls-starops-article .VPSidebarItem.level-0 > .item .text {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: .5px;
-  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 20px;
+  text-transform: none;
   color: var(--sls-starops-text);
+}
+
+.sls-starops-article .VPSidebarItem.level-0 > .item .caret {
+  height: 28px;
+  margin-right: -5px;
+  width: 28px;
+}
+
+.sls-starops-article .VPSidebarItem.level-0 > .items {
+  margin: 1px 0 6px;
 }
 
 .sls-starops-article .VPSidebarItem.level-1 .item .link {
   display: block;
   border-radius: 6px;
+}
+
+.sls-starops-article .VPSidebarItem.level-1.collapsible > .item,
+.sls-starops-article .VPSidebarItem.level-2.collapsible > .item {
+  align-items: center;
+  border-radius: 6px;
+  min-height: 28px;
+}
+
+.sls-starops-article .VPSidebarItem.level-1.collapsible > .item:hover,
+.sls-starops-article .VPSidebarItem.level-2.collapsible > .item:hover {
+  background: rgba(68, 100, 240, .035);
+}
+
+.sls-starops-article .VPSidebarItem.level-1 .items,
+.sls-starops-article .VPSidebarItem.level-2 .items,
+.sls-starops-article .VPSidebarItem.level-3 .items {
+  border-left-color: rgba(68, 100, 240, .14);
+  margin: 2px 0 5px 10px;
+  padding-left: 10px;
 }
 
 .sls-starops-article .VPSidebarItem.level-1 .item .text {
@@ -2397,11 +2447,34 @@
   color: var(--sls-starops-text-soft);
 }
 
+.sls-starops-article .VPSidebarItem.level-2 .item .text {
+  padding: 4px 8px;
+  font-size: 12.5px;
+  line-height: 18px;
+}
+
+.sls-starops-article .VPSidebarItem.level-3 .item .text {
+  padding: 4px 8px;
+  font-size: 12.5px;
+  line-height: 18px;
+}
+
+.sls-starops-article .VPSidebarItem.level-1 .item .caret,
+.sls-starops-article .VPSidebarItem.level-2 .item .caret {
+  height: 26px;
+  width: 26px;
+}
+
 .sls-starops-article .VPSidebarItem.level-1.is-active .item .text,
-.sls-starops-article .VPSidebarItem.level-1.has-active .item .text {
+.sls-starops-article .VPSidebarItem.level-1.has-active .item .text,
+.sls-starops-article .VPSidebarItem.level-2.is-active .item .text,
+.sls-starops-article .VPSidebarItem.level-2.has-active .item .text,
+.sls-starops-article .VPSidebarItem.level-3.is-active .item .text,
+.sls-starops-article .VPSidebarItem.level-3.has-active .item .text {
   background: rgba(68,100,240,.10);
   color: var(--sls-starops-brand-strong);
   font-weight: 600;
+  border-radius: 4px;
 }
 
 .sls-starops-article .VPSidebarItem.level-1:not(.is-link) .item > .text {

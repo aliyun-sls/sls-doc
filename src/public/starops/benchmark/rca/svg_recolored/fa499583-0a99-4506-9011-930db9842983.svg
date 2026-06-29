@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1520" height="640" viewBox="0 0 760 320">
+<style>
+  .ti{font:700 16px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h{font:700 13px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .h2{font:700 12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .b{font:12px "PingFang SC","Helvetica Neue",sans-serif;fill:#1A2233}
+  .m{font:11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#5E6B82}
+  .lbl{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .big{font:700 20px "Helvetica Neue",sans-serif;fill:#4464f0}
+  .code{font:10.5px Menlo,Consolas,monospace;fill:#1A2233}
+  .cap{font:11px "PingFang SC","Helvetica Neue",sans-serif;fill:#888}
+  .hdr{font:700 11.5px "PingFang SC","Helvetica Neue",sans-serif;fill:#FFFFFF}
+</style>
+<rect width="760" height="320" fill="#FFFFFF"/>
+<text x="20" y="28" class="ti">RCA Agent 运行环境的四项基础约束</text>
+<line x1="20" y1="38" x2="740" y2="38" stroke="#4464f0" stroke-width="2"/>
+<rect x="20" y="55" width="360" height="110" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="55" width="360" height="6" fill="#4464f0" rx="6"/>
+<text x="38" y="85" class="h" style="fill:#4464f0">可复现</text>
+<text x="38" y="107" class="m">相同注入计划应尽可能得到相同类型的关键观测信号</text>
+<text x="38" y="153" class="lbl">对应实现 → §3.6 评估生命周期与稳态验证</text>
+<rect x="400" y="55" width="360" height="110" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="400" y="55" width="360" height="6" fill="#4464f0" rx="6"/>
+<text x="418" y="85" class="h" style="fill:#4464f0">可隔离</text>
+<text x="418" y="107" class="m">不同 run 之间不能相互污染</text>
+<text x="418" y="153" class="lbl">对应实现 → §3.6 信息隔离与七阶段流水</text>
+<rect x="20" y="180" width="360" height="110" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="20" y="180" width="360" height="6" fill="#4464f0" rx="6"/>
+<text x="38" y="210" class="h" style="fill:#4464f0">足够轻量</text>
+<text x="38" y="232" class="m">可批量重复执行，支撑数据集扩充与回归测试</text>
+<text x="38" y="278" class="lbl">对应实现 → §3.4 微服务规模 + §3.5.2 时间压缩</text>
+<rect x="400" y="180" width="360" height="110" rx="6" fill="#F8FAFC" stroke="#D1D5DB"/>
+<rect x="400" y="180" width="360" height="6" fill="#4464f0" rx="6"/>
+<text x="418" y="210" class="h" style="fill:#4464f0">贴近生产</text>
+<text x="418" y="232" class="m">服务依赖、流量基线、可观测栈与真实系统保持基本一致</text>
+<text x="418" y="278" class="lbl">对应实现 → §3.4 五层服务 + §3.5 双层调制</text>
+<text x="20" y="305" class="cap">四项约束相互独立，分别由运行环境层不同子模块承载；任何一项缺失都会拉低评估有效性。</text>
+</svg>
