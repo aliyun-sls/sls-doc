@@ -130,8 +130,8 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
-      <h3 class="sls-starops-card__title">RDS 周期性自动巡检</h3>
-      <p class="sls-starops-card__desc">把人工 SSH + SQL 的 RDS 巡检改成数字员工 + 长期任务自动跑 21 项检查，按 cron 主动送达。</p>
+      <h3 class="sls-starops-card__title">RDS 脚本巡检与动态追因</h3>
+      <p class="sls-starops-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/capacity-risk-prediction/article.html">

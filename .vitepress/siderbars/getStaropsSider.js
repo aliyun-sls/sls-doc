@@ -24,7 +24,7 @@ function getSidebar() {
       text: '主动巡检',
       collapsed: true,
       items: [
-        { text: 'RDS 周期性自动巡检', link: '/starops/practices/rds-inspection-via-script/article' },
+        { text: 'RDS 脚本巡检与动态追因', link: '/starops/practices/rds-inspection-via-script/article' },
         { text: '饱和度评估与风险预测', link: '/starops/practices/capacity-risk-prediction/article' },
         { text: '日志模式定时巡检', link: '/starops/practices/log-insight-pattern/article' },
         { text: '业务服务可靠性巡检', link: '/starops/practices/business-reliability-flow/article' },
