@@ -71,7 +71,7 @@ pageClass: sls-starops-home
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/onboarding/effective-prompts/article.html">
       <h3 class="sls-starops-card__title">与 STAROps 有效对话</h3>
-      <p class="sls-starops-card__desc">用 6 条 prompt 原则把模糊提问转成一次到位的精准请求，正反例可直接套用。</p>
+      <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/umodel-metric-entity/article.html">
