@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 饱和度评估与风险预测 — 算子能力认知
+title: 饱和度评估与风险预测 — discovery 与能力边界
 footer: false
 ---
 
