@@ -170,8 +170,8 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
-      <h3 class="sls-starops-card__title">接入外部 MCP 工具</h3>
-      <p class="sls-starops-card__desc">外部 MCP Server 一次接入、所有数字员工复用：5 步接入流程 + 5 项接入前检查 + 4 类执行策略匹配。</p>
+      <h3 class="sls-starops-card__title">MCP 能力扩展与工具治理</h3>
+      <p class="sls-starops-card__desc">MCP 把客户侧探测、受控动作、研发上下文封装成结构化 tools，数据面之外的能力按需接入 STAROps，风险随工具显式分层治理。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>

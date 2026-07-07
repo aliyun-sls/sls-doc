@@ -36,7 +36,7 @@ function getSidebar() {
       items: [
         { text: '编写 STAROps 运维 Skill', link: '/starops/practices/skill-authoring/article' },
         { text: '编写 Skill 确定性脚本', link: '/starops/practices/skill-script-deterministic/article' },
-        { text: '接入外部 MCP 工具', link: '/starops/practices/mcp-integration/article' },
+        { text: 'MCP 能力扩展与工具治理', link: '/starops/practices/mcp-integration/article' },
       ],
     },
     {

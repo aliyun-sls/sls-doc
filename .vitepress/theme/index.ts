@@ -22,7 +22,7 @@ export default {
         '告警 RCA：用 Skill 固化历史 Runbook': 'PUBLISHED v1.0',
         日志模式巡检: 'DRAFT',
         业务服务可靠性巡检: 'DRAFT',
-        'MCP 集成治理 Checklist': 'WIP · 模板态',
+        'MCP 能力扩展与工具治理': 'PUBLISHED v1.0',
         'UModel 指标语义与实体拓扑': 'DRAFT',
         '编写 STAROps 运维 Skill': 'DRAFT',
         '编写 Skill 确定性脚本': 'DRAFT',
