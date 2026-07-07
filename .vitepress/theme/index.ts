@@ -18,12 +18,11 @@ export default {
     nextTick(() => {
       if (typeof document === 'undefined') return
       const badgeMap: Record<string, string> = {
-        'RDS 周期性自动巡检': 'PUBLISHED v1.0',
+        'RDS 脚本巡检与动态追因': 'PUBLISHED v1.0',
         '告警 RCA：用 Skill 固化历史 Runbook': 'PUBLISHED v1.0',
         日志模式巡检: 'DRAFT',
         业务服务可靠性巡检: 'DRAFT',
-        'MCP 集成治理 Checklist': 'WIP · 模板态',
-        'UModel 指标语义与实体拓扑': 'DRAFT',
+        'MCP 能力扩展与工具治理': 'PUBLISHED v1.0',
         '编写 STAROps 运维 Skill': 'DRAFT',
         '编写 Skill 确定性脚本': 'DRAFT',
       }

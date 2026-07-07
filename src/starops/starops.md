@@ -11,27 +11,26 @@ pageClass: sls-starops-home
     </div>
     <p class="sls-starops-hero__eyebrow">STAROps Best Practices</p>
     <h1>Agentic Ops<br /><em>最佳实践</em></h1>
-    <p class="sls-starops-hero__lede">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖语义上手、基准评测、告警追因、主动巡检、经验固化和协作闭环。</p>
+    <p class="sls-starops-hero__lede">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖开始上手、基准评测、进阶必备、场景能力、DevOps 闭环、持续优化和集成扩展。</p>
     <div class="sls-starops-hero__actions">
       <a class="sls-starops-btn sls-starops-btn--primary" href="https://starops.console.aliyun.com" target="_blank">进入 STAROps 控制台</a>
       <a class="sls-starops-btn sls-starops-btn--ghost" href="/doc/playground/staropsdemo.html" target="_blank">体验 Playground</a>
     </div>
     <div class="sls-starops-hero__signals" aria-label="实践主题">
-      <span>UModel</span>
+      <span>开始上手</span>
       <span>基准评测</span>
-      <span>告警 RCA</span>
-      <span>主动巡检</span>
-      <span>容量预测</span>
-      <span>日志洞察</span>
-      <span>Skill 集成</span>
-      <span>协作闭环</span>
+      <span>进阶必备</span>
+      <span>场景能力</span>
+      <span>DevOps 闭环</span>
+      <span>持续优化</span>
+      <span>集成扩展</span>
     </div>
   </div>
 </section>
 
 <section class="sls-starops-scene-nav">
-  <a class="sls-starops-scene-card" href="#semantic" data-tone="brand">
-    <h2>语义上手</h2>
+  <a class="sls-starops-scene-card" href="#start" data-tone="brand">
+    <h2>开始上手</h2>
     <p>掌握提问范式和 UModel 语义能力，让数字员工按实体、指标、拓扑和日志理解系统。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
@@ -40,43 +39,43 @@ pageClass: sls-starops-home
     <p>用同一 RCA Benchmark 对比 ReAct、OpenClaw 与 STAROps，覆盖评测基准、评测结果和 40 个诊断案例。</p>
     <span class="sls-starops-scene-card__cta">查看评测</span>
   </a>
-  <a class="sls-starops-scene-card" href="#rca" data-tone="cyan">
-    <h2>告警追因</h2>
-    <p>告警触发后，按 RCA 流程完成分诊、数据确认、根因定位、证据采集、修复建议和复盘治理的标准流程。</p>
+  <a class="sls-starops-scene-card" href="#keypoint" data-tone="cyan">
+    <h2>进阶必备</h2>
+    <p>脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
-  <a class="sls-starops-scene-card" href="#inspection" data-tone="violet">
-    <h2>主动巡检</h2>
-    <p>主动巡检资源水位、容量趋势、日志模式和业务可靠性，在告警前发现隐患并持续送达报告。</p>
+  <a class="sls-starops-scene-card" href="#scenario" data-tone="violet">
+    <h2>场景能力</h2>
+    <p>告警追因、容量预测、日志模式与业务可靠性等场景化能力，按 SOP 完成取证、定位与报告。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
-  <a class="sls-starops-scene-card" href="#knowledge" data-tone="amber">
-    <h2>经验固化</h2>
-    <p>可重复的 Runbook、计算脚本和外部工具调用沉淀为 Skill，让数字员工高效、稳定复用运维经验。</p>
+  <a class="sls-starops-scene-card" href="#devops" data-tone="amber">
+    <h2>DevOps 闭环</h2>
+    <p>将代码仓库、Release、镜像接入 UModel，补全告警到代码变更的跨域追因链路。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
-  <a class="sls-starops-scene-card" href="#collaboration" data-tone="cyan">
-    <h2>协作闭环</h2>
-    <p>接入钉钉、DevOps 和运行时上下文，让诊断结果、巡检报告和代码变更进入团队闭环。</p>
+  <a class="sls-starops-scene-card" href="#loop" data-tone="cyan">
+    <h2>持续优化</h2>
+    <p>可重复的 Runbook 与计算脚本沉淀为 Skill，让数字员工高效、稳定复用运维经验。</p>
+    <span class="sls-starops-scene-card__cta">查看实践</span>
+  </a>
+  <a class="sls-starops-scene-card" href="#integration" data-tone="amber">
+    <h2>集成扩展</h2>
+    <p>接入钉钉 IM 与 MCP 外部工具，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
 </section>
 
-<section class="sls-starops-section" id="semantic">
+<section class="sls-starops-section" id="start">
   <div class="sls-starops-section__head">
     <div class="sls-starops-section__title-wrap">
-      <h2 class="sls-starops-section__title">语义上手</h2>
+      <h2 class="sls-starops-section__title">开始上手</h2>
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/onboarding/effective-prompts/article.html">
       <h3 class="sls-starops-card__title">与 STAROps 有效对话</h3>
-      <p class="sls-starops-card__desc">用 6 条 prompt 原则把模糊提问转成一次到位的精准请求，正反例可直接套用。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/umodel-metric-entity/article.html">
-      <h3 class="sls-starops-card__title">UModel 使用指南</h3>
-      <p class="sls-starops-card__desc">基于 UModel 语义层让 Agent 走显式语义而非靠猜，8 组正反例覆盖指标、拓扑、日志、链路、事件。</p>
+      <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
@@ -107,10 +106,25 @@ pageClass: sls-starops-home
   </div>
 </section>
 
-<section class="sls-starops-section" id="rca">
+<section class="sls-starops-section" id="keypoint">
   <div class="sls-starops-section__head">
     <div class="sls-starops-section__title-wrap">
-      <h2 class="sls-starops-section__title">告警追因</h2>
+      <h2 class="sls-starops-section__title">进阶必备</h2>
+    </div>
+  </div>
+  <div class="sls-starops-grid sls-starops-grid--three">
+    <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
+      <h3 class="sls-starops-card__title">RDS 脚本巡检与动态追因</h3>
+      <p class="sls-starops-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+  </div>
+</section>
+
+<section class="sls-starops-section" id="scenario">
+  <div class="sls-starops-section__head">
+    <div class="sls-starops-section__title-wrap">
+      <h2 class="sls-starops-section__title">场景能力</h2>
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
@@ -119,29 +133,9 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">把企业历史 Runbook 固化为 Agent 可执行 Skill，按错误码分支并行取证，证据不足升级 InvestigationAgent。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-  </div>
-</section>
-
-<section class="sls-starops-section" id="inspection">
-  <div class="sls-starops-section__head">
-    <div class="sls-starops-section__title-wrap">
-      <h2 class="sls-starops-section__title">主动巡检</h2>
-    </div>
-  </div>
-  <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
-      <h3 class="sls-starops-card__title">RDS 周期性自动巡检</h3>
-      <p class="sls-starops-card__desc">把人工 SSH + SQL 的 RDS 巡检改成数字员工 + 长期任务自动跑 21 项检查，按 cron 主动送达。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/capacity-risk-prediction/article.html">
       <h3 class="sls-starops-card__title">饱和度评估与风险预测</h3>
-      <p class="sls-starops-card__desc">跨域执行容量预测并生成风险报告，覆盖趋势预测、基线偏离、缓慢增长、阈值突破、短期波动、等 7 种评估策略。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/log-insight-pattern/article.html">
-      <h3 class="sls-starops-card__title">日志模式定时巡检</h3>
-      <p class="sls-starops-card__desc">日志模式聚类支持持续分析新增、消失与异常模式，按计划主动送达变化报告。</p>
+      <p class="sls-starops-card__desc">把容量风险从看水位升级为看未来：series_forecast 预测触阈时间，沿 UModel 解释上升来源，跨产品共振归并后给出处置优先级。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
@@ -149,13 +143,33 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">5 Phase 串接业务基线、应用、拓扑、告警、报告，产出含 SLO 与行动项的服务可靠性体检报告。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/log-insight-pattern/article.html">
+      <h3 class="sls-starops-card__title">日志模式定时巡检</h3>
+      <p class="sls-starops-card__desc">日志模式聚类支持持续分析新增、消失与异常模式，按计划主动送达变化报告。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 
-<section class="sls-starops-section" id="knowledge">
+<section class="sls-starops-section" id="devops">
   <div class="sls-starops-section__head">
     <div class="sls-starops-section__title-wrap">
-      <h2 class="sls-starops-section__title">经验固化</h2>
+      <h2 class="sls-starops-section__title">DevOps 闭环</h2>
+    </div>
+  </div>
+  <div class="sls-starops-grid sls-starops-grid--three">
+    <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
+      <h3 class="sls-starops-card__title">DevOps 跨域追因建模</h3>
+      <p class="sls-starops-card__desc">将代码仓库、Release、镜像接入 UModel，补全告警到代码变更的 5 层追因链路。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+  </div>
+</section>
+
+<section class="sls-starops-section" id="loop">
+  <div class="sls-starops-section__head">
+    <div class="sls-starops-section__title-wrap">
+      <h2 class="sls-starops-section__title">持续优化</h2>
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
@@ -169,18 +183,13 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">数值计算交给脚本不交给 LLM——单位换算、聚合、阈值判断必须纯函数化，附 4 段 Python 模板。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
-      <h3 class="sls-starops-card__title">接入外部 MCP 工具</h3>
-      <p class="sls-starops-card__desc">外部 MCP Server 一次接入、所有数字员工复用：5 步接入流程 + 5 项接入前检查 + 4 类执行策略匹配。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
   </div>
 </section>
 
-<section class="sls-starops-section" id="collaboration">
+<section class="sls-starops-section" id="integration">
   <div class="sls-starops-section__head">
     <div class="sls-starops-section__title-wrap">
-      <h2 class="sls-starops-section__title">协作闭环</h2>
+      <h2 class="sls-starops-section__title">集成扩展</h2>
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
@@ -189,9 +198,9 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">钉钉应用 + AppFlow 连接流 + STAROps 数字员工三平台串联，4 步完成企业 IM 内对话式运维。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
-      <h3 class="sls-starops-card__title">DevOps 跨域追因建模</h3>
-      <p class="sls-starops-card__desc">将代码仓库、Release、镜像接入 UModel，补全告警到代码变更的 5 层追因链路。</p>
+    <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
+      <h3 class="sls-starops-card__title">MCP 能力扩展与工具治理</h3>
+      <p class="sls-starops-card__desc">MCP 把客户侧探测、受控动作、研发上下文封装成结构化 tools，数据面之外的能力按需接入 STAROps，风险随工具显式分层治理。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
