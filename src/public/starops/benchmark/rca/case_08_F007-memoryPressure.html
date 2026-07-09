@@ -3,7 +3,6 @@
 <html lang="zh-CN">
 <head>
 <!-- FE_S1_BRAND_COLOR_V1_BEGIN brand-1 swapped to 4464f0 from legacy 3451b2 FE_S1_BRAND_COLOR_V1_END -->
-
 <meta charset="utf-8"/>
 <title>案例 8 · Pod 内存吃满 OOM（F007-memoryPressure） · 评测案例 | STAROps 实践</title>
 <style>
@@ -4516,7 +4515,7 @@ body.sls-starops-article .lane-table .lt-row[data-row="head"] .lt-col {
 
 /* (e1) section rhythm — large sections 64, sub-sections 40, cards 16
  Use !important because earlier sls overrides also use !important. */
-body.sls-starops-article .case-tldr { margin: 64px 0 24px !important; padding: 16px 20px !important; }
+body.sls-starops-article .case-tldr { margin: 24px 0 24px !important; padding: 16px 20px !important; }
 body.sls-starops-article .roi-bar { padding: 16px 20px !important; margin: 0 0 16px !important; }
 body.sls-starops-article .heatmap { margin-top: 40px !important; padding: 16px 20px !important; }
 body.sls-starops-article .mech-v2,
@@ -4820,7 +4819,7 @@ body.sls-starops-article .lane-table > .lt-row > .lt-col:first-child {
 
 /* ③ 排查路径 banner — 跟 .v3c-section-band 同风格 */
 .fp-v12-route-band {
- margin: 64px 0 24px;
+ margin: 24px 0 24px;
  padding: 14px 16px;
  border-left: 4px solid var(--vp-c-brand-1, #4464f0);
  background: rgba(68, 100, 240, 0.06);
@@ -6946,24 +6945,59 @@ html body.sls-starops-article .lane-unified-card details.luc-toggle[open] > .luc
   max-height: none !important;
   overflow: visible !important;
 }
+
+/* Incident conclusion card: local summary before case TLDR. */
+body.sls-starops-article .incident-conclusion-card {
+  margin: 24px 0 16px;
+  padding: 18px 20px;
+  border: 1px solid rgba(68, 100, 240, 0.18);
+  border-left: 4px solid var(--brand, #4464f0);
+  border-radius: 8px;
+  background: rgba(68, 100, 240, 0.045);
+}
+body.sls-starops-article .incident-conclusion-card > h2 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand-strong, #2442c7);
+}
+body.sls-starops-article .incident-conclusion-card dl {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 8px 14px;
+  margin: 0;
+}
+body.sls-starops-article .incident-conclusion-card dt {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text, #213547);
+}
+body.sls-starops-article .incident-conclusion-card dd {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: var(--text-soft, #475569);
+}
+@media (max-width: 640px) {
+  body.sls-starops-article .incident-conclusion-card dl { grid-template-columns: 1fr; }
+  body.sls-starops-article .incident-conclusion-card dd { margin-bottom: 4px; }
+}
+
+/* INCIDENT_CONCLUSION_CARD_H2_RESET_V1_BEGIN */
+body.sls-starops-article .incident-conclusion-card > h2,
+body.sls-starops-article .incident-conclusion-card h2 {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+/* INCIDENT_CONCLUSION_CARD_H2_RESET_V1_END */
 </style>
 <!-- P7_A_BEGIN -->
-
 <!-- P7_A_END -->
-
-
-
-
-
 <!-- FE_P33_STAROPS_BRAND_VARS_V1_BEGIN -->
-
 <!-- FE_P33_STAROPS_BRAND_VARS_V1_END -->
 <!-- FE_P33_D2_ALIAS_REMAP_V1_BEGIN -->
-
 <!-- FE_P33_D2_ALIAS_REMAP_V1_END -->
-
-
-
 </head>
 <body class="sls-starops-article">
 <header class="sls-starops-topbar">
@@ -6972,58 +7006,52 @@ html body.sls-starops-article .lane-unified-card details.luc-toggle[open] > .luc
 <span class="sls-starops-topbar__mark"></span>
 <span>STAROps 实践</span>
 </a>
-<div class="sls-starops-topbar__crumb"><a href="/doc/starops/starops.html">STAROps</a><span class="sep">/</span><a href="/doc/starops/starops.html#benchmark">基准评测</a><span class="sep">/</span><a href="/doc/starops/benchmark/rca/cases_compare.html">评测案例</a><span class="sep">/</span><span>Pod 内存吃满 OOM</span></div>
-<a class="sls-starops-topbar__cta" href="/doc/starops/benchmark/rca/cases_compare.html">← 返回评测案例</a>
+<div class="sls-starops-topbar__crumb"><a href="/doc/starops/starops.html">STAROps</a><span class="sep">/</span><a href="/doc/starops/starops.html#benchmark">基准评测</a><span class="sep">/</span><a href="cases_compare.html">评测案例</a><span class="sep">/</span><span>Pod 内存吃满 OOM</span></div>
+<a class="sls-starops-topbar__cta" href="cases_compare.html">← 返回评测案例</a>
 </div>
 </header>
 <header class="VPNavBar">
 <div class="VPNavBar__inner">
-<a class="VPNavBar__title" href="/doc/starops/benchmark/rca/rca_benchmark_results.html">
+<a class="VPNavBar__title" href="rca_benchmark_results.html">
 <span>阿里云可观测</span>
 </a>
 <nav class="VPNavBar__menu">
-<a href="/doc/starops/benchmark/rca/cases_compare.html">评测案例</a>
-<a href="/doc/starops/benchmark/rca/rca_benchmark_results.html">评测结果</a>
-<a href="/doc/starops/benchmark/rca/rca_benchmark_dataset.html">评测基准</a>
+<a href="cases_compare.html">评测案例</a>
+<a href="rca_benchmark_results.html">评测结果</a>
+<a href="rca_benchmark_dataset.html">评测基准</a>
 <a href="#mechanism">当前案例</a>
 </nav>
 <input class="VPNavBar__search" placeholder="Search" readonly=""/>
 </div>
 </header>
-<aside class="VPSidebar"><div class="curtain"></div><nav class="nav" id="VPSidebarNav" aria-labelledby="sidebar-aria-label" tabindex="-1"><span class="visually-hidden" id="sidebar-aria-label"> Sidebar Navigation </span><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">语义上手</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/onboarding/effective-prompts/article.html"><p class="text">与 STAROps 有效对话</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/umodel-metric-entity/article.html"><p class="text">UModel 使用指南</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0 has-active"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">基准评测</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/benchmark/rca/rca_benchmark_dataset.html"><p class="text">评测基准</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/benchmark/rca/rca_benchmark_results.html"><p class="text">评测结果</p></a></div></div><div class="VPSidebarItem level-1 is-link is-active has-active has-children"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/benchmark/rca/cases_compare.html"><p class="text">评测案例</p></a></div><div class="nav-sub-tree" data-starops-case-tree><div class="nav-sub-group" data-open="false"><button class="nav-sub-group-title" type="button" aria-expanded="false" aria-controls="starops-case-group-0"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">节点/基础设施</span><span class="nav-sub-count">4</span></button><div class="nav-sub-group-items" id="starops-case-group-0" hidden><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_01_F026-nodeCpuHigh.html">案例 1 · 节点 CPU 高</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_02_F026-nodeCpuHigh.html">案例 2 · 节点 CPU 高</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_03_F026-nodeCpuHigh.html">案例 3 · 节点 CPU 高</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_04_F001-nodeDown.html">案例 4 · 节点宕机</a></div></div><div class="nav-sub-group" data-open="true"><button class="nav-sub-group-title" type="button" aria-expanded="true" aria-controls="starops-case-group-1"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">资源耗尽</span><span class="nav-sub-count">12</span></button><div class="nav-sub-group-items" id="starops-case-group-1"><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_05_F022-fullGC.html">案例 5 · JVM Full GC 持续</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_06_F007-memoryPressure.html">案例 6 · Pod 内存吃满 OOM</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_07_F007-memoryPressure.html">案例 7 · Pod 内存吃满 OOM</a><a class="nav-sub-item active" href="/doc/starops/benchmark/rca/case_08_F007-memoryPressure.html">案例 8 · Pod 内存吃满 OOM</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_09_F022-fullGC.html">案例 9 · JVM Full GC 持续</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_10_F034-cpuFullLoad.html">案例 10 · 应用 CPU 满载</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_11_F034-cpuFullLoad.html">案例 11 · 应用 CPU 满载</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_12_F002-threadExhaustion.html">案例 12 · 线程池耗尽</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_13_F002-threadExhaustion.html">案例 13 · 线程池耗尽</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_14_F034-cpuFullLoad.html">案例 14 · 应用 CPU 满载</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_15_F034-cpuFullLoad.html">案例 15 · 应用 CPU 满载</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_16_F039-resourceLimitMisconfig.html">案例 16 · 资源 limit 配错</a></div></div><div class="nav-sub-group" data-open="false"><button class="nav-sub-group-title" type="button" aria-expanded="false" aria-controls="starops-case-group-2"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">流量/调度</span><span class="nav-sub-count">12</span></button><div class="nav-sub-group-items" id="starops-case-group-2" hidden><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_17_F016-rateLimiting.html">案例 17 · 限流</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_18_F016-rateLimiting.html">案例 18 · 限流</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_19_F050-podCrashLoop.html">案例 19 · Pod 崩溃循环</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_20_F006-trafficSurge.html">案例 20 · 流量突增</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_21_F006-trafficSurge.html">案例 21 · 流量突增</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_22_F036-replicaScaleDown.html">案例 22 · 副本数被误缩减</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_23_F036-replicaScaleDown.html">案例 23 · 副本数被误缩减</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_24_F004-trafficHotspot.html">案例 24 · 流量热点</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_25_F004-trafficHotspot.html">案例 25 · 流量热点</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_26_F006-trafficSurge.html">案例 26 · 流量突增</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_27_F020-loadBalancerFailure.html">案例 27 · 负载均衡器故障</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_28_F020-loadBalancerFailure.html">案例 28 · 负载均衡器故障</a></div></div><div class="nav-sub-group" data-open="false"><button class="nav-sub-group-title" type="button" aria-expanded="false" aria-controls="starops-case-group-3"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">数据库/缓存</span><span class="nav-sub-count">6</span></button><div class="nav-sub-group-items" id="starops-case-group-3" hidden><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_29_F029-redisUnavailable.html">案例 29 · Redis 服务不可用</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_30_F029-redisUnavailable.html">案例 30 · Redis 服务不可用</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_31_F010-slowSQL.html">案例 31 · 数据库慢 SQL</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_32_F010-slowSQL.html">案例 32 · 数据库慢 SQL</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_33_F018-dbNetworkLatency.html">案例 33 · 数据库网络延迟</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_34_F010-slowSQL.html">案例 34 · 数据库慢 SQL</a></div></div><div class="nav-sub-group" data-open="false"><button class="nav-sub-group-title" type="button" aria-expanded="false" aria-controls="starops-case-group-4"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">代码/应用</span><span class="nav-sub-count">5</span></button><div class="nav-sub-group-items" id="starops-case-group-4" hidden><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_35_F023-nullPointerException.html">案例 35 · 空指针异常</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_36_F023-nullPointerException.html">案例 36 · 空指针异常</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_37_F011-codeDefect.html">案例 37 · 代码缺陷</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_38_F014-httpError5xx.html">案例 38 · HTTP 5xx 错误</a><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_39_F014-httpError5xx.html">案例 39 · HTTP 5xx 错误</a></div></div><div class="nav-sub-group" data-open="false"><button class="nav-sub-group-title" type="button" aria-expanded="false" aria-controls="starops-case-group-5"><span class="nav-sub-chevron" aria-hidden="true"></span><span class="nav-sub-label">网络</span><span class="nav-sub-count">1</span></button><div class="nav-sub-group-items" id="starops-case-group-5" hidden><a class="nav-sub-item" href="/doc/starops/benchmark/rca/case_40_F057-dnsResolutionFailure.html">案例 40 · DNS 解析失败</a></div></div></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">告警追因</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/alert-rca-flow/article.html"><p class="text">告警 RCA 全链路分析</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">主动巡检</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/rds-inspection-via-script/article.html"><p class="text">RDS 周期性自动巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/capacity-risk-prediction/article.html"><p class="text">饱和度评估与风险预测</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/log-insight-pattern/article.html"><p class="text">日志模式定时巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/business-reliability-flow/article.html"><p class="text">业务服务可靠性巡检</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">经验固化</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-authoring/article.html"><p class="text">编写 STAROps 运维 Skill</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-script-deterministic/article.html"><p class="text">编写 Skill 确定性脚本</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/mcp-integration/article.html"><p class="text">接入外部 MCP 工具</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">协作闭环</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/dingtalk-integration/article.html"><p class="text">集成钉钉 IM 通道</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/devops-code-to-runtime/article.html"><p class="text">DevOps 跨域追因建模</p></a></div></div></div></section></div></nav></aside>
+<aside class="VPSidebar"><div class="curtain"></div><nav aria-labelledby="sidebar-aria-label" class="nav" id="VPSidebarNav" tabindex="-1"><span class="visually-hidden" id="sidebar-aria-label"> Sidebar Navigation </span><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">语义上手</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/onboarding/effective-prompts/article.html"><p class="text">与 STAROps 有效对话</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/umodel-metric-entity/article.html"><p class="text">UModel 使用指南</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0 has-active"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">基准评测</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="rca_benchmark_dataset.html"><p class="text">评测基准</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="rca_benchmark_results.html"><p class="text">评测结果</p></a></div></div><div class="VPSidebarItem level-1 is-link is-active has-active has-children"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="cases_compare.html"><p class="text">评测案例</p></a></div><div class="nav-sub-tree" data-starops-case-tree=""><div class="nav-sub-group" data-open="false"><button aria-controls="starops-case-group-0" aria-expanded="false" class="nav-sub-group-title" type="button"><span aria-hidden="true" class="nav-sub-chevron"></span><span class="nav-sub-label">节点/基础设施</span><span class="nav-sub-count">4</span></button><div class="nav-sub-group-items" hidden="" id="starops-case-group-0"><a class="nav-sub-item" href="case_01_F026-nodeCpuHigh.html">案例 1 · 节点 CPU 高</a><a class="nav-sub-item" href="case_02_F026-nodeCpuHigh.html">案例 2 · 节点 CPU 高</a><a class="nav-sub-item" href="case_03_F026-nodeCpuHigh.html">案例 3 · 节点 CPU 高</a><a class="nav-sub-item" href="case_04_F001-nodeDown.html">案例 4 · 节点宕机</a></div></div><div class="nav-sub-group" data-open="true"><button aria-controls="starops-case-group-1" aria-expanded="true" class="nav-sub-group-title" type="button"><span aria-hidden="true" class="nav-sub-chevron"></span><span class="nav-sub-label">资源耗尽</span><span class="nav-sub-count">12</span></button><div class="nav-sub-group-items" id="starops-case-group-1"><a class="nav-sub-item" href="case_05_F022-fullGC.html">案例 5 · JVM Full GC 持续</a><a class="nav-sub-item" href="case_06_F007-memoryPressure.html">案例 6 · Pod 内存吃满 OOM</a><a class="nav-sub-item" href="case_07_F007-memoryPressure.html">案例 7 · Pod 内存吃满 OOM</a><a class="nav-sub-item active" href="case_08_F007-memoryPressure.html">案例 8 · Pod 内存吃满 OOM</a><a class="nav-sub-item" href="case_09_F022-fullGC.html">案例 9 · JVM Full GC 持续</a><a class="nav-sub-item" href="case_10_F034-cpuFullLoad.html">案例 10 · 应用 CPU 满载</a><a class="nav-sub-item" href="case_11_F034-cpuFullLoad.html">案例 11 · 应用 CPU 满载</a><a class="nav-sub-item" href="case_12_F002-threadExhaustion.html">案例 12 · 线程池耗尽</a><a class="nav-sub-item" href="case_13_F002-threadExhaustion.html">案例 13 · 线程池耗尽</a><a class="nav-sub-item" href="case_14_F034-cpuFullLoad.html">案例 14 · 应用 CPU 满载</a><a class="nav-sub-item" href="case_15_F034-cpuFullLoad.html">案例 15 · 应用 CPU 满载</a><a class="nav-sub-item" href="case_16_F039-resourceLimitMisconfig.html">案例 16 · 资源 limit 配错</a></div></div><div class="nav-sub-group" data-open="false"><button aria-controls="starops-case-group-2" aria-expanded="false" class="nav-sub-group-title" type="button"><span aria-hidden="true" class="nav-sub-chevron"></span><span class="nav-sub-label">流量/调度</span><span class="nav-sub-count">12</span></button><div class="nav-sub-group-items" hidden="" id="starops-case-group-2"><a class="nav-sub-item" href="case_17_F016-rateLimiting.html">案例 17 · 限流</a><a class="nav-sub-item" href="case_18_F016-rateLimiting.html">案例 18 · 限流</a><a class="nav-sub-item" href="case_19_F050-podCrashLoop.html">案例 19 · Pod 崩溃循环</a><a class="nav-sub-item" href="case_20_F006-trafficSurge.html">案例 20 · 流量突增</a><a class="nav-sub-item" href="case_21_F006-trafficSurge.html">案例 21 · 流量突增</a><a class="nav-sub-item" href="case_22_F036-replicaScaleDown.html">案例 22 · 副本数被误缩减</a><a class="nav-sub-item" href="case_23_F036-replicaScaleDown.html">案例 23 · 副本数被误缩减</a><a class="nav-sub-item" href="case_24_F004-trafficHotspot.html">案例 24 · 流量热点</a><a class="nav-sub-item" href="case_25_F004-trafficHotspot.html">案例 25 · 流量热点</a><a class="nav-sub-item" href="case_26_F006-trafficSurge.html">案例 26 · 流量突增</a><a class="nav-sub-item" href="case_27_F020-loadBalancerFailure.html">案例 27 · 负载均衡器故障</a><a class="nav-sub-item" href="case_28_F020-loadBalancerFailure.html">案例 28 · 负载均衡器故障</a></div></div><div class="nav-sub-group" data-open="false"><button aria-controls="starops-case-group-3" aria-expanded="false" class="nav-sub-group-title" type="button"><span aria-hidden="true" class="nav-sub-chevron"></span><span class="nav-sub-label">数据库/缓存</span><span class="nav-sub-count">6</span></button><div class="nav-sub-group-items" hidden="" id="starops-case-group-3"><a class="nav-sub-item" href="case_29_F029-redisUnavailable.html">案例 29 · Redis 服务不可用</a><a class="nav-sub-item" href="case_30_F029-redisUnavailable.html">案例 30 · Redis 服务不可用</a><a class="nav-sub-item" href="case_31_F010-slowSQL.html">案例 31 · 数据库慢 SQL</a><a class="nav-sub-item" href="case_32_F010-slowSQL.html">案例 32 · 数据库慢 SQL</a><a class="nav-sub-item" href="case_33_F018-dbNetworkLatency.html">案例 33 · 数据库网络延迟</a><a class="nav-sub-item" href="case_34_F010-slowSQL.html">案例 34 · 数据库慢 SQL</a></div></div><div class="nav-sub-group" data-open="false"><button aria-controls="starops-case-group-4" aria-expanded="false" class="nav-sub-group-title" type="button"><span aria-hidden="true" class="nav-sub-chevron"></span><span class="nav-sub-label">代码/应用</span><span class="nav-sub-count">5</span></button><div class="nav-sub-group-items" hidden="" id="starops-case-group-4"><a class="nav-sub-item" href="case_35_F023-nullPointerException.html">案例 35 · 空指针异常</a><a class="nav-sub-item" href="case_36_F023-nullPointerException.html">案例 36 · 空指针异常</a><a class="nav-sub-item" href="case_37_F011-codeDefect.html">案例 37 · 代码缺陷</a><a class="nav-sub-item" href="case_38_F014-httpError5xx.html">案例 38 · HTTP 5xx 错误</a><a class="nav-sub-item" href="case_39_F014-httpError5xx.html">案例 39 · HTTP 5xx 错误</a></div></div><div class="nav-sub-group" data-open="false"><button aria-controls="starops-case-group-5" aria-expanded="false" class="nav-sub-group-title" type="button"><span aria-hidden="true" class="nav-sub-chevron"></span><span class="nav-sub-label">网络</span><span class="nav-sub-count">1</span></button><div class="nav-sub-group-items" hidden="" id="starops-case-group-5"><a class="nav-sub-item" href="case_40_F057-dnsResolutionFailure.html">案例 40 · DNS 解析失败</a></div></div></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">告警追因</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/alert-rca-flow/article.html"><p class="text">告警 RCA 全链路分析</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">主动巡检</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/rds-inspection-via-script/article.html"><p class="text">RDS 周期性自动巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/capacity-risk-prediction/article.html"><p class="text">饱和度评估与风险预测</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/log-insight-pattern/article.html"><p class="text">日志模式定时巡检</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/business-reliability-flow/article.html"><p class="text">业务服务可靠性巡检</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">经验固化</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-authoring/article.html"><p class="text">编写 STAROps 运维 Skill</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/skill-script-deterministic/article.html"><p class="text">编写 Skill 确定性脚本</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/mcp-integration/article.html"><p class="text">接入外部 MCP 工具</p></a></div></div></div></section></div><div class="group"><section class="VPSidebarItem level-0"><div class="item" role="button" tabindex="0"><div class="indicator"></div><h2 class="text">协作闭环</h2></div><div class="items"><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/dingtalk-integration/article.html"><p class="text">集成钉钉 IM 通道</p></a></div></div><div class="VPSidebarItem level-1 is-link"><div class="item"><div class="indicator"></div><a class="VPLink link link" href="/doc/starops/practices/devops-code-to-runtime/article.html"><p class="text">DevOps 跨域追因建模</p></a></div></div></div></section></div></nav></aside>
 <div class="VPContent">
 <div class="VPDoc">
 <div class="vp-content">
 <div class="page-head">
-<a class="back-to-overview" href="/doc/starops/benchmark/rca/cases_compare.html" style="display:inline-block;font-size:13px;color:var(--sls-doc-brand);text-decoration:none;margin-bottom:10px;">← 返回总览</a>
+<a class="back-to-overview" href="cases_compare.html" style="display:inline-block;font-size:13px;color:var(--sls-doc-brand);text-decoration:none;margin-bottom:10px;">← 返回总览</a>
 <h1 data-p7-lang-h="1">案例 8 · Pod 内存吃满 OOM（F007-memoryPressure）</h1>
 <div class="case-group-tag">故障组 · 资源耗尽</div>
-
 <!-- FE_PLAIN_SUMMARY_V1_BEGIN --><!-- FE_PLAIN_SUMMARY_V1_END --></div>
-<section class="case-tldr">
-<h2 data-p7-lang-h="1">案例摘要</h2>
-<div class="tldr-grid">
-<div class="tldr-cell">
-<span class="tldr-label">真实故障</span>
-<p class="tldr-fact">根因实体 inventory 发生 Pod 内存吃满 OOM（F007-memoryPressure）：2026-04-04 22:41，inventory 的 JVM GC 时间与 GC 次数同时远高于注入前 clean baseline，说明 inventor。</p>
-</div>
-<div class="tldr-cell">
-<span class="tldr-label">告警标题</span>
-<p class="tldr-fact">inventory接口流量下跌告警（cart::POST /oteldemo.CartService/AddItem）</p>
-</div>
-<div class="tldr-cell"><span class="tldr-label">综合分</span><p class="tldr-fact"><span class="chip lose">react 55.0</span> <span class="chip lose">openclaw 15.0</span> <span class="chip mid">STAROps 75.0</span></p></div>
-<div class="tldr-cell">
-<span class="tldr-label">命中情况</span>
-<p class="tldr-fact">STAROps 命中根因 inventory；ReAct 命中根因 inventory；OpenClaw 偏离至 valkey-cart</p>
-</div>
-</div>
+<section aria-labelledby="incident-conclusion-title" class="incident-conclusion-card">
+<h2 class="incident-conclusion-title" id="incident-conclusion-title">案例复盘</h2><div aria-label="服务名说明" class="service-role-glossary"><span class="service-role-label">服务名说明</span><span><code>checkout</code>=下单服务</span><span><code>shipping</code>=配送报价服务</span><span><code>cart</code>=购物车服务</span><span><code>inventory</code>=库存服务</span></div>
+<dl>
+<dt>事故结论</dt>
+<dd>根因是 apm.service <code>inventory</code> 发生 Pod 内存吃满 OOM（F007-memoryPressure），表现为高 GC 内存压力。</dd>
+<dt>影响范围</dt>
+<dd>页面给出的影响包括 cart service 延迟放大 <span class="human-number" title="原始值：456.12x">约 456 倍</span>、请求下降 61.25%，cart::POST /oteldemo.CartService/AddItem 延迟放大 <span class="human-number" title="原始值：706.20x">约 706 倍</span>、请求下降 46.15%。</dd>
+<dt>关键证据</dt>
+<dd>arms_jvm_gc_seconds_delta 升至 <span class="human-number" title="原始值：20.410s">约 20 秒</span>（<span class="human-number" title="原始值：283.85x">约 284 倍</span>），arms_jvm_gc_delta 升至 281（<span class="human-number" title="原始值：15.09x">约 15.1 倍</span>）；同窗 trace 有 38 条指向 inventory:9090 的失败 span。</dd>
+<dt>诊断对比</dt>
+<dd>真值为 F007-memoryPressure / inventory；STAROps 预测 fullGC / inventory 为部分命中，ReAct 预测 threadExhaustion / inventory 类型未命中但实体命中，OpenClaw 预测 redisUnavailable / valkey-cart 未命中。</dd>
+</dl>
 </section>
 <!-- P7_A_BEGIN -->
 <nav aria-label="案例阅读路径" class="case-route-map">
 <span class="route-label" data-p7-lang-h="1">本案例分 3 部分：</span>
-<a aria-describedby="p7a-sec-1" href="#mechanism" data-p7-lang-h="1">① 故障机制</a>
-<a aria-describedby="p7a-sec-2" href="#verdict-3col-band" data-p7-lang-h="1">② 诊断报告</a>
-<a aria-describedby="p7a-sec-3-recap" href="#lanes-route-anchor" data-p7-lang-h="1">③ 排查路径</a>
+<a aria-describedby="p7a-sec-1" data-p7-lang-h="1" href="#mechanism">① 故障机制</a>
+<a aria-describedby="p7a-sec-2" data-p7-lang-h="1" href="#verdict-3col-band">② 诊断报告</a>
+<a aria-describedby="p7a-sec-3-recap" data-p7-lang-h="1" href="#lanes-route-anchor">③ 排查路径</a>
 </nav>
 <!-- P7_A_END -->
 <div class="case-list">
@@ -7069,91 +7097,80 @@ html body.sls-starops-article .lane-unified-card details.luc-toggle[open] > .luc
 <div class="mf-subtitle">incident <code>eu5vqogil96kucd7f2fqdvk2u6</code> · 告警时间 2026-04-04T22:41:03+0800 · chaos memoryPressure · 数据源：brise rca dataset get</div><div class="mf-quick"><div class="mf-quick-title" data-p7-lang-h="1">故障简述</div><ul class="mf-quick-list"><li>2026-04-04 22:41:09，inventory 的 arms_jvm_gc_seconds_delta 升到 20.410 s，较注入前 clean baseline 均值 0.0719 s 放大 283.85x；arms_jvm_gc_delta 同一分钟升到 281 count，较基线 18.62 count 放大 15.09x。GC 时间和 GC 次数在同一分钟同时抬升，说明 inventory 已进入高 GC 内存压力而不是单点噪声抖动。</li><li>2026-04-04 22:40:59，cart service 的 avg_request_latency_seconds 升到 1.634403283273786 s，较 clean baseline 0.0035832418631335213 s 放大 456.12x；request_count 降到 7557 req/30s，较基线 19500.63 req/30s 下跌 61.25%。同窗 trace 里还有 38 条指向 inventory:9090 的失败 span，最慢 GET inventory span 达到 78.773 s，说明 inventory 的退化已经传播到 cart service。</li><li>2026-04-04 22:40:59，告警实体 cart::POST /oteldemo.CartService/AddItem 的 avg_request_latency_seconds 升到 4.634475484962406 s，较 clean baseline 0.006562572132930281 s 放大 706.20x；request_count 降到 2660 req/30s，较基线 4939.37 req/30s 下跌 46.15%。当前 impact target 与告警实体完全一致，因此“cart 响应时间抖动告警”已经在 alert entity 上闭合。</li><li>根因 = apm.service <code>inventory</code> · 故障 = F007-memoryPressure · 告警实体 cart::POST /oteldemo.CartService/AddItem</li></ul></div>
 <div class="mf-section-label" data-p7-lang-h="1">① 机制示意</div>
 <div class="mf-diagram">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 480" style="width:100%;height:auto;display:block;font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;">
-  <defs>
-    <marker id="ah_F007_red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#dc2626"/>
-    </marker>
-    <marker id="ah_alert_F007" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-      <path d="M0,0 L10,5 L0,10 Z" fill="#4464f0"/>
-    </marker>
-  </defs>
-
-  <!-- Top pill: fault type -->
-  <rect x="16" y="14" rx="16" ry="16" width="320" height="32" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
-  <text x="34" y="35" font-size="13" font-weight="700" fill="#7f1d1d">F007 · memoryPressure</text>
-  <text x="356" y="35" font-size="12" fill="#6b7280">JVM 堆压力 / 资源耗尽</text>
-
-  <!-- Trigger box -->
-  <rect x="16" y="78" rx="6" ry="6" width="280" height="92" fill="#fef2f2" stroke="#dc2626" stroke-width="1.5"/>
-  <text x="30" y="100" font-size="10" font-weight="700" fill="#7f1d1d" letter-spacing="1">MEMORY · 触发源</text>
-  <text x="30" y="122" font-size="13" font-weight="700" fill="#111827">JVM 堆压力触发偶发 GC</text>
-  <text x="30" y="144" font-size="11.5" fill="#4b5563">inventory · arms_jvm_gc_seconds_delta = 20.41 s · a…</text>
-
-  <!-- Arrow 1 -->
-  <line x1="300" y1="124.0" x2="320" y2="124.0" stroke="#dc2626" stroke-width="2" marker-end="url(#ah_F007_red)"/>
-  <text x="310.0" y="116.0" text-anchor="middle" font-size="10" fill="#dc2626">注入</text>
-
-  <!-- Root box -->
-  <rect x="324" y="78" rx="6" ry="6" width="280" height="92" fill="#ffffff" stroke="#dc2626" stroke-width="1.5"/>
-  <rect x="324" y="78" width="4" height="92" fill="#dc2626"/>
-  <text x="338" y="100" font-size="10" font-weight="700" fill="#7f1d1d" letter-spacing="1">apm.service · 根因</text>
-  <rect x="336" y="108" width="256" height="42.0" rx="4" fill="#fef2f2"/>
-  <text x="342" y="122" font-family="JetBrains Mono, Menlo, monospace" font-size="12.5" font-weight="700" fill="#111827">inventory</text>
-  <text x="338" y="152" font-family="JetBrains Mono, Menlo, monospace" font-size="10.5" fill="#374151">arms_jvm_gc_seconds_delta = 20.41 s · arms_jvm_gc_d…</text>
-
-  <!-- Arrow 2 -->
-  <line x1="608" y1="124.0" x2="628" y2="124.0" stroke="#4464f0" stroke-width="2" marker-end="url(#ah_alert_F007)"/>
-  <text x="618.0" y="116.0" text-anchor="middle" font-size="10" fill="#4464f0">告警落点</text>
-
-  <!-- Alert box -->
-  <rect x="632" y="78" rx="6" ry="6" width="280" height="92" fill="#f6f8ff" stroke="#4464f0" stroke-width="1.5"/>
-  <text x="646" y="100" font-size="11" font-weight="700" fill="#4464f0">⚠ inventory 响应时间抖动告警</text>
-  <text x="646" y="122" font-family="JetBrains Mono, Menlo, monospace" font-size="11" fill="#111827">cart::POST /oteldemo.CartServ…</text>
-  <text x="646" y="152" font-family="JetBrains Mono, Menlo, monospace" font-size="10.5" font-weight="700" fill="#4464f0">avg_request_latency_seconds = 4.634475 s …</text>
-
-  <!-- Propagation chain label -->
-  <text x="20" y="204" font-size="11" font-weight="700" fill="#6b7280" letter-spacing="1">传播链 · topo（3 跳）</text>
-
-  <!-- Chain frame -->
-  <rect x="16" y="210" rx="6" ry="6" width="948" height="76" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-  <rect x="54.0" y="224" rx="4" ry="4" width="280.0" height="48" fill="#fef2f2" stroke="#dc2626" stroke-width="1"/>
-  <text x="66.0" y="246" font-family="JetBrains Mono, Menlo, monospace" font-size="11.5" font-weight="700" fill="#111827">inventory</text>
-  <text x="66.0" y="260" font-family="JetBrains Mono, Menlo, monospace" font-size="10" fill="#4b5563">arms_jvm_gc_seconds_delta = 20.41 s · arms_jv…</text>
-  <line x1="334.0" y1="248.0" x2="350.0" y2="248.0" stroke="#dc2626" stroke-width="2" marker-end="url(#ah_F007_red)"/>
-  <rect x="350.0" y="224" rx="4" ry="4" width="280.0" height="48" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
-  <text x="362.0" y="246" font-family="JetBrains Mono, Menlo, monospace" font-size="11.5" font-weight="700" fill="#111827">cart</text>
-  <text x="362.0" y="260" font-family="JetBrains Mono, Menlo, monospace" font-size="10" fill="#4b5563">avg_request_latency_seconds = 1.634403 s · re…</text>
-  <line x1="630.0" y1="248.0" x2="646.0" y2="248.0" stroke="#4464f0" stroke-width="2" marker-end="url(#ah_alert_F007)"/>
-  <rect x="646.0" y="224" rx="4" ry="4" width="280.0" height="48" fill="#f6f8ff" stroke="#4464f0" stroke-width="1"/>
-  <text x="658.0" y="246" font-family="JetBrains Mono, Menlo, monospace" font-size="11.5" font-weight="700" fill="#4464f0">cart::POST /oteldemo.CartServic…</text>
-  <text x="658.0" y="260" font-family="JetBrains Mono, Menlo, monospace" font-size="10" fill="#4b5563">avg_request_latency_seconds = 4.634475 s · re…</text>
-  <!-- Observation callout (left) -->
-  <rect x="16" y="304" rx="6" ry="6" width="520" height="108" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5"/>
-  <text x="30" y="326" font-size="11" font-weight="700" fill="#92400e" letter-spacing="1">观测信号(局部)</text>
-  <line x1="30" y1="332" x2="522" y2="332" stroke="#cbd5e1" stroke-width="1"/>
-  <text x="30" y="346" font-family="JetBrains Mono, Menlo, monospace" font-size="11" fill="#374151">inventory.arms_jvm_gc_seconds_delta</text><text x="522" y="346" text-anchor="end" font-family="JetBrains Mono, Menlo, monospace" font-size="11" font-weight="700" fill="#92400e">20.41 s</text>
-  <text x="30" y="366" font-family="JetBrains Mono, Menlo, monospace" font-size="11" fill="#374151">cart.avg_request_latency_seconds</text><text x="522" y="366" text-anchor="end" font-family="JetBrains Mono, Menlo, monospace" font-size="11" font-weight="700" fill="#92400e">1.634403 s</text>
-  <text x="30" y="386" font-family="JetBrains Mono, Menlo, monospace" font-size="11" fill="#374151">cart.avg_request_latency_seconds</text><text x="522" y="386" text-anchor="end" font-family="JetBrains Mono, Menlo, monospace" font-size="11" font-weight="700" fill="#92400e">4.634475 s</text>
-
-  <!-- Summary (right) -->
-  <rect x="552" y="304" rx="6" ry="6" width="412" height="108" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
-  <rect x="552" y="304" width="3" height="108" fill="#dc2626"/>
-  <text x="566" y="326" font-size="12" font-weight="700" fill="#7f1d1d">总结</text>
-  <line x1="566" y1="334" x2="950" y2="334" stroke="#e2e8f0" stroke-width="1"/>
-  <text x="566" y="354" font-family="PingFang SC, Helvetica Neue, sans-serif" font-size="11.5" fill="#1f2937">2026-04-04 22:41，inventory 的 J</text>
-  <text x="566" y="372" font-family="PingFang SC, Helvetica Neue, sans-serif" font-size="11.5" fill="#1f2937">VM GC 时间与 GC 次数同时远高于注入前 clean </text>
-  <text x="566" y="390" font-family="PingFang SC, Helvetica Neue, sans-serif" font-size="11.5" fill="#1f2937">baseline，说明 inventory 已进入 F00…</text>
-
-  <!-- Footer hint -->
-  <text x="490" y="448" text-anchor="middle" font-size="10.5" fill="#9ca3af">根因实体 → 传播中转 → 告警落点 · 同色系深色 = 同故障家族</text>
+<svg style="width:100%;height:auto;display:block;font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;" viewbox="0 0 980 480" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="ah_F007_red" markerheight="7" markerwidth="7" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M0,0 L10,5 L0,10 Z" fill="#dc2626"></path>
+</marker>
+<marker id="ah_alert_F007" markerheight="7" markerwidth="7" orient="auto" refx="9" refy="5" viewbox="0 0 10 10">
+<path d="M0,0 L10,5 L0,10 Z" fill="#4464f0"></path>
+</marker>
+</defs>
+<!-- Top pill: fault type -->
+<rect fill="#fef2f2" height="32" rx="16" ry="16" stroke="#dc2626" stroke-width="1.5" width="320" x="16" y="14"></rect>
+<text fill="#7f1d1d" font-size="13" font-weight="700" x="34" y="35">F007 · memoryPressure</text>
+<text fill="#6b7280" font-size="12" x="356" y="35">JVM 堆压力 / 资源耗尽</text>
+<!-- Trigger box -->
+<rect fill="#fef2f2" height="92" rx="6" ry="6" stroke="#dc2626" stroke-width="1.5" width="280" x="16" y="78"></rect>
+<text fill="#7f1d1d" font-size="10" font-weight="700" letter-spacing="1" x="30" y="100">MEMORY · 触发源</text>
+<text fill="#111827" font-size="13" font-weight="700" x="30" y="122">JVM 堆压力触发偶发 GC</text>
+<text fill="#4b5563" font-size="11.5" x="30" y="144">inventory · arms_jvm_gc_seconds_delta = 20.41 s · a…</text>
+<!-- Arrow 1 -->
+<line marker-end="url(#ah_F007_red)" stroke="#dc2626" stroke-width="2" x1="300" x2="320" y1="124.0" y2="124.0"></line>
+<text fill="#dc2626" font-size="10" text-anchor="middle" x="310.0" y="116.0">注入</text>
+<!-- Root box -->
+<rect fill="#ffffff" height="92" rx="6" ry="6" stroke="#dc2626" stroke-width="1.5" width="280" x="324" y="78"></rect>
+<rect fill="#dc2626" height="92" width="4" x="324" y="78"></rect>
+<text fill="#7f1d1d" font-size="10" font-weight="700" letter-spacing="1" x="338" y="100">apm.service · 根因</text>
+<rect fill="#fef2f2" height="42.0" rx="4" width="256" x="336" y="108"></rect>
+<text fill="#111827" font-family="JetBrains Mono, Menlo, monospace" font-size="12.5" font-weight="700" x="342" y="122">inventory</text>
+<text fill="#374151" font-family="JetBrains Mono, Menlo, monospace" font-size="10.5" x="338" y="152">arms_jvm_gc_seconds_delta = 20.41 s · arms_jvm_gc_d…</text>
+<!-- Arrow 2 -->
+<line marker-end="url(#ah_alert_F007)" stroke="#4464f0" stroke-width="2" x1="608" x2="628" y1="124.0" y2="124.0"></line>
+<text fill="#4464f0" font-size="10" text-anchor="middle" x="618.0" y="116.0">告警落点</text>
+<!-- Alert box -->
+<rect fill="#f6f8ff" height="92" rx="6" ry="6" stroke="#4464f0" stroke-width="1.5" width="280" x="632" y="78"></rect>
+<text fill="#4464f0" font-size="11" font-weight="700" x="646" y="100">⚠ inventory 响应时间抖动告警</text>
+<text fill="#111827" font-family="JetBrains Mono, Menlo, monospace" font-size="11" x="646" y="122">cart::POST /oteldemo.CartServ…</text>
+<text fill="#4464f0" font-family="JetBrains Mono, Menlo, monospace" font-size="10.5" font-weight="700" x="646" y="152">avg_request_latency_seconds = 4.634475 s …</text>
+<!-- Propagation chain label -->
+<text fill="#6b7280" font-size="11" font-weight="700" letter-spacing="1" x="20" y="204">传播链 · topo（3 跳）</text>
+<!-- Chain frame -->
+<rect fill="#f8fafc" height="76" rx="6" ry="6" stroke="#e2e8f0" stroke-width="1" width="948" x="16" y="210"></rect>
+<rect fill="#fef2f2" height="48" rx="4" ry="4" stroke="#dc2626" stroke-width="1" width="280.0" x="54.0" y="224"></rect>
+<text fill="#111827" font-family="JetBrains Mono, Menlo, monospace" font-size="11.5" font-weight="700" x="66.0" y="246">inventory</text>
+<text fill="#4b5563" font-family="JetBrains Mono, Menlo, monospace" font-size="10" x="66.0" y="260">arms_jvm_gc_seconds_delta = 20.41 s · arms_jv…</text>
+<line marker-end="url(#ah_F007_red)" stroke="#dc2626" stroke-width="2" x1="334.0" x2="350.0" y1="248.0" y2="248.0"></line>
+<rect fill="#ffffff" height="48" rx="4" ry="4" stroke="#94a3b8" stroke-width="1" width="280.0" x="350.0" y="224"></rect>
+<text fill="#111827" font-family="JetBrains Mono, Menlo, monospace" font-size="11.5" font-weight="700" x="362.0" y="246">cart</text>
+<text fill="#4b5563" font-family="JetBrains Mono, Menlo, monospace" font-size="10" x="362.0" y="260">avg_request_latency_seconds = 1.634403 s · re…</text>
+<line marker-end="url(#ah_alert_F007)" stroke="#4464f0" stroke-width="2" x1="630.0" x2="646.0" y1="248.0" y2="248.0"></line>
+<rect fill="#f6f8ff" height="48" rx="4" ry="4" stroke="#4464f0" stroke-width="1" width="280.0" x="646.0" y="224"></rect>
+<text fill="#4464f0" font-family="JetBrains Mono, Menlo, monospace" font-size="11.5" font-weight="700" x="658.0" y="246">cart::POST /oteldemo.CartServic…</text>
+<text fill="#4b5563" font-family="JetBrains Mono, Menlo, monospace" font-size="10" x="658.0" y="260">avg_request_latency_seconds = 4.634475 s · re…</text>
+<!-- Observation callout (left) -->
+<rect fill="#f8fafc" height="108" rx="6" ry="6" stroke="#cbd5e1" stroke-width="1.5" width="520" x="16" y="304"></rect>
+<text fill="#92400e" font-size="11" font-weight="700" letter-spacing="1" x="30" y="326">观测信号(局部)</text>
+<line stroke="#cbd5e1" stroke-width="1" x1="30" x2="522" y1="332" y2="332"></line>
+<text fill="#374151" font-family="JetBrains Mono, Menlo, monospace" font-size="11" x="30" y="346">inventory.arms_jvm_gc_seconds_delta</text><text fill="#92400e" font-family="JetBrains Mono, Menlo, monospace" font-size="11" font-weight="700" text-anchor="end" x="522" y="346">20.41 s</text>
+<text fill="#374151" font-family="JetBrains Mono, Menlo, monospace" font-size="11" x="30" y="366">cart.avg_request_latency_seconds</text><text fill="#92400e" font-family="JetBrains Mono, Menlo, monospace" font-size="11" font-weight="700" text-anchor="end" x="522" y="366">1.634403 s</text>
+<text fill="#374151" font-family="JetBrains Mono, Menlo, monospace" font-size="11" x="30" y="386">cart.avg_request_latency_seconds</text><text fill="#92400e" font-family="JetBrains Mono, Menlo, monospace" font-size="11" font-weight="700" text-anchor="end" x="522" y="386">4.634475 s</text>
+<!-- Summary (right) -->
+<rect fill="#ffffff" height="108" rx="6" ry="6" stroke="#e2e8f0" stroke-width="1" width="412" x="552" y="304"></rect>
+<rect fill="#dc2626" height="108" width="3" x="552" y="304"></rect>
+<text fill="#7f1d1d" font-size="12" font-weight="700" x="566" y="326">总结</text>
+<line stroke="#e2e8f0" stroke-width="1" x1="566" x2="950" y1="334" y2="334"></line>
+<text fill="#1f2937" font-family="PingFang SC, Helvetica Neue, sans-serif" font-size="11.5" x="566" y="354">2026-04-04 22:41，inventory 的 J</text>
+<text fill="#1f2937" font-family="PingFang SC, Helvetica Neue, sans-serif" font-size="11.5" x="566" y="372">VM GC 时间与 GC 次数同时远高于注入前 clean </text>
+<text fill="#1f2937" font-family="PingFang SC, Helvetica Neue, sans-serif" font-size="11.5" x="566" y="390">baseline，说明 inventory 已进入 F00…</text>
+<!-- Footer hint -->
+<text fill="#9ca3af" font-size="10.5" text-anchor="middle" x="490" y="448">根因实体 → 传播中转 → 告警落点 · 同色系深色 = 同故障家族</text>
 </svg>
 </div>
 </div>
 <!-- P7_A_BEGIN -->
 <a aria-hidden="true" class="p7a-anchor" id="lanes-anchor"></a>
 <!-- V3COL_BEGIN -->
-
 <div class="v3c-section-band" id="verdict-3col-band"><span data-p7-lang-h="1">② 诊断报告</span><span class="v3c-section-sub" data-p7-lang-h="1">ReAct × PaaS · OpenClaw × PaaS · STAROps RCA。卡片展开后可查阅每项审查的判定。</span></div>
 <div class="verdict-3col"><div class="verdict-3col-col err">
 <div class="v3c-head">
@@ -7163,11 +7180,10 @@ html body.sls-starops-article .lane-unified-card details.luc-toggle[open] > .luc
 </div>
 <div class="v3c-body">
 <div class="v3c-row"><span class="v3c-k">故障类型</span><span class="v3c-v"><span class="mark-bad">预测：threadExhaustion</span> (0.0)</span></div><div class="v3c-row"><span class="v3c-k">根因实体</span><span class="v3c-v"><span class="mark-good">预测：inventory</span> (1.0)</span></div><div class="v3c-row"><span class="v3c-k">真值</span><span class="v3c-v"><span class="mark-good">F007-memoryPressure / inventory</span></span></div>
-
 <details class="v3c-report" data-sync="report" data-trace="72625a2711bdf1aeb2d944eca951767d"><summary>展开完整诊断报告</summary><pre class="v3c-report-md"># 诊断报告
 
 ## 诊断摘要
-在 2026-04-04 22:37:09 ~ 22:43:03，**cart** 服务响应时间从基线 ~3.6ms 暴涨至平均 930ms（最高 2.18s），触发&quot;cart响应时间抖动告警&quot;。根因是下游 **inventory** 服务（Java）发生线程耗尽，导致 cart 调用 inventory:9090 时遭遇 Connection refused，请求阻塞长达 78.7 秒。
+在 2026-04-04 22:37:09 ~ 22:43:03，**cart** 服务响应时间从基线 ~3.6ms 暴涨至平均 930ms（最高 2.18s），触发"cart响应时间抖动告警"。根因是下游 **inventory** 服务（Java）发生线程耗尽，导致 cart 调用 inventory:9090 时遭遇 Connection refused，请求阻塞长达 78.7 秒。
 
 ## 故障实体症状
 1. **inventory 服务（根因实体）**: 平均延迟从基线 1.2ms 飙升至 8.2s（增幅 667,062%），最高达 15.8s；请求量从均值 6,073 骤降至 1,521（-75%）；出现 Connection refused 错误。
@@ -7199,9 +7215,9 @@ html body.sls-starops-article .lane-unified-card details.luc-toggle[open] > .luc
 5. **思考 (think)**: 通过 Trace 分析 cart→inventory 调用的具体错误类型，确认 inventory 的故障模式。
    **行动 (act)**: `search_traces(domain=apm, name=apm.service, entity_ids=469f8e313055adba13ca3f4e76c65505, min_duration_ms=1000, has_error=false)` 搜索慢 trace，然后 `get_traces(trace_ids=82e8e948752c174f74327c0a11f755a4)` 获取详情。
    **观察 (observe)**: Trace 关键 span 显示：
-   - cart → inventory:9090 `GET /api/v1/inventory/OLJCESPC7Z` 耗时 **78,773ms**，`error.type=&quot;connection_error&quot;`
+   - cart → inventory:9090 `GET /api/v1/inventory/OLJCESPC7Z` 耗时 **78,773ms**，`error.type="connection_error"`
    - 异常栈：`System.Net.Sockets.SocketException (111): Connection refused` → `System.Net.Http.HttpRequestException: Connection refused (inventory:9090)`
-   - cart 的 `POST /oteldemo.CartService/AddItem` 耗时 78,776ms，`grpc.status_code=13 (INTERNAL)`，`statusMessage=&quot;Connection refused (inventory:9090)&quot;`
+   - cart 的 `POST /oteldemo.CartService/AddItem` 耗时 78,776ms，`grpc.status_code=13 (INTERNAL)`，`statusMessage="Connection refused (inventory:9090)"`
    - 前端最终返回 HTTP 500
    **结论 (conclude)**: inventory 服务端口 9090 拒绝连接，结合 inventory 仍有部分吞吐量（request_count &gt; 0）但延迟极高（8.2s），符合 **threadExhaustion**（线程池耗尽）特征——线程被占满后无法接受新连接，已有请求排队导致延迟飙升。
 
@@ -7213,7 +7229,7 @@ inventory 服务 (Java) 线程池耗尽
   → cart 调用 inventory 超时 (78.7s) + grpc INTERNAL error
   → cart 服务整体延迟飙升 (930ms vs 基线 3.6ms)
   → frontend 收到 grpc error → 返回 HTTP 500
-  → 触发 &quot;cart响应时间抖动告警&quot;
+  → 触发 "cart响应时间抖动告警"
 ```
 
 ## 根因结论
@@ -7223,7 +7239,7 @@ inventory 服务 (Java) 线程池耗尽
 - **最终根因**: inventory 服务（Java）线程池耗尽，导致端口 9090 拒绝新连接（`Connection refused (inventory:9090)`），同时已有请求排队等待处理，平均延迟从基线 1.2ms 飙升至 8.2s（最高 15.8s）。cart 服务调用 inventory 时遭遇连接拒绝，HTTP 调用阻塞 78,773ms 后超时，grpc 返回 status_code=13 (INTERNAL)，最终导致 cart 整体响应时间从 3.6ms 暴涨至 930ms，触发告警。
 - **判定依据**:
   1. **延迟增幅对比**: inventory 延迟增幅 667,062%（1.2ms→8.2s）远超 cart 的 25,456%（3.6ms→930ms），证明 inventory 是延迟源头而非 cart 自身。
-  2. **Trace 连接拒绝证据**: Trace `82e8e948752c174f74327c0a11f755a4` 中 cart→inventory 调用 span 明确记录 `error.type=&quot;connection_error&quot;`、`excep.message=&quot;Connection refused (inventory:9090)&quot;`、耗时 78,773ms。
+  2. **Trace 连接拒绝证据**: Trace `82e8e948752c174f74327c0a11f755a4` 中 cart→inventory 调用 span 明确记录 `error.type="connection_error"`、`excep.message="Connection refused (inventory:9090)"`、耗时 78,773ms。
   3. **排除 slowSQL**: inventory→MySQL 关系延迟仅 0.0004s~0.427s，未出现异常，排除数据库慢查询导致线程阻塞的可能。
   4. **吞吐量骤降**: inventory 请求量从 6,073 降至 1,521（-75%），符合线程池耗尽后无法处理新请求的特征。
   5. **传播链完整**: inventory 连接拒绝 → cart 调用超时 → frontend HTTP 500，全链路 trace 证据链闭合。</pre></details></div>
@@ -7235,16 +7251,15 @@ inventory 服务 (Java) 线程池耗尽
 </div>
 <div class="v3c-body">
 <div class="v3c-row"><span class="v3c-k">故障类型</span><span class="v3c-v"><span class="mark-bad">预测：redisUnavailable</span> (0.0)</span></div><div class="v3c-row"><span class="v3c-k">根因实体</span><span class="v3c-v"><span class="mark-bad">预测：valkey-cart</span> (0.0)</span></div><div class="v3c-row"><span class="v3c-k">真值</span><span class="v3c-v"><span class="mark-good">F007-memoryPressure / inventory</span></span></div>
-
 <details class="v3c-report" data-sync="report" data-trace="01f330319fc8033cdec9f12aab5a3801"><summary>展开完整诊断报告</summary><pre class="v3c-report-md"># 诊断报告
 
 ## 诊断摘要
-在 2026-04-04 22:37:09 ~ 22:43:03 时间窗口内，cart 服务（apm.service: 469f8e313055adba13ca3f4e76c65505）触发&quot;响应时间抖动告警&quot;。根因是 cart 服务下游依赖的 **valkey-cart Redis 服务不可用**，导致 cart 服务在读写购物车数据时发生超时等待，平均延迟从基线 0.0036s 飙升至 0.93s（峰值 2.18s），增幅达 25,456%。
+在 2026-04-04 22:37:09 ~ 22:43:03 时间窗口内，cart 服务（apm.service: 469f8e313055adba13ca3f4e76c65505）触发"响应时间抖动告警"。根因是 cart 服务下游依赖的 **valkey-cart Redis 服务不可用**，导致 cart 服务在读写购物车数据时发生超时等待，平均延迟从基线 0.0036s 飙升至 0.93s（峰值 2.18s），增幅达 25,456%。
 
 ## 故障实体症状
 1. **cart 服务 (apm.service)**: `avg_request_latency_seconds` 均值 0.93s、峰值 2.18s，对比基线均值 0.0036s，**增幅 25,456%**；`error_count` 均值 1627、峰值 2517；`request_count` 均值从 23,708 降至 8,988（**-62%**），时间窗口 22:37:09~22:43:03。
 2. **valkey-cart Redis (apm.external.nosql: 18a714ac29a17acdcba04fa3ad6cb6ac)**: **零指标返回** — range 和 instant 两种查询模式均返回 0 条时间序列，表明该 Redis 实例完全无遥测数据上报。
-3. **valkey-cart K8s Pod (7f0b1a3dd14c8b381bfeb8590ada0b43)**: Pod 状态为 **&quot;Succeeded&quot;**（非 &quot;Running&quot;），意味着 Redis 服务器进程已退出/终止。
+3. **valkey-cart K8s Pod (7f0b1a3dd14c8b381bfeb8590ada0b43)**: Pod 状态为 **"Succeeded"**（非 "Running"），意味着 Redis 服务器进程已退出/终止。
 4. **inventory 服务 (排除)**: cart→inventory 调用链路延迟仅 0.003~0.12s，inventory 自身延迟均值 0.049s（对比基线 7.7s 反而下降），线程池活跃线程均值 2.03、GC 耗时均值 0.044s，均处于正常范围，**排除 inventory 为根因**。
 
 ## 诊断过程
@@ -7264,10 +7279,10 @@ inventory 服务 (Java) 线程池耗尽
   - `get_golden_metrics(apm.service, inventory)` → inventory 延迟均值 0.049s（基线 7.7s，**下降**），线程池活跃均值 2.03，GC 耗时均值 0.044s → inventory 响应快速，非延迟根因。
   - `get_relation_golden_metrics(cart→inventory)` → 调用延迟 0.003~0.12s → cart→inventory 链路正常。
   - `get_golden_metrics(apm.external.nosql, valkey-cart)` range + instant → **0 条结果** → Redis 完全无遥测数据，高度可疑。
-- **Subtask D**: `get_events(k8s.deployment, valkey-cart)` → 空数组（无事件）；搜索 valkey-cart Pod → 状态 **&quot;Succeeded&quot;**（非 Running），确认 Redis 进程已退出。
+- **Subtask D**: `get_events(k8s.deployment, valkey-cart)` → 空数组（无事件）；搜索 valkey-cart Pod → 状态 **"Succeeded"**（非 Running），确认 Redis 进程已退出。
 
 ### 综合
-Subtask A 确认 cart 服务延迟飙升 25,456% 且错误率高企；Subtask B 定位两个下游依赖（inventory 和 Redis）；Subtask C 排除了 inventory（延迟反而下降、线程池/GC 正常），同时发现 Redis 零指标返回；Subtask D 从 K8s 层确认 valkey-cart Pod 状态为 &quot;Succeeded&quot;（进程已退出）。四条证据链收敛指向 **valkey-cart Redis 不可用** 为唯一根因。
+Subtask A 确认 cart 服务延迟飙升 25,456% 且错误率高企；Subtask B 定位两个下游依赖（inventory 和 Redis）；Subtask C 排除了 inventory（延迟反而下降、线程池/GC 正常），同时发现 Redis 零指标返回；Subtask D 从 K8s 层确认 valkey-cart Pod 状态为 "Succeeded"（进程已退出）。四条证据链收敛指向 **valkey-cart Redis 不可用** 为唯一根因。
 
 ## 故障传播链
 ```
@@ -7277,17 +7292,17 @@ valkey-cart Pod 退出 (Succeeded)
       → cart 延迟飙升 25,456% (0.0036s → 0.93s 均值, 2.18s 峰值)
         → cart 错误率上升 (error_count 均值 1627)
           → 上游调用方超时放弃 (request_count 下降 62%)
-            → 触发 &quot;cart响应时间抖动告警&quot;
+            → 触发 "cart响应时间抖动告警"
 ```
 
 ## 根因结论
 - **故障类型**: redisUnavailable
 - **根因实体**: valkey-cart (K8s Deployment: 8a846dfa06fe89afabb64a5f1cb4abc2 / Pod: 7f0b1a3dd14c8b381bfeb8590ada0b43)
 - **置信度**: 高
-- **最终根因**: valkey-cart Redis Pod 状态为 &quot;Succeeded&quot;（非 Running），Redis 服务器进程已退出，导致 cart 服务在读写购物车数据时无法连接 Redis。cart 服务等待 Redis 响应超时，平均延迟从基线 0.0036s 飙升至 0.93s（峰值 2.18s，增幅 25,456%），同时产生大量错误（error_count 均值 1627），上游调用方因超时放弃导致 request_count 下降 62%。
+- **最终根因**: valkey-cart Redis Pod 状态为 "Succeeded"（非 Running），Redis 服务器进程已退出，导致 cart 服务在读写购物车数据时无法连接 Redis。cart 服务等待 Redis 响应超时，平均延迟从基线 0.0036s 飙升至 0.93s（峰值 2.18s，增幅 25,456%），同时产生大量错误（error_count 均值 1627），上游调用方因超时放弃导致 request_count 下降 62%。
 - **判定依据**:
   1. **Redis 零指标**: apm.external.nosql (18a714ac29a17acdcba04fa3ad6cb6ac) 在 range 和 instant 两种查询模式下均返回 0 条时间序列，表明 Redis 实例完全无遥测数据。
-  2. **Pod 非运行状态**: valkey-cart Pod (7f0b1a3dd14c8b381bfeb8590ada0b43) 状态为 &quot;Succeeded&quot;，确认 Redis 进程已退出。
+  2. **Pod 非运行状态**: valkey-cart Pod (7f0b1a3dd14c8b381bfeb8590ada0b43) 状态为 "Succeeded"，确认 Redis 进程已退出。
   3. **inventory 排除**: cart→inventory 调用延迟仅 0.003~0.12s，inventory 自身延迟均值 0.049s（基线 7.7s，下降 99.4%），线程池活跃均值 2.03，GC 耗时均值 0.044s，均正常。
   4. **延迟特征匹配**: cart 延迟峰值 2.18s 符合 Redis 连接超时等待的典型特征（非 inventory 的快速失败模式）。
   5. **吞吐下降佐证**: request_count 下降 62% 与上游调用方因超时放弃的行为一致。
@@ -7304,14 +7319,14 @@ valkey-cart Pod 退出 (Succeeded)
 ## 故障实体症状
 1. **cart 服务 (apm.service)**: `avg_request_latency_seconds` 均值 0.93s、峰值 2.18s（基线 0.0036s，增幅 25,456%）；`error_count` 均值 1627；`request_count` 下降 62%。
 2. **valkey-cart (Redis)**: `apm.external.nosql` 指标查询返回 **0 条结果**，完全无遥测数据。
-3. **valkey-cart Pod**: K8s Pod 状态显示为 **&quot;Succeeded&quot;**（非 Running），表明 Redis 进程已退出。
+3. **valkey-cart Pod**: K8s Pod 状态显示为 **"Succeeded"**（非 Running），表明 Redis 进程已退出。
 4. **inventory 服务 (排除)**: 延迟均值 0.049s（基线 7.7s，反而下降），线程池与 GC 指标正常，排除其为延迟根因。
 
 ## 诊断过程
 1. **确认症状**: 获取 cart 服务黄金指标，确认延迟飙升 25,456% 且伴随高错误率与吞吐量下降。
 2. **梳理依赖**: 识别 cart 服务的下游依赖为 `inventory` 服务和 `valkey-cart` (Redis)。
 3. **排查 inventory**: 检查 inventory 服务指标，发现其延迟极低 (0.049s) 且资源正常，排除其导致 cart 延迟飙升的可能性。
-4. **排查 Redis**: 查询 `valkey-cart` 指标返回空结果，进一步检查 K8s 实体发现其 Pod 状态为 &quot;Succeeded&quot;，确认 Redis 实例已停止运行。
+4. **排查 Redis**: 查询 `valkey-cart` 指标返回空结果，进一步检查 K8s 实体发现其 Pod 状态为 "Succeeded"，确认 Redis 实例已停止运行。
 5. **关联分析**: 结合 cart 服务延迟特征（2.18s 峰值符合超时特征）与 Redis 宕机事实，判定 Redis 不可用为根因。
 
 ## 故障传播链
@@ -7321,16 +7336,16 @@ valkey-cart Pod 异常退出 (Status: Succeeded)
     → cart 服务读写购物车数据连接超时
       → cart 服务延迟飙升 (0.0036s → 0.93s) 且错误率激增
         → 上游调用方超时放弃 (request_count 下降 62%)
-          → 触发 &quot;cart响应时间抖动告警&quot;
+          → 触发 "cart响应时间抖动告警"
 ```
 
 ## 根因结论
 - **故障类型**: redisUnavailable
 - **根因实体**: valkey-cart (K8s Deployment/Pod)
 - **置信度**: 高
-- **最终根因**: valkey-cart Redis Pod 状态变为 &quot;Succeeded&quot;（进程已退出），导致 Redis 服务完全不可用。cart 服务在尝试连接 Redis 进行数据读写时遭遇连接超时，导致平均延迟从基线 0.0036s 飙升至 0.93s（峰值 2.18s），并产生大量错误。
+- **最终根因**: valkey-cart Redis Pod 状态变为 "Succeeded"（进程已退出），导致 Redis 服务完全不可用。cart 服务在尝试连接 Redis 进行数据读写时遭遇连接超时，导致平均延迟从基线 0.0036s 飙升至 0.93s（峰值 2.18s），并产生大量错误。
 - **判定依据**:
-  1. **Redis 宕机证据**: valkey-cart Pod 状态为 &quot;Succeeded&quot; 且 `apm.external.nosql` 指标查询返回 0 条结果，确证 Redis 实例已停止。
+  1. **Redis 宕机证据**: valkey-cart Pod 状态为 "Succeeded" 且 `apm.external.nosql` 指标查询返回 0 条结果，确证 Redis 实例已停止。
   2. **症状匹配**: cart 服务延迟峰值 2.18s 与 Redis 连接超时特征高度吻合，且错误率激增。
   3. **依赖排除**: 另一依赖 inventory 服务延迟正常 (0.049s) 且资源无异常，排除其干扰。
   4. **业务影响**: cart 服务请求量下降 62%，符合因后端依赖不可用导致上游超时熔断或放弃请求的表现。</pre></details></div>
@@ -7343,71 +7358,71 @@ valkey-cart Pod 异常退出 (Status: Succeeded)
 <div class="v3c-body">
 <div class="v3c-row"><span class="v3c-k">故障类型</span><span class="v3c-v"><span class="mark-bad">预测：fullGC</span> (0.5)</span></div><div class="v3c-row"><span class="v3c-k">根因实体</span><span class="v3c-v"><span class="mark-good">预测：inventory</span> (1.0)</span></div><div class="v3c-row"><span class="v3c-k">真值</span><span class="v3c-v"><span class="mark-good">F007-memoryPressure / inventory</span></span></div>
 <div class="v3c-summary"><div class="v3c-summary-label">诊断结论</div>最终根因： `inventory` 服务实例因内存使用异常大幅升高（283MiB -&gt; 577MiB）触发频繁 Full GC（GC 耗时从 104ms 激增至 52，515ms），导致应用线程长时间 STW 无法响应健康检查探针，被 K8s 判定为不健康并重启容器，造成服务中断。</div>
-<details class="v3c-report" data-sync="report" data-trace="9e9505d200846f4066b9e7ff948913e4"><summary>展开完整诊断报告</summary><pre class="v3c-report-md"># 诊断报告## 诊断摘要在 2026-04-04 22:37:09 至 22:43:03 期间，系统出现大规模服务调用失败与延迟飙升。根因定位为 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 服务发生严重的 JVM 垃圾回收（GC）风暴，导致应用线程长时间停顿（STW）。该机制直接造成 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 无法及时响应健康检查探针及业务请求，进而引发上游 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-3&quot;&gt;cart&lt;/code&gt; 服务在调用库存接口时出现 `Connection refused` 和超时错误，最终导致前端链路大面积 5xx 报错与流量跌零。## 故障实体症状1. **JVM GC 风暴与线程崩溃**：&lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 服务的 JVM 活跃线程数从基线 ~608 骤降至 30-69，GC 频率从 18次/15s 激增至 535次/15s，GC 耗时从 68ms 飙升至 88,484ms/15s，表明进程处于极度频繁的 Full GC 或 STW 状态 &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-5-metric-jvm&quot;&gt;arms_jvm_gc_seconds_delta&lt;/code&gt;。2. **Profile 证实 GC 主导 CPU**：&lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 Wall Clock Profile 显示 `.GC_active()` 占用高达 82.02% 的时间片，确认为 GC 导致的运行时阻塞，而非业务代码死循环 &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-profile&quot;&gt;profile_wall_clock&lt;/code&gt;。3. **连接池与 SQL 调用消失**：&lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 Trace 模式对比显示，`HikariDataSource.getConnection` 和 JDBC SQL Span 数量下跌 98%，说明由于 GC 停顿，服务内部无法执行正常的数据库交互逻辑 &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-trace-diff&quot;&gt;entity_traces_diff&lt;/code&gt;。4. **上游连接拒绝与超时**：&lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-3&quot;&gt;cart&lt;/code&gt; 服务在调用 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 时，新增大量 `connection_error` (467 events) 和 `Connection refused` (453 events) 异常，平均延迟从 3.47ms 飙升至 2848ms &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-3-trace-diff&quot;&gt;cart trace diff&lt;/code&gt;。5. **流量断崖式下跌**：&lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的请求量从 ~5000 req/15s 跌至 100-900 req/15s，同时错误率飙升，慢请求占比极高 &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-5-metric-red&quot;&gt;inventory RED metrics&lt;/code&gt;。## 诊断过程1. **定位首错节点与传播入口**：- 分析 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-3&quot;&gt;cart&lt;/code&gt; 服务的 Trace 差异，发现其在告警窗口内对 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的调用出现大量 `Connection refused` 和 `connection_error` &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-3-trace-diff&quot;&gt;obs_14&lt;/code&gt;。- 检查 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-3&quot;&gt;cart&lt;/code&gt; 的 RED 指标，确认错误计数与延迟飙升与 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的故障时间完全对齐 &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-3-metric-red&quot;&gt;obs_15&lt;/code&gt;。- 判定 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 为传播链中的首个失败点（First Failure Point）。2. **深入分析 inventory 运行时机制**：- 检查 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 JVM 运行时指标，发现 GC 次数与耗时呈指数级增长，同时活跃线程数崩塌，这是典型的“GC 死亡螺旋”特征 &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-5-metric-jvm&quot;&gt;obs_139&lt;/code&gt;。- 查看 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 Thread CPU 时间指标，确认线程组 CPU 时间激增，与 GC 活动强相关 &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-5-metric-thread&quot;&gt;obs_140&lt;/code&gt;。3. **Profile 分支验证（关键证据）**：- 触发 JVM 异常分支后，检查 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 `profile_wall_clock` 火焰图。- 数据显示 `.GC_active()` 占比 82.02%，远超业务逻辑（如 `InventoryController` 仅占 0.47%）。这排除了代码死循环或外部依赖阻塞导致 CPU 饱和的可能性，确认为内存压力引发的 GC 停顿 &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-profile&quot;&gt;obs_185&lt;/code&gt;。4. **Trace 依赖与内部行为分析**：- 分析 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 Trace Pattern 差异，发现 `HikariCP getConnection` 和 SQL 执行 Span 几乎消失（-98%）。这表明在 GC 停顿期间，Tomcat 工作线程被挂起，无法处理包括数据库连接获取在内的任何内部逻辑 &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-trace-diff&quot;&gt;obs_137&lt;/code&gt;。- 检查 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的错慢 Trace 详情，未发现外部依赖（如 Redis/DB）先于 GC 失败的证据，进一步确认 GC 是主因 &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-trace-detail&quot;&gt;obs_149&lt;/code&gt;。5. **K8s 与基础设施排查**：- 检查 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 所在 Pod 及 Node 的资源使用情况。Node 侧 CPU 使用率正常（~5%），无基础设施争用证据 &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-node-metric&quot;&gt;node_cpu_usage_rate&lt;/code&gt;。- 检查 K8s Events 与 Resource Changes，未发现重启、调度失败或配置变更事件，排除发布变更导致的启动失败 &lt;code vibeops_object type=&quot;k8sEvent&quot; ref=&quot;ref-k8s-event&quot;&gt;k8s_event_list&lt;/code&gt;。6. **结论收敛**：- 综合 JVM 指标、Profile 火焰图及上游报错现象，确认根因为 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 服务因内存压力或泄漏触发频繁 Full GC，导致服务不可用。## 故障传播链```mermaid
+<details class="v3c-report" data-sync="report" data-trace="9e9505d200846f4066b9e7ff948913e4"><summary>展开完整诊断报告</summary><pre class="v3c-report-md"># 诊断报告## 诊断摘要在 2026-04-04 22:37:09 至 22:43:03 期间，系统出现大规模服务调用失败与延迟飙升。根因定位为 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 服务发生严重的 JVM 垃圾回收（GC）风暴，导致应用线程长时间停顿（STW）。该机制直接造成 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 无法及时响应健康检查探针及业务请求，进而引发上游 &lt;code vibeops_object type="entity" ref="ref-3"&gt;cart&lt;/code&gt; 服务在调用库存接口时出现 `Connection refused` 和超时错误，最终导致前端链路大面积 5xx 报错与流量跌零。## 故障实体症状1. **JVM GC 风暴与线程崩溃**：&lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 服务的 JVM 活跃线程数从基线 ~608 骤降至 30-69，GC 频率从 18次/15s 激增至 535次/15s，GC 耗时从 68ms 飙升至 88,484ms/15s，表明进程处于极度频繁的 Full GC 或 STW 状态 &lt;code vibeops_object type="metric" ref="ref-5-metric-jvm"&gt;arms_jvm_gc_seconds_delta&lt;/code&gt;。2. **Profile 证实 GC 主导 CPU**：&lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 Wall Clock Profile 显示 `.GC_active()` 占用高达 82.02% 的时间片，确认为 GC 导致的运行时阻塞，而非业务代码死循环 &lt;code vibeops_object type="trace" ref="ref-5-profile"&gt;profile_wall_clock&lt;/code&gt;。3. **连接池与 SQL 调用消失**：&lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 Trace 模式对比显示，`HikariDataSource.getConnection` 和 JDBC SQL Span 数量下跌 98%，说明由于 GC 停顿，服务内部无法执行正常的数据库交互逻辑 &lt;code vibeops_object type="trace" ref="ref-5-trace-diff"&gt;entity_traces_diff&lt;/code&gt;。4. **上游连接拒绝与超时**：&lt;code vibeops_object type="entity" ref="ref-3"&gt;cart&lt;/code&gt; 服务在调用 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 时，新增大量 `connection_error` (467 events) 和 `Connection refused` (453 events) 异常，平均延迟从 3.47ms 飙升至 2848ms &lt;code vibeops_object type="trace" ref="ref-3-trace-diff"&gt;cart trace diff&lt;/code&gt;。5. **流量断崖式下跌**：&lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的请求量从 ~5000 req/15s 跌至 100-900 req/15s，同时错误率飙升，慢请求占比极高 &lt;code vibeops_object type="metric" ref="ref-5-metric-red"&gt;inventory RED metrics&lt;/code&gt;。## 诊断过程1. **定位首错节点与传播入口**：- 分析 &lt;code vibeops_object type="entity" ref="ref-3"&gt;cart&lt;/code&gt; 服务的 Trace 差异，发现其在告警窗口内对 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的调用出现大量 `Connection refused` 和 `connection_error` &lt;code vibeops_object type="trace" ref="ref-3-trace-diff"&gt;obs_14&lt;/code&gt;。- 检查 &lt;code vibeops_object type="entity" ref="ref-3"&gt;cart&lt;/code&gt; 的 RED 指标，确认错误计数与延迟飙升与 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的故障时间完全对齐 &lt;code vibeops_object type="metric" ref="ref-3-metric-red"&gt;obs_15&lt;/code&gt;。- 判定 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 为传播链中的首个失败点（First Failure Point）。2. **深入分析 inventory 运行时机制**：- 检查 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 JVM 运行时指标，发现 GC 次数与耗时呈指数级增长，同时活跃线程数崩塌，这是典型的“GC 死亡螺旋”特征 &lt;code vibeops_object type="metric" ref="ref-5-metric-jvm"&gt;obs_139&lt;/code&gt;。- 查看 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 Thread CPU 时间指标，确认线程组 CPU 时间激增，与 GC 活动强相关 &lt;code vibeops_object type="metric" ref="ref-5-metric-thread"&gt;obs_140&lt;/code&gt;。3. **Profile 分支验证（关键证据）**：- 触发 JVM 异常分支后，检查 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 `profile_wall_clock` 火焰图。- 数据显示 `.GC_active()` 占比 82.02%，远超业务逻辑（如 `InventoryController` 仅占 0.47%）。这排除了代码死循环或外部依赖阻塞导致 CPU 饱和的可能性，确认为内存压力引发的 GC 停顿 &lt;code vibeops_object type="trace" ref="ref-5-profile"&gt;obs_185&lt;/code&gt;。4. **Trace 依赖与内部行为分析**：- 分析 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 Trace Pattern 差异，发现 `HikariCP getConnection` 和 SQL 执行 Span 几乎消失（-98%）。这表明在 GC 停顿期间，Tomcat 工作线程被挂起，无法处理包括数据库连接获取在内的任何内部逻辑 &lt;code vibeops_object type="trace" ref="ref-5-trace-diff"&gt;obs_137&lt;/code&gt;。- 检查 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的错慢 Trace 详情，未发现外部依赖（如 Redis/DB）先于 GC 失败的证据，进一步确认 GC 是主因 &lt;code vibeops_object type="trace" ref="ref-5-trace-detail"&gt;obs_149&lt;/code&gt;。5. **K8s 与基础设施排查**：- 检查 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 所在 Pod 及 Node 的资源使用情况。Node 侧 CPU 使用率正常（~5%），无基础设施争用证据 &lt;code vibeops_object type="metric" ref="ref-node-metric"&gt;node_cpu_usage_rate&lt;/code&gt;。- 检查 K8s Events 与 Resource Changes，未发现重启、调度失败或配置变更事件，排除发布变更导致的启动失败 &lt;code vibeops_object type="k8sEvent" ref="ref-k8s-event"&gt;k8s_event_list&lt;/code&gt;。6. **结论收敛**：- 综合 JVM 指标、Profile 火焰图及上游报错现象，确认根因为 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 服务因内存压力或泄漏触发频繁 Full GC，导致服务不可用。## 故障传播链```mermaid
 flowchart TD
     A[inventory JVM GC 风暴 STW 82 CPU] --&gt; B[inventory 线程停顿/无响应 Probe Failed / Conn Refused]
     B --&gt; C[cart 调用 inventory 失败 Connection Refused / Timeout]
     C --&gt; D[frontend 购物车操作报错 HTTP 500 / High Latency]
-    D --&gt; E[frontend-proxy 上游错误透传 HTTP 502/504]```## 根因结论- **故障类型**: JVM 垃圾回收（GC）风暴导致的服务停顿与不可用- **根因实体**: inventory- **置信度**: 高- **最终根因**: &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 服务因内存压力触发频繁 Full GC（Profile 显示 GC 占用 82% CPU），导致应用线程长时间 Stop-The-World，无法响应健康检查及业务请求。- **调查过程中的最大怀疑实体**: 与最终根因一致（inventory）。- **传播症状**:- &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-3&quot;&gt;cart&lt;/code&gt; 服务出现 `Connection refused` 和 `connection_error`。- &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;frontend&lt;/code&gt; 及 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-9&quot;&gt;frontend-proxy&lt;/code&gt; 出现 HTTP 500/504 错误及延迟飙升。- &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 Readiness/Liveness Probe 失败（隐含在 Connection Refused 中）。- **方向判定**: GC 停顿（机制） -&gt; 线程无响应/端口拒绝连接（现象） -&gt; 上游调用超时/报错（传播）。时间锚点：22:38:00 左右 GC 指标开始突变，随后上游错误率同步上升。- **判定依据**:1. &lt;code vibeops_object type=&quot;metric&quot; ref=&quot;ref-5-metric-jvm&quot;&gt;inventory JVM 指标&lt;/code&gt;：GC 耗时从 68ms 飙升至 88s/15s，线程数崩塌。2. &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-profile&quot;&gt;inventory Profile&lt;/code&gt;：`.GC_active()` 占比 82.02%，确认为 GC 主导的 CPU 消耗。3. &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-3-trace-diff&quot;&gt;cart Trace 差异&lt;/code&gt;：明确指向 inventory 的 `Connection refused` 为首发错误模式。4. &lt;code vibeops_object type=&quot;trace&quot; ref=&quot;ref-5-trace-diff&quot;&gt;inventory Trace 差异&lt;/code&gt;：内部 DB/连接池 Span 消失，佐证线程被 GC 挂起。5. 排除基础设施原因：Node 侧 CPU/内存指标平稳，无资源争用。## 待确认点1. **内存泄漏根源**：需进一步分析 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 Heap Dump 或 `profile_mem` 数据，确认是代码内存泄漏、突发流量导致对象分配过快，还是 JVM 堆内存配置过小。2. **Batch Reconciliation 影响**：Trace 中出现 `/api/v1/inventory/batch-reconciliation` 新路径，需确认该批量任务是否因加载大量数据到内存而触发了 GC 风暴。## 数据覆盖与缺失状态- **明确数据缺失**: 无。- **数据未查询**: 部分 Pod 的 Lifecycle Metrics（如 `frontend-6df7d557f5-sgfcb`）因 Pod 状态 Failed 且无历史数据而未查询到有效指标；部分服务的 Topology 观测未执行但不影响根因判定。- **查询后无数据**: &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-30&quot;&gt;image-provider&lt;/code&gt; 等无关服务在告警窗口内无异常 Trace 数据；部分 Node Exporter 详细指标（如 disk IO）在无异常节点上返回空或平稳数据。## 处置建议（可选）1. **紧急恢复**：重启 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 服务实例以释放内存并恢复服务；若存在多个副本，可滚动重启。2. **参数调优**：临时增加 &lt;code vibeops_object type=&quot;entity&quot; ref=&quot;ref-5&quot;&gt;inventory&lt;/code&gt; 的 JVM Heap 大小（`-Xmx`），或调整 GC 算法参数（如启用 G1GC 并调整 Pause Time 目标）。3. **代码/任务排查**：审查 `/api/v1/inventory/batch-reconciliation` 接口的实现，限制单次批量处理的数据量，避免一次性加载过多对象到堆内存。&lt;!-- &lt;span&gt;&lt;reference vibeops_object&gt;
+    D --&gt; E[frontend-proxy 上游错误透传 HTTP 502/504]```## 根因结论- **故障类型**: JVM 垃圾回收（GC）风暴导致的服务停顿与不可用- **根因实体**: inventory- **置信度**: 高- **最终根因**: &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 服务因内存压力触发频繁 Full GC（Profile 显示 GC 占用 82% CPU），导致应用线程长时间 Stop-The-World，无法响应健康检查及业务请求。- **调查过程中的最大怀疑实体**: 与最终根因一致（inventory）。- **传播症状**:- &lt;code vibeops_object type="entity" ref="ref-3"&gt;cart&lt;/code&gt; 服务出现 `Connection refused` 和 `connection_error`。- &lt;code vibeops_object type="entity" ref="ref-5"&gt;frontend&lt;/code&gt; 及 &lt;code vibeops_object type="entity" ref="ref-9"&gt;frontend-proxy&lt;/code&gt; 出现 HTTP 500/504 错误及延迟飙升。- &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 Readiness/Liveness Probe 失败（隐含在 Connection Refused 中）。- **方向判定**: GC 停顿（机制） -&gt; 线程无响应/端口拒绝连接（现象） -&gt; 上游调用超时/报错（传播）。时间锚点：22:38:00 左右 GC 指标开始突变，随后上游错误率同步上升。- **判定依据**:1. &lt;code vibeops_object type="metric" ref="ref-5-metric-jvm"&gt;inventory JVM 指标&lt;/code&gt;：GC 耗时从 68ms 飙升至 88s/15s，线程数崩塌。2. &lt;code vibeops_object type="trace" ref="ref-5-profile"&gt;inventory Profile&lt;/code&gt;：`.GC_active()` 占比 82.02%，确认为 GC 主导的 CPU 消耗。3. &lt;code vibeops_object type="trace" ref="ref-3-trace-diff"&gt;cart Trace 差异&lt;/code&gt;：明确指向 inventory 的 `Connection refused` 为首发错误模式。4. &lt;code vibeops_object type="trace" ref="ref-5-trace-diff"&gt;inventory Trace 差异&lt;/code&gt;：内部 DB/连接池 Span 消失，佐证线程被 GC 挂起。5. 排除基础设施原因：Node 侧 CPU/内存指标平稳，无资源争用。## 待确认点1. **内存泄漏根源**：需进一步分析 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 Heap Dump 或 `profile_mem` 数据，确认是代码内存泄漏、突发流量导致对象分配过快，还是 JVM 堆内存配置过小。2. **Batch Reconciliation 影响**：Trace 中出现 `/api/v1/inventory/batch-reconciliation` 新路径，需确认该批量任务是否因加载大量数据到内存而触发了 GC 风暴。## 数据覆盖与缺失状态- **明确数据缺失**: 无。- **数据未查询**: 部分 Pod 的 Lifecycle Metrics（如 `frontend-6df7d557f5-sgfcb`）因 Pod 状态 Failed 且无历史数据而未查询到有效指标；部分服务的 Topology 观测未执行但不影响根因判定。- **查询后无数据**: &lt;code vibeops_object type="entity" ref="ref-30"&gt;image-provider&lt;/code&gt; 等无关服务在告警窗口内无异常 Trace 数据；部分 Node Exporter 详细指标（如 disk IO）在无异常节点上返回空或平稳数据。## 处置建议（可选）1. **紧急恢复**：重启 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 服务实例以释放内存并恢复服务；若存在多个副本，可滚动重启。2. **参数调优**：临时增加 &lt;code vibeops_object type="entity" ref="ref-5"&gt;inventory&lt;/code&gt; 的 JVM Heap 大小（`-Xmx`），或调整 GC 算法参数（如启用 G1GC 并调整 Pause Time 目标）。3. **代码/任务排查**：审查 `/api/v1/inventory/batch-reconciliation` 接口的实现，限制单次批量处理的数据量，避免一次性加载过多对象到堆内存。&lt;!-- &lt;span&gt;&lt;reference vibeops_object&gt;
 {
-  &quot;ref-5&quot;: {
-    &quot;type&quot;: &quot;entity&quot;,
-    &quot;entity&quot;: {
-      &quot;domain&quot;: &quot;apm&quot;,
-      &quot;type&quot;: &quot;apm.service&quot;,
-      &quot;id&quot;: &quot;7b50436b7fb9e828f0a8c32a69c53ab0&quot;,
-      &quot;title&quot;: &quot;frontend&quot;
+  "ref-5": {
+    "type": "entity",
+    "entity": {
+      "domain": "apm",
+      "type": "apm.service",
+      "id": "7b50436b7fb9e828f0a8c32a69c53ab0",
+      "title": "frontend"
     },
-    &quot;timeRange&quot;: {
-      &quot;from&quot;: &quot;1775313429&quot;,
-      &quot;to&quot;: &quot;1775313783&quot;
+    "timeRange": {
+      "from": "1775313429",
+      "to": "1775313783"
     }
   },
-  &quot;ref-3&quot;: {
-    &quot;type&quot;: &quot;entity&quot;,
-    &quot;entity&quot;: {
-      &quot;domain&quot;: &quot;apm&quot;,
-      &quot;type&quot;: &quot;apm.service&quot;,
-      &quot;id&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;,
-      &quot;title&quot;: &quot;cart&quot;
+  "ref-3": {
+    "type": "entity",
+    "entity": {
+      "domain": "apm",
+      "type": "apm.service",
+      "id": "469f8e313055adba13ca3f4e76c65505",
+      "title": "cart"
     },
-    &quot;timeRange&quot;: {
-      &quot;from&quot;: &quot;1775313429&quot;,
-      &quot;to&quot;: &quot;1775313783&quot;
+    "timeRange": {
+      "from": "1775313429",
+      "to": "1775313783"
     }
   },
-  &quot;ref-9&quot;: {
-    &quot;type&quot;: &quot;entity&quot;,
-    &quot;entity&quot;: {
-      &quot;domain&quot;: &quot;apm&quot;,
-      &quot;type&quot;: &quot;apm.service&quot;,
-      &quot;id&quot;: &quot;be9d8f99bff2d1a463deed5f650ae292&quot;,
-      &quot;title&quot;: &quot;frontend-proxy&quot;
+  "ref-9": {
+    "type": "entity",
+    "entity": {
+      "domain": "apm",
+      "type": "apm.service",
+      "id": "be9d8f99bff2d1a463deed5f650ae292",
+      "title": "frontend-proxy"
     },
-    &quot;timeRange&quot;: {
-      &quot;from&quot;: &quot;1775313429&quot;,
-      &quot;to&quot;: &quot;1775313783&quot;
+    "timeRange": {
+      "from": "1775313429",
+      "to": "1775313783"
     }
   },
-  &quot;ref-30&quot;: {
-    &quot;type&quot;: &quot;metric&quot;,
-    &quot;entity&quot;: {
-      &quot;domain&quot;: &quot;k8s&quot;,
-      &quot;type&quot;: &quot;k8s.pod&quot;,
-      &quot;id&quot;: &quot;bae03dd9185aacd89a2fef2910aead33&quot;
+  "ref-30": {
+    "type": "metric",
+    "entity": {
+      "domain": "k8s",
+      "type": "k8s.pod",
+      "id": "bae03dd9185aacd89a2fef2910aead33"
     },
-    &quot;metric&quot;: {
-      &quot;domain&quot;: &quot;k8s&quot;,
-      &quot;name&quot;: &quot;k8s.metric.high_level_metric_pod&quot;,
-      &quot;metrics&quot;: [
+    "metric": {
+      "domain": "k8s",
+      "name": "k8s.metric.high_level_metric_pod",
+      "metrics": [
         {
-          &quot;name&quot;: &quot;pod_network_receive_rate&quot;
+          "name": "pod_network_receive_rate"
         },
         {
-          &quot;name&quot;: &quot;pod_network_transmit_rate&quot;
+          "name": "pod_network_transmit_rate"
         },
         {
-          &quot;name&quot;: &quot;pod_network_total_io_rate&quot;
+          "name": "pod_network_total_io_rate"
         </pre></details></div>
 </div></div>
 <!-- V3COL_END -->
@@ -7430,39 +7445,25 @@ flowchart TD
 <ol class="strategy-list"><li>从 cart 服务响应时间抖动告警入手，调用 get_golden_metrics 确认其延迟暴涨与错误激增，初步判定为下游依赖异常引发的级联故障。</li><li>沿拓扑路径下钻至下游 inventory 服务，结合 search_traces 发现 HTTP 调用耗时极长且伴随 Connection refused 错误，锁定 inventory 为故障源头实体。</li><li>最终判定根因为 inventory 服务线程耗尽，虽然故障实体定位准确，但故障类型推断与真值内存压力不符，属于故障类型走偏。</li></ol>
 </div>
 <!-- LANE_STRATEGY_A1_END -->
-<div class="lane-source">数据源： SLS <code>rca-bench-logs</code> (cn-hongkong) · trial: <code>STAROps RCA</code> · 截至 <code>2026-06-17</code> · run_id 见上方 <abbr title="一次调用的全局唯一 ID,可在 SLS 上回放整条调用链">trace_id</abbr></div>
 <div class="journey">
-<details class="step kind-tool"><summary><span class="step-marker">1</span><div class="step-action">search_entities <span class="arg-summary">domain=apm， filter=cart， limit=10</span></div></summary><div class="step-obs">{&quot;detail&quot;:[{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;f265a5292075… · 189ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=8596， out=217</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;filter&quot;: &quot;cart&quot;, &quot;limit&quot;: 10, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;detail&quot;:[{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;f265a5292075cd3d2849769879ca0e26&quot;,&quot;__entity_type__&quot;:&quot;apm.instance&quot;,&quot;__first_observed_time__&quot;:&quot;1773742260&quot;,&quot;__keep_alive_seconds__&quot;:&quot;300&quot;,&quot;__last_observe…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">2</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， name=apm.service， entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-03 1… · 454ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=11534， out=115</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-03 15:02:18&quot;   To: &quot;2026-04-03 15:07:49&quot;   FromUnix: 1775199738   ToUnix: 1775200069 CompareTimeRange:   From: &quot;2026-04-03 14:02:18&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">3</span><div class="step-action">set_time_range <span class="arg-summary">time_range=1775313429~1775313783， to_compare_time_offset=1h， workspace=tianchi-2025-0828</span></div></summary><div class="step-obs">{&quot;expr&quot;:&quot;1775313429~1775313783&quot;,&quot;from_with_date_time&quot;:&quot;2026-… · 21ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=13266， out=377</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;time_range&quot;: &quot;1775313429~1775313783&quot;, &quot;to_compare_time_offset&quot;: &quot;1h&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;, &quot;from_time&quot;: &quot;1775313429&quot;, &quot;to_time&quot;: &quot;1775313783&quot;, &quot;start_time&quot;: &quot;1775313429&quot;, &quot;end_time&quot;: &quot;1775313783&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;expr&quot;:&quot;1775313429~1775313783&quot;,&quot;from_with_date_time&quot;:&quot;2026-04-04 22:37:09&quot;,&quot;from_with_rfc_3339&quot;:&quot;2026-04-04T22:37:09+08:00&quot;,&quot;from_with_unix_sec&quot;:1775313429,&quot;to_compare_time_offset&quot;:&quot;3600s&quot;,&quot;to_with_d…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">4</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， name=apm.service， entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-04 2… · 473ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=13536， out=120</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-04 22:37:09&quot;   To: &quot;2026-04-04 22:43:03&quot;   FromUnix: 1775313429   ToUnix: 1775313783 CompareTimeRange:   From: &quot;2026-04-04 21:37:09&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">5</span><div class="step-action">explore_topology <span class="arg-summary">direction=out， entity_ids=469f8e313055adba13ca3f4e76c65505， limit=20</span></div></summary><div class="step-obs">调用CMS API失败, query: .entity_set with(domain=&#x27;acs&#x27;, name=&#x27;acs… · 279ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=15275， out=230</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;direction&quot;: &quot;out&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;limit&quot;: 20, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">调用CMS API失败, query: .entity_set with(domain=&#x27;acs&#x27;, name=&#x27;acs.bailian.workspace&#x27;, ids=[&#x27;469f8e313055adba13ca3f4e76c65505&#x27;]) | entity-call get_neighbor_entities(&#x27;&#x27;, &#x27;&#x27;, [], &#x27;&#x27;, &#x27;&#x27;, &#x27;out&#x27;) | limit 20, er…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">6</span><div class="step-action">get_neighbor_entities <span class="arg-summary">direction=out， limit=20， src_entity_domain=apm</span></div></summary><div class="step-obs">[{&quot;__link_type__&quot;:&quot;calls&quot;,&quot;dest_entity&quot;:{&quot;id&quot;:&quot;apm@apm.exter… · 707ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=15770， out=184</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;direction&quot;: &quot;out&quot;, &quot;limit&quot;: 20, &quot;src_entity_domain&quot;: &quot;apm&quot;, &quot;src_entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;src_name&quot;: &quot;apm.service&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__link_type__&quot;:&quot;calls&quot;,&quot;dest_entity&quot;:{&quot;id&quot;:&quot;apm@apm.external.http_client:474c2072f1451452bbb1abf29cc68b10&quot;,&quot;labels&quot;:&quot;apm@apm.external.http_client&quot;,&quot;properties&quot;:{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">7</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， entity_ids=ed13cb14265f98d9eb3b89b664760adb， name=apm.service</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-04 2… · 466ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=19532， out=239</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-04 22:37:09&quot;   To: &quot;2026-04-04 22:43:03&quot;   FromUnix: 1775313429   ToUnix: 1775313783 CompareTimeRange:   From: &quot;2026-04-04 21:37:09&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">8</span><div class="step-action">get_neighbor_entities <span class="arg-summary">direction=out， limit=20， src_entity_domain=apm</span></div></summary><div class="step-obs">[{&quot;__link_type__&quot;:&quot;calls&quot;,&quot;dest_entity&quot;:{&quot;id&quot;:&quot;apm@apm.exter… · 694ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=21252， out=220</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;direction&quot;: &quot;out&quot;, &quot;limit&quot;: 20, &quot;src_entity_domain&quot;: &quot;apm&quot;, &quot;src_entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;src_name&quot;: &quot;apm.service&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__link_type__&quot;:&quot;calls&quot;,&quot;dest_entity&quot;:{&quot;id&quot;:&quot;apm@apm.external.database:d7a7899b0bef364781b3e4cf9cc9b707&quot;,&quot;labels&quot;:&quot;apm@apm.external.database&quot;,&quot;properties&quot;:{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;d7a789…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">9</span><div class="step-action">get_relation_golden_metrics <span class="arg-summary">dest_domain=apm， dest_entity_ids=d7a7899b0bef364781b3e4cf9cc9b707， dest_name=apm.external.database</span></div></summary><div class="step-obs">[{&quot;__labels__&quot;:{},&quot;__name__&quot;:&quot;null&quot;,&quot;__source__&quot;:&quot;&quot;,&quot;__ts__&quot;… · 188ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=27491， out=228</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;dest_domain&quot;: &quot;apm&quot;, &quot;dest_entity_ids&quot;: &quot;d7a7899b0bef364781b3e4cf9cc9b707&quot;, &quot;dest_name&quot;: &quot;apm.external.database&quot;, &quot;direction&quot;: &quot;out&quot;, &quot;relation_type&quot;: &quot;calls&quot;, &quot;src_domain&quot;: &quot;apm&quot;, &quot;src_entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;src_name&quot;: &quot;apm.service&quot;, &quot;workspace&quot;: &quot;ti</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__labels__&quot;:{},&quot;__name__&quot;:&quot;null&quot;,&quot;__source__&quot;:&quot;&quot;,&quot;__ts__&quot;:[1775313429000000000,1775313439000000000,1775313449000000000,1775313459000000000,1775313469000000000,1775313479000000000,177531348900000000…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">10</span><div class="step-action">search_traces <span class="arg-summary">domain=apm， entity_ids=ed13cb14265f98d9eb3b89b664760adb， has_error=false</span></div></summary><div class="step-obs">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm… · 159ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=30151， out=244</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;has_error&quot;: false, &quot;limit&quot;: 10, &quot;min_duration_ms&quot;: 5000, &quot;name&quot;: &quot;apm.service&quot;, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace.apm.service&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm.service&#x27;, ids=[&#x27;ed13cb14265f98d9eb3b89b664760adb&#x27;]) | entity-call get_trace(&#x27;apm&#x27;, &#x27;apm.trace.apm.service&#x27;) | where cast(duration as bigint…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">11</span><div class="step-action">list_data_set <span class="arg-summary">data_set_types=trace_set， domain=apm， name=apm.service</span></div></summary><div class="step-obs">[{&quot;data_link_detail&quot;:{},&quot;data_set_detail&quot;:{},&quot;data_set_id&quot;:&quot;… · 92ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=31014， out=76</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;data_set_types&quot;: &quot;trace_set&quot;, &quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;data_link_detail&quot;:{},&quot;data_set_detail&quot;:{},&quot;data_set_id&quot;:&quot;apm@trace_set@apm.trace.common&quot;,&quot;domain&quot;:&quot;apm&quot;,&quot;fields&quot;:[{&quot;description&quot;:{&quot;en_us&quot;:&quot;TraceId &quot;,&quot;zh_cn&quot;:&quot;链路标识\…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">12</span><div class="step-action">search_traces <span class="arg-summary">domain=apm， entity_ids=ed13cb14265f98d9eb3b89b664760adb， has_error=false</span></div></summary><div class="step-obs">[]… · 131ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=32123， out=169</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;has_error&quot;: false, &quot;limit&quot;: 5, &quot;min_duration_ms&quot;: 5000, &quot;name&quot;: &quot;apm.service&quot;, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace.common&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[]…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">13</span><div class="step-action">search_traces <span class="arg-summary">domain=apm， entity_ids=ed13cb14265f98d9eb3b89b664760adb， has_error=true</span></div></summary><div class="step-obs">[]… · 143ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=32294， out=157</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;has_error&quot;: true, &quot;limit&quot;: 5, &quot;name&quot;: &quot;apm.service&quot;, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace.common&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[]…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">14</span><div class="step-action">search_traces <span class="arg-summary">domain=apm， entity_ids=469f8e313055adba13ca3f4e76c65505， has_error=false</span></div></summary><div class="step-obs">[{&quot;__source__&quot;:&quot;&quot;,&quot;duration_ms&quot;:&quot;78776.3633&quot;,&quot;error_span_cou… · 114ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=32449， out=188</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;has_error&quot;: false, &quot;limit&quot;: 5, &quot;min_duration_ms&quot;: 1000, &quot;name&quot;: &quot;apm.service&quot;, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace.common&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__source__&quot;:&quot;&quot;,&quot;duration_ms&quot;:&quot;78776.3633&quot;,&quot;error_span_count&quot;:&quot;3&quot;,&quot;span_count&quot;:&quot;3&quot;,&quot;traceId&quot;:&quot;82e8e948752c174f74327c0a11f755a4\…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">15</span><div class="step-action">get_traces <span class="arg-summary">domain=apm， name=apm.service， trace_ids=82e8e948752c174f74327c0a11f755a4</span></div></summary><div class="step-obs">[{&quot;__source__&quot;:&quot;&quot;,&quot;__trace_id__&quot;:&quot;82e8e948752c174f74327c0a11… · 127ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=32933， out=148</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;trace_ids&quot;: &quot;82e8e948752c174f74327c0a11f755a4&quot;, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace.common&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__source__&quot;:&quot;&quot;,&quot;__trace_id__&quot;:&quot;82e8e948752c174f74327c0a11f755a4&quot;,&quot;attributes&quot;:{&quot;ali.trace.flag&quot;:&quot;x-trace&quot;,&quot;call.kind&quot;:&quot;http_client&quot;,&quot;call.type&quot;:&quot;http_client&quot;,&quot;destId&quot;:&quot;inventory:9090&quot;,&quot;endpoint&quot;:&quot;/…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">16</span><div class="step-action">get_logs <span class="arg-summary">domain=apm， entity_ids=ed13cb14265f98d9eb3b89b664760adb， limit=50</span></div></summary><div class="step-obs">调用CMS API失败, query: .set &quot;umodel_paas_mode&quot;=&#x27;dry_run&#x27;; .enti… · 285ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=42885， out=962</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;limit&quot;: 50, &quot;log_set_domain&quot;: &quot;apm&quot;, &quot;log_set_name&quot;: &quot;apm.log.common&quot;, &quot;to_cluster_content_field&quot;: &quot;content&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">调用CMS API失败, query: .set &quot;umodel_paas_mode&quot;=&#x27;dry_run&#x27;; .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;&#x27;, ids=[&#x27;ed13cb14265f98d9eb3b89b664760adb&#x27;]) | entity-call get_log(&#x27;apm&#x27;, &#x27;apm.log.common&#x27;), err: SDKError: …</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">17</span><div class="step-action">get_metrics <span class="arg-summary">aggregate=true， domain=apm， entity_ids=ed13cb14265f98d9eb3b89b664760adb</span></div></summary><div class="step-obs">Failed to get current metrics: 调用CMS API失败, query: .entity_s… · 143ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=43440， out=236</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;aggregate&quot;: true, &quot;domain&quot;: &quot;apm&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;metric&quot;: &quot;jvm_thread_count&quot;, &quot;metric_set_domain&quot;: &quot;apm&quot;, &quot;metric_set_name&quot;: &quot;apm.metric.apm.service&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">Failed to get current metrics: 调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;&#x27;, ids=[&#x27;ed13cb14265f98d9eb3b89b664760adb&#x27;]) | entity-call get_metric(&#x27;apm&#x27;, &#x27;apm.metric.apm.service&#x27;, &#x27;jvm_thre…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">18</span><div class="step-action">search_entities <span class="arg-summary">domain=apm， filter=inventory， limit=5</span></div></summary><div class="step-obs">{&quot;detail&quot;:[{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;01a3f1215c9a… · 162ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=43954， out=85</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;filter&quot;: &quot;inventory&quot;, &quot;limit&quot;: 5, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;detail&quot;:[{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;01a3f1215c9a86587c220ec0ede45ff1&quot;,&quot;__entity_type__&quot;:&quot;apm.instance&quot;,&quot;__first_observed_time__&quot;:&quot;1773156480&quot;,&quot;__keep_alive_seconds__&quot;:&quot;300&quot;,&quot;__last_observe…</span></div></div></details>
-<!-- LANE_PROCESS_TOOLS_BEGIN --><section class="lane-process"><h4 class="lane-section-title" data-p7-lang-h="1">过程 50/100</h4><p class="lane-process-summary">Agent 构建了从数据库延迟到连接池耗尽再到服务超时的完整逻辑链条，内部推导过程在假设前提下是自洽的。</p><details class="lane-process-detail"><summary>三维评分详细(因果矛盾 + 逻辑跳跃 + 数据支撑)</summary><div class="lp-dim"><strong>因果矛盾 50/100</strong><ul class="lp-issues"><li>✗ 因果方向完全倒置。预期根因为 inventory 服务内部内存压力导致 GC 和响应变慢，可能影响数据库。但 Agent 将根因归结为下游 MySQL 性能劣化导致 inventory 连接池耗尽。这与注入的'F007-memoryPressure'故障场景完全相反，属于典型的把下游症状（或无关噪声）当成根因，导致整个推理链条方向错误。<span class="lp-sev">high</span></li></ul></div><div class="lp-dim"><strong>逻辑跳跃 50/100</strong><ul class="lp-strengths"><li>✓ Agent 构建了从数据库延迟到连接池耗尽再到服务超时的完整逻辑链条，内部推导过程在假设前提下是自洽的。</li></ul><ul class="lp-issues"><li>✗ 跳过关键排查步骤。预期因果链要求检查 JVM 堆内存使用率和 FullGC 频率，但 Agent 完全跳过了对 inventory 服务自身内存状态的检查，直接从上游超时现象跳跃到数据库延迟结论，缺失了验证'内存压力'这一核心假设的必要环节。<span class="lp-sev">high</span></li></ul></div><div class="lp-dim"><strong>数据支撑 50/100</strong><ul class="lp-strengths"><li>✓ 引用了具体的 Trace ID (0cfdbd39c8cd261059b79578c433d837) 和具体的延迟数值 (0.1915s， 8.128s) 来支撑其关于数据库和连接池的论点。</li></ul><ul class="lp-issues"><li>✗ 核心判断缺乏关键证据支撑。Agent 断言 MySQL 性能劣化是根因，但未提供 MySQL 端的慢查询日志、锁等待分析或资源监控数据作为直接证据，仅凭 inventory 端的连接获取耗时增加就断定是数据库问题，忽略了网络或中间件层面的可能性。更重要的是，完全缺失关于内存使用率、GC 次数等预期关键指标的数据引用。<span class="lp-sev">high</span></li></ul></div></details></section><section class="lane-tools"><h4 class="lane-section-title" data-p7-lang-h="1"><abbr title="Agent调用观测工具(如查指标、查日志、查拓扑)的次数">调用统计</abbr></h4><p class="lane-tools-summary">总调用 18 · 去重工具数 8 · 步数 22</p><div class="lane-tools-tags"><span class="tag-trace">调用链 4</span><span class="tag-metrics">指标 7</span><span class="tag-topology">拓扑 3</span><span class="tag-entity">实体 2</span><span class="tag-setup">配置 2</span></div></section><!-- LANE_PROCESS_TOOLS_END --><details class="step kind-commit-err" open="">
-<summary>
-<span class="step-marker">△</span>
-<div class="step-action">最终诊断 commit</div>
-</summary>
-<div class="commit-box err">
-<div class="commit-title">△ 根因实体命中 · 故障类型误判</div>
-<div class="commit-row"><span class="ck">brise O</span><span class="cv"><strong>55.0</strong></span></div>
-<div class="commit-row"><span class="ck">brise F</span><span class="cv"><span class="mark-bad">预测：threadExhaustion</span> (0.0)</span></div>
-<div class="commit-row"><span class="ck">brise E</span><span class="cv"><span class="mark-good">预测：inventory</span> (1.0)</span></div>
-<div class="commit-row"><span class="ck">真值</span><span class="cv"><span class="mark-good">F007-memoryPressure / inventory</span></span></div>
-</div>
-</details>
+<details class="step kind-tool"><summary><span class="step-marker">1</span><div class="step-action">search_entities</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">2</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">3</span><div class="step-action">set_time_range</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">4</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">5</span><div class="step-action">explore_topology</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">6</span><div class="step-action">get_neighbor_entities</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">7</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">8</span><div class="step-action">get_neighbor_entities</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">9</span><div class="step-action">get_relation_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">10</span><div class="step-action">search_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">11</span><div class="step-action">list_data_set</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">12</span><div class="step-action">search_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">13</span><div class="step-action">search_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">14</span><div class="step-action">search_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">15</span><div class="step-action">get_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">16</span><div class="step-action">get_logs</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">17</span><div class="step-action">get_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">18</span><div class="step-action">search_entities</div></summary></details>
 </div>
 <div class="lane-foot">react reason-act-observe 循环 </div>
 </div>
@@ -7477,37 +7478,23 @@ flowchart TD
 <ol class="strategy-list"><li>从 cart 服务响应时间抖动告警入手，调用 get_golden_metrics 确认其延迟飙升逾两万倍且请求量骤降，初步判定存在严重性能瓶颈。</li><li>沿拓扑依赖路径下钻排查下游组件，通过对比 inventory 服务正常指标与 valkey-cart 零指标返回及 Pod 终止状态，将根因指向 Redis 服务不可用。</li><li>最终判定故障类型为 redisUnavailable 且实体为 valkey-cart，该结论与真值（memoryPressure/inventory）相比，故障类型走偏且实体未命中。</li></ol>
 </div>
 <!-- LANE_STRATEGY_A1_END -->
-<div class="lane-source">数据源： SLS <code>rca-bench-logs</code> (cn-hongkong) · trial: <code>STAROps RCA</code> · 截至 <code>2026-06-17</code> · run_id 见上方 trace_id</div>
 <div class="journey">
-<details class="step kind-tool"><summary><span class="step-marker">1</span><div class="step-action">set_time_range <span class="arg-summary">time_range=1775313429~1775313783， to_compare_time_offset=1h， workspace=tianchi-2025-0828</span></div></summary><div class="step-obs">{&quot;expr&quot;:&quot;1775313429~1775313783&quot;,&quot;from_with_date_time&quot;:&quot;2026-… · 22ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=8725， out=201</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;time_range&quot;: &quot;1775313429~1775313783&quot;, &quot;to_compare_time_offset&quot;: &quot;1h&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;, &quot;from_time&quot;: &quot;1775313429&quot;, &quot;to_time&quot;: &quot;1775313783&quot;, &quot;start_time&quot;: &quot;1775313429&quot;, &quot;end_time&quot;: &quot;1775313783&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;expr&quot;:&quot;1775313429~1775313783&quot;,&quot;from_with_date_time&quot;:&quot;2026-04-04 22:37:09&quot;,&quot;from_with_rfc_3339&quot;:&quot;2026-04-04T22:37:09+08:00&quot;,&quot;from_with_unix_sec&quot;:1775313429,&quot;to_compare_time_offset&quot;:&quot;3600s&quot;,&quot;to_with_d…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">2</span><div class="step-action">search_entities <span class="arg-summary">filter=cart， limit=10， workspace=tianchi-2025-0828</span></div></summary><div class="step-obs">{&quot;detail&quot;:[{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;f265a5292075… · 247ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=8725， out=201</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;filter&quot;: &quot;cart&quot;, &quot;limit&quot;: 10, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;detail&quot;:[{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;f265a5292075cd3d2849769879ca0e26&quot;,&quot;__entity_type__&quot;:&quot;apm.instance&quot;,&quot;__first_observed_time__&quot;:&quot;1773742260&quot;,&quot;__keep_alive_seconds__&quot;:&quot;300&quot;,&quot;__last_observe…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">3</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， name=apm.service， entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-04 2… · 473ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=12822， out=498</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-04 22:37:09&quot;   To: &quot;2026-04-04 22:43:03&quot;   FromUnix: 1775313429   ToUnix: 1775313783 CompareTimeRange:   From: &quot;2026-04-04 21:37:09&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">4</span><div class="step-action">get_neighbor_entities <span class="arg-summary">src_entity_domain=apm， src_name=apm.service， src_entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">[{&quot;__link_type__&quot;:&quot;calls&quot;,&quot;dest_entity&quot;:{&quot;id&quot;:&quot;apm@apm.exter… · 732ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=12822， out=498</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;src_entity_domain&quot;: &quot;apm&quot;, &quot;src_name&quot;: &quot;apm.service&quot;, &quot;src_entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;direction&quot;: &quot;both&quot;, &quot;limit&quot;: 20, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__link_type__&quot;:&quot;calls&quot;,&quot;dest_entity&quot;:{&quot;id&quot;:&quot;apm@apm.external.http_client:474c2072f1451452bbb1abf29cc68b10&quot;,&quot;labels&quot;:&quot;apm@apm.external.http_client&quot;,&quot;properties&quot;:{&quot;__domain__&quot;:&quot;apm&quot;,&quot;__entity_id__&quot;:&quot;…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">5</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， name=apm.external.nosql， entity_ids=18a714ac29a17acdcba04fa3ad6cb6ac</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 0… · 454ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=19829， out=758</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.external.nosql&quot;, &quot;entity_ids&quot;: &quot;18a714ac29a17acdcba04fa3ad6cb6ac&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 02:33:57&quot;   To: &quot;2026-03-16 02:39:10&quot;   FromUnix: 1773599637   ToUnix: 1773599950 CompareTimeRange:   From: &quot;2026-03-16 01:33:57&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">6</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， name=apm.service， entity_ids=ed13cb14265f98d9eb3b89b664760adb</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 0… · 473ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=19829， out=758</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 02:33:57&quot;   To: &quot;2026-03-16 02:39:10&quot;   FromUnix: 1773599637   ToUnix: 1773599950 CompareTimeRange:   From: &quot;2026-03-16 01:33:57&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">7</span><div class="step-action">search_traces <span class="arg-summary">domain=apm， name=apm.service， entity_ids=ed13cb14265f98d9eb3b89b664760adb</span></div></summary><div class="step-obs">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm… · 175ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=22561， out=1141</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;has_error&quot;: true, &quot;limit&quot;: 10, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm.service&#x27;, ids=[&#x27;ed13cb14265f98d9eb3b89b664760adb&#x27;]) | entity-call get_trace(&#x27;apm&#x27;, &#x27;apm.trace&#x27;) | where cast(statusCode as varchar) = &#x27;2&#x27; |…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">8</span><div class="step-action">get_logs <span class="arg-summary">domain=apm， name=apm.service， entity_ids=ed13cb14265f98d9eb3b89b664760adb</span></div></summary><div class="step-obs">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm… · 158ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=22561， out=1141</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;log_set_domain&quot;: &quot;apm&quot;, &quot;log_set_name&quot;: &quot;apm.log&quot;, &quot;limit&quot;: 20, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm.service&#x27;, ids=[&#x27;ed13cb14265f98d9eb3b89b664760adb&#x27;]) | entity-call get_log(&#x27;apm&#x27;, &#x27;apm.log&#x27;), err: SDKError:    StatusCode: 400    Code: Par…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">9</span><div class="step-action">list_data_set <span class="arg-summary">domain=apm， name=apm.service， data_set_types=metric_set</span></div></summary><div class="step-obs">[{&quot;data_link_detail&quot;:{},&quot;data_set_detail&quot;:{},&quot;data_set_id&quot;:&quot;… · 125ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=24914， out=363</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;data_set_types&quot;: &quot;metric_set,log_set,trace_set&quot;, &quot;detail&quot;: false, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;data_link_detail&quot;:{},&quot;data_set_detail&quot;:{},&quot;data_set_id&quot;:&quot;default_log_navigation@log_set@default_log_navigation.k8s-log-cfbbc0eabc19d43c0a6fb6889b4451ad0_k8s-application-log&quot;,&quot;domain&quot;:&quot;default_log_n…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">10</span><div class="step-action">get_relation_golden_metrics <span class="arg-summary">src_domain=apm， src_name=apm.service， src_entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">[{&quot;__labels__&quot;:{},&quot;__name__&quot;:&quot;null&quot;,&quot;__source__&quot;:&quot;&quot;,&quot;__ts__&quot;… · 209ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=24914， out=363</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;src_domain&quot;: &quot;apm&quot;, &quot;src_name&quot;: &quot;apm.service&quot;, &quot;src_entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;dest_domain&quot;: &quot;apm&quot;, &quot;dest_name&quot;: &quot;apm.service&quot;, &quot;dest_entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;relation_type&quot;: &quot;calls&quot;, &quot;direction&quot;: &quot;out&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;wo</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__labels__&quot;:{},&quot;__name__&quot;:&quot;null&quot;,&quot;__source__&quot;:&quot;&quot;,&quot;__ts__&quot;:[1773599637000000000,1773599647000000000,1773599657000000000,1773599667000000000,1773599677000000000,1773599687000000000,177359969700000000…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">11</span><div class="step-action">call_entity_method <span class="arg-summary">domain=apm， name=apm.service， entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">[{&quot;__source__&quot;:&quot;10.0.2.35&quot;,&quot;__tag__:__hostname__&quot;:&quot;cn-hongko… · 230ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=36265， out=1192</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;method&quot;: &quot;get_log&quot;, &quot;args&quot;: {&quot;log_set&quot;: &quot;apm.custom.k8s-log-cfbbc0eabc19d43c0a6fb6889b4451ad0.cart-log.log&quot;, &quot;limit&quot;: 20}, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[{&quot;__source__&quot;:&quot;10.0.2.35&quot;,&quot;__tag__:__hostname__&quot;:&quot;cn-hongkong.10.0.2.35&quot;,&quot;__tag__:__pack_id__&quot;:&quot;4E798BDD7CD40FE8-1907D&quot;,&quot;__tag__:_cluster_id_&quot;:&quot;cfbbc0eabc19d43c0a6fb6889b4451ad0&quot;,&quot;__tag__:_node_ip_&quot;:…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">12</span><div class="step-action">get_metrics <span class="arg-summary">domain=apm， name=apm.service， entity_ids=ed13cb14265f98d9eb3b89b664760adb</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 0… · 368ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=36265， out=1192</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;metric&quot;: &quot;arms_thread_pool_active_thread_count&quot;, &quot;metric_set_domain&quot;: &quot;apm&quot;, &quot;metric_set_name&quot;: &quot;apm.metric.jvm&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 02:33:57&quot;   To: &quot;2026-03-16 02:39:10&quot;   FromUnix: 1773599637   ToUnix: 1773599950 CompareTimeRange:   From: &quot;2026-03-16 01:33:57&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">13</span><div class="step-action">search_traces <span class="arg-summary">domain=apm， name=apm.service， entity_ids=469f8e313055adba13ca3f4e76c65505</span></div></summary><div class="step-obs">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm… · 169ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=47624， out=1274</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;469f8e313055adba13ca3f4e76c65505&quot;, &quot;has_error&quot;: true, &quot;limit&quot;: 10, &quot;trace_set_domain&quot;: &quot;apm&quot;, &quot;trace_set_name&quot;: &quot;apm.trace&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">调用CMS API失败, query: .entity_set with(domain=&#x27;apm&#x27;, name=&#x27;apm.service&#x27;, ids=[&#x27;469f8e313055adba13ca3f4e76c65505&#x27;]) | entity-call get_trace(&#x27;apm&#x27;, &#x27;apm.trace&#x27;) | where cast(statusCode as varchar) = &#x27;2&#x27; |…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">14</span><div class="step-action">get_golden_metrics <span class="arg-summary">domain=apm， name=apm.external.nosql， entity_ids=18a714ac29a17acdcba04fa3ad6cb6ac</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 0… · 454ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=47624， out=1274</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.external.nosql&quot;, &quot;entity_ids&quot;: &quot;18a714ac29a17acdcba04fa3ad6cb6ac&quot;, &quot;query_type&quot;: &quot;instant&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-03-16 02:33:57&quot;   To: &quot;2026-03-16 02:39:10&quot;   FromUnix: 1773599637   ToUnix: 1773599950 CompareTimeRange:   From: &quot;2026-03-16 01:33:57&quot;   To: &quot;2026…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">15</span><div class="step-action">get_events <span class="arg-summary">domain=k8s， name=k8s.deployment， entity_ids=8a846dfa06fe89afabb64a5f1cb4abc2</span></div></summary><div class="step-obs">[]… · 119ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=49764， out=879</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;k8s&quot;, &quot;name&quot;: &quot;k8s.deployment&quot;, &quot;entity_ids&quot;: &quot;8a846dfa06fe89afabb64a5f1cb4abc2&quot;, &quot;event_set_domain&quot;: &quot;default&quot;, &quot;event_set_name&quot;: &quot;default.event.common&quot;, &quot;limit&quot;: 20, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">[]…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">16</span><div class="step-action">get_metrics <span class="arg-summary">domain=apm， name=apm.service， entity_ids=ed13cb14265f98d9eb3b89b664760adb</span></div></summary><div class="step-obs">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-28 0… · 319ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=49764， out=879</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{&quot;domain&quot;: &quot;apm&quot;, &quot;name&quot;: &quot;apm.service&quot;, &quot;entity_ids&quot;: &quot;ed13cb14265f98d9eb3b89b664760adb&quot;, &quot;metric&quot;: &quot;arms_jvm_gc_seconds_delta&quot;, &quot;metric_set_domain&quot;: &quot;apm&quot;, &quot;metric_set_name&quot;: &quot;apm.metric.jvm&quot;, &quot;query_type&quot;: &quot;range&quot;, &quot;workspace&quot;: &quot;tianchi-2025-0828&quot;}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">CompareEnabled: true CurrentTimeRange:   From: &quot;2026-04-28 09:18:30&quot;   To: &quot;2026-04-28 09:22:55&quot;   FromUnix: 1777339110   ToUnix: 1777339375 CompareTimeRange:   From: &quot;2026-04-28 08:18:30&quot;   To: &quot;2026…</span></div></div></details>
-<!-- LANE_PROCESS_TOOLS_BEGIN --><section class="lane-tools"><h4 class="lane-section-title" data-p7-lang-h="1"><abbr title="Agent调用观测工具(如查指标、查日志、查拓扑)的次数">调用统计</abbr></h4><p class="lane-tools-summary">总调用 20 · 去重工具数 12 · 步数 23</p><div class="lane-tools-tags"><span class="tag-trace">调用链 5</span><span class="tag-logs">日志 1</span><span class="tag-metrics">指标 4</span><span class="tag-topology">拓扑 2</span><span class="tag-entity">实体 5</span><span class="tag-setup">配置 3</span></div></section><!-- LANE_PROCESS_TOOLS_END --><details class="step kind-commit-err" open="">
-<summary>
-<span class="step-marker">✗</span>
-<div class="step-action">最终诊断 commit</div>
-</summary>
-<div class="commit-box err">
-<div class="commit-title">✗ 诊断结论错误</div>
-<div class="commit-row"><span class="ck">brise O</span><span class="cv"><strong>15.0</strong></span></div>
-<div class="commit-row"><span class="ck">brise F</span><span class="cv"><span class="mark-bad">预测：redisUnavailable</span> (0.0)</span></div>
-<div class="commit-row"><span class="ck">brise E</span><span class="cv"><span class="mark-bad">预测：valkey-cart</span> (0.0)</span></div>
-<div class="commit-row"><span class="ck">真值</span><span class="cv"><span class="mark-good">F007-memoryPressure / inventory</span></span></div>
-</div>
-</details>
+<details class="step kind-tool"><summary><span class="step-marker">1</span><div class="step-action">set_time_range</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">2</span><div class="step-action">search_entities</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">3</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">4</span><div class="step-action">get_neighbor_entities</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">5</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">6</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">7</span><div class="step-action">search_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">8</span><div class="step-action">get_logs</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">9</span><div class="step-action">list_data_set</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">10</span><div class="step-action">get_relation_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">11</span><div class="step-action">call_entity_method</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">12</span><div class="step-action">get_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">13</span><div class="step-action">search_traces</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">14</span><div class="step-action">get_golden_metrics</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">15</span><div class="step-action">get_events</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">16</span><div class="step-action">get_metrics</div></summary></details>
 </div>
 <div class="lane-foot">openclaw plan-tree + replan </div>
 </div>
@@ -7522,173 +7509,29 @@ flowchart TD
 <ol class="strategy-list"><li>从告警列表入手检索实体元数据与指标，初步锁定 inventory 服务存在异常。</li><li>沿调用链拓扑下钻分析 Trace 模式差异与 Profile 数据，发现该服务 JVM GC 频率与耗时激增导致线程停顿及上游连接拒绝。</li><li>最终判定故障类型为 fullGC、故障实体为 inventory，其中实体定位命中，但故障类型判定与真值存在偏差。</li></ol>
 </div>
 <!-- LANE_STRATEGY_A1_END -->
-<div class="lane-source">数据源： SLS <code>rca-bench-logs</code> (cn-hongkong) · trial: <code>STAROps RCA</code> · 截至 <code>2026-06-17</code> · run_id 见上方 trace_id</div>
 <div class="journey">
-<details class="step kind-tool"><summary><span class="step-marker">1</span><div class="step-action">alerts_list <span class="arg-summary">start_time=1775312529， end_time=1775313783</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;alerts_list&quot;… · 658ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=7093， out=188</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;query_filter&quot;: {
-    &quot;logic&quot;: &quot;and&quot;,
-    &quot;predicates&quot;: [
-      {
-        &quot;field&quot;: &quot;event_id&quot;,
-        &quot;op&quot;: &quot;eq&quot;,
-        &quot;value&quot;: &quot;ca9e5116885d6621592df45c9595c93f&quot;
-      },
-      {
-        &quot;field&quot;: &quot;rule_id&quot;,
-      </span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;alerts_list&quot;, &quot;category&quot;: &quot;event_set_query&quot;, &quot;execution_time_ms&quot;: 658.3883762359619, &quot;timestamp&quot;: &quot;2026-05-22T16:42:23.314013&quot;, &quot;workspace&quot;: &quot;rca-benchm…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">2</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=cart响应时间抖动告警 帮我分析下根因。， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 1ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=7093， out=188</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;cart响应时间抖动告警 帮我分析下根因。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;entity_set&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 0.8718967437744141, &quot;timestamp&quot;: &quot;2026-05-22T16:42:23.320168&quot;, &quot;workspace&quot;: &quot;&quot;,…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">3</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=cart响应时间抖动告警 帮我分析下根因。， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 2ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=7093， out=188</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;cart响应时间抖动告警 帮我分析下根因。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;entity_graph&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 2.361774444580078, &quot;timestamp&quot;: &quot;2026-05-22T16:42:23.323136&quot;, &quot;workspace&quot;: &quot;&quot;, …</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">4</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=cart响应时间抖动告警 帮我分析下根因。， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 176ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=7093， out=188</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;cart响应时间抖动告警 帮我分析下根因。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;metric_names&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 175.68397521972656, &quot;timestamp&quot;: &quot;2026-05-22T16:42:23.499966&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;re…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">5</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=cart响应时间抖动告警 帮我分析下根因。， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 3ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=7093， out=188</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;cart响应时间抖动告警 帮我分析下根因。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;log_set&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 2.649068832397461, &quot;timestamp&quot;: &quot;2026-05-22T16:42:23.584644&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;reg…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">6</span><div class="step-action">entity_metric_data_list <span class="arg-summary">entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;entity_metri… · 3519ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=19055， out=366</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;metric_names&quot;: [
-    &quot;avg_request_latency_seconds&quot;,
-    &quot;request_count&quot;,
-    &quot;error_count&quot;
-  ],
-  &quot;query_text&quot;: &quot;分析cart服务POST /oteldemo.CartService/AddItem接口响应时间抖动的根因&quot;,
-  &quot;entity_ids&quot;: [
-    &quot;e433b3f842dc4e525a83470</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;entity_metric_data_list&quot;, &quot;category&quot;: &quot;metric_set_query&quot;, &quot;execution_time_ms&quot;: 3518.956422805786, &quot;timestamp&quot;: &quot;2026-05-22T16:42:35.226062&quot;, &quot;workspace&quot;…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">7</span><div class="step-action">entity_estimate <span class="arg-summary">query_text=查询实体详情：domain=apm， start_time=1775312529， end_time=1775313783</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;entity_estim… · 2105ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=19055， out=366</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;查询实体详情：domain=apm, entity_type=apm.operation, entity_id=e433b3f842dc4e525a834701cc603c28。返回实体名称和可直接用于识别该对象的属性字段。&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;entity_estimate&quot;, &quot;category&quot;: &quot;process_entity_estimate&quot;, &quot;execution_time_ms&quot;: 2105.098009109497, &quot;timestamp&quot;: &quot;2026-05-22T16:42:37.435092&quot;, &quot;workspace&quot;:…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">8</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=查询实体详情：domain=apm， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 3ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=257， out=41</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;查询实体详情：domain=apm, entity_type=apm.operation, entity_id=e433b3f842dc4e525a834701cc603c28。返回实体名称和可直接用于识别该对象的属性字段。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;entity_set&quot;
-</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 2.888202667236328, &quot;timestamp&quot;: &quot;2026-05-22T16:42:37.474035&quot;, &quot;workspace&quot;: &quot;&quot;, …</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">9</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=查询实体详情：domain=apm， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 6ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=257， out=41</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;查询实体详情：domain=apm, entity_type=apm.operation, entity_id=e433b3f842dc4e525a834701cc603c28。返回实体名称和可直接用于识别该对象的属性字段。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;entity_graph</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 5.827903747558594, &quot;timestamp&quot;: &quot;2026-05-22T16:42:37.490164&quot;, &quot;workspace&quot;: &quot;&quot;, …</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">10</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=查询实体详情：domain=apm， entity_domain=apm， entity_type=apm.operation</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 218ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.5-plus， in=257， out=41</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;查询实体详情：domain=apm, entity_type=apm.operation, entity_id=e433b3f842dc4e525a834701cc603c28。返回实体名称和可直接用于识别该对象的属性字段。&quot;,
-  &quot;entity_domain&quot;: &quot;apm&quot;,
-  &quot;entity_type&quot;: &quot;apm.operation&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;metric_names</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 217.742919921875, &quot;timestamp&quot;: &quot;2026-05-22T16:42:37.709746&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;regi…</span></div></div></details>
-<details class="step kind-elision"><summary><span class="step-marker">⋯</span><div class="step-action">省略中间 452 步（第 11–462 步）</div></summary><div class="step-obs">完整 472 步,此区间持续工具检索与指标拉取</div></details>
-<details class="step kind-tool"><summary><span class="step-marker">462</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=查询 pod=frontend-proxy-67d64dc4f8-8c99b， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 25ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;查询 pod=frontend-proxy-67d64dc4f8-8c99b, namespace=cms-demo 的完整拓扑关系图 [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;log_set&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 25.43020248413086, &quot;timestamp&quot;: &quot;2026-05-22T16:47:41.498474&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;reg…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">463</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 网络指标（pod_network_receive_rate、pod_net， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 4ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 网络指标（pod_network_receive_rate、pod_network_transmit_rate、pod_network_total_io_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 3.9014816284179688, &quot;timestamp&quot;: &quot;2026-05-22T16:47:41.814617&quot;, &quot;workspace&quot;: &quot;&quot;,…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">464</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 网络指标（pod_network_receive_rate、pod_net， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 4ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 网络指标（pod_network_receive_rate、pod_network_transmit_rate、pod_network_total_io_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 3.5276412963867188, &quot;timestamp&quot;: &quot;2026-05-22T16:47:41.818810&quot;, &quot;workspace&quot;: &quot;&quot;,…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">465</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 网络指标（pod_network_receive_rate、pod_net， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 1195ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 网络指标（pod_network_receive_rate、pod_network_transmit_rate、pod_network_total_io_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 1194.744348526001, &quot;timestamp&quot;: &quot;2026-05-22T16:47:43.015583&quot;, &quot;workspace&quot;: &quot;rca-ben…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">466</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=查询 pod=frontend-proxy-67d64dc4f8-4ptg6， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 6ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;查询 pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo 的完整拓扑关系图 [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;end_time&quot;: &quot;1775313783&quot;,
-  &quot;data_type&quot;: &quot;log_set&quot;
-}</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 6.263971328735352, &quot;timestamp&quot;: &quot;2026-05-22T16:47:42.151474&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;reg…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">467</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_u， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 2ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_usage_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 2.282381057739258, &quot;timestamp&quot;: &quot;2026-05-22T16:47:42.323728&quot;, &quot;workspace&quot;: &quot;&quot;, …</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">468</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_u， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 3ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_usage_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;data_query&quot;, &quot;execution_time_ms&quot;: 2.8061866760253906, &quot;timestamp&quot;: &quot;2026-05-22T16:47:42.327202&quot;, &quot;workspace&quot;: &quot;&quot;,…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">469</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_u， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 1109ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_usage_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 1108.562707901001, &quot;timestamp&quot;: &quot;2026-05-22T16:47:43.436861&quot;, &quot;workspace&quot;: &quot;rca-ben…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">470</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 网络指标（pod_network_receive_rate、pod_net， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 4ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 网络指标（pod_network_receive_rate、pod_network_transmit_rate、pod_network_total_io_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 3.7393569946289062, &quot;timestamp&quot;: &quot;2026-05-22T16:47:43.020854&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;re…</span></div></div></details>
-<details class="step kind-tool"><summary><span class="step-marker">471</span><div class="step-action">search_umodel_meta_data <span class="arg-summary">query_text=获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_u， entity_domain=k8s， entity_type=k8s.pod</span></div></summary><div class="step-obs ok">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umode… · 3ms</div><div class="step-detail"><div class="step-detail-row"><span class="sd-k">llm</span><span class="sd-v">model=qwen3.6-plus， in=140671， out=980</span></div><div class="step-detail-row"><span class="sd-k">args</span><span class="sd-v pre">{
-  &quot;query_text&quot;: &quot;获取 存储/文件系统指标（pod_fs_usage_bytes、pod_fs_usage_rate）指标, pod=frontend-proxy-67d64dc4f8-4ptg6, namespace=cms-demo [时间范围: 2026-04-04 22:22:09 ~ 2026-04-04 22:43:03] [step: 15s]&quot;,
-  &quot;entity_domain&quot;: &quot;k8s&quot;,
-  &quot;entity_type&quot;: &quot;k8s.pod&quot;,
-  &quot;start_time&quot;: &quot;1775312529&quot;,
-  &quot;</span></div><div class="step-detail-row"><span class="sd-k">result</span><span class="sd-v pre">{&quot;status_code&quot;: 200, &quot;metadata&quot;: {&quot;tool_name&quot;: &quot;search_umodel_meta_data&quot;, &quot;category&quot;: &quot;umodel&quot;, &quot;execution_time_ms&quot;: 2.9935836791992188, &quot;timestamp&quot;: &quot;2026-05-22T16:47:43.441269&quot;, &quot;workspace&quot;: &quot;&quot;, &quot;re…</span></div></div></details>
-<details class="step kind-commit-warn" open="">
-<summary>
-<span class="step-marker">△</span>
-<div class="step-action">最终诊断 commit</div>
-</summary>
-<div class="commit-box warn">
-<div class="commit-title">△ 部分命中</div>
-<div class="commit-row"><span class="ck">brise O</span><span class="cv"><strong>75.0</strong></span></div>
-<div class="commit-row"><span class="ck">brise F</span><span class="cv"><span class="mark-bad">预测：fullGC</span> (0.5)</span></div>
-<div class="commit-row"><span class="ck">brise E</span><span class="cv"><span class="mark-good">预测：inventory</span> (1.0)</span></div>
-<div class="commit-row"><span class="ck">真值</span><span class="cv"><span class="mark-good">F007-memoryPressure / inventory</span></span></div>
+<details class="step kind-tool"><summary><span class="step-marker">1</span><div class="step-action">alerts_list</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">2</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">3</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">4</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">5</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">6</span><div class="step-action">entity_metric_data_list</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">7</span><div class="step-action">entity_estimate</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">8</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">9</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">10</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-elision"><summary><span class="step-marker">⋯</span><div class="step-action">省略中间 452 步（第 11–462 步）</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">462</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">463</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">464</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">465</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">466</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">467</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">468</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">469</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">470</span><div class="step-action">search_umodel_meta_data</div></summary></details>
+<details class="step kind-tool"><summary><span class="step-marker">471</span><div class="step-action">search_umodel_meta_data</div></summary></details>
 </div>
-</details><details class="step kind-stage">
-<summary>
-<span class="step-marker">⛓</span>
-<div class="step-action">因果链 · 3 个节点 · 2 条传播边</div>
-</summary>
-<div class="step-obs">来自 structured-diagnosis.agent_chain（brise extractor 解析）</div>
-<div class="step-detail">
-<div class="step-detail-row"><span class="sd-k">inventory</span><span class="sd-v"><span class="mark-bad">root_cause</span> · JVM 内存压力与 Full GC 风暴导致线程 STW 无法响应请求 (F007-memoryPressure)</span></div><div class="step-detail-row"><span class="sd-k">inventory Pod</span><span class="sd-v"><span class="">intermediate</span> · 健康检查探针超时失败，被 Kubelet Kill 并重启 (F038-podKill)</span></div><div class="step-detail-row"><span class="sd-k">cart/frontend</span><span class="sd-v"><span class="mark-good">symptom</span> · 连接拒绝 (Connection refused/ECONNREFUSED) 与业务报错 500/504 (F014-httpError5xx)</span></div>
-<div class="step-detail-row"><span class="sd-k">—— 传播边 ——</span><span class="sd-v"></span></div>
-<div class="step-detail-row"><span class="sd-k">inventory → inventory Pod</span><span class="sd-v">causes · GC STW 导致应用无法响应健康检查探针，触发 K8s 重启容器</span></div><div class="step-detail-row"><span class="sd-k">inventory Pod → cart/frontend</span><span class="sd-v">propagates_to · Pod 重启/端口监听中断导致上游服务连接拒绝与业务失败</span></div>
-</div>
-</details></div>
 <div class="lane-foot">多阶段管道，UModel cascade 出诊断</div>
 </div>
 </div>
@@ -7701,15 +7544,15 @@ flowchart TD
 <!-- P7_A_END -->
 </div>
 <nav aria-label="案例导航" class="case-footer-nav">
-<a class="prev-case" href="/doc/starops/benchmark/rca/case_07_F007-memoryPressure.html" data-p7-lang-h="1">← 上一例 · 案例 7：Pod 内存吃满 OOM</a>
-<a class="back-to-top" href="/doc/starops/benchmark/rca/cases_compare.html" data-p7-lang-h="1">↑ 返回总览</a>
-<a class="next-case" href="/doc/starops/benchmark/rca/case_09_F022-fullGC.html" data-p7-lang-h="1">下一例 · 案例 9：JVM Full GC 持续 →</a>
+<a class="prev-case" data-p7-lang-h="1" href="case_07_F007-memoryPressure.html">← 上一例 · 案例 7：Pod 内存吃满 OOM</a>
+<a class="back-to-top" data-p7-lang-h="1" href="cases_compare.html">↑ 返回总览</a>
+<a class="next-case" data-p7-lang-h="1" href="case_09_F022-fullGC.html">下一例 · 案例 9：JVM Full GC 持续 →</a>
 </nav>
 </details>
 </div>
 </div>
 <aside class="VPDocAside">
-<div class="VPDocAside__title">On this page</div><div class="aside-group-title">节点/基础设施</div><a class="lvl2" href="/doc/starops/benchmark/rca/case_01_F026-nodeCpuHigh.html" title="F026-nodeCpuHigh"><span class="anc-plain">案例 1 · 节点 CPU 高</span><span class="anc-tech">F026-nodeCpuHigh</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_02_F026-nodeCpuHigh.html" title="F026-nodeCpuHigh"><span class="anc-plain">案例 2 · 节点 CPU 高</span><span class="anc-tech">F026-nodeCpuHigh</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_03_F026-nodeCpuHigh.html" title="F026-nodeCpuHigh"><span class="anc-plain">案例 3 · 节点 CPU 高</span><span class="anc-tech">F026-nodeCpuHigh</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_04_F001-nodeDown.html" title="F001-nodeDown"><span class="anc-plain">案例 4 · 节点宕机</span><span class="anc-tech">F001-nodeDown</span></a><div class="aside-group-title">资源耗尽</div><a class="lvl2" href="/doc/starops/benchmark/rca/case_05_F022-fullGC.html" title="F022-fullGC"><span class="anc-plain">案例 5 · JVM Full GC 持续</span><span class="anc-tech">F022-fullGC</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_06_F007-memoryPressure.html" title="F007-memoryPressure"><span class="anc-plain">案例 6 · Pod 内存吃满 OOM</span><span class="anc-tech">F007-memoryPressure</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_07_F007-memoryPressure.html" title="F007-memoryPressure"><span class="anc-plain">案例 7 · Pod 内存吃满 OOM</span><span class="anc-tech">F007-memoryPressure</span></a><a class="lvl2 active" href="/doc/starops/benchmark/rca/case_08_F007-memoryPressure.html" title="F007-memoryPressure"><span class="anc-plain">案例 8 · Pod 内存吃满 OOM</span><span class="anc-tech">F007-memoryPressure</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_09_F022-fullGC.html" title="F022-fullGC"><span class="anc-plain">案例 9 · JVM Full GC 持续</span><span class="anc-tech">F022-fullGC</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_10_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 10 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_11_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 11 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_12_F002-threadExhaustion.html" title="F002-threadExhaustion"><span class="anc-plain">案例 12 · 线程池耗尽</span><span class="anc-tech">F002-threadExhaustion</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_13_F002-threadExhaustion.html" title="F002-threadExhaustion"><span class="anc-plain">案例 13 · 线程池耗尽</span><span class="anc-tech">F002-threadExhaustion</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_14_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 14 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_15_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 15 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_16_F039-resourceLimitMisconfig.html" title="F039-resourceLimitMisconfig"><span class="anc-plain">案例 16 · 资源 limit 配错</span><span class="anc-tech">F039-resourceLimitMisconfig</span></a><div class="aside-group-title">流量/调度</div><a class="lvl2" href="/doc/starops/benchmark/rca/case_17_F016-rateLimiting.html" title="F016-rateLimiting"><span class="anc-plain">案例 17 · 限流被触发</span><span class="anc-tech">F016-rateLimiting</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_18_F016-rateLimiting.html" title="F016-rateLimiting"><span class="anc-plain">案例 18 · 限流被触发</span><span class="anc-tech">F016-rateLimiting</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_19_F050-podCrashLoop.html" title="F050-podCrashLoop"><span class="anc-plain">案例 19 · Pod CrashLoop</span><span class="anc-tech">F050-podCrashLoop</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_20_F006-trafficSurge.html" title="F006-trafficSurge"><span class="anc-plain">案例 20 · 突发流量冲击</span><span class="anc-tech">F006-trafficSurge</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_21_F006-trafficSurge.html" title="F006-trafficSurge"><span class="anc-plain">案例 21 · 突发流量冲击</span><span class="anc-tech">F006-trafficSurge</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_22_F036-replicaScaleDown.html" title="F036-replicaScaleDown"><span class="anc-plain">案例 22 · 副本被误缩</span><span class="anc-tech">F036-replicaScaleDown</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_23_F036-replicaScaleDown.html" title="F036-replicaScaleDown"><span class="anc-plain">案例 23 · 副本被误缩</span><span class="anc-tech">F036-replicaScaleDown</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_24_F004-trafficHotspot.html" title="F004-trafficHotspot"><span class="anc-plain">案例 24 · 流量热点</span><span class="anc-tech">F004-trafficHotspot</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_25_F004-trafficHotspot.html" title="F004-trafficHotspot"><span class="anc-plain">案例 25 · 流量热点</span><span class="anc-tech">F004-trafficHotspot</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_26_F006-trafficSurge.html" title="F006-trafficSurge"><span class="anc-plain">案例 26 · 突发流量冲击</span><span class="anc-tech">F006-trafficSurge</span></a><div class="aside-group-title">数据库/缓存</div><a class="lvl2" href="/doc/starops/benchmark/rca/case_29_F029-redisUnavailable.html" title="F029-redisUnavailable"><span class="anc-plain">案例 27 · Redis 不可用</span><span class="anc-tech">F029-redisUnavailable</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_30_F029-redisUnavailable.html" title="F029-redisUnavailable"><span class="anc-plain">案例 28 · Redis 不可用</span><span class="anc-tech">F029-redisUnavailable</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_31_F010-slowSQL.html" title="F010-slowSQL"><span class="anc-plain">案例 29 · 数据库慢 SQL</span><span class="anc-tech">F010-slowSQL</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_32_F010-slowSQL.html" title="F010-slowSQL"><span class="anc-plain">案例 30 · 数据库慢 SQL</span><span class="anc-tech">F010-slowSQL</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_33_F018-dbNetworkLatency.html" title="F018-dbNetworkLatency"><span class="anc-plain">案例 31 · 数据库网络延迟</span><span class="anc-tech">F018-dbNetworkLatency</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_34_F010-slowSQL.html" title="F010-slowSQL"><span class="anc-plain">案例 32 · 数据库慢 SQL</span><span class="anc-tech">F010-slowSQL</span></a><div class="aside-group-title">网络</div><a class="lvl2" href="/doc/starops/benchmark/rca/case_40_F057-dnsResolutionFailure.html" title="F057-dnsResolutionFailure"><span class="anc-plain">案例 33 · DNS 解析失败</span><span class="anc-tech">F057-dnsResolutionFailure</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_27_F020-loadBalancerFailure.html" title="F020-loadBalancerFailure"><span class="anc-plain">案例 34 · 负载均衡器故障</span><span class="anc-tech">F020-loadBalancerFailure</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_28_F020-loadBalancerFailure.html" title="F020-loadBalancerFailure"><span class="anc-plain">案例 35 · 负载均衡器故障</span><span class="anc-tech">F020-loadBalancerFailure</span></a><div class="aside-group-title">代码/应用</div><a class="lvl2" href="/doc/starops/benchmark/rca/case_35_F023-nullPointerException.html" title="F023-nullPointerException"><span class="anc-plain">案例 36 · 空指针异常</span><span class="anc-tech">F023-nullPointerException</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_36_F023-nullPointerException.html" title="F023-nullPointerException"><span class="anc-plain">案例 37 · 空指针异常</span><span class="anc-tech">F023-nullPointerException</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_37_F011-codeDefect.html" title="F011-codeDefect"><span class="anc-plain">案例 38 · 代码缺陷</span><span class="anc-tech">F011-codeDefect</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_38_F014-httpError5xx.html" title="F014-httpError5xx"><span class="anc-plain">案例 39 · HTTP 5xx 错误激增</span><span class="anc-tech">F014-httpError5xx</span></a><a class="lvl2" href="/doc/starops/benchmark/rca/case_39_F014-httpError5xx.html" title="F014-httpError5xx"><span class="anc-plain">案例 40 · HTTP 5xx 错误激增</span><span class="anc-tech">F014-httpError5xx</span></a>
+<div class="VPDocAside__title">On this page</div><div class="aside-group-title">节点/基础设施</div><a class="lvl2" href="case_01_F026-nodeCpuHigh.html" title="F026-nodeCpuHigh"><span class="anc-plain">案例 1 · 节点 CPU 高</span><span class="anc-tech">F026-nodeCpuHigh</span></a><a class="lvl2" href="case_02_F026-nodeCpuHigh.html" title="F026-nodeCpuHigh"><span class="anc-plain">案例 2 · 节点 CPU 高</span><span class="anc-tech">F026-nodeCpuHigh</span></a><a class="lvl2" href="case_03_F026-nodeCpuHigh.html" title="F026-nodeCpuHigh"><span class="anc-plain">案例 3 · 节点 CPU 高</span><span class="anc-tech">F026-nodeCpuHigh</span></a><a class="lvl2" href="case_04_F001-nodeDown.html" title="F001-nodeDown"><span class="anc-plain">案例 4 · 节点宕机</span><span class="anc-tech">F001-nodeDown</span></a><div class="aside-group-title">资源耗尽</div><a class="lvl2" href="case_05_F022-fullGC.html" title="F022-fullGC"><span class="anc-plain">案例 5 · JVM Full GC 持续</span><span class="anc-tech">F022-fullGC</span></a><a class="lvl2" href="case_06_F007-memoryPressure.html" title="F007-memoryPressure"><span class="anc-plain">案例 6 · Pod 内存吃满 OOM</span><span class="anc-tech">F007-memoryPressure</span></a><a class="lvl2" href="case_07_F007-memoryPressure.html" title="F007-memoryPressure"><span class="anc-plain">案例 7 · Pod 内存吃满 OOM</span><span class="anc-tech">F007-memoryPressure</span></a><a class="lvl2 active" href="case_08_F007-memoryPressure.html" title="F007-memoryPressure"><span class="anc-plain">案例 8 · Pod 内存吃满 OOM</span><span class="anc-tech">F007-memoryPressure</span></a><a class="lvl2" href="case_09_F022-fullGC.html" title="F022-fullGC"><span class="anc-plain">案例 9 · JVM Full GC 持续</span><span class="anc-tech">F022-fullGC</span></a><a class="lvl2" href="case_10_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 10 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="case_11_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 11 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="case_12_F002-threadExhaustion.html" title="F002-threadExhaustion"><span class="anc-plain">案例 12 · 线程池耗尽</span><span class="anc-tech">F002-threadExhaustion</span></a><a class="lvl2" href="case_13_F002-threadExhaustion.html" title="F002-threadExhaustion"><span class="anc-plain">案例 13 · 线程池耗尽</span><span class="anc-tech">F002-threadExhaustion</span></a><a class="lvl2" href="case_14_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 14 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="case_15_F034-cpuFullLoad.html" title="F034-cpuFullLoad"><span class="anc-plain">案例 15 · 应用 CPU 满载</span><span class="anc-tech">F034-cpuFullLoad</span></a><a class="lvl2" href="case_16_F039-resourceLimitMisconfig.html" title="F039-resourceLimitMisconfig"><span class="anc-plain">案例 16 · 资源 limit 配错</span><span class="anc-tech">F039-resourceLimitMisconfig</span></a><div class="aside-group-title">流量/调度</div><a class="lvl2" href="case_17_F016-rateLimiting.html" title="F016-rateLimiting"><span class="anc-plain">案例 17 · 限流被触发</span><span class="anc-tech">F016-rateLimiting</span></a><a class="lvl2" href="case_18_F016-rateLimiting.html" title="F016-rateLimiting"><span class="anc-plain">案例 18 · 限流被触发</span><span class="anc-tech">F016-rateLimiting</span></a><a class="lvl2" href="case_19_F050-podCrashLoop.html" title="F050-podCrashLoop"><span class="anc-plain">案例 19 · Pod CrashLoop</span><span class="anc-tech">F050-podCrashLoop</span></a><a class="lvl2" href="case_20_F006-trafficSurge.html" title="F006-trafficSurge"><span class="anc-plain">案例 20 · 突发流量冲击</span><span class="anc-tech">F006-trafficSurge</span></a><a class="lvl2" href="case_21_F006-trafficSurge.html" title="F006-trafficSurge"><span class="anc-plain">案例 21 · 突发流量冲击</span><span class="anc-tech">F006-trafficSurge</span></a><a class="lvl2" href="case_22_F036-replicaScaleDown.html" title="F036-replicaScaleDown"><span class="anc-plain">案例 22 · 副本被误缩</span><span class="anc-tech">F036-replicaScaleDown</span></a><a class="lvl2" href="case_23_F036-replicaScaleDown.html" title="F036-replicaScaleDown"><span class="anc-plain">案例 23 · 副本被误缩</span><span class="anc-tech">F036-replicaScaleDown</span></a><a class="lvl2" href="case_24_F004-trafficHotspot.html" title="F004-trafficHotspot"><span class="anc-plain">案例 24 · 流量热点</span><span class="anc-tech">F004-trafficHotspot</span></a><a class="lvl2" href="case_25_F004-trafficHotspot.html" title="F004-trafficHotspot"><span class="anc-plain">案例 25 · 流量热点</span><span class="anc-tech">F004-trafficHotspot</span></a><a class="lvl2" href="case_26_F006-trafficSurge.html" title="F006-trafficSurge"><span class="anc-plain">案例 26 · 突发流量冲击</span><span class="anc-tech">F006-trafficSurge</span></a><div class="aside-group-title">数据库/缓存</div><a class="lvl2" href="case_29_F029-redisUnavailable.html" title="F029-redisUnavailable"><span class="anc-plain">案例 27 · Redis 不可用</span><span class="anc-tech">F029-redisUnavailable</span></a><a class="lvl2" href="case_30_F029-redisUnavailable.html" title="F029-redisUnavailable"><span class="anc-plain">案例 28 · Redis 不可用</span><span class="anc-tech">F029-redisUnavailable</span></a><a class="lvl2" href="case_31_F010-slowSQL.html" title="F010-slowSQL"><span class="anc-plain">案例 29 · 数据库慢 SQL</span><span class="anc-tech">F010-slowSQL</span></a><a class="lvl2" href="case_32_F010-slowSQL.html" title="F010-slowSQL"><span class="anc-plain">案例 30 · 数据库慢 SQL</span><span class="anc-tech">F010-slowSQL</span></a><a class="lvl2" href="case_33_F018-dbNetworkLatency.html" title="F018-dbNetworkLatency"><span class="anc-plain">案例 31 · 数据库网络延迟</span><span class="anc-tech">F018-dbNetworkLatency</span></a><a class="lvl2" href="case_34_F010-slowSQL.html" title="F010-slowSQL"><span class="anc-plain">案例 32 · 数据库慢 SQL</span><span class="anc-tech">F010-slowSQL</span></a><div class="aside-group-title">网络</div><a class="lvl2" href="case_40_F057-dnsResolutionFailure.html" title="F057-dnsResolutionFailure"><span class="anc-plain">案例 33 · DNS 解析失败</span><span class="anc-tech">F057-dnsResolutionFailure</span></a><a class="lvl2" href="case_27_F020-loadBalancerFailure.html" title="F020-loadBalancerFailure"><span class="anc-plain">案例 34 · 负载均衡器故障</span><span class="anc-tech">F020-loadBalancerFailure</span></a><a class="lvl2" href="case_28_F020-loadBalancerFailure.html" title="F020-loadBalancerFailure"><span class="anc-plain">案例 35 · 负载均衡器故障</span><span class="anc-tech">F020-loadBalancerFailure</span></a><div class="aside-group-title">代码/应用</div><a class="lvl2" href="case_35_F023-nullPointerException.html" title="F023-nullPointerException"><span class="anc-plain">案例 36 · 空指针异常</span><span class="anc-tech">F023-nullPointerException</span></a><a class="lvl2" href="case_36_F023-nullPointerException.html" title="F023-nullPointerException"><span class="anc-plain">案例 37 · 空指针异常</span><span class="anc-tech">F023-nullPointerException</span></a><a class="lvl2" href="case_37_F011-codeDefect.html" title="F011-codeDefect"><span class="anc-plain">案例 38 · 代码缺陷</span><span class="anc-tech">F011-codeDefect</span></a><a class="lvl2" href="case_38_F014-httpError5xx.html" title="F014-httpError5xx"><span class="anc-plain">案例 39 · HTTP 5xx 错误激增</span><span class="anc-tech">F014-httpError5xx</span></a><a class="lvl2" href="case_39_F014-httpError5xx.html" title="F014-httpError5xx"><span class="anc-plain">案例 40 · HTTP 5xx 错误激增</span><span class="anc-tech">F014-httpError5xx</span></a>
 </aside>
 </div>
 </div>
@@ -7959,7 +7802,6 @@ flowchart TD
 })();
 </script>
 <!-- CASEEASY3_BEGIN -->
-
 <script>
 /* ===== CaseEasy 3: verdict + strategy + folded steps + divergence hint ===== */
 (function(){
@@ -8167,7 +8009,6 @@ flowchart TD
 </script>
 <!-- CASEEASY3_END -->
 <!-- LANE_ALIGN_BEGIN (FE-B strategy 2: JS measure + min-height) -->
-
 <script>
 (function(){
  // Canonical DOM order top-to-bottom inside each .lane (matches CaseEasy 2/3 inject order).
@@ -8320,7 +8161,6 @@ flowchart TD
 </script>
 <!-- LANE_ALIGN_END (FE-B) -->
 <!-- FE_C_LANE_TABLE_BEGIN -->
-
 <script>
 /* FE-C strategy 3 — restructure 3 lanes into a horizontal table.
  Runs AFTER CaseEasy 2 + CaseEasy 3 have injected their blocks.
@@ -8422,7 +8262,6 @@ flowchart TD
 </script>
 <!-- FE_C_LANE_TABLE_END -->
 <!-- LANE_ALIGN_FE_A_BEGIN -->
-
 <script>
 /* ===== FE-A: split FE-C's "steps" row into 4 per-block rows ===== */
 (function(){
@@ -8519,16 +8358,12 @@ flowchart TD
 </script>
 <!-- LANE_ALIGN_FE_A_END -->
 <!-- FE_Z_SLS_BEGIN -->
-
 <!-- FE_Z_SLS_END -->
 <!-- FE_POLISH_BEGIN -->
-
 <!-- FE_POLISH_END -->
 <!-- FE_POLISH_V2_BEGIN -->
-
 <!-- FE_POLISH_V2_END -->
 <!-- FE_POLISH_V3_BEGIN -->
-
 <script>
 (function(){
  function clean(){
@@ -8546,11 +8381,8 @@ flowchart TD
 </script>
 <!-- FE_POLISH_V3_END -->
 <!-- P7_C_BEGIN -->
-
 <!-- P7_C_END -->
 <!-- P7_B_BEGIN -->
-
-
 <script>
 (function () {
  if (!document.body.classList.contains('sls-starops-article')) return;
@@ -8607,13 +8439,8 @@ flowchart TD
 </script>
 <!-- P7_B_END -->
 <!-- MECH_V2_BEGIN -->
-
-
 <!-- MECH_V2_END -->
-
-
 <!-- FE_POLISH_V4_BEGIN -->
-
 <script id="fe-polish-v4-script">
 (function(){
  // P1-1: tag visibly-empty lane-table cells. "Empty" = textContent.trim() length < 3 chars,
@@ -8646,9 +8473,7 @@ flowchart TD
 })();
 </script>
 <!-- FE_POLISH_V4_END -->
-
 <!-- V3COL_REPORT_SYNC_BEGIN -->
-
 <script id="v3col-report-sync-script">
 (function(){
  function bind(root){
@@ -8671,35 +8496,18 @@ flowchart TD
 })();
 </script>
 <!-- V3COL_REPORT_SYNC_END -->
-
-
 <!-- FE_POLISH_V5_BEGIN -->
-
 <!-- FE_POLISH_V5_END -->
-
 <!-- P7_SKILL_B_BEGIN -->
-
 <!-- P7_SKILL_B_END -->
-
 <!-- P7_SKILL_C_BEGIN -->
-
 <!-- P7_SKILL_C_END -->
-
-
-
-
 <!-- FE_POLISH_V6_BEGIN -->
-
 <!-- old marked.js renderer disabled by inline renderer -->
 <!-- FE_POLISH_V6_END -->
-
 <!-- FE_POLISH_V7_BEGIN -->
-
 <!-- FE_POLISH_V7_END -->
-
-
 <!-- FE_POLISH_V8_BEGIN -->
-
 <script>
 (function(){
  // force open in case it was closed
@@ -8711,23 +8519,13 @@ flowchart TD
 })();
 </script>
 <!-- FE_POLISH_V8_END -->
-
-
 <!-- P7_FONT_BEGIN -->
-
 <!-- P7_FONT_END -->
-
-
 <!-- FE_POLISH_V9_BEGIN -->
-
 <!-- FE_POLISH_V9_END -->
-
 <!-- FD_1_BEGIN -->
-
 <!-- FD_1_END -->
-
 <!-- FD_3_BEGIN -->
-
 <script id="fd-3-score-tier">
 /* Assign data-score-tier to .chip[chip-v] based on numeric score.
  Tier 1: 0-20 / 2: 21-40 / 3: 41-60 / 4: 61-80 / 5: 81-100.
@@ -8768,15 +8566,9 @@ flowchart TD
 })();
 </script>
 <!-- FD_3_END -->
-
-
 <!-- FD_2_BEGIN -->
-
 <!-- FD_2_END -->
-
-
 <!-- FE_POLISH_V10_BEGIN -->
-
 <script>
 (function(){
  // 大纲默认选中 ① 故障机制 (第一项),覆盖 P7-B 的 IntersectionObserver 初始状态
@@ -8796,15 +8588,9 @@ flowchart TD
 })();
 </script>
 <!-- FE_POLISH_V10_END -->
-
-
 <!-- FE_POLISH_V11_BEGIN -->
-
 <!-- FE_POLISH_V11_END -->
-
-
 <!-- FE_POLISH_V12_BEGIN -->
-
 <script>
 (function(){
  // 在 .lanes 容器之前插入 ③ 排查路径 banner (只插一次)
@@ -8823,63 +8609,31 @@ flowchart TD
 })();
 </script>
 <!-- FE_POLISH_V12_END -->
-
-
 <!-- FE_POLISH_V13_BEGIN -->
-
 <!-- FE_POLISH_V13_END -->
-
-
 <!-- FE_POLISH_V14_BEGIN -->
-
 <!-- FE_POLISH_V14_END -->
-
-
 <!-- FE_POLISH_V15_BEGIN -->
-
 <!-- FE_POLISH_V15_END -->
-
-
 <!-- FE_POLISH_V16_BEGIN -->
-
 <!-- FE_POLISH_V16_END -->
-
-
 <!-- FE_POLISH_V17_BEGIN -->
-
 <!-- FE_POLISH_V17_END -->
-
 <!-- FE_POLISH_V18_BEGIN -->
-
 <!-- FE_POLISH_V18_END -->
 <!-- FE_POLISH_V19_BEGIN -->
-
 <!-- FE_POLISH_V19_END -->
 <!-- A1_COMMIT_DEDUP_BEGIN -->
-
 <!-- A1_COMMIT_DEDUP_END -->
-
 <!-- FE_POLISH_V21_BEGIN -->
-
 <!-- FE_POLISH_V21_END -->
-
-
 <!-- FE_POLISH_V22_BEGIN -->
-
 <!-- FE_POLISH_V22_END -->
-
-
 <!-- FE_POLISH_V24_BEGIN -->
-
 <!-- FE_POLISH_V24_END -->
-
-
 <!-- FE_POLISH_V26_BEGIN -->
-
 <!-- FE_POLISH_V26_END -->
-
 <!-- FE_MD_RENDERER_V1 -->
-
 <script id="v3c-md-renderer-js">
 (function(){
   // Known section headings (Chinese RCA reports + common English fallbacks)
@@ -9173,15 +8927,10 @@ flowchart TD
 })();
 </script>
 <!-- /FE_MD_RENDERER_V1 -->
-
 <!-- FE_SECTION_HEAD_UNIFY_V2_BEGIN -->
-
 <!-- FE_SECTION_HEAD_UNIFY_V2_END -->
-
 <!-- FE_PICKY_FIX_V1_BEGIN -->
-
 <!-- FE_PICKY_FIX_V1_END -->
-
 <!-- FE_FOLD_DEFAULTS_V1_BEGIN -->
 <script>
 (function() {
@@ -9230,27 +8979,13 @@ flowchart TD
 })();
 </script>
 <!-- FE_FOLD_DEFAULTS_V1_END -->
-
-
 <!-- FE_P7C_HIDE_TOGGLE_V1_BEGIN -->
-
 <!-- FE_P7C_HIDE_TOGGLE_V1_END -->
 <!-- FE_P7A_MECH_HEAD_V1_BEGIN -->
-
 <!-- FE_P7A_MECH_HEAD_V1_END -->
-
 <!-- FE_P7B_FRAME_UNIFY_V1_BEGIN -->
-
 <!-- FE_P7B_FRAME_UNIFY_V1_END -->
-
-
 <!-- FE_S3_LAYOUT_V1_BEGIN -->
-
-
-
-
-
-
 <script>
 /* FE_S6_OUTLINE_AUTO_V1: 自动生成右栏 outline tree */
 (function(){
@@ -9293,17 +9028,7 @@ flowchart TD
   } else { build(); }
 })();
 </script>
-
-
-
-
-
-
-
-
-
 <!-- FE_P23_LANE_UNIFIED_V1 BEGIN -->
-
 <script id="fe-p23-script">
 (function(){
   function parseScore(scoreText, fallbackTotal){
@@ -9511,8 +9236,6 @@ flowchart TD
 })();
 </script>
 <!-- FE_P23_LANE_UNIFIED_V1 END -->
-
-
 <script>
 /* FE_P23_FIX_HEAD_V1 JS: wrap icon+name into luc-icon-name container */
 (function(){
@@ -9540,7 +9263,6 @@ flowchart TD
   } else { tryWrap(); }
 })();
 </script>
-
 <!-- /* FE_P23_FIX_STRATEGY_V1 */ -->
 <script>
 /* FE_P23_FIX_STRATEGY_V1: 把 luc-rows 3 K-V 替换成原 strategy-list ol */
@@ -9576,8 +9298,6 @@ flowchart TD
   } else { tryRun(); }
 })();
 </script>
-
-
 <script>
 /* FE_P24_LUC_SYNC_V1: ③ luc-toggle 三列同步展开 */
 (function(){
@@ -9608,8 +9328,6 @@ flowchart TD
   } else { tryBind(); }
 })();
 </script>
-
-
 <script>
 /* FE_P27_SYNC_LUC_STATUS_V1: ③ luc-card status class 强制同步 ② verdict-3col-col */
 (function(){
@@ -9655,25 +9373,15 @@ flowchart TD
 })();
 </script>
 <!-- FE_P28_LUC_SUMMARY_BG_MATCH_V2_BEGIN -->
-
 <!-- FE_P28_LUC_SUMMARY_BG_MATCH_V2_END -->
 <!-- FE_P34_REPORT_DIVIDER_UNIFY_V1_BEGIN -->
-
 <!-- FE_P34_REPORT_DIVIDER_UNIFY_V1_END -->
 <!-- FE_P35_TOPBAR_BG_MOTHER_V1_BEGIN -->
-
 <!-- FE_P35_TOPBAR_BG_MOTHER_V1_END -->
 <!-- FE_P36_CASE_TLDR_NO_TOP_GAP_V1_BEGIN -->
-
 <!-- FE_P36_CASE_TLDR_NO_TOP_GAP_V1_END -->
 <!-- CASE_FLAT_SIDEBAR_V1 -->
-
-
-
-
-
 <!-- CASE_ROUTE_SCROLL_FIX_V1_BEGIN -->
-
 <script>
 (function () {
   if (!document.body.classList.contains('sls-starops-article')) return;
@@ -9724,17 +9432,12 @@ flowchart TD
   window.addEventListener('load', bind);
 })();
 </script>
-<div class="case-route-scroll-spacer" aria-hidden="true"></div>
+<div aria-hidden="true" class="case-route-scroll-spacer"></div>
 <!-- CASE_ROUTE_SCROLL_FIX_V1_END -->
-
 <!-- CASE_9_16_UI_FIX_V1_BEGIN -->
-
 <!-- CASE_9_16_UI_FIX_V1_END -->
-
 <!-- FE_MOBILE_OVERFLOW_FIX_V2_BEGIN -->
-
 <!-- FE_MOBILE_OVERFLOW_FIX_V2_END -->
-
 <!-- CASE_FOLDED_STEP_RENUMBER_V1_BEGIN -->
 <script>
 (function(){
@@ -9770,27 +9473,15 @@ flowchart TD
 })();
 </script>
 <!-- CASE_FOLDED_STEP_RENUMBER_V1_END -->
-
-
-
-
-
-
-
 <!-- FE_CASE_CARD_SPACING_FIX_V1_BEGIN -->
-
 <!-- FE_CASE_CARD_SPACING_FIX_V1_END -->
 <!-- FE_CASE_REPORT_ROUTE_UNIFY_V1_BEGIN -->
-
 <!-- FE_CASE_REPORT_ROUTE_UNIFY_V1_END -->
 <!-- FE_CASE_ROUTE_STYLE_V2_BEGIN -->
-
 <!-- FE_CASE_ROUTE_STYLE_V2_END -->
 <!-- FE_CASE_MECH_ROUTE_FINAL_V1_BEGIN -->
-
 <!-- FE_CASE_MECH_ROUTE_FINAL_V1_END -->
 <!-- FE_CASE_ROUTE_EQUAL_HEIGHT_V1_BEGIN -->
-
 <!-- FE_CASE_ROUTE_EQUAL_HEIGHT_V1_END -->
 <style id="STAROPS_BENCHMARK_SIDEBAR_ASSETS">
 body.sls-starops-article .VPSidebar .group {
@@ -9987,6 +9678,65 @@ body.sls-starops-article .VPSidebar .nav-sub-item.active {
     margin-left: 0 !important;
   }
 }
+
+/* INCIDENT_CONCLUSION_FINAL_OVERRIDE_V1_BEGIN */
+html body.sls-starops-article section.incident-conclusion-card {
+  margin-top: 16px !important;
+  padding-top: 18px !important;
+}
+html body.sls-starops-article section.incident-conclusion-card > h2,
+html body.sls-starops-article section.incident-conclusion-card h2,
+html body.sls-starops-article .VPDoc .vp-doc section.incident-conclusion-card > h2,
+html body.sls-starops-article main section.incident-conclusion-card > h2 {
+  margin: 0 0 14px 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  font-size: 24px !important;
+  line-height: 32px !important;
+  font-weight: 700 !important;
+  color: var(--brand-strong, #3451b2) !important;
+}
+html body.sls-starops-article section.incident-conclusion-card > h2::before,
+html body.sls-starops-article section.incident-conclusion-card > h2::after,
+html body.sls-starops-article section.incident-conclusion-card h2::before,
+html body.sls-starops-article section.incident-conclusion-card h2::after {
+  content: none !important;
+  display: none !important;
+}
+html body.sls-starops-article section.incident-conclusion-card .incident-conclusion-grid {
+  margin-top: 0 !important;
+}
+/* INCIDENT_CONCLUSION_FINAL_OVERRIDE_V1_END */
+
+/* SERVICE_ROLE_AND_HUMAN_NUMBERS_V1_BEGIN */
+html body.sls-starops-article .service-role-glossary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin: 0 0 14px 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(52, 81, 178, 0.14);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.62);
+  color: var(--sls-doc-text-soft, #475569);
+  font-size: 12px;
+  line-height: 18px;
+}
+html body.sls-starops-article .service-role-glossary .service-role-label {
+  color: var(--sls-doc-text-mute, #64748b);
+  font-weight: 600;
+}
+html body.sls-starops-article .service-role-glossary code {
+  font-size: 11px;
+  color: var(--brand-strong, #3451b2);
+  background: rgba(52, 81, 178, 0.08);
+  border-radius: 4px;
+  padding: 1px 4px;
+}
+html body.sls-starops-article .human-number {
+  white-space: nowrap;
+}
+/* SERVICE_ROLE_AND_HUMAN_NUMBERS_V1_END */
 </style>
 <script id="STAROPS_BENCHMARK_SIDEBAR_SCRIPT">
 (function() {
