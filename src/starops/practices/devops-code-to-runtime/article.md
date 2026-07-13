@@ -12,410 +12,249 @@ title: DevOps 跨域追因建模
   <span>协作闭环</span>
 </div>
 
-# DevOps 跨域追因建模
+# 使用 UModel 接入 DevOps 数据并追因到代码变更
 
-<div class="sls-starops-article-meta"><span>分类 · 协作闭环</span></div>
+> [查看对话回放内容演示](https://sls.aliyun.com/doc/playground/devops-code-to-runtime-replay.html)
 
+告警诊断通常先定位到运行时对象，例如应用服务、接口、Pod、云资源或调用链。要继续判断哪次发布、哪个代码仓库、哪位负责人和本次异常相关，还需要把 DevOps 域数据纳入运行时上下文。
 
-> [查看对话回放内容演示](/playground/devops-code-to-runtime-replay.html)
+本文介绍如何通过 UModel 接入 DevOps 数据，将代码仓库、发布、构建产物、容器镜像、Pull Request 和开发者等对象建模为可追因关系，让 STAROps 能从告警和运行时对象沿链回到代码变更。
 
-UModel 已内置 apm、k8s、acs 等运行时域，覆盖服务、Pod、云资源的可观测性。但告警触发时，Agent 只能告诉你"哪个 Pod 挂了"，无法回答"是谁的哪次发布导致的"——代码仓库、Release 和容器镜像不在 UModel 建模范围内。
+DevOps 是外部工程域的代表场景。客户的 Git 平台、制品库、CI/CD、项目管理系统和组织流程各不相同，不适合统一内置到 STAROps 运行时域。推荐做法是保留 STAROps 已有运行时观测能力，通过参考实现把客户侧 DevOps 数据接入 UModel，再由 STAROps Agent 沿 UModel 关系链组织证据。
 
-本文介绍如何将 DevOps 数据（代码仓库、开发者、Release、镜像）接入 UModel，补全从告警到代码变更的追因链路。接入完成后，Agent 可以沿着 `告警 → 服务 → Pod → 镜像 → Release → 代码仓库 → 开发者` 的关系链自动追因。
+## 适用范围
 
-## 安装 Skill
+本实践适用于以下场景：
 
-本实践配套 1 份 SOP Skill 和 6 个验证 Skill。SOP Skill 引导 Agent 按 7 步完成端到端建模；6 个验证 Skill 用于逐阶段校验数据完整性。
+- 已能通过 STAROps、ARMS/APM、K8s 或云资源数据定位运行时异常对象。
+- 希望从告警追到服务、Pod、镜像、发布、代码仓库和开发者。
+- 使用 GitLab、Codeup、ACR 等系统，希望将代码域和制品域数据接入 UModel。
+- 需要把客户自有工程系统沉淀成长期可复用的追因上下文。
 
-| Skill | 作用 | 本地 Agent（npx） | STAROps 控制台（tar.gz） |
+本实践不适用于以下场景：
+
+- 只需要一次性查询 MR、pipeline、job log 或 issue 等研发上下文。此类按需补证更适合通过 MCP 接入。
+- 期望自动生成 commit 级完整追溯。当前主线是 release 级追因，commit 级采集属于扩展方向。
+- 期望所有 DevOps 对象都已具备真实数据采集。参考模型包含 17 个 EntitySet 和 36 个 EntitySetLink，其中部分实体为 schema-only。
+
+## 能力模型
+
+本实践将 DevOps 数据分成三层事实面。
+
+| 层 | 含义 | 用途 |
+|---|---|---|
+| 核心追因链 | 应用服务、Pod、镜像、发布、代码仓库、开发者 | 支撑告警到代码变更的主链路 |
+| 参考模型 | 17 个 EntitySet 和 36 个 EntitySetLink | 定义完整 DevOps 域建模框架 |
+| 当前数据覆盖 | 有 producer 的实体与已验证链路 | 决定当前可实际采集和追因的范围 |
+
+核心追因链是官方文档和诊断体验的主线。参考模型用于说明 DevOps 域如何完整进入 UModel。当前数据覆盖用于说明哪些对象已经具备真实采集能力，哪些对象仍需要客户补充数据源 adapter。
+
+## 建模范围
+
+UModel 已经覆盖运行时域和可观测域，例如应用服务、Pod、Deployment、云资源、指标、日志和调用链。本实践只补运行时追因缺失的 DevOps 域，不重复建模已有运行时对象。
+
+| 建模层 | 对象 | 来源 | 当前状态 |
 |---|---|---|---|
-| `devops-code-to-runtime-sop` | 引导 Skill：按 7 步完成"理解建模 → 环境准备 → 配置接入 → 代码域采集 → 制品域采集 → 跨域关联 → 端到端验证"。 | `npx skills add aliyun-sls/sls-doc-skills --skill devops-code-to-runtime-sop` | [devops-code-to-runtime-sop.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/devops-code-to-runtime-sop.tar.gz) |
-| `verification-resource-readiness` | 检查配置文件完整性和 API 连通性 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-resource-readiness` | [verification-resource-readiness.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/verification-resource-readiness.tar.gz) |
-| `verification-workspace-alignment` | 验证 CMS workspace 与 SLS project 对齐 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-workspace-alignment` | [verification-workspace-alignment.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/verification-workspace-alignment.tar.gz) |
-| `verification-workspace-refresh` | 运行 data_generator，确认全部 task success | `npx skills add aliyun-sls/sls-doc-skills --skill verification-workspace-refresh` | [verification-workspace-refresh.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/verification-workspace-refresh.tar.gz) |
-| `verification-cms-visibility` | 验证 CMS 中 devops 域实体可见 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-visibility` | [verification-cms-visibility.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/verification-cms-visibility.tar.gz) |
-| `verification-cms-field-check` | 检查实体关键字段值正确性 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-field-check` | [verification-cms-field-check.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/verification-cms-field-check.tar.gz) |
-| `verification-cms-sls-diagnose` | 诊断 SLS 写入问题（仅失败时使用） | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-sls-diagnose` | [verification-cms-sls-diagnose.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/verification-cms-sls-diagnose.tar.gz) |
+| 运行时域 | 应用服务、Pod、Deployment、云资源 | STAROps 既有 UModel、ARMS/APM、K8s、CMS workspace | 已有能力 |
+| 核心 DevOps 链 | 开发者、代码仓库、发布、Pull Request、构建产物、容器镜像 | GitLab、Codeup、ACR | 参考实现已有 producer |
+| 扩展 DevOps 模型 | 组织、项目、工作项、里程碑、流水线、流水线运行、Helm Chart、二进制包、NPM 包、单测用例、部署记录 | Jira、CI、appstack、制品库、组织系统等 | schema-only，待 adapter |
+| 跨域关系 | 服务、Pod、镜像、发布、仓库、开发者之间的追因路径 | UModel 关系 | 核心链路优先验证 |
 
-参考实现仓库 [umodel-devops-reference](https://github.com/aliyun-sls/umodel-devops-reference) 包含上述 Skill 的完整实现、data_generator 代码、配置样例和中英双语文档。
+参考实现 `aliyun-sls/umodel-devops-reference` 已提供 17 个 EntitySet 和 36 个 EntitySetLink。36 条关系由 29 条 DevOps 设计关系和 7 条跨域关系组成，跨域关系连接到 APM 服务和 K8s 工作负载。
 
-## 为什么 UModel 没有内置 DevOps 域
+其中，当前有 producer 支撑的对象包括用户、代码仓库、发布、Pull Request、构建产物和容器镜像。其余扩展对象用于定义完整 DevOps 模型，需要客户根据自己的 Jira、CI、部署系统、制品库或组织系统补充 adapter 后再进入生产追因。
 
-UModel 内置域（apm / k8s / acs / rum / synthetics 等）覆盖的是阿里云可观测性产品数据。DevOps 数据来源于外部 Git 平台（GitLab、Codeup、GitHub 等）和容器镜像仓库，每个团队的技术栈和接入方式差异大，不适合统一内置。
+## 运行闭环
 
-本文提供的是一套参考实现 [umodel-devops-reference](https://github.com/aliyun-sls/umodel-devops-reference)：定义 5 个 DevOps 实体 + 12 条关系，通过 adapter 抽象屏蔽 Git 平台差异，将数据写入 UModel EntityStore。可以直接使用，也可以基于此扩展。
+:::: details 运行闭环流程
 
-## 建模覆盖范围
+```mermaid
+flowchart TD
+  A["告警触发"] --> B["定位运行时对象"]
+  B --> C["应用服务或 Pod"]
+  C --> D["查询 Pod 使用的镜像"]
+  D --> E["关联发布或构建产物"]
+  E --> F["关联代码仓库"]
+  F --> G["关联开发者或负责人"]
+  G --> H["输出代码变更追因结果"]
+  H --> I{"关系链是否完整"}
+  I -->|完整| J["给出证据链"]
+  I -->|缺数据| K["说明缺失域和补接入建议"]
+```
 
-| 域 | 实体 | 数据来源 | UModel 是否内置 |
-|---|---|---|---|
-| 代码域 | code_repository、developer、code_release | GitLab / Codeup API | 否（本文接入）|
-| 制品域 | image_registry、image | ACR API | 否（本文接入）|
-| 运行时域 | k8s.pod、k8s.deployment | CMS workspace | 是（已内置）|
-| 服务域 | apm.service | ARMS | 是（已内置）|
+::::
 
-关系链路：`developer → code_repository → code_release → image → k8s.pod ← apm.service`
+落地过程分为两类动作。
 
-## 已验证的 Git 平台
-
-| Provider | 认证方式 | 验证版本 |
+| 动作 | 说明 | 产物 |
 |---|---|---|
-| GitLab | Personal / Project / Group Access Token | CE 17.6.0，python-gitlab 4.8.0 |
-| Codeup | RAM AK/SK 或个人访问令牌（PAT） | alibabacloud-devops20210625 3.0.0 |
+| 建模落地 | 选择 Git provider，接入代码域和制品域，建立跨域关系，按阶段验证数据完整性 | UModel 实体、关系和验证记录 |
+| 运行时追因 | 告警触发后，STAROps Agent 沿 UModel 关系链查询镜像、发布、仓库和责任人 | 代码变更追因结果 |
 
-## 前提条件
+Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 关系链。验证 Skill 用于分阶段检查数据完整性，不代表长期运行的 STAROps Runtime Skill。
 
-- 阿里云账号拥有 CMS、SLS、ACR 的操作权限，以及对应的 RAM AccessKey。
-- 已在 CMS 中创建 workspace，作为实体数据的存储目标。
-- 已准备 Git provider 环境：GitLab 的 Personal Access Token，或 Codeup 的 RAM AK/SK（或个人访问令牌）。
-- 已在 ACR 中管理容器镜像（镜像 tag 用于与 Release tag 建立关联）。
-- 已在 STAROps 控制台创建数字员工，用于验证跨域查询能力。
+## 数据前提
 
-## 流程概览
+开始接入前，需要确认以下数据和权限。
 
-1. **理解建模架构** — 掌握 5 实体 + 12 关系的设计和三域串联逻辑
-2. **准备环境与凭据** — 选择 Git provider，准备 ACR / CMS / SLS 环境和凭据
-3. **配置数据接入引擎** — 配置 adapter、task 列表和 mapping 文件
-4. **接入代码域数据** — 采集代码仓库、开发者和 Release
-5. **接入制品域与运行时域数据** — 采集 ACR 镜像和 K8s Pod
-6. **建立跨域关联** — 通过 mapping 文件连接代码、制品和运行时
-7. **端到端验证** — 通过 verification skill 和 STAROps 数字员工确认全链路可用
+| 项 | 要求 |
+|---|---|
+| STAROps workspace | 已创建可写入实体和关系数据的 workspace |
+| 运行时数据 | workspace 中已有应用服务、Pod、K8s 或云资源等运行时对象 |
+| Git provider | 可读取目标代码仓库、发布、成员和 Pull Request |
+| 镜像仓库 | 可读取容器镜像、镜像 tag 和镜像元数据 |
+| 跨域映射 | 能建立仓库、发布、镜像和运行时对象之间的关联规则 |
+| 权限边界 | 只读采集优先，生产变更不在本实践范围内 |
 
-## 步骤一：理解建模架构
+如果客户希望把工作项、流水线、部署记录或组织结构纳入追因链，需要额外准备对应系统的数据源和 adapter。
 
-UModel DevOps 域定义了 5 个 EntitySet：
+## 接入流程
 
-| EntitySet | 含义 | 关键字段 |
+### 1. 明确追因对象
+
+先确定告警后需要追到哪些对象。最小可用链路包括：
+
+服务 / Pod → 镜像 → 发布 → 代码仓库 → 开发者或负责人。
+
+如果客户还需要追到工作项、流水线、部署记录或审批信息，应将这些对象作为扩展模型处理，并单独验证数据来源。
+
+### 2. 接入代码域
+
+代码域接入 Git provider。当前参考实现覆盖 GitLab 和 Codeup。接入后应能获得代码仓库、开发者、发布和 Pull Request 等对象。
+
+不同 Git provider 的认证方式、可见仓库范围和 API 返回字段可能不同。参考实现通过 adapter 屏蔽平台差异，将结果写入统一 UModel 结构。客户切换 Git provider 时，应优先保持 UModel 对象和关系语义稳定。
+
+### 3. 接入制品域
+
+制品域接入容器镜像仓库。当前参考实现以 ACR 为主要来源，采集镜像、镜像 tag 和构建产物信息。
+
+发布与镜像的关联应来自真实版本规则或显式映射。不同团队的仓库名、release tag 和 image tag 命名方式不一定一致，不能依赖自然语言推断自动拼接关系。
+
+### 4. 建立跨域关系
+
+跨域关系应优先覆盖核心追因链。
+
+| 关系方向 | 说明 |
+|---|---|
+| 代码仓库 → 发布 | 识别发布来自哪个仓库 |
+| 发布 → 构建产物 / 镜像 | 识别发布产生或关联的制品 |
+| Pod → 镜像 | 识别运行时对象使用的镜像 |
+| 开发者 / 负责人 → 仓库 | 识别仓库或发布责任归属 |
+| 应用服务 / Pod → DevOps 对象 | 支撑告警从运行时域回到 DevOps 域 |
+
+关系必须由真实数据或明确配置产生。缺少映射时，应在验证结果和追因输出中说明缺口。
+
+### 5. 执行分阶段验证
+
+数据接入后，需要按阶段验证，不应只用一次查询结果判断全链路可用。
+
+| 阶段 | 验证目标 |
+|---|---|
+| 资源准备 | Git provider、镜像仓库、workspace、运行时数据可访问 |
+| workspace 对齐 | 实体和关系写入目标 workspace |
+| 数据刷新 | 当前 producer 支撑的实体和关系刷新成功 |
+| 可见性检查 | CMS workspace 中能看到 DevOps 域实体 |
+| 字段检查 | 关键字段值符合目标平台和映射规则 |
+| 失败诊断 | 写入失败、不可见或字段异常时定位 workspace、权限或数据源问题 |
+
+## 输出结构
+
+代码变更追因结果应包含以下内容：
+
+| 模块 | 内容 |
+|---|---|
+| 运行时对象 | 告警关联的应用服务、Pod、资源或接口 |
+| 制品证据 | Pod 使用的镜像、镜像 tag、构建产物 |
+| 发布证据 | 发布版本、发布时间、发布来源 |
+| 代码证据 | 代码仓库、分支或 Pull Request |
+| 责任归属 | 开发者、仓库负责人或发布负责人 |
+| 证据缺口 | 缺失的数据源、关系、字段或权限 |
+| 后续建议 | 需要补接入的 adapter、映射或验证步骤 |
+
+当关系链完整时，STAROps 可以给出从告警到代码变更的证据链。当关系链不完整时，输出应明确缺失哪一段关系，不能把缺数据解释成没有风险。
+
+## 已验证链路
+
+本实践当前已在 STAROps 工作区验证发布版本镜像的追因链路。验证口径要求从运行时对象出发，沿 UModel 关系逐段走到代码仓库和负责人，同时检查实体写入、关系可遍历和缺口可解释。
+
+| 验证对象 | 链路读法 | 通过标准 |
 |---|---|---|
-| `devops.code_repository` | 代码仓库 | repo_id、repo_name、git_provider、default_branch |
-| `devops.developer` | 开发者 | developer_id、developer_name、role |
-| `devops.code_release` | 发布版本 | release_id、tag、commit_sha、release_time |
-| `devops.image_registry` | 镜像仓库 | registry_id、registry_name、region |
-| `devops.image` | 容器镜像 | image_id、image_name、image_tag、digest |
-
-12 条 EntitySetLink 定义了实体间的关系：
-
-| 关系 | 起点 → 终点 | 建立方式 |
-|---|---|---|
-| developer_manages_code_repository | developer → code_repository | manage_mapping.yaml 静态映射 |
-| code_release_sourced_from_code_repository | code_release → code_repository | API 自动关联 |
-| image_registry_contains_image | image_registry → image | API 自动关联 |
-| image_sourced_from_code_release | image → code_release | repo_image_mapping.yaml + tag 字面匹配 |
-| pod_uses_image | kubernetes_pod → image | CMS 数据自动关联 |
+| 发布版本镜像 | Pod → 镜像 → 构建产物 → 发布 → 代码仓库 → 负责人 | 能给出每一段关系证据，最终闭环到仓库和负责人 |
+| 测试或构建 tag 镜像 | Pod → 镜像 → 构建产物，缺少发布记录时停在发布前 | 明确说明缺少对应 release，不把测试 tag 硬连到某个发布版本 |
+| 参考模型扩展对象 | 工作项、流水线、部署记录、组织结构等对象进入 schema | 只有补齐 producer 和验证证据后，才能进入生产追因结论 |
 
-> 说明：当前建模粒度为 release 级，不采集 commit 历史。如需 commit 级追溯，可在参考实现 [umodel-devops-reference](https://github.com/aliyun-sls/umodel-devops-reference) 基础上扩展 adapter。
+已验证链路覆盖以下关键关系：
 
-## 步骤二：准备环境与凭据
+- Pod 使用的镜像可以和 DevOps 域镜像对象对齐。
+- 镜像可以关联到构建产物。
+- 构建产物可以关联到发布版本。
+- 发布版本可以关联到代码仓库。
+- 代码仓库可以关联到负责人。
 
-### 选择 Git provider
+生产使用时，应优先选择发布版本镜像作为端到端验收样本。对于测试 tag、分支 tag 或临时构建镜像，如果客户没有在发布系统中生成对应 release，STAROps 应把结果停在构建产物或发布缺口处，并提示补齐发布记录或映射规则。
 
-| Provider | 认证方式 | 可见范围 | 适用场景 |
-|---|---|---|---|
-| GitLab（PAT） | Personal Access Token，scope 选 `read_api` | PAT 所属用户有权限的所有仓库 | 自建 GitLab 或 GitLab SaaS |
-| Codeup（RAM） | RAM AK/SK | RAM 用户被授权的仓库 | 精确控制可见范围 |
-| Codeup（PAT） | 个人访问令牌，scope 选 `read_api` | 令牌所属用户可见的所有仓库 | 需要拉取更多仓库时 |
+## Guide Skill 与验证 Skill
 
-> 说明：Codeup RAM 模式和 PAT 模式的仓库可见范围差异较大。如果采集的仓库数量少于预期，检查认证模式。
+本实践包含 1 个 Guide Skill 和 6 个 staged verification Skills。Guide Skill 用于指导 DevOps 数据接入、配置和验证；验证 Skills 用于按阶段检查数据完整性和 workspace 可见性。
 
-### 确认环境参数
+| Skill | 定位 | 用途 | 本地 Agent | STAROps 控制台 |
+|---|---|---|---|---|
+| `devops-code-to-runtime-sop` | Guide Skill | 引导用户理解参考模型、准备数据源、接入代码域和制品域、建立跨域关系并完成端到端验证 | 不支持（诊断流程依赖 STAROps 运行时工具与 workspace 数据） | [devops-code-to-runtime-sop.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/devops-code-to-runtime-sop.tar.gz) |
+| `verification-resource-readiness` | 验证 Skill | 检查 Git provider、镜像仓库、workspace 和运行时数据是否可访问 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-resource-readiness` | 不适用 |
+| `verification-workspace-alignment` | 验证 Skill | 确认配置指向目标 workspace 和对应数据写入面 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-workspace-alignment` | 不适用 |
+| `verification-workspace-refresh` | 验证 Skill | 执行真实刷新路径，记录实体和关系写入结果 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-workspace-refresh` | 不适用 |
+| `verification-cms-visibility` | 验证 Skill | 检查 DevOps 域实体在 CMS workspace 中是否可见 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-visibility` | 不适用 |
+| `verification-cms-field-check` | 验证 Skill | 检查关键字段、provider 差异和映射结果 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-field-check` | 不适用 |
+| `verification-cms-sls-diagnose` | 验证 Skill | 在刷新或可见性异常时定位 workspace、权限或数据源问题 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-sls-diagnose` | 不适用 |
 
-| 服务 | 需要的参数 | 获取方式 |
-|---|---|---|
-| CMS | workspace 名称 | CMS 控制台 → workspace 列表 |
-| SLS | project 名称、logstore 名称 | 通常与 CMS workspace 同名 |
-| ACR | 实例 ID、region | ACR 控制台 → 实例列表 |
-| K8s | cluster ID | ACK 控制台 → 集群列表 |
+验证 Skills 定位是分阶段验证能力，不声明可配置给数字员工长期运行的 Runtime Skill 能力。完整验证记录见 `verification.md`。
 
-## 步骤三：配置数据接入引擎
+## 验收标准
 
-### 配置文件结构
+### 当前核心链路
 
-```
-config/
-  app_config.yaml              # 主配置（provider 选择、凭据、环境参数）
-  data_mapping.yaml            # 实体字段映射
-  manage_mapping.yaml          # developer → repository 静态映射
-  repo_image_mapping.yaml      # repository → image_registry 静态映射
-  static_topo.yaml             # 静态拓扑关系
-```
+完成接入后，应至少满足以下标准：
 
-### 关键配置项
+1. Git provider 认证接入成功，代码仓库、发布、开发者和 Pull Request 等核心对象可采集。
+2. 镜像仓库数据可采集，镜像与发布或构建产物之间能建立真实关联。
+3. workspace 中能看到当前 producer 支撑的 DevOps 实体，关键字段正确。
+4. 给定运行时对象，STAROps 能沿服务 / Pod / 镜像 / 构建产物 / 发布 / 仓库 / 开发者链路输出追因证据。
+5. 发布版本镜像可以闭环到代码仓库和负责人。
+6. 测试 tag、分支 tag 或临时构建镜像缺少 release 记录时，输出明确提示缺失项。
+7. 镜像与发布的匹配使用明确版本规则或映射关系，不依赖松散名称拼接。
+8. 采集和验证过程不依赖通用 mock 数据。
 
-`app_config.yaml` 的 `git_provider.type` 字段决定运行时使用哪个 adapter：
+### 扩展模型
 
-```yaml
-git_provider:
-  type: codeup   # 可选值：codeup / gitlab
-```
+如果客户要使用 17/36 完整参考模型，还应满足以下标准：
 
-`tasks.enabled` 列表控制执行哪些采集任务。12 个 task 按依赖关系顺序执行：
+1. 17 个 EntitySet 和 36 个 EntitySetLink 已上传到目标 workspace。
+2. 有 producer 的 6 个实体完成数据刷新、可见性检查和字段检查。
+3. 11 个 schema-only 实体在文档和验证记录中标注为待 adapter。
+4. 29 条 DevOps 设计关系和 7 条跨域关系按 producer 覆盖分层验证。
+5. Jenkins、GitHub Actions、Argo、Tekton、工作项、部署记录和 commit 级采集等能力未接入前，不写成已验证能力。
 
-```yaml
-tasks:
-  enabled:
-    - code_repository              # 依赖：无
-    - developer                    # 依赖：无
-    - code_release                 # 依赖：code_repository
-    - code_release_sourced_from_code_repository  # 依赖：code_release
-    - developer_manages_code_repository          # 依赖：developer + code_repository
-    - image_registry               # 依赖：无
-    - image                        # 依赖：image_registry
-    - image_registry_contains_image              # 依赖：image + image_registry
-    - image_sourced_from_code_release            # 依赖：image + code_release
-    - kubernetes_pod               # 依赖：无
-    - pod_uses_image               # 依赖：kubernetes_pod + image
-    - static_topo                  # 依赖：无
-```
+## 边界与降级
 
-> 说明：配置样例位于 `config/app_config.codeup.yaml.sample` 和 `config/app_config.gitlab.yaml.sample`。复制其中一个为 `app_config.yaml` 后按实际环境修改。
+- 当前主线是 release 级追因，commit 级追溯需要额外扩展。
+- schema-only 实体只能说明参考模型已有结构，不能说明生产数据已采集。
+- Git provider 的可见仓库范围取决于客户提供的认证和权限。
+- 镜像与发布的关联必须来自真实版本规则或显式映射。
+- DevOps 实体和关系需要持续刷新。数据过期、映射缺失或权限不足时，追因链路可能在中间节点停止。
+- 同一镜像仓库存在多个访问端点或别名时，应在接入阶段完成归一化，避免 Pod 侧镜像和制品侧镜像无法对齐。
+- 测试 tag、分支 tag 或临时构建镜像没有对应 release 记录时，应输出发布缺口，不应推断为某个正式发布。
+- 工作项、流水线、部署记录、组织结构等扩展对象需要对应数据源 adapter。
+- 如果 workspace 中缺少运行时对象、镜像数据或 DevOps 关系，STAROps 应输出证据缺口和补接入建议。
 
-## 步骤四：接入代码域数据
+## 与 MCP 接入的关系
 
-1. 将配置样例复制为实际配置文件，填入凭据和环境参数。
-2. 运行接入引擎：
+GitLab MCP 适合在一次诊断中按需读取 MR、pipeline、job log 或 issue 等研发上下文。DevOps UModel 建模适合把长期复用的代码、发布、镜像和责任关系沉淀成运行时可追因上下文。
 
-```bash
-python3 devops_data_generator/main.py --mode single --config devops_data_generator/config
-```
-
-3. 确认输出日志中 `code_repository`、`developer`、`code_release` 三个 task 状态为 success。
-
-### Codeup 认证模式选择
-
-配置文件中通过 `auth_mode` 字段选择认证方式：
-
-```yaml
-codeup:
-  auth_mode: pat   # ram 或 pat
-  organization_id: "<组织 ID>"
-  access_key_id: "<AK>"
-  access_key_secret: "<SK>"
-  access_token: "<PAT>"   # auth_mode 为 pat 时使用
-```
-
-> 说明：`auth_mode: ram` 时只使用 AK/SK，`access_token` 字段被忽略。`auth_mode: pat` 时 AK/SK 仍用于 SDK 签名，`access_token` 控制仓库可见范围。
-
-### 分页采集
-
-adapter 内置分页循环，每页 100 条。仓库或 tag 数量超过 100 时自动翻页直到拉取完毕。
-
-## 步骤五：接入制品域与运行时域数据
-
-ACR 相关 task（`image_registry`、`image`、`image_registry_contains_image`）通过阿里云 ACR API 拉取镜像仓库和 tag 列表。K8s Pod 数据通过 CMS API 从 workspace 的 EntityStore 中读取。
-
-1. 确认 `app_config.yaml` 中 ACR、CMS、K8s 的配置正确。
-2. 运行接入引擎（与步骤四同一命令，12 个 task 按依赖顺序一次性执行）。
-3. 确认 `image_registry`、`image`、`kubernetes_pod` 三个 task 状态为 success。
-
-### ACR 镜像 tag 分页
-
-`image` task 对每个镜像仓库拉取 tag 列表，同样内置分页循环。可通过配置参数限制拉取数量：
-
-```yaml
-acr:
-  max_tags_per_repo: 0      # 0 = 不限制，拉取全量
-  max_repositories: 0        # 0 = 不限制
-```
-
-> 说明：多个采集容器并发请求同一 ACR 实例时可能触发 API 限流。如果部署了多个 data_generator 实例，建议只在其中一个实例启用 ACR 相关 task，另一个仅启用 git 相关 task。
-
-## 步骤六：建立跨域关联
-
-### repo_image_mapping.yaml
-
-定义代码仓库到镜像仓库的映射关系。`image_sourced_from_code_release` task 依据此映射 + Release tag 与 image tag 的字面匹配来建立关系。
-
-```yaml
-repo_image_mappings:
-  "<your-project-path>":              # 如 "my-group/my-app"
-    image_registries:
-      - "<acr-registry-id>"           # ACR 镜像仓库 ID
-```
-
-> 说明：Release tag（如 `v1.1.0`）和 image tag（如 `v1.1.0`）字面一致时，系统自动建立 `image_sourced_from_code_release` 关系。静态映射 + tag 匹配比自动发现更可控——不同团队的命名规则差异大，自动匹配误判率较高。
-
-### manage_mapping.yaml
-
-定义开发者到代码仓库的管理关系。
-
-```yaml
-manage_mappings:
-  "<developer-name>":
-    repositories:
-      - "<your-project-path>"
-```
-
-> 说明：不填写 manage_mapping.yaml 时，`developer_manages_code_repository` 关系为空，不影响其他关系，但 STAROps 查询"谁负责这个仓库"时无法给出结果。
-
-### pod_uses_image
-
-该关系由系统自动建立，不需要额外配置。CMS 中的 Pod 数据包含镜像信息，data_generator 会自动匹配 Pod 使用的镜像与 ACR 中采集到的镜像。
-
-## 步骤七：端到端验证
-
-### 数据完整性验证
-
-数据写入成功后，在 CMS EntityStore 中可以看到 devops 域的 5 种实体类型：
-
-::: details 查看图片
-![CMS EntityStore devops 域概览](./assets/cms-devops-entity-overview.png)
-:::
-
-按顺序执行前文「安装 Skill」中列出的 6 个 verification skill：
-
-| Stage | Skill | 验证目标 |
-|---|---|---|
-| 1 | verification-resource-readiness | 配置文件完整性、API 连通性 |
-| 2 | verification-workspace-alignment | CMS workspace 与 SLS project 对齐 |
-| 3 | verification-workspace-refresh | 运行 data_generator，确认全部 task success |
-| 4 | verification-cms-visibility | CMS 中 devops 域实体可见 |
-| 5 | verification-cms-field-check | 实体关键字段值正确（如 git_provider 值） |
-| 6 | verification-cms-sls-diagnose | 仅失败时使用，诊断 SLS 写入问题 |
-
-### STAROps 跨域查询验证
-
-在 STAROps 中通过数字员工逐层验证。下方「查询样例」给出了每一层的具体提问方式和预期结果。
-
-## 查询样例
-
-### 样例 1：查询 workspace 中 DevOps 域实体概览
-
-向 STAROps 数字员工提问：
-
-「列出当前 workspace 中 devops 域有哪些实体类型（EntitySet），每种类型有多少条数据」
-
-预期返回：5 种 devops 域实体类型及各自的数量。
-
-::: details 查看图片
-![devops 域实体概览](./assets/starops-devops-entity-types.png)
-:::
-
-### 样例 2：查询所有代码仓库及其 Git provider
-
-向 STAROps 数字员工提问：
-
-「列出当前 workspace 中所有 devops.code_repository 实体，显示 repo_name 和 git_provider 字段」
-
-预期返回：所有代码仓库及其 `git_provider` 字段值（`gitlab` 或 `aliyun`）。
-
-::: details 查看图片
-![代码仓库列表](./assets/starops-code-repository-list.png)
-:::
-
-### 样例 3：查询某仓库关联的开发者
-
-向 STAROps 数字员工提问：
-
-「查询 frontend-app 这个代码仓库关联了哪些开发者」
-
-预期返回：开发者列表，包含 developer_name 和 role 字段。返回为空说明 `manage_mapping.yaml` 中未配置该仓库的开发者映射。
-
-### 样例 4：查询 Pod 使用的镜像来源
-
-向 STAROps 数字员工提问：
-
-「查询哪些 kubernetes_pod 使用了指定命名空间下的镜像，按镜像名分组展示」
-
-预期返回：Pod 按镜像分组，显示镜像来源 ACR 仓库地址，覆盖业务服务和基础设施组件。
-
-::: details 查看图片
-![Pod 镜像分组](./assets/starops-pod-image-mapping.png)
-:::
-
-### 样例 5：从镜像追溯到代码 Release
-
-向 STAROps 数字员工提问：
-
-「某个镜像仓库中的 v1.1.0 tag 对应的代码 Release 是什么？来自哪个代码仓库？」
-
-预期返回：`image_sourced_from_code_release` 关系命中，显示 Release tag、commit_sha、release_time 以及来源仓库路径。
-
-### 样例 6：查询 ACR 镜像仓库和 tag 分布
-
-向 STAROps 数字员工提问：
-
-「当前 workspace 中有多少个 devops.image_registry，每个 registry 下有多少个 image tag？列出 tag 数量前 5 的 registry」
-
-预期返回：registry 总数和 image tag 总数，tag 数量最多的 registry 排在前面。
-
-### 样例 7：告警追因全链路
-
-向 STAROps 数字员工提问：
-
-「查看最近的 CRITICAL 级别告警，找到关联的服务和 Pod，然后追溯到对应的镜像版本和代码仓库」
-
-预期返回包含完整的 5 层追因链路：
-
-1. **告警层**：告警名称、触发规则、影响服务
-2. **服务→Pod 层**：受影响的服务名和对应的 Pod 列表
-3. **Pod→镜像层**：Pod 使用的镜像名和 tag
-4. **镜像→Release 层**：该 image tag 对应的 code_release
-5. **Release→仓库层**：Release 来自哪个代码仓库、发布时间、commit hash
-
-::: details 查看图片
-![告警追因链路](./assets/starops-alert-rca-chain.png)
-:::
-
-### 样例 8：双 provider 数据对比
-
-向 STAROps 数字员工提问：
-
-「对比 git_provider=gitlab 和 git_provider=aliyun 的代码仓库，分别有多少个仓库、多少个开发者、多少个 Release」
-
-预期返回：按 `git_provider` 分组的实体数量对比，可直观看到两个平台的接入覆盖范围差异。
-
-## 常见问题
-
-### 认证与权限
-
-**Codeup 采集到的仓库数量少于预期**
-
-检查 `auth_mode` 配置。RAM 模式只返回该 RAM 用户被授权的仓库，PAT 模式返回令牌所属用户可见的所有仓库。两者差异可能很大。如需更大范围的仓库可见性，切换到 PAT 模式。
-
-**GitLab PAT 需要哪些权限**
-
-scope 选 `read_api` 即可。`read_api` 允许只读访问仓库列表、成员、Release 等 API，不需要 `api`（读写权限）。
-
-### 数据采集
-
-**ACR 镜像 tag 数量明显少于实际**
-
-确认使用了包含分页循环的版本，同时检查 `acr.max_tags_per_repo` 是否被设置为非零限制值。
-
-**多个 data_generator 实例同时运行时 ACR 返回错误**
-
-多容器并发请求同一 ACR 实例会触发 API 限流。将 ACR 相关 task 集中到一个实例运行，其他实例仅启用 git 相关 task。
-
-**kubernetes_pod task 报 404**
-
-在 CMS 控制台确认 workspace 的准确名称，填入 `app_config.yaml` 的 `cms.workspace` 字段。
-
-### 跨域关联
-
-**image_sourced_from_code_release 关系为空**
-
-该关系依赖两个条件同时满足：`repo_image_mapping.yaml` 中配置了仓库到镜像仓库的映射，且 Release tag 与 image tag 字面一致。检查 mapping 文件配置和 tag 命名是否匹配。
-
-**developer_manages_code_repository 关系为空**
-
-该关系依赖 `manage_mapping.yaml` 的静态映射。未填写此文件时关系为空是预期行为。按实际组织结构填写开发者与仓库的对应关系。
-
-### 数据存储与持续运行
-
-**CMS workspace 中看不到 devops 域数据**
-
-确认 `app_config.yaml` 中的 `cms.workspace` 和 `sls.project` 配置正确。CMS workspace 名称通常与 SLS project 同名。名称错误会导致 404 或写入到错误的 workspace。
-
-**数据在 CMS 中消失了**
-
-实体数据保活时间为 `keep_alive_seconds`（默认 86400 秒 = 24 小时）。停止采集后 24 小时数据过期。通过 docker-compose 或 cron 定时运行可保持数据持续可用。
-
-**如何配置持续采集**
-
-使用 docker-compose 启动 data_generator 容器，设置 `tasks.interval` 控制刷新间隔（建议 1800 秒）。详见参考实现 [umodel-devops-reference](https://github.com/aliyun-sls/umodel-devops-reference) 中的 `docker-compose.yml`。
+如果某类研发信息只是偶尔补证，可以先通过 MCP 接入。如果它会被多个告警、巡检或长期任务反复使用，应评估进入 UModel 建模。
 
 ## 相关入口
 
-- [返回 STAROps 最佳实践首页](/starops/starops.html)
-- [打开 STAROps Playground](/playground/staropsdemo.html)
+- [返回 STAROps 最佳实践首页](https://sls.aliyun.com/doc/starops/)
+- [打开 STAROps Playground](https://sls.aliyun.com/doc/playground/devops-code-to-runtime-replay.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)
+- [DevOps UModel 参考实现](https://github.com/aliyun-sls/umodel-devops-reference)
