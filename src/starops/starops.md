@@ -163,6 +163,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">把客户侧 DevOps 数据接入 UModel，让告警沿关系链追到镜像、发布、代码仓库和负责人。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
+      <h3 class="sls-starops-card__title">一个 Agent 入口完成 DevOps 闭环</h3>
+      <p class="sls-starops-card__desc">以 Coding Agent 为统一入口，把发布后运行检查和告警到代码修复落在同一个任务，发布、提交、PR 由原系统人工确认。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 

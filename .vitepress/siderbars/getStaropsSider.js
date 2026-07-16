@@ -36,6 +36,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: 'DevOps 跨域追因建模', link: '/starops/practices/devops-code-to-runtime/article' },
+        { text: '一个 Agent 入口完成 DevOps 闭环', link: '/starops/practices/coding-agent-devops-loop/article' },
       ],
     },
     {
