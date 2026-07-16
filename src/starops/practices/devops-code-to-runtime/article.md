@@ -3,7 +3,7 @@ pageClass: sls-starops-article
 status: published
 journey: 协作闭环
 id: devops-code-to-runtime
-title: DevOps 跨域追因建模
+title: 使用 UModel 接入 DevOps 数据并追因到代码变更
 ---
 
 <div class="sls-starops-article-crumb">
@@ -14,7 +14,7 @@ title: DevOps 跨域追因建模
 
 # 使用 UModel 接入 DevOps 数据并追因到代码变更
 
-> [查看对话回放内容演示](https://sls.aliyun.com/doc/playground/devops-code-to-runtime-replay.html)
+> 对话回放：[查看对话回放内容演示](/playground/devops-code-to-runtime-replay.html)
 
 告警诊断通常先定位到运行时对象，例如应用服务、接口、Pod、云资源或调用链。要继续判断哪次发布、哪个代码仓库、哪位负责人和本次异常相关，还需要把 DevOps 域数据纳入运行时上下文。
 
@@ -27,7 +27,7 @@ DevOps 是外部工程域的代表场景。客户的 Git 平台、制品库、CI
 本实践适用于以下场景：
 
 - 已能通过 STAROps、ARMS/APM、K8s 或云资源数据定位运行时异常对象。
-- 希望从告警追到服务、Pod、镜像、发布、代码仓库和开发者。
+- 希望从告警追到服务、Pod、镜像、构建产物、发布、代码仓库和开发者。
 - 使用 GitLab、Codeup、ACR 等系统，希望将代码域和制品域数据接入 UModel。
 - 需要把客户自有工程系统沉淀成长期可复用的追因上下文。
 
@@ -37,32 +37,32 @@ DevOps 是外部工程域的代表场景。客户的 Git 平台、制品库、CI
 - 期望自动生成 commit 级完整追溯。当前主线是 release 级追因，commit 级采集属于扩展方向。
 - 期望所有 DevOps 对象都已具备真实数据采集。参考模型包含 17 个 EntitySet 和 36 个 EntitySetLink，其中部分实体为 schema-only。
 
-## 能力模型
+## 追因范围和当前覆盖
 
 本实践将 DevOps 数据分成三层事实面。
 
 | 层 | 含义 | 用途 |
 |---|---|---|
-| 核心追因链 | 应用服务、Pod、镜像、发布、代码仓库、开发者 | 支撑告警到代码变更的主链路 |
+| 核心追因链 | 应用服务、Pod、镜像、构建产物、发布、代码仓库、开发者 | 支撑告警到代码变更的主链路 |
 | 参考模型 | 17 个 EntitySet 和 36 个 EntitySetLink | 定义完整 DevOps 域建模框架 |
-| 当前数据覆盖 | 有 producer 的实体与已验证链路 | 决定当前可实际采集和追因的范围 |
+| 当前采集范围 | 已有采集程序支持的实体和已确认的追因路径 | 决定当前可实际采集和追因的范围 |
 
-核心追因链是官方文档和诊断体验的主线。参考模型用于说明 DevOps 域如何完整进入 UModel。当前数据覆盖用于说明哪些对象已经具备真实采集能力，哪些对象仍需要客户补充数据源 adapter。
+核心追因链是官方文档和诊断体验的主线。参考模型用于说明 DevOps 域如何完整进入 UModel。当前采集范围用于说明哪些对象已经具备真实采集能力，哪些对象仍需要客户补充数据源 adapter。
 
 ## 建模范围
 
-UModel 已经覆盖运行时域和可观测域，例如应用服务、Pod、Deployment、云资源、指标、日志和调用链。本实践只补运行时追因缺失的 DevOps 域，不重复建模已有运行时对象。
+UModel 已经覆盖运行时域和可观测域，例如应用服务、Pod、云资源、指标、日志和调用链。本实践只补运行时追因缺失的 DevOps 域，不重复建模已有运行时对象。
 
 | 建模层 | 对象 | 来源 | 当前状态 |
 |---|---|---|---|
 | 运行时域 | 应用服务、Pod、Deployment、云资源 | STAROps 既有 UModel、ARMS/APM、K8s、CMS workspace | 已有能力 |
-| 核心 DevOps 链 | 开发者、代码仓库、发布、Pull Request、构建产物、容器镜像 | GitLab、Codeup、ACR | 参考实现已有 producer |
+| 核心 DevOps 链 | 开发者、代码仓库、发布、Pull Request、构建产物、容器镜像 | GitLab、Codeup、ACR | 参考实现已有采集程序 |
 | 扩展 DevOps 模型 | 组织、项目、工作项、里程碑、流水线、流水线运行、Helm Chart、二进制包、NPM 包、单测用例、部署记录 | Jira、CI、appstack、制品库、组织系统等 | schema-only，待 adapter |
-| 跨域关系 | 服务、Pod、镜像、发布、仓库、开发者之间的追因路径 | UModel 关系 | 核心链路优先验证 |
+| 跨域关系 | 服务、Pod、镜像、构建产物、发布、仓库、开发者之间的追因路径 | UModel 关系 | 核心链路优先验证 |
 
 参考实现 `aliyun-sls/umodel-devops-reference` 已提供 17 个 EntitySet 和 36 个 EntitySetLink。36 条关系由 29 条 DevOps 设计关系和 7 条跨域关系组成，跨域关系连接到 APM 服务和 K8s 工作负载。
 
-其中，当前有 producer 支撑的对象包括用户、代码仓库、发布、Pull Request、构建产物和容器镜像。其余扩展对象用于定义完整 DevOps 模型，需要客户根据自己的 Jira、CI、部署系统、制品库或组织系统补充 adapter 后再进入生产追因。
+其中，当前已有采集程序支持的对象包括用户、代码仓库、发布、Pull Request、构建产物和容器镜像。其余扩展对象用于定义完整 DevOps 模型，需要客户根据自己的 Jira、CI、部署系统、制品库或组织系统补充 adapter 后再进入生产追因。
 
 ## 运行闭环
 
@@ -73,13 +73,14 @@ flowchart TD
   A["告警触发"] --> B["定位运行时对象"]
   B --> C["应用服务或 Pod"]
   C --> D["查询 Pod 使用的镜像"]
-  D --> E["关联发布或构建产物"]
-  E --> F["关联代码仓库"]
-  F --> G["关联开发者或负责人"]
-  G --> H["输出代码变更追因结果"]
-  H --> I{"关系链是否完整"}
-  I -->|完整| J["给出证据链"]
-  I -->|缺数据| K["说明缺失域和补接入建议"]
+  D --> E["关联构建产物"]
+  E --> F["关联发布"]
+  F --> G["关联代码仓库"]
+  G --> H["关联开发者或负责人"]
+  H --> I["输出代码变更追因结果"]
+  I --> J{"关系链是否完整"}
+  J -->|完整| K["给出证据链"]
+  J -->|缺数据| L["说明缺失域和补接入建议"]
 ```
 
 ::::
@@ -88,7 +89,7 @@ flowchart TD
 
 | 动作 | 说明 | 产物 |
 |---|---|---|
-| 建模落地 | 选择 Git provider，接入代码域和制品域，建立跨域关系，按阶段验证数据完整性 | UModel 实体、关系和验证记录 |
+| 建模落地 | 选择 Git provider，接入代码域和制品域，建立跨域关系，按阶段检查数据完整性 | UModel 实体、关系和检查记录 |
 | 运行时追因 | 告警触发后，STAROps Agent 沿 UModel 关系链查询镜像、发布、仓库和责任人 | 代码变更追因结果 |
 
 Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 关系链。验证 Skill 用于分阶段检查数据完整性，不代表长期运行的 STAROps Runtime Skill。
@@ -114,7 +115,7 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 
 先确定告警后需要追到哪些对象。最小可用链路包括：
 
-服务 / Pod → 镜像 → 发布 → 代码仓库 → 开发者或负责人。
+服务 / Pod → 镜像 → 构建产物 → 发布 → 代码仓库 → 开发者或负责人。
 
 如果客户还需要追到工作项、流水线、部署记录或审批信息，应将这些对象作为扩展模型处理，并单独验证数据来源。
 
@@ -152,12 +153,12 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 |---|---|
 | 资源准备 | Git provider、镜像仓库、workspace、运行时数据可访问 |
 | workspace 对齐 | 实体和关系写入目标 workspace |
-| 数据刷新 | 当前 producer 支撑的实体和关系刷新成功 |
+| 数据刷新 | 当前已有采集程序支持的实体和关系刷新成功 |
 | 可见性检查 | CMS workspace 中能看到 DevOps 域实体 |
 | 字段检查 | 关键字段值符合目标平台和映射规则 |
 | 失败诊断 | 写入失败、不可见或字段异常时定位 workspace、权限或数据源问题 |
 
-## 输出结构
+## 追因结果包含什么
 
 代码变更追因结果应包含以下内容：
 
@@ -173,17 +174,17 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 
 当关系链完整时，STAROps 可以给出从告警到代码变更的证据链。当关系链不完整时，输出应明确缺失哪一段关系，不能把缺数据解释成没有风险。
 
-## 已验证链路
+## 当前可追因范围
 
-本实践当前已在 STAROps 工作区验证发布版本镜像的追因链路。验证口径要求从运行时对象出发，沿 UModel 关系逐段走到代码仓库和负责人，同时检查实体写入、关系可遍历和缺口可解释。
+参考实现中，发布版本镜像已具备从运行时对象追到代码仓库和负责人的路径。客户验收时应从运行时对象出发，沿 UModel 关系逐段检查实体可见、关系可遍历，并确认关系缺失时能够说明原因。
 
 | 验证对象 | 链路读法 | 通过标准 |
 |---|---|---|
 | 发布版本镜像 | Pod → 镜像 → 构建产物 → 发布 → 代码仓库 → 负责人 | 能给出每一段关系证据，最终闭环到仓库和负责人 |
 | 测试或构建 tag 镜像 | Pod → 镜像 → 构建产物，缺少发布记录时停在发布前 | 明确说明缺少对应 release，不把测试 tag 硬连到某个发布版本 |
-| 参考模型扩展对象 | 工作项、流水线、部署记录、组织结构等对象进入 schema | 只有补齐 producer 和验证证据后，才能进入生产追因结论 |
+| 参考模型扩展对象 | 工作项、流水线、部署记录、组织结构等对象进入 schema | 只有补齐采集程序并完成验证后，才能进入生产追因结论 |
 
-已验证链路覆盖以下关键关系：
+当前可用路径覆盖以下关键关系：
 
 - Pod 使用的镜像可以和 DevOps 域镜像对象对齐。
 - 镜像可以关联到构建产物。
@@ -195,7 +196,7 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 
 ## Guide Skill 与验证 Skill
 
-本实践包含 1 个 Guide Skill 和 6 个 staged verification Skills。Guide Skill 用于指导 DevOps 数据接入、配置和验证；验证 Skills 用于按阶段检查数据完整性和 workspace 可见性。
+本实践包含 1 个 Guide Skill 和 6 个分阶段验证 Skill。Guide Skill 用于指导 DevOps 数据接入、配置和验证；验证 Skill 用于按阶段检查数据完整性和 workspace 可见性。
 
 | Skill | 定位 | 用途 | 本地 Agent | STAROps 控制台 |
 |---|---|---|---|---|
@@ -207,9 +208,9 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 | `verification-cms-field-check` | 验证 Skill | 检查关键字段、provider 差异和映射结果 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-field-check` | 不适用 |
 | `verification-cms-sls-diagnose` | 验证 Skill | 在刷新或可见性异常时定位 workspace、权限或数据源问题 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-sls-diagnose` | 不适用 |
 
-验证 Skills 定位是分阶段验证能力，不声明可配置给数字员工长期运行的 Runtime Skill 能力。完整验证记录见 `verification.md`。
+验证 Skill 用于分阶段检查数据完整性，不声明可配置给数字员工长期运行的 Runtime Skill 能力。
 
-## 验收标准
+## 实践验收
 
 ### 当前核心链路
 
@@ -217,7 +218,7 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 
 1. Git provider 认证接入成功，代码仓库、发布、开发者和 Pull Request 等核心对象可采集。
 2. 镜像仓库数据可采集，镜像与发布或构建产物之间能建立真实关联。
-3. workspace 中能看到当前 producer 支撑的 DevOps 实体，关键字段正确。
+3. workspace 中能看到当前已有采集程序支持的 DevOps 实体，关键字段正确。
 4. 给定运行时对象，STAROps 能沿服务 / Pod / 镜像 / 构建产物 / 发布 / 仓库 / 开发者链路输出追因证据。
 5. 发布版本镜像可以闭环到代码仓库和负责人。
 6. 测试 tag、分支 tag 或临时构建镜像缺少 release 记录时，输出明确提示缺失项。
@@ -229,9 +230,9 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 如果客户要使用 17/36 完整参考模型，还应满足以下标准：
 
 1. 17 个 EntitySet 和 36 个 EntitySetLink 已上传到目标 workspace。
-2. 有 producer 的 6 个实体完成数据刷新、可见性检查和字段检查。
-3. 11 个 schema-only 实体在文档和验证记录中标注为待 adapter。
-4. 29 条 DevOps 设计关系和 7 条跨域关系按 producer 覆盖分层验证。
+2. 已有采集程序支持的 6 个实体完成数据刷新、可见性检查和字段检查。
+3. 11 个 schema-only 实体在文档和检查记录中标注为待 adapter。
+4. 29 条 DevOps 设计关系和 7 条跨域关系按当前采集范围分层验证。
 5. Jenkins、GitHub Actions、Argo、Tekton、工作项、部署记录和 commit 级采集等能力未接入前，不写成已验证能力。
 
 ## 边界与降级
@@ -246,7 +247,7 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 - 工作项、流水线、部署记录、组织结构等扩展对象需要对应数据源 adapter。
 - 如果 workspace 中缺少运行时对象、镜像数据或 DevOps 关系，STAROps 应输出证据缺口和补接入建议。
 
-## 与 MCP 接入的关系
+## 临时补证和长期建模怎么选
 
 GitLab MCP 适合在一次诊断中按需读取 MR、pipeline、job log 或 issue 等研发上下文。DevOps UModel 建模适合把长期复用的代码、发布、镜像和责任关系沉淀成运行时可追因上下文。
 
@@ -254,7 +255,7 @@ GitLab MCP 适合在一次诊断中按需读取 MR、pipeline、job log 或 issu
 
 ## 相关入口
 
-- [返回 STAROps 最佳实践首页](https://sls.aliyun.com/doc/starops/)
-- [打开 STAROps Playground](https://sls.aliyun.com/doc/playground/devops-code-to-runtime-replay.html)
+- [返回 STAROps 最佳实践首页](/starops/starops.html)
+- [打开 STAROps Playground](/playground/devops-code-to-runtime-replay.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)
 - [DevOps UModel 参考实现](https://github.com/aliyun-sls/umodel-devops-reference)

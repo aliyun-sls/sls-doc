@@ -3,14 +3,14 @@ pageClass: sls-starops-article
 status: published
 journey: 告警追因
 id: alert-rca-flow
-title: 告警 RCA：用 Skill 固化历史 Runbook
+title: 告警 RCA 多分支诊断最佳实践
 ---
 
 <div class="sls-starops-article-crumb">
   <a href="/doc/starops/starops.html">STAROps</a> <span class="sep">/</span> <span>告警追因</span>
 </div>
 
-# 告警 RCA：用 Skill 固化历史 Runbook
+# 告警 RCA 多分支诊断最佳实践
 
 <div class="sls-starops-article-meta">
   <span>分类 · 告警追因</span>
@@ -167,8 +167,6 @@ Agent 最终输出应是自然语言诊断报告。报告建议包含以下模�
 | 建议动作 | 只读建议、需要人工确认的止血动作和后续治理动作。 |
 | 升级判断 | 是否需要 InvestigationAgent 继续动态调查，以及升级原因。 |
 
-报告样例参考同目录 [`assets/sample-report.md`](./assets/sample-report.md)。
-
 ## 诊断示例
 
 以下演示一次订单创建失败率告警的多分支诊断路径。
@@ -198,8 +196,6 @@ Guide Skill 应包含：
 - 证据充分性标准。
 - 升级 InvestigationAgent 的条件。
 - 自然语言诊断报告结构与 L0 只读边界。
-
-发布 Guide Skill 前，需要确认错误码映射、ARMS/APM 或 UModel 实体、取数工具和 Runbook 分支已经在目标 Workspace 中验证；未完成验证的包不应作为安装入口展示。
 
 ## 安装 Skill
 
