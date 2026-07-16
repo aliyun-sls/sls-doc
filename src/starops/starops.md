@@ -114,7 +114,7 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
-      <h3 class="sls-starops-card__title">RDS 脚本巡检与动态追因</h3>
+      <h3 class="sls-starops-card__title">如何提升巡检稳定性，同时支持异常后的动态追因</h3>
       <p class="sls-starops-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
@@ -129,7 +129,7 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/alert-rca-flow/article.html">
-      <h3 class="sls-starops-card__title">告警 RCA：用 Skill 固化历史 Runbook</h3>
+      <h3 class="sls-starops-card__title">告警 RCA 多分支诊断最佳实践</h3>
       <p class="sls-starops-card__desc">把企业历史 Runbook 固化为 Agent 可执行 Skill，按错误码分支并行取证，证据不足升级 InvestigationAgent。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
@@ -159,7 +159,7 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
-      <h3 class="sls-starops-card__title">DevOps 跨域追因建模</h3>
+      <h3 class="sls-starops-card__title">使用 UModel 接入 DevOps 数据并追因到代码变更</h3>
       <p class="sls-starops-card__desc">把客户侧 DevOps 数据接入 UModel，让告警沿关系链追到镜像、发布、代码仓库和负责人。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
