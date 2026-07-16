@@ -26,7 +26,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '告警 RCA：用 Skill 固化历史 Runbook', link: '/starops/practices/alert-rca-flow/article' },
-        { text: '饱和度评估与风险预测', link: '/starops/practices/capacity-risk-prediction/article' },
+        { text: '自定义容量风险巡检设计最佳实践', link: '/starops/practices/capacity-risk-prediction/article' },
         { text: '业务服务可靠性巡检', link: '/starops/practices/business-reliability-flow/article' },
         { text: '日志模式定时巡检', link: '/starops/practices/log-insight-pattern/article' },
       ],
@@ -36,6 +36,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '使用 UModel 接入 DevOps 数据并追因到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
+        { text: '一个 Agent 入口完成 DevOps 闭环', link: '/starops/practices/coding-agent-devops-loop/article' },
       ],
     },
     {

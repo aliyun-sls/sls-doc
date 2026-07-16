@@ -134,8 +134,8 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/capacity-risk-prediction/article.html">
-      <h3 class="sls-starops-card__title">饱和度评估与风险预测</h3>
-      <p class="sls-starops-card__desc">把容量风险从看水位升级为看未来：series_forecast 预测触阈时间，沿 UModel 解释上升来源，跨产品共振归并后给出处置优先级。</p>
+      <h3 class="sls-starops-card__title">自定义容量风险巡检设计最佳实践</h3>
+      <p class="sls-starops-card__desc">把容量风险从看水位升级为看未来：series_forecast 预测触阈时间，沿 UModel 解释上升来源，跨产品联动归并后给出处置优先级。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
@@ -161,6 +161,11 @@ pageClass: sls-starops-home
     <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
       <h3 class="sls-starops-card__title">使用 UModel 接入 DevOps 数据并追因到代码变更</h3>
       <p class="sls-starops-card__desc">把客户侧 DevOps 数据接入 UModel，让告警沿关系链追到镜像、发布、代码仓库和负责人。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
+      <h3 class="sls-starops-card__title">一个 Agent 入口完成 DevOps 闭环</h3>
+      <p class="sls-starops-card__desc">以 Coding Agent 为统一入口，把发布后运行检查和告警到代码修复落在同一个任务，发布、提交、PR 由原系统人工确认。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
