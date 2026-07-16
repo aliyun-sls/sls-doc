@@ -159,7 +159,7 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
-      <h3 class="sls-starops-card__title">DevOps 跨域追因建模</h3>
+      <h3 class="sls-starops-card__title">使用 UModel 接入 DevOps 数据并追因到代码变更</h3>
       <p class="sls-starops-card__desc">把客户侧 DevOps 数据接入 UModel，让告警沿关系链追到镜像、发布、代码仓库和负责人。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>

@@ -35,7 +35,7 @@ function getSidebar() {
       text: 'DevOps 闭环',
       collapsed: true,
       items: [
-        { text: 'DevOps 跨域追因建模', link: '/starops/practices/devops-code-to-runtime/article' },
+        { text: '使用 UModel 接入 DevOps 数据并追因到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
       ],
     },
     {
