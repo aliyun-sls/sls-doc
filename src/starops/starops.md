@@ -129,7 +129,7 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/alert-rca-flow/article.html">
-      <h3 class="sls-starops-card__title">告警 RCA：用 Skill 固化历史 Runbook</h3>
+      <h3 class="sls-starops-card__title">告警 RCA 多分支诊断最佳实践</h3>
       <p class="sls-starops-card__desc">把企业历史 Runbook 固化为 Agent 可执行 Skill，按错误码分支并行取证，证据不足升级 InvestigationAgent。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
