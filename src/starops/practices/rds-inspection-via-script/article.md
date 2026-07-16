@@ -16,9 +16,7 @@ title: 如何提升巡检稳定性，同时支持异常后的动态追因
   <span>分类 · 主动巡检</span>
 </div>
 
-:::: details 查看对话回放内容演示
-[查看对话回放内容演示](/playground/rds-inspection-via-script-replay.html)
-::::
+> 对话回放：[查看对话回放内容演示](/playground/rds-inspection-via-script-replay.html)
 
 在 STAROps 中，周期性巡检用于对云资源、应用依赖和关键业务对象进行定期健康检查。一次有效巡检应输出当前水位、异常项、长周期趋势、证据来源和后续调查方向，帮助运维团队提前发现容量、性能、安全和稳定性风险。
 
