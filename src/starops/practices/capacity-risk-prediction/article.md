@@ -3,14 +3,14 @@ pageClass: sls-starops-article
 status: published
 journey: 主动巡检
 id: capacity-risk-prediction
-title: 饱和度评估与风险预测
+title: 自定义容量风险巡检设计最佳实践
 ---
 
 <div class="sls-starops-article-crumb">
   <a href="/doc/starops/starops.html">STAROps</a> <span class="sep">/</span> <span>主动巡检</span>
 </div>
 
-# 饱和度评估与风险预测
+# 自定义容量风险巡检设计最佳实践
 
 <div class="sls-starops-article-meta">
   <span>分类 · 主动巡检</span>
@@ -18,11 +18,11 @@ title: 饱和度评估与风险预测
 
 > 对话回放：[discovery 与能力边界](/playground/capacity-risk-prediction-operator-replay.html) ｜ [Runtime Skill 构建](/playground/capacity-risk-prediction-replay.html) ｜ [Mission 执行与报告](/playground/capacity-risk-prediction-mission-replay.html)
 
-容量风险预测用于在资源触达阈值前识别风险，并把预测结果转成可运营的容量事件。它关注未来窗口：按当前趋势、季节性和业务增长速度，哪些对象会触达阈值，哪些业务链路会被共同上升的负载拖入风险。
+容量风险巡检用于在资源触达阈值前识别风险，并把预测结果转成可运营的容量事件。它关注未来窗口：按当前趋势、季节性和业务增长速度，哪些对象会触达阈值，哪些业务链路会被共同上升的负载拖入风险。
 
-在 STAROps 中设计并部署容量风险预测 Mission，需要先完成 Mission 设计，明确预测意图、产品范围、数据源、阈值和预测脚本；再部署 Mission，配置输入数据源和启用的预测列表，首次运行后检查报告是否符合预期。
+在 STAROps 中设计并部署自定义容量风险巡检 Mission，需要先完成 Mission 设计，明确巡检意图、产品范围、数据源、阈值和预测脚本；再部署 Mission，配置输入数据源和启用的巡检列表，首次运行后检查报告是否符合预期。
 
-数值预测交给 SLS 时序算法执行。容量风险预测应使用 `series_describe` 判断序列质量、连续性、稳定性、周期性和显著趋势，使用 `series_forecast` 生成未来窗口预测值、预测上界、预测下界和错误信息。STAROps 负责把预测事实关联到业务、服务、资源和 UModel 关系，形成可复核、可通知、可持续运营的风险报告。
+数值预测交给 SLS 时序算法执行。容量风险巡检应使用 `series_describe` 判断序列质量、连续性、稳定性、周期性和显著趋势，使用 `series_forecast` 生成未来窗口预测值、预测上界、预测下界和错误信息。STAROps 负责把预测事实关联到业务、服务、资源、owner 和 UModel 关系，形成可复核、可通知、可持续运营的风险报告。
 
 ## 适用场景
 
@@ -31,7 +31,7 @@ title: 饱和度评估与风险预测
 | CPU、内存、磁盘、IOPS、连接数等有百分比水位的资源 | 适用 | 可配置 Warning / Critical 阈值，计算预测上界和触阈时间。 |
 | OSS 流量、SLS 写入量、网关 QPS、消息堆积等绝对数值指标 | 适用 | 需要先确认配额、规格、预算或人工阈值，再进入风险判断。 |
 | 业务应用 QPS 上涨 | 适用，需多信号组合 | QPS 需要结合延迟、错误率、CPU、内存、线程池、队列等压力信号判断。 |
-| 多个产品或中间件在同一时间窗同步上升 | 适用 | STAROps 可按业务、服务、时间窗或 UModel 关系归并成同一个容量风险事件。 |
+| 多个产品或中间件在同一时间窗同步上升 | 适用 | STAROps 可按业务、服务、owner、时间窗或 UModel 关系归并成同一个容量风险事件。 |
 | 已经发生故障或告警 | 建议进入 RCA 流程 | 本实践面向故障前预测；故障发生后应进入告警根因分析或业务可靠性诊断流程。 |
 | 只有当前水位表，暂不需要未来窗口预测 | 暂不适用 | 普通阈值巡检即可满足当前检查需求。 |
 | 历史数据不足、阈值来源缺失且无法补齐 | 暂不适用 | 先补数据、权限、阈值或业务归属信息。 |
@@ -45,24 +45,24 @@ title: 饱和度评估与风险预测
 | 周期性容量风险报告 | 按固定 Profile 运行，避免每次临场选择指标、窗口和阈值。 |
 | 触阈时间和预测上下界 | 判断剩余响应窗口，区分缓慢增长和短期逼近。 |
 | 单对象风险事件 | 识别实例、服务、队列、bucket 或 Logstore 的独立触阈风险。 |
-| 跨产品共振事件 | 把同一业务链路上多个对象的共同上升合并成一个容量事件。 |
-| 影响业务和责任域 | 沿 UModel 关系定位受影响应用、接口和业务。 |
-| 上涨原因下钻 | 对需要解释的风险事件下钻 route、tenant、caller、namespace、bucket 等候选维度。 |
+| 跨产品联动事件 | 把同一业务链路上多个对象的共同上升合并成一个容量事件。 |
+| 影响业务和责任域 | 沿 UModel 关系定位受影响应用、接口、业务和 owner。 |
+| 上涨原因下钻 | 对需要解释的风险事件下钻 route、tenant、caller、namespace、bucket、owner 等候选维度。 |
 | 支撑证据、反证和缺口 | 保留人工复核依据，避免把弱关联写成确定结论。 |
-| 通知与归档 | Normal 静默归档，Warning / Critical 或共振事件通知。 |
+| 通知与归档 | Normal 静默归档，Warning / Critical 或联动事件通知。 |
 
 ## 前提条件
 
-创建容量风险预测 Mission 前，先准备以下信息。STAROps Agent 可以辅助 discovery、脚本编写和验证，但每个对象最终都要有可用、降级或排除结论。
+创建容量风险巡检 Mission 前，先准备以下信息。STAROps Agent 可以辅助 discovery、脚本编写和验证，但每个对象最终都要有可用、降级或排除结论。
 
 | 输入项 | 需要准备的内容 | 不满足时的处理 |
 |---|---|---|
-| 预测对象 | 资源、实例、服务、接口、队列、bucket、Logstore、业务计数等 | 标注排除原因或待补对象归属。 |
+| 巡检对象 | 资源、实例、服务、接口、队列、bucket、Logstore、业务计数等 | 标注排除原因或待补对象归属。 |
 | 产品范围 | ECS、RDS、Redis、K8s、网关、OSS、SLS、消息队列、业务服务等 | 只启用本次 Mission 可验证的产品和对象。 |
 | 数据源 | MetricStore、Prometheus、Logstore、APM、云产品 API、业务指标表 | 标注不可读、缺权限或字段不可用。 |
 | 序列构造口径 | 查询语句、时间粒度、历史窗口、聚合方式 | 标注序列不可构造，不进入预测。 |
 | 阈值来源 | 百分比水位、产品配额、人工阈值、预算、业务 SLO | 保留预测结果，但不直接升级为 Critical。 |
-| UModel 与归属关系 | 服务、接口、业务、上下游依赖、候选维度 | 影响面和上涨原因下钻降级为已有维度分析。 |
+| UModel 与归属关系 | 服务、接口、业务、owner、上下游依赖、候选维度 | 影响面和上涨原因下钻降级为已有维度分析。 |
 | 运行策略 | 预测窗口、调度频率、Normal 静默、Warning / Critical 通知 | 未配置前不进入长期任务。 |
 
 容量指标的阈值来源不同，报告必须标清来源。
@@ -75,21 +75,21 @@ title: 饱和度评估与风险预测
 
 ## 整体流程
 
-容量风险预测 Mission 分为两个阶段。
+容量风险巡检 Mission 分为两个阶段。
 
-1. Mission 设计阶段：对齐预测意图，确定产品和对象范围，确认数据源、指标、阈值和 UModel 关系，让 STAROps Agent 生成或调整预测脚本 / Runtime Skill，并用真实对象测试验证。
-2. Mission 部署与首次运行阶段：创建长期 Mission，配置输入数据源和启用的预测列表，立即执行一次，检查报告、通知和降级行为，再打开周期调度。
+1. Mission 设计阶段：对齐巡检意图，确定产品和对象范围，确认数据源、指标、阈值和 UModel 关系，让 STAROps Agent 生成或调整预测脚本 / Runtime Skill，并用真实对象测试验证。
+2. Mission 部署与首次运行阶段：创建长期 Mission，配置输入数据源和启用的巡检列表，立即执行一次，检查报告、通知和降级行为，再打开周期调度。
 
 :::: details 查看整体流程图
 
 ```mermaid
 flowchart TD
-  A["对齐预测意图"] --> B["确定产品和对象范围"]
+  A["对齐巡检意图"] --> B["确定产品和对象范围"]
   B --> C["确认数据源/指标/阈值/UModel 关系"]
   C --> D["STAROps Agent 生成或调整预测脚本"]
   D --> E["真实对象测试和验证"]
   E --> F["创建 Mission"]
-  F --> G["配置输入数据源和 Enable 预测列表"]
+  F --> G["配置输入数据源和 Enable 巡检列表"]
   G --> H["立即执行一次"]
   H --> I{"报告是否符合预期"}
   I -->|否| J["回到设计阶段补数据/阈值/脚本/关系"]
@@ -104,7 +104,7 @@ flowchart TD
 
 | 步骤 | 目标 | 输出 |
 |---|---|---|
-| 对齐预测意图 | 明确本次 Mission 要提前发现什么容量风险，以及希望报告回答哪些问题 | 预测目标、预测窗口、通知原则和报告口径。 |
+| 对齐巡检意图 | 明确本次 Mission 要提前发现什么容量风险，以及希望报告回答哪些问题 | 巡检目标、预测窗口、通知原则和报告口径。 |
 | 确定产品和对象 | 选择要纳入容量预测的产品、服务、中间件和业务指标 | 对象清单、启用列表和排除理由。 |
 | 发现数据源 | 为每个对象找到 MetricStore、Logstore、Prometheus、APM 或产品 API | 数据源清单、访问状态、字段和指标可用性。 |
 | 收集阈值来源 | 记录百分比阈值、配额、规格、预算、人工阈值或业务 SLO | 阈值表、阈值缺口和确认人。 |
@@ -150,37 +150,37 @@ Mission Profile 不是 discovery、create skill 或验证过程的总称。它�
 | 序列点不足 | 调整历史窗口、时间粒度，或将对象标记为暂不纳入。 |
 | 阈值缺失 | 补充阈值来源、确认人或降级规则。 |
 | 脚本不支持某类对象 | 调整 Runtime Skill 或预测脚本。 |
-| 风险归并不符合业务理解 | 修正 UModel 关系、候选维度或归并规则。 |
+| 风险归并不符合业务理解 | 修正 UModel 关系、候选维度、owner 或归并规则。 |
 | 通知过多或过少 | 调整启用列表、静默规则、通知阈值或接收人。 |
 
 ## 阶段二：部署与首跑
 
-部署阶段把设计阶段的 Profile 变成长期任务。创建 Mission 时，重点检查两类配置：输入数据源和启用的预测列表。输入数据源决定 Mission 能读取哪些 Store、指标、日志和业务计数；启用列表决定本次长期任务实际覆盖哪些产品、对象和风险类型。
+部署阶段把设计阶段的 Profile 变成长期任务。创建 Mission 时，重点检查两类配置：输入数据源和启用的巡检列表。输入数据源决定 Mission 能读取哪些 Store、指标、日志和业务计数；启用列表决定本次长期任务实际覆盖哪些产品、对象和风险类型。
 
 | 步骤 | 配置重点 | 通过标准 |
 |---|---|---|
 | 创建 Mission | 绑定数字员工、预测脚本 / Runtime Skill、运行频率和通知策略 | Mission 可以按 Profile 启动，权限保持只读。 |
 | 配置输入数据源 | 选择 MetricStore、Prometheus、Logstore、APM、产品 API 或业务指标表 | 每个启用对象都有可读、降级或排除结论。 |
-| 配置 Enable 预测列表 | 只启用本次已验证的产品、对象和风险类型 | 启用范围与设计阶段对象清单一致。 |
+| 配置 Enable 巡检列表 | 只启用本次已验证的产品、对象和风险类型 | 启用范围与设计阶段对象清单一致。 |
 | 立即执行一次 | 在创建后手动触发一次运行 | 报告展示预测值、上下界、触阈时间、风险归并和缺口。 |
-| 检查通知策略 | 验证 Normal 静默、Warning / Critical 或共振事件通知 | 通知范围、接收人和归档策略符合预期。 |
+| 检查通知策略 | 验证 Normal 静默、Warning / Critical 或联动事件通知 | 通知范围、接收人和归档策略符合预期。 |
 | 打开周期调度 | 首次运行通过后进入长期运营 | 周期报告稳定生成，缺口进入迭代清单。 |
 
 Mission 创建后，不建议直接进入无人值守周期运行。先立即执行一次，检查数据读取、序列质量、预测结果、风险归并、UModel 影响面、Investigation handoff、报告结构和通知策略是否符合预期。首次运行发现数据源、阈值、启用列表或脚本问题时，回到设计阶段修正。
 
 ## 影响面下钻
 
-曲线预测由 SLS 的 `series_describe` 和 `series_forecast` 完成。STAROps 通过 UModel 的多维数据关联，在某个 RDS 实例、K8s workload、网关路由、Logstore 或 OSS bucket 被预测为触阈风险时，继续定位受影响业务、关联服务和接口、共同业务链路，以及上涨主要由哪些维度推动。
+曲线预测由 SLS 的 `series_describe` 和 `series_forecast` 完成。STAROps 通过 UModel 的多维数据关联，在某个 RDS 实例、K8s workload、网关路由、Logstore 或 OSS bucket 被预测为触阈风险时，继续定位受影响业务、关联服务和接口、负责人、共同业务链路，以及上涨主要由哪些维度推动。
 
-UModel 在容量风险预测中承担三类工作：
+UModel 在容量风险巡检中承担三类工作：
 
 | 工作 | 说明 | 报告体现 |
 |---|---|---|
-| 对象归一 | 将资源、服务、接口、日志对象和存储对象绑定到同一业务或责任域 | 风险事件按业务或责任域组织，而非按产品清单堆叠。 |
-| 影响面定位 | 当资源预测触阈时，沿关系查找受影响应用、接口和业务 | 报告给出影响业务、影响服务和建议响应时限。 |
+| 对象归一 | 将资源、服务、接口、日志对象、存储对象和 owner 绑定到同一业务或责任域 | 风险事件按业务或责任域组织，而非按产品清单堆叠。 |
+| 影响面定位 | 当资源预测触阈时，沿关系查找受影响应用、接口、业务和负责人 | 报告给出影响业务、影响服务、责任人和建议响应时限。 |
 | 解释范围约束 | 将 InvestigationAgent 的下钻范围限制在相关服务、调用链、维度和变更窗口内 | 报告输出主贡献维度、支撑证据、反证和证据缺口。 |
 
-上涨原因下钻需要结合候选维度和只读查询。例如业务 QPS 上涨时，Agent 可以检查 route、tenant、caller、namespace、region、bucket 等维度；资源指标上升时，Agent 可以沿 UModel 关系检查同一业务链路上的网关、应用、数据库、缓存、日志写入和对象存储趋势。
+上涨原因下钻需要结合候选维度和只读查询。例如业务 QPS 上涨时，Agent 可以检查 route、tenant、caller、namespace、region、bucket、owner 等维度；资源指标上升时，Agent 可以沿 UModel 关系检查同一业务链路上的网关、应用、数据库、缓存、日志写入和对象存储趋势。
 
 ## 周期运行环节
 
@@ -188,15 +188,15 @@ UModel 在容量风险预测中承担三类工作：
 
 Runtime Skill 或预测脚本每次运行按以下顺序执行：
 
-1. 读取 Mission Profile，确认预测对象、启用列表、时间窗口、粒度、阈值来源和通知策略。
+1. 读取 Mission Profile，确认巡检对象、启用列表、时间窗口、粒度、阈值来源和通知策略。
 2. 从 MetricStore、Prometheus、Logstore、APM、产品 API 或业务指标表取数。
 3. 构造等间隔时间序列，记录不可构造对象及原因。
 4. 调用 `series_describe` 判断序列质量、连续性、稳定性、周期性和显著趋势。
 5. 调用 `series_forecast` 生成未来窗口预测值、预测上界、预测下界和错误信息。
 6. 结合阈值来源计算风险等级、预计触阈时间和剩余响应窗口。
-7. 按业务、服务、资源、时间窗或 UModel 关系归并风险。
+7. 按业务、服务、资源、时间窗、owner 或 UModel 关系归并风险。
 8. 对既有路径无法充分解释的风险事件交给 InvestigationAgent，补充影响面、主贡献维度、支撑证据、反证和缺口。
-9. 生成 Mission 报告，Normal 归档，Warning / Critical 或共振事件通知。
+9. 生成 Mission 报告，Normal 归档，Warning / Critical 或联动事件通知。
 
 触发 InvestigationAgent 的典型条件包括：
 
@@ -208,17 +208,17 @@ Runtime Skill 或预测脚本每次运行按以下顺序执行：
 
 InvestigationAgent 用于既有 Skill、脚本或 Mission 路径无法覆盖的情况。它负责开放调查、补证规划和未知路径探索，不替代确定性预测脚本的常规路径，也不在证据不足时强行给唯一结论。
 
-## 共振归并
+## 联动归并
 
 容量风险经常表现为同一业务动作在多个系统上留下共同趋势。例如网关 QPS、应用 CPU、RDS IOPS、Redis 命中率、OSS 访问量、SLS 写入量在同一时间窗一起上升。单看每个产品可能只是 Warning，合起来就是一次业务增长或异常流量引发的容量风险事件。
 
-共振识别按三步执行：
+联动识别按三步执行：
 
 1. 对所有预测结果对齐到同一时间粒度，保留预测值、上界、触阈时间和序列描述。
-2. 按共享业务、服务、region、namespace 或调用关系归并上升趋势。
+2. 按共享业务、服务、owner、region、namespace 或调用关系归并上升趋势。
 3. 对同步上升、多点逼近阈值且既有路径无法充分解释的事件启动 InvestigationAgent，补充维度、变更、拓扑和日志证据。
 
-共振必须有共享业务、实体关系、时间窗或维度组合支撑。报告不能为了制造跨域结论强行拼接无关资源。
+联动必须有共享业务、实体关系、时间窗或维度组合支撑。报告不能为了制造跨域结论强行拼接无关资源。
 
 ## 报告结构
 
@@ -229,7 +229,7 @@ InvestigationAgent 用于既有 Skill、脚本或 Mission 路径无法覆盖的�
 | 风险摘要 | 风险等级、预计触阈时间、影响业务、建议响应时限 | 先判断是否需要立即响应。 |
 | 预测证据 | 当前值、预测值、预测上界/下界、序列描述、算法错误信息 | 判断风险是否来自可复核预测事实。 |
 | 阈值来源 | 产品百分比阈值、人工阈值、产品配额、文档规格、历史基线或业务 SLO | 判断风险等级是否有可靠依据。 |
-| 共振证据 | 同一时间窗同步上升的产品、服务、维度组合 | 判断是否应作为一个业务容量事件处理。 |
+| 联动证据 | 同一时间窗同步上升的产品、服务、维度组合 | 判断是否应作为一个业务容量事件处理。 |
 | Agent 调查 | 主贡献维度、支撑证据、反证、证据缺口、置信度 | 判断证据是否闭合，是否需要继续调查。 |
 | 处置建议 | 扩容、限流、错峰、优化、配额调整、缓存、降噪、后续验证 | 进入人工确认后的变更流程。 |
 
@@ -258,7 +258,7 @@ InvestigationAgent 用于既有 Skill、脚本或 Mission 路径无法覆盖的�
 - SLS 函数可用性、参数约束、历史窗口长度和序列数量上限以目标实例实际支持为准。
 - 没有阈值来源的绝对数值只能标为待配置或需确认，不能直接给出 Critical。
 - 单个 QPS 上升不能直接判为业务容量风险，必须结合延迟、错误率、资源水位、队列或业务基线等信号。
-- 跨产品共振必须有共享业务、实体关系、时间窗或维度组合支撑。
+- 跨产品联动必须有共享业务、实体关系、时间窗或维度组合支撑。
 - 处置建议需要人工确认后执行。
 - 涉及用户、订单、金额、AK、IP 等敏感信息时，只展示脱敏标识和聚合统计。
 
@@ -268,26 +268,27 @@ InvestigationAgent 用于既有 Skill、脚本或 Mission 路径无法覆盖的�
 
 | 验收项 | 通过标准 |
 |---|---|
-| Mission Profile | 包含预测对象、产品范围、数据源、序列构造口径、阈值来源、候选维度、启用列表、调度和通知规则。 |
+| Mission Profile | 包含巡检对象、产品范围、数据源、序列构造口径、阈值来源、候选维度、启用列表、调度和通知规则。 |
 | 设计阶段 discovery | 每个对象都有可用、降级或排除结论；缺阈值对象不得直接进入 Critical。 |
 | 预测脚本 / Runtime Skill | 使用 `series_describe` 和 `series_forecast`，并通过真实对象验证，不使用大模型做数值外推。 |
 | 首次运行 | Mission 创建后立即执行一次，报告能展示预测值、上下界、序列质量、触阈时间、风险归并和缺口。 |
-| 风险归并 | 至少一个样例能把多个对象的共同上升归并成一个风险事件，或明确证明当前无共振。 |
-| 影响面与上涨原因下钻 | 风险事件能给出受影响业务、服务、接口和候选维度分析；关系缺失时明确降级。 |
+| 风险归并 | 至少一个样例能把多个对象的共同上升归并成一个风险事件，或明确证明当前无联动。 |
+| 影响面与上涨原因下钻 | 风险事件能给出受影响业务、服务、接口、owner 和候选维度分析；关系缺失时明确降级。 |
 | Investigation handoff | 既有路径无法处理的风险事件把预测结果、实体、时间窗、阈值来源和候选维度交给 InvestigationAgent。 |
-| 报告与通知 | Normal 归档，Warning / Critical 或共振事件通知；报告保留支撑证据、反证和缺口。 |
+| 报告与通知 | Normal 归档，Warning / Critical 或联动事件通知；报告保留支撑证据、反证和缺口。 |
 
 ## 安装 Skill
 
 本实践落地两份 Skill，职责不同，不能互相替代。`capacity-risk-prediction-sop`（Guide）支持本地 Agent 与 STAROps 控制台两种安装；`capacity-risk-prediction`（Runtime）仅支持 STAROps 控制台上传 tar.gz，本地 Agent 不支持。本地 Agent 走 [`npx skills`](https://www.npmjs.com/package/skills)，STAROps 数字员工下载 tar.gz 后在控制台「技能管理 → 上传技能」上传。
 
-| Skill | 作用 | 本地 Agent（npx） | STAROps 控制台（tar.gz） |
+| Skill | 作用 | 本地 Agent | STAROps 控制台 |
 |---|---|---|---|
 | `capacity-risk-prediction` | Runtime Skill：执行 9 步预测流水线，按 Mission Profile 对 MetricStore / Prometheus / CloudMonitor / LogStore 构造等间隔时序，调用 `series_forecast` / `series_describe` 输出结构化风险报告。 | 仅 STAROps 控制台（本地 Agent 不支持） | [capacity-risk-prediction.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/capacity-risk-prediction/docs/capacity-risk-prediction.tar.gz) |
 | `capacity-risk-prediction-sop` | 引导 Skill：教 Agent 按 Mission 设计、部署、首跑、周期运行和上线验收完成容量风险预测 Mission。 | `npx skills add aliyun-sls/sls-doc-skills --skill capacity-risk-prediction-sop` | [capacity-risk-prediction-sop.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/capacity-risk-prediction/docs/capacity-risk-prediction-sop.tar.gz) |
 
 ## 相关入口
 
+- [SLS 时序数据查询和分析语法](https://help.aliyun.com/zh/sls/time-metric-data-query-and-analysis-syntax)
+- [SLS SPL 函数](https://help.aliyun.com/zh/sls/metric-spl-function#ccc61c0591k0k)
 - [返回 STAROps 最佳实践首页](/starops/starops.html)
-- [打开 STAROps Playground](/playground/staropsdemo.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)

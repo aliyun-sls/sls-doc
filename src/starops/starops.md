@@ -134,8 +134,8 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/capacity-risk-prediction/article.html">
-      <h3 class="sls-starops-card__title">饱和度评估与风险预测</h3>
-      <p class="sls-starops-card__desc">把容量风险从看水位升级为看未来：series_forecast 预测触阈时间，沿 UModel 解释上升来源，跨产品共振归并后给出处置优先级。</p>
+      <h3 class="sls-starops-card__title">自定义容量风险巡检设计最佳实践</h3>
+      <p class="sls-starops-card__desc">把容量风险从看水位升级为看未来：series_forecast 预测触阈时间，沿 UModel 解释上升来源，跨产品联动归并后给出处置优先级。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
