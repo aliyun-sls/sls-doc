@@ -114,7 +114,7 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
-      <h3 class="sls-starops-card__title">RDS 脚本巡检与动态追因</h3>
+      <h3 class="sls-starops-card__title">如何提升巡检稳定性，同时支持异常后的动态追因</h3>
       <p class="sls-starops-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>

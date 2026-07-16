@@ -18,7 +18,7 @@ function getSidebar() {
       text: '进阶必备',
       collapsed: true,
       items: [
-        { text: 'RDS 脚本巡检与动态追因', link: '/starops/practices/rds-inspection-via-script/article' },
+        { text: '如何提升巡检稳定性，同时支持异常后的动态追因', link: '/starops/practices/rds-inspection-via-script/article' },
       ],
     },
     {
