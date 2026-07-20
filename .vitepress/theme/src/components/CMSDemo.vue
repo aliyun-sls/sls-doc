@@ -4,10 +4,18 @@ import { computed, ref, watchEffect } from 'vue'
 import { initLang, isDarkTheme, parseCommonQuery } from './utils'
 import { inBrowser, useData } from 'vitepress'
 
-const props = defineProps(['workspace', 'region'])
-const workspace = props.workspace ?? 'default-cms-1819385687343877-cn-hongkong'
-const region = props.region ?? 'cn-hongkong'
-const assistantId = 'starops-demo'
+const props = withDefaults(
+  defineProps<{
+    assistantId?: string
+    region?: string
+    workspace?: string
+  }>(),
+  {
+    assistantId: 'starops-demo',
+    region: 'cn-hongkong',
+    workspace: 'default-cms-1819385687343877-cn-hongkong',
+  }
+)
 
 const { lang } = useData()
 watchEffect(() => {
@@ -22,7 +30,7 @@ const params = computed(() => {
 
   if (queries == null || queries.dest == null) {
     return {
-      dest: `/next/region/${region}/workspace/${workspace}/app/entity/explorer?fixedAssistantId=${assistantId}&assistantId=${assistantId}&staropsClusterRegion=cn-beijing`,
+      dest: `/next/region/${props.region}/workspace/${props.workspace}/app/entity/explorer?fixedAssistantId=${props.assistantId}&assistantId=${props.assistantId}&staropsClusterRegion=cn-beijing`,
       theme: 'default',
       maxWidth: false,
     }
