@@ -4,10 +4,20 @@ import { computed, ref, watchEffect } from 'vue'
 import { initLang, isDarkTheme, parseCommonQuery } from './utils'
 import { inBrowser, useData } from 'vitepress'
 
-const props = defineProps(['workspace', 'region'])
-const workspace = props.workspace ?? 'default-cms-1819385687343877-cn-hongkong'
-const region = props.region ?? 'cn-hongkong'
-const assistantId = 'starops-demo'
+const props = withDefaults(
+  defineProps<{
+    assistantId?: string
+    region?: string
+    workspace?: string
+    staropsClusterRegion?: string
+  }>(),
+  {
+    assistantId: 'starops-demo',
+    region: 'cn-hongkong',
+    workspace: 'default-cms-1819385687343877-cn-hongkong',
+    staropsClusterRegion: 'cn-beijing',
+  }
+)
 
 const { lang } = useData()
 watchEffect(() => {
@@ -22,7 +32,17 @@ const params = computed(() => {
 
   if (queries == null || queries.dest == null) {
     return {
-      dest: `/?assistantId=${assistantId}&fixedAssistantId=${assistantId}&initWorkspace=${workspace}&hideWorkspaceSwitch=true&showStarOpsReplayProgress=true&staropsClusterRegion=cn-beijing`,
+      dest: URI('/')
+        .setSearch({
+          assistantId: props.assistantId,
+          fixedAssistantId: props.assistantId,
+          region: props.region,
+          initWorkspace: props.workspace,
+          hideWorkspaceSwitch: true,
+          showStarOpsReplayProgress: true,
+          staropsClusterRegion: props.staropsClusterRegion,
+        })
+        .toString(),
       theme: 'default',
       maxWidth: false,
     }
