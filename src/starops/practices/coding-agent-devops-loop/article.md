@@ -16,7 +16,11 @@ title: 一个 Agent 入口完成 DevOps 闭环
   <span>分类 · 协作闭环</span>
 </div>
 
-> 对话回放：[发布后运行检查](/playground/coding-agent-devops-loop-release-runtime-check-replay.html) ｜ [告警到代码修复](/playground/coding-agent-devops-loop-alert-to-fix-replay.html) ｜ [修复版运行回归](/playground/coding-agent-devops-loop-fix-regression-replay.html)
+:::: details 查看 DevOps 闭环演示视频
+<video src="https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/coding-agent-devops-loop/videos/devops-loop-demo.mp4" controls="controls" width="100%" height="500">
+您的浏览器不支持 video 标签。
+</video>
+::::
 
 DevOps 任务经常从代码开始，却在发布、告警、日志、Trace 和运行环境之间中断。开发者需要在不同平台重复确认版本、对象、时间范围和诊断结论，Agent 也难以保留一条任务的完整上下文。
 
