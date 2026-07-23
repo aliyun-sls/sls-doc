@@ -196,17 +196,12 @@ Guide Skill 用于指导接入、配置和验证。运行时诊断消费 UModel 
 
 ## Guide Skill 与验证 Skill
 
-本实践包含 1 个 Guide Skill 和 6 个分阶段验证 Skill。Guide Skill 用于指导 DevOps 数据接入、配置和验证；验证 Skill 用于按阶段检查数据完整性和 workspace 可见性。
+本实践包含 1 个 Guide Skill 和 1 个分阶段验证 Skill。Guide Skill 用于指导 DevOps 数据接入、配置和验证；验证 Skill（`devops-verification` orchestrator）以 6 阶段流水线按阶段检查数据完整性和 workspace 可见性。
 
 | Skill | 定位 | 用途 | 本地 Agent | STAROps 控制台 |
 |---|---|---|---|---|
 | `devops-code-to-runtime-sop` | Guide Skill | 引导用户理解参考模型、准备数据源、接入代码域和制品域、建立跨域关系并完成端到端验证 | 不支持（诊断流程依赖 STAROps 运行时工具与 workspace 数据） | [devops-code-to-runtime-sop.tar.gz](https://starops-demo.oss-cn-beijing.aliyuncs.com/starops/demo/starops-best-practice/devops-code-to-runtime/docs/devops-code-to-runtime-sop.tar.gz) |
-| `verification-resource-readiness` | 验证 Skill | 检查 Git provider、镜像仓库、workspace 和运行时数据是否可访问 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-resource-readiness` | 不适用 |
-| `verification-workspace-alignment` | 验证 Skill | 确认配置指向目标 workspace 和对应数据写入面 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-workspace-alignment` | 不适用 |
-| `verification-workspace-refresh` | 验证 Skill | 执行真实刷新路径，记录实体和关系写入结果 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-workspace-refresh` | 不适用 |
-| `verification-cms-visibility` | 验证 Skill | 检查 DevOps 域实体在 CMS workspace 中是否可见 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-visibility` | 不适用 |
-| `verification-cms-field-check` | 验证 Skill | 检查关键字段、provider 差异和映射结果 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-field-check` | 不适用 |
-| `verification-cms-sls-diagnose` | 验证 Skill | 在刷新或可见性异常时定位 workspace、权限或数据源问题 | `npx skills add aliyun-sls/sls-doc-skills --skill verification-cms-sls-diagnose` | 不适用 |
+| `devops-verification` | 验证 Skill | 6 阶段流水线验证 DevOps 数据接入 CMS workspace：resource-readiness→workspace-alignment→workspace-refresh→cms-visibility→cms-field-check→cms-sls-diagnose，失败停在当前阶段报告缺口 | `npx skills add aliyun-sls/sls-doc-skills --skill devops-verification` | 不适用 |
 
 验证 Skill 用于分阶段检查数据完整性，不声明可配置给数字员工长期运行的 Runtime Skill 能力。
 
