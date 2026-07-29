@@ -148,6 +148,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">日志模式聚类支持持续分析新增、消失与异常模式，按计划主动送达变化报告。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
+      <h3 class="sls-starops-card__title">跨产品巡检汇总最佳实践</h3>
+      <p class="sls-starops-card__desc">把多产品巡检结果汇总成一份报告，按 UModel 关系归并同一资源风险，让值班一次看清全局并减少重复通知。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 
