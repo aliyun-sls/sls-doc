@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 跨产品巡检汇总最佳实践 — RDS 数据库巡检
+title: 多云产品融合巡检最佳实践 — RDS 数据库巡检
 footer: false
 ---
 
