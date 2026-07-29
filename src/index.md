@@ -165,7 +165,7 @@ pageClass: sls-observe-home
 
 
 
-## Agent可观测 Demo
+## Agent 可观测 Demo
 
 <div class="vt-box-container next-steps margin-top-20">
   <a class="vt-box" href="/doc/agent-observability/multimodal.html">

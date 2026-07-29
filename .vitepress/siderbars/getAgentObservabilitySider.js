@@ -1,7 +1,7 @@
 function getSidebar() {
   return [
     {
-      text: 'Agent可观测 Demo',
+      text: 'Agent 可观测 Demo',
       items: [
         {
           text: '多模态场景',
