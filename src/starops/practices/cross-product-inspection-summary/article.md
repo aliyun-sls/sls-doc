@@ -3,14 +3,14 @@ pageClass: sls-starops-article
 status: published
 journey: 主动巡检
 id: cross-product-inspection-summary
-title: 跨产品巡检汇总最佳实践
+title: 多云产品融合巡检最佳实践
 ---
 
 <div class="sls-starops-article-crumb">
   <a href="/doc/starops/starops.html">STAROps</a> <span class="sep">/</span> <span>主动巡检</span>
 </div>
 
-# 跨产品巡检汇总最佳实践
+# 多云产品融合巡检最佳实践
 
 <div class="sls-starops-article-meta">
   <span>分类 · 主动巡检</span>

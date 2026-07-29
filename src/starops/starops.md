@@ -149,7 +149,7 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
-      <h3 class="sls-starops-card__title">跨产品巡检汇总最佳实践</h3>
+      <h3 class="sls-starops-card__title">多云产品融合巡检最佳实践</h3>
       <p class="sls-starops-card__desc">把多产品巡检结果汇总成一份报告，按 UModel 关系归并同一资源风险，让值班一次看清全局并减少重复通知。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
