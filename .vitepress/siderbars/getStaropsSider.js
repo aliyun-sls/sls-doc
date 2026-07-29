@@ -30,6 +30,7 @@ function getSidebar() {
         { text: '业务服务可靠性巡检', link: '/starops/practices/business-reliability-flow/article' },
         { text: '日志模式定时巡检', link: '/starops/practices/log-insight-pattern/article' },
         { text: '跨产品巡检汇总最佳实践', link: '/starops/practices/cross-product-inspection-summary/article' },
+        { text: 'STAROps 账单与成本分析最佳实践', link: '/starops/practices/billing-cost-analysis/article' },
       ],
     },
     {

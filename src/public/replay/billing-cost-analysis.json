@@ -1,0 +1,98 @@
+{
+  "success": true,
+  "message": "",
+  "code": "200",
+  "data": {
+    "requestId": "billing-cost-analysis-demo",
+    "threadId": "thread-billing-cost-analysis-demo",
+    "digitalEmployeeName": "starops-best-practice",
+    "maxResults": 1000,
+    "nextToken": "",
+    "data": [
+      {
+        "traceId": "billing-cost-analysis-turn-1",
+        "requestId": "billing-cost-analysis-demo-1",
+        "messages": [
+          {
+            "callId": "billing-cost-analysis-user-1",
+            "role": "user",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "<code vibeops_object type=\"skill\">/计量计费分析</code> 分析 ECS 实例费用，并给出成本优化建议",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1784605768000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-cost-analysis-turn-1",
+        "requestId": "billing-cost-analysis-demo-1",
+        "messages": [
+          {
+            "callId": "billing-cost-analysis-assistant-1",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "我已加载账单分析 Skill。云账单通常按 T+1 出账，当天数据可能尚未完整。请确认本次分析的时间范围。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1784605770000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-cost-analysis-turn-2",
+        "requestId": "billing-cost-analysis-demo-2",
+        "messages": [
+          {
+            "callId": "billing-cost-analysis-user-2",
+            "role": "user",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "分析 7 月 14 日到 7 月 20 日的数据。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1784605780000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-cost-analysis-turn-2",
+        "requestId": "billing-cost-analysis-demo-2",
+        "messages": [
+          {
+            "callId": "billing-cost-analysis-assistant-2",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "时间范围确认为 **7 月 14 日至 7 月 20 日**。我已完成以下分析：\n\n1. 查询 ECS 产品级费用及计费项分布。\n2. 与前一周比较，定位主要费用变化。\n3. 下钻到实例级费用和地域分布。\n4. 结合资源水位报告核查 CPU 与内存使用情况。\n5. 对照官方优化规则生成候选建议。\n\n---\n\n## ECS 实例费用分析报告\n\n**分析窗口**：7 月 14 日至 7 月 20 日\n\n### 一、费用总览\n\n| 指标 | 数值 |\n|---|---:|\n| ECS 周总费用 | ¥200,000 |\n| 计费方式 | 以按量付费为主 |\n| 日均费用 | 约 ¥28,600/天 |\n| 周环比变化 | +20% |\n\n### 二、计费项分布\n\n| 计费项 | 当前费用 | 占比 | 上周费用 | 周环比变化 |\n|---|---:|---:|---:|---:|\n| 云服务器配置 | ¥180,000 | 90% | ¥150,000 | +20% |\n| 系统盘 | ¥20,000 | 10% | ¥16,000 | +25% |\n\n日费用整体稳定，增量主要来自云服务器配置，其次是系统盘。费用上涨分散在多台实例上，没有单一实例贡献大部分增量。\n\n### 三、地域分布\n\n| 地域 | 费用 | 占比 |\n|---|---:|---:|\n| 华东 2（上海） | ¥120,000 | 60% |\n| 华南 1（深圳） | ¥40,000 | 20% |\n| 中国香港 | ¥20,000 | 10% |\n| 其他地域 | ¥20,000 | 10% |\n\n### 四、Top 费用实例及水位\n\n| 实例 | 规格 | 周费用 | CPU 平均/峰值 | 内存平均/峰值 | 判断 |\n|---|---|---:|---:|---:|---|\n| i-example01 | ecs.c9i.48xlarge | ¥1,000 | 1% / 3% | 3% / 5% | 持续低水位，优先核查 |\n| i-example02 | ecs.c7.3xlarge | ¥500 | 10% / 60% | 20% / 50% | 存在峰值，不建议直接降配 |\n| i-example03 | ecs.c6.3xlarge | ¥500 | 5% / 20% | 10% / 30% | 需要结合业务周期继续观察 |\n| i-example04 | ecs.gn7i-c8g1.2xlarge | ¥300 | 1% / 2% | 4% / 5% | GPU 实例低水位，核查使用必要性 |\n\n### 五、成本优化候选\n\n#### 候选 1：核查高费用、持续低水位实例\n\n- **目标**：`i-example01`\n- **账单证据**：该实例处于费用 Top 列表，规格较高且采用按量付费。\n- **水位证据**：CPU 和内存的平均值与峰值持续偏低。\n- **建议动作**：确认业务角色、突发流量、容灾预留和 SLA 后，在测试环境评估较小规格。\n- **边界**：当前证据只支持进入评估，不直接执行降配。\n\n#### 候选 2：核查低水位 GPU 实例\n\n- **目标**：`i-example04`\n- **账单证据**：GPU 实例单位成本较高。\n- **水位证据**：当前统计窗口内 CPU 和内存水位均较低。\n- **建议动作**：确认是否承担窗口外的周期性训练或推理任务，再评估调整配置或释放资源。\n- **边界**：需要补充 GPU 使用率和任务调度记录，不能只依据 CPU、内存下结论。\n\n#### 候选 3：评估节省计划\n\n- **适用范围**：长期稳定运行的按量付费实例。\n- **账单证据**：日费用较稳定，存在可测算的按量使用基线。\n- **建议动作**：在费用与成本控制台进行节省计划购前测算，对比期限、承诺消费金额和地域灵活性。\n- **边界**：购买前确认当前优惠覆盖、未来业务增长和规格族调整计划。\n\n> 以上金额、实例和指标均为脱敏后的示例数据。优化候选基于账单、资源水位和官方规则生成，不会直接执行资源变更。实施前需由业务、平台和财务共同确认 SLA、容量规划和费用测算。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1784605900000000000"
+          }
+        ]
+      }
+    ]
+  }
+}
