@@ -1,6 +1,6 @@
 ---
 layout: page
-title: STAROps 账单与成本分析最佳实践 — ECS 费用分析与优化建议
+title: STAROps 账单与成本分析最佳实践 — 多产品资源水位分析与优化建议
 footer: false
 ---
 
@@ -10,9 +10,9 @@ import ReplayChat from '@theme/src/components/ReplayChat.vue'
 
 <ReplayChat
   src="/replay/billing-cost-analysis.json"
-  project="billing-cost-analysis-demo"
-  workspace="billing-cost-analysis-demo"
-  region="cn-shanghai"
-  default-region="cn-shanghai"
+  project="resource-watermark-analysis-demo"
+  workspace="resource-watermark-analysis-demo"
+  region="cn-beijing"
+  default-region="cn-beijing"
   employee="starops-best-practice"
 />

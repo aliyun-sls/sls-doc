@@ -3,93 +3,72 @@
   "message": "",
   "code": "200",
   "data": {
-    "requestId": "billing-cost-analysis-demo",
-    "threadId": "thread-billing-cost-analysis-demo",
+    "requestId": "resource-watermark-analysis-demo",
+    "threadId": "thread-resource-watermark-analysis-demo",
     "digitalEmployeeName": "starops-best-practice",
     "maxResults": 1000,
     "nextToken": "",
     "data": [
       {
-        "traceId": "billing-cost-analysis-turn-1",
-        "requestId": "billing-cost-analysis-demo-1",
+        "traceId": "resource-watermark-analysis-turn-1",
+        "requestId": "resource-watermark-analysis-demo-1",
         "messages": [
           {
-            "callId": "billing-cost-analysis-user-1",
+            "callId": "resource-watermark-analysis-user-1",
             "role": "user",
             "contents": [
               {
                 "lastChunk": true,
                 "type": "text",
-                "value": "<code vibeops_object type=\"skill\">/计量计费分析</code> 分析 ECS 实例费用，并给出成本优化建议",
+                "value": "<code vibeops_object type=\"skill\">/账单与成本分析</code> 请你分析近 30 天 ALB/NLB/CLB、ECS、RDS Top3 的资源水位情况，以及 SLS 的存储量 Top3，并给出优化建议。",
                 "append": false
               }
             ],
             "parentCallId": "",
             "version": "v0.1.0",
-            "timestamp": "1784605768000000000"
+            "timestamp": "1785386732000000000"
           }
         ]
       },
       {
-        "traceId": "billing-cost-analysis-turn-1",
-        "requestId": "billing-cost-analysis-demo-1",
+        "traceId": "resource-watermark-analysis-turn-1",
+        "requestId": "resource-watermark-analysis-demo-1",
         "messages": [
           {
-            "callId": "billing-cost-analysis-assistant-1",
+            "callId": "resource-watermark-analysis-assistant-1",
             "role": "assistant",
             "contents": [
               {
                 "lastChunk": true,
                 "type": "text",
-                "value": "我已加载账单分析 Skill。云账单通常按 T+1 出账，当天数据可能尚未完整。请确认本次分析的时间范围。",
+                "value": "我会按账单与成本分析流程，查询近 30 天各产品费用及实例分布，并将 ECS、RDS、CLB 的账单 Top 实例与资源水位周报交叉匹配；ALB 使用 LCU 间接判断水位，同时核对 SLS 存储 Top3 的 Logstore 配置、TTL 和索引。完成证据收集后，我会给出可验证的优化候选，不会直接执行资源变更。",
                 "append": false
               }
             ],
             "parentCallId": "",
             "version": "v0.1.0",
-            "timestamp": "1784605770000000000"
+            "timestamp": "1785386735000000000"
           }
         ]
       },
       {
-        "traceId": "billing-cost-analysis-turn-2",
-        "requestId": "billing-cost-analysis-demo-2",
+        "traceId": "resource-watermark-analysis-turn-1",
+        "requestId": "resource-watermark-analysis-demo-1",
         "messages": [
           {
-            "callId": "billing-cost-analysis-user-2",
-            "role": "user",
-            "contents": [
-              {
-                "lastChunk": true,
-                "type": "text",
-                "value": "分析 7 月 14 日到 7 月 20 日的数据。",
-                "append": false
-              }
-            ],
-            "parentCallId": "",
-            "version": "v0.1.0",
-            "timestamp": "1784605780000000000"
-          }
-        ]
-      },
-      {
-        "traceId": "billing-cost-analysis-turn-2",
-        "requestId": "billing-cost-analysis-demo-2",
-        "messages": [
-          {
-            "callId": "billing-cost-analysis-assistant-2",
+            "callId": "resource-watermark-analysis-assistant-2",
             "role": "assistant",
             "contents": [
               {
                 "lastChunk": true,
                 "type": "text",
-                "value": "时间范围确认为 **7 月 14 日至 7 月 20 日**。我已完成以下分析：\n\n1. 查询 ECS 产品级费用及计费项分布。\n2. 与前一周比较，定位主要费用变化。\n3. 下钻到实例级费用和地域分布。\n4. 结合资源水位报告核查 CPU 与内存使用情况。\n5. 对照官方优化规则生成候选建议。\n\n---\n\n## ECS 实例费用分析报告\n\n**分析窗口**：7 月 14 日至 7 月 20 日\n\n### 一、费用总览\n\n| 指标 | 数值 |\n|---|---:|\n| ECS 周总费用 | ¥200,000 |\n| 计费方式 | 以按量付费为主 |\n| 日均费用 | 约 ¥28,600/天 |\n| 周环比变化 | +20% |\n\n### 二、计费项分布\n\n| 计费项 | 当前费用 | 占比 | 上周费用 | 周环比变化 |\n|---|---:|---:|---:|---:|\n| 云服务器配置 | ¥180,000 | 90% | ¥150,000 | +20% |\n| 系统盘 | ¥20,000 | 10% | ¥16,000 | +25% |\n\n日费用整体稳定，增量主要来自云服务器配置，其次是系统盘。费用上涨分散在多台实例上，没有单一实例贡献大部分增量。\n\n### 三、地域分布\n\n| 地域 | 费用 | 占比 |\n|---|---:|---:|\n| 华东 2（上海） | ¥120,000 | 60% |\n| 华南 1（深圳） | ¥40,000 | 20% |\n| 中国香港 | ¥20,000 | 10% |\n| 其他地域 | ¥20,000 | 10% |\n\n### 四、Top 费用实例及水位\n\n| 实例 | 规格 | 周费用 | CPU 平均/峰值 | 内存平均/峰值 | 判断 |\n|---|---|---:|---:|---:|---|\n| i-example01 | ecs.c9i.48xlarge | ¥1,000 | 1% / 3% | 3% / 5% | 持续低水位，优先核查 |\n| i-example02 | ecs.c7.3xlarge | ¥500 | 10% / 60% | 20% / 50% | 存在峰值，不建议直接降配 |\n| i-example03 | ecs.c6.3xlarge | ¥500 | 5% / 20% | 10% / 30% | 需要结合业务周期继续观察 |\n| i-example04 | ecs.gn7i-c8g1.2xlarge | ¥300 | 1% / 2% | 4% / 5% | GPU 实例低水位，核查使用必要性 |\n\n### 五、成本优化候选\n\n#### 候选 1：核查高费用、持续低水位实例\n\n- **目标**：`i-example01`\n- **账单证据**：该实例处于费用 Top 列表，规格较高且采用按量付费。\n- **水位证据**：CPU 和内存的平均值与峰值持续偏低。\n- **建议动作**：确认业务角色、突发流量、容灾预留和 SLA 后，在测试环境评估较小规格。\n- **边界**：当前证据只支持进入评估，不直接执行降配。\n\n#### 候选 2：核查低水位 GPU 实例\n\n- **目标**：`i-example04`\n- **账单证据**：GPU 实例单位成本较高。\n- **水位证据**：当前统计窗口内 CPU 和内存水位均较低。\n- **建议动作**：确认是否承担窗口外的周期性训练或推理任务，再评估调整配置或释放资源。\n- **边界**：需要补充 GPU 使用率和任务调度记录，不能只依据 CPU、内存下结论。\n\n#### 候选 3：评估节省计划\n\n- **适用范围**：长期稳定运行的按量付费实例。\n- **账单证据**：日费用较稳定，存在可测算的按量使用基线。\n- **建议动作**：在费用与成本控制台进行节省计划购前测算，对比期限、承诺消费金额和地域灵活性。\n- **边界**：购买前确认当前优惠覆盖、未来业务增长和规格族调整计划。\n\n> 以上金额、实例和指标均为脱敏后的示例数据。优化候选基于账单、资源水位和官方规则生成，不会直接执行资源变更。实施前需由业务、平台和财务共同确认 SLA、容量规划和费用测算。",
+                "value": "分析已完成，以下是近 30 天资源水位与优化建议的完整报告。\n\n# 近 30 天资源水位与成本优化分析报告\n\n> 报告中的费用、实例 ID、实例名称、Project 和 Logstore 名称均已脱敏；规格、地域、资源水位、存储量、TTL 和覆盖范围保留完整分析数据。\n\n## 一、产品费用总览\n\n| 产品 | 近 30 天费用（CNY） |\n|---|---:|\n| ECS | \\*\\*\\* |\n| SLS | \\*\\*\\* |\n| RDS | \\*\\*\\* |\n| SLB（含 ALB/CLB） | \\*\\*\\* |\n| NLB | 无账单 |\n\n---\n\n## 二、ECS 资源水位 Top3\n\n**数据来源**：资源水位周度报告（2026-07-06 ~ 2026-07-12）\n\n| 排名 | 实例 ID | 规格 | 地域 | 30 天费用（CNY） | CPU Avg% | CPU Max% | 内存 Avg% | 内存 Max% |\n|---:|---|---|---|---:|---:|---:|---:|---:|\n| 1 | `i-example-ecs-01` | ecs.c9i.48xlarge | cn-hongkong | \\*\\*\\* | **0.11** | 0.28 | **2.67** | 2.82 |\n| 2 | `i-example-ecs-02` | ecs.c7.3xlarge | cn-shanghai-cloudspe | \\*\\*\\* | **0.67** | 1.20 | **9.31** | 9.39 |\n| 3 | `i-example-ecs-03` | ecs.c7.3xlarge | cn-shanghai-cloudspe | \\*\\*\\* | 7.56 | 63.10 | 19.24 | 60.38 |\n\n**关键发现：**\n\n- Top1 实例 `i-example-ecs-01` 为 48 核大规格（ecs.c9i.48xlarge），CPU 平均利用率仅 0.11%、内存平均 2.67%，属于**持续极低水位**。\n- Top2 实例 `i-example-ecs-02` CPU 平均 0.67%、内存 9.31%，同样处于极低水位。\n- Top3 实例存在间歇性峰值（CPU Max 63.10%、内存 Max 60.38%），需关注是否有定时任务或突发流量。\n\n---\n\n## 三、RDS 资源水位 Top3\n\n**数据来源**：资源水位周度报告\n\n| 排名 | 实例 ID | 规格 | 配置 | 30 天费用（CNY） | CPU Avg% | CPU Max% | 内存 Avg% | 连接 Avg% | IOPS Avg | 磁盘 Avg% |\n|---:|---|---|---|---:|---:|---:|---:|---:|---:|---:|\n| 1 | `rm-example-01` | rds.mysql.c1.large | 8 核 16 GB 高可用 100 GB | \\*\\*\\* | **0.17** | 0.18 | **4.00** | 0.06 | 5.26 | 0 |\n| 2 | `rm-example-02` | rds.mysql.c1.large | 8 核 16 GB | \\*\\*\\* | **0.14** | 0.16 | **0.89** | 0.07 | 6.40 | 1.0 |\n| 3 | `rm-example-03` | rds.mysql.m1.medium | - | \\*\\*\\* | **0.18** | 0.20 | **3.99** | 0.10 | 5.03 | 0 |\n\n**关键发现：**\n\n- 三个 RDS 实例的 CPU、内存、连接数均处于**极低水位**（CPU < 0.2%，内存 < 5%，连接 ≤ 0.1%）。\n- 磁盘使用率接近 0%，无容量风险。\n- 均为 MySQL 高可用版通用型规格，规格费为主要成本。\n\n---\n\n## 四、ALB/NLB/CLB 资源水位 Top3\n\n### 4.1 ALB（应用型负载均衡）Top3\n\n| 排名 | 实例 ID | 实例名称 | 地域 | 30 天费用（CNY） | 规格 | LCU |\n|---:|---|---|---|---:|---|---:|\n| 1 | `alb-example-01` | `k8s-system-alb-example-01` | 华南 2（河源） | \\*\\*\\* | slb.s0.share | 1 |\n| 2 | `alb-example-02` | `k8s-system-alb-example-02` | 西南 1（成都） | \\*\\*\\* | slb.s0.share | 1 |\n| 3 | `alb-example-03` | `k8s-system-alb-example-03` | 华北 1（青岛） | \\*\\*\\* | slb.s0.share | 1 |\n\n**关键发现：**\n\n- ALB 实例均为 K8s 集群自动创建，分布在不同地域。\n- 费用以实例费为主，LCU 费用极低，说明流量和连接数极少。\n- 资源水位报告中无 ALB 独立 Namespace 数据，ALB 水位通过 LCU 间接反映；1 LCU 为最低计费单位。\n\n### 4.2 CLB（传统型负载均衡）Top3\n\n| 排名 | 实例 ID | 地域 | 30 天费用（CNY） | 规格 | 主要计费项 |\n|---:|---|---|---:|---|---|\n| 1 | `lb-example-01` | 中国香港 | \\*\\*\\* | slb.s3.large | 容量单位 |\n| 2 | `lb-example-02` | 华北 1（青岛） | \\*\\*\\* | slb.s3.large | 实例费 |\n| 3 | `lb-example-03` | 中国香港 | \\*\\*\\* | slb.s3.large | 实例费 |\n\n**关键发现：**\n\n- CLB 实例均为 slb.s3.large（标准型大规格），但水位报告中 MaxConnection Avg 为 0，QPS 数据缺失。\n- 费用以实例费为主，容量单位费用极低。\n\n### 4.3 NLB\n\n近 30 天无 NLB 账单记录。\n\n---\n\n## 五、SLS 存储量 Top3\n\n| 排名 | Project | Logstore | 地域 | 存储用量（GB） | TTL（天） | 类型 |\n|---:|---|---|---|---:|---:|---|\n| 1 | `audit-project-example-01` | `audit-logstore-example-01` | ap-southeast-3 | 2,234,048.81 GB | **3650** | actiontrail |\n| 2 | `audit-project-example-02` | `audit-logstore-example-02` | cn-hongkong | 2,124,687.33 GB | **3650** | actiontrail |\n| 3 | `audit-project-example-03` | `audit-logstore-example-03` | cn-hangzhou | 1,181,675.83 GB | 180 | audit |\n\n**关键发现：**\n\n- Top1 和 Top2 均为 ActionTrail 安全审计日志，TTL 设置为 **3650 天（10 年）**，存储量合计约 4,358,736 GB（约 4.26 PB）。\n- Top3 为 SLS 审计中心日志，TTL 为 180 天，存储量约 1,181,676 GB（约 1.15 PB）。\n- 索引配置：Top1/Top2 仅有 1 个字段索引（`event`），Top3 有 3 个字段索引（`event`、`owner_id`、`threat_sourceIpAddress`）。\n\n---\n\n## 六、优化建议\n\n### 优化候选 1：ECS 大规格实例降配评估（`candidate`）\n\n- **目标**：ECS `i-example-ecs-01` 的云服务器配置。\n- **账单证据**：近 30 天费用为 \\*\\*\\*，位列 ECS 费用 Top1。\n- **实际配置**：ecs.c9i.48xlarge（48 核），cn-hongkong。\n- **实际水位**：CPU Avg 0.11%、Max 0.28%；内存 Avg 2.67%、Max 2.82%（资源水位周度报告）。\n- **官方规则**：ECS 资源管家对过去 30 天内每分钟 CPU < 5% 且内存 < 5% 的实例提供成本优化建议。\n- **建议动作**：该实例持续极低水位且无峰值风险，建议评估与业务需求匹配的更低规格配置。\n- **待验证项**：业务是否有突发扩容需求、是否为临时测试环境、SLA 要求。\n\n### 优化候选 2：RDS 低水位实例配置评估（`candidate`）\n\n- **目标**：RDS `rm-example-01`、`rm-example-02`、`rm-example-03` 的规格。\n- **账单证据**：三个实例近 30 天费用均为 \\*\\*\\*，合计费用已脱敏。\n- **实际配置**：均为 MySQL 高可用版通用型（rds.mysql.c1.large 8 核 16 GB 或 rds.mysql.m1.medium）。\n- **实际水位**：CPU Avg 均 < 0.2%、内存 Avg < 5%、连接 Avg ≤ 0.1%、IOPS Avg < 7、磁盘 < 2%（资源水位周度报告）。\n- **官方规则**：RDS 持续低水位且无容量风险时，可评估与固定规格费对应的实例配置优化。\n- **建议动作**：三个 RDS 实例持续低水位，建议评估与固定规格费对应的实例配置优化。\n- **待验证项**：是否有即将到来的业务增长、读写分离需求、备份与容灾 SLA。\n\n### 优化候选 3：SLS ActionTrail 日志存储周期优化（`candidate`）\n\n- **目标**：SLS `audit-logstore-example-01`、`audit-logstore-example-02` 的存储空间。\n- **账单证据**：Top1/Top2 存储用量分别为 2,234,048.81 GB 和 2,124,687.33 GB，SLS 存储空间总费用为 \\*\\*\\*。\n- **实际配置**：TTL = 3650 天（10 年），标准模式，仅 1 个字段索引（`event`）。\n- **官方规则**：根据查询需求优化 Logstore 数据保存周期；对长时间存储需求建议导入 OSS；对无用字段不配置索引。\n- **建议动作**：评估 ActionTrail 审计日志的合规保留要求；若无需 10 年在线查询，可缩短 TTL 或将历史数据投递至 OSS 归档。\n- **待验证项**：合规/审计对 ActionTrail 日志保留周期的具体要求、是否有定期查询 90 天前日志的需求。\n\n---\n\n## 七、证据来源与限制说明\n\n| 证据类型 | 来源 | 覆盖范围 |\n|---|---|---|\n| 账单数据 | STAROps 账单成本查询 | 近 30 天实例账单 |\n| ECS/RDS/CLB 水位 | 资源水位周度报告（2026-07-06 ~ 2026-07-12） | ECS 6,854 实例 / RDS 36 实例 / CLB 92 实例 |\n| ALB 水位 | 账单 LCU 字段间接反映 | ALB 不在资源水位报告 Namespace 中 |\n| SLS 配置 | Logstore 与索引配置查询 | Top3 Logstore |\n| 官方文档 | ECS 优化建议 / SLS 成本优化 / SLB 计费说明 | 2026-07-30 拉取 |\n\n**限制说明：**\n\n- 资源水位报告为周度粒度（2026-07-06 ~ 2026-07-12），可能与账单窗口（近 30 天）不完全对齐。\n- ALB 无独立资源水位报告 Namespace，水位通过 LCU 间接判断。\n- NLB 近 30 天无账单记录，未纳入分析。\n- 优化建议为定性评估，具体目标规格和配置需结合业务 SLA 确认。",
                 "append": false
               }
             ],
             "parentCallId": "",
             "version": "v0.1.0",
-            "timestamp": "1784605900000000000"
+            "timestamp": "1785387632000000000"
           }
         ]
       }

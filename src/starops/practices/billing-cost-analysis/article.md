@@ -17,7 +17,7 @@ title: STAROps 账单与成本分析最佳实践
 </div>
 
 > 会话回放：
-> [ECS 费用分析与优化建议](/playground/billing-cost-analysis-replay.html) ·
+> [多产品资源水位分析与优化建议](/playground/billing-cost-analysis-replay.html) ·
 > [按 Tag 和资源组进行成本归因](/playground/billing-cost-attribution-replay.html) ·
 > [费用与资源水位每日巡检](/playground/billing-resource-watermark-daily-inspection-replay.html)
 
