@@ -3,14 +3,14 @@ pageClass: sls-starops-article
 status: published
 journey: 主动巡检
 id: billing-cost-analysis
-title: STAROps 账单与成本分析最佳实践
+title: 账单与成本分析最佳实践
 ---
 
 <div class="sls-starops-article-crumb">
   <a href="/doc/starops/starops.html">STAROps</a> <span class="sep">/</span> <span>主动巡检</span>
 </div>
 
-# STAROps 账单与成本分析最佳实践
+# 账单与成本分析最佳实践
 
 <div class="sls-starops-article-meta">
   <span>分类 · 主动巡检</span>
