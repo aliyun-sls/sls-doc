@@ -16,7 +16,10 @@ title: STAROps 账单与成本分析最佳实践
   <span>分类 · 主动巡检</span>
 </div>
 
-> 会话回放：[查看账单与成本分析案例](/playground/billing-cost-analysis-replay.html)
+> 会话回放：
+> [多产品资源水位分析与优化建议](/playground/billing-cost-analysis-replay.html) ·
+> [按 Tag 和资源组进行成本归因](/playground/billing-cost-attribution-replay.html) ·
+> [费用与资源水位每日巡检](/playground/billing-resource-watermark-daily-inspection-replay.html)
 
 本文面向使用 STAROps 查询云费用、定位费用变化、分析资源水位和获取优化建议的用户。用户只需用自然语言描述目标，无需编写 SQL 或执行 CLI 命令。
 
@@ -165,6 +168,8 @@ STAROps 主要使用阿里云账单中的费用、用量、抵扣、产品、计
 ### 2.4 标签、资源组分账和费用归因
 
 使用 Tag 或资源组进行分账分析前，需要先在云资源侧为实例配置对应的 Tag，或将实例加入对应的资源组。相关配置生效并进入账单后，STAROps 才能读取这些归属信息，并按 Tag 或资源组统计和归因费用。未配置、尚未生效或账单中未包含归属信息的资源，无法按这些维度准确分账。
+
+会话回放：[查看近 7 天账单按 Tag 和资源组归因案例](/playground/billing-cost-attribution-replay.html)
 
 **用户问题**
 
@@ -322,6 +327,8 @@ STAROps 会根据账单中的购买、续费周期和退款记录整理当前有
 > 每周一 09:00 巡检上一周的云费用，识别主要异常并给出优化建议，生成报告。
 
 周期巡检适合持续关注费用异常、分账风险、抵扣变化、预付费到期风险、资源水位和优化事项。创建或修改巡检任务属于写操作，系统会在执行前请求确认。
+
+会话回放：[查看费用与资源水位每日巡检案例](/playground/billing-resource-watermark-daily-inspection-replay.html)
 
 ### 3.2 推荐使用节奏
 
