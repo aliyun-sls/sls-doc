@@ -1,0 +1,140 @@
+{
+  "success": true,
+  "message": "",
+  "code": "200",
+  "data": {
+    "requestId": "billing-daily-inspection-demo",
+    "threadId": "thread-billing-daily-inspection-demo",
+    "digitalEmployeeName": "starops-best-practice",
+    "maxResults": 1000,
+    "nextToken": "",
+    "data": [
+      {
+        "traceId": "billing-daily-inspection-turn-1",
+        "requestId": "billing-daily-inspection-demo-1",
+        "messages": [
+          {
+            "callId": "billing-daily-inspection-user-1",
+            "role": "user",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "帮我创建计费巡检。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785295500000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-daily-inspection-turn-1",
+        "requestId": "billing-daily-inspection-demo-1",
+        "messages": [
+          {
+            "callId": "billing-daily-inspection-assistant-1",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "计费巡检支持每日、每周和每月三种时间粒度：\n\n| 巡检模式 | 触发时间 | 对比方式 | 适用场景 |\n|---|---|---|---|\n| 每日巡检 | 每天 09:00 | 前日与前前日对比 | 日级异常监控，发现变化最快 |\n| 每周巡检 | 每周一 09:00 | 上周与上上周对比 | 周报和周环比复盘 |\n| 每月巡检 | 每月 1 日 09:00 | 上月与上上月对比 | 月度财务与预算管理 |\n\n三种模式可以同时开启。请确认需要创建哪种频率，以及是否需要配置钉钉或邮件通知。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785295510000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-daily-inspection-turn-2",
+        "requestId": "billing-daily-inspection-demo-2",
+        "messages": [
+          {
+            "callId": "billing-daily-inspection-user-2",
+            "role": "user",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "每日巡检，针对 ECS 和 RDS Top3 实例检查近 30 天的资源水位详情。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785295560000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-daily-inspection-turn-2",
+        "requestId": "billing-daily-inspection-demo-2",
+        "messages": [
+          {
+            "callId": "billing-daily-inspection-assistant-2",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "每日巡检计划已创建成功。\n\n**执行频率**：每天 09:00（Asia/Shanghai）\n\n### 巡检阶段\n\n| 阶段 | 内容 |\n|---|---|\n| Phase 1 | 账号总账：总费用、优惠占比和同比变化 |\n| Phase 2 | 产品分布：异常上涨产品和涨跌幅 Top5 |\n| Phase 3 | 异常产品下钻：计费项与实例根因分析 |\n| Phase 4 | 子账号、Tag、资源组和地域归因 |\n| Phase 5 | 未来 7 天预付费到期检查 |\n| 费用优化 | 官方规则匹配与资源水位排查 |\n| Top3 水位 | ECS 和 RDS 费用 Top3 实例近 30 天资源水位详情 |\n\n### ECS/RDS Top3 水位指标\n\n- ECS：CPU、内存、磁盘、网络带宽的 Average 和 Maximum。\n- RDS：CPU、内存、磁盘、连接数、IOPS 的 Average 和 Maximum。\n- 优先使用已有资源水位报告，不可用时再查询基础监控指标。\n\n创建长期任务属于写操作，计划已在用户确认后生效。当前未配置通知渠道。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785295600000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-daily-inspection-turn-3",
+        "requestId": "billing-daily-inspection-demo-3",
+        "messages": [
+          {
+            "callId": "billing-daily-inspection-user-3",
+            "role": "user",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "立即执行一次。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785295740000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-daily-inspection-turn-3",
+        "requestId": "billing-daily-inspection-demo-3",
+        "messages": [
+          {
+            "callId": "billing-daily-inspection-assistant-3",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "## 费用与资源水位每日巡检结果\n\n**执行结果**：成功\n\n### 一、费用总览\n\n| 指标 | 当前周期 | 上一周期 | 变化 |\n|---|---:|---:|---:|\n| 总费用 | ¥20,000 | ¥25,000 | -20% |\n| 异常上涨产品 | 0 个 | — | 未发现异常上涨 |\n\n费用整体下降，当前无需进入异常产品实例级下钻。\n\n### 二、费用 Top3 产品\n\n| 产品 | 当前费用 | 同比变化 |\n|---|---:|---:|\n| 云服务器 ECS | ¥5,000 | -10% |\n| 云数据库 RDS | ¥3,000 | -15% |\n| 应用实时监控服务 | ¥2,000 | -8% |\n\n### 三、预付费到期关注\n\n未来 7 天内有 2 个示例实例预计到期，其中 1 个为 RDS、1 个为 ECS。预计到期时间根据账单记录计算，续费前应在费用与成本控制台及资源控制台确认。\n\n### 四、ECS Top3 资源水位（近 30 天）\n\n| 指标 | Average | Maximum | 判断 |\n|---|---:|---:|---|\n| CPU 使用率 | 10% | 75% | 平均值较低但存在峰值，不建议直接降配 |\n| 内存使用率 | 25% | 55% | 水位稳定，继续观察业务周期 |\n| 磁盘使用率 | 20% | 40% | 容量充足 |\n\n### 五、RDS Top3 资源水位（近 30 天）\n\n| 指标 | Average | Maximum | 判断 |\n|---|---:|---:|---|\n| CPU 使用率 | 8% | 60% | 整体偏低，存在短时峰值 |\n| 内存使用率 | 30% | 45% | 运行平稳 |\n| 磁盘使用率 | 15% | 25% | 容量充足 |\n\n### 六、结论与建议\n\n- 本周期费用下降，未发现异常上涨产品。\n- ECS 和 RDS 整体资源水位平稳；个别指标存在峰值，不能只依据平均值直接降配。\n- 优先确认未来 7 天即将到期的预付费实例是否需要续费。\n- 每日持续执行相同巡检，观察费用变化、归因覆盖率和资源水位趋势。\n\n> 以上费用、实例数量和资源水位均为脱敏后的示例数据。任何变更建议都需要结合业务 SLA、容量规划和变更窗口复核。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785296460000000000"
+          }
+        ]
+      }
+    ]
+  }
+}

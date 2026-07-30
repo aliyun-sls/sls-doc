@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "message": "",
+  "code": "200",
+  "data": {
+    "requestId": "billing-cost-attribution-demo",
+    "threadId": "thread-billing-cost-attribution-demo",
+    "digitalEmployeeName": "starops-best-practice",
+    "maxResults": 1000,
+    "nextToken": "",
+    "data": [
+      {
+        "traceId": "billing-cost-attribution-turn-1",
+        "requestId": "billing-cost-attribution-demo-1",
+        "messages": [
+          {
+            "callId": "billing-cost-attribution-user-1",
+            "role": "user",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "<code vibeops_object type=\"skill\">/账单与成本分析</code> 分析近 7 天的账单，按照 Tag 和资源组归因",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785375726000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-cost-attribution-turn-1",
+        "requestId": "billing-cost-attribution-demo-1",
+        "messages": [
+          {
+            "callId": "billing-cost-attribution-assistant-1",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "我将查询近 7 天按 Tag 和资源组分组的费用分布，计算各归属维度的费用占比，并输出成本归因结论与治理建议。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785375730000000000"
+          }
+        ]
+      },
+      {
+        "traceId": "billing-cost-attribution-turn-1",
+        "requestId": "billing-cost-attribution-demo-1",
+        "messages": [
+          {
+            "callId": "billing-cost-attribution-assistant-2",
+            "role": "assistant",
+            "contents": [
+              {
+                "lastChunk": true,
+                "type": "text",
+                "value": "## 近 7 天账单成本归因报告\n\n**时间范围**：近 7 天\n\n**总费用**：约 ¥100,000\n\n### 一、按资源组归因\n\n| 资源组 | 费用 | 占比 |\n|---|---:|---:|\n| 未绑定资源组 | ¥75,000 | 75% |\n| 默认资源组 | ¥15,000 | 15% |\n| 生产业务组 | ¥8,000 | 8% |\n| 可观测演示组 | ¥2,000 | 2% |\n\n**关键发现**：75% 的费用来自未绑定资源组的资源，默认资源组仍占 15%。只有 10% 的费用具备明确的业务资源组归属，当前资源组维度的成本归因覆盖率较低。\n\n### 二、按 Tag 归因\n\n| Tag 分类 | 费用 | 占比 |\n|---|---:|---:|\n| 无 Tag | ¥85,000 | 85% |\n| `team=platform` | ¥6,000 | 6% |\n| `env=production` | ¥4,000 | 4% |\n| `service=observability` | ¥3,000 | 3% |\n| 其他业务 Tag | ¥2,000 | 2% |\n\n**关键发现**：85% 的费用来自未打 Tag 的资源。现有 Tag 主要覆盖平台、生产环境和可观测服务，业务自定义 Tag 的覆盖范围仍然有限。\n\n### 三、治理建议\n\n| 维度 | 当前问题 | 建议动作 |\n|---|---|---|\n| 资源组 | 大部分费用未绑定资源组 | 按业务、团队或环境梳理资源，并绑定到对应资源组 |\n| Tag | 无 Tag 费用占比高 | 制定至少包含 `env`、`team`、`service` 的标签规范，并治理存量资源 |\n| 默认归属 | 默认资源组仍承载较多费用 | 逐步迁移到业务资源组，避免默认分组成为长期成本黑盒 |\n| 持续治理 | 归因覆盖率缺少持续跟踪 | 建立周期巡检，持续观察未归属费用占比和标签覆盖率 |\n\n**核心结论**：当前成本归因覆盖率较低，应优先推进资源组与 Tag 治理，建立明确的成本归属责任制。后续可按团队、环境和服务维度持续比较费用变化。\n\n> 以上金额、资源组和 Tag 均为脱敏后的示例数据，仅用于展示成本归因方法。",
+                "append": false
+              }
+            ],
+            "parentCallId": "",
+            "version": "v0.1.0",
+            "timestamp": "1785375780000000000"
+          }
+        ]
+      }
+    ]
+  }
+}
