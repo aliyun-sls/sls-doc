@@ -1,6 +1,6 @@
 ---
 layout: page
-title: STAROps 账单与成本分析最佳实践 — 费用与资源水位每日巡检
+title: 账单与成本分析最佳实践 — 费用与资源水位每日巡检
 footer: false
 ---
 
