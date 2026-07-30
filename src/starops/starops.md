@@ -154,7 +154,7 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/billing-cost-analysis/article.html">
-      <h3 class="sls-starops-card__title">STAROps 账单与成本分析最佳实践</h3>
+      <h3 class="sls-starops-card__title">账单与成本分析最佳实践</h3>
       <p class="sls-starops-card__desc">用自然语言查询云费用、定位费用变化与实例级根因，结合资源水位形成可复核的成本优化建议。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
