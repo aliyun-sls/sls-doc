@@ -151,8 +151,6 @@ Skill 有两条产出路径，都过同一套 7 要素评审：
 - **验证**：在数字员工的技能列表里确认该 Skill 已存在并启用；查看技能详情确认文件结构与启用状态。列表与详情查询可自主完成。
 - **跑通**：在数字员工对话里真实触发该 Skill 执行一次，记录会话标识以便回溯。
 
-部署与查询的执行面在 STAROps 控制台；命令语法与实测证据见 `verification.md`。
-
 ## 附录 A：Skill 编写模板
 
 路径 A：复制本模板新建 `SKILL.md`，按 7 个要素逐项填实。所有 `（必填）` 字段必须替换为实际内容；保留 `{xxx}` 占位语义但替换为实际值。
@@ -345,9 +343,3 @@ Skill 有两条产出路径，都过同一套 7 要素评审：
 - [返回 STAROps 最佳实践首页](/starops/starops.html)
 - [打开 STAROps Playground](/playground/staropsdemo.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)
-
-## 相关文档
-
-- [编写 Skill 确定性脚本](/starops/practices/skill-script-deterministic/article.html)：要素 3「计算与脚本」的脚本架构与确定性验证
-- [基于脚本进行 RDS 巡检](/starops/practices/rds-inspection-via-script/article.html)：完整 Skill 落地案例（21 项巡检 / 5 脚本 / 1169 行）
-- [编写 STAROps 运维 Skill — 对话回放](/playground/skill-authoring-replay.html)：完整闭环的对话回放——真实排查 → `/技能提炼` 产初稿（七要素 + 召回验证）→ `skill upload` 部署（人工确认）→ 新会话自然语言召回执行验证
