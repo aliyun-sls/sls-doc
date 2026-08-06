@@ -16,7 +16,7 @@ title: 编写 STAROps 运维 Skill
   <span>分类 · 经验固化</span>
 </div>
 
-> [查看对话回放内容演示](/playground/skill-authoring-replay.html)
+> 对话回放：[编写 Skill 完整闭环](/playground/skill-authoring-replay.html)
 
 本规范定义 STAROps 运维 Skill 的 7 要素，用于将 RDS 巡检、告警根因定位、日志模式分析等重复运维操作沉淀为可加载技能。
 
@@ -34,6 +34,7 @@ title: 编写 STAROps 运维 Skill
 - 已识别可沉淀的运维场景（具备重复性、可结构化输出、动作只读）。
 - 已确认 Skill 所需的数据源（SLS Project / Logstore / MetricStore / 拓扑等）均可访问。
 - 已了解 STAROps Skill 与脚本的分工边界，倾向把数值计算交给脚本而非 LLM。
+- 已了解 STAROps 两层 skill（平台内置 / 数字员工托管）与 `/技能提炼` 提炼能力。
 
 ## 规范要素
 
@@ -133,9 +134,30 @@ title: 编写 STAROps 运维 Skill
 | 只读巡检（L0） | 查询指标、评估阈值、生成报告 | 修改配置、执行 SQL、重启实例 |
 | 变更操作（L2+） | 需人工审批后执行 | 自动化执行任何写操作 |
 
+## 两条生产路径
+
+Skill 有两条产出路径，都过同一套 7 要素评审：
+
+- **路径 A 手工编写**：按附录 A 模板从零编写。
+- **路径 B `/技能提炼`**：在数字员工对话里触发平台内置的提炼能力，从真实排障/查询会话沉淀出 Skill 初稿。
+
+路径 B 产出的是初稿，仍须过 7 要素评审与召回验证才部署。两条路径都把数值计算交给脚本、把变更排除在 Skill 边界外，验收标准一致。
+
+## 部署与验证
+
+7 要素评审通过后，按 `部署 → 验证 → 跑通` 闭环落地：
+
+- **部署**：把 Skill 目录上传到目标数字员工（控制台技能管理 → 添加技能 → 上传目录）。上传是受保护操作，平台要求人工在控制台确认后才生效；自动化流程无法跳过这步确认。
+- **验证**：在数字员工的技能列表里确认该 Skill 已存在并启用；查看技能详情确认文件结构与启用状态。列表与详情查询可自主完成。
+- **跑通**：在数字员工对话里真实触发该 Skill 执行一次，记录会话标识以便回溯。
+
+部署与查询的执行面在 STAROps 控制台；命令语法与实测证据见 `verification.md`。
+
 ## 附录 A：Skill 编写模板
 
-复制本模板新建 `SKILL.md`，按 7 个要素逐项填实。所有 `（必填）` 字段必须替换为实际内容；保留 `{xxx}` 占位语义但替换为实际值。
+路径 A：复制本模板新建 `SKILL.md`，按 7 个要素逐项填实。所有 `（必填）` 字段必须替换为实际内容；保留 `{xxx}` 占位语义但替换为实际值。
+
+路径 B：可先用 `/技能提炼` 产出初稿，再按本模板逐项校验/补齐。
 
 ::: details 查看模板
 
@@ -284,9 +306,10 @@ title: 编写 STAROps 运维 Skill
 
 ## 8. 真实跑通
 
-- [ ] 已在 STAROps 实例真实跑通
-- [ ] 调用请求 ID 已记录
-- [ ] 跑通结果与预期输出一致
+- [ ] Skill 目录已上传到目标数字员工
+- [ ] 在控制台完成上传的人工确认（部署生效）
+- [ ] 技能列表与技能详情确认文件结构、启用状态
+- [ ] 在数字员工对话真实跑通该 Skill，记录会话标识
 - [ ] 失败场景至少跑通 1 个
 
 ## 总结
@@ -322,3 +345,9 @@ title: 编写 STAROps 运维 Skill
 - [返回 STAROps 最佳实践首页](/starops/starops.html)
 - [打开 STAROps Playground](/playground/staropsdemo.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)
+
+## 相关文档
+
+- [编写 Skill 确定性脚本](/starops/practices/skill-script-deterministic/article.html)：要素 3「计算与脚本」的脚本架构与确定性验证
+- [基于脚本进行 RDS 巡检](/starops/practices/rds-inspection-via-script/article.html)：完整 Skill 落地案例（21 项巡检 / 5 脚本 / 1169 行）
+- [编写 STAROps 运维 Skill — 对话回放](/playground/skill-authoring-replay.html)：完整闭环的对话回放——真实排查 → `/技能提炼` 产初稿（七要素 + 召回验证）→ `skill upload` 部署（人工确认）→ 新会话自然语言召回执行验证
