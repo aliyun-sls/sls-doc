@@ -144,6 +144,10 @@ pageClass: sls-observe-home
     <p class="next-steps-link">多模态场景</p>
     <p class="next-steps-caption">以智能眼镜语音助手为例，串联 ASR、LLM、工具调用与 TTS，展示音频内容、会话链路和 SLS 多模态对象的端到端可观测。</p>
   </a>
+  <a class="vt-box" href="/doc/agent-observability/ecommerce-multi-agent.html">
+    <p class="next-steps-link">电商多 Agent 客服</p>
+    <p class="next-steps-caption">以纯文字中文客服为例，展示意图路由、售前与售后 Agent、工具调用和最终回复审核的完整可观测链路。</p>
+  </a>
 </div>
 
 ## ARMS Demo
