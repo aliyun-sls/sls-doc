@@ -1,6 +1,7 @@
 {
   "name": "@sls/doc",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.15.0",
   "description": "The doc for sls.",
   "repository": {
     "type": "git",

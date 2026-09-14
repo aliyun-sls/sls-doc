@@ -46,9 +46,9 @@ jobs:
         with:
           node-version: 18
 
-      - run: npm install pnpm -g --registry https://registry.npmjs.org/
+      - run: npm install pnpm@9.15.0 -g --registry https://registry.npmjs.org/
 
-      - run: pnpm install --registry https://registry.npmjs.org/
+      - run: pnpm install --frozen-lockfile --registry https://registry.npmjs.org/
 
       - run: pnpm build
 
