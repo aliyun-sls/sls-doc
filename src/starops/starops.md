@@ -208,9 +208,9 @@ pageClass: sls-starops-home
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/dingtalk-integration/article.html">
-      <h3 class="sls-starops-card__title">集成钉钉 IM 通道</h3>
-      <p class="sls-starops-card__desc">钉钉应用 + AppFlow 连接流 + STAROps 数字员工三平台串联，4 步完成企业 IM 内对话式运维。</p>
+    <a class="sls-starops-card" href="/doc/starops/practices/im-integration/article.html">
+      <h3 class="sls-starops-card__title">把数字员工接进 IM 协作工具</h3>
+      <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">

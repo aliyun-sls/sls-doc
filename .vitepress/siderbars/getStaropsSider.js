@@ -53,7 +53,7 @@ function getSidebar() {
       text: '集成扩展',
       collapsed: true,
       items: [
-        { text: '集成钉钉 IM 通道', link: '/starops/practices/dingtalk-integration/article' },
+        { text: '把数字员工接进 IM 协作工具', link: '/starops/practices/im-integration/article' },
         { text: 'MCP 能力扩展与工具治理', link: '/starops/practices/mcp-integration/article' },
         { text: '跨账号统一建模与问题排查', link: '/starops/practices/cross-account-access/article' },
       ],
