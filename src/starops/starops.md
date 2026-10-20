@@ -61,7 +61,7 @@ pageClass: sls-starops-home
   </a>
   <a class="sls-starops-scene-card" href="#integration" data-tone="amber">
     <h2>集成扩展</h2>
-    <p>接入钉钉 IM 与 MCP 外部工具，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
+    <p>接入钉钉 IM、MCP 外部工具与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
 </section>
@@ -139,13 +139,13 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
-      <h3 class="sls-starops-card__title">业务服务可靠性巡检</h3>
-      <p class="sls-starops-card__desc">5 Phase 串接业务基线、应用、拓扑、告警、报告，产出含 SLO 与行动项的服务可靠性体检报告。</p>
+      <h3 class="sls-starops-card__title">从一次深度评估到持续守住业务基线</h3>
+      <p class="sls-starops-card__desc">一次性深度分析建立业务口径与基线，长期任务按周期对照守住基线，偏离变成有人跟进的问题发现。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/log-insight-pattern/article.html">
-      <h3 class="sls-starops-card__title">日志模式定时巡检</h3>
-      <p class="sls-starops-card__desc">日志模式聚类支持持续分析新增、消失与异常模式，按计划主动送达变化报告。</p>
+      <h3 class="sls-starops-card__title">STAROps 日志智能巡检实践</h3>
+      <p class="sls-starops-card__desc">对核心日志做周期巡检，主动捕捉尚未告警的日志模式变化，并把确认的问题沉淀为持续跟踪的发现项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
@@ -169,8 +169,8 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
-      <h3 class="sls-starops-card__title">使用 UModel 接入 DevOps 数据并追因到代码变更</h3>
-      <p class="sls-starops-card__desc">把客户侧 DevOps 数据接入 UModel，让告警沿关系链追到镜像、发布、代码仓库和负责人。</p>
+      <h3 class="sls-starops-card__title">从运行异常追到代码变更</h3>
+      <p class="sls-starops-card__desc">把代码库与流水线接进 UModel，让数字员工从告警沿关系追到具体部署与提交。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
@@ -208,14 +208,19 @@ pageClass: sls-starops-home
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/dingtalk-integration/article.html">
-      <h3 class="sls-starops-card__title">集成钉钉 IM 通道</h3>
-      <p class="sls-starops-card__desc">钉钉应用 + AppFlow 连接流 + STAROps 数字员工三平台串联，4 步完成企业 IM 内对话式运维。</p>
+    <a class="sls-starops-card" href="/doc/starops/practices/im-integration/article.html">
+      <h3 class="sls-starops-card__title">把数字员工接进 IM 协作工具</h3>
+      <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
-      <h3 class="sls-starops-card__title">MCP 能力扩展与工具治理</h3>
-      <p class="sls-starops-card__desc">MCP 把客户侧探测、受控动作、研发上下文封装成结构化 tools，数据面之外的能力按需接入 STAROps，风险随工具显式分层治理。</p>
+      <h3 class="sls-starops-card__title">把团队自己的系统接进 STAROps</h3>
+      <p class="sls-starops-card__desc">监控内已覆盖的数据走系统连接，监控外的自有系统通过 MCP 接进数字员工：准备服务、核对工具、定执行方式，再在会话里验证。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/cross-account-access/article.html">
+      <h3 class="sls-starops-card__title">跨账号统一建模与问题排查</h3>
+      <p class="sls-starops-card__desc">通过跨账号角色把多个业务账号接进同一名数字员工，自动建模成统一 UModel，围绕业务问题直接提问与联合排查。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>

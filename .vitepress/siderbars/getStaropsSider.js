@@ -27,8 +27,8 @@ function getSidebar() {
       items: [
         { text: '告警 RCA 多分支诊断最佳实践', link: '/starops/practices/alert-rca-flow/article' },
         { text: '自定义容量风险巡检设计最佳实践', link: '/starops/practices/capacity-risk-prediction/article' },
-        { text: '业务服务可靠性巡检', link: '/starops/practices/business-reliability-flow/article' },
-        { text: '日志模式定时巡检', link: '/starops/practices/log-insight-pattern/article' },
+        { text: '从一次深度评估到持续守住业务基线', link: '/starops/practices/business-reliability-flow/article' },
+        { text: 'STAROps 日志智能巡检实践', link: '/starops/practices/log-insight-pattern/article' },
         { text: '多云产品融合巡检最佳实践', link: '/starops/practices/cross-product-inspection-summary/article' },
         { text: '账单与成本分析最佳实践', link: '/starops/practices/billing-cost-analysis/article' },
       ],
@@ -37,7 +37,7 @@ function getSidebar() {
       text: 'DevOps 闭环',
       collapsed: true,
       items: [
-        { text: '使用 UModel 接入 DevOps 数据并追因到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
+        { text: '从运行异常追到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
         { text: '一个 Agent 入口完成 DevOps 闭环', link: '/starops/practices/coding-agent-devops-loop/article' },
       ],
     },
@@ -53,8 +53,9 @@ function getSidebar() {
       text: '集成扩展',
       collapsed: true,
       items: [
-        { text: '集成钉钉 IM 通道', link: '/starops/practices/dingtalk-integration/article' },
-        { text: 'MCP 能力扩展与工具治理', link: '/starops/practices/mcp-integration/article' },
+        { text: '把数字员工接进 IM 协作工具', link: '/starops/practices/im-integration/article' },
+        { text: '把团队自己的系统接进 STAROps', link: '/starops/practices/mcp-integration/article' },
+        { text: '跨账号统一建模与问题排查', link: '/starops/practices/cross-account-access/article' },
       ],
     },
   ]
