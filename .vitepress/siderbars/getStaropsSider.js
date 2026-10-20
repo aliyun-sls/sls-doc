@@ -37,7 +37,7 @@ function getSidebar() {
       text: 'DevOps 闭环',
       collapsed: true,
       items: [
-        { text: '使用 UModel 接入 DevOps 数据并追因到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
+        { text: '从运行异常追到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
         { text: '一个 Agent 入口完成 DevOps 闭环', link: '/starops/practices/coding-agent-devops-loop/article' },
       ],
     },
