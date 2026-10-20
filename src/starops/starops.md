@@ -144,8 +144,8 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/log-insight-pattern/article.html">
-      <h3 class="sls-starops-card__title">日志模式定时巡检</h3>
-      <p class="sls-starops-card__desc">日志模式聚类支持持续分析新增、消失与异常模式，按计划主动送达变化报告。</p>
+      <h3 class="sls-starops-card__title">STAROps 日志智能巡检实践</h3>
+      <p class="sls-starops-card__desc">对核心日志做周期巡检，主动捕捉尚未告警的日志模式变化，并把确认的问题沉淀为持续跟踪的发现项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
