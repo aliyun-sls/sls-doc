@@ -61,7 +61,7 @@ pageClass: sls-starops-home
   </a>
   <a class="sls-starops-scene-card" href="#integration" data-tone="amber">
     <h2>集成扩展</h2>
-    <p>接入钉钉 IM 与 MCP 外部工具，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
+    <p>接入钉钉 IM、MCP 外部工具与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
 </section>
@@ -216,6 +216,11 @@ pageClass: sls-starops-home
     <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
       <h3 class="sls-starops-card__title">MCP 能力扩展与工具治理</h3>
       <p class="sls-starops-card__desc">MCP 把客户侧探测、受控动作、研发上下文封装成结构化 tools，数据面之外的能力按需接入 STAROps，风险随工具显式分层治理。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/cross-account-access/article.html">
+      <h3 class="sls-starops-card__title">跨账号统一建模与问题排查</h3>
+      <p class="sls-starops-card__desc">通过跨账号角色把多个业务账号接进同一名数字员工，自动建模成统一 UModel，围绕业务问题直接提问与联合排查。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
