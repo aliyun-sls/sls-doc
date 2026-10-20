@@ -139,8 +139,8 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
-      <h3 class="sls-starops-card__title">业务服务可靠性巡检</h3>
-      <p class="sls-starops-card__desc">5 Phase 串接业务基线、应用、拓扑、告警、报告，产出含 SLO 与行动项的服务可靠性体检报告。</p>
+      <h3 class="sls-starops-card__title">从一次深度评估到持续守住业务基线</h3>
+      <p class="sls-starops-card__desc">一次性深度分析建立业务口径与基线，长期任务按周期对照守住基线，偏离变成有人跟进的问题发现。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/log-insight-pattern/article.html">

@@ -27,7 +27,7 @@ function getSidebar() {
       items: [
         { text: '告警 RCA 多分支诊断最佳实践', link: '/starops/practices/alert-rca-flow/article' },
         { text: '自定义容量风险巡检设计最佳实践', link: '/starops/practices/capacity-risk-prediction/article' },
-        { text: '业务服务可靠性巡检', link: '/starops/practices/business-reliability-flow/article' },
+        { text: '从一次深度评估到持续守住业务基线', link: '/starops/practices/business-reliability-flow/article' },
         { text: '日志模式定时巡检', link: '/starops/practices/log-insight-pattern/article' },
         { text: '多云产品融合巡检最佳实践', link: '/starops/practices/cross-product-inspection-summary/article' },
         { text: '账单与成本分析最佳实践', link: '/starops/practices/billing-cost-analysis/article' },
