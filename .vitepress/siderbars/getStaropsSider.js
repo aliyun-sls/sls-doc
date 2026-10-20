@@ -54,7 +54,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '集成钉钉 IM 通道', link: '/starops/practices/dingtalk-integration/article' },
-        { text: 'MCP 能力扩展与工具治理', link: '/starops/practices/mcp-integration/article' },
+        { text: '把团队自己的系统接进 STAROps', link: '/starops/practices/mcp-integration/article' },
       ],
     },
   ]

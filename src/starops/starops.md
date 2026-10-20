@@ -214,8 +214,8 @@ pageClass: sls-starops-home
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
-      <h3 class="sls-starops-card__title">MCP 能力扩展与工具治理</h3>
-      <p class="sls-starops-card__desc">MCP 把客户侧探测、受控动作、研发上下文封装成结构化 tools，数据面之外的能力按需接入 STAROps，风险随工具显式分层治理。</p>
+      <h3 class="sls-starops-card__title">把团队自己的系统接进 STAROps</h3>
+      <p class="sls-starops-card__desc">监控内已覆盖的数据走系统连接，监控外的自有系统通过 MCP 接进数字员工：准备服务、核对工具、定执行方式，再在会话里验证。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
