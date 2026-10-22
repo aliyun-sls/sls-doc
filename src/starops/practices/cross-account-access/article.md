@@ -22,9 +22,7 @@ title: 跨账号统一建模与问题排查
 
 STAROps 通过连接器和独立授权的集成方式，敏感凭证不进入沙箱和数字员工上下文，基于跨账号 RAM 角色接入多个业务账号，再通过 **Agentic 自动建模**将这些来源的实体、关系和数据组织到同一个 **UModel** 中。建模完成后，工程师可以直接围绕业务问题提问，无需在每个问题中指定账号、Project 或工作空间；数字员工沿统一模型定位对象，通过相应连接器访问源数据。**多账号统一建模，让跨账号排查成为面向业务的统一问答。** 本文以生产订单服务超时为例，介绍从授权、接入、建模到调查与恢复复查的完整做法。
 
-::: details 多账号统一建模：多账号数据自动建模到统一 UModel，并按业务问题联合排查
-![多账号统一建模：多账号数据自动建模到统一 UModel，并按业务问题联合排查](./assets/images/00-cross-account-overview-flat.png)
-:::
+![](./assets/images/00-cross-account-overview-flat.png)
 
 ## 为什么跨账号排障需要统一访问与建模
 
@@ -44,9 +42,7 @@ STAROps 通过连接器和独立授权的集成方式，敏感凭证不进入沙
 
 **自定义数字员工使用绑定的 RAM 角色运行。** 跨账号访问时，员工使用管理账号 A 中的员工角色 `role-a`，分别扮演业务账号 B 中的目标角色 `role-b`、业务账号 C 中的目标角色 `role-c`。角色扮演是 RAM 提供的临时访问机制，数字员工由此获得各目标角色允许的数据访问能力。
 
-::: details 跨账号角色授权链：管理账号 A 的员工角色分别访问业务账号 B 和 C，各账号独立授权
-![跨账号角色授权链：管理账号 A 的员工角色分别访问业务账号 B 和 C，各账号独立授权](./assets/images/01-cross-account-role-chain-flat.png)
-:::
+![](./assets/images/01-cross-account-role-chain-flat.png)
 
 每条访问路径都由两端共同授权。以 A 访问 B 为例：`role-a` 需要允许扮演指定的 `role-b`；`role-b` 的信任策略需要允许 `role-a` 扮演，并通过权限策略授予所需的数据读取能力。C 中的 `role-c` 按相同方式独立配置信任与数据权限。**目标角色的信任主体应收敛到具体员工角色。** 角色信任关系决定谁能使用它，数据权限决定使用它以后能做什么。
 
@@ -118,9 +114,7 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 整个接入过程如下。准备各账号的身份与授权后，将数据连接到同一名员工，开启自动建模，再通过不指定账号的业务问题验证统一访问能力。
 
-::: details 接入与验证流程：从角色授权、连接器接入到统一建模与业务问答的接入流程
-![接入与验证流程：从角色授权、连接器接入到统一建模与业务问答的接入流程](./assets/images/02-cross-account-setup-flow-flat.png)
-:::
+![](./assets/images/02-cross-account-setup-flow-flat.png)
 
 ### 在管理账号准备员工角色
 
@@ -161,22 +155,16 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 1. 切换到 B 的 RAM 管理员身份，进入 **身份管理 > 角色 > 创建角色**。
 
-::: details 在 RAM 角色列表中创建角色
-![在 RAM 角色列表中创建角色](./assets/screenshots/01-create-ram-role.png)
-:::
+![](./assets/screenshots/01-create-ram-role.png)
 
 2. 信任主体类型选择 **云账号**，选择 **其他云账号**，输入 `{uid-a}`。
 
-::: details 选择云账号及其他云账号作为信任主体
-![选择云账号及其他云账号作为信任主体](./assets/screenshots/02-select-trusted-account.png)
-:::
+![](./assets/screenshots/02-select-trusted-account.png)
 
 3. 输入角色名称 `starops-trade-prod-reader`，完成创建。
 4. 打开角色的 **信任策略**，编辑为下面的内容并保存。将 `{uid-a}` 替换为 A 的主账号 ID；如果复用了已有员工角色，同时替换角色名。
 
-::: details 在角色详情中打开并编辑信任策略
-![在角色详情中打开并编辑信任策略](./assets/screenshots/03-view-role-trust-policy.png)
-:::
+![](./assets/screenshots/03-view-role-trust-policy.png)
 
 ::: details 查看目标角色的信任策略
 
@@ -197,9 +185,7 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 :::
 
-::: details 在信任策略中指定管理账号的员工角色 ARN
-![在信任策略中指定管理账号的员工角色 ARN](./assets/screenshots/04-edit-role-trust-policy.png)
-:::
+![](./assets/screenshots/04-edit-role-trust-policy.png)
 
 5. 在该角色的 **权限管理** 中单击 **新增授权**，为本次调查选择数据读取策略。B 为独立的交易生产账号、允许员工读取该账号相关观测数据时，可以选择下表中的系统策略。
 
@@ -390,9 +376,7 @@ STAROps 应通过模型找到订单应用和关联数据库，分别访问 B、C
 
 这次提问没有指定账号或数据源。STAROps 从统一 UModel 找到生产订单应用及其日志，从错误类型、发生时间和实例分布确定调查对象，再沿实体关系找到应用主机和订单数据库。应用日志与主机指标通过 B 的连接器读取，数据库指标通过 C 的连接器读取，最后放在同一业务上下文中分析。
 
-::: details 跨账号联合取证：将账号 B 的订单日志和主机指标与账号 C 的数据库指标联合研判，形成有依据的排查方向
-![跨账号联合取证：将账号 B 的订单日志和主机指标与账号 C 的数据库指标联合研判，形成有依据的排查方向](./assets/images/03-cross-account-evidence-flow-flat.png)
-:::
+![](./assets/images/03-cross-account-evidence-flow-flat.png)
 
 这一场景下的结果可以组织为：
 
@@ -412,9 +396,7 @@ STAROps 应通过模型找到订单应用和关联数据库，分别访问 B、C
 
 STAROps 复用统一模型中的订单应用、数据库和会话中的调查上下文，分别读取 B 的订单日志和 C 的数据库指标，比较错误量、连接数和受影响实例的变化。**无账号问答贯穿调查与复查：工程师持续追问业务状态，数字员工负责找到各账号中的相应证据。**
 
-::: details 原会话恢复复查：在原会话中对比异常前、异常时段和处置后的订单错误、数据库连接数与受影响实例，判断是否恢复
-![原会话恢复复查：在原会话中对比异常前、异常时段和处置后的订单错误、数据库连接数与受影响实例，判断是否恢复](./assets/images/04-cross-account-recovery-review-flat.png)
-:::
+![](./assets/images/04-cross-account-recovery-review-flat.png)
 
 ## 总结
 
@@ -438,7 +420,7 @@ STAROps 复用统一模型中的订单应用、数据库和会话中的调查上
   line-height: 1.6;
 }
 
-.sls-starops-article .vp-doc details img {
+.sls-starops-article .vp-doc img {
   display: block;
   width: 100%;
   max-width: 640px;

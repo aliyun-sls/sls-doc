@@ -46,9 +46,7 @@ STAROps 用 UModel 承载这些实体和关系。**应用之间的调用关系�
 
 这两类关系共同组成数字员工手里的实体关系图：运行态关系来自 APM 调用链与基础设施数据，研发关系由 Agentic 建模补充；运行记录与提交差异留在源系统，数字员工按需通过连接器读取。
 
-::: details 两类关系，一张图：运行态关系由 APM 调用链自动计算并关联基础设施，研发关系由 Agentic 建模补充
-![两类关系，一张图：运行态关系由 APM 调用链自动计算并关联基础设施，研发关系由 Agentic 建模补充](./assets/images/05-runtime-plus-devops-relations.png)
-:::
+![](./assets/images/05-runtime-plus-devops-relations.png)
 
 ### 内置连接器接入代码库和流水线
 
@@ -58,9 +56,7 @@ STAROps 提供两类内置连接器：代码访问连接器接入云效 Codeup �
 
 这样分工是有意的。运行和提交每天都在增加，源系统里的记录才是准的。以云效 Flow 为例，流水线在触发的那一刻就把源分支的最新提交写进运行记录，这次运行部署的是哪个提交，由源系统直接给出，不需要推断。模型里存的是长期稳定的关系：哪条流水线部署哪个工作负载，构建自哪个代码库。
 
-::: details 两类连接器把代码库和流水线接进同一个 UModel
-![两类连接器把代码库和流水线接进同一个 UModel](./assets/images/06-connector-scope.png)
-:::
+![](./assets/images/06-connector-scope.png)
 
 > 此外，其他类型的连接器，也可以通过环境代理或者 MCP 的方式接入，例如自建的 Gitlab、Jenkins、ArgoCD 等。
 
@@ -72,9 +68,7 @@ STAROps 提供两类内置连接器：代码访问连接器接入云效 Codeup �
 
 建议按业务域圈定接入范围，把一条业务链路涉及的多个应用、它们的代码库和部署流水线一起接进来。关系两端都在范围里，才能把调用链上的相关应用继续追到各自的发布和代码。
 
-::: details 三条配置线索被翻译成构建自、部署到、运行在关系并补进 UModel
-![三条配置线索被翻译成构建自、部署到、运行在关系并补进 UModel](./assets/images/07-auto-modeling.png)
-:::
+![](./assets/images/07-auto-modeling.png)
 
 ### 对话式建模补上团队才知道的关系
 
@@ -84,9 +78,7 @@ STAROps 提供两类内置连接器：代码访问连接器接入云效 Codeup �
 
 这类只有团队才知道的约定，正是团队该交给 STAROps 的知识；怎么取数、怎么比对，由 STAROps 自己完成。
 
-::: details 团队在会话里说出约定，数字员工生成建模方案，审查确认后应用并归档
-![团队在会话里说出约定，数字员工生成建模方案，审查确认后应用并归档](./assets/images/08-conversational-modeling.png)
-:::
+![](./assets/images/08-conversational-modeling.png)
 
 ### 数字员工沿关系追到部署和提交
 
@@ -94,9 +86,7 @@ STAROps 提供两类内置连接器：代码访问连接器接入云效 Codeup �
 
 **调用依赖和部署归属分别判断。** 下游应用的发布可能影响上游请求，需要纳入调查；同一命名空间里其他服务的发布，则要结合调用和基础设施证据判断相关性。每次部署归属于哪个应用、包含哪些提交，以部署目标和运行记录为准。数字员工据此比较相关服务的变更，答案中的运行、提交和差异都能回到源系统核对。
 
-::: details 数字员工从告警沿关系追到最近一次部署、上一次部署，并对比两次之间的提交与文件差异
-![数字员工从告警沿关系追到最近一次部署、上一次部署，并对比两次之间的提交与文件差异](./assets/images/09-trace-to-deploy.png)
-:::
+![](./assets/images/09-trace-to-deploy.png)
 
 ## 典型场景：电商微服务发布后下单失败
 
@@ -126,21 +116,15 @@ STAROps 提供两类内置连接器：代码访问连接器接入云效 Codeup �
 
 1. **打开入口。** 在「订单值班」的 设置 > 连接器 > 代码访问 页面，点击 添加代码访问，选择 云效 Codeup。
 
-::: details 选择连接器类型：云效 Codeup
-![选择连接器类型：云效 Codeup](./assets/screenshots/connect-01-entry-type-select.png)
-:::
+![](./assets/screenshots/connect-01-entry-type-select.png)
 
 2. **填写身份与授权。** 填连接器 ID（创建后不可修改）和名称，选择云效中心站和团队所在的云效组织，填入该组织下具备代码库只读权限的个人访问令牌（PAT），点击 校验代码库权限。校验通过后页面会显示当前账号，进入下一步。令牌保存后不会回显，再次校验时需要重新填写。
 
-::: details 填写组织与访问凭证并校验 PAT
-![填写组织与访问凭证并校验 PAT](./assets/screenshots/connect-02-auth-pat-verified.png)
-:::
+![](./assets/screenshots/connect-02-auth-pat-verified.png)
 
 3. **选择接入范围。** 在接入范围中勾选上述四个代码库，可按名称搜索。数据建模保持基础建模开启，并打开智能数据建模，让 STAROps 在接入后探索代码库与已有应用、工作负载的关系。
 
-::: details 勾选接入的代码库与数据建模开关
-![勾选接入的代码库与数据建模开关](./assets/screenshots/connect-03-scope-and-modeling.png)
-:::
+![](./assets/screenshots/connect-03-scope-and-modeling.png)
 
 4. **核对并完成。** 在 检查并添加 页核对连接器 ID、组织、已选代码库数量和建模配置，点击 完成。
 
@@ -148,9 +132,7 @@ STAROps 提供两类内置连接器：代码访问连接器接入云效 Codeup �
 
 怎么算接上了：回到 代码访问 和 流水线 列表，两个连接器的类型、状态为 成功，已选代码库和流水线数量与创建时一致。至此四个代码库和五条流水线进入 UModel，STAROps 随后自动启动 Agentic 建模，探索它们与已有应用、工作负载的关系。
 
-::: details 代码访问连接器状态为成功、代码库数量为 3
-![代码访问连接器状态为成功、代码库数量为 3](./assets/screenshots/connect-04-connector-list-success.png)
-:::
+![](./assets/screenshots/connect-04-connector-list-success.png)
 
 ### 查看自动发现的关系
 
@@ -258,7 +240,7 @@ STAROps 在已有运行态关系上，通过内置连接器批量接入相关代
   line-height: 1.6;
 }
 
-.sls-starops-article .vp-doc details img {
+.sls-starops-article .vp-doc img {
   display: block;
   width: 100%;
   max-width: 640px;
