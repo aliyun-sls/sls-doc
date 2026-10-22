@@ -28,9 +28,7 @@ title: STAROps 日志智能巡检实践
 
 ## 规则能看到已知问题，巡检要寻找未知变化
 
-::: details 规则管已知，巡检找未知：规则只覆盖四类问题里的第一类
-![规则管已知，巡检找未知：规则只覆盖四类问题里的第一类](./assets/images/02-four-log-scenarios.png)
-:::
+![](./assets/images/02-four-log-scenarios.png)
 
 规则和告警很有用，我们知道某个错误码代表失败，也知道什么阈值需要处理，写一条 SQL 或告警规则就能长期监控。这类问题属于 Known Known：知道问题，也知道怎么找到它。
 
@@ -48,9 +46,7 @@ title: STAROps 日志智能巡检实践
 
 让 Agent 做日志巡检，真正困难的是如何从海量数据中稳定地找出异常，同时保留足够的证据供人复核。逐条阅读不可行，抽取少量样本也不可靠：低频异常容易漏掉，几个表达强烈的样例又可能把判断带偏。
 
-::: details 五个环节，一条巡检链：从数据侧分析到 Finding 跟踪
-![五个环节，一条巡检链：从数据侧分析到 Finding 跟踪](./assets/images/03-five-stage-loop.png)
-:::
+![](./assets/images/03-five-stage-loop.png)
 
 STAROps 把这项工作分成了几个彼此衔接的环节：
 
@@ -62,9 +58,7 @@ STAROps 把这项工作分成了几个彼此衔接的环节：
 
 ### SLS 日志分析 AI 算子
 
-::: details 先聚类，再下探：把计算下推到数据侧
-![先聚类，再下探：把计算下推到数据侧](./assets/images/04-clustering-and-drilldown.png)
-:::
+![](./assets/images/04-clustering-and-drilldown.png)
 
 真实生产场景，有一个物理限制绕不开：模型上下文是有限的，无法把一个巡检窗口内的海量日志全装进去。而简单抽样同样有问题，低频异常可能没有被抽中，少数特殊样本也可能让 Agent 对整体情况产生误判。依赖关键词和固定 SQL 先过滤，又只能覆盖事先已经知道的错误。
 
@@ -97,9 +91,7 @@ Pattern B: <*> ERROR [gateway] Downstream timeout, provider=<*>, api=<*>, elapse
 
 ### 动态规划与精准下探
 
-::: details 每步结果决定下一步：Agent 按证据动态规划调查路径
-![每步结果决定下一步：Agent 按证据动态规划调查路径](./assets/images/05-dynamic-planning.png)
-:::
+![](./assets/images/05-dynamic-planning.png)
 
 日志巡检不会为所有系统预先写死同一条调查流程。任务第一次运行时，STAROps 会根据日志结构、可用历史和巡检目标生成一份初始计划；稳定检查按计划重复执行，现场调查则由 Agent 根据本轮证据决定。
 
@@ -111,9 +103,7 @@ Pattern B: <*> ERROR [gateway] Downstream timeout, provider=<*>, api=<*>, elapse
 
 ### Finding 持续运维与持续优化
 
-::: details 问题跟踪，经验沉淀：确认后的问题进入关注列表
-![问题跟踪，经验沉淀：确认后的问题进入关注列表](./assets/images/06-finding-continuous-learning.png)
-:::
+![](./assets/images/06-finding-continuous-learning.png)
 
 一次巡检发现的问题，不应该变成一条孤立的通知。STAROps 会为问题生成可持续跟踪的 Finding，保留稳定标识、当前证据、影响范围和状态变化。同类问题再次出现时，系统会关联已有 Finding，区分它是持续存在、正在恶化、已经复发，还是影响正在减小。
 
@@ -125,9 +115,7 @@ Pattern B: <*> ERROR [gateway] Downstream timeout, provider=<*>, api=<*>, elapse
 
 ### 自定义探查与扩展能力
 
-::: details 自定义探查，向外扩展：Skill 与 UModel 扩展调查范围
-![自定义探查，向外扩展：Skill 与 UModel 扩展调查范围](./assets/images/07-custom-probes-and-extension.png)
-:::
+![](./assets/images/07-custom-probes-and-extension.png)
 
 除了系统生成的通用检查，用户还可以增加自己的探查要求，例如只关注结算窗口内的资金差异、检查非授权时段的高风险操作，或者针对某类业务错误码补充专门的判断逻辑。自定义探查会进入巡检计划，和日志聚类、维度下探及 Agent 自主探索配合执行。
 
@@ -147,31 +135,23 @@ UModel（UnifiedModel） 解决的是当前日志还能和哪些数据关联。�
 
 在 SLS 控制台打开目标 Logstore，进入“智能巡检”页面，就可以创建一项巡检任务。巡检要求可以先保持泛化，让 Agent 根据日志特征建立初始计划；如果已经有明确的业务关注点，也可以在创建时直接补充。
 
-::: details 在 SLS 控制台进入智能巡检页面创建巡检任务
-![在 SLS 控制台进入智能巡检页面创建巡检任务](./assets/screenshots/shot-01.png)
-:::
+![](./assets/screenshots/shot-01.png)
 
 第一次运行后，巡检发现日志记录量比前一个窗口增长了 147%，增量集中在一段批量任务执行时间内。报告同时给出了当前窗口、对照窗口、实际查询和不确定性说明。根据已有证据，这次增长更像系统调度行为变化，没有直接影响服务健康。
 
-::: details 第一次运行报告：日志记录量比前一个窗口增长 147%
-![第一次运行报告：日志记录量比前一个窗口增长 147%](./assets/screenshots/shot-02.png)
-:::
+![](./assets/screenshots/shot-02.png)
 
 这个结果有依据，但还不够贴近 STAROps 的业务。单看记录量和通用字段，很难判断变化究竟来自哪个入口、哪些用户，以及是否影响了真实任务。
 
 ### 把业务语义补进巡检计划
 
-::: details 补充业务语义：把 skill 与 employeeId 两个字段补进巡检
-![把 skill 与 employeeId 两个业务字段补进巡检](./assets/screenshots/shot-03.png)
+![](./assets/screenshots/shot-03.png)
 
-![补充业务语义后的巡检计划](./assets/screenshots/shot-04.png)
-:::
+![](./assets/screenshots/shot-04.png)
 
 我们直接告诉 STAROps：skill 表示请求由哪个入口 Skill 接入处理，employeeId 表示请求来自哪位用户，这两个字段需要重点关注。Agent 随即更新巡检计划，增加了 Skill 请求分布、Skill 完成状态、Skill 性能、用户请求分布以及用户与 Skill 的交叉分析，检查项从 6 项增加到 11 项。下一轮巡检会自动执行这些新增检查。
 
-::: details 检查项从 6 项增加到 11 项
-![检查项从 6 项增加到 11 项](./assets/screenshots/shot-05.png)
-:::
+![](./assets/screenshots/shot-05.png)
 
 更新后的巡检很快体现出差异。某个窗口的整体 p90 延迟从 94 秒升到 171 秒，看起来像一次明显的性能退化；继续按 Skill 拆分后，各 Skill 自身的 p90 并没有同步恶化，真正变化的是流量构成：慢请求占比较高的 Skill 在当前窗口占比上升。最终报告把它判断为流量组成变化，而不是服务性能退化。
 
@@ -179,17 +159,13 @@ UModel（UnifiedModel） 解决的是当前日志还能和哪些数据关联。�
 
 ### 持续运行，按问题触发通知
 
-::: details 按问题触发通知：配置条件与 STAROps 拆解出的触发条件
-![按问题触发通知的条件](./assets/screenshots/shot-06.png)
+![](./assets/screenshots/shot-06.png)
 
-![STAROps 拆解出的通知触发条件](./assets/screenshots/shot-07.png)
-:::
+![](./assets/screenshots/shot-07.png)
 
 巡检任务需要按小时运行，通知却没有必要每小时发送。我们给任务增加了问题触发条件：错误率超过 5%、或者出现新的重要发现。而后 STAROps 自己拆解出：出现新的错误类型、某个 Skill 的非完成率显著偏高、p90 明显恶化，或者错误集中在少数用户时，才推送到“STAROps 告警”钉钉机器人。
 
-::: details 钉钉机器人收到的通知：非完成率升至 6.2%
-![钉钉机器人收到的通知：非完成率升至 6.2%](./assets/screenshots/shot-08.png)
-:::
+![](./assets/screenshots/shot-08.png)
 
 后续一次巡检中，非完成率从前一个窗口的 1.01% 升至 6.2%，超过了通知阈值。机器人收到的通知同时带上了按 Skill、按用户的错误分布、性能指标和初步判断，问题已经收敛到某条 Skill 链路在特定时间段内集中的 context canceled。没有触发条件的正常巡检仍然保留报告，但不会反复打扰人。
 
@@ -197,17 +173,13 @@ UModel（UnifiedModel） 解决的是当前日志还能和哪些数据关联。�
 
 单个 Logstore 能告诉我们 Agent Thread 发生了什么，却不一定能解释为什么。我们进一步把这项巡检与 STAROps 自己的 Skill 和 UModel 关联起来：Agent Thread 可以关联到入口 Skill、用户、LLM 调用、Tool 和 Gateway，每类实体又有自己的 LogSet、MetricSet 或其他数据源。
 
-::: details 通过 UModel 关联的实体范围与数据源
-![巡检与 Skill、UModel 关联后的实体范围](./assets/screenshots/shot-09.png)
+![](./assets/screenshots/shot-09.png)
 
-![Agent Thread 关联的 LogSet、MetricSet 与其他数据源](./assets/screenshots/shot-10.png)
-:::
+![](./assets/screenshots/shot-10.png)
 
 当 Thread 日志出现非完成率异常时，Agent 可以沿 UModel 继续检查关联实体。在一次跨源巡检中，Thread 的 failed 比例仍为 0%，关联的 LLM 调用数据却出现了集中的 429 限流；部分 Gateway SSE 统计和 /metrics 请求则已经被识别为已知噪音。最终报告把证据分成 P1 正常、P2 异常和 P3 已知噪音，没有把所有红色指标混在一起。
 
-::: details 跨源巡检报告：P1 正常、P2 异常、P3 已知噪音
-![跨源巡检报告：P1 正常、P2 异常、P3 已知噪音](./assets/screenshots/shot-11.png)
-:::
+![](./assets/screenshots/shot-11.png)
 
 STAROps 的可靠性巡检从一个 Logstore 起步。第一轮结果不够贴近业务，我们补充业务语义；检查计划随之更新，通知策略也从“每轮发送”变成“问题触发”；再通过 Skill 和 UModel，把调查范围扩展到更多实体和数据源。随着系统和业务继续变化，这项巡检也会不断校准，成为一套持续运行的可靠性保障机制。
 
@@ -251,7 +223,7 @@ STAROps 的可靠性巡检从一个 Logstore 起步。第一轮结果不够贴�
   line-height: 1.6;
 }
 
-.sls-starops-article .vp-doc details img {
+.sls-starops-article .vp-doc img {
   display: block;
   width: 100%;
   max-width: 640px;
