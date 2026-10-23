@@ -16,425 +16,159 @@ title: 编写 Skill 确定性脚本
   <span>分类 · 经验固化</span>
 </div>
 
-> [查看对话回放内容演示](/playground/skill-script-deterministic-replay.html)
+让数字员工判断 CPU 是否持续偏高，一句超过 80% 且持续五分钟，看起来已经很明确。真正拿到采样点时，却还会遇到一些容易忽略的问题：第一个点正常，第二个点才开始超阈值，这段时间从哪里算？中间少了一个点，能不能认为异常一直没有中断？这些差别可能只有一分钟，却足以改变一条告警是否成立。
 
-本规范定义 STAROps Skill 中数值计算的确定性脚本写法，保证同输入同输出。
+团队确认过的计算口径，适合写进 Skill 的脚本。数字员工负责取得数据、调用脚本，并结合结果继续分析；阈值比较、单位换算和前后差异则按照明确规则计算。以后有人问报告为什么得出这个数字，可以拿出当时的样本重新算一遍，定位问题也更直接。
 
-模型推理在两类计算上不可靠：
+**确定性脚本要让同一份输入按同一套规则得到一致结果，也要让人能检查这套规则是否正确。** 每次都算出相同的错误结果，没有解决巡检的可信度问题。本文用一段持续超阈值的判断说明怎样固定口径、检查结果，再把计算交给数字员工使用。
 
-- **单位换算**：同一会话内两遍可能给出 1024 进制（1.00GB）或 1000 进制（1.07GB）不同答案
-- **阈值与持续时间判断**：可能错算持续时间或漏掉 NaN 值
+> 对话回放：[确定性脚本](/playground/skill-script-deterministic-replay.html)
 
-脚本化把这两类计算固化下来，跨次结果可复现、可回放。
+## 先固定输入和计算含义
 
-## 前提条件
+不必一开始就设计一个能处理所有指标的框架。先选一项团队确实需要的判断，把拿到什么数据、怎么算、遇到缺失怎么办说明白。下面用 CPU 使用率举例，阈值与时间都是教学设置：
 
-- 已开通 STAROps，账号可创建并运行数字员工 Skill。
-- 已具备 Python 3.8+ 与基础脚本编写能力。
-- 已识别 Skill 中包含的数值计算（单位换算 / 聚合 / 阈值判断 / Diff），并把它们与模型推理类任务（根因假设排序、跨域关联、经验综合）区分开。
-- 已了解 [编写 STAROps 运维 Skill](/starops/practices/skill-authoring/article.html) 中 7 要素中的「计算与脚本」「推理边界」要素。
+| 项目 | 本例约定 |
+| --- | --- |
+| 输入 | 单个对象的时间序列，使用率单位为百分比 |
+| 时间 | 时间戳单位显式指定，默认秒；必须严格递增 |
+| 阈值 | 严格大于 80，等于 80 不算超过 |
+| 持续时间 | 相邻超阈值采样点之间的时间累计，最长连续段达到 300 秒 |
+| 采样间隔 | 本例允许的最大间隔为 60 秒，超过则中断连续段 |
+| 缺失值 | 空值与非有限值中断连续段，并记录数据质量问题 |
 
-## 规范要素
+这些约定会直接影响结果。例如，使用率为 80 的点在本例中不算超阈值；若实际监控传回 0.8，则必须先确认单位，不能把它直接与 80 比较。时间戳也应显式注明秒或毫秒，避免脚本靠数值大小猜测。
 
-| 要素 | 含义 | 是否必须 |
-|---|---|---|
-| 数据驱动声明 | 业务脚本只声明配置（阈值、单位、比较方向），零计算逻辑 | 必须 |
-| 公共引擎 | 所有计算集中在公共模块（查询、解析、评估、格式化） | 必须 |
-| 纯函数保证 | 数值计算函数无随机数、无当前时间依赖、无全局状态 | 必须 |
-| 结构化输出 | 固定 JSON 结构 + 标准 status 枚举（pass / find_problem / no_problem_found / error） | 必须 |
-| CLI 集成 | 标准参数（--region / --project / --time-range）+ 标准退出码 | 必须 |
+持续时间尤其需要和团队对齐。监控采样只记录了若干时刻的值，两个点之间的状态需要按约定估算。本例只累计相邻有效超阈值点之间的时间，间隔超过 60 秒就中断，也不在最后一个采样点后再补一个周期。这个定义便于解释和复查；若团队采用其他口径，也应先写清楚，再用于巡检。
 
-「数据驱动声明 + 公共引擎」是承载本规范的架构：
+实现时，把取数和计算分开会方便很多。取数部分负责读取目标窗口并保存原始样本，计算部分接收样本和规则，不再访问外部服务，也不读取当前时间。排查一次误报时，先用当时保存的数据检查算法；确认计算正确后，再看查询范围或采集是否有问题，不必反复访问生产数据才能复现。
 
-- **业务脚本**：只写 `InspectionCase` 配置项（阈值、单位、比较方向），零计算逻辑
-- **公共引擎**：承载 PromQL 拼接、阈值评估、持续时间累计、JSON 格式化等全部计算
+检查项逐渐增加以后，可以把共同的时间、单位和缺失值处理集中维护，让每项检查只声明自己的指标与规则。这样修改一个计算问题时，更容易确认影响范围。是否需要公共引擎取决于实际复用量，几个独立的小脚本也可以把这些口径讲清楚。
 
-新增一项巡检 = 新增一个 `InspectionCase` 数据项，无新增计算代码。下文「应用样例」每条都是这个架构下的一个切面。
+## 用一份小样本走完判断
 
-## 应用样例
+下面的时间是相对起点的秒数。先手工看完这组数据，再运行脚本，比直接拿一大段监控序列对照更容易发现边界问题。
 
-### 样例 1：单位换算
+| 时间 | CPU 使用率 | 对连续段的影响 |
+| --- | --- | --- |
+| 0 秒 | 70% | 未超过阈值 |
+| 60 秒 | 85% | 超阈值段开始 |
+| 120 秒 | 86% | 已持续 60 秒 |
+| 180 秒 | 88% | 已持续 120 秒 |
+| 240 秒 | 87% | 已持续 180 秒 |
+| 300 秒 | 89% | 已持续 240 秒 |
+| 360 秒 | 90% | 已持续 300 秒，满足条件 |
 
-| 项 | 内容 |
-|---|---|
-| 正例 | `format_bytes(1073741824)` 返回 `"1.00GB"`；`format_bytes(536870912)` 返回 `"512.0MB"`。纯函数，无状态。 |
-| 反例 | 让模型心算「1073741824 字节约等于多少 GB」。同一会话内问两遍，可能返回 1.07GB（1000 进制）或 1.00GB（1024 进制）。下游若用此值做阈值判断，结果不可复现。 |
-| 期望输出 | 始终 1024 进制，精度固定：<br>`format_bytes(0)` → `"0B"`<br>`format_bytes(2048)` → `"2KB"`<br>`format_bytes(1073741824)` → `"1.00GB"` |
-| 关键差异 | 正例固化进制与精度，反例依赖模型猜测。 |
+计算从第一个超阈值点的 60 秒开始，到 360 秒时，两个端点之间经过了 300 秒。若只有前六个点，最长连续段就是 240 秒。把最初正常的那一分钟算进去，或者将六个超阈值点直接乘以一分钟，都会多算一个间隔。
 
-参考实现（纯函数 + 标准 CLI）：
+这类错误不容易从一张汇总表里看出来，却很适合用小样本验证。我们预先知道这一组应该在最后一个点满足条件，删去末点就不满足；程序输出不同，便能沿着连续段的起止位置检查。
 
-::: details 查看脚本
+配套的 `threshold_duration.py` 使用上述口径。把样本保存成 JSON 数组，字段为 `timestamp` 和 `value`，即可在本地执行：
 
-```python
-#!/usr/bin/env python3
-"""单位换算脚本模板：纯函数、同输入同输出、无副作用。"""
-
-import argparse
-import json
-
-
-def format_bytes(value: float) -> str:
-    """字节数 → 可读格式（纯函数）。"""
-    if value >= 1073741824:
-        return f"{value / 1073741824:.2f}GB"
-    elif value >= 1048576:
-        return f"{value / 1048576:.1f}MB"
-    elif value >= 1024:
-        return f"{value / 1024:.0f}KB"
-    return f"{value:.0f}B"
-
-
-def format_percent(value: float) -> str:
-    return f"{value:.2f}%"
-
-
-def format_duration(seconds: float) -> str:
-    if seconds >= 3600:
-        return f"{seconds / 3600:.1f}h"
-    elif seconds >= 60:
-        return f"{seconds / 60:.1f}min"
-    return f"{seconds:.0f}s"
-
-
-def format_count(value: float) -> str:
-    if value >= 1_000_000:
-        return f"{value / 1_000_000:.1f}M"
-    elif value >= 1_000:
-        return f"{value / 1_000:.1f}K"
-    return f"{value:.0f}"
-
-
-CONVERTERS = {
-    "bytes": format_bytes,
-    "percent": format_percent,
-    "seconds": format_duration,
-    "count": format_count,
-}
-
-
-def main():
-    parser = argparse.ArgumentParser(description="单位换算脚本")
-    parser.add_argument("--value", type=float, required=True)
-    parser.add_argument("--unit", choices=CONVERTERS.keys(), required=True)
-    parser.add_argument("--json", action="store_true")
-    args = parser.parse_args()
-    formatted = CONVERTERS[args.unit](args.value)
-    if args.json:
-        print(json.dumps({"raw_value": args.value, "unit": args.unit, "formatted": formatted}, ensure_ascii=False))
-    else:
-        print(formatted)
-
-
-if __name__ == "__main__":
-    main()
-```
-
-:::
-
-### 样例 2：聚合计算
-
-| 项 | 内容 |
-|---|---|
-| 正例 | PromQL 在数据源层完成聚合：<br>`avg by (instance_id) (rate(rds_cpu_usage_total[3m])) / 100 * 100`<br>脚本侧只取最终值：`value = float(row["value"][1])`。 |
-| 反例 | 脚本拉取原始时间序列后自己算 avg。可能用错公式（算术平均 vs 加权平均）、漏掉 NaN 值，或对采样间隔做错误假设，结果与 PromQL 内置 rate 不一致。 |
-| 期望输出 | 聚合在 PromQL 完成，脚本输出结构化结果：<br>`{"case_id": "rds_cpu_high", "value": 92.5, "threshold": 80.0, "compare": "gt"}` |
-| 关键差异 | 正例聚合下沉到数据源，反例聚合上提到脚本层引入误差。 |
-
-聚合必须留在脚本层时（如离线 batch 处理、数据源不支持百分位），按下面这套纯函数实现，保证可回放：
-
-::: details 查看脚本
-
-```python
-#!/usr/bin/env python3
-"""聚合计算脚本模板：avg / max / min / P50 / P95 / P99，纯函数。"""
-
-import argparse
-import json
-import sys
-from typing import List, Dict
-
-
-def calc_avg(values: List[float]) -> float:
-    return sum(values) / len(values) if values else 0.0
-
-
-def calc_max(values: List[float]) -> float:
-    return max(values) if values else 0.0
-
-
-def calc_min(values: List[float]) -> float:
-    return min(values) if values else 0.0
-
-
-def calc_percentile(values: List[float], p: float) -> float:
-    """百分位数（纯函数）：线性插值法，与 numpy.percentile 默认行为一致。"""
-    if not values:
-        return 0.0
-    sorted_values = sorted(values)
-    k = (len(sorted_values) - 1) * (p / 100.0)
-    f = int(k)
-    c = f + 1 if f + 1 < len(sorted_values) else f
-    return sorted_values[f] + (k - f) * (sorted_values[c] - sorted_values[f])
-
-
-def aggregate(time_series: List[Dict]) -> Dict:
-    values = [point["value"] for point in time_series if "value" in point]
-    return {
-        "count": len(values),
-        "avg": round(calc_avg(values), 2),
-        "max": round(calc_max(values), 2),
-        "min": round(calc_min(values), 2),
-        "p50": round(calc_percentile(values, 50), 2),
-        "p95": round(calc_percentile(values, 95), 2),
-        "p99": round(calc_percentile(values, 99), 2),
-    }
-
-
-def main():
-    parser = argparse.ArgumentParser(description="聚合计算脚本")
-    parser.add_argument("--metric", required=True)
-    parser.add_argument("--input", help="输入 JSON 文件路径（默认 stdin）")
-    args = parser.parse_args()
-    data = json.load(open(args.input) if args.input else sys.stdin)
-    if args.metric not in data:
-        print(json.dumps({"error": f"metric '{args.metric}' not found"}))
-        sys.exit(1)
-    result = aggregate(data[args.metric])
-    result["metric"] = args.metric
-    print(json.dumps(result, ensure_ascii=False, indent=2))
-
-
-if __name__ == "__main__":
-    main()
-```
-
-:::
-
-### 样例 3：阈值与持续时间判断
-
-| 项 | 内容 |
-|---|---|
-| 正例 | 数据声明 + 公共评估函数：<br>`InspectionCase(case_id="rds_cpu_high", threshold=80.0, duration=300, compare=CompareOp.GT, data_format="percent")`<br>评估走 `calc_sustained_seconds(series, threshold=80.0, compare=CompareOp.GT)`，纯函数遍历时间序列。 |
-| 反例 | Skill 只写「如果 CPU 使用率超过 80% 且持续 5 分钟，则判定为异常」，让模型从原始数据计算。模型可能错算持续时间（如把采样间隔误读为秒数），或把瞬时尖刺也算成持续超阈值。 |
-| 期望输出 | 公共引擎产出单项结果（节选）：<br>`{"case_id": "rds_cpu_high", "status": "find_problem", "duration_seconds": 360, "total_entities": 12, "abnormal_count": 1}` |
-| 关键差异 | 正例阈值与持续时间下沉到数据声明，反例让模型做数值判断。 |
-
-`calc_sustained_seconds` 与 `evaluate` 核心实现（纯函数 + 时间戳与采样间隔自动推断）：
-
-::: details 查看脚本
-
-```python
-#!/usr/bin/env python3
-"""阈值+持续时间判断脚本模板：纯函数。"""
-
-import argparse
-import json
-import sys
-from typing import List, Dict
-
-
-def calc_sustained_seconds(points: List[Dict], threshold: float, compare: str) -> int:
-    """计算连续超阈值的最长持续秒数（纯函数）。"""
-    if not points or len(points) == 1:
-        return 0
-
-    # 推断时间戳除数（毫秒 vs 秒）
-    ts_divisor = 1000 if points[0]["timestamp"] > 1e12 else 1
-
-    # 推断采样间隔
-    timestamps = [p["timestamp"] for p in points]
-    diffs = sorted([
-        timestamps[i] - timestamps[i - 1]
-        for i in range(1, len(timestamps))
-        if timestamps[i] > timestamps[i - 1]
-    ])
-    if not diffs:
-        return 0
-    expected_gap = diffs[len(diffs) // 2]
-    gap_tolerance = int(expected_gap * 2.0)
-
-    def is_breach(value: float) -> bool:
-        if compare == "gt":  return value > threshold
-        if compare == "gte": return value >= threshold
-        if compare == "lt":  return value < threshold
-        if compare == "lte": return value <= threshold
-        return False
-
-    max_sustained = 0
-    run_start_ts = points[0]["timestamp"]
-    prev_ts = points[0]["timestamp"]
-
-    for point in points[1:]:
-        ts, value = point["timestamp"], point["value"]
-        if ts - prev_ts > gap_tolerance:
-            run_start_ts = ts
-            prev_ts = ts
-            continue
-        if is_breach(value):
-            current = (ts - run_start_ts) // ts_divisor
-            max_sustained = max(max_sustained, current)
-        else:
-            run_start_ts = ts
-        prev_ts = ts
-
-    return max_sustained
-
-
-def evaluate(time_series: List[Dict], threshold: float, duration: int, compare: str) -> Dict:
-    if not time_series:
-        return {"status": "no_data", "message": "无数据"}
-    sustained = calc_sustained_seconds(time_series, threshold, compare)
-    status = "find_problem" if sustained >= duration else "pass"
-    return {
-        "status": status,
-        "threshold": threshold,
-        "duration_required": duration,
-        "duration_sustained": sustained,
-        "compare": compare,
-    }
-
-
-def main():
-    parser = argparse.ArgumentParser(description="阈值+持续时间判断脚本")
-    parser.add_argument("--threshold", type=float, required=True)
-    parser.add_argument("--duration", type=int, required=True)
-    parser.add_argument("--compare", choices=["gt", "gte", "lt", "lte"], default="gt")
-    parser.add_argument("--input", help="输入 JSON 文件路径（默认 stdin）")
-    args = parser.parse_args()
-    time_series = json.load(open(args.input) if args.input else sys.stdin)
-    result = evaluate(time_series, args.threshold, args.duration, args.compare)
-    print(json.dumps(result, ensure_ascii=False, indent=2))
-
-
-if __name__ == "__main__":
-    main()
-```
-
-:::
-
-### 样例 4：变更前后 Diff
-
-| 项 | 内容 |
-|---|---|
-| 正例 | 脚本计算差值：<br>`python3 diff.py --before before.json --after after.json` |
-| 反例 | 让模型对比两份报告，口头说「CPU 使用率有所上升」。跨次回归对比时无法量化波动，告警阈值无法用脚本回放验证。 |
-| 期望输出 | 结构化 diff 结果：<br>`{"metric": "rds_cpu_usage", "baseline": 45.0, "current": 57.5, "delta_absolute": 12.5, "delta_percent": 27.8, "direction": "up"}` |
-| 关键差异 | 正例 diff 可复跑可回归，反例无法量化。 |
-
-参考实现（聚合结果两两比对，纯函数）：
-
-::: details 查看脚本
-
-```python
-#!/usr/bin/env python3
-"""Diff 计算脚本模板：两次聚合结果两两比对，纯函数。"""
-
-import argparse
-import json
-import sys
-from typing import Dict
-
-
-def calc_change(before: float, after: float) -> Dict:
-    absolute = after - before
-    relative = (absolute / before * 100) if before != 0 else 0.0
-    return {
-        "before": before,
-        "after": after,
-        "absolute_change": round(absolute, 2),
-        "relative_change_percent": round(relative, 2),
-    }
-
-
-def diff_aggregations(before: Dict, after: Dict) -> Dict:
-    keys = set(before.keys()) & set(after.keys())
-    keys.discard("metric")
-    changes = {}
-    for key in keys:
-        if isinstance(before[key], (int, float)) and isinstance(after[key], (int, float)):
-            changes[key] = calc_change(before[key], after[key])
-    return changes
-
-
-def main():
-    parser = argparse.ArgumentParser(description="Diff 计算脚本")
-    parser.add_argument("--before", required=True)
-    parser.add_argument("--after", required=True)
-    parser.add_argument("--metric", required=True)
-    args = parser.parse_args()
-    before_data = json.load(open(args.before))
-    after_data = json.load(open(args.after))
-    if args.metric not in before_data or args.metric not in after_data:
-        print(json.dumps({"error": f"metric '{args.metric}' not found in both files"}))
-        sys.exit(1)
-    changes = diff_aggregations(before_data[args.metric], after_data[args.metric])
-    print(json.dumps({"metric": args.metric, "changes": changes}, ensure_ascii=False, indent=2))
-
-
-if __name__ == "__main__":
-    main()
-```
-
-:::
-
-### 样例 5：输出标准化
-
-| 项 | 内容 |
-|---|---|
-| 正例 | 顶层固定 schema：<br>`{"total_cases": 7, "passed": 5, "find_problem_cases": 1, "no_problem_found": 0, "errors": 1, "has_find_problem": true, "results": [...]}`<br>status 枚举只有 4 个值：`pass / find_problem / no_problem_found / error`。 |
-| 反例 | 每次输出格式不同，有时返回 Markdown，有时返回自然语言，字段名跨次漂移。下游解析脚本会因字段缺失或键名漂移直接报错，跨次趋势对比也无法做。 |
-| 期望输出 | 单项结果 schema 含必填字段：<br>`{"case_id": "rds_cpu_high", "item": "RDS CPU 使用率过高", "severity": "P1", "status": "find_problem", "duration_seconds": 360, "total_entities": 12, "abnormal_count": 1, "abnormal_resources": [...]}` |
-| 关键差异 | 正例结构与字段名跨次稳定，反例结构跨次漂移导致下游解析失败。 |
-
-## 进阶要素
-
-### 架构模式：数据驱动声明 + 公共引擎
-
-以巡检类 Skill 为例，脚本文件的分工：
-
-| 文件 | 职责 | 计算逻辑 |
-|---|---|---|
-| `{skill}_common.py` | 公共引擎 | 查询、解析、评估、格式化、聚合 |
-| `{skill}-core-inspection.py` | 业务声明 | 若干 `InspectionCase` 数据项，零计算逻辑 |
-| `{skill}-performance-inspection.py` | 业务声明 | 若干 `InspectionCase` 数据项，零计算逻辑 |
-| `{skill}-security-inspection.py` | 业务声明 | 若干 `InspectionCase` 数据项，零计算逻辑 |
-| `{skill}-logs-inspection.py` | 业务声明 | 若干 `InspectionCase` 数据项，零计算逻辑（SLS SQL 日志查询） |
-
-新增巡检项 = 新增一个 `InspectionCase` 数据项，不写新的计算代码。
-
-### 确定性验证方式
-
-同参数执行两次，diff 必须无差异：
+::: details 查看持续超阈值判定脚本的调用方式
 
 ```bash
-python3 core-inspection.py --region <region> --project <project> --metricstore <metricstore> --time-range last_1h > /tmp/run1.json
-python3 core-inspection.py --region <region> --project <project> --metricstore <metricstore> --time-range last_1h > /tmp/run2.json
-diff /tmp/run1.json /tmp/run2.json
+python3 meta-skill-sample/scripts/threshold_duration.py \
+  --input samples.json --threshold 80 --duration 300 \
+  --compare gt --timestamp-unit s --max-gap 60
 ```
 
-任何 diff 输出都意味着脚本未达成纯函数保证，需要排查随机数、当前时间依赖或全局状态。
+:::
 
-## 常见问题
+输出保留判定状态、阈值、要求持续时间、计算出的最长连续时间，以及缺失点和采样间隔问题。这样，数字员工生成报告时既有结论，也知道结论来自怎样的计算；维护脚本的人可以直接与这张表对照。
 
-### 哪些计算不需要脚本化？
+再将中间的一个值改为空，连续段就应重新开始。没有观察到足够长的异常段，同时又缺少数据时，脚本返回无法充分判断；如果另一段完整数据已经确认持续超阈值，则仍然保留这项异常，并说明数据质量问题。缺数据不能用来证明正常，也不应抹掉已经观察到的异常。
 
-模型推理（根因假设排序、跨域关联、经验综合）不需要脚本化。脚本化只针对数值计算：单位换算、聚合、阈值判断、Diff。
+**本文配套脚本是教学与测试示例，不能直接用于生产环境，也不是可直接部署的完整 Skill。** 接入自己的 Skill 前，需要核对指标语义与单位、采样周期、时间戳、缺失值、阈值及输入规模；从数据库或云产品取数时，还要确认版本、部署形态、接口返回和权限。样例只演示计算，不负责完成这些适配。
 
-### 公共引擎和业务脚本的分界线在哪？
+## 其他计算也要把口径写清楚
 
-公共引擎承载「怎么算」（查询、解析、评估、格式化），业务脚本承载「算什么」（巡检项配置、阈值、单位）。判定标准：业务脚本里不出现 `if/else` 数值判断逻辑。
+持续时间只是其中一类计算。报告中的容量换算、平均值、百分位和前后变化，也会遇到同样的问题：数字看起来合理，不代表定义与读者理解的一致。把定义固定下来，数字员工才能在不同报告里持续使用同一种含义。
 
-### 纯函数为什么禁用「当前时间依赖」？
+数值计算不一定都要搬到本地。数据源已有可靠的聚合时，可以直接使用，并保存查询窗口和聚合方式；需要离线重放或数据源不支持时，再用脚本计算。重要的是清楚这份结果来自哪些样本、采用什么方法，而不是所有 Skill 都必须使用同一套代码架构。
 
-`datetime.now()` 等当前时间调用会导致同输入跨次输出不一致，破坏可回放性。需要时间窗口时通过 CLI 参数（如 `--time-range`）显式传入。
+| 计算 | 容易混淆的地方 | 示例采用的口径 |
+| --- | --- | --- |
+| 字节换算 | 1000 与 1024 的进制混用 | 按 1024 换算时标为 KiB、MiB、GiB；1,073,741,824 字节显示为 1.00 GiB |
+| 平均值 | 不等间隔样本直接算术平均 | 聚合样例只演示等权样本；非均匀采样需要另定时间加权方法 |
+| 百分位 | 不同插值算法、混合不同对象或窗口 | 对同一组有效样本排序后线性插值，并保留有效与无效样本数 |
+| 前后变化 | 基线为零时仍给一个增长百分比 | 保留绝对变化，相对变化返回空并说明零基线 |
 
-### 业务脚本能否调用三方库？
+单位格式化最好放在最后一步，阈值比较仍使用原始数值。接近阈值的读数如果先被四舍五入，再参与判断，可能改变结果。报告可以为了阅读方便少显示几位小数，但应保留用于判定的原始值。
 
-可以，但必须是确定性库（同输入同输出）。避免依赖随机数、机器学习推理类库；调用日志检索或指标查询等远端服务时，参数固定即输出固定的接口可以使用。
+空序列也不要用零填充。没有取得 CPU 数据，与 CPU 使用率为零，代表不同的情况；空序列的平均值和百分位应该为空，并说明没有有效样本。混有无效点时，保留有效与无效数量，读者才能知道一个统计值依赖多少数据。
+
+前后对比则要先确认比较对象和窗口一致。昨天的整天平均值与今天的一小时峰值，即使脚本能算出差值，也很难说明真实变化。基线为零时，可以报告从零增加到当前值以及绝对增量，相对增长率留空，不需要为了填满表格给出一个没有定义的百分比。
+
+配套目录保留了 单位换算（`unit_conversion.py`）、聚合计算（`aggregation.py`）和前后对比（`diff.py`）三个小例子。可以用它们阅读这些边界如何表达，再决定哪些口径适合自己的数据。
+
+## 验证正确性，再验证可重复性
+
+先验证能人工算清的例子。对于持续时间，除了刚好达到五分钟，还要看首点正常、恰好等于阈值、中间恢复、采样断点和空值；同一份数据改成毫秒时间戳后，结果也应按显式单位正确计算。重复或乱序时间戳、无效参数应报出明确错误，不能悄悄生成正常结论。
+
+这些样本最好跟着脚本保存。以后改动比较方式或缺失值处理，先重放它们，就能知道原有规则是否还成立。配套测试覆盖了上述边界，也检查空聚合、零基线和单位换算，作用是验证这些具体计算约定；它们不替代接入真实数据源后的检查。
+
+确认计算正确后，再把**同一份样本文件和同一套参数**执行两次，比较输出：
+
+::: details 执行两次并比较输出
+
+```bash
+python3 meta-skill-sample/scripts/threshold_duration.py --input samples.json --threshold 80 --duration 300 --max-gap 60 > run-a.json
+python3 meta-skill-sample/scripts/threshold_duration.py --input samples.json --threshold 80 --duration 300 --max-gap 60 > run-b.json
+diff run-a.json run-b.json
+```
+
+:::
+
+如果计算值相同、输出顺序却时常变化，报告对比和自动检查也会受到影响。因此，对无顺序含义的字段列表采用稳定排序，让同一输入能够直接比较。执行耗时、生成时间等运行信息如果需要保留，可以与计算结果分开，避免它们掩盖真正的结果变化。
+
+连续查询两次最近一小时，不能替代这项验证。相对窗口一直在移动，延迟到达的数据也可能改变样本；参数看起来相同，输入已经不同。验证整条取数链路时，可以固定绝对时间窗口并保存查询响应，再分别检查取数结果和计算结果。这样发现差异以后，才知道该去查哪一部分。
+
+## 让数字员工使用结果
+
+将脚本和口径说明放进 Skill，写清什么情况下调用、输入从哪里来、如何识别执行失败，以及结果中的哪些数值用于报告。STAROps 的 Skill 可以包含指令、脚本和参考文件，配置方式见[技能管理](https://help.aliyun.com/zh/starops/user-guide/skills-management)。
+
+这份说明不需要替数字员工安排每一步推理，但要把关键的使用条件讲明白。例如，本例使用严格大于、最长连续段和最大允许间隔，调用者就需要按同样含义传参；若实际需求改成不少于阈值，必须调整比较条件，不能只在报告里换一种说法。
+
+数字员工拿到结果后，分别处理异常、数据缺失和执行错误。已确认 CPU 持续超阈值时，可以继续查看请求量、相关进程或 SQL；样本不足时，先说明缺口或补查数据；参数错误则先修正调用。字段名称可以按团队习惯设计，含义稳定才能让这些后续动作有依据。
+
+报告还应把计算事实与原因判断分开。CPU 持续五分钟超过阈值，是这组样本和规则能够支持的结果；是否由流量增加、某类查询或资源争用引起，需要其他证据。**让脚本把数字算清楚，数字员工才能在可靠的结果上继续调查。** 以后规则或脚本有变动，保留版本和当时的输入，团队便能重放同一份数据，解释两份报告为什么不同。
 
 ## 相关入口
 
 - [返回 STAROps 最佳实践首页](/starops/starops.html)
 - [打开 STAROps Playground](/playground/staropsdemo.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)
+
+<style>
+.sls-starops-article .vp-doc details {
+  margin: 12px 0;
+}
+
+.sls-starops-article .vp-doc details > summary {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sls-starops-article .vp-doc img {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  margin: 10px auto 2px;
+  background: #f7f9fc;
+  border: 1px solid var(--sls-starops-border, #e6ebf3);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.sls-starops-article .vp-doc p {
+  line-height: 1.85;
+  margin: 14px 0;
+}
+
+.sls-starops-article .vp-doc h2 {
+  margin-top: 36px;
+}
+</style>

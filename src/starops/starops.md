@@ -78,6 +78,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/from-connection-to-diagnosis/article.html">
+      <h3 class="sls-starops-card__title">从连接数据到完成一次诊断</h3>
+      <p class="sls-starops-card__desc">第一次使用 STAROps：连接云监控 2.0 数据、等待自动建模、选中对象发起诊断，再顺着发现继续追问。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 
@@ -118,6 +123,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/mysql-readonly-diagnosis/article.html">
+      <h3 class="sls-starops-card__title">MySQL 只读性能诊断</h3>
+      <p class="sls-starops-card__desc">用环境代理把已有的 MySQL 只读脚本接进数字员工，在会话里确认目标、执行检查，并围绕 SQL 与活跃会话继续追问。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 
@@ -148,6 +158,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">对核心日志做周期巡检，主动捕捉尚未告警的日志模式变化，并把确认的问题沉淀为持续跟踪的发现项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/synthetics-closed-loop/article.html">
+      <h3 class="sls-starops-card__title">用 STAROps 串起云拨测闭环</h3>
+      <p class="sls-starops-card__desc">从业务目标创建云拨测任务，确认样本生效，沿协议阶段与 APM 调用链做跨域联合分析，再用原任务复核处理效果。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
       <h3 class="sls-starops-card__title">多云产品融合巡检最佳实践</h3>
       <p class="sls-starops-card__desc">把多产品巡检结果汇总成一份报告，按 UModel 关系归并同一资源风险，让值班一次看清全局并减少重复通知。</p>
@@ -171,6 +186,11 @@ pageClass: sls-starops-home
     <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
       <h3 class="sls-starops-card__title">从运行异常追到代码变更</h3>
       <p class="sls-starops-card__desc">把代码库与流水线接进 UModel，让数字员工从告警沿关系追到具体部署与提交。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/local-code-root-cause/article.html">
+      <h3 class="sls-starops-card__title">把应用异常追到本地代码与配置</h3>
+      <p class="sls-starops-card__desc">把运行日志与本地代码工作副本接进同一次调查，从 JDBC 报错沿 DB_URL 追到配置读取与注入位置，再回到运行实例核对。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
@@ -221,6 +241,11 @@ pageClass: sls-starops-home
     <a class="sls-starops-card" href="/doc/starops/practices/cross-account-access/article.html">
       <h3 class="sls-starops-card__title">跨账号统一建模与问题排查</h3>
       <p class="sls-starops-card__desc">通过跨账号角色把多个业务账号接进同一名数字员工，自动建模成统一 UModel，围绕业务问题直接提问与联合排查。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/intranet-deep-investigation/article.html">
+      <h3 class="sls-starops-card__title">使用环境代理排查内网应用及其依赖</h3>
+      <p class="sls-starops-card__desc">通过环境代理从应用机检查入口响应、端口与进程，再沿实际连接方式追查 PostgreSQL、Redis 等内部依赖。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
