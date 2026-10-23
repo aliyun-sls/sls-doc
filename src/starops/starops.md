@@ -188,6 +188,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">把代码库与流水线接进 UModel，让数字员工从告警沿关系追到具体部署与提交。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/local-code-root-cause/article.html">
+      <h3 class="sls-starops-card__title">把应用异常追到本地代码与配置</h3>
+      <p class="sls-starops-card__desc">把运行日志与本地代码工作副本接进同一次调查，从 JDBC 报错沿 DB_URL 追到配置读取与注入位置，再回到运行实例核对。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
       <h3 class="sls-starops-card__title">一个 Agent 入口完成 DevOps 闭环</h3>
       <p class="sls-starops-card__desc">以 Coding Agent 为统一入口，把发布后运行检查和告警到代码修复落在同一个任务，发布、提交、PR 由原系统人工确认。</p>

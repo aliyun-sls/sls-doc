@@ -41,6 +41,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '从运行异常追到代码变更', link: '/starops/practices/devops-code-to-runtime/article' },
+        { text: '把应用异常追到本地代码与配置', link: '/starops/practices/local-code-root-cause/article' },
         { text: '一个 Agent 入口完成 DevOps 闭环', link: '/starops/practices/coding-agent-devops-loop/article' },
       ],
     },
