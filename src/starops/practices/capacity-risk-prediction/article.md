@@ -22,7 +22,7 @@ title: 自定义容量风险巡检设计最佳实践
 
 在 STAROps 中，可以把确认过的指标和计算方法整理成 Skill，交给长期任务持续执行，再由数字员工结合资源关系和业务变化解释结果。**预测帮助人提前做准备，能否据此安排扩容，还要看容量依据和当前环境。** 本文从一组数据库磁盘开始，说明怎样把数据、预测和后续判断接起来。
 
-> 原有对话回放：[算子与数据探索](/playground/capacity-risk-prediction-operator-replay.html) ｜ [Skill 构建与验证](/playground/capacity-risk-prediction-replay.html) ｜ [长期任务运行](/playground/capacity-risk-prediction-mission-replay.html)。这些入口保留早期版本的完整过程，算法、检查项与配置按当时记录呈现。
+> 对话回放：[算子与数据探索](/playground/capacity-risk-prediction-operator-replay.html) ｜ [Skill 构建与验证](/playground/capacity-risk-prediction-replay.html) ｜ [长期任务运行](/playground/capacity-risk-prediction-mission-replay.html)
 
 ## 从一个有明确容量上限的对象开始
 

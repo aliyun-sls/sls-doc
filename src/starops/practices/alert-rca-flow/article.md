@@ -22,7 +22,7 @@ title: 告警 RCA 多分支诊断最佳实践
 
 STAROps 可以把团队的业务诊断经验作为 Skill 使用，从本次失败请求出发，分别调查涉及的分支，再汇总哪些失败已经得到解释。**多分支诊断的价值，是把同一条告警里的不同问题查清楚，让后续处理不遗漏。** 分支是否需要展开、什么时候可以结束，都取决于本次证据。
 
-> 原有对话回放：[按既定流程诊断](/playground/alert-rca-flow-skill-replay.html) ｜ [开放调查](/playground/alert-rca-flow-investigation-replay.html)。回放保留当时的提问和回答，便于查看取证过程；其中的归因仍需结合原始数据核对。
+> 对话回放：[按既定流程诊断](/playground/alert-rca-flow-skill-replay.html) ｜ [开放调查](/playground/alert-rca-flow-investigation-replay.html)
 
 ## 先把失败率拆成可调查的问题
 
