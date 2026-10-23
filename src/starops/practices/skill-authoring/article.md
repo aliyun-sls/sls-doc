@@ -16,8 +16,6 @@ title: 编写 STAROps 运维 Skill
   <span>分类 · 经验固化</span>
 </div>
 
-> 对话回放：[编写 Skill 完整闭环](/playground/skill-authoring-replay.html)
-
 本规范定义 STAROps 运维 Skill 的 7 要素，用于将 RDS 巡检、告警根因定位、日志模式分析等重复运维操作沉淀为可加载技能。
 
 适用范围：
@@ -70,7 +68,7 @@ title: 编写 STAROps 运维 Skill
 | 期望输出 | 脚本输出结构化结果：<br>`{"case_id": "rds_cpu_high", "status": "find_problem", "duration_seconds": 360, "total_entities": 12, "abnormal_count": 1}` |
 | 关键差异 | 正例脚本完成数值计算，结果稳定可复现；反例 LLM 推理，跨次结果漂移且耗时高。 |
 
-> 脚本的架构模式（数据驱动声明 + 公共引擎）、纯函数保证与确定性验证方式见 [编写 Skill 确定性脚本](/starops/practices/skill-script-deterministic/article.html)。
+> 计算口径、样本重放与正确性验证方式见 [编写 Skill 确定性脚本](/starops/practices/skill-script-deterministic/article.html)。
 
 ### 样例 3：风险控制
 
@@ -265,7 +263,7 @@ Skill 有两条产出路径，都过同一套 7 要素评审：
 
 - [ ] 每步有明确的输入 / 动作 / 输出
 - [ ] 每步有失败处理
-- [ ] 步骤间依赖关系清晰（无隐式状态传递）
+- [ ] 步骤间依赖关系清晰(无隐式状态传递)
 - [ ] 步骤数合理（不过多也不过少）
 
 ## 3. 计算与脚本
@@ -343,3 +341,37 @@ Skill 有两条产出路径，都过同一套 7 要素评审：
 - [返回 STAROps 最佳实践首页](/starops/starops.html)
 - [打开 STAROps Playground](/playground/staropsdemo.html)
 - [进入 STAROps 控制台](https://starops.console.aliyun.com)
+
+<style>
+.sls-starops-article .vp-doc details {
+  margin: 12px 0;
+}
+
+.sls-starops-article .vp-doc details > summary {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.sls-starops-article .vp-doc img {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  margin: 10px auto 2px;
+  background: #f7f9fc;
+  border: 1px solid var(--sls-starops-border, #e6ebf3);
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.sls-starops-article .vp-doc p {
+  line-height: 1.85;
+  margin: 14px 0;
+}
+
+.sls-starops-article .vp-doc h2 {
+  margin-top: 36px;
+}
+</style>
+
