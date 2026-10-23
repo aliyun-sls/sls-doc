@@ -20,6 +20,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '如何提升巡检稳定性，同时支持异常后的动态追因', link: '/starops/practices/rds-inspection-via-script/article' },
+        { text: 'MySQL 只读性能诊断', link: '/starops/practices/mysql-readonly-diagnosis/article' },
       ],
     },
     {
