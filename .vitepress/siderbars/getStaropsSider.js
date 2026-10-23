@@ -7,6 +7,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '与 STAROps 有效对话', link: '/starops/onboarding/effective-prompts/article' },
+        { text: '从连接数据到完成一次诊断', link: '/starops/practices/from-connection-to-diagnosis/article' },
       ],
     },
     {

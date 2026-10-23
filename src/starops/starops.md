@@ -78,6 +78,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/from-connection-to-diagnosis/article.html">
+      <h3 class="sls-starops-card__title">从连接数据到完成一次诊断</h3>
+      <p class="sls-starops-card__desc">第一次使用 STAROps：连接云监控 2.0 数据、等待自动建模、选中对象发起诊断，再顺着发现继续追问。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 
