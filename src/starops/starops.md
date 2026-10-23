@@ -158,6 +158,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">对核心日志做周期巡检，主动捕捉尚未告警的日志模式变化，并把确认的问题沉淀为持续跟踪的发现项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/synthetics-closed-loop/article.html">
+      <h3 class="sls-starops-card__title">用 STAROps 串起云拨测闭环</h3>
+      <p class="sls-starops-card__desc">从业务目标创建云拨测任务，确认样本生效，沿协议阶段与 APM 调用链做跨域联合分析，再用原任务复核处理效果。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
       <h3 class="sls-starops-card__title">多云产品融合巡检最佳实践</h3>
       <p class="sls-starops-card__desc">把多产品巡检结果汇总成一份报告，按 UModel 关系归并同一资源风险，让值班一次看清全局并减少重复通知。</p>

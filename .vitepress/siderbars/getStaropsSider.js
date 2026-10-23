@@ -31,6 +31,7 @@ function getSidebar() {
         { text: '自定义容量风险巡检设计最佳实践', link: '/starops/practices/capacity-risk-prediction/article' },
         { text: '从一次深度评估到持续守住业务基线', link: '/starops/practices/business-reliability-flow/article' },
         { text: 'STAROps 日志智能巡检实践', link: '/starops/practices/log-insight-pattern/article' },
+        { text: '用 STAROps 串起云拨测闭环', link: '/starops/practices/synthetics-closed-loop/article' },
         { text: '多云产品融合巡检最佳实践', link: '/starops/practices/cross-product-inspection-summary/article' },
         { text: '账单与成本分析最佳实践', link: '/starops/practices/billing-cost-analysis/article' },
       ],
