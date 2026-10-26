@@ -119,8 +119,8 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
-      <h3 class="sls-starops-card__title">如何提升巡检稳定性，同时支持异常后的动态追因</h3>
-      <p class="sls-starops-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
+      <h3 class="sls-starops-card__title">RDS 巡检与异常追因</h3>
+      <p class="sls-starops-card__desc">把确认过的检查口径写进 Skill 脚本，数字员工据结果组织报告；出现异常时沿日志、指标和变更继续取证，再由长期任务周期执行。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/mysql-readonly-diagnosis/article.html">
@@ -139,13 +139,13 @@ pageClass: sls-starops-home
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/alert-rca-flow/article.html">
-      <h3 class="sls-starops-card__title">告警 RCA 多分支诊断最佳实践</h3>
-      <p class="sls-starops-card__desc">把企业历史 Runbook 固化为 Agent 可执行 Skill，按错误码分支并行取证，证据不足升级 InvestigationAgent。</p>
+      <h3 class="sls-starops-card__title">从一条失败率告警到多分支诊断</h3>
+      <p class="sls-starops-card__desc">把一条失败率告警拆成可调查的业务问题，用 Skill 分支并行取证；已知分支覆盖不到的失败，交给深度调查继续。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/capacity-risk-prediction/article.html">
       <h3 class="sls-starops-card__title">自定义容量风险巡检设计最佳实践</h3>
-      <p class="sls-starops-card__desc">把容量风险从看水位升级为看未来：series_forecast 预测触阈时间，沿 UModel 解释上升来源，跨产品联动归并后给出处置优先级。</p>
+      <p class="sls-starops-card__desc">容量判断不只看当前水位：先检查历史序列，预测触阈时间，再结合业务影响决定哪些资源提前准备。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
@@ -165,7 +165,7 @@ pageClass: sls-starops-home
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
       <h3 class="sls-starops-card__title">多云产品融合巡检最佳实践</h3>
-      <p class="sls-starops-card__desc">把多产品巡检结果汇总成一份报告，按 UModel 关系归并同一资源风险，让值班一次看清全局并减少重复通知。</p>
+      <p class="sls-starops-card__desc">把多个产品的巡检结果汇总成一份报告：先校验来源与覆盖，再按资源关系把同一异常合并成一件待处理事项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/billing-cost-analysis/article.html">
