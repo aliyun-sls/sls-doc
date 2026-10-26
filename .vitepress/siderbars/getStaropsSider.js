@@ -19,7 +19,7 @@ function getSidebar() {
       text: '进阶必备',
       collapsed: true,
       items: [
-        { text: '如何提升巡检稳定性，同时支持异常后的动态追因', link: '/starops/practices/rds-inspection-via-script/article' },
+        { text: 'RDS 巡检与异常追因', link: '/starops/practices/rds-inspection-via-script/article' },
         { text: 'MySQL 只读性能诊断', link: '/starops/practices/mysql-readonly-diagnosis/article' },
       ],
     },
@@ -27,7 +27,7 @@ function getSidebar() {
       text: '场景能力',
       collapsed: true,
       items: [
-        { text: '告警 RCA 多分支诊断最佳实践', link: '/starops/practices/alert-rca-flow/article' },
+        { text: '从一条失败率告警到多分支诊断', link: '/starops/practices/alert-rca-flow/article' },
         { text: '自定义容量风险巡检设计最佳实践', link: '/starops/practices/capacity-risk-prediction/article' },
         { text: '从一次深度评估到持续守住业务基线', link: '/starops/practices/business-reliability-flow/article' },
         { text: 'STAROps 日志智能巡检实践', link: '/starops/practices/log-insight-pattern/article' },
