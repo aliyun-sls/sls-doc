@@ -195,7 +195,7 @@ pageClass: sls-starops-home
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
       <h3 class="sls-starops-card__title">一个 Agent 入口完成 DevOps 闭环</h3>
-      <p class="sls-starops-card__desc">以 Coding Agent 为统一入口，把发布后运行检查和告警到代码修复落在同一个任务，发布、提交、PR 由原系统人工确认。</p>
+      <p class="sls-starops-card__desc">把发布版本、运行证据、诊断结论和回归条件留在同一个 Coding Agent 任务里；提交、PR、发布和回滚仍由原系统人工确认。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
@@ -208,6 +208,11 @@ pageClass: sls-starops-home
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
+    <a class="sls-starops-card" href="/doc/starops/practices/skill-center-selection/article.html">
+      <h3 class="sls-starops-card__title">技能中心选型与场景包启用</h3>
+      <p class="sls-starops-card__desc">先定数字员工的职责边界，再按场景包整包授权；验收看挂载态和一次真实执行，官方覆盖不了才进自定义编写。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/skill-authoring/article.html">
       <h3 class="sls-starops-card__title">编写 STAROps 运维 Skill</h3>
       <p class="sls-starops-card__desc">Skill 设计的 7 要素合规约束：触发、流程、脚本、输出、风控、失败、推理边界，附模板与自检 Checklist。</p>

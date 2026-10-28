@@ -49,6 +49,7 @@ function getSidebar() {
       text: '持续优化',
       collapsed: true,
       items: [
+        { text: '技能中心选型与场景包启用', link: '/starops/practices/skill-center-selection/article' },
         { text: '编写 STAROps 运维 Skill', link: '/starops/practices/skill-authoring/article' },
         { text: '编写 Skill 确定性脚本', link: '/starops/practices/skill-script-deterministic/article' },
       ],
