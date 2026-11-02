@@ -158,9 +158,19 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">对核心日志做周期巡检，主动捕捉尚未告警的日志模式变化，并把确认的问题沉淀为持续跟踪的发现项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/synthetics-agent-analysis/article.html">
+      <h3 class="sls-starops-card__title">云拨测 STAROps 创建与智能分析</h3>
+      <p class="sls-starops-card__desc">把一句监控需求整理成拨测配置，确认后创建任务；运行后沿样本、协议阶段和网络路径做智能分析，给出带边界的诊断结论。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/synthetics-closed-loop/article.html">
       <h3 class="sls-starops-card__title">用 STAROps 串起云拨测闭环</h3>
       <p class="sls-starops-card__desc">从业务目标创建云拨测任务，确认样本生效，沿协议阶段与 APM 调用链做跨域联合分析，再用原任务复核处理效果。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/finops-cost-governance/article.html">
+      <h3 class="sls-starops-card__title">STAROps 助力云成本治理落地</h3>
+      <p class="sls-starops-card__desc">从费用异常下钻到计费项与资源，结合 CPU、内存等水位判断优化空间，再用 Mission 周期巡检把成本治理变成持续机制。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
