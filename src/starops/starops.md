@@ -128,6 +128,11 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">用环境代理把已有的 MySQL 只读脚本接进数字员工，在会话里确认目标、执行检查，并围绕 SQL 与活跃会话继续追问。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/es-inspection-diagnosis/article.html">
+      <h3 class="sls-starops-card__title">ES 节点级巡检与异常追因</h3>
+      <p class="sls-starops-card__desc">集群状态健康、平均值正常，压力也可能只集中在单个节点；先锁定异常时段，逐节点看 CPU、查询负载和分片，处置后等负载相近的高峰再复查。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
   </div>
 </section>
 

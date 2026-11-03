@@ -21,6 +21,7 @@ function getSidebar() {
       items: [
         { text: 'RDS 巡检与异常追因', link: '/starops/practices/rds-inspection-via-script/article' },
         { text: 'MySQL 只读性能诊断', link: '/starops/practices/mysql-readonly-diagnosis/article' },
+        { text: 'ES 节点级巡检与异常追因', link: '/starops/practices/es-inspection-diagnosis/article' },
       ],
     },
     {
