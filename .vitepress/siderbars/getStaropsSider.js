@@ -62,7 +62,7 @@ function getSidebar() {
       collapsed: true,
       items: [
         { text: '把数字员工接进 IM 协作工具', link: '/starops/practices/im-integration/article' },
-        { text: '把团队自己的系统接进 STAROps', link: '/starops/practices/mcp-integration/article' },
+        { text: '把自建 DevOps 系统接进 STAROps', link: '/starops/practices/devops-system-integration/article' },
         { text: '跨账号统一建模与问题排查', link: '/starops/practices/cross-account-access/article' },
         { text: '使用环境代理排查内网应用及其依赖', link: '/starops/practices/intranet-deep-investigation/article' },
       ],

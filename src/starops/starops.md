@@ -61,7 +61,7 @@ pageClass: sls-starops-home
   </a>
   <a class="sls-starops-scene-card" href="#integration" data-tone="amber">
     <h2>集成扩展</h2>
-    <p>接入钉钉 IM、MCP 外部工具与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
+    <p>接入钉钉 IM、自建 DevOps 系统与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </a>
 </section>
@@ -253,9 +253,9 @@ pageClass: sls-starops-home
       <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/mcp-integration/article.html">
-      <h3 class="sls-starops-card__title">把团队自己的系统接进 STAROps</h3>
-      <p class="sls-starops-card__desc">监控内已覆盖的数据走系统连接，监控外的自有系统通过 MCP 接进数字员工：准备服务、核对工具、定执行方式，再在会话里验证。</p>
+    <a class="sls-starops-card" href="/doc/starops/practices/devops-system-integration/article.html">
+      <h3 class="sls-starops-card__title">把自建 DevOps 系统接进 STAROps</h3>
+      <p class="sls-starops-card__desc">在能访问自建 GitLab、Jenkins、Argo CD 的机器上安装环境代理，由数字员工执行已登录的 CLI；每条命令人工确认，输出进证据链。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/cross-account-access/article.html">
