@@ -2,6 +2,10 @@
 pageClass: sls-starops-home
 ---
 
+<script setup>
+import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.vue'
+</script>
+
 <section class="sls-starops-hero">
   <div class="sls-starops-hero__content">
     <div class="sls-starops-hero__breadcrumb">
@@ -16,55 +20,50 @@ pageClass: sls-starops-home
       <a class="sls-starops-btn sls-starops-btn--primary" href="https://starops.console.aliyun.com" target="_blank">进入 STAROps 控制台</a>
       <a class="sls-starops-btn sls-starops-btn--ghost" href="/doc/playground/staropsdemo.html" target="_blank">体验 Playground</a>
     </div>
-    <div class="sls-starops-hero__signals" aria-label="实践主题">
-      <span>开始上手</span>
-      <span>基准评测</span>
-      <span>进阶必备</span>
-      <span>场景能力</span>
-      <span>DevOps 闭环</span>
-      <span>持续优化</span>
-      <span>集成扩展</span>
-    </div>
   </div>
 </section>
 
-<section class="sls-starops-scene-nav">
-  <a class="sls-starops-scene-card" href="#start" data-tone="brand">
-    <h2>开始上手</h2>
-    <p>掌握提问范式和 UModel 语义能力，让数字员工按实体、指标、拓扑和日志理解系统。</p>
+<section class="sls-starops-scene-nav" aria-label="按分组筛选实践">
+  <button class="sls-starops-scene-card" type="button" data-group="start" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">开始上手</span>
+    <span class="sls-starops-scene-card__desc">掌握提问范式和 UModel 语义能力，让数字员工按实体、指标、拓扑和日志理解系统。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
-  </a>
-  <a class="sls-starops-scene-card" href="#benchmark" data-tone="violet">
-    <h2>基准评测</h2>
-    <p>用同一 RCA Benchmark 对比 ReAct、OpenClaw 与 STAROps，覆盖评测基准、评测结果和 40 个诊断案例。</p>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="benchmark" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">基准评测</span>
+    <span class="sls-starops-scene-card__desc">用同一 RCA Benchmark 对比 ReAct、OpenClaw 与 STAROps，覆盖评测基准、评测结果和 40 个诊断案例。</span>
     <span class="sls-starops-scene-card__cta">查看评测</span>
-  </a>
-  <a class="sls-starops-scene-card" href="#keypoint" data-tone="cyan">
-    <h2>进阶必备</h2>
-    <p>脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</p>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="keypoint" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">进阶必备</span>
+    <span class="sls-starops-scene-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
-  </a>
-  <a class="sls-starops-scene-card" href="#scenario" data-tone="violet">
-    <h2>场景能力</h2>
-    <p>告警追因、容量预测、日志模式与业务可靠性等场景化能力，按 SOP 完成取证、定位与报告。</p>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="scenario" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">场景能力</span>
+    <span class="sls-starops-scene-card__desc">告警追因、容量预测、日志模式与业务可靠性等场景化能力，按 SOP 完成取证、定位与报告。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
-  </a>
-  <a class="sls-starops-scene-card" href="#devops" data-tone="amber">
-    <h2>DevOps 闭环</h2>
-    <p>将代码仓库、Release、镜像接入 UModel，补全告警到代码变更的跨域追因链路。</p>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="devops" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">DevOps 闭环</span>
+    <span class="sls-starops-scene-card__desc">将代码仓库、Release、镜像接入 UModel，补全告警到代码变更的跨域追因链路。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
-  </a>
-  <a class="sls-starops-scene-card" href="#loop" data-tone="cyan">
-    <h2>持续优化</h2>
-    <p>可重复的 Runbook 与计算脚本沉淀为 Skill，让数字员工高效、稳定复用运维经验。</p>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="loop" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">持续优化</span>
+    <span class="sls-starops-scene-card__desc">可重复的 Runbook 与计算脚本沉淀为 Skill，让数字员工高效、稳定复用运维经验。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
-  </a>
-  <a class="sls-starops-scene-card" href="#integration" data-tone="amber">
-    <h2>集成扩展</h2>
-    <p>接入钉钉 IM、自建 DevOps 系统与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</p>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="integration" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">集成扩展</span>
+    <span class="sls-starops-scene-card__desc">接入钉钉 IM、自建 DevOps 系统与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
-  </a>
+  </button>
 </section>
+
+<ClientOnly>
+  <StaropsPracticeFilter />
+</ClientOnly>
 
 <section class="sls-starops-section" id="start">
   <div class="sls-starops-section__head">
