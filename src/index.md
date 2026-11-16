@@ -22,7 +22,7 @@ pageClass: sls-observe-home
   <div class="sls-home-playground sls-home-playground--parent">
     <span class="sls-home-playground__kicker">STAROps</span>
     <strong>Agentic Ops 最佳实践</strong>
-    <span class="sls-home-playground__summary">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖开始上手、基准评测、进阶必备、场景能力、DevOps 闭环、持续优化和集成扩展。</span>
+    <span class="sls-home-playground__summary">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖开始上手、基准评测、集成扩展、进阶必备、场景能力、DevOps 闭环和持续优化。</span>
     <div class="sls-home-playground__actions">
       <a class="sls-home-playground__action" href="/doc/starops/starops.html">最佳实践</a>
       <a class="sls-home-playground__action no-icon" href="/doc/playground/staropsdemo.html" target="_blank">启动演示</a>

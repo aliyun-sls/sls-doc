@@ -26,7 +26,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
 <section class="sls-starops-scene-nav" aria-label="按分组筛选实践">
   <button class="sls-starops-scene-card" type="button" data-group="start" aria-pressed="false">
     <span class="sls-starops-scene-card__title">开始上手</span>
-    <span class="sls-starops-scene-card__desc">掌握提问范式和 UModel 语义能力，让数字员工按实体、指标、拓扑和日志理解系统。</span>
+    <span class="sls-starops-scene-card__desc">先对接数据、跑完一次诊断拿到结论，再回头确认怎么提问和控制上下文。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="benchmark" aria-pressed="false">
@@ -36,27 +36,27 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="integration" aria-pressed="false">
     <span class="sls-starops-scene-card__title">集成扩展</span>
-    <span class="sls-starops-scene-card__desc">接入钉钉 IM、自建 DevOps 系统与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</span>
+    <span class="sls-starops-scene-card__desc">把自建系统、内网服务、本地代码接进来。先判断通道成不成立，再拿它换取数对象，接出去和跨账号的边界放在最后去确认。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="keypoint" aria-pressed="false">
     <span class="sls-starops-scene-card__title">进阶必备</span>
-    <span class="sls-starops-scene-card__desc">脚本固化巡检事实口径，Agent 在异常后沿 UModel 动态追因，把阈值监控升级为可复核、可追因的健康报告。</span>
+    <span class="sls-starops-scene-card__desc">同一套巡检和追因的做法，从托管数据库搬到受限访问的内网 MySQL，再用 ES 补上集群健康不等于业务健康，数据库和搜索这两类先查准。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="scenario" aria-pressed="false">
     <span class="sls-starops-scene-card__title">场景能力</span>
-    <span class="sls-starops-scene-card__desc">告警追因、容量预测、日志模式与业务可靠性等场景化能力，按 SOP 完成取证、定位与报告。</span>
+    <span class="sls-starops-scene-card__desc">从一次告警和容量风险立起基线，再换到日志、拨测和成本，每条轴先定位到具体对象，再变成持续守护的机制，最后把多份报告合成一份清单，每类场景留下可复用的走法。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="devops" aria-pressed="false">
     <span class="sls-starops-scene-card__title">DevOps 闭环</span>
-    <span class="sls-starops-scene-card__desc">将代码仓库、Release、镜像接入 UModel，补全告警到代码变更的跨域追因链路。</span>
+    <span class="sls-starops-scene-card__desc">将代码仓库与流水线接入 UModel，补全告警到代码变更的跨域追因链路，诊断、修复和回归留在同一个任务里。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="loop" aria-pressed="false">
     <span class="sls-starops-scene-card__title">持续优化</span>
-    <span class="sls-starops-scene-card__desc">可重复的 Runbook 与计算脚本沉淀为 Skill，让数字员工高效、稳定复用运维经验。</span>
+    <span class="sls-starops-scene-card__desc">技能中心有官网推荐和技能广场两类现成技能，优先选用；覆盖不到的场景按 7 要素自己写 Skill，数值计算再收进确定性脚本。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
 </section>
@@ -74,12 +74,12 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/01-start/from-connection-to-diagnosis/article.html">
       <h3 class="sls-starops-card__title">从连接数据到完成一次诊断</h3>
-      <p class="sls-starops-card__desc">第一次使用 STAROps：连接云监控 2.0 数据、等待自动建模、选中对象发起诊断，再顺着发现继续追问。</p>
+      <p class="sls-starops-card__desc">先接上云监控 2.0 的数据，等自动建模完成，选一个对象发起诊断，再顺着发现继续追问。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/01-start/effective-prompts/article.html">
       <h3 class="sls-starops-card__title">与 STAROps 有效对话</h3>
-      <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
+      <p class="sls-starops-card__desc">把实体、时间窗、业务意图和期望输出说清楚，数字员工才能收敛到你要的结论；六条原则靠 UModel、Agent、Skill 三层支撑。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
@@ -119,17 +119,17 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/devops-system-integration/article.html">
       <h3 class="sls-starops-card__title">把自建 DevOps 系统接进 STAROps</h3>
-      <p class="sls-starops-card__desc">在能访问自建 GitLab、Jenkins、Argo CD 的机器上安装环境代理，由数字员工执行已登录的 CLI；执行方式按能力设定，输出进证据链。</p>
+      <p class="sls-starops-card__desc">自建 GitLab、Jenkins、Argo CD 里谁改的代码、发到哪个版本，不用切系统就能问。环境代理执行客户机上已登录的 CLI，输出进证据链，仓库与流水线自动建模进 UModel。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/intranet-deep-investigation/article.html">
       <h3 class="sls-starops-card__title">使用环境代理排查内网应用及其依赖</h3>
-      <p class="sls-starops-card__desc">通过环境代理从应用机检查入口响应、端口与进程，再沿实际连接方式追查 PostgreSQL、Redis 等内部依赖。</p>
+      <p class="sls-starops-card__desc">一台机器上跑着好几个服务，先分清哪个入口属于它。通过环境代理从应用机检查入口响应、端口与进程，再沿实际连接方式追查 PostgreSQL、Redis 等内部依赖。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/local-code-root-cause/article.html">
       <h3 class="sls-starops-card__title">把应用异常追到本地代码与配置</h3>
-      <p class="sls-starops-card__desc">把运行日志与本地代码工作副本接进同一次调查，从 JDBC 报错沿 DB_URL 追到配置读取与注入位置，再回到运行实例核对。</p>
+      <p class="sls-starops-card__desc">把运行日志与本地代码工作副本接进同一次调查，从连接报错追到代码里配置的来源，再回到运行实例核对。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/im-integration/article.html">
@@ -159,7 +159,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/03-keypoint/mysql-readonly-diagnosis/article.html">
       <h3 class="sls-starops-card__title">MySQL 只读性能诊断</h3>
-      <p class="sls-starops-card__desc">用环境代理把已有的 MySQL 只读脚本接进数字员工，在会话里确认目标、执行检查，并围绕 SQL 与活跃会话继续追问。</p>
+      <p class="sls-starops-card__desc">用环境代理把已有的 MySQL 只读脚本接进数字员工，在会话里确认目标、执行检查，再沿 SQL 和活跃会话往下追。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/03-keypoint/es-inspection-diagnosis/article.html">
@@ -184,7 +184,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/capacity-risk-prediction/article.html">
       <h3 class="sls-starops-card__title">自定义容量风险巡检设计最佳实践</h3>
-      <p class="sls-starops-card__desc">容量判断不只看当前水位：先检查历史序列，预测触阈时间，再结合业务影响决定哪些资源提前准备。</p>
+      <p class="sls-starops-card__desc">容量不能只看当前水位：先检查历史序列，预测触阈时间，再结合业务影响决定哪些资源提前准备。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/business-reliability-flow/article.html">
@@ -214,7 +214,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/finops-cost-governance/article.html">
       <h3 class="sls-starops-card__title">STAROps 助力云成本治理落地</h3>
-      <p class="sls-starops-card__desc">从费用异常下钻到计费项与资源，结合 CPU、内存等水位判断优化空间，再用 Mission 周期巡检把成本治理变成持续机制。</p>
+      <p class="sls-starops-card__desc">从费用异常下钻到计费项和资源，结合 CPU、内存等水位判断优化空间，再用长期任务周期巡检把成本治理变成持续机制。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/cross-product-inspection-summary/article.html">
@@ -259,12 +259,12 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-authoring/article.html">
       <h3 class="sls-starops-card__title">编写 STAROps 运维 Skill</h3>
-      <p class="sls-starops-card__desc">Skill 设计的 7 要素合规约束：触发、流程、脚本、输出、风控、失败、推理边界，附模板与自检 Checklist。</p>
+      <p class="sls-starops-card__desc">Skill 设计的 7 要素：触发、流程、脚本、输出、风控、失败、推理边界，附模板和自检清单。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-script-deterministic/article.html">
       <h3 class="sls-starops-card__title">编写 Skill 确定性脚本</h3>
-      <p class="sls-starops-card__desc">数值计算交给脚本不交给 LLM——单位换算、聚合、阈值判断必须纯函数化，附 4 段 Python 模板。</p>
+      <p class="sls-starops-card__desc">数值计算交给脚本不交给 LLM——单位换算、聚合、阈值判断必须纯函数化，附 4 个示例脚本。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
