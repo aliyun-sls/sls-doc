@@ -31,6 +31,8 @@
   }
 }
 
-.VPDoc.has-aside .content-container {
+/* STAROps 两个版式（首页整幅、文章页容器 928 / 正文 880）各自的宽度模型都在
+   sls-doc.css 里，这里不再用 1080 去兜，避免两套上限互相打架。 */
+.Layout:not(.sls-starops-home, .sls-starops-article) .VPDoc.has-aside .content-container {
   max-width: 1080px !important;
 }

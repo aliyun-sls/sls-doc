@@ -1770,6 +1770,37 @@
   padding: 0 24px;
 }
 
+.sls-starops-home .sls-starops-hero__content::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 360px;
+  height: 200px;
+  border: 1px solid rgba(141, 160, 255, 0.2);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, transparent 0 18%, rgba(141, 160, 255, 0.22) 18% 18.5%, transparent 18.5% 100%),
+    linear-gradient(180deg, transparent 0 62%, rgba(244, 166, 42, 0.22) 62% 62.5%, transparent 62.5% 100%),
+    rgba(4, 14, 26, 0.3);
+  box-shadow: 0 0 40px rgba(68, 100, 240, 0.18);
+  opacity: 0.9;
+}
+
+.sls-starops-home .sls-starops-hero__content::before {
+  content: '';
+  position: absolute;
+  right: 24px;
+  top: 72px;
+  width: 260px;
+  height: 64px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, transparent 14px, rgba(68, 100, 240, 0.85) 14px 16px, transparent 16px),
+    linear-gradient(180deg, transparent 44px, rgba(244, 166, 42, 0.85) 44px 46px, transparent 46px);
+  opacity: 0.92;
+}
+
 .sls-starops-home .sls-starops-hero__breadcrumb {
   display: flex;
   gap: 8px;
@@ -1803,42 +1834,12 @@
   background: linear-gradient(90deg, #8da0ff, #4464f0);
 }
 
-.sls-starops-home .sls-starops-hero h1 {
-  margin: 0;
-  font-size: 56px;
-  line-height: 1.1;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.5px;
-}
-
 .sls-starops-home .sls-starops-hero__lede {
   max-width: 720px;
   margin: 22px 0 0;
   color: rgba(232,244,251,.86);
   font-size: 17px;
   line-height: 1.85;
-}
-
-.sls-starops-home .sls-starops-hero__signals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.sls-starops-home .sls-starops-hero__signals span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 12px;
-  border: 1px solid rgba(185,195,255,.22);
-  border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  color: rgba(232,244,251,.92);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .3px;
 }
 
 .sls-starops-home .sls-starops-scene-nav {
@@ -1851,106 +1852,66 @@
   gap: 20px;
 }
 
+/* 7 张入口卡是筛选控件：整卡一个动作，选中态只换边框与淡底。 */
 .sls-starops-home .sls-starops-scene-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 220px;
-  padding: 22px 22px 24px;
-  background: linear-gradient(180deg, #fff 0%, #f9fbfd 100%);
+  gap: 10px;
+  padding: 20px 20px 22px;
+  background: #fff;
   border: 1px solid var(--sls-starops-border);
   border-radius: 10px;
-  box-shadow: 0 18px 44px rgba(10, 24, 38, 0.10);
   color: var(--sls-starops-text);
+  font: inherit;
+  text-align: left;
   text-decoration: none;
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease;
 }
 
 .sls-starops-home .sls-starops-scene-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(10, 24, 38, 0.16);
   border-color: var(--sls-starops-border-strong);
-  text-decoration: none;
 }
 
-.sls-starops-home .sls-starops-scene-card__kicker {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .6px;
-  color: var(--sls-starops-brand);
-  text-transform: uppercase;
+.sls-starops-home .sls-starops-scene-card:focus-visible {
+  outline: 2px solid var(--sls-starops-brand);
+  outline-offset: 2px;
 }
 
-.sls-starops-home .sls-starops-scene-card[data-tone="amber"] .sls-starops-scene-card__kicker {
-  color: #c97a06;
+.sls-starops-home .sls-starops-scene-card[aria-pressed="true"] {
+  border-color: var(--sls-starops-brand);
+  background: #f7f9ff;
 }
 
-.sls-starops-home .sls-starops-scene-card[data-tone="cyan"] .sls-starops-scene-card__kicker {
-  color: #1f5fb0;
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="violet"] .sls-starops-scene-card__kicker {
-  color: #6044d0;
-}
-
-.sls-starops-home .sls-starops-scene-card h2 {
-  margin: 2px 0 6px;
-  font-size: 19px;
-  font-weight: 700;
+.sls-starops-home .sls-starops-scene-card__title {
+  display: block;
+  margin: 0;
   color: var(--sls-starops-text);
+  font-size: 17px;
+  font-weight: 700;
   line-height: 1.4;
 }
 
-.sls-starops-home .sls-starops-scene-card p {
+.sls-starops-home .sls-starops-scene-card__desc {
+  display: block;
   flex: 1;
   margin: 0;
   color: var(--sls-starops-text-soft);
-  font-size: 13.5px;
-  line-height: 1.7;
-}
-
-.sls-starops-home .sls-starops-scene-card__count {
-  color: var(--sls-starops-text-weak);
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .sls-starops-home .sls-starops-scene-card__cta {
+  display: block;
+  margin-top: auto;
   color: var(--sls-starops-brand);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .sls-starops-home .sls-starops-scene-card__cta::after {
   content: ' →';
-  transition: margin .15s;
-}
-
-.sls-starops-home .sls-starops-scene-card:hover .sls-starops-scene-card__cta::after {
-  margin-left: 4px;
-}
-
-.sls-starops-home .sls-starops-scene-card__deco {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  width: 64px;
-  height: 44px;
-  border: 1px solid rgba(24,35,51,.08);
-  border-radius: 6px;
-  background: linear-gradient(180deg, transparent 26px, rgba(24,35,51,.10) 26px 27px, transparent 27px 100%), linear-gradient(90deg, rgba(24,35,51,.04), transparent);
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="amber"] .sls-starops-scene-card__deco {
-  box-shadow: inset 0 0 0 1px rgba(244,166,42,.18);
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="cyan"] .sls-starops-scene-card__deco {
-  box-shadow: inset 0 0 0 1px rgba(31,95,176,.18);
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="violet"] .sls-starops-scene-card__deco {
-  box-shadow: inset 0 0 0 1px rgba(96,68,208,.18);
 }
 
 .sls-starops-home .sls-starops-section {
@@ -2333,9 +2294,11 @@
   --vp-sidebar-width: 240px;
 }
 
+/* 文章页宽度与容器：正文列固定 880（容器 928 = 880 + 24×2），侧栏只 ≥960
+   占位，目录列只 ≥1280 出现，容器居中，横向留白只保留容器这一层。 */
 .sls-starops-article .VPContent.has-sidebar {
   padding-top: 0;
-  padding-left: var(--vp-sidebar-width) !important;
+  padding-left: 0 !important;
   padding-right: 0 !important;
 }
 
@@ -2344,13 +2307,10 @@
 }
 
 .sls-starops-article .VPDoc > .container {
-  max-width: 1320px;
-  margin: 0;
+  max-width: 928px;
+  margin: 0 auto;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 240px;
-  gap: 32px;
-  align-items: stretch;
+  display: block;
 }
 
 .sls-starops-article .VPSidebar {
@@ -2482,13 +2442,28 @@
   cursor: default;
 }
 
+/* 正文卡顶边要与右侧目录卡、左侧栏第一组对齐：两者都从 24 起，
+   这里原来是 32，卡片会低 8px。 */
 .sls-starops-article .VPDoc > .container > .content {
   min-width: 0;
-  padding: 32px 0 80px;
+  padding: 24px 0 80px;
 }
 
+/* 正文是一个看得见的容器：白卡 + 1px 边框 + 圆角，与右侧「页面导航」卡同一套语言。
+   卡片按 border-box 吃掉左右 24 的内边距，正文可读宽 880 → 832。 */
 .sls-starops-article .VPDoc > .container > .content > .content-container {
   max-width: none;
+  padding: 28px 24px 32px;
+  background: #fff;
+  border: 1px solid #e5e8ef;
+  border-radius: 12px;
+  box-shadow: 0 1px 6px rgba(20, 30, 50, .04);
+}
+
+@media (max-width: 768px) {
+  .sls-starops-article .VPDoc > .container > .content > .content-container {
+    padding: 20px 16px 24px;
+  }
 }
 
 .sls-starops-article .vp-doc {
@@ -2517,12 +2492,20 @@
   color: var(--sls-starops-text-weak);
 }
 
-.sls-starops-article .vp-doc h1 {
+/* 文章标题：30/700，显式关掉全局 vp-doc h1 的 30px 下边距、24px 内距、灰线与
+   96×2 蓝条（全局选择器是 .Layout:not(…) .vp-doc h1，这里用同等特异性覆盖）。 */
+.Layout.sls-starops-article .vp-doc h1 {
   margin: 0 0 12px;
+  padding: 0;
+  border-bottom: 0;
   font-size: 30px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.25;
   letter-spacing: -.2px;
+}
+
+.Layout.sls-starops-article .vp-doc h1::after {
+  content: none;
 }
 
 .sls-starops-article .sls-starops-article-meta {
@@ -2574,7 +2557,38 @@
 }
 
 .sls-starops-article .VPDoc > .container > .aside {
-  display: block;
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .sls-starops-article .VPContent.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  /* 宽度模型对齐线上：容器贴侧栏、不居中，上限 1320（线上 1920 就是 1320，
+     正文 1000）；1579 以下仍按 1200 吃满，1580–1736 随 76vw 长，之后封顶。
+     居中的话剩余宽度会被平分到左右，左边缘多出一条 160+24 的空带。 */
+  .sls-starops-article .VPDoc > .container {
+    max-width: clamp(1200px, 76vw, 1320px);
+    margin: 0 auto 0 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 240px;
+    gap: 32px;
+  }
+
+  .sls-starops-article .VPDoc > .container > .aside {
+    display: block;
+  }
+}
+
+/* 目录列 240，VitePress 的 .aside 自带 padding-left 32，只剩 208，而目录容器
+   写死 224（它按 aside 256 算的），会向右溢出 16：右侧留白比左侧少 16，
+   目录标题也被挤窄。这里把 aside 的 padding-left 收到 16（配合上方的 32 间隙，
+   正文卡与目录卡之间 48），240 - 16 = 224 正好放下目录卡。 */
+.sls-starops-article .VPDoc > .container > .aside {
+  padding-left: 16px;
 }
 
 .sls-starops-article .VPDoc > .container > .aside .aside-container {
@@ -2889,6 +2903,37 @@
   padding: 0 24px;
 }
 
+.sls-starops-home .sls-starops-hero__content::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 360px;
+  height: 200px;
+  border: 1px solid rgba(141, 160, 255, 0.2);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, transparent 0 18%, rgba(141, 160, 255, 0.22) 18% 18.5%, transparent 18.5% 100%),
+    linear-gradient(180deg, transparent 0 62%, rgba(244, 166, 42, 0.22) 62% 62.5%, transparent 62.5% 100%),
+    rgba(4, 14, 26, 0.3);
+  box-shadow: 0 0 40px rgba(68, 100, 240, 0.18);
+  opacity: 0.9;
+}
+
+.sls-starops-home .sls-starops-hero__content::before {
+  content: '';
+  position: absolute;
+  right: 24px;
+  top: 72px;
+  width: 260px;
+  height: 64px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, transparent 14px, rgba(68, 100, 240, 0.85) 14px 16px, transparent 16px),
+    linear-gradient(180deg, transparent 44px, rgba(244, 166, 42, 0.85) 44px 46px, transparent 46px);
+  opacity: 0.92;
+}
+
 .sls-starops-home .sls-starops-hero__breadcrumb {
   display: flex;
   gap: 8px;
@@ -2922,42 +2967,12 @@
   background: linear-gradient(90deg, #8da0ff, #4464f0);
 }
 
-.sls-starops-home .sls-starops-hero h1 {
-  margin: 0;
-  font-size: 56px;
-  line-height: 1.1;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.5px;
-}
-
 .sls-starops-home .sls-starops-hero__lede {
   max-width: 720px;
   margin: 22px 0 0;
   color: rgba(232,244,251,.86);
   font-size: 17px;
   line-height: 1.85;
-}
-
-.sls-starops-home .sls-starops-hero__signals {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.sls-starops-home .sls-starops-hero__signals span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 28px;
-  padding: 0 12px;
-  border: 1px solid rgba(185,195,255,.22);
-  border-radius: 999px;
-  background: rgba(255,255,255,.06);
-  color: rgba(232,244,251,.92);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .3px;
 }
 
 .sls-starops-home .sls-starops-scene-nav {
@@ -2970,106 +2985,66 @@
   gap: 20px;
 }
 
+/* 7 张入口卡是筛选控件：整卡一个动作，选中态只换边框与淡底。 */
 .sls-starops-home .sls-starops-scene-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  min-height: 220px;
-  padding: 22px 22px 24px;
-  background: linear-gradient(180deg, #fff 0%, #f9fbfd 100%);
+  gap: 10px;
+  padding: 20px 20px 22px;
+  background: #fff;
   border: 1px solid var(--sls-starops-border);
   border-radius: 10px;
-  box-shadow: 0 18px 44px rgba(10, 24, 38, 0.10);
   color: var(--sls-starops-text);
+  font: inherit;
+  text-align: left;
   text-decoration: none;
-  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  cursor: pointer;
+  transition: border-color .15s ease, background-color .15s ease;
 }
 
 .sls-starops-home .sls-starops-scene-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 60px rgba(10, 24, 38, 0.16);
   border-color: var(--sls-starops-border-strong);
-  text-decoration: none;
 }
 
-.sls-starops-home .sls-starops-scene-card__kicker {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .6px;
-  color: var(--sls-starops-brand);
-  text-transform: uppercase;
+.sls-starops-home .sls-starops-scene-card:focus-visible {
+  outline: 2px solid var(--sls-starops-brand);
+  outline-offset: 2px;
 }
 
-.sls-starops-home .sls-starops-scene-card[data-tone="amber"] .sls-starops-scene-card__kicker {
-  color: #c97a06;
+.sls-starops-home .sls-starops-scene-card[aria-pressed="true"] {
+  border-color: var(--sls-starops-brand);
+  background: #f7f9ff;
 }
 
-.sls-starops-home .sls-starops-scene-card[data-tone="cyan"] .sls-starops-scene-card__kicker {
-  color: #1f5fb0;
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="violet"] .sls-starops-scene-card__kicker {
-  color: #6044d0;
-}
-
-.sls-starops-home .sls-starops-scene-card h2 {
-  margin: 2px 0 6px;
-  font-size: 19px;
-  font-weight: 700;
+.sls-starops-home .sls-starops-scene-card__title {
+  display: block;
+  margin: 0;
   color: var(--sls-starops-text);
+  font-size: 17px;
+  font-weight: 700;
   line-height: 1.4;
 }
 
-.sls-starops-home .sls-starops-scene-card p {
+.sls-starops-home .sls-starops-scene-card__desc {
+  display: block;
   flex: 1;
   margin: 0;
   color: var(--sls-starops-text-soft);
-  font-size: 13.5px;
-  line-height: 1.7;
-}
-
-.sls-starops-home .sls-starops-scene-card__count {
-  color: var(--sls-starops-text-weak);
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .sls-starops-home .sls-starops-scene-card__cta {
+  display: block;
+  margin-top: auto;
   color: var(--sls-starops-brand);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .sls-starops-home .sls-starops-scene-card__cta::after {
   content: ' →';
-  transition: margin .15s;
-}
-
-.sls-starops-home .sls-starops-scene-card:hover .sls-starops-scene-card__cta::after {
-  margin-left: 4px;
-}
-
-.sls-starops-home .sls-starops-scene-card__deco {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-  width: 64px;
-  height: 44px;
-  border: 1px solid rgba(24,35,51,.08);
-  border-radius: 6px;
-  background: linear-gradient(180deg, transparent 26px, rgba(24,35,51,.10) 26px 27px, transparent 27px 100%), linear-gradient(90deg, rgba(24,35,51,.04), transparent);
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="amber"] .sls-starops-scene-card__deco {
-  box-shadow: inset 0 0 0 1px rgba(244,166,42,.18);
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="cyan"] .sls-starops-scene-card__deco {
-  box-shadow: inset 0 0 0 1px rgba(31,95,176,.18);
-}
-
-.sls-starops-home .sls-starops-scene-card[data-tone="violet"] .sls-starops-scene-card__deco {
-  box-shadow: inset 0 0 0 1px rgba(96,68,208,.18);
 }
 
 .sls-starops-home .sls-starops-section {
@@ -3364,10 +3339,6 @@
   box-shadow: 0 18px 44px rgba(10, 24, 38, 0.08);
 }
 
-.sls-starops-article .vp-doc h1 {
-  margin-bottom: 8px;
-}
-
 .sls-starops-article .vp-doc h2 {
   margin-top: 34px;
 }
@@ -3381,9 +3352,8 @@
     font-size: 20px;
   }
 
-  .sls-starops-home .sls-starops-scene-nav,
   .sls-starops-home .sls-starops-grid--three {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sls-starops-home .sls-starops-section__head,
@@ -3395,14 +3365,6 @@
   .sls-starops-home .sls-starops-section__desc {
     max-width: none;
     text-align: left;
-  }
-
-  .sls-starops-article .VPDoc > .container {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .sls-starops-article .VPDoc > .container > .aside {
-    display: none;
   }
 }
 
@@ -3439,10 +3401,6 @@
 
   .sls-starops-home .sls-starops-hero {
     padding: calc(76px + var(--vp-nav-height, 64px)) 20px 144px;
-  }
-
-  .sls-starops-home .sls-starops-hero h1 {
-    font-size: 40px;
   }
 
   .sls-starops-home .sls-starops-scene-nav,
@@ -3590,14 +3548,12 @@
 
 .sls-starops-home .sls-starops-topbar__cta--primary {
   border: 0;
-  background: linear-gradient(135deg, var(--sls-starops-brand), #6382fd);
+  background: var(--sls-starops-brand);
   color: #fff;
-  box-shadow: 0 6px 18px rgba(68, 100, 240, 0.45);
 }
 
 .sls-starops-home .sls-starops-topbar__cta--primary:hover {
-  background: linear-gradient(135deg, var(--sls-starops-brand), #6382fd);
-  filter: brightness(1.05);
+  background: var(--sls-starops-brand-strong);
 }
 
 .sls-starops-home .sls-starops-hero {
@@ -3609,89 +3565,17 @@
   position: relative;
 }
 
-.sls-starops-home .sls-starops-hero__content::after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 12px;
-  width: 360px;
-  height: 200px;
-  border: 1px solid rgba(141, 160, 255, 0.2);
-  border-radius: 8px;
-  background:
-    linear-gradient(90deg, transparent 0 18%, rgba(141, 160, 255, 0.22) 18% 18.5%, transparent 18.5% 100%),
-    linear-gradient(180deg, transparent 0 62%, rgba(244, 166, 42, 0.22) 62% 62.5%, transparent 62.5% 100%),
-    rgba(4, 14, 26, 0.3);
-  box-shadow: 0 0 40px rgba(68, 100, 240, 0.18);
-  opacity: 0.9;
-}
-
-.sls-starops-home .sls-starops-hero__content::before {
-  content: '';
-  position: absolute;
-  right: 24px;
-  top: 72px;
-  width: 260px;
-  height: 64px;
-  border-radius: 999px;
-  background:
-    linear-gradient(180deg, transparent 14px, rgba(68, 100, 240, 0.85) 14px 16px, transparent 16px),
-    linear-gradient(180deg, transparent 44px, rgba(244, 166, 42, 0.85) 44px 46px, transparent 46px);
-  opacity: 0.92;
-}
-
-.sls-starops-home .sls-starops-hero h1 {
-  color: #fff !important;
-  font-size: 56px;
-  line-height: 1.1;
-  letter-spacing: -0.5px;
-}
-
-.sls-starops-home .sls-starops-hero h1 em {
-  font-style: normal;
-  background: linear-gradient(135deg, #fff 0%, #8da0ff 60%, #f4a62a 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 .sls-starops-home .sls-starops-hero__lede {
-  color: rgba(232, 244, 251, 0.86) !important;
+  color: rgba(232, 244, 251, 0.86);
   max-width: 820px;
   font-size: 17px;
   line-height: 1.85;
-}
-
-.sls-starops-home .sls-starops-hero__signals {
-  margin-top: 30px;
 }
 
 .sls-starops-home .sls-starops-scene-nav {
   position: relative;
   margin-top: -110px;
   gap: 20px;
-}
-
-.sls-starops-home .sls-starops-scene-card {
-  min-height: 220px;
-  padding: 22px 22px 24px;
-}
-
-.sls-starops-home .sls-starops-scene-card__kicker {
-  letter-spacing: 0.6px;
-}
-
-.sls-starops-home .sls-starops-scene-card h2 {
-  font-size: 19px;
-}
-
-.sls-starops-home .sls-starops-scene-card p {
-  font-size: 13.5px;
-}
-
-.sls-starops-home .sls-starops-scene-card__count,
-.sls-starops-home .sls-starops-card__meta {
-  font-size: 12px;
 }
 
 .sls-starops-home .sls-starops-card__desc {
@@ -3725,10 +3609,6 @@
   padding-left: 14px;
 }
 
-.sls-starops-article .vp-doc h1 {
-  font-size: 30px;
-}
-
 .sls-starops-article .vp-doc h2 .header-anchor,
 .sls-starops-article .vp-doc h3 .header-anchor {
   margin-right: 8px;
@@ -3750,22 +3630,14 @@
   box-shadow: 0 18px 40px rgba(10, 24, 38, 0.08);
 }
 
-@media (max-width: 1100px) {
-  .sls-starops-home .sls-starops-hero__content::before,
-  .sls-starops-home .sls-starops-hero__content::after {
-    display: none;
-  }
-}
-
 @media (max-width: 1024px) {
   .sls-starops-home .sls-starops-hero {
     padding-top: 84px;
     padding-bottom: 150px;
   }
 
-  .sls-starops-home .sls-starops-scene-nav,
   .sls-starops-home .sls-starops-grid--three {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sls-starops-home .sls-starops-section__head,
@@ -3778,32 +3650,15 @@
     max-width: none;
     text-align: left;
   }
-
-  .sls-starops-article .VPDoc > .container {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .sls-starops-article .VPDoc > .container > .content {
-    margin-left: 244px;
-  }
-
-  .sls-starops-article .VPDoc > .container > .aside {
-    display: none;
-  }
 }
 
 @media (max-width: 800px) {
-  .sls-starops-home .sls-starops-scene-nav,
   .sls-starops-home .sls-starops-grid--three {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .sls-starops-home .sls-starops-hero {
     padding: 64px 20px 140px;
-  }
-
-  .sls-starops-home .sls-starops-hero h1 {
-    font-size: 36px;
   }
 
   .sls-starops-home .sls-starops-hero__lede {
@@ -3828,66 +3683,191 @@
     gap: 16px;
     padding: 0 16px;
   }
+}
 
-  .sls-starops-article .VPDoc > .container {
-    padding: 0 16px;
-  }
-
-  .sls-starops-article .VPSidebar,
-  .sls-starops-article .VPDoc > .container > .content {
-    margin-left: 0;
+@media (max-width: 959px) {
+  .sls-starops-article .VPSidebar {
     display: none;
-  }
-
-  .sls-starops-article .VPDoc > .container > .content {
-    display: block;
   }
 }
 
-/* STAROps journey nav: five groups need a single desktop row. */
+/* 7 张入口卡按 4+3 排：≥900 四列，<900 两列，<480 单列。 */
 .sls-starops-home .sls-starops-scene-nav {
   max-width: 1200px;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
 
-.sls-starops-home .sls-starops-scene-card {
-  min-height: 176px;
-  gap: 10px;
-  padding: 18px 18px 20px;
-}
-
-.sls-starops-home .sls-starops-scene-card h2 {
-  margin: 0 0 4px;
-  font-size: 18px;
-}
-
-.sls-starops-home .sls-starops-scene-card p {
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-@media (max-width: 1180px) {
+@media (max-width: 899px) {
   .sls-starops-home .sls-starops-scene-nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 479px) {
   .sls-starops-home .sls-starops-scene-nav {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
-.sls-starops-home .sls-starops-scene-card h2 {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+/* hero 标题：白字压掉全局 vp-doc h1 的深色文字色，字号与灰线仍交给全局规则。 */
+.sls-starops-home .sls-starops-hero h1 {
+  color: #fff !important;
 }
 
-.sls-starops-home .sls-starops-scene-card p {
-  flex: 0 0 auto;
+/* hero 标题里的 em 渐变：字号与灰线交给全局 vp-doc h1 规则，这里只补字形渐变。 */
+.sls-starops-home .sls-starops-hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, #fff 0%, #8da0ff 60%, #f4a62a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.sls-starops-home .sls-starops-scene-card__cta {
-  margin-top: auto;
+/* 窄屏放任右侧示意图会压到正文，<1100 隐藏。 */
+@media (max-width: 1100px) {
+  .sls-starops-home .sls-starops-hero__content::before,
+  .sls-starops-home .sls-starops-hero__content::after {
+    display: none;
+  }
+}
+
+/* 7 张入口卡的筛选条：默认全量，「显示全部」只在筛选后出现。 */
+.sls-starops-home .sls-starops-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 24px 0;
+}
+
+.sls-starops-home .sls-starops-filter-bar__count {
+  margin: 0;
+  color: var(--sls-starops-text-weak);
+  font-size: 13px;
+}
+
+.sls-starops-home .sls-starops-filter-bar__reset {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sls-starops-brand);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sls-starops-home .sls-starops-filter-bar__reset:hover {
+  text-decoration: underline;
+}
+
+/* 脚本只切 hidden：flex/grid 元素要显式让位。 */
+.sls-starops-home .sls-starops-section[hidden],
+.sls-starops-home .sls-starops-section__head[hidden] {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .sls-starops-home .sls-starops-filter-bar {
+    padding: 20px 20px 0;
+  }
+}
+
+/* 文章页 <960 的目录按钮与抽屉：桌面侧栏 ≥960 已在，二者不并存。 */
+.sls-starops-topbar__menu {
+  display: none;
+  flex: none;
+  padding: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 999px;
+  background: none;
+  color: rgba(232, 244, 251, .85);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.sls-starops-topbar__menu:hover {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+@media (max-width: 959px) {
+  .sls-starops-article .sls-starops-topbar__menu {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+.sls-starops-drawer {
+  position: fixed;
+  top: 56px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 55;
+}
+
+.sls-starops-drawer__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 16, 29, .45);
+}
+
+.sls-starops-drawer__panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: min(320px, 86vw);
+  padding: 20px 20px 40px;
+  overflow-y: auto;
+  background: #fff;
+  color: #18222f;
+  box-shadow: 0 12px 40px rgba(10, 24, 38, .18);
+}
+
+.sls-starops-drawer__panel:focus {
+  outline: none;
+}
+
+.sls-starops-drawer__title {
+  margin: 0 0 16px;
+  color: #7c8693;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.sls-starops-drawer__group {
+  margin-bottom: 18px;
+}
+
+.sls-starops-drawer__group-title {
+  margin: 0 0 6px;
+  color: #18222f;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.sls-starops-drawer__link {
+  display: block;
+  padding: 6px 0 6px 10px;
+  border-left: 2px solid transparent;
+  color: #4d5a6a;
+  font-size: 13.5px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+
+.sls-starops-drawer__link:hover {
+  color: #18222f;
+}
+
+.sls-starops-drawer__link.is-current {
+  border-left-color: #4464f0;
+  color: #2442c7;
+  font-weight: 600;
 }
