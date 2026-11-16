@@ -15,7 +15,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </div>
     <p class="sls-starops-hero__eyebrow">STAROps Best Practices</p>
     <h1>Agentic Ops<br /><em>最佳实践</em></h1>
-    <p class="sls-starops-hero__lede">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖开始上手、基准评测、进阶必备、场景能力、DevOps 闭环、持续优化和集成扩展。</p>
+    <p class="sls-starops-hero__lede">STAROps 在常见 Agentic Ops 场景下的使用案例。涵盖开始上手、基准评测、集成扩展、进阶必备、场景能力、DevOps 闭环和持续优化。</p>
     <div class="sls-starops-hero__actions">
       <a class="sls-starops-btn sls-starops-btn--primary" href="https://starops.console.aliyun.com" target="_blank">进入 STAROps 控制台</a>
       <a class="sls-starops-btn sls-starops-btn--ghost" href="/doc/playground/staropsdemo.html" target="_blank">体验 Playground</a>
@@ -33,6 +33,11 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     <span class="sls-starops-scene-card__title">基准评测</span>
     <span class="sls-starops-scene-card__desc">用同一 RCA Benchmark 对比 ReAct、OpenClaw 与 STAROps，覆盖评测基准、评测结果和 40 个诊断案例。</span>
     <span class="sls-starops-scene-card__cta">查看评测</span>
+  </button>
+  <button class="sls-starops-scene-card" type="button" data-group="integration" aria-pressed="false">
+    <span class="sls-starops-scene-card__title">集成扩展</span>
+    <span class="sls-starops-scene-card__desc">接入钉钉 IM、自建 DevOps 系统与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</span>
+    <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="keypoint" aria-pressed="false">
     <span class="sls-starops-scene-card__title">进阶必备</span>
@@ -54,11 +59,6 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     <span class="sls-starops-scene-card__desc">可重复的 Runbook 与计算脚本沉淀为 Skill，让数字员工高效、稳定复用运维经验。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
-  <button class="sls-starops-scene-card" type="button" data-group="integration" aria-pressed="false">
-    <span class="sls-starops-scene-card__title">集成扩展</span>
-    <span class="sls-starops-scene-card__desc">接入钉钉 IM、自建 DevOps 系统与跨账号资源，让诊断结果、巡检报告和外部能力进入团队闭环。</span>
-    <span class="sls-starops-scene-card__cta">查看实践</span>
-  </button>
 </section>
 
 <ClientOnly>
@@ -72,14 +72,14 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/onboarding/effective-prompts/article.html">
-      <h3 class="sls-starops-card__title">与 STAROps 有效对话</h3>
-      <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/from-connection-to-diagnosis/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/01-start/from-connection-to-diagnosis/article.html">
       <h3 class="sls-starops-card__title">从连接数据到完成一次诊断</h3>
       <p class="sls-starops-card__desc">第一次使用 STAROps：连接云监控 2.0 数据、等待自动建模、选中对象发起诊断，再顺着发现继续追问。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/01-start/effective-prompts/article.html">
+      <h3 class="sls-starops-card__title">与 STAROps 有效对话</h3>
+      <p class="sls-starops-card__desc">对话落在 UModel、Agent、Skill 三层支撑上的人机协作契约：锚定实体、同 thread 累积、声明可验收输出。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
@@ -110,6 +110,41 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
   </div>
 </section>
 
+<section class="sls-starops-section" id="integration">
+  <div class="sls-starops-section__head">
+    <div class="sls-starops-section__title-wrap">
+      <h2 class="sls-starops-section__title">集成扩展</h2>
+    </div>
+  </div>
+  <div class="sls-starops-grid sls-starops-grid--three">
+    <a class="sls-starops-card" href="/doc/starops/practices/02-integration/devops-system-integration/article.html">
+      <h3 class="sls-starops-card__title">把自建 DevOps 系统接进 STAROps</h3>
+      <p class="sls-starops-card__desc">在能访问自建 GitLab、Jenkins、Argo CD 的机器上安装环境代理，由数字员工执行已登录的 CLI；执行方式按能力设定，输出进证据链。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/02-integration/intranet-deep-investigation/article.html">
+      <h3 class="sls-starops-card__title">使用环境代理排查内网应用及其依赖</h3>
+      <p class="sls-starops-card__desc">通过环境代理从应用机检查入口响应、端口与进程，再沿实际连接方式追查 PostgreSQL、Redis 等内部依赖。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/02-integration/local-code-root-cause/article.html">
+      <h3 class="sls-starops-card__title">把应用异常追到本地代码与配置</h3>
+      <p class="sls-starops-card__desc">把运行日志与本地代码工作副本接进同一次调查，从 JDBC 报错沿 DB_URL 追到配置读取与注入位置，再回到运行实例核对。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/02-integration/im-integration/article.html">
+      <h3 class="sls-starops-card__title">把数字员工接进 IM 协作工具</h3>
+      <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/02-integration/cross-account-access/article.html">
+      <h3 class="sls-starops-card__title">跨账号统一建模与问题排查</h3>
+      <p class="sls-starops-card__desc">通过跨账号角色把多个业务账号接进同一名数字员工，自动建模成统一 UModel，围绕业务问题直接提问与联合排查。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+  </div>
+</section>
+
 <section class="sls-starops-section" id="keypoint">
   <div class="sls-starops-section__head">
     <div class="sls-starops-section__title-wrap">
@@ -117,17 +152,17 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/rds-inspection-via-script/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/03-keypoint/rds-inspection-via-script/article.html">
       <h3 class="sls-starops-card__title">RDS 巡检与异常追因</h3>
       <p class="sls-starops-card__desc">把确认过的检查口径写进 Skill 脚本，数字员工据结果组织报告；出现异常时沿日志、指标和变更继续取证，再由长期任务周期执行。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/mysql-readonly-diagnosis/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/03-keypoint/mysql-readonly-diagnosis/article.html">
       <h3 class="sls-starops-card__title">MySQL 只读性能诊断</h3>
       <p class="sls-starops-card__desc">用环境代理把已有的 MySQL 只读脚本接进数字员工，在会话里确认目标、执行检查，并围绕 SQL 与活跃会话继续追问。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/es-inspection-diagnosis/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/03-keypoint/es-inspection-diagnosis/article.html">
       <h3 class="sls-starops-card__title">ES 节点级巡检与异常追因</h3>
       <p class="sls-starops-card__desc">集群状态健康、平均值正常，压力也可能只集中在单个节点；先锁定异常时段，逐节点看 CPU、查询负载和分片，处置后等负载相近的高峰再复查。</p>
       <span class="sls-starops-card__cta">查看文档</span>
@@ -142,49 +177,49 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/alert-rca-flow/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/alert-rca-flow/article.html">
       <h3 class="sls-starops-card__title">从一条失败率告警到多分支诊断</h3>
       <p class="sls-starops-card__desc">把一条失败率告警拆成可调查的业务问题，用 Skill 分支并行取证；已知分支覆盖不到的失败，交给深度调查继续。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/capacity-risk-prediction/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/capacity-risk-prediction/article.html">
       <h3 class="sls-starops-card__title">自定义容量风险巡检设计最佳实践</h3>
       <p class="sls-starops-card__desc">容量判断不只看当前水位：先检查历史序列，预测触阈时间，再结合业务影响决定哪些资源提前准备。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/business-reliability-flow/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/business-reliability-flow/article.html">
       <h3 class="sls-starops-card__title">从一次深度评估到持续守住业务基线</h3>
       <p class="sls-starops-card__desc">一次性深度分析建立业务口径与基线，长期任务按周期对照守住基线，偏离变成有人跟进的问题发现。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/log-insight-pattern/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/log-insight-pattern/article.html">
       <h3 class="sls-starops-card__title">STAROps 日志智能巡检实践</h3>
       <p class="sls-starops-card__desc">对核心日志做周期巡检，主动捕捉尚未告警的日志模式变化，并把确认的问题沉淀为持续跟踪的发现项。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/synthetics-agent-analysis/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/synthetics-agent-analysis/article.html">
       <h3 class="sls-starops-card__title">云拨测 STAROps 创建与智能分析</h3>
       <p class="sls-starops-card__desc">把一句监控需求整理成拨测配置，确认后创建任务；运行后沿样本、协议阶段和网络路径做智能分析，给出带边界的诊断结论。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/synthetics-closed-loop/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/synthetics-closed-loop/article.html">
       <h3 class="sls-starops-card__title">用 STAROps 串起云拨测闭环</h3>
       <p class="sls-starops-card__desc">从业务目标创建云拨测任务，确认样本生效，沿协议阶段与 APM 调用链做跨域联合分析，再用原任务复核处理效果。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/finops-cost-governance/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/billing-cost-analysis/article.html">
+      <h3 class="sls-starops-card__title">账单与成本分析最佳实践</h3>
+      <p class="sls-starops-card__desc">用自然语言查询云费用、定位费用变化与实例级根因，结合资源水位形成可复核的成本优化建议。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/finops-cost-governance/article.html">
       <h3 class="sls-starops-card__title">STAROps 助力云成本治理落地</h3>
       <p class="sls-starops-card__desc">从费用异常下钻到计费项与资源，结合 CPU、内存等水位判断优化空间，再用 Mission 周期巡检把成本治理变成持续机制。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/cross-product-inspection-summary/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/cross-product-inspection-summary/article.html">
       <h3 class="sls-starops-card__title">多云产品融合巡检最佳实践</h3>
       <p class="sls-starops-card__desc">把多个产品的巡检结果汇总成一份报告：先校验来源与覆盖，再按资源关系把同一异常合并成一件待处理事项。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/billing-cost-analysis/article.html">
-      <h3 class="sls-starops-card__title">账单与成本分析最佳实践</h3>
-      <p class="sls-starops-card__desc">用自然语言查询云费用、定位费用变化与实例级根因，结合资源水位形成可复核的成本优化建议。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
@@ -197,17 +232,12 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/devops-code-to-runtime/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/05-devops/devops-code-to-runtime/article.html">
       <h3 class="sls-starops-card__title">从运行异常追到代码变更</h3>
       <p class="sls-starops-card__desc">把代码库与流水线接进 UModel，让数字员工从告警沿关系追到具体部署与提交。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/local-code-root-cause/article.html">
-      <h3 class="sls-starops-card__title">把应用异常追到本地代码与配置</h3>
-      <p class="sls-starops-card__desc">把运行日志与本地代码工作副本接进同一次调查，从 JDBC 报错沿 DB_URL 追到配置读取与注入位置，再回到运行实例核对。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/coding-agent-devops-loop/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/05-devops/coding-agent-devops-loop/article.html">
       <h3 class="sls-starops-card__title">一个 Agent 入口完成 DevOps 闭环</h3>
       <p class="sls-starops-card__desc">把发布版本、运行证据、诊断结论和回归条件留在同一个 Coding Agent 任务里；提交、PR、发布和回滚仍由原系统人工确认。</p>
       <span class="sls-starops-card__cta">查看文档</span>
@@ -222,49 +252,19 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </div>
   </div>
   <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/skill-center-selection/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-center-selection/article.html">
       <h3 class="sls-starops-card__title">技能中心选型与场景包启用</h3>
       <p class="sls-starops-card__desc">先定数字员工的职责边界，再按场景包整包授权；验收看挂载态和一次真实执行，官方覆盖不了才进自定义编写。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/skill-authoring/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-authoring/article.html">
       <h3 class="sls-starops-card__title">编写 STAROps 运维 Skill</h3>
       <p class="sls-starops-card__desc">Skill 设计的 7 要素合规约束：触发、流程、脚本、输出、风控、失败、推理边界，附模板与自检 Checklist。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/skill-script-deterministic/article.html">
+    <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-script-deterministic/article.html">
       <h3 class="sls-starops-card__title">编写 Skill 确定性脚本</h3>
       <p class="sls-starops-card__desc">数值计算交给脚本不交给 LLM——单位换算、聚合、阈值判断必须纯函数化，附 4 段 Python 模板。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-  </div>
-</section>
-
-<section class="sls-starops-section" id="integration">
-  <div class="sls-starops-section__head">
-    <div class="sls-starops-section__title-wrap">
-      <h2 class="sls-starops-section__title">集成扩展</h2>
-    </div>
-  </div>
-  <div class="sls-starops-grid sls-starops-grid--three">
-    <a class="sls-starops-card" href="/doc/starops/practices/im-integration/article.html">
-      <h3 class="sls-starops-card__title">把数字员工接进 IM 协作工具</h3>
-      <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/devops-system-integration/article.html">
-      <h3 class="sls-starops-card__title">把自建 DevOps 系统接进 STAROps</h3>
-      <p class="sls-starops-card__desc">在能访问自建 GitLab、Jenkins、Argo CD 的机器上安装环境代理，由数字员工执行已登录的 CLI；每条命令人工确认，输出进证据链。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/cross-account-access/article.html">
-      <h3 class="sls-starops-card__title">跨账号统一建模与问题排查</h3>
-      <p class="sls-starops-card__desc">通过跨账号角色把多个业务账号接进同一名数字员工，自动建模成统一 UModel，围绕业务问题直接提问与联合排查。</p>
-      <span class="sls-starops-card__cta">查看文档</span>
-    </a>
-    <a class="sls-starops-card" href="/doc/starops/practices/intranet-deep-investigation/article.html">
-      <h3 class="sls-starops-card__title">使用环境代理排查内网应用及其依赖</h3>
-      <p class="sls-starops-card__desc">通过环境代理从应用机检查入口响应、端口与进程，再沿实际连接方式追查 PostgreSQL、Redis 等内部依赖。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
