@@ -47,6 +47,7 @@ function getSidebar() {
         { text: '用 STAROps 串起云拨测闭环', link: '/starops/practices/04-scenario/synthetics-closed-loop/article' },
         { text: '账单与成本分析最佳实践', link: '/starops/practices/04-scenario/billing-cost-analysis/article' },
         { text: 'STAROps 助力云成本治理落地', link: '/starops/practices/04-scenario/finops-cost-governance/article' },
+        { text: '使用 STAROps 推进业务证书问题闭环', link: '/starops/practices/04-scenario/certificate-issue-closed-loop/article' },
         { text: '多云产品融合巡检最佳实践', link: '/starops/practices/04-scenario/cross-product-inspection-summary/article' },
       ],
     },

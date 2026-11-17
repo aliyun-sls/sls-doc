@@ -46,7 +46,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="scenario" aria-pressed="false">
     <span class="sls-starops-scene-card__title">场景能力</span>
-    <span class="sls-starops-scene-card__desc">从一次告警和容量风险立起基线，再换到日志、拨测和成本，每条轴先定位到具体对象，再变成持续守护的机制，最后把多份报告合成一份清单，每类场景留下可复用的走法。</span>
+    <span class="sls-starops-scene-card__desc">从告警和容量风险立起基线，再换到日志、拨测、成本和证书，每条轴先定位到具体对象，再变成持续守护的机制，最后把多份报告合成一份清单，每类场景留下可复用的走法。</span>
     <span class="sls-starops-scene-card__cta">查看实践</span>
   </button>
   <button class="sls-starops-scene-card" type="button" data-group="devops" aria-pressed="false">
@@ -215,6 +215,11 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/finops-cost-governance/article.html">
       <h3 class="sls-starops-card__title">STAROps 助力云成本治理落地</h3>
       <p class="sls-starops-card__desc">从费用异常下钻到计费项和资源，结合 CPU、内存等水位判断优化空间，再用长期任务周期巡检把成本治理变成持续机制。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/certificate-issue-closed-loop/article.html">
+      <h3 class="sls-starops-card__title">使用 STAROps 推进业务证书问题闭环</h3>
+      <p class="sls-starops-card__desc">证书按照既有流程换，复杂交给 STAROps：先查清业务实际在用哪张证书，把结果变成有责任人和关闭条件的问题，换好后回到原入口取证确认。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/04-scenario/cross-product-inspection-summary/article.html">
