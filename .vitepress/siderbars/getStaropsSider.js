@@ -23,6 +23,7 @@ function getSidebar() {
         { text: '使用环境代理排查内网应用及其依赖', link: '/starops/practices/02-integration/intranet-deep-investigation/article' },
         { text: '把应用异常追到本地代码与配置', link: '/starops/practices/02-integration/local-code-root-cause/article' },
         { text: '把数字员工接进 IM 协作工具', link: '/starops/practices/02-integration/im-integration/article' },
+        { text: '将巡检报告交付至企微文档', link: '/starops/practices/02-integration/wecom-report-delivery/article' },
         { text: '跨账号统一建模与问题排查', link: '/starops/practices/02-integration/cross-account-access/article' },
       ],
     },
