@@ -137,6 +137,11 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
       <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
+    <a class="sls-starops-card" href="/doc/starops/practices/02-integration/wecom-report-delivery/article.html">
+      <h3 class="sls-starops-card__title">将巡检报告交付至企微文档</h3>
+      <p class="sls-starops-card__desc">让长期巡检从生成报告走到交付结果：文档、群卡片与归档接上同一轮结论，搬运交给任务，判断留给人。</p>
+      <span class="sls-starops-card__cta">查看文档</span>
+    </a>
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/cross-account-access/article.html">
       <h3 class="sls-starops-card__title">跨账号统一建模与问题排查</h3>
       <p class="sls-starops-card__desc">通过跨账号角色把多个业务账号接进同一名数字员工，自动建模成统一 UModel，围绕业务问题直接提问与联合排查。</p>
