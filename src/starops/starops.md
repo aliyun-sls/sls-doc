@@ -79,7 +79,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/01-start/effective-prompts/article.html">
       <h3 class="sls-starops-card__title">与 STAROps 有效对话</h3>
-      <p class="sls-starops-card__desc">把实体、时间窗、业务意图和期望输出说清楚，数字员工才能收敛到你要的结论；六条原则靠 UModel、Agent、Skill 三层支撑。</p>
+      <p class="sls-starops-card__desc">把实体、时间窗、业务意图和期望输出说清楚，数字员工才能收敛到你要的结论；六条原则靠 UModel、会话、技能三层支撑。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
   </div>
@@ -134,7 +134,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/im-integration/article.html">
       <h3 class="sls-starops-card__title">把数字员工接进 IM 协作工具</h3>
-      <p class="sls-starops-card__desc">扫码绑定与手动配置两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
+      <p class="sls-starops-card__desc">扫码创建或绑定已有应用、手动配置填自建凭据两条接入路径，接入后的配对准入、群上下文作用域与操作确认，把协作通道真正管住。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/02-integration/wecom-report-delivery/article.html">
@@ -264,7 +264,7 @@ import StaropsPracticeFilter from '@theme/src/components/StaropsPracticeFilter.v
   <div class="sls-starops-grid sls-starops-grid--three">
     <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-center-selection/article.html">
       <h3 class="sls-starops-card__title">技能中心选型与场景包启用</h3>
-      <p class="sls-starops-card__desc">先定数字员工的职责边界，再按场景包整包授权；验收看挂载态和一次真实执行，官方覆盖不了才进自定义编写。</p>
+      <p class="sls-starops-card__desc">三个来源、三种启用方式：官网推荐直接添加、技能广场安装后挂载、自定义技能用使用范围；验收看员工侧已安装与一次真实任务。</p>
       <span class="sls-starops-card__cta">查看文档</span>
     </a>
     <a class="sls-starops-card" href="/doc/starops/practices/06-loop/skill-authoring/article.html">
