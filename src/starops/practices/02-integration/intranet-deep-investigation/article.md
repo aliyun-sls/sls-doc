@@ -26,9 +26,9 @@ title: 使用环境代理排查内网应用及其依赖
 
 ## 选一台能访问应用的机器
 
-环境代理可以安装在应用机上，也可以安装在能够访问目标应用的运维机器上，再绑定到数字员工。它主动向 STAROps 建立出站连接，机器不需要为它开放入站端口。创建、安装和绑定方式见[《环境代理》](https://help.aliyun.com/zh/starops/user-guide/environmental-agent)。
+环境代理可以安装在应用机上，也可以安装在能够访问目标应用的运维机器上，再绑定到数字员工。它只主动向阿里云发起出站连接，机器不需要为它开放入站端口。创建、安装和绑定方式见[《环境代理》](https://help.aliyun.com/zh/starops/user-guide/environmental-agent)。
 
-机器接入后，数字员工可以使用已声明的 shell 能力，也可以调用团队已有的 HTTP、端口和进程检查脚本。将这些能力设置为执行前需人工确认，就能在调用时先核对机器和参数。
+机器接入后，数字员工可以使用已声明的 `bash` 能力和检查脚本：`bash` 执行数字员工给出的命令，检查脚本执行机器上一个指定的程序。两类都要在 `capabilities.json` 里声明，安装时开启 `bash` 内置能力会自动写入，`script` 要手工声明。把这两类能力设置为执行前需人工确认，就能在调用时先核对机器和参数。字段、参数校验与生效方式见[《环境代理》](https://help.aliyun.com/zh/starops/user-guide/environmental-agent)的「声明能力」。
 
 ![](assets/screenshots/01-capability-list.png)
 
