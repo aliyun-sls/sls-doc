@@ -30,16 +30,18 @@ title: ES 节点级巡检与异常追因
 
 ## 先让数字员工用上 Elasticsearch 智能助手
 
-STAROps 技能中心的「官网推荐」已经列出 **Elasticsearch 智能助手**。它通过托管服务提供实例健康巡检、故障诊断与根因定位、实例和节点及索引信息查询、网络配置查看与知识问答，只执行只读查询和诊断，不创建、删除、重启或变配实例。
+STAROps 技能中心的「官网推荐」提供 **Elasticsearch 智能助手**；清单随平台更新，以控制台为准。它通过托管服务提供实例健康巡检、故障诊断与根因定位、实例和节点及索引信息查询、网络配置查看与知识问答。技能卡片把能力声明为只读查询和诊断，但它背后调用的托管助手还带有实例管理、网络管理等变更类工具，执行变更需要在界面上二次确认；提问时仍要写明只读、不要执行变更，把这一轮巡检限制在查询和诊断范围内。
 
-能不能在某个数字员工的会话里直接用，取决于这个环境有没有发布并启用这项技能。先进入员工的**设置 → 技能管理 → 已安装**，确认列表里有这项技能；如果看不到，说明这个环境还没挂载它，需要按该环境的技能发布方式启用，或联系平台处理。技能中心能看到它，不等于每个地域、每个员工都已经可用。
+能不能在某个数字员工的会话里直接用，取决于这个环境有没有发布并启用这项技能。启用分两段：先在技能中心「官网推荐」打开这项技能，进入「使用管理」点「添加员工」，选中目标员工添加；再回到员工的**设置 → 技能管理 → 已安装**，确认列表里有这项技能。列表同步要几分钟，刚添加完可能还看不到。如果「官网推荐」里根本没有这项技能，或者员工侧确认后仍然没有，说明这个环境还没发布它，需要按该环境的技能发布方式启用，或联系平台处理。技能中心能看到它，不等于每个地域、每个员工都已经可用。
+
+技能管理由专业版及以上套餐提供，并且只对自定义数字员工开放，系统员工不支持；套餐差异见[订阅套餐说明](https://help.aliyun.com/zh/starops/product-overview/subscription-plan-description)。
 
 首次使用还要确认两类权限：
 
 - ES 侧需要 `elasticsearch:InvokeEsAgent` 权限，并完成一次 RAM 服务关联角色授权。
 - 数字员工使用的 RAM Role 要能调用该接口，并能读取待排查的实例。
 
-授权完成后进入会话，先拿一台熟悉的实例跑一次只读巡检，确认调用正常。技能配置见[技能中心](https://help.aliyun.com/zh/starops/user-guide/skill-center)，助手开通见[Elasticsearch 智能助手](https://help.aliyun.com/zh/es/user-guide/es-smart-ops-agent)，权限要求见[STAROps 权限配置](https://help.aliyun.com/zh/starops/user-guide/permission-configuration/)。
+授权完成后进入会话，先拿一台熟悉的实例跑一次只读巡检，确认调用正常。如果预检直接返回 `does not expose invoke-es-agent` 这类运行时错误，说明平台侧的托管运行时需要修复，要联系平台处理；这个错误只说明调用没跑起来，不能据此判断这台实例没有异常。技能配置见[技能中心](https://help.aliyun.com/zh/starops/user-guide/skill-center)，助手开通见[Elasticsearch 智能助手](https://help.aliyun.com/zh/es/user-guide/es-smart-ops-agent)，权限要求见[STAROps 权限配置](https://help.aliyun.com/zh/starops/user-guide/permission-configuration/)。
 
 ![](./assets/images/02-agent-architecture.png)
 
