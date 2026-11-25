@@ -98,6 +98,8 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 跨账号连接需要高级版或旗舰版，版本差异见[《订阅套餐说明》](https://help.aliyun.com/zh/starops/product-overview/subscription-plan-description)。操作前，在 A 中开通 STAROps 并准备一个用于数字员工的工作空间；在 B、C 中确认相应的日志或云监控数据已经存在且有数据。各账号分别由具备 RAM 管理权限的人员完成角色配置。下面先配置 A 到 B 的访问，再以同样方式接入 C。
 
+**跨账号访问必须使用自定义员工角色。** 默认服务角色 `AliyunServiceRoleForSTAROps` 的权限由 STAROps 维护，不能追加 `sts:AssumeRole`，用默认角色运行的员工无法扮演目标角色。
+
 下面的策略使用占位符表示账号，复制时替换为实际值。**账号 ID 使用主账号 ID，不能填写 RAM 用户 ID。**
 
 | 变量或对象 | 本例取值 | 用途 |
@@ -115,6 +117,52 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 整个接入过程如下。准备各账号的身份与授权后，将数据连接到同一名员工，开启自动建模，再通过不指定账号的业务问题验证统一访问能力。
 
 ![](./assets/images/02-cross-account-setup-flow-flat.png)
+
+### 先用最短路径验证一条跨账号链路
+
+角色、信任策略和连接器分散在两个账号里，配置顺序错了很难从报错反推。可以先只打通 A 到 B 的一条日志链路，确认角色扮演成立，再按下面的完整步骤补齐其余来源。两段命令分别在对应账号的 Cloud Shell 中执行，账号 ID 和角色名按上表替换。
+
+::: details 查看在 B 中创建目标角色并授予日志读取的命令
+
+```bash
+# 在 B 中执行：创建目标角色，信任 A 的员工角色，授予日志读取
+UID_A=1234567890
+ROLE_A=starops-trade-operator
+ROLE_B=starops-trade-prod-reader
+cat > /tmp/trust-b.json <<EOF
+{"Version":"1","Statement":[{"Effect":"Allow","Principal":{"RAM":"acs:ram::${UID_A}:role/${ROLE_A}"},"Action":"sts:AssumeRole"}]}
+EOF
+aliyun ram CreateRole --RoleName "$ROLE_B" \
+  --AssumeRolePolicyDocument "$(cat /tmp/trust-b.json)" --Description "STAROps 跨账号只读"
+aliyun ram AttachPolicyToRole --PolicyType System \
+  --PolicyName AliyunLogReadOnlyAccess --RoleName "$ROLE_B"
+```
+
+:::
+
+::: details 查看在 A 中授予员工角色 AssumeRole 的命令
+
+```bash
+# 在 A 中执行：允许员工角色扮演 B 的目标角色
+UID_B=1800000000
+ROLE_A=starops-trade-operator
+ROLE_B=starops-trade-prod-reader
+cat > /tmp/assume-b.json <<EOF
+{"Version":"1","Statement":[{"Effect":"Allow","Action":"sts:AssumeRole","Resource":"acs:ram::${UID_B}:role/${ROLE_B}"}]}
+EOF
+aliyun ram CreatePolicy --PolicyName starops-assume-trade-prod-reader \
+  --PolicyDocument "$(cat /tmp/assume-b.json)"
+aliyun ram AttachPolicyToRole --PolicyType Custom \
+  --PolicyName starops-assume-trade-prod-reader --RoleName "$ROLE_A"
+```
+
+:::
+
+然后回到 A 的连接器配置：类型选日志服务，阿里云角色选 **跨账号角色**，粘贴 B 的目标角色 ARN，点 **检查权限**。通过后角色链路成立，可以继续选地域和连接目标。
+
+**要把授权收敛到单个 Project 时，枚举权限要单独保留。** 读取动作可以限定到目标 Project，但连接器打开 Project 列表调用的是 `log:ListProject`，资源为 `project/*`；只授权单个 Project 的策略会在这里被拒绝，列表也填不出来。需要收敛范围时，给目标角色的权限策略再加一条只允许 `log:ListProject`（资源 `acs:log:*:*:project/*`）的语句，语句写法见[《管理 RAM 角色的权限》](https://help.aliyun.com/zh/ram/user-guide/grant-permissions-to-a-ram-role)。
+
+连接器的地域默认值不一定是数据所在地域。先切到目标地域再展开 Project 列表，否则被拒的请求指向的是默认地域，容易误判成角色配置错误。
 
 ### 在管理账号准备员工角色
 
@@ -147,7 +195,7 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 :::
 
-为员工角色配置在 A 中使用工作空间与日志所需的读取权限，模板见[《数字员工权限配置》](https://help.aliyun.com/zh/starops/user-guide/digital-employee-permission-configuration)。B、C 的源数据读取权限分别配置在各自的目标角色上。
+员工角色在 A 中需要工作空间与日志的读取权限，模板见[《数字员工权限配置》](https://help.aliyun.com/zh/starops/user-guide/digital-employee-permission-configuration)。员工还要在平台侧写数据（例如问题发现、看板）时，再按实际用到的动作补 `starops`、`cms` 一类权限，不要直接照搬全量策略。B、C 的源数据读取权限分别配置在各自的目标角色上。
 
 ### 在业务账号创建目标角色
 
@@ -347,7 +395,11 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 ### 在会话中验证跨账号连接
 
-先在 **可观测** 列表确认三个连接器状态为 **成功**，打开详情核对所属账号、Role ARN、地域和连接目标。然后回到该员工的会话页，先按接入来源确认数据可读：
+先在 **可观测** 列表确认三个连接器状态为 **成功**，打开详情核对所属账号、Role ARN、地域和连接目标。
+
+![](./assets/screenshots/05-cross-account-sls-connector.png)
+
+然后回到该员工的会话页，先按接入来源确认数据可读：
 
 > 帮我检查交易生产日志、交易生产监控和订单数据库监控这三个连接，确认能读取订单日志、应用主机指标和订单数据库指标，并列出对应业务对象。
 
@@ -357,6 +409,8 @@ Project、工作空间、地域和角色在接入及建模阶段配置好，运�
 
 STAROps 应通过模型找到订单应用和关联数据库，分别访问 B、C 的连接器，并在结果中说明证据对应的对象与来源。至此，源数据访问和多账号统一问答都已覆盖。
 
+![](./assets/screenshots/07-cross-account-query-result.png)
+
 **查询返回空数据和身份访问失败需要分别处理。** 空数据先核对时间窗口、业务是否有流量和采集是否正常；角色扮演或鉴权失败则打开连接器详情，沿以下路径定位。
 
 | 检查结果 | 应检查的位置 |
@@ -365,6 +419,7 @@ STAROps 应通过模型找到订单应用和关联数据库，分别访问 B、C
 | 员工自身身份不可用 | A 中员工角色是否存在、是否信任 STAROps，使用者是否具备对应 PassRole |
 | 无法扮演目标角色 | A 的员工角色是否有相应目标角色的 AssumeRole 权限，该业务账号的目标角色是否信任员工角色 |
 | 目标 Project 或工作空间不可读 | 数据源是否属于对应业务账号的所选地域，该账号的目标角色是否具备读取权限 |
+| Project 列表填不出来，提示 `log:ListProject` 被拒绝 | 先确认地域选的是数据所在地域，再确认目标角色有 `log:ListProject`；只授权单个 Project 读取的策略通常缺这条枚举权限 |
 
 权限检查、建模关联和业务查询都通过后，就可以直接围绕订单问题开展跨账号调查。
 
